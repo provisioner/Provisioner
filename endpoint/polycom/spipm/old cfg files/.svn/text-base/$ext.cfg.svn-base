@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!-- Reg 1 Per-phone Configuration File -->
+<sip>
+
+	<reginfo>
+	<reg
+		{line_loop}
+			reg.{$line}.displayName="{$displayname}"
+			reg.{$line}.address="{$ext}"
+			reg.{$line}.label="{$ext}"
+			reg.{$line}.auth.userId="{$ext}"
+			reg.{$line}.auth.password="{$pass}"
+		    reg.{$line}.lineKeys="1"
+			reg.{$line}.server.1.address=""
+			reg.{$line}.server.1.expires=""
+			reg.{$line}.server.1.expires.lineSeize="30"
+			reg.{$line}.server.1.port="5060"
+			reg.{$line}.server.1.register="1"
+			reg.{$line}.server.1.retryMaxCount=""
+			reg.{$line}.server.1.retryTimeOut=""
+			reg.{$line}.server.1.transport="DNSnaptr"
+			reg.{$line}.server.2.transport="DNSnaptr"
+			reg.{$line}.thirdPartyName=""
+			reg.{$line}.type="private"
+		{/line_loop}
+	/>
+
+	<msg msg.bypassInstantMessage="1">
+		<mwi
+			{line_loop}
+				msg.mwi.{$line}.subscribe=""
+				msg.mwi.{$line}.callBackMode="contact"
+				msg.mwi.{$line}.callBack="*97"
+			{/line_loop}
+		/>
+	</msg>
+
+	</reginfo>
+
+<microbrowser mb.proxy="" mb.ssawc.call.mode="" mb.ssawc.enabled="" mb.launchpad.enabled="1">
+
+<main 
+	mb.main.home="{$microbrowser_main_home}"
+	mb.main.idleTimeout=""
+	mb.main.statusbar=""
+	{line_loop}
+		mb.main.{$line}.url="{$main_url|URL}"
+		mb.main.{$line}.icon="{$main_icon|ICON}"
+		mb.main.{$line}.text="{$main_text|TEXT}"
+	{/line_loop}
+/>
+
+<idleDisplay
+	mb.idleDisplay.home="{$idle_display}"
+	mb.idleDisplay.refresh="{$idle_display_refresh}"
+/>
+<limits
+	mb.limits.nodes=""
+	mb.limits.cache=""/>
+
+</microbrowser>
+
+</sip>

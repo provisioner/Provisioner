@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<data>
+	<brands>
+		<name>Polycom</name>
+		<version>0.7</version>
+		<directory>polycom</directory>
+		<brand_id>4</brand_id>
+		<package>polycom.zip</package>
+		<family_list>
+			<name>SoundPoint/Station Legacy Models [301,320,330,501,600,601,4000]</name>
+			<xml>splm_01.xml</xml>
+			<directory>splm</directory>
+			<id>1</id>
+		</family_list>
+		<family_list>
+			<family>SoundPoint Old Models [300,500]</family>
+			<xml>spom_01.xml</xml>
+			<directory>spom</directory>
+			<id>2</id>
+		</family_list>
+		<family_list>
+			<family>SoundPoint/Station/VVX In-Production Models [321,331,335,430,450,550,560,650,670,6000,7000,1500]</family>
+			<xml>spipm_01.xml</xml>
+			<directory>spipm</directory>
+			<id>3</id>
+		</family_list>
+		<oui_list>
+			<oui>0004F2</oui>
+			<oui>00907A</oui>
+		</oui_list>
+	</brands>
+</data>
