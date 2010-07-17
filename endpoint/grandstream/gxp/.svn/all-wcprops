@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/v2/svn/!svn/ver/10034/contributed_modules/modules/_ep_phone_modules/modules/grandstream/gxp
+END
+$mac.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/v2/svn/!svn/ver/10034/contributed_modules/modules/_ep_phone_modules/modules/grandstream/gxp/$mac.cfg
+END
+template_data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/v2/svn/!svn/ver/10034/contributed_modules/modules/_ep_phone_modules/modules/grandstream/gxp/template_data.xml
+END
+functions.inc
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/v2/svn/!svn/ver/10034/contributed_modules/modules/_ep_phone_modules/modules/grandstream/gxp/functions.inc
+END
+family_data.xml
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/v2/svn/!svn/ver/10034/contributed_modules/modules/_ep_phone_modules/modules/grandstream/gxp/family_data.xml
+END

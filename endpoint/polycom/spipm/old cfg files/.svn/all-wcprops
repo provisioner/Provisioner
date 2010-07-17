@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/v2/svn/!svn/ver/10107/contributed_modules/modules/_ep_phone_modules/modules/polycom/spipm/old%20cfg%20files
+END
+sip.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/v2/svn/!svn/ver/10107/contributed_modules/modules/_ep_phone_modules/modules/polycom/spipm/old%20cfg%20files/sip.cfg
+END
+$mac.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/v2/svn/!svn/ver/10107/contributed_modules/modules/_ep_phone_modules/modules/polycom/spipm/old%20cfg%20files/$mac.cfg
+END
+$ext.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/v2/svn/!svn/ver/10107/contributed_modules/modules/_ep_phone_modules/modules/polycom/spipm/old%20cfg%20files/$ext.cfg
+END
+server.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/v2/svn/!svn/ver/10107/contributed_modules/modules/_ep_phone_modules/modules/polycom/spipm/old%20cfg%20files/server.cfg
+END
+$mac_custom.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/v2/svn/!svn/ver/10107/contributed_modules/modules/_ep_phone_modules/modules/polycom/spipm/old%20cfg%20files/$mac_custom.cfg
+END
+sip_custom.cfg
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/v2/svn/!svn/ver/10107/contributed_modules/modules/_ep_phone_modules/modules/polycom/spipm/old%20cfg%20files/sip_custom.cfg
+END
