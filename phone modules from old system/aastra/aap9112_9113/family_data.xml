@@ -1,0 +1,25 @@
+<data>
+	<version>0.7</version>
+	<package>aap9112_9113-0_7.tgz</package>
+	<firmware_ver></firmware_ver>
+	<firmware_pkg>NULL</firmware_pkg>
+	<description>Initial Files</description>
+	<configuration_files>$mac.cfg,aastra.cfg</configuration_files>
+	<changelog></changelog>
+	<model_list>
+		<model>9112i</model>
+		<lines>1</lines>
+		<id>1</id>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>9133i</model>
+		<lines>1</lines>
+		<id>2</id>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+</data>

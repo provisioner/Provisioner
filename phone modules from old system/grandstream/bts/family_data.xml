@@ -1,0 +1,25 @@
+<data>
+	<version>1.0</version>
+	<package>bts-1_0.tgz</package>
+	<firmware_ver>1.2.2.26</firmware_ver>
+	<firmware_pkg>Release_BT200_GXP_1.2.2.26.zip</firmware_pkg>
+	<description>Fixed Timezone Issues + Use Grandstream Encrypted Compiler By Default</description>
+	<configuration_files>$mac.cfg</configuration_files>
+	<changelog></changelog>
+	<model_list>
+		<model>BT200</model>
+		<lines>1</lines>
+		<id>1</id>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>BT201</model>
+		<lines>1</lines>
+		<id>2</id>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+</data>

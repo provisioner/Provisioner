@@ -1,0 +1,41 @@
+<data>
+	<version>0.7.5</version>
+	<package>t2x-0_7_5.tgz</package>
+	<firmware_ver></firmware_ver>
+	<firmware_pkg>NULL</firmware_pkg>
+	<description>Variables Issues Solved (Not writing accounts + passwords in files)</description>
+	<configuration_files>y000000000000.cfg,$mac.cfg</configuration_files>
+	<changelog></changelog>
+	<model_list>
+		<model>T20</model>
+		<lines>2</lines>
+		<id>1</id>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>T22</model>
+		<lines>2</lines>
+		<id>2</id>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>T26</model>
+		<lines>2</lines>
+		<id>3</id>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>T28</model>
+		<lines>2</lines>
+		<id>4</id>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+</data>

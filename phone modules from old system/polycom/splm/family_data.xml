@@ -1,0 +1,65 @@
+<data>
+	<version>0.7.6</version>
+	<package>splm-0_7_6.tgz</package>
+	<firmware_ver>4.0.3.1.7</firmware_ver>
+	<firmware_pkg>polycom_splm_bootrom_sip.zip</firmware_pkg>
+	<description>Fixed Digit Map Problems with three digit extensions in the 1xx range</description>
+	<configuration_files>$ext.cfg,$mac_custom.cfg,$mac.cfg,server.cfg,sip_custom.cfg,sip.cfg</configuration_files>
+	<changelog></changelog>
+	<model_list>
+		<model>SoundPoint IP 301</model>
+		<lines>2</lines>
+		<id>1</id>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>SoundPoint IP 320</model>
+		<lines>2</lines>
+		<id>2</id>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>SoundPoint IP 330</model>
+		<lines>2</lines>
+		<id>3</id>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>SoundPoint IP 501</model>
+		<lines>3</lines>
+		<id>4</id>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>SoundPoint IP 600</model>
+		<lines>6</lines>
+		<id>5</id>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>SoundPoint IP 601</model>
+		<lines>6</lines>
+		<id>6</id>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>SoundStation IP 4000</model>
+		<lines>1</lines>
+		<id>7</id>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+</data>

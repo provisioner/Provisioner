@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<data>
+	<brands>
+		<name>Snom</name>
+		<version>0.6</version>
+		<directory>snom</directory>
+		<brand_id>6</brand_id>
+		<package>snom-0_6.tgz</package>
+		<family_list>
+			<family>Snom Models: [300, 320, 360, 370, 820, M3]</family>
+			<xml>snom_3xx_820_m3_01.xml</xml>
+			<directory>snom_3xx_820_m3</directory>
+			<id>1</id>
+		</family_list>
+		<oui_list>
+			<oui>000413</oui>
+		</oui_list>
+	</brands>
+</data>
