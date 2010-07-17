@@ -1,0 +1,40 @@
+proxy1_address: "{$srvip}" 
+
+line1_name: "{$ext}"
+line1_shortname: "{$displayname}"
+line1_displayname: "{$displayname}"
+line1_authname: "{$ext}"
+line1_password: "{$pass}"
+
+line2_name: ""
+line2_shortname: "" 
+line2_displayname: "" 
+line2_authname: "UNPROVISIONED" 
+line2_password: "UNPROVISIONED" 
+
+proxy_emergency: "" 
+proxy_emergency_port: "5060" 
+proxy_backup: "" 
+proxy_backup_port: "5060" 
+outbound_proxy: "" 
+outbound_proxy_port: "5060" 
+
+nat_enable: "0" 
+nat_address: "" 
+voip_control_port: "5060" 
+start_media_port: "16348" 
+end_media_port:  "20134" 
+nat_received_processing: "0" 
+
+phone_label: "{$displayname}'s Phone "
+time_zone: PST 
+services_url: "{$services_url}"
+directory_url: "{$directory_url}"               
+logo_url: "{$logo_url}"
+
+telnet_level: "2" 
+phone_prompt: "Cisco7960"
+phone_password: "{$telnet_password}" 
+enable_vad: "0" 
+network_media_type: "auto" 
+user_info: phone
