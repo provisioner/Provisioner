@@ -3,7 +3,7 @@ abstract class endpoint_base {
 		
 	public static $brand_name = "undefined";
 	public static $family_line = "undefined";
-        public static $modules_path = "endpoint/";
+    public static $modules_path = "endpoint/";
 
 	public $brand;
 	public $family;
@@ -42,7 +42,7 @@ abstract class endpoint_base {
 		}
 	}
 	
-	function parse_config_file($file_contents,$keep_unknown=FALSE) {
+	function parse_config_file($file_contents,$keep_unknown=FALSE,$lines=NULL) {
 		$family_data = $this->xml2array(self::$modules_path. static::$brand_name ."/". static::$family_line ."/family_data.xml");
 
 		if(is_array($family_data['data']['model_list'])) {
@@ -52,9 +52,13 @@ abstract class endpoint_base {
 			$line_total = $family_data['data']['model_list']['lines'];
 		}
 		
-		if(!($line_total > 0)) {
-			die("INVALID MODEL");
-		} 
+		if((!($line_total > 0)) AND ((!isset($lines))) {
+			die("Line Count unknown in Parse_config_file");
+		} elseif((isset($lines)) AND ($lines > 0)) {
+			$line_total = $lines;
+		} else {
+			die("Line Count unknown in Parse_config_file");
+		}
 				
 		$data = $this->parse_lines($line_total,$file_contents,$keep_unknown=FALSE);
 		$data = $this->parse_config_values($data);
@@ -104,12 +108,17 @@ abstract class endpoint_base {
 
 		if(is_array($family_data['data']['model_list'])) {
 			$key = $this->arraysearchrecursive($this->model, $family_data, "model");
-			$template_data_list = $family_data['data']['model_list'][$key[2]]['template_data'];
+			if($key === FALSE) {
+				die("You need to specify a valid model. Or change how this function works (line 110 of base.php)");
+			} else {
+				$template_data_list = $family_data['data']['model_list'][$key[2]]['template_data'];
+			}
 		} else {
 			$template_data_list = $family_data['data']['model_list']['template_data'];
 		}
 		
 		$template_data = array();
+		$template_data_multi = "";
 		if(is_array($template_data_list['files'])) {
 			foreach($template_data_list['files'] as $files) {
 				if(file_exists(self::$modules_path. static::$brand_name ."/". static::$family_line ."/".$files)) {
@@ -120,7 +129,7 @@ abstract class endpoint_base {
 			}
 		} else {
 			if(file_exists(self::$modules_path. static::$brand_name ."/". static::$family_line ."/".$template_data_list['files'])) {
-				$template_data = $this->xml2array(self::$modules_path. static::$brand_name ."/". static::$family_line ."/".$template_data_list['files']);
+				$template_data_multi = $this->xml2array(self::$modules_path. static::$brand_name ."/". static::$family_line ."/".$template_data_list['files']);
 				$template_data = $this->fix_single_array_keys($template_data_multi['template_data']['item']);
 			}
 			
