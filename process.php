@@ -17,11 +17,11 @@ if (isset($_POST['family'])) {
     $family = $argv[2];
 }
 
-//$brand = $_POST['brand'];
-//$family = $_POST['family'];
-//include ("endpoint_config_gen.class.inc");
-//include (PHONE_MODULES_PATH . $brand . '/functions.inc');
-//include (PHONE_MODULES_PATH . $brand . '/' . $family . '/functions.inc');
+if (isset($_POST['model'])) {
+    $model = $_POST['model'];
+} else {
+    $model = $argv[3];
+}
 
 $class = "endpoint_" . $brand . "_" . $family . '_phone';
 
@@ -35,7 +35,7 @@ $endpoint->family_line = $family;
 $endpoint->mac = '000B820D0057';
 
 //Phone Model (Please reference family_data.xml in the family directory for a list of recognized models)
-$endpoint->model = "GXP2000";
+$endpoint->model = $model;
 
 //Timezone
 $endpoint->timezone = 'GMT-11:00';
@@ -90,7 +90,12 @@ $endpoint->xml_variables['line'][3] = 	array(
 // Because every brand is an extension (eventually) of endpoint, you know this function will exist regardless of who it is
 $returned_data = $endpoint->generate_config();
 
-
-print_r($returned_data);
+if(isset($_POST['brand'])) {
+	foreach($returned_data as $key => $files) {
+		echo 'File:'.$key.'<br/><textarea rows="50" cols="100">'.$files.'</textarea><br/><br/>';
+	}
+} else {
+	print_r($returned_data);
+}
 
 ?>

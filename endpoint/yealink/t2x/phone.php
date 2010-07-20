@@ -1,5 +1,5 @@
 <?php
-class endpoint_yealink_t2x_phone extends endpoint_polycom_base {
+class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
 
 	public static $family_line = 't2x';	
 		
@@ -32,8 +32,10 @@ class endpoint_yealink_t2x_phone extends endpoint_polycom_base {
 		}
 		
 		//$mac.cfg file
-		$contents = $endpoint->open_config_file("\$mac.cfg");
+		$contents = $this->open_config_file("\$mac.cfg");
 		$final['{$mac}.cfg'] = $this->parse_config_file($contents, FALSE);		
+		
+		return($final);
 	}
 }
 ?>
