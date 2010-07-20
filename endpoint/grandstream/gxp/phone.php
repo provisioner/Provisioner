@@ -7,6 +7,30 @@ class endpoint_grandstream_gxp_phone extends endpoint_grandstream_base {
 		//Grandstream likes lower case letters in its mac address
 		$this->mac = strtolower($this->mac);
 
+		if(isset($this->secret['line'][2])) {
+			$array = array("line_active"  => array("value" => "1"));
+			$this->xml_variables['line'][2] = $this->array_merge_check($this->xml_variables['line'][2],$array);
+		}
+		
+		if(isset($this->secret['line'][3])) {
+			$array = array("line_active"  => array("value" => "1"));
+			$this->xml_variables['line'][3] = $this->array_merge_check($this->xml_variables['line'][3],$array);
+		}
+		
+		if(isset($this->secret['line'][4])) {
+			$array = array("line_active"  => array("value" => "1"));
+			$this->xml_variables['line'][4] = $this->array_merge_check($this->xml_variables['line'][4],$array);
+		}
+		
+		if(isset($this->secret['line'][5])) {
+			$array = array("line_active"  => array("value" => "1"));
+			$this->xml_variables['line'][5] = $this->array_merge_check($this->xml_variables['line'][5],$array);
+		}
+		
+		if(isset($this->secret['line'][6])) {
+			$array = array("line_active"  => array("value" => "1"));
+			$this->xml_variables['line'][6] = $this->array_merge_check($this->xml_variables['line'][6],$array);
+		}
 		
 		$contents = $this->open_config_file("\$mac.cfg");
 		
