@@ -3,6 +3,7 @@
 
 include('setup.php');
 
+
 // Allow running this test from the command line
 if (isset($_POST['brand'])) {
     $brand = $_POST['brand'];
@@ -26,11 +27,15 @@ $class = "endpoint_" . $brand . "_" . $family . '_phone';
 
 $endpoint = new $class();
 
+//have to because of versions less than php5.3
+$endpoint->brand_name = $brand;
+$endpoint->family_line = $family;
+
 //Mac Address
 $endpoint->mac = '000B820D0057';
 
 //Phone Model (Please reference family_data.xml in the family directory for a list of recognized models)
-$endpoint->model = "SoundPoint IP 550";
+$endpoint->model = "GXP2000";
 
 //Timezone
 $endpoint->timezone = 'GMT-11:00';

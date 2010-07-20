@@ -5,8 +5,8 @@ abstract class endpoint_base {
 	public static $family_line = "undefined";
     public static $modules_path = "endpoint/";
 
-	public $brand;
-	public $family;
+	public $brand_class;
+	public $family_class;
 
 	public $mac;
 	public $ext;
@@ -28,10 +28,11 @@ abstract class endpoint_base {
 
 
 	//Open configuration files and return the data from the file
-	function open_config_file($cfg_file){		
+	function open_config_file($cfg_file){
+		echo $this->brand;
 		//if there is no configuration file over ridding the default then load up $contents with the file's information, where $key is the name of the default configuration file
 		if(!isset($this->config_files_override[$cfg_file])) {
-			$hd_file=self::$modules_path. static::$brand_name ."/". static::$family_line ."/".$cfg_file;
+			$hd_file=self::$modules_path. $this->brand_name ."/". $this->family_line ."/".$cfg_file;
 			//always use 'rb' says php.net
 			$handle = fopen($hd_file, "rb");
 			$contents = fread($handle, filesize($hd_file));
@@ -43,7 +44,7 @@ abstract class endpoint_base {
 	}
 	
 	function parse_config_file($file_contents,$keep_unknown=FALSE,$lines=NULL) {
-		$family_data = $this->xml2array(self::$modules_path. static::$brand_name ."/". static::$family_line ."/family_data.xml");
+		$family_data = $this->xml2array(self::$modules_path. $this->brand_name ."/". $this->family_line ."/family_data.xml");
 
 		if(is_array($family_data['data']['model_list'])) {
 			$key = $this->arraysearchrecursive($this->model, $family_data, "model");
@@ -52,12 +53,11 @@ abstract class endpoint_base {
 			$line_total = $family_data['data']['model_list']['lines'];
 		}
 		
-		if((!($line_total > 0)) AND ((!isset($lines))) {
+		
+		if(($line_total <= 0) AND (!isset($lines))) {
 			die("Line Count unknown in Parse_config_file");
 		} elseif((isset($lines)) AND ($lines > 0)) {
 			$line_total = $lines;
-		} else {
-			die("Line Count unknown in Parse_config_file");
 		}
 				
 		$data = $this->parse_lines($line_total,$file_contents,$keep_unknown=FALSE);
@@ -104,7 +104,7 @@ abstract class endpoint_base {
 	-The $keep_unknown variable tells this function to ignore(TRUE) or blank out(FALSE) variables that it finds in $file_contents but can not find in $variables_array
 	*/
 	function parse_config_values($file_contents,$keep_unknown=FALSE,$line="GLOBAL") {		
-		$family_data = $this->xml2array(self::$modules_path. static::$brand_name ."/". static::$family_line ."/family_data.xml");
+		$family_data = $this->xml2array(self::$modules_path. $this->brand_name ."/". $this->family_line ."/family_data.xml");
 
 		if(is_array($family_data['data']['model_list'])) {
 			$key = $this->arraysearchrecursive($this->model, $family_data, "model");
@@ -121,28 +121,28 @@ abstract class endpoint_base {
 		$template_data_multi = "";
 		if(is_array($template_data_list['files'])) {
 			foreach($template_data_list['files'] as $files) {
-				if(file_exists(self::$modules_path. static::$brand_name ."/". static::$family_line ."/".$files)) {
-					$template_data_multi = $this->xml2array(self::$modules_path. static::$brand_name ."/". static::$family_line ."/".$files);
+				if(file_exists(self::$modules_path. $this->brand_name ."/". $this->family_line ."/".$files)) {
+					$template_data_multi = $this->xml2array(self::$modules_path. $this->brand_name ."/". $this->family_line ."/".$files);
 					$template_data_multi = $this->fix_single_array_keys($template_data_multi['template_data']['item']);					
 					$template_data = array_merge($template_data, $template_data_multi);
 				}
 			}
 		} else {
-			if(file_exists(self::$modules_path. static::$brand_name ."/". static::$family_line ."/".$template_data_list['files'])) {
-				$template_data_multi = $this->xml2array(self::$modules_path. static::$brand_name ."/". static::$family_line ."/".$template_data_list['files']);
+			if(file_exists(self::$modules_path. $this->brand_name ."/". $this->family_line ."/".$template_data_list['files'])) {
+				$template_data_multi = $this->xml2array(self::$modules_path. $this->brand_name ."/". $this->family_line ."/".$template_data_list['files']);
 				$template_data = $this->fix_single_array_keys($template_data_multi['template_data']['item']);
 			}
 			
 		}
 		
-		if(file_exists(self::$modules_path. static::$brand_name ."/". static::$family_line ."/template_data_custom.xml")) {
-			$template_data_multi = $this->xml2array(self::$modules_path. static::$brand_name ."/". static::$family_line ."/template_data_custom.xml");
+		if(file_exists(self::$modules_path. $this->brand_name ."/". $this->family_line ."/template_data_custom.xml")) {
+			$template_data_multi = $this->xml2array(self::$modules_path. $this->brand_name ."/". $this->family_line ."/template_data_custom.xml");
 			$template_data_multi = $this->fix_single_array_keys($template_data_multi['template_data']['item']);
 			$template_data = array_merge($template_data, $template_data_multi);
 		}
 		
-		if(file_exists(self::$modules_path. static::$brand_name ."/". static::$family_line ."/template_data_".$this->model."_custom.xml")) {
-			$template_data_multi = $this->xml2array(self::$modules_path. static::$brand_name ."/". static::$family_line ."/template_data_".$this->model."_custom.xml");
+		if(file_exists(self::$modules_path. $this->brand_name ."/". $this->family_line ."/template_data_".$this->model."_custom.xml")) {
+			$template_data_multi = $this->xml2array(self::$modules_path. $this->brand_name ."/". $this->family_line ."/template_data_".$this->model."_custom.xml");
 			$template_data_multi = $this->fix_single_array_keys($template_data_multi['template_data']['item']);
 			$template_data = array_merge($template_data, $template_data_multi);
 		}		
