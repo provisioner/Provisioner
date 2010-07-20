@@ -44,7 +44,7 @@ $endpoint->timezone = 'GMT-11:00';
 $endpoint->srvip = "10.10.10.10";
 
 //Provide alternate Configuration file instead of the one from the hard drive
-//$endpoint->config_files_override['server.cfg'] = "CFG FILE DATA";
+//$endpoint->config_files_override['$mac.cfg'] = "{\$provider_lock|0}\n{\$provider_lock.line.8|0}\n{\$firmware_upgrade_type1.line.1}\n {\$line_active.line.2|0}";
 
 //Pretend we have three lines, we could just have one line or 20...whatever the phone supports
 $endpoint->ext['line'][1] = '103';
@@ -81,11 +81,12 @@ $endpoint->xml_variables['line'][3] = 	array(
 */
 //Setting a line variable here...these aren't defined in the template_data.xml file yet. however they will still be parsed 
 //and if they have defaults assigned in a future template_data.xml or in the config file using pipes (|) those will be used, pipes take precedence
-$endpoint->xml_variables['line'][3] = 	array(
-														"main_url" => array("value" => "Main URL Line #3"),
+$endpoint->xml_variables['line'][1] = 	array(
+														"yelpk" => array("value" => "Main URL Line #3"),
 														"digitmap" => array("value" => "DIGI!"),
 														"main_icon" => array("value" => "Main ICON Line #3")
 													);
+													
 
 // Because every brand is an extension (eventually) of endpoint, you know this function will exist regardless of who it is
 $returned_data = $endpoint->generate_config();

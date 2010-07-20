@@ -3,7 +3,7 @@ abstract class endpoint_base {
 		
 	public static $brand_name = "undefined";
 	public static $family_line = "undefined";
-    public static $modules_path = "endpoint/";
+	public static $modules_path = "endpoint/";
 
 	public $brand_class;
 	public $family_class;
@@ -29,7 +29,6 @@ abstract class endpoint_base {
 
 	//Open configuration files and return the data from the file
 	function open_config_file($cfg_file){
-		echo $this->brand;
 		//if there is no configuration file over ridding the default then load up $contents with the file's information, where $key is the name of the default configuration file
 		if(!isset($this->config_files_override[$cfg_file])) {
 			$hd_file=self::$modules_path. $this->brand_name ."/". $this->family_line ."/".$cfg_file;
@@ -163,52 +162,58 @@ abstract class endpoint_base {
 						
 			//Users can set defaults within template files with pipes, they will over-ride whatever is in the XML file.
 			if(strstr($variables,"|")) {
+				$original_variable = $variables;
 				$variables = explode("|",$variables);
 				$default = $variables[1];
 				$variables = $variables[0];
+				if(strstr($variables,".")) {
+					$original_variable = $variables;
+					$variables = explode(".",$variables);
+					$line = $variables[2];
+					$variables = $variables[0];
+				} else {
+					$original_variable = $variables;
+				}
 			} else {
 				unset($default);
+				$original_variable = $variables;
+				if(strstr($variables,".")) {
+					$original_variable = $variables;
+					$variables = explode(".",$variables);
+					$line = $variables[2];
+					$variables = $variables[0];
+				}
 			}
 			
-			if(strstr($variables,".")) {
-				$variables = explode(".",$variables);
-				$line = $variables[2];
-				$variables = $variables[0];
-			}
-						
+
+									
 			//If the variable we found in the text file exists in the variables array then replace the variable in the text file with the value under our key
 			if (($line == "GLOBAL") AND (isset($this->xml_variables['line']['global'][$variables]['value']))) {
 				$this->xml_variables['line']['global'][$variables]['value'] = htmlspecialchars($this->xml_variables['line']['global'][$variables]['value']);
 
 				$this->xml_variables['line']['global'][$variables]['value'] = $this->replace_static_variables($this->xml_variables['line']['global'][$variables]['value']);
 			
-				if (isset($default)) {
-					$file_contents=str_replace('{$'.$variables.'|'.$default.'}', $this->xml_variables['line']['global'][$variables]['value'],$file_contents);
-				} else {
-					$file_contents=str_replace('{$'.$variables.'}', $this->xml_variables['line']['global'][$variables]['value'],$file_contents);
-				}
+				$file_contents=str_replace('{$'.$original_variable.'}', $this->xml_variables['line']['global'][$variables]['value'],$file_contents);
 		
 			} elseif(($line != "GLOBAL") AND (isset($this->xml_variables['line'][$line][$variables]['value']))) {
 				$this->xml_variables['line'][$line][$variables]['value'] = htmlspecialchars($this->xml_variables['line'][$line][$variables]['value']);
 
 				$this->xml_variables['line'][$line][$variables]['value'] = $this->replace_static_variables($this->xml_variables['line'][$line][$variables]['value']);
-			
 				if (isset($default)) {
-					$file_contents=str_replace('{$'.$variables.'|'.$default.'}', $this->xml_variables['line'][$line][$variables]['value'],$file_contents);
+					$file_contents=str_replace('{$'.$original_variable.'|'.$default.'}', $this->xml_variables['line'][$line][$variables]['value'],$file_contents);
 				} else {
-					$file_contents=str_replace('{$'.$variables.'}', $this->xml_variables['line'][$line][$variables]['value'],$file_contents);
+					$file_contents=str_replace('{$'.$original_variable.'}', $this->xml_variables['line'][$line][$variables]['value'],$file_contents);
 				}
 			} else {
 				if(!$keep_unknown) {
 					//read default template values here, blank unknowns or arrays (which are blanks anyways)
 					$key1 = $this->arraysearchrecursive('$'.$variables, $template_data, 'variable');
-
 					if (isset($default)) {
-						$file_contents=str_replace('{$'.$variables.'|'.$default.'}', $default,$file_contents);
+						$file_contents=str_replace('{$'.$original_variable.'|'.$default.'}', $default,$file_contents);
 					}elseif((isset($template_data[$key1[0]]['default_value'])) AND (!is_array($template_data[$key1[0]]['default_value']))) {
-						$file_contents=str_replace('{$'.$variables.'}', $template_data[$key1[0]]['default_value'],$file_contents);
+						$file_contents=str_replace('{$'.$original_variable.'}', $template_data[$key1[0]]['default_value'],$file_contents);
 					} else {
-						$file_contents=str_replace('{$'.$variables.'}', "",$file_contents);
+						$file_contents=str_replace('{$'.$original_variable.'}', "",$file_contents);
 					}
 				}
 			}
@@ -242,6 +247,14 @@ abstract class endpoint_base {
 		}
 
 		return($contents);
+	}
+	
+	function array_merge_check($array_old,$array_new) {
+		if(is_array($array_old)) {
+			return(array_merge($array_old,$array_new));
+		} else {
+			return($array_new);
+		}
 	}
 	
 	function fix_single_array_keys($array) {
