@@ -5,7 +5,7 @@
 		<version>0.7</version>
 		<directory>polycom</directory>
 		<brand_id>4</brand_id>
-		<package>polycom.zip</package>
+		<package>polycom-0_7.tgz</package>
 		<family_list>
 			<name>SoundPoint/Station Legacy Models [301,320,330,501,600,601,4000]</name>
 			<xml>splm_01.xml</xml>

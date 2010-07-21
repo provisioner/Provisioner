@@ -1,6 +1,6 @@
 <data>
 	<version>1.5</version>
-	<package>gxp_01.zip</package>
+	<package>gxp-1_5.tgz</package>
 	<firmware_ver>1.2.2.26</firmware_ver>
 	<firmware_pkg>Release_BT200_GXP_1.2.2.26.zip</firmware_pkg>
 	<description>Use Grandstream Encrypted Compiler By Default</description>

@@ -38,9 +38,40 @@ class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
 				break;
 		}
 		
+		if(isset($this->secret['line'][1])) {
+			$array = array("line_active"  => array("value" => "1"),"line_m1"  => array("value" => 0));
+			$this->xml_variables['line'][1] = $this->array_merge_check($this->xml_variables['line'][1],$array);
+		}
+		
+		if(isset($this->secret['line'][2])) {
+			$array = array("line_active"  => array("value" => "1"),"line_m1"  => array("value" => 1));
+			$this->xml_variables['line'][2] = $this->array_merge_check($this->xml_variables['line'][2],$array);
+		}
+		
+		if(isset($this->secret['line'][3])) {
+			$array = array("line_active"  => array("value" => "1"),"line_m1"  => array("value" => 2));
+			$this->xml_variables['line'][3] = $this->array_merge_check($this->xml_variables['line'][3],$array);
+		}
+		
+		if(isset($this->secret['line'][4])) {
+			$array = array("line_active"  => array("value" => "1"),"line_m1"  => array("value" => 3));
+			$this->xml_variables['line'][4] = $this->array_merge_check($this->xml_variables['line'][4],$array);
+		}
+		
+		if(isset($this->secret['line'][5])) {
+			$array = array("line_active"  => array("value" => "1"),"line_m1"  => array("value" => 4));
+			$this->xml_variables['line'][5] = $this->array_merge_check($this->xml_variables['line'][5],$array);
+		}
+		
+		if(isset($this->secret['line'][6])) {
+			$array = array("line_active"  => array("value" => "1"),"line_m1"  => array("value" => 5));
+			$this->xml_variables['line'][6] = $this->array_merge_check($this->xml_variables['line'][6],$array);
+		}
+		
 		//$mac.cfg file
 		$contents = $this->open_config_file("\$mac.cfg");
-		$final['{$mac}.cfg'] = $this->parse_config_file($contents, FALSE);		
+		
+		$final[$this->mac.'.cfg'] = $this->parse_config_file($contents, FALSE);
 		
 		return($final);
 	}
