@@ -1,4 +1,11 @@
 <?PHP
+/**
+ * Base Class for Provisioner
+ *
+ * @author Darren Schreiber & Andrew Nagy
+ * @license MPL / GPLv2 / LGPL
+ * @package Provisioner
+ */
 abstract class endpoint_base {
 		
 	public static $brand_name = "undefined";

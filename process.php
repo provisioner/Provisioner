@@ -1,6 +1,12 @@
 #!/usr/bin/php
 <?php
-
+/**
+ * Demo Script for Provisioner
+ *
+ * @author Darren Schreiber & Andrew Nagy
+ * @license MPL / GPLv2 / LGPL
+ * @package Provisioner
+ */
 include('setup.php');
 
 

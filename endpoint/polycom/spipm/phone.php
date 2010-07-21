@@ -1,4 +1,11 @@
 <?php
+/**
+ * Phone Base File
+ *
+ * @author Andrew Nagy
+ * @license MPL / GPLv2 / LGPL
+ * @package Provisioner
+ */
 class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
 
 	public static $family_line = 'spipm';	

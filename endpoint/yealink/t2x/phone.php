@@ -1,4 +1,11 @@
 <?php
+/**
+ * Polycom SoundPoint In Production Modules Phone File
+ *
+ * @author Andrew Nagy
+ * @license MPL / GPLv2 / LGPL
+ * @package Provisioner
+ */
 class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
 
 	public static $family_line = 't2x';	

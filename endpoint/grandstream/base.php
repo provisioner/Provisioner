@@ -1,4 +1,11 @@
 <?PHP
+/**
+ * Grandstream Base File
+ *
+ * @author Andrew Nagy
+ * @license MPL / GPLv2 / LGPL
+ * @package Provisioner
+ */
 class endpoint_grandstream_base extends endpoint_base {
 	
 	public static $brand_name = 'grandstream';
