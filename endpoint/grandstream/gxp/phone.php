@@ -1,4 +1,11 @@
 <?php
+/**
+ * Grandstream GXP Phone File
+ *
+ * @author Andrew Nagy
+ * @license MPL / GPLv2 / LGPL
+ * @package Provisioner
+ */
 class endpoint_grandstream_gxp_phone extends endpoint_grandstream_base {
 
 	public static $family_line = 'gxp';
