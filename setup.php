@@ -3,7 +3,7 @@
  * Auto-loader
  *
  * @author Darren Schreiber
- * @license MPL / GPLv2 / LGPL / ABCDEPL / Free / Open
+ * @license MPL / GPLv2 / LGPL
  * @package Provisioner
  */
 class ProvisionerConfig {
