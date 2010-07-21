@@ -1,47 +1,21 @@
 <?php
 /**
- * Grandstream GXP Phone File
+ * Grandstream BTS Phone File
  *
  * @author Andrew Nagy
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
  */
-class endpoint_grandstream_gxp_phone extends endpoint_grandstream_base {
-
-	public static $family_line = 'gxp';
+class endpoint_grandstream_bts_phone extends endpoint_grandstream_base {
+	public static $family_line = 'bts';
 
 	function generate_config() {		
 		//Grandstream likes lower case letters in its mac address
 		$this->mac = strtolower($this->mac);
 
-		if(isset($this->secret['line'][2])) {
-			$array = array("line_active"  => array("value" => "1"));
-			$this->xml_variables['line'][2] = $this->array_merge_check($this->xml_variables['line'][2],$array);
-		}
-		
-		if(isset($this->secret['line'][3])) {
-			$array = array("line_active"  => array("value" => "1"));
-			$this->xml_variables['line'][3] = $this->array_merge_check($this->xml_variables['line'][3],$array);
-		}
-		
-		if(isset($this->secret['line'][4])) {
-			$array = array("line_active"  => array("value" => "1"));
-			$this->xml_variables['line'][4] = $this->array_merge_check($this->xml_variables['line'][4],$array);
-		}
-		
-		if(isset($this->secret['line'][5])) {
-			$array = array("line_active"  => array("value" => "1"));
-			$this->xml_variables['line'][5] = $this->array_merge_check($this->xml_variables['line'][5],$array);
-		}
-		
-		if(isset($this->secret['line'][6])) {
-			$array = array("line_active"  => array("value" => "1"));
-			$this->xml_variables['line'][6] = $this->array_merge_check($this->xml_variables['line'][6],$array);
-		}
-		
 		$contents = $this->open_config_file("\$mac.cfg");
-		
-		
+
+
 		switch(strtoupper($this->timezone)) {
 			case "GMT-12:00":
 				$this->timezone = "0";
@@ -146,10 +120,12 @@ class endpoint_grandstream_gxp_phone extends endpoint_grandstream_base {
 				$this->timezone = "1500";
 				break;
 		}
-		
+
 		$final[$this->mac.'.cfg'] = $this->parse_config_file($contents, FALSE);
-		
+
 		return($final);
 	}
-	
+
 }
+
+?>
