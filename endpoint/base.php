@@ -49,7 +49,7 @@ abstract class endpoint_base {
 		}
 	}
 	
-	function parse_config_file($file_contents,$keep_unknown=FALSE,$lines=NULL) {
+	function parse_config_file($file_contents,$keep_unknown=FALSE,$lines=NULL,$specific_line='ALL') {
 		$family_data = $this->xml2array(self::$modules_path. $this->brand_name ."/". $this->family_line ."/family_data.xml");
 
 		if(is_array($family_data['data']['model_list'])) {
@@ -66,24 +66,29 @@ abstract class endpoint_base {
 			$line_total = $lines;
 		}
 				
-		$data = $this->parse_lines($line_total,$file_contents,$keep_unknown=FALSE);
+		$data = $this->parse_lines($line_total,$file_contents,$keep_unknown=FALSE,$specific_line);
 		$data = $this->parse_config_values($data);
 		
 		return $data;
 	}
 
-	function parse_lines($line_total,$file_contents,$keep_unknown=FALSE) {
+	function parse_lines($line_total,$file_contents,$keep_unknown=FALSE,$line='ALL') {
 		//Find line looping data		
 		$pattern = "/{line_loop}(.*?){\/line_loop}/si";
 	    while(preg_match($pattern, $file_contents, $matches)) {
 			$i = 1;
 			$parsed = "";
-			while($i <= $line_total) {
-				if(isset($this->ext['line'][$i])) {						
-					$parsed_2 = $this->replace_static_variables($matches[1],$i,TRUE);
-					$parsed .= $this->parse_config_values($parsed_2,TRUE,$i);
+			if($line == "ALL") {
+				while($i <= $line_total) {
+					if(isset($this->ext['line'][$i])) {						
+						$parsed_2 = $this->replace_static_variables($matches[1],$i,TRUE);
+						$parsed .= $this->parse_config_values($parsed_2,TRUE,$i);
+					}
+					$i++;
 				}
-				$i++;
+			} else {
+				$parsed_2 = $this->replace_static_variables($matches[1],$line,TRUE);
+				$parsed = $this->parse_config_values($parsed_2,TRUE,$line);
 			}
 			$file_contents = preg_replace($pattern, $parsed, $file_contents, 1);
 		}

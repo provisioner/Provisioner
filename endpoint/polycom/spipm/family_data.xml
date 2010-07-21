@@ -1,6 +1,6 @@
 <data>
 	<version>0.8.1</version>
-	<package>spipm_01.zip</package>
+	<package>spipm-0_8_1.tgz</package>
 	<firmware_ver>4.2.2.3.2.3</firmware_ver>
 	<firmware_pkg>polycom_spipm_bootrom_sip.zip</firmware_pkg>
 	<description>Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality</description>
