@@ -280,26 +280,28 @@ abstract class endpoint_base {
      */
 
     function replace_static_variables($contents, $specific_line="GLOBAL", $looping=TRUE) {
-        $contents = str_replace('{$srvip}', $this->server[1]['ip'], $contents, $count);
-        // TODO: Add support for a custom port and a backup server
-        $contents = str_replace('{$mac}', $this->mac, $contents, $count);
-        $contents = str_replace('{$model}', $this->model, $contents, $count);
-        $contents = str_replace('{$gmtoff}', $this->timezone, $contents, $count);
-        $contents = str_replace('{$gmthr}', $this->timezone, $contents, $count);
-        $contents = str_replace('{$timezone}', $this->timezone, $contents, $count);
+        foreach($this->server as $key => $servers) {
+            $contents = str_replace('{$server.ip.'.$key.'}', $servers[$key]['ip'], $contents);
+            $contents = str_replace('{$server.port.'.$key.'}', $servers[$key]['port'], $contents);
+        }
+        $contents = str_replace('{$mac}', $this->mac, $contents);
+        $contents = str_replace('{$model}', $this->model, $contents);
+        $contents = str_replace('{$gmtoff}', $this->timezone, $contents);
+        $contents = str_replace('{$gmthr}', $this->timezone, $contents);
+        $contents = str_replace('{$timezone}', $this->timezone, $contents);
 
         if (($specific_line != "GLOBAL") AND ($looping == TRUE)) {
-            $contents = str_replace('{$line}', $specific_line, $contents, $count);
-            $contents = str_replace('{$ext}', $this->lines[$specific_line]['ext'], $contents, $count);
-            $contents = str_replace('{$displayname}', $this->lines[$specific_line]['displayname'], $contents, $count);
-            $contents = str_replace('{$secret}', $this->lines[$specific_line]['secret'], $contents, $count);
-            $contents = str_replace('{$pass}', $this->lines[$specific_line]['line'], $contents, $count);
+            $contents = str_replace('{$line}', $specific_line, $contents);
+            $contents = str_replace('{$ext}', $this->lines[$specific_line]['ext'], $contents);
+            $contents = str_replace('{$displayname}', $this->lines[$specific_line]['displayname'], $contents);
+            $contents = str_replace('{$secret}', $this->lines[$specific_line]['secret'], $contents);
+            $contents = str_replace('{$pass}', $this->lines[$specific_line]['line'], $contents);
         } elseif (($specific_line != "GLOBAL") AND ($looping == FALSE)) {
-            $contents = str_replace('{$line.line.' . $specific_line . '}', $specific_line, $contents, $count);
-            $contents = str_replace('{$ext.line.' . $specific_line . '}', $this->lines[$specific_line]['ext'], $contents, $count);
-            $contents = str_replace('{$displayname.line.' . $specific_line . '}', $this->lines[$specific_line]['displayname'], $contents, $count);
-            $contents = str_replace('{$secret.line.' . $specific_line . '}', $this->lines[$specific_line]['secret'], $contents, $count);
-            $contents = str_replace('{$pass.line.' . $specific_line . '}', $this->lines[$specific_line]['secret'], $contents, $count);
+            $contents = str_replace('{$line.line.' . $specific_line . '}', $specific_line, $contents);
+            $contents = str_replace('{$ext.line.' . $specific_line . '}', $this->lines[$specific_line]['ext'], $contents);
+            $contents = str_replace('{$displayname.line.' . $specific_line . '}', $this->lines[$specific_line]['displayname'], $contents);
+            $contents = str_replace('{$secret.line.' . $specific_line . '}', $this->lines[$specific_line]['secret'], $contents);
+            $contents = str_replace('{$pass.line.' . $specific_line . '}', $this->lines[$specific_line]['secret'], $contents);
         }
 
         return($contents);
