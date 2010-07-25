@@ -50,6 +50,9 @@ $endpoint->timezone = 'GMT-11:00';
 $endpoint->server[1]['ip'] = "10.10.10.10";
 $endpoint->server[1]['port'] = 5060;
 
+$endpoint->server[2]['ip'] = "20.20.20.20";
+$endpoint->server[2]['port'] = 7000;
+
 //Provide alternate Configuration file instead of the one from the hard drive
 //$endpoint->config_files_override['$mac.cfg'] = "{\$srvip}\n{\$admin_pass|0}\n{\$test.line.1}";
 

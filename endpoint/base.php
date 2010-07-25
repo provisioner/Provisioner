@@ -281,8 +281,8 @@ abstract class endpoint_base {
 
     function replace_static_variables($contents, $specific_line="GLOBAL", $looping=TRUE) {
         foreach($this->server as $key => $servers) {
-            $contents = str_replace('{$server.ip.'.$key.'}', $servers[$key]['ip'], $contents);
-            $contents = str_replace('{$server.port.'.$key.'}', $servers[$key]['port'], $contents);
+            $contents = str_replace('{$server.ip.'.$key.'}', $servers['ip'], $contents);
+            $contents = str_replace('{$server.port.'.$key.'}', $servers['port'], $contents);
         }
         $contents = str_replace('{$mac}', $this->mac, $contents);
         $contents = str_replace('{$model}', $this->model, $contents);
