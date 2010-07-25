@@ -51,10 +51,10 @@ $endpoint->server[1]['ip'] = "10.10.10.10";
 $endpoint->server[1]['port'] = 5060;
 
 //Provide alternate Configuration file instead of the one from the hard drive
-//$endpoint->config_files_override['$mac.cfg'] = "{\$provider_lock|0}\n{\$provider_lock.line.8|0}\n{\$firmware_upgrade_type1.line.1}\n {\$line_active.line.2|0}";
+//$endpoint->config_files_override['$mac.cfg'] = "{\$srvip}\n{\$admin_pass|0}\n{\$test.line.1}";
 
 //Pretend we have three lines, we could just have one line or 20...whatever the phone supports
-$endpoint->lines[1] = array('ext' => '103', 'secret' => 'blah', 'displayname' => 'Joe Blow');
+$endpoint->lines[1] = array('ext' => '103', 'secret' => 'blah', 'displayname' => 'Joe Blow', 'test' => 'whee');
 $endpoint->lines[2] = array('ext' => '104', 'secret' => 'blah4', 'displayname' => 'Display Name');
 $endpoint->lines[3] = array('ext' => '105', 'secret' => 'blah5', 'displayname' => 'Other Account');
 
@@ -62,10 +62,7 @@ $endpoint->lines[3] = array('ext' => '105', 'secret' => 'blah5', 'displayname' =
 //Set Variables according to the template_data files included. We can include different template.xml files within family_data.xml also one can create
 //template_data_custom.xml which will get included or template_data_<model_name>_custom.xml which will also get included
 //line 'global' will set variables that aren't line dependant
-$endpoint->options = 	array(
-        "admin_pass" => array("value" => "password"),
-        "main_icon" => array("value" => "Main ICON Line #3")
-);
+$endpoint->options = 	array("admin_pass" =>  "password","main_icon" => "Main ICON Line #3");
 //Setting a line variable here...these aren't defined in the template_data.xml file yet. however they will still be parsed 
 //and if they have defaults assigned in a future template_data.xml or in the config file using pipes (|) those will be used, pipes take precedence
 

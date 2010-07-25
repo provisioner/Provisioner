@@ -8,44 +8,42 @@
  */
 class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
 
-	public static $family_line = 'spipm';	
+	public $family_line = 'spipm';	
 		
 	function generate_config() {			
 		//Polycom likes lower case letters in its mac address
 		$this->mac = strtolower($this->mac);
 
-		$contents = $this->open_config_file('{$domain}.cfg');
-		$final['{$domain}.cfg'] = $this->parse_config_file($contents, FALSE);
-		$file_list = '{$domain}.cfg';
-		
+		//If no 'domain' is set then just name default for cfg file
+        $this->options['domain'] = (isset($this->options['domain']) ? $this->options['domain'] : 'default');
 
+		$contents = $this->open_config_file('{$domain}.cfg');
+		$final[$this->options['domain'].'.cfg'] = $this->parse_config_file($contents, FALSE);
+		$file_list = $this->options['domain'].'.cfg';
 		
 		$contents = $this->open_config_file('phone.cfg');
 		$final['phone.cfg'] = $this->parse_config_file($contents, FALSE);
-		$file_list .= ' phone.cfg';
+		$file_list .= ' phone.cfg,';
 		
 		$contents = $this->open_config_file('phone1.cfg');
 		$final['phone1.cfg'] = $this->parse_config_file($contents, FALSE);
-		$file_list .= ' phone1.cfg';
-
+		$file_list .= ' phone1.cfg,';
 		
 		$contents = $this->open_config_file('reg_{$line}.cfg');
 	
-		foreach($this->secret['line'] as $key => $data) {
-			if(isset($this->secret['line'][$key])) {
-				$final['reg_'.$this->ext['line'][$key].'.cfg'] = $this->parse_config_file($contents,FALSE,NULL,$key);
-				$file_list .= ' reg_'.$this->ext['line'][$key].'.cfg';
+		foreach($this->lines as $key => $data) {
+			if(isset($this->lines[$key]['secret'])) {
+				$final['reg_'.$this->lines[$key]['ext'].'.cfg'] = $this->parse_config_file($contents,FALSE,NULL,$key);
+				$file_list .= ' reg_'.$this->lines[$key]['ext'].'.cfg,';
 			}
 		}
-		
 
 		$contents = $this->open_config_file('sip.cfg');
 		$final['sip.cfg'] = $this->parse_config_file($contents, FALSE);
 		
 		$file_list .= ' sip.cfg';
-		
-		
-		$this->xml_variables['line']['global'] = $this->array_merge_check($this->xml_variables['line']['global'],array("createdFiles" => array("value" => $file_list)));
+				
+		$this->options['createdFiles'] = $file_list;
 		
 		$contents = $this->open_config_file('{$mac}.cfg');
 		$final[$this->mac.'.cfg'] = $this->parse_config_file($contents, FALSE);

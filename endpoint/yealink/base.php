@@ -8,7 +8,7 @@
  */
 abstract class endpoint_yealink_base extends endpoint_base {
 	
-	public static $brand_name = 'yealink';
+	public $brand_name = 'yealink';
 	
 	function reboot($id) {
 		//reboot phone here

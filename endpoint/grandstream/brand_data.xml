@@ -7,16 +7,25 @@
 		<brand_id>2</brand_id>
 		<package>grandstream-0_7.tgz</package>
 		<family_list>
-			<name>GXP Enterprise IP series [280,1200,2000,2010,2020]</name>
-			<xml>gxp_01.xml</xml>
-			<directory>gxp</directory>
-			<id>1</id>
-		</family_list>
-		<family_list>
-			<family>BudgeTone series [200,201]</family>
-			<xml>bts_01.xml</xml>
-			<directory>bts</directory>
-			<id>2</id>
+<!--Below is Auto Generated-->
+			<family>
+				<name>BudgeTone series [200,201]</name>
+				<directory>bts</directory>
+				<version>1.0</version>
+				<description>Fixed Timezone Issues + Use Grandstream Encrypted Compiler By Default</description>
+				<changelog></changelog>
+				<id>2</id>
+			</family>
+			<family>
+				<name>GXP Enterprise IP series [280,1200,2000,2010,2020]</name>
+				<directory>gxp</directory>
+				<version>1.5</version>
+				<description>Use Grandstream Encrypted Compiler By Default</description>
+				<changelog></changelog>
+				<id>1</id>
+			</family>
+<!--End Auto Generated-->
+
 		</family_list>
 		<oui_list>
 			<oui>000B82</oui>

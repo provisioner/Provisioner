@@ -7,10 +7,17 @@
 		<directory>yealink</directory>
 		<package>yealink-0_5.tgz</package>
 		<family_list>
-			<family>Yealink/Dreamwave Models: [T20, T22, T26, T28]</family>
-			<xml>t2x_01.xml</xml>
-			<directory>t2x</directory>
-			<id>1</id>
+<!--Below is Auto Generated-->
+			<family>
+				<name>Yealink/Dreamwave Models: [T20, T22, T26, T28]</name>
+				<directory>t2x</directory>
+				<version>0.7.5</version>
+				<description>Variables Issues Solved (Not writing accounts + passwords in files)</description>
+				<changelog></changelog>
+				<id>1</id>
+			</family>
+<!--End Auto Generated-->
+
 		</family_list>
 		<oui_list>
 			<oui>001565</oui>
