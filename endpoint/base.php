@@ -24,6 +24,11 @@ abstract class endpoint_base {
     public $options;        // Misc. options for phones
 
     // Old
+    /**
+     *
+     * @var string
+     * @deprecated
+     */
     public $ext;
     public $secret;
 
@@ -35,24 +40,42 @@ abstract class endpoint_base {
         self::$modules_path = $path;
     }
 
-    //Open configuration files and return the data from the file
-    function open_config_file($cfg_file) {
+    /**
+     * Takes the name of a local configuration file and either returns that file from the hard drive as a string or takes the string from the array and returns that as a string
+     * @param string $filename Configuration File name
+     * @return string Full Configuration File (From Hard Drive or Array)
+     * @example
+     * <code>
+     * 	$full_file = $this->open_config_file("local_file.cfg");
+     * </code>
+     */
+    function open_config_file($filename) {
         //if there is no configuration file over ridding the default then load up $contents with the file's information, where $key is the name of the default configuration file
-        if (!isset($this->config_files_override[$cfg_file])) {
-            $hd_file = self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $cfg_file;
+        if (!isset($this->config_files_override[$filename])) {
+            $hd_file = self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $filename;
             //always use 'rb' says php.net
             $handle = fopen($hd_file, "rb");
             $contents = fread($handle, filesize($hd_file));
             fclose($handle);
             return($contents);
         } else {
-            return($this->config_files_override[$cfg_file]);
+            return($this->config_files_override[$filename]);
         }
     }
 
+    /**
+     * This will parse configuration values that are either {$variable}, {$variable|default}, {$variable.line.num}, or {$variable.line.num|default}
+     * It will determine the line ammount and then run the function to parse lines and then run parse config values (to replace any remaining values)
+     * @param string $file_contents full contents of the configuration file
+     * @param boolean $keep_unknown Keep Unknown variables as {$variable} instead of erasing them (blanking the space), can be used to parse these variables later
+     * @param integer $lines The total number of lines for this model, NULL if defining a model
+     * @param integer $specific_line The specific line number to manipulate. If no line number set then assume All Lines
+     * @return string Full Contents of the configuration file (After Parsing)
+     */
     function parse_config_file($file_contents, $keep_unknown=FALSE, $lines=NULL, $specific_line='ALL') {
         $family_data = $this->xml2array(self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml");
 
+        //Get number of lines for this model from the family_data.xml file
         if (is_array($family_data['data']['model_list'])) {
             $key = $this->arraysearchrecursive($this->model, $family_data, "model");
             $line_total = $family_data['data']['model_list'][$key[2]]['lines'];
@@ -67,19 +90,27 @@ abstract class endpoint_base {
             $line_total = $lines;
         }
 
-        $data = $this->parse_lines($line_total, $file_contents, $keep_unknown = FALSE, $specific_line);
-        $data = $this->parse_config_values($data);
+        $file_contents = $this->parse_lines($line_total, $file_contents, $keep_unknown = FALSE, $specific_line);
+        $file_contents = $this->parse_config_values($file_contents);
 
-        return $data;
+        return $file_contents;
     }
-
-    function parse_lines($line_total, $file_contents, $keep_unknown=FALSE, $line='ALL') {
-        //Find line looping data
+    /**
+     * Parse each invidivual line through use of {$variable.line.num} or {line_loop}{/line_loop}
+     * @param string $line_total Total Number of Lines on the specific Phone
+     * @param string $file_contents Full Contents of the configuration file
+     * @param boolean $keep_unknown Keep Unknown variables as {$variable} instead of erasing them (blanking the space), can be used to parse these variables later
+     * @param integer $specific_line The specific line number to manipulate. If no line number set then assume All Lines
+     * @return string Full Contents of the configuration file (After Parsing)
+     */
+    function parse_lines($line_total, $file_contents, $keep_unknown=FALSE, $specific_line='ALL') {
+        //Find line looping data betwen {line_loop}{/line_loop}
         $pattern = "/{line_loop}(.*?){\/line_loop}/si";
         while (preg_match($pattern, $file_contents, $matches)) {
             $i = 1;
             $parsed = "";
-            if ($line == "ALL") {
+            //If specific line is set to ALL then loop through all lines
+            if ($specific_line == "ALL") {
                 while ($i <= $line_total) {
                     if (isset($this->lines[$i]['secret'])) {
                         $parsed_2 = $this->replace_static_variables($matches[1], $i, TRUE);
@@ -87,15 +118,17 @@ abstract class endpoint_base {
                     }
                     $i++;
                 }
+            //If Specific Line is set to a number greater than 0 then only process the loop for that line
             } else {
-                $parsed_2 = $this->replace_static_variables($matches[1], $line, TRUE);
-                $parsed = $this->parse_config_values($parsed_2, TRUE, $line);
+                $parsed_2 = $this->replace_static_variables($matches[1], $specific_line, TRUE);
+                $parsed = $this->parse_config_values($parsed_2, TRUE, $specific_line);
             }
             $file_contents = preg_replace($pattern, $parsed, $file_contents, 1);
         }
 
 
-
+        //If secret is set for said line then assume it's active and pull it's data but only if said line can be used on the phone
+        //This will replace {$variable.line.num}
         $i = 1;
         while ($i <= $line_total) {
             if (isset($this->lines[$i]['secret'])) {
@@ -109,14 +142,15 @@ abstract class endpoint_base {
         return($file_contents);
     }
 
-    /*
-      -Send this function the contents of a text file to $file_contents and then send an array to $custom_cfg_data
-      The key of the array is the name of the variable in the text file between "{$" and "}"
-      Then return the contents of the file with the values merged into it
-      -The $keep_unknown variable tells this function to ignore(TRUE) or blank out(FALSE) variables that it finds in $file_contents but can not find in $variables_array
+    /**
+     *
+     * @param string $file_contents
+     * @param boolean $keep_unknown
+     * @param string $specific_line
+     * @return string
      */
 
-    function parse_config_values($file_contents, $keep_unknown=FALSE, $line="GLOBAL") {	
+    function parse_config_values($file_contents, $keep_unknown=FALSE, $specific_line="GLOBAL") {
         $family_data = $this->xml2array(self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml");
 
         if (is_array($family_data['data']['model_list'])) {
@@ -182,7 +216,7 @@ abstract class endpoint_base {
                 if (strstr($variables, ".")) {
                     $original_variable = $variables;
                     $variables = explode(".", $variables);
-                    $line = $variables[2];
+                    $specific_line = $variables[2];
                     $variables = $variables[0];
                 } else {
                     $original_variable = $variables;
@@ -193,13 +227,13 @@ abstract class endpoint_base {
                 if (strstr($variables, ".")) {
                     $original_variable = $variables;
                     $variables = explode(".", $variables);
-                    $line = $variables[2];
+                    $specific_line = $variables[2];
                     $variables = $variables[0];
                 }
             }
 
             //If the variable we found in the text file exists in the variables array then replace the variable in the text file with the value under our key
-            if (($line == "GLOBAL") AND (isset($this->options[$variables]))) {
+            if (($specific_line == "GLOBAL") AND (isset($this->options[$variables]))) {
                 $this->options[$variables] = htmlspecialchars($this->options[$variables]);
                 $this->options[$variables] = $this->replace_static_variables($this->options[$variables]);
                 if (isset($default)) {
@@ -207,16 +241,16 @@ abstract class endpoint_base {
                 } else {
                     $file_contents = str_replace('{$' . $original_variable . '}', $this->options[$variables], $file_contents);
                 }
-            } elseif (($line != "GLOBAL") AND (isset($this->lines[$line][$variables]))) {
+            } elseif (($specific_line != "GLOBAL") AND (isset($this->lines[$specific_line][$variables]))) {
 	
 				
-                $this->lines[$line][$variables] = htmlspecialchars($this->lines[$line][$variables]);
+                $this->lines[$specific_line][$variables] = htmlspecialchars($this->lines[$specific_line][$variables]);
 
-              	$this->lines[$line][$variables] = $this->replace_static_variables($this->lines[$line][$variables]);
+              	$this->lines[$specific_line][$variables] = $this->replace_static_variables($this->lines[$specific_line][$variables]);
                 if (isset($default)) {
-                    $file_contents = str_replace('{$' . $original_variable . '|' . $default . '}', $this->lines[$line][$variables], $file_contents);
+                    $file_contents = str_replace('{$' . $original_variable . '|' . $default . '}', $this->lines[$specific_line][$variables], $file_contents);
                 } else {
-                    $file_contents = str_replace('{$' . $original_variable . '}', $this->lines[$line][$variables], $file_contents);
+                    $file_contents = str_replace('{$' . $original_variable . '}', $this->lines[$specific_line][$variables], $file_contents);
                 }
             } else {
                 if (!$keep_unknown) {
@@ -237,7 +271,15 @@ abstract class endpoint_base {
         return $file_contents;
     }
 
-    function replace_static_variables($contents, $line="GLOBAL", $looping=TRUE) {
+    /**
+     *
+     * @param string $contents
+     * @param string $specific_line
+     * @param boolean $looping
+     * @return string
+     */
+
+    function replace_static_variables($contents, $specific_line="GLOBAL", $looping=TRUE) {
         $contents = str_replace('{$srvip}', $this->server[1]['ip'], $contents, $count);
         // TODO: Add support for a custom port and a backup server
         $contents = str_replace('{$mac}', $this->mac, $contents, $count);
@@ -246,23 +288,30 @@ abstract class endpoint_base {
         $contents = str_replace('{$gmthr}', $this->timezone, $contents, $count);
         $contents = str_replace('{$timezone}', $this->timezone, $contents, $count);
 
-        if (($line != "GLOBAL") AND ($looping == TRUE)) {
-            $contents = str_replace('{$line}', $line, $contents, $count);
-            $contents = str_replace('{$ext}', $this->lines[$line]['ext'], $contents, $count);
-            $contents = str_replace('{$displayname}', $this->lines[$line]['displayname'], $contents, $count);
-            $contents = str_replace('{$secret}', $this->lines[$line]['secret'], $contents, $count);
-            $contents = str_replace('{$pass}', $this->lines[$line]['line'], $contents, $count);
-        } elseif (($line != "GLOBAL") AND ($looping == FALSE)) {
-            $contents = str_replace('{$line.line.' . $line . '}', $line, $contents, $count);
-            $contents = str_replace('{$ext.line.' . $line . '}', $this->lines[$line]['ext'], $contents, $count);
-            $contents = str_replace('{$displayname.line.' . $line . '}', $this->lines[$line]['displayname'], $contents, $count);
-            $contents = str_replace('{$secret.line.' . $line . '}', $this->lines[$line]['secret'], $contents, $count);
-            $contents = str_replace('{$pass.line.' . $line . '}', $this->lines[$line]['secret'], $contents, $count);
+        if (($specific_line != "GLOBAL") AND ($looping == TRUE)) {
+            $contents = str_replace('{$line}', $specific_line, $contents, $count);
+            $contents = str_replace('{$ext}', $this->lines[$specific_line]['ext'], $contents, $count);
+            $contents = str_replace('{$displayname}', $this->lines[$specific_line]['displayname'], $contents, $count);
+            $contents = str_replace('{$secret}', $this->lines[$specific_line]['secret'], $contents, $count);
+            $contents = str_replace('{$pass}', $this->lines[$specific_line]['line'], $contents, $count);
+        } elseif (($specific_line != "GLOBAL") AND ($looping == FALSE)) {
+            $contents = str_replace('{$line.line.' . $specific_line . '}', $specific_line, $contents, $count);
+            $contents = str_replace('{$ext.line.' . $specific_line . '}', $this->lines[$specific_line]['ext'], $contents, $count);
+            $contents = str_replace('{$displayname.line.' . $specific_line . '}', $this->lines[$specific_line]['displayname'], $contents, $count);
+            $contents = str_replace('{$secret.line.' . $specific_line . '}', $this->lines[$specific_line]['secret'], $contents, $count);
+            $contents = str_replace('{$pass.line.' . $specific_line . '}', $this->lines[$specific_line]['secret'], $contents, $count);
         }
 
         return($contents);
     }
 
+    /**
+     *
+     * @param array $array_old
+     * @param array $array_new
+     * @return array
+     * @deprecated
+     */
     function array_merge_check($array_old, $array_new) {
         if (is_array($array_old)) {
             return(array_merge($array_old, $array_new));
@@ -271,15 +320,34 @@ abstract class endpoint_base {
         }
     }
 
+    /**
+     * Function xml2array has a bad habbit of returning blank xml values as empty arrays.
+     * Also if the xml children only loops once then the array is put into a normal array (array[variable]).
+     * However if it loops more than once then it is put into a counted array (array[0][variable])
+     * We fix that issue here by returning blank values on empty arrays or always returning array[0]
+     * @param array $array
+     * @return mixed
+     */
     function fix_single_array_keys($array) {
-        if (empty($array[0])) {
-            $array_n[0] = $array;
-            return($array_n);
-        } else {
-            return($array);
-        }
+            if((empty($array[0])) AND (!empty($array))) {
+                    $array_n[0] = $array;
+                    return($array_n);
+            } elseif(!empty($array)) {
+                    return($array);
+            } else {
+                    return("");
+            }
     }
 
+    /**
+     *
+     * @param string $Needle
+     * @param array $Haystack
+     * @param string $NeedleKey
+     * @param boolean $Strict
+     * @param array $Path
+     * @return array
+     */
     function arraysearchrecursive($Needle, $Haystack, $NeedleKey="", $Strict=false, $Path=array()) {
         if (!is_array($Haystack))
             return false;
@@ -299,6 +367,13 @@ abstract class endpoint_base {
         return false;
     }
 
+    /**
+     *
+     * @param <type> $url
+     * @param <type> $get_attributes
+     * @param <type> $priority
+     * @return <type>
+     */
     function xml2array($url, $get_attributes = 1, $priority = 'tag') {
         $contents = "";
         if (!function_exists('xml_parser_create')) {
@@ -408,4 +483,3 @@ abstract class endpoint_base {
     }
 
 }
-
