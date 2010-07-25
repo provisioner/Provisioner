@@ -8,7 +8,7 @@
  */
 class endpoint_grandstream_base extends endpoint_base {
 	
-	public static $brand_name = 'grandstream';
+	public $brand_name = 'grandstream';
 	
 	function reboot($id) {
 		global $global_cfg;
@@ -98,4 +98,3 @@ class endpoint_grandstream_base extends endpoint_base {
 		return $new_str;
 	}
 }
-?>
