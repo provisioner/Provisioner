@@ -8,37 +8,17 @@
  */
 class endpoint_grandstream_gxp_phone extends endpoint_grandstream_base {
 
-	public static $family_line = 'gxp';
+	public $family_line = 'gxp';
 
 	function generate_config() {		
 		//Grandstream likes lower case letters in its mac address
 		$this->mac = strtolower($this->mac);
 
-		if(isset($this->secret['line'][2])) {
-			$array = array("line_active"  => array("value" => "1"));
-			$this->xml_variables['line'][2] = $this->array_merge_check($this->xml_variables['line'][2],$array);
-		}
-		
-		if(isset($this->secret['line'][3])) {
-			$array = array("line_active"  => array("value" => "1"));
-			$this->xml_variables['line'][3] = $this->array_merge_check($this->xml_variables['line'][3],$array);
-		}
-		
-		if(isset($this->secret['line'][4])) {
-			$array = array("line_active"  => array("value" => "1"));
-			$this->xml_variables['line'][4] = $this->array_merge_check($this->xml_variables['line'][4],$array);
-		}
-		
-		if(isset($this->secret['line'][5])) {
-			$array = array("line_active"  => array("value" => "1"));
-			$this->xml_variables['line'][5] = $this->array_merge_check($this->xml_variables['line'][5],$array);
-		}
-		
-		if(isset($this->secret['line'][6])) {
-			$array = array("line_active"  => array("value" => "1"));
-			$this->xml_variables['line'][6] = $this->array_merge_check($this->xml_variables['line'][6],$array);
-		}
-		
+                // Grandstreams support lines 2-6, so let's add them if they're set
+                for ($i = 1; $i < 6; $i++) {
+                    $this->lines[$i]['line_active'] = (isset($this->lines[$i]['secret']) ? '1' : '0');
+                }
+
 		$contents = $this->open_config_file("\$mac.cfg");
 		
 		
