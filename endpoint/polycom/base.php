@@ -9,7 +9,7 @@
 
 abstract class endpoint_polycom_base extends endpoint_base {
 	
-	public static $brand_name = 'polycom';
+	public $brand_name = 'polycom';
 	
 	function reboot($id) {
 		//reboot phone here

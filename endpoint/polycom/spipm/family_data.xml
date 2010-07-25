@@ -1,5 +1,8 @@
 <data>
+	<name>SoundPoint/Station/VVX In-Production Models [321,331,335,430,450,550,560,650,670,6000,7000,1500]</name>
+	<id>3</id>
 	<version>0.8.1</version>
+	<directory>spipm</directory>
 	<package>spipm-0_8_1.tgz</package>
 	<firmware_ver>4.2.2.3.2.3</firmware_ver>
 	<firmware_pkg>polycom_spipm_bootrom_sip.zip</firmware_pkg>

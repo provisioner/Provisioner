@@ -1,6 +1,8 @@
 <data>
+	<name>Yealink/Dreamwave Models: [T20, T22, T26, T28]</name>
+	<id>1</id>
 	<version>0.7.5</version>
-	<package>t2x-0_7_5.tgz</package>
+	<directory>t2x</directory>
 	<firmware_ver></firmware_ver>
 	<firmware_pkg>NULL</firmware_pkg>
 	<description>Variables Issues Solved (Not writing accounts + passwords in files)</description>

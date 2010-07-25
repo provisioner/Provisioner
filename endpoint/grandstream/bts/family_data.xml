@@ -1,6 +1,8 @@
 <data>
+	<name>BudgeTone series [200,201]</name>
+	<id>2</id>
 	<version>1.0</version>
-	<package>bts-1_0.tgz</package>
+	<directory>bts</directory>
 	<firmware_ver>1.2.2.26</firmware_ver>
 	<firmware_pkg>Release_BT200_GXP_1.2.2.26.zip</firmware_pkg>
 	<description>Fixed Timezone Issues + Use Grandstream Encrypted Compiler By Default</description>

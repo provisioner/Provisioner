@@ -81,7 +81,7 @@ abstract class endpoint_base {
             $parsed = "";
             if ($line == "ALL") {
                 while ($i <= $line_total) {
-                    if (isset($this->ext['line'][$i])) {
+                    if (isset($this->lines[$i]['secret'])) {
                         $parsed_2 = $this->replace_static_variables($matches[1], $i, TRUE);
                         $parsed .= $this->parse_config_values($parsed_2, TRUE, $i);
                     }
@@ -98,7 +98,7 @@ abstract class endpoint_base {
 
         $i = 1;
         while ($i <= $line_total) {
-            if (isset($this->ext['line'][$i])) {
+            if (isset($this->lines[$i]['secret'])) {
                 $file_contents = $this->replace_static_variables($file_contents, $i, FALSE);
             }
             $i++;
@@ -116,7 +116,7 @@ abstract class endpoint_base {
       -The $keep_unknown variable tells this function to ignore(TRUE) or blank out(FALSE) variables that it finds in $file_contents but can not find in $variables_array
      */
 
-    function parse_config_values($file_contents, $keep_unknown=FALSE, $line="GLOBAL") {
+    function parse_config_values($file_contents, $keep_unknown=FALSE, $line="GLOBAL") {	
         $family_data = $this->xml2array(self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml");
 
         if (is_array($family_data['data']['model_list'])) {
@@ -198,23 +198,25 @@ abstract class endpoint_base {
                 }
             }
 
-
-
             //If the variable we found in the text file exists in the variables array then replace the variable in the text file with the value under our key
-            if (($line == "GLOBAL") AND (isset($this->xml_variables['line']['global'][$variables]['value']))) {
-                $this->xml_variables['line']['global'][$variables]['value'] = htmlspecialchars($this->xml_variables['line']['global'][$variables]['value']);
-
-                $this->xml_variables['line']['global'][$variables]['value'] = $this->replace_static_variables($this->xml_variables['line']['global'][$variables]['value']);
-
-                $file_contents = str_replace('{$' . $original_variable . '}', $this->xml_variables['line']['global'][$variables]['value'], $file_contents);
-            } elseif (($line != "GLOBAL") AND (isset($this->xml_variables['line'][$line][$variables]['value']))) {
-                $this->xml_variables['line'][$line][$variables]['value'] = htmlspecialchars($this->xml_variables['line'][$line][$variables]['value']);
-
-                $this->xml_variables['line'][$line][$variables]['value'] = $this->replace_static_variables($this->xml_variables['line'][$line][$variables]['value']);
+            if (($line == "GLOBAL") AND (isset($this->options[$variables]))) {
+                $this->options[$variables] = htmlspecialchars($this->options[$variables]);
+                $this->options[$variables] = $this->replace_static_variables($this->options[$variables]);
                 if (isset($default)) {
-                    $file_contents = str_replace('{$' . $original_variable . '|' . $default . '}', $this->xml_variables['line'][$line][$variables]['value'], $file_contents);
+                    $file_contents = str_replace('{$' . $original_variable . '|' . $default . '}', $this->options[$variables], $file_contents);
                 } else {
-                    $file_contents = str_replace('{$' . $original_variable . '}', $this->xml_variables['line'][$line][$variables]['value'], $file_contents);
+                    $file_contents = str_replace('{$' . $original_variable . '}', $this->options[$variables], $file_contents);
+                }
+            } elseif (($line != "GLOBAL") AND (isset($this->lines[$line][$variables]))) {
+	
+				
+                $this->lines[$line][$variables] = htmlspecialchars($this->lines[$line][$variables]);
+
+              	$this->lines[$line][$variables] = $this->replace_static_variables($this->lines[$line][$variables]);
+                if (isset($default)) {
+                    $file_contents = str_replace('{$' . $original_variable . '|' . $default . '}', $this->lines[$line][$variables], $file_contents);
+                } else {
+                    $file_contents = str_replace('{$' . $original_variable . '}', $this->lines[$line][$variables], $file_contents);
                 }
             } else {
                 if (!$keep_unknown) {

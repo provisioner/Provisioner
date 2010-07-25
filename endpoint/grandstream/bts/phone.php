@@ -7,7 +7,7 @@
  * @package Provisioner
  */
 class endpoint_grandstream_bts_phone extends endpoint_grandstream_base {
-	public static $family_line = 'bts';
+	public $family_line = 'bts';
 
 	function generate_config() {		
 		//Grandstream likes lower case letters in its mac address

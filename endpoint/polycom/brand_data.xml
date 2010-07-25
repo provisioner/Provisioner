@@ -7,22 +7,17 @@
 		<brand_id>4</brand_id>
 		<package>polycom-0_7.tgz</package>
 		<family_list>
-			<name>SoundPoint/Station Legacy Models [301,320,330,501,600,601,4000]</name>
-			<xml>splm_01.xml</xml>
-			<directory>splm</directory>
-			<id>1</id>
-		</family_list>
-		<family_list>
-			<family>SoundPoint Old Models [300,500]</family>
-			<xml>spom_01.xml</xml>
-			<directory>spom</directory>
-			<id>2</id>
-		</family_list>
-		<family_list>
-			<family>SoundPoint/Station/VVX In-Production Models [321,331,335,430,450,550,560,650,670,6000,7000,1500]</family>
-			<xml>spipm_01.xml</xml>
-			<directory>spipm</directory>
-			<id>3</id>
+<!--Below is Auto Generated-->
+			<family>
+				<name>SoundPoint/Station/VVX In-Production Models [321,331,335,430,450,550,560,650,670,6000,7000,1500]</name>
+				<directory>spipm</directory>
+				<version>0.8.1</version>
+				<description>Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality</description>
+				<changelog></changelog>
+				<id>3</id>
+			</family>
+<!--End Auto Generated-->
+
 		</family_list>
 		<oui_list>
 			<oui>0004F2</oui>
