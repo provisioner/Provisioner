@@ -127,7 +127,7 @@ class endpoint_grandstream_gxp_phone extends endpoint_grandstream_base {
 				break;
 		}
 		
-		$final[$this->mac.".cfg"] = $this->parse_config_file($contents, FALSE);
+		$final[$this->mac.".cfg"] = $this->parse_config_file($contents);
 		
 		return($final);
 	}
