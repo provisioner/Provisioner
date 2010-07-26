@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<data>
+	<brands>
+		<name>Aastra</name>
+		<brand_id>1</brand_id>
+		<version>0.5</version>
+		<directory>aastra</directory>
+		<package>aastra-0_5.tgz</package>
+		<family_list>
+
+		</family_list>
+		<oui_list>
+			<oui>00085D</oui>
+			<oui>0010BC</oui>
+		</oui_list>
+	</brands>
+</data>
