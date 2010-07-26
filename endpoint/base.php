@@ -284,6 +284,13 @@ abstract class endpoint_base {
             $contents = str_replace('{$server.ip.'.$key.'}', $servers['ip'], $contents);
             $contents = str_replace('{$server.port.'.$key.'}', $servers['port'], $contents);
         }
+		
+		if(isset($this->proxy)) {
+			foreach($this->proxy as $key => $proxies) {
+				$contents = str_replace('{$proxy.ip.'.$key.'}', $proxies['ip'], $contents);
+				$contents = str_replace('{$proxy.port'.$key.'}', $proxies['port'], $contents);
+			}
+		}
         $contents = str_replace('{$mac}', $this->mac, $contents);
         $contents = str_replace('{$model}', $this->model, $contents);
         $contents = str_replace('{$gmtoff}', $this->timezone, $contents);
