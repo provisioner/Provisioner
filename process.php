@@ -57,7 +57,7 @@ $endpoint->server[2]['port'] = 7000;
 //$endpoint->config_files_override['$mac.cfg'] = "{\$srvip}\n{\$admin_pass|0}\n{\$test.line.1}";
 
 //Pretend we have three lines, we could just have one line or 20...whatever the phone supports
-$endpoint->lines[1] = array('ext' => '103', 'secret' => 'blah', 'displayname' => 'Joe Blow', 'test' => 'whee');
+$endpoint->lines[1] = array('ext' => '103', 'secret' => 'blah', 'displayname' => 'Joe Blow', 'vmail' => 'whee');
 $endpoint->lines[2] = array('ext' => '104', 'secret' => 'blah4', 'displayname' => 'Display Name');
 $endpoint->lines[3] = array('ext' => '105', 'secret' => 'blah5', 'displayname' => 'Other Account');
 
