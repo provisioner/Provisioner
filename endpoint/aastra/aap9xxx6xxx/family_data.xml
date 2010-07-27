@@ -2,6 +2,7 @@
 	<name>Aastra Models: 9112i, 9133i</name>
 	<id>2</id>
 	<version>0.7</version>
+	<directory>aap9xxx6xxx</directory>
 	<package>aap9_6-0_7.tgz</package>
 	<firmware_ver></firmware_ver>
 	<firmware_pkg>NULL</firmware_pkg>
