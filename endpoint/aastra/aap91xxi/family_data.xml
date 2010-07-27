@@ -2,6 +2,7 @@
 	<name>Aastra Models: 9480i, 9480i CT, 9143i,67xx</name>
 	<id>1</id>
 	<version>0.7</version>
+	<directory>aap91xxi</directory>
 	<package>aap9112_9113-0_7.tgz</package>
 	<firmware_ver></firmware_ver>
 	<firmware_pkg>NULL</firmware_pkg>
