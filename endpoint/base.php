@@ -169,32 +169,30 @@ abstract class endpoint_base {
         $template_data_multi = "";
         if (is_array($template_data_list['files'])) {
             foreach ($template_data_list['files'] as $files) {
-                if (file_exists(self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $files)) {
+                if (file_exists($this->root_dir.self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $files)) {
                     $template_data_multi = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $files);
                     $template_data_multi = $this->fix_single_array_keys($template_data_multi['template_data']['item']);
                     $template_data = array_merge($template_data, $template_data_multi);
                 }
             }
         } else {
-            if (file_exists(self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $template_data_list['files'])) {
+            if (file_exists($this->root_dir.self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $template_data_list['files'])) {
                 $template_data_multi = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $template_data_list['files']);
                 $template_data = $this->fix_single_array_keys($template_data_multi['template_data']['item']);
             }
         }
 
-        if (file_exists(self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_custom.xml")) {
+        if (file_exists($this->root_dir.self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_custom.xml")) {
             $template_data_multi = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_custom.xml");
             $template_data_multi = $this->fix_single_array_keys($template_data_multi['template_data']['item']);
             $template_data = array_merge($template_data, $template_data_multi);
         }
 
-        if (file_exists(self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_" . $this->model . "_custom.xml")) {
+        if (file_exists($this->root_dir.self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_" . $this->model . "_custom.xml")) {
             $template_data_multi = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_" . $this->model . "_custom.xml");
             $template_data_multi = $this->fix_single_array_keys($template_data_multi['template_data']['item']);
             $template_data = array_merge($template_data, $template_data_multi);
         }
-
-
 
         //Find all matched variables in the text file between "{$" and "}"
         preg_match_all('/[{\$](.*?)[}]/i', $file_contents, $match);
