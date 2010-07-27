@@ -22,6 +22,7 @@ abstract class endpoint_base {
     public $server;         // Contains an array of valid server IPs & ports, in case phones support backups
     public $lines;          // Individual line settings
     public $options;        // Misc. options for phones
+	public $root_dir = "";		//need to define the root directory for the location of the library (/var/www/html/)
 
     // Old
     /**
@@ -52,7 +53,7 @@ abstract class endpoint_base {
     function open_config_file($filename) {
         //if there is no configuration file over ridding the default then load up $contents with the file's information, where $key is the name of the default configuration file
         if (!isset($this->config_files_override[$filename])) {
-            $hd_file = self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $filename;
+            $hd_file = $this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $filename;
             //always use 'rb' says php.net
             $handle = fopen($hd_file, "rb");
             $contents = fread($handle, filesize($hd_file));
@@ -73,7 +74,7 @@ abstract class endpoint_base {
      * @return string Full Contents of the configuration file (After Parsing)
      */
     function parse_config_file($file_contents, $keep_unknown=FALSE, $lines=NULL, $specific_line='ALL') {
-        $family_data = $this->xml2array(self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml");
+        $family_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml");
 
         //Get number of lines for this model from the family_data.xml file
         if (is_array($family_data['data']['model_list'])) {
@@ -151,7 +152,7 @@ abstract class endpoint_base {
      */
 
     function parse_config_values($file_contents, $keep_unknown=FALSE, $specific_line="GLOBAL") {
-        $family_data = $this->xml2array(self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml");
+        $family_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml");
 
         if (is_array($family_data['data']['model_list'])) {
             $key = $this->arraysearchrecursive($this->model, $family_data, "model");
@@ -169,26 +170,26 @@ abstract class endpoint_base {
         if (is_array($template_data_list['files'])) {
             foreach ($template_data_list['files'] as $files) {
                 if (file_exists(self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $files)) {
-                    $template_data_multi = $this->xml2array(self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $files);
+                    $template_data_multi = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $files);
                     $template_data_multi = $this->fix_single_array_keys($template_data_multi['template_data']['item']);
                     $template_data = array_merge($template_data, $template_data_multi);
                 }
             }
         } else {
             if (file_exists(self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $template_data_list['files'])) {
-                $template_data_multi = $this->xml2array(self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $template_data_list['files']);
+                $template_data_multi = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $template_data_list['files']);
                 $template_data = $this->fix_single_array_keys($template_data_multi['template_data']['item']);
             }
         }
 
         if (file_exists(self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_custom.xml")) {
-            $template_data_multi = $this->xml2array(self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_custom.xml");
+            $template_data_multi = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_custom.xml");
             $template_data_multi = $this->fix_single_array_keys($template_data_multi['template_data']['item']);
             $template_data = array_merge($template_data, $template_data_multi);
         }
 
         if (file_exists(self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_" . $this->model . "_custom.xml")) {
-            $template_data_multi = $this->xml2array(self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_" . $this->model . "_custom.xml");
+            $template_data_multi = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_" . $this->model . "_custom.xml");
             $template_data_multi = $this->fix_single_array_keys($template_data_multi['template_data']['item']);
             $template_data = array_merge($template_data, $template_data_multi);
         }
