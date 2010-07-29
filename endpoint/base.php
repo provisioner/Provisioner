@@ -301,7 +301,7 @@ abstract class endpoint_base {
             $contents = str_replace('{$ext}', $this->lines[$specific_line]['ext'], $contents);
             $contents = str_replace('{$displayname}', $this->lines[$specific_line]['displayname'], $contents);
             $contents = str_replace('{$secret}', $this->lines[$specific_line]['secret'], $contents);
-            $contents = str_replace('{$pass}', $this->lines[$specific_line]['line'], $contents);
+            $contents = str_replace('{$pass}', $this->lines[$specific_line]['secret'], $contents);
         } elseif (($specific_line != "GLOBAL") AND ($looping == FALSE)) {
             $contents = str_replace('{$line.line.' . $specific_line . '}', $specific_line, $contents);
             $contents = str_replace('{$ext.line.' . $specific_line . '}', $this->lines[$specific_line]['ext'], $contents);
