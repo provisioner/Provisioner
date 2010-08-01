@@ -10,6 +10,29 @@ class endpoint_grandstream_base extends endpoint_base {
 	
 	public $brand_name = 'grandstream';
 	
+	function create_encrypted_file($list) {
+		foreach($list as $key=>$data) {
+			$fp = fopen($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/".$key, 'w');
+			fwrite($fp, $data);
+			fclose($fp);
+			
+			if(file_exists("/usr/src/GS_CFG_GEN/bin/encode.sh")) {
+				exec("/usr/src/GS_CFG_GEN/bin/encode.sh ".$this->mac." ".$this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/".$this->mac.".cfg ".$this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/cfg".$this->mac);
+				$handle = fopen($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/cfg".$this->mac, 'rb');
+				$contents = stream_get_contents($handle);
+				fclose($handle);
+				unlink($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/cfg".$this->mac);
+			} else {
+				$params = $this->parse_gs_config($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/".$key);
+				$contents = $this->gs_config_out($this->mac,$params);
+			}
+			
+			$files["cfg".$this->mac] = $contents;
+			unlink($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/".$key);
+		}
+		return($files);
+	}
+	
 	function parse_gs_config ($filename)
 	{
 		if (!($f = @fopen ($filename, "r"))) {
@@ -22,7 +45,7 @@ class endpoint_grandstream_base extends endpoint_base {
 				$str = substr ($str, 0, $pos);
 			}
 			if (strlen($str)) {
-				if (ereg ("(.+)=(.*)", $str, $matches)) {
+				if (preg_match ("/(.+)=(.*)/", $str, $matches)) {
 					$params[trim($matches[1])] = trim($matches[2]);
 				}
 			}
@@ -39,11 +62,13 @@ class endpoint_grandstream_base extends endpoint_base {
 	{
 		$prev = 0;
 
-		if (!ereg ("^[0-9a-fA-F]{12}$", $mac))
-			return FALSE;
+		//if (!preg_match ("/^[0-9a-fA-F]{12}$/", $mac))
+		//	return FALSE;
 
 		$params["gnkey"] = "0b82";
-
+		
+		$str = "";
+		
 		foreach ($params as $key => $val) {
 			if ($prev)
 				$str .= "&";

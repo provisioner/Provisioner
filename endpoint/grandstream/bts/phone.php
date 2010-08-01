@@ -123,6 +123,8 @@ class endpoint_grandstream_bts_phone extends endpoint_grandstream_base {
 
 		$final[$this->mac.'.cfg'] = $this->parse_config_file($contents, FALSE);
 
+		$final = $this->create_encrypted_file($final);
+
 		return($final);
 	}
 
