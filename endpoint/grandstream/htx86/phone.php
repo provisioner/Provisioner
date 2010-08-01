@@ -1,14 +1,14 @@
 <?php
 /**
- * Grandstream GXP Phone File
+ * HandyTone 286, 486 GXP Phone File
  *
  * @author Andrew Nagy
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
  */
-class endpoint_grandstream_gxp_phone extends endpoint_grandstream_base {
+class endpoint_grandstream_htx86_phone extends endpoint_grandstream_base {
 
-	public $family_line = 'gxp';
+	public $family_line = 'htx86';
 
 	function generate_config() {		
 		//Grandstream likes lower case letters in its mac address
