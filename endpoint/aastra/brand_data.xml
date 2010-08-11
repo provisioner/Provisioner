@@ -6,7 +6,28 @@
 		<version>0.5</version>
 		<directory>aastra</directory>
 		<package>aastra-0_5.tgz</package>
+		<last_modified>1280125677</last_modified>
 		<family_list>
+<!--Below is Auto Generated-->
+			<family>
+				<name>Aastra Models: 91xxi [9112i, 9133i]</name>
+				<directory>aap91xxi</directory>
+				<version>0.7</version>
+				<description>Initial Files</description>
+				<changelog></changelog>
+				<id>1</id>
+				<last_modified>1281504777</last_modified>
+			</family>
+			<family>
+				<name>Aastra Models: 94xx, 67xx, 9143i [9480i, 9480i CT, 9143i,67xx]</name>
+				<directory>aap9xxx6xxx</directory>
+				<version>0.7</version>
+				<description>Initial Files</description>
+				<changelog></changelog>
+				<id>2</id>
+				<last_modified>1280655750</last_modified>
+			</family>
+<!--End Auto Generated-->
 
 		</family_list>
 		<oui_list>

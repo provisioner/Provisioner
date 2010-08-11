@@ -17,12 +17,15 @@ abstract class endpoint_base {
     public $config_files_override;
 
     public $mac;            // Device mac address
+	public $model;			// Model of phone, must match the model name inside of the famil_data.xml file in each family folder.
     public $description;    // Generic description
     public $timezone;       // Global timezone var
     public $server;         // Contains an array of valid server IPs & ports, in case phones support backups
+	public $proxy;			// Contains an array of valid proxy IPs & ports
     public $lines;          // Individual line settings
     public $options;        // Misc. options for phones
 	public $root_dir = "";		//need to define the root directory for the location of the library (/var/www/html/)
+	public $engine;			//Can be asterisk or freeswitch. This is for the reboot commands.
 
     // Old
     /**
@@ -56,7 +59,11 @@ abstract class endpoint_base {
             $hd_file = $this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $filename;
             //always use 'rb' says php.net
             $handle = fopen($hd_file, "rb");
-            $contents = fread($handle, filesize($hd_file));
+			if(filesize($hd_file) > 0) {
+            	$contents = fread($handle, filesize($hd_file));
+			} else {
+				$contents = "";
+			}
             fclose($handle);
             return($contents);
         } else {

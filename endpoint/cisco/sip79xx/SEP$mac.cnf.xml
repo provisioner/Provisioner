@@ -1,0 +1,4 @@
+<device> 
+<deviceProtocol>SIP</deviceProtocol> 
+<loadInformation model="IP Phone 7940">{$image_name}</loadInformation> 
+</device>
