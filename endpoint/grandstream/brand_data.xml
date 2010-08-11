@@ -6,6 +6,7 @@
 		<directory>grandstream</directory>
 		<brand_id>2</brand_id>
 		<package>grandstream-0_7.tgz</package>
+		<last_modified>1280655751</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -15,6 +16,7 @@
 				<description>Fixed Timezone Issues + Use Grandstream Encrypted Compiler By Default</description>
 				<changelog></changelog>
 				<id>2</id>
+				<last_modified>1280655751</last_modified>
 			</family>
 			<family>
 				<name>GXP Enterprise IP series [280,1200,2000,2010,2020]</name>
@@ -23,6 +25,16 @@
 				<description>Use Grandstream Encrypted Compiler By Default</description>
 				<changelog></changelog>
 				<id>1</id>
+				<last_modified>1281509328</last_modified>
+			</family>
+			<family>
+				<name>HandyTone [HT486 REV.2, HT286 REV.3]</name>
+				<directory>htx86</directory>
+				<version>0.1</version>
+				<description></description>
+				<changelog></changelog>
+				<id>3</id>
+				<last_modified>1280660618</last_modified>
 			</family>
 <!--End Auto Generated-->
 

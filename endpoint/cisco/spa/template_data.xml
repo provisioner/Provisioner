@@ -1,0 +1,189 @@
+<template_data>
+	<item>
+		<description>General Settings</description>
+		<type>group</type>
+	</item>
+	<item>
+		<variable>$page_code</variable>
+		<default_value>*80</default_value>
+		<description>Paging Code</description>
+		<type>input</type>
+	</item>
+	<item>
+		<type>break</type>
+	</item>
+	<item>
+		<variable>$enable_webserver</variable>
+		<default_value>No</default_value>
+		<description>Enable Webserver</description>
+		<type>radio</type>
+		<data>
+			<text>Yes</text>
+			<value>Yes</value>
+		</data>
+		<data>
+			<text>No</text>
+			<value>No</value>
+		</data>
+	</item>
+	<item>
+		<variable>$webserver_port</variable>
+		<default_value>80</default_value>
+		<description>Webserver Port</description>
+		<type>input</type>
+	</item>
+	<item>
+		<variable>$enable_webserver_admin</variable>
+		<default_value>No</default_value>
+		<description>Enable Webserver Admin</description>
+		<type>radio</type>
+		<data>
+			<text>Yes</text>
+			<value>Yes</value>
+		</data>
+		<data>
+			<text>No</text>
+			<value>No</value>
+		</data>
+	</item>
+	<item>
+		<variable>$administrator_password</variable>
+		<default_value></default_value>
+		<description>Administrator Password</description>
+		<type>input</type>
+	</item>
+	<item>
+		<variable>$user_password</variable>
+		<default_value></default_value>
+		<description>User Password</description>
+		<type>input</type>
+	</item>
+	<item>
+		<type>break</type>
+	</item>
+	<item>
+		<variable>$upgrade_path</variable>
+		<default_value>tftp://</default_value>
+		<description>Upgrade Rule</description>
+		<type>input</type>
+	</item>
+	<item>
+		<variable>$enable_upgrade</variable>
+		<default_value>No</default_value>
+		<description>Enable Upgrade</description>
+		<type>radio</type>
+		<data>
+			<text>Yes</text>
+			<value>Yes</value>
+		</data>
+		<data>
+			<text>No</text>
+			<value>No</value>
+		</data>
+	</item>
+	<item>
+		<type>break</type>
+	</item>
+	<item>
+		<variable>$dial_plan</variable>
+		<default_value>(*xx.|7xxxS0|9[3469]11S0|9[2-9]xxxxxxS0|91xxx[2-9]xxxxxxS0|xxxxxxxxxxxx.)</default_value>
+		<description>Dial Plan</description>
+		<type>input</type>
+	</item>
+	<item>
+		<description>Logos/Backgrounds</description>
+		<type>group</type>
+	</item>
+	<item>
+		<variable>$text_logo</variable>
+		<default_value></default_value>
+		<description>Text Logo</description>
+		<type>input</type>
+	</item>
+	<item>
+		<variable>$picture_url</variable>
+		<default_value>tftp://</default_value>
+		<description>BMP Picture Path</description>
+		<type>input</type>
+	</item>
+	<item>
+		<variable>$logo_type</variable>
+		<default_value>Text Logo</default_value>
+		<description>Logo Type</description>
+		<type>radio</type>
+		<data>
+			<text>Text Logo</text>
+			<value>Text Logo</value>
+		</data>
+		<data>
+			<text>BMP Picture</text>
+			<value>BMP Picture</value>
+		</data>
+	</item>
+	<item>
+		<variable>$background_type</variable>
+		<default_value>Text Logo</default_value>
+		<description>Background Type</description>
+		<type>radio</type>
+		<data>
+			<text>Text Logo</text>
+			<value>Text Logo</value>
+		</data>
+		<data>
+			<text>BMP Picture</text>
+			<value>BMP Picture</value>
+		</data>
+	</item>
+	<item>
+		<description>Speed Dials</description>
+		<type>group</type>
+	</item>
+	<item>
+		<variable>$speed_dial_2</variable>
+		<default_value></default_value>
+		<description>Speed Dial #2</description>
+		<type>input</type>
+	</item>
+	<item>
+		<variable>$speed_dial_3</variable>
+		<default_value></default_value>
+		<description>Speed Dial #3</description>
+		<type>input</type>
+	</item>
+	<item>
+		<variable>$speed_dial_4</variable>
+		<default_value></default_value>
+		<description>Speed Dial #4</description>
+		<type>input</type>
+	</item>
+	<item>
+		<variable>$speed_dial_5</variable>
+		<default_value></default_value>
+		<description>Speed Dial #5</description>
+		<type>input</type>
+	</item>
+	<item>
+		<variable>$speed_dial_6</variable>
+		<default_value></default_value>
+		<description>Speed Dial #6</description>
+		<type>input</type>
+	</item>
+	<item>
+		<variable>$speed_dial_7</variable>
+		<default_value></default_value>
+		<description>Speed Dial #7</description>
+		<type>input</type>
+	</item>
+	<item>
+		<variable>$speed_dial_8</variable>
+		<default_value></default_value>
+		<description>Speed Dial #8</description>
+		<type>input</type>
+	</item>
+	<item>
+		<variable>$speed_dial_9</variable>
+		<default_value></default_value>
+		<description>Speed Dial #9</description>
+		<type>input</type>
+	</item>
+</template_data>
