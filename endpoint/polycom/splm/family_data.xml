@@ -1,10 +1,13 @@
 <data>
+	<name>SoundPoint/Station Legacy Models [301,320,330,501,600,601,4000]</name>
+	<id>2</id>
 	<version>0.7.6</version>
+	<directory>splm</directory>
 	<package>splm-0_7_6.tgz</package>
 	<firmware_ver>4.0.3.1.7</firmware_ver>
 	<firmware_pkg>polycom_splm_bootrom_sip.zip</firmware_pkg>
 	<description>Fixed Digit Map Problems with three digit extensions in the 1xx range</description>
-	<configuration_files>$ext.cfg,$mac_custom.cfg,$mac.cfg,server.cfg,sip_custom.cfg,sip.cfg</configuration_files>
+	<configuration_files>{$domain}.cfg,{$mac}.cfg,phone.cfg,phone1.cfg,reg_{$line}.cfg,sip.cfg</configuration_files>
 	<changelog></changelog>
 	<model_list>
 		<model>SoundPoint IP 301</model>

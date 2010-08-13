@@ -6,7 +6,7 @@
 		<version>0.5</version>
 		<directory>cisco</directory>
 		<package>cisco-0_5.tgz</package>
-		<last_modified>1281505458</last_modified>
+		<last_modified>1281514088</last_modified>
 				<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -16,7 +16,7 @@
 				<description></description>
 				<changelog></changelog>
 				<id>1</id>
-				<last_modified>1281510258</last_modified>
+				<last_modified>1281514090</last_modified>
 			</family>
 			<family>
 				<name>Linksys/Cisco/Sipura SPA Phone Models [901,921,922,941,942,962]</name>
@@ -25,7 +25,7 @@
 				<description>XML Escape Errors Fixed</description>
 				<changelog></changelog>
 				<id>2</id>
-				<last_modified>1281510163</last_modified>
+				<last_modified>1281514091</last_modified>
 			</family>
 <!--End Auto Generated-->
 

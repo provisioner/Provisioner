@@ -6,7 +6,7 @@
 		<directory>snom</directory>
 		<brand_id>6</brand_id>
 		<package>snom-0_6.tgz</package>
-		<last_modified>1281503277</last_modified>
+		<last_modified>1281514093</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -16,7 +16,7 @@
 				<description>Server + Password Settings, htm File Fixes</description>
 				<changelog></changelog>
 				<id>1</id>
-				<last_modified>1281504096</last_modified>
+				<last_modified>1281514093</last_modified>
 			</family>
 <!--End Auto Generated-->
 

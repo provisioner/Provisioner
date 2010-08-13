@@ -6,9 +6,9 @@
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
  */
-class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
+class endpoint_polycom_splm_phone extends endpoint_polycom_base {
 
-	public $family_line = 'spipm';	
+	public $family_line = 'splm';	
 		
 	function generate_config() {			
 		//Polycom likes lower case letters in its mac address
@@ -18,8 +18,8 @@ class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
         $this->options['domain'] = (isset($this->options['domain']) ? $this->options['domain'] : 'default');
 
 		$contents = $this->open_config_file('{$domain}.cfg');
-		$final['spipm_'.$this->options['domain'].'.cfg'] = $this->parse_config_file($contents, FALSE);
-		$file_list = 'spipm_'.$this->options['domain'].'.cfg';
+		$final['splm_'.$this->options['domain'].'.cfg'] = $this->parse_config_file($contents, FALSE);
+		$file_list = 'splm_'.$this->options['domain'].'.cfg';
 		
 		$contents = $this->open_config_file('phone.cfg');
 		$final['phone.cfg'] = $this->parse_config_file($contents, FALSE);
@@ -39,9 +39,9 @@ class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
 		}
 
 		$contents = $this->open_config_file('sip.cfg');
-		$final['spipm_sip.cfg'] = $this->parse_config_file($contents, FALSE);
+		$final['splm_sip.cfg'] = $this->parse_config_file($contents, FALSE);
 		
-		$file_list .= ' spipm_sip.cfg';
+		$file_list .= ' splm_sip.cfg';
 				
 		$this->options['createdFiles'] = $file_list;
 		
