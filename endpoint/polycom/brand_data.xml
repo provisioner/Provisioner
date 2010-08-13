@@ -16,7 +16,25 @@
 				<description>Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality</description>
 				<changelog></changelog>
 				<id>3</id>
-				<last_modified>1280121706</last_modified>
+				<last_modified>1281723261</last_modified>
+			</family>
+			<family>
+				<name>SoundPoint/Station Legacy Models [301,320,330,501,600,601,4000]</name>
+				<directory>splm</directory>
+				<version>0.7.6</version>
+				<description>Fixed Digit Map Problems with three digit extensions in the 1xx range</description>
+				<changelog></changelog>
+				<id>2</id>
+				<last_modified>1281725160</last_modified>
+			</family>
+			<family>
+				<name>SoundPoint Old Models [300,500]</name>
+				<directory>spom</directory>
+				<version>0.8.6</version>
+				<description>Fixed Digit Map Problems with three digit extensions in the 1xx range</description>
+				<changelog></changelog>
+				<id>1</id>
+				<last_modified>1281723294</last_modified>
 			</family>
 <!--End Auto Generated-->
 

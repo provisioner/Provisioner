@@ -1,10 +1,13 @@
 <data>
+	<name>SoundPoint Old Models [300,500]</name>
+	<id>1</id>
 	<version>0.8.6</version>
+	<directory>spom</directory>
 	<package>spom-0_8_6.tgz</package>
 	<firmware_ver></firmware_ver>
 	<firmware_pkg>NULL</firmware_pkg>
 	<description>Fixed Digit Map Problems with three digit extensions in the 1xx range</description>
-	<configuration_files>$ext.cfg,$mac_custom.cfg,$mac.cfg,server.cfg,sip_custom.cfg,sip.cfg</configuration_files>
+	<configuration_files>{$domain}.cfg,{$mac}.cfg,phone.cfg,phone1.cfg,reg_{$line}.cfg,sip.cfg</configuration_files>
 	<changelog></changelog>
 	<model_list>
 		<model>SoundPoint IP 300</model>
