@@ -26,6 +26,7 @@ abstract class endpoint_base {
     public $options;        // Misc. options for phones
 	public $root_dir = "";		//need to define the root directory for the location of the library (/var/www/html/)
 	public $engine;			//Can be asterisk or freeswitch. This is for the reboot commands.
+	public $system;			//unix or windows or bsd. etc
 
     // Old
     /**
@@ -43,6 +44,10 @@ abstract class endpoint_base {
     public static function set_modules_path($path) {
         self::$modules_path = $path;
     }
+
+	function reboot() {
+		
+	}
 
     /**
      * Takes the name of a local configuration file and either returns that file from the hard drive as a string or takes the string from the array and returns that as a string

@@ -10,6 +10,18 @@ class endpoint_grandstream_base extends endpoint_base {
 	
 	public $brand_name = 'grandstream';
 	
+	function reboot() {
+		if(($this->engine == "asterisk") AND ($this->system == "unix")) {
+			$output = shell_exec("asterisk -rx 'sip show peers like ".$this->lines[1]['ext']."'");
+			if(preg_match("/\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/",$output,$matches)) {
+				$ip = $matches[0];
+				//This is lame. I need to do this in php not over the command line. etc, I AM THE LAME.
+				exec('curl -c cookies.txt -d"P2='.$this->options['admin_pass'].'&Login=Login&gnkey=0b82" http://'.$ip.'/dologin.htm');
+				exec("curl -b cookies.txt http://".$ip."/rs.htm");
+			}
+		}
+	}
+	
 	function create_encrypted_file($list) {
 		foreach($list as $key=>$data) {
 			$fp = fopen($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/".$key, 'w');

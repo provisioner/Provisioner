@@ -11,18 +11,9 @@ abstract class endpoint_polycom_base extends endpoint_base {
 	
 	public $brand_name = 'polycom';
 	
-	function reboot($id) {
-		//reboot phone here
-		//This was relient on Asterisk/MYSQL/Globals
-		//So I removed it for now
-		
-	}
-	
-	function generate_config () {
-		die('This function can not be called through a non-extended class!');
-	}
-	
-	function delete_config () {
-		
+	function reboot() {
+		if(($this->engine == "asterisk") AND ($this->system == "unix")) {
+			exec("asterisk -rx 'sip notify polycom-check-cfg ".$this->lines[1]['ext']."'");
+		}
 	}
 }
