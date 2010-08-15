@@ -19,15 +19,17 @@ class endpoint_polycom_splm_phone extends endpoint_polycom_base {
 
 		$contents = $this->open_config_file('{$domain}.cfg');
 		$final['splm_'.$this->options['domain'].'.cfg'] = $this->parse_config_file($contents, FALSE);
-		$file_list = 'splm_'.$this->options['domain'].'.cfg';
+		$file_list = 'splm_'.$this->options['domain'].'.cfg, ';
 		
 		$contents = $this->open_config_file('phone.cfg');
 		$final['phone.cfg'] = $this->parse_config_file($contents, FALSE);
-		$file_list .= ' phone.cfg,';
+		//$file_list .= ' phone.cfg,';
+		
+		$contents = $this->open_config_file('{$mac}-phone.cfg');
+		$final[$this->mac.'-phone.cfg'] = $this->parse_config_file($contents, FALSE);
 		
 		$contents = $this->open_config_file('phone1.cfg');
 		$final['phone1.cfg'] = $this->parse_config_file($contents, FALSE);
-		$file_list .= ' phone1.cfg,';
 		
 		$contents = $this->open_config_file('reg_{$line}.cfg');
 	
@@ -47,7 +49,7 @@ class endpoint_polycom_splm_phone extends endpoint_polycom_base {
 		
 		$contents = $this->open_config_file('{$mac}.cfg');
 		$final[$this->mac.'.cfg'] = $this->parse_config_file($contents, FALSE);
-		
+				
 		return($final);	
 	}
 
