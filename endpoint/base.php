@@ -27,6 +27,9 @@ abstract class endpoint_base {
 	public $root_dir = "";		//need to define the root directory for the location of the library (/var/www/html/)
 	public $engine;			//Can be asterisk or freeswitch. This is for the reboot commands.
 	public $system;			//unix or windows or bsd. etc
+	public $directory_structure = array();	//Directory structure to create as an array
+	public $protected_files = array();	//array list of file to NOT over-write on every config file build. They are protected.
+	public $copy_files = array();		//array of files or directories to copy. Directories will be recursive
 
     // Old
     /**
