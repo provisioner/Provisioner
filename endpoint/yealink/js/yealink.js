@@ -1,15 +1,18 @@
 function alertCallback(){ alert('Found one!'); }
 
 function configureHandset() {
-	alert('Configure your handset here!');
+	//alert('Configure your handset here!');
+	$.colorbox({width:"50%", inline:true, href:"#configureHandset"});
 }
 
 function configureDisplay() {
-	alert('Configure display contrast, brightness, date/time, etc here!');
+	//alert('Configure display contrast, brightness, date/time, etc here!');
+	$.colorbox({width:"50%", inline:true, href:"#configureDisplay"});
 }
 
 function configureKey(){
-	alert('Configure keys here');
+	//alert('Configure keys here');
+	$.colorbox({width:"50%", inline:true, href:"#configureKey"});
 }
 
 function configureVoicemail(){
