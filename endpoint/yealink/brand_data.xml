@@ -6,7 +6,7 @@
 		<brand_id>8</brand_id>
 		<directory>yealink</directory>
 		<package>yealink-0_5.tgz</package>
-		<last_modified>1280046833</last_modified>
+		<last_modified>1282508949</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -16,7 +16,7 @@
 				<description>Variables Issues Solved (Not writing accounts + passwords in files)</description>
 				<changelog></changelog>
 				<id>1</id>
-				<last_modified>1280046834</last_modified>
+				<last_modified>1282508950</last_modified>
 			</family>
 <!--End Auto Generated-->
 
