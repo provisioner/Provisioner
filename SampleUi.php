@@ -4,6 +4,8 @@
         <script type="text/javascript" src="http://www.the159.com/test/jquery.js"></script>
 	<script type="text/javascript" src="http://plugins.jquery.com/files/jquery.imagemap.js_1.txt"></script>
 	<script src="http://www.provisioner.net/repo/javascript/jquery.colorbox.js"></script>
+	<script src="http://www.provisioner.net/repo/javascript/phpjs.js"></script>
+	<script src="http://www.provisioner.net/repo/javascript/endpoint_ui.js"></script>
 	<link media="screen" rel="stylesheet" href="colorbox.css" />
 
 <?php
@@ -89,6 +91,30 @@ if (file_exists("endpoint/yealink/t2x" . "/template_data_" . $phoneModel . "_cus
     $template_data_multi = $endpoint_ui->fix_single_array_keys($template_data_multi['template_data']['item']);
     $template_data = array_merge($template_data, $template_data_multi);
 }
+?>
+<pre>
+<script type="text/javascript">
+var username
+var test
+username = '<?PHP echo serialize($template_data); ?>'
+username = unserialize(username);
+test = arraysearchrecursivemulti("configureDisplay", username, "category");
+var configureDisplayarray = new Array()
+var count = 0
+for ( var i in test )
+{
+    Key = test[i][0]
+	configureDisplayarray[count] = username[Key];
+	count++;
+}
+var_dump(configureDisplayarray);
+
+//var_dump(this.generate_gui_html(configureDisplayarray,'h',TRUE,'h'));
+
+
+</script>
+
+<?PHP
 $key = $endpoint_ui->arraysearchrecursivemulti("configureDisplay", $template_data, "category");
 $configureDisplay = array();
 $count = 0;

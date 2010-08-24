@@ -90,7 +90,7 @@ class EndpointUi {
 		$final = array();
         foreach ($Haystack as $Key => $Val) {
             if (is_array($Val) &&
-                    $SubPath = $this->arraysearchrecursive($Needle, $Val, $NeedleKey, $Strict, $Path)) {
+                    $SubPath = $this->arraysearchrecursivemulti($Needle, $Val, $NeedleKey, $Strict, $Path)) {
                 $Path = array_merge($Path, Array($Key), $SubPath);
 				$final[$i] = $Path;
 				$Path = array();
