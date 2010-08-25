@@ -94,8 +94,19 @@ if (file_exists("endpoint/yealink/t2x" . "/template_data_" . $phoneModel . "_cus
 ?>
 <pre>
 <script type="text/javascript">
-var username
+//var username
 var test
+var username
+$.ajax({type: "GET",url: "http://www.provisioner.net/repo/endpoint/yealink/t2x/template_data.xml",success:GetResponse});
+
+function GetResponse(data){
+//var_dump(data);
+//username = data
+//var_dump(username);
+}
+
+
+//var_dump(username);
 username = '<?PHP echo serialize($template_data); ?>'
 username = unserialize(username);
 test = arraysearchrecursivemulti("configureDisplay", username, "category");
