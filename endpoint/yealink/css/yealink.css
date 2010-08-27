@@ -1,6 +1,14 @@
-.phone {
+.phone_config.yealink_t22 {
 background-image:url('../img/yealink_t22p.png');
 width:331px;
 height:307px;
 }
 
+.select_phone div {
+    float: left;
+    width: 100px;
+    height: 50px;
+    border: gray dashed 2px;
+    margin: 0px 2px 2px 2px;
+    text-align: center;
+}
