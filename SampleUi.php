@@ -4,9 +4,9 @@
         <script type="text/javascript" src="http://www.the159.com/test/jquery.js"></script>
 	<script type="text/javascript" src="http://plugins.jquery.com/files/jquery.imagemap.js_1.txt"></script>
 	<script src="http://www.provisioner.net/repo/javascript/jquery.colorbox.js"></script>
-	<script src="http://www.provisioner.net/repo/javascript/phpjs.js"></script>
-	<script src="http://www.provisioner.net/repo/javascript/endpoint_ui.js"></script>
 	<link media="screen" rel="stylesheet" href="colorbox.css" />
+
+        <script src="javascript/endpoint.js"></script>
 
 <?php
 include('EndpointUi.php');
@@ -26,9 +26,70 @@ foreach ($css as $filename) {
 
 $phoneType = 'yealink';
 $phoneProduct = 't2x';
-$phoneModel = 'T22';
+$phoneModel = 't22';
 
 ?>
+</head>
+
+<body>
+
+<form name="whatever" action="http://www.the159.com/info/info.php" method="POST">
+
+    <h2>Two Options For Displaying Configurations...</h2>
+    (Both options work in modals/pop-ups)
+
+    <h4>Option 1: Display a selector, then a phone on click</h4>
+    <div id="phone_1">
+        <input type="hidden" name="phone_1">
+
+        <div class="select_phone">
+            <div class="yealink_t22">Yealink T22 Icon Goes Here</div>
+            <div class="yealink_t28">Yealink T28 Icon Goes Here</div>
+        </div>
+
+        <div style="clear: both"></div>
+
+        <div class="phone_config">
+        </div>
+    </div>
+
+    <input type="submit" value="Save">
+
+    <hr>
+
+    <h4>Option 2: Display an already selected phone for configuration</h4>
+
+    <div class="phone_config yealink_t22">
+    </div>
+
+</form>
+
+</body>
+</html>
+
+<?php
+die();
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script>
 	$(document).ready(function(){
 		$(".example8").colorbox({width:"50%", inline:true, href:"#inline_example1"});
