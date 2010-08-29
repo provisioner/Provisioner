@@ -323,7 +323,33 @@ abstract class endpoint_base {
             $contents = str_replace('{$displayname.line.' . $specific_line . '}', $this->lines[$specific_line]['displayname'], $contents);
             $contents = str_replace('{$secret.line.' . $specific_line . '}', $this->lines[$specific_line]['secret'], $contents);
             $contents = str_replace('{$pass.line.' . $specific_line . '}', $this->lines[$specific_line]['secret'], $contents);
-        }
+        } elseif ($specific_line == 'GLOBAL') {
+	        //Find all matched variables in the text file between "{$" and "}"
+	        preg_match_all('/[{\$](.*?)[}]/i', $contents, $match);
+	        //Result without brackets (but with the $ variable identifier)
+	        $no_brackets = array_values(array_unique($match[1]));
+	        //Result with brackets
+	        $brackets = array_values(array_unique($match[0]));
+	        //loop though each variable found in the text file
+	        foreach ($no_brackets as $variables) {
+	            $variables = str_replace("$", "", $variables);
+				$original_variable = $variables;
+	            if (strstr($variables, ".")) {
+	                $original_variable = $variables;
+	                $variables = explode(".", $variables);
+	                $specific_line = $variables[2];
+	                $variables = $variables[0];
+					switch ($variables) {
+						case "ext":
+							$contents = str_replace('{$ext.line.' . $specific_line . '}', $this->lines[$specific_line]['ext'], $contents);
+							break;
+						case "displayname":
+			            	$contents = str_replace('{$displayname.line.' . $specific_line . '}', $this->lines[$specific_line]['displayname'], $contents);
+							break;
+					}
+	            }
+			}
+		}
 
         return($contents);
     }
