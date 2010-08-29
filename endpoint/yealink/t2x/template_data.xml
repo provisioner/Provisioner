@@ -48,6 +48,23 @@
 		<type>input</type>
 	</item>
 	<item>
+		<type>break</type>
+	</item>
+	<item>
+		<category>configureDisplay</category>
+		<variable>$firmware_server</variable>
+		<default_value>{$server.ip.1}</default_value>
+		<description>Firmware Server IP</description>
+		<type>input</type>
+	</item>
+	<item>
+		<category>configureDisplay</category>
+		<variable>$firmware_name</variable>
+		<default_value></default_value>
+		<description>Firmware File Name</description>
+		<type>input</type>
+	</item>
+	<item>
 		<description>Memory Keys (1-10)</description>
 		<type>group</type>
 	</item>
