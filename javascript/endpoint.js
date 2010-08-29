@@ -6,6 +6,7 @@ endpoints = {
 
     init: function() {
         // Find all brands that are registered
+        $(document).trigger('endpoints.init');
         $(document).trigger('endpoints.register');
     },
 
@@ -32,6 +33,9 @@ endpoints = {
 };
 
 
+/**
+ * Individual brands
+ */
 endpointBrand = {
     directory : '',
     families : {},

@@ -97,7 +97,9 @@ var endpointYealink = {
 
 }
 
-$.extend(endpointYealink, endpointBrand);
+$(document).bind('endpoints.init', function() {
+    $.extend(endpointYealink, endpointBrand);
+});
 
 $(document).bind('endpoints.register', function() {
     endpointYealink.init();
