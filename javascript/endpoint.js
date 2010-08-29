@@ -46,6 +46,7 @@ endpointBrand = {
     register: function() {
         endpoints.register(this.brandName, this);
         this.loadFamilies(this.brandName);
+		this.loadTemplates(this.brandName,this.familyName,'T20');
     },
 
     /**
@@ -108,15 +109,24 @@ endpointBrand = {
         // Load stuff?
 
         $.ajax({
-            url: 'endpoint/' + brand + '/' + product + '/template_data.xml',
+            url: 'endpoint/' + brand + '/' + product + '/family_data.xml',
             global: false,
             type: "GET",
             dataType: "xml",
             async:false,
             success: function(data){
-                console.log('Successfully loaded template info for ' + + '!');
+			$(data).find('data model_list').each(function() {
+				// Here, we have the <model_list></model_list> guts
+				modelName = $(this).find('model').text();
+				if (modelName = model) {
+					$(this).find('template_data files').each(function() {
+						alert("h");
+						// Now you would do something with $(this).text();  like load them :)
+					});
+				}
+                console.log('Successfully loaded template info for ' + '!');
                 // Store the template for use everywhere
-            }
+            });
         });
 
     }
