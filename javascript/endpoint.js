@@ -39,12 +39,15 @@ endpoints = {
 endpointBrand = {
     directory : '',
     families : {},
+	template_data : new Array(),
+
 
     /**
      * Register this brand in the system
      */
     register: function() {
         endpoints.register(this.brandName, this);
+		//this.loadBrands();
         this.loadFamilies(this.brandName);
 		this.loadTemplates(this.brandName,this.familyName,'T20');
     },
@@ -52,7 +55,28 @@ endpointBrand = {
     /**
      * Load all known data about a brand
      */
-    loadFamilies: function() {
+    loadBrands: function() {
+        $.ajax({
+            url: 'endpoint/master.xml',
+            global: false,
+            type: "GET",
+            dataType: "xml",
+            async:false,
+            success: function(data){
+				$(data).find('data brands').each(function() {
+					// Here, we have the <model_list></model_list> guts
+					brandName = $(this).find('name').text();
+					brandDir = $(this).find('directory').text();
+                    console.log('Brand name ' + brandName);
+	            });
+			}
+        });
+    },
+
+    /**
+     * Load all known data about a brand
+     */
+    loadFamilies: function(brand) {
         $.ajax({
             url: 'endpoint/' + this.brandName + '/brand_data.xml',
             global: false,
@@ -105,7 +129,7 @@ endpointBrand = {
     /**
      *
      */
-    loadTemplate: function(brand, product, model) {
+    loadTemplates: function(brand, product, model) {
         // Load stuff?
 
         $.ajax({
@@ -115,19 +139,37 @@ endpointBrand = {
             dataType: "xml",
             async:false,
             success: function(data){
-			$(data).find('data model_list').each(function() {
-				// Here, we have the <model_list></model_list> guts
-				modelName = $(this).find('model').text();
-				if (modelName = model) {
-					$(this).find('template_data files').each(function() {
-						alert("h");
-						// Now you would do something with $(this).text();  like load them :)
-					});
-				}
-                console.log('Successfully loaded template info for ' + '!');
-                // Store the template for use everywhere
-            });
-        });
+				$(data).find('data model_list').each(function() {
+					// Here, we have the <model_list></model_list> guts
+					modelName = $(this).find('model').text();
+					if (modelName == model) {
+						$(this).find('template_data files').each(function() {
+							console.log('Successfully loaded template info for ' + $(this).text() + '!');
+							endpointBrand.loadTemplatesData(brand,product,$(this).text());
+						});
+					}
+	                // Store the template for use everywhere
+	            });
+			}
+        })
+
+    },
+
+    loadTemplatesData: function(brand, family, file) {
+        // Load stuff?
+        $.ajax({
+            url: 'endpoint/' + brand + '/' + family + '/'+file,
+            global: false,
+            type: "GET",
+            dataType: "xml",
+            async:false,
+            success: function(data){
+				$(data).find('template_data item').each(function() {
+					type = $(this).find('type').text();
+					console.log('Successfully loaded template info for ' + type + '!');
+	            });
+			}
+        })
 
     }
 };
