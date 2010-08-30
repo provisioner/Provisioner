@@ -4,7 +4,9 @@
         <script type="text/javascript" src="http://www.the159.com/test/jquery.js"></script>
 	<script type="text/javascript" src="http://plugins.jquery.com/files/jquery.imagemap.js_1.txt"></script>
 	<script src="http://www.provisioner.net/repo/javascript/jquery.colorbox.js"></script>
-	<link media="screen" rel="stylesheet" href="colorbox.css" />
+
+        <link media="screen" rel="stylesheet" href="colorbox.css" />
+	<link media="screen" rel="stylesheet" href="css/endpoint.css" />
 
         <script src="javascript/endpoint.js"></script>
 
@@ -42,7 +44,7 @@ $phoneModel = 't22';
     <div id="phone_1">
         <input type="hidden" name="phone_1">
 
-        <div class="select_phone">
+        <div class="phone_selector">
             <div class="yealink_t22">Yealink T22 Icon Goes Here</div>
             <div class="yealink_t28">Yealink T28 Icon Goes Here</div>
         </div>

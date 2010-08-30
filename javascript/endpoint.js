@@ -1,4 +1,17 @@
 /**
+ * Loading & execution order:
+ * 1. Fire the event "endpoints.init" letting all endpoints extend any classes they need to and/or set any initial vars they need to
+ * 2. Each endpoint will call 'this.loadFamilies' to load it's family, model and template data into memory. (We may optimize this later)
+ * 3. Endpoints will now be registered in the array endpoints.brand
+ *    (NOTE: It is presumed that a PHP or other script includes the JS files for whatever models you want to make available to your users.
+ *     In this way, firing endpoints.init will allow each endpoint to "register" that it exists in the main subsystem)
+ * 4. Attach live bindings to all CSS tags in the selector
+ * 5. Attach bindings to existing CSS tags that represent the phones (if a selector is not being used)
+ * 6. Wait for click events on popups/saves/etc. and paint the screen or post the new data back to the server
+ * 7. Display a response from the server after any JSON posts
+ */
+
+/**
  * Main endpoint manager
  */
 endpoints = {
@@ -7,7 +20,6 @@ endpoints = {
     init: function() {
         // Find all brands that are registered
         $(document).trigger('endpoints.init');
-        $(document).trigger('endpoints.register');
     },
 
     register: function(brandName, obj) {
@@ -16,13 +28,32 @@ endpoints = {
         console.log ('Registered brand ' + brandName);
     },
 
-    initSelectors: function() {
+    /**
+     * Load all known brands
+     * NOTE: Don't use this. We would only use this if we wanted to force loading of every brand. But in this case,
+     * we get more flexibility letting the caller load the JS files for the models/brands he/she cares about.
+     */
+    /*loadBrands: function() {
+        console.log('Loading all known brand info...');
+        $.ajax({
+            url: 'endpoint/master.xml',
+            global: false,
+            type: "GET",
+            dataType: "xml",
+            async:false,
+            success: function(data){
+                $(data).find('data brands').each(function() {
+                    // Here, we have the <model_list></model_list> guts
+                    name = $(this).find('name').text();
+                    directory = $(this).find('directory').text();
+                    console.log('Brand name ' + name + ' in directory ' + directory);
+                });
+            }
+        });
 
-    },
-
-    initConfigurators: function() {
-
-    },
+        this.brands[name] = directory;
+        console.log('Done loading brand info...');
+    },*/
 
     listBrands: function() {
         for ( var i in endpoints.brands )
@@ -37,139 +68,90 @@ endpoints = {
  * Individual brands
  */
 endpointBrand = {
-    directory : '',
+    brandData : {},
     families : {},
-	template_data : new Array(),
-
-
-    /**
-     * Register this brand in the system
-     */
-    register: function() {
-        endpoints.register(this.brandName, this);
-		//this.loadBrands();
-        this.loadFamilies(this.brandName);
-		this.loadTemplates(this.brandName,this.familyName,'T20');
-    },
 
     /**
      * Load all known data about a brand
      */
-    loadBrands: function() {
+    loadFamilies: function() {
+        console.log('Loading family info for ' + this.brandName + '...');
         $.ajax({
-            url: 'endpoint/master.xml',
+            url: 'EndpointData.php?filename=endpoint/' + this.brandName + '/brand_data.xml',
             global: false,
             type: "GET",
-            dataType: "xml",
-            async:false,
-            success: function(data){
-				$(data).find('data brands').each(function() {
-					// Here, we have the <model_list></model_list> guts
-					brandName = $(this).find('name').text();
-					brandDir = $(this).find('directory').text();
-                    console.log('Brand name ' + brandName);
-	            });
-			}
-        });
-    },
-
-    /**
-     * Load all known data about a brand
-     */
-    loadFamilies: function(brand) {
-        $.ajax({
-            url: 'endpoint/' + this.brandName + '/brand_data.xml',
-            global: false,
-            type: "GET",
-            dataType: "xml",
+            dataType: "json",
             async:false,
             success: function(data){
                 // Take data and populate this class
-                this.directory = $(data).find('directory').text();
-
-                // Add all found brands & relevant data to this class
-                families = {};
-                $(data).find('family').each(function() {
-                    modelName = $(this).find('name').text();
-                    modelDirectory = $(this).find('directory').text();
-                    families[modelDirectory] = modelName;
-
-                    console.log('Model name ' + modelName + ' in ' + modelDirectory + '/');
-                });
+                brandData = data['brands'];
+                families = data['brands']['family_list'];
+                delete(brandData['family_list']); // Don't need copies of this data laying around
             }
         });
 
-        this.families = families;
-        console.log('Loaded family data for brand ' + this.brandName);
-    },
+        this.brandData = brandData;
+        this.families = families['family'];
+        console.log('Loaded family data for brand ' + this.brandName, this.brandData, this.families);
 
-    /**
-     * Load all known data about a model
-     */
-    loadModels: function(brand) {
-        // Load stuff?
-        $(endpoints.brands[i]).find('family').each(function() {
-            console.log('Model name ' + $(this).find('name').text());
-        });
-
-        $.ajax({
-            url: 'endpoint/' + brand + '/brand_data.xml',
-            global: false,
-            type: "GET",
-            dataType: "xml",
-            async:false,
-            success: function(data){
-                console.log('Successfully loaded brand info for ' + brand + '!');
-                // Add all found brands & relevant data about them in our endpoint manager
-                endpoints.brands[brand] = data; // Skip past the <data> tag and get to the brands!
+        if (this.families.name) {
+            // We know there's only one family in this particular brand'
+            console.log('Loading models for family ' + this.families['name']);
+            this.loadModels(this.brandName,this.families['directory']);
+        } else {
+            // Cycle through each family
+            for (i = 0; i < this.families.length; i++) {
+                console.log('Loading models for family ' + this.families[i]['name']);
+                this.loadModels(this.brandName,this.families[i]['directory']);
             }
-        });
+        }
+        console.log('Done loading family info...');
     },
 
     /**
      *
      */
-    loadTemplates: function(brand, product, model) {
+    loadModels: function(brand, family) {
         // Load stuff?
 
         $.ajax({
-            url: 'endpoint/' + brand + '/' + product + '/family_data.xml',
+            url: 'endpoint/' + brand + '/' + family + '/family_data.xml',
             global: false,
             type: "GET",
             dataType: "xml",
             async:false,
             success: function(data){
-				$(data).find('data model_list').each(function() {
-					// Here, we have the <model_list></model_list> guts
-					modelName = $(this).find('model').text();
-					if (modelName == model) {
-						$(this).find('template_data files').each(function() {
-							console.log('Successfully loaded template info for ' + $(this).text() + '!');
-							endpointBrand.loadTemplatesData(brand,product,$(this).text());
-						});
-					}
-	                // Store the template for use everywhere
-	            });
-			}
+                $(data).find('data model_list').each(function() {
+                    templates = {};
+                    // Here, we have the <model_list></model_list> guts
+                    modelName = $(this).find('model').text();
+                    $(this).find('template_data files').each(function() {
+                        templates[modelName] = endpointBrand.loadTemplatesData(brand,family,$(this).text());
+                        console.log('Loaded template file ' + $(this).text() + ' for ' + modelName + '...', templates[modelName])
+                    });
+                // Store the template for use everywhere
+                });
+            }
         })
 
     },
 
     loadTemplatesData: function(brand, family, file) {
+        console.log('Loading template for ' + brand + ' / ' + family + ' / ' + file);
         // Load stuff?
         $.ajax({
-            url: 'endpoint/' + brand + '/' + family + '/'+file,
+            url: 'EndpointData.php?filename=endpoint/' + brand + '/' + family + '/'+file,
             global: false,
             type: "GET",
-            dataType: "xml",
+            dataType: "json",
             async:false,
             success: function(data){
-				$(data).find('template_data item').each(function() {
-					type = $(this).find('type').text();
-					console.log('Successfully loaded template info for ' + type + '!');
-	            });
-			}
-        })
+                result = data;
+                console.log('Successfully loaded template ' + file, data);
+            }
+        });
+
+        return result;
 
     }
 };
