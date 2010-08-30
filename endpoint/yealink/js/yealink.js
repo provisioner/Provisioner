@@ -1,6 +1,20 @@
+
+// "Extend" our endpointBrand "file"class"/object
+$(document).bind('endpoints.init', function() {
+    $.extend(endpointYealink, endpointBrand);
+    endpoints.register(this.brandName, this);
+    endpointYealink.init();
+});
+
 var endpointYealink = {
-    brandName : 'yealink',
+    brandName : 'aastra',
     
+
+    init: function(){
+        this.loadFamilies();    // Call our inherited family, model & template loader
+        this.bind();
+    },
+
     configureHandset: function () {
         $.colorbox({
             width:"50%",
@@ -36,15 +50,9 @@ var endpointYealink = {
     configureForward: function (){
         alert('Change your forwarding options');
     },
-
-    init: function(){
-        this.register();
-        this.loadFamilies();
-        /*for (var family in families) {
-            this.loadModels(family);
-        }*/
-
-        $('.select_phone .yealink_t22').live('click', function() {
+    
+    bind: function() {
+        $('.phone_selector .yealink_t22').live('click', function() {
             endpointYealink.display('t22', $('.phone_config', $(this).parent().parent()));
         });
 
@@ -55,7 +63,6 @@ var endpointYealink = {
     },
 
     display: function(model, obj) {
-        console.log(obj);
         $(obj).addClass('yealink_t22');
         // phone handset - 18,3   88,3  18,287  88, 287
         // display - 154,60  247,60    155,107    247,018
@@ -96,11 +103,3 @@ var endpointYealink = {
     }
 
 }
-
-$(document).bind('endpoints.init', function() {
-    $.extend(endpointYealink, endpointBrand);
-});
-
-$(document).bind('endpoints.register', function() {
-    endpointYealink.init();
-});
