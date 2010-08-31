@@ -7,7 +7,7 @@
 	<firmware_ver>1269370218</firmware_ver>
 	<firmware_pkg>spipm_firmware.tgz</firmware_pkg>
 	<description>Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality</description>
-	<configuration_files>{$domain}.cfg,{$mac}.cfg,phone.cfg,phone1.cfg,reg_{$line}.cfg,sip.cfg</configuration_files>
+	<configuration_files>{$mac}-phone.cfg,{$mac}.cfg,server.cfg,phone1.cfg,{$mac}_reg.cfg,sip.cfg,000000000000.cfg</configuration_files>
 	<changelog></changelog>
 	<model_list>
 		<model>SoundPoint IP 321</model>
