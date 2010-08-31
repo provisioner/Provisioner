@@ -7,7 +7,7 @@
 	<firmware_ver>1259704262</firmware_ver>
 	<firmware_pkg>splm_firmware.tgz</firmware_pkg>
 	<description>Fixed Digit Map Problems with three digit extensions in the 1xx range</description>
-	<configuration_files>{$domain}.cfg,{$mac}.cfg,phone.cfg,phone1.cfg,reg_{$line}.cfg,sip.cfg</configuration_files>
+	<configuration_files>{$mac}-phone.cfg,{$mac}.cfg,server.cfg,phone1.cfg,{$mac}_reg.cfg,sip.cfg,000000000000.cfg</configuration_files>
 	<changelog></changelog>
 	<model_list>
 		<model>SoundPoint IP 301</model>
