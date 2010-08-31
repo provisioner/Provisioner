@@ -7,7 +7,7 @@ $(document).bind('endpoints.init', function() {
 });
 
 var endpointYealink = {
-    brandName : 'aastra',
+    brandName : 'yealink',
     
 
     init: function(){
