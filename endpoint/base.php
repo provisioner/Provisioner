@@ -51,6 +51,64 @@ abstract class endpoint_base {
 	function reboot() {
 		
 	}
+	
+	/**
+     * Turns a string like PST-7 or UTC+1 into a GMT offset by stripping out Characters and replacing + and -
+     * @param Send this something like PST-7
+     * @return Offset (eg. -3600)
+     */
+	function get_gmtoffset($timezone) {
+		$timezone = str_replace(":", ".", $timezone);
+		$timezone = str_replace("30", "5", $timezone);
+		$timezone = (int)$timezone;		
+		if(strrchr($timezone,'+')) {
+			$offset = $num * 3600;
+		} elseif(strrchr($timezone,'-')) {
+			$offset = $num * -3600;
+		}
+		return($offset);
+	}
+	
+	/**
+     * Turns a string like PST-7 or UTC+1 into a GMT offset by stripping out Characters and replacing + and -
+     * @param Send this something like -3600
+     * @return timezone (eg. +7 or +7:30)
+     */
+	function get_timezone($offset) {
+		$timezone = $offset / 3600;
+		if($timezone < 0) {
+			$timezone = '-'.$timezone;
+		} else {
+			$timezone = '+'.$timezone;
+		}
+		$timezone = str_replace(".", ":", $timezone);
+		$timezone = str_replace("5", "30", $timezone);
+		return($timezone);
+	}
+	
+	/**
+     * Determines the type of timezone information we are working with, -3600 (gmtoffset) or -7:30 (timezone)
+     * @param Send this something like PST-7 or -36000
+     * @return Returns either GMTOFFSET or TIMEZONE
+     */
+	function determine_tz_type($timezone) {
+		if(($timezone <= -3600) or ($timezone >= 3600)) {
+			$type = 'GMTOFFSET';
+		} else {
+			$type = 'TIMEZONE';
+		}
+	}
+	
+	/**
+     * Returns Abbreviated Timezone
+     * @param Send this something like -3600
+     * @return PST
+     */
+	function get_abbreviated_tz() {
+		$dateTime = new DateTime(); 
+		$dateTime->setTimeZone(new DateTimeZone('America/Los_Angeles')); 
+		return $dateTime->format('T');
+	}
 
     /**
      * Takes the name of a local configuration file and either returns that file from the hard drive as a string or takes the string from the array and returns that as a string
