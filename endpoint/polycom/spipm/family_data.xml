@@ -55,8 +55,6 @@
 		<id>6</id>
 		<template_data>
 			<files>template_data.xml</files>
-			<files>template_data_spec.xml</files>
-			<files>template_data_spec_2.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -86,6 +84,7 @@
 	<model_list>
 		<model>SoundPoint IP 6000</model>
 		<id>10</id>
+		<lines>3</lines>
 		<template_data>
 			<files>template_data.xml</files>
 		</template_data>
@@ -93,6 +92,7 @@
 	<model_list>
 		<model>SoundPoint IP 7000</model>
 		<id>11</id>
+		<lines>3</lines>
 		<template_data>
 			<files>template_data.xml</files>
 		</template_data>
@@ -100,6 +100,7 @@
 	<model_list>
 		<model>SoundPoint IP VVX 1500</model>
 		<id>12</id>
+		<lines>3</lines>
 		<template_data>
 			<files>template_data.xml</files>
 		</template_data>
