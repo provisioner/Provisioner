@@ -159,7 +159,8 @@ abstract class endpoint_base {
 
 
         if (($line_total <= 0) AND (!isset($lines))) {
-            die("Line Count unknown in Parse_config_file");
+			//There is no max number of lines for this phone. We default to 1 to be safe
+            $line_total = 1;
         } elseif ((isset($lines)) AND ($lines > 0)) {
             $line_total = $lines;
         }
