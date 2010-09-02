@@ -13,18 +13,24 @@ include('setup.php');
 // Allow running this test from the command line
 if (isset($_POST['brand'])) {
     $brand = $_POST['brand'];
+} elseif (isset($_REQUEST['brand'])) {
+	$brand = $_REQUEST['brand'];
 } else {
     $brand = $argv[1];
 }
 
 if (isset($_POST['family'])) {
     $family = $_POST['family'];
+} elseif (isset($_REQUEST['family'])) {
+	$family = $_REQUEST['family'];
 } else {
     $family = $argv[2];
 }
 
 if (isset($_POST['model'])) {
     $model = $_POST['model'];
+} elseif (isset($_REQUEST['model'])) {
+	$model = $_REQUEST['model'];
 } else {
     $model = $argv[3];
 }
@@ -73,7 +79,7 @@ $endpoint->options = 	array("admin_pass" =>  "password","main_icon" => "Main ICO
 // Because every brand is an extension (eventually) of endpoint, you know this function will exist regardless of who it is
 $returned_data = $endpoint->generate_config();
 
-if(isset($_POST['brand'])) {
+if((isset($_POST['brand'])) OR (isset($_REQUEST['brand']))) {
     foreach($returned_data as $key => $files) {
         echo 'File:'.$key.'<br/><textarea rows="50" cols="100">'.$files.'</textarea><br/><br/>';
     }
