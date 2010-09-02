@@ -160,6 +160,4 @@ endpointBrand = {
 // Initialize all loaded endpoint drivers when the document is all setup
 $(document).ready(function() {
     endpoints.init();
-    endpoints.initSelectors();
-    endpoints.initConfigurators();
 });
