@@ -166,12 +166,32 @@ abstract class endpoint_base {
         }
 
         $file_contents = $this->parse_lines($line_total, $file_contents, $keep_unknown = FALSE, $specific_line);
+		$file_contents = $this->parse_loops($line_total,$file_contents, $keep_unknown = FALSE, $specific_line);
         $file_contents = $this->parse_config_values($file_contents);
 
         return $file_contents;
     }
+
+    function parse_loops($line_total, $file_contents, $keep_unknown=FALSE, $specific_line='ALL') {
+        //Find line looping data betwen {line_loop}{/line_loop}
+        $pattern = "/{loop_(.*?)}(.*?){\/loop_(.*?)}/si";
+        while (preg_match($pattern, $file_contents, $matches)) {
+			//print_r($matches);
+			$count = count($this->options[$matches[3]]);
+			$parsed = "";
+			if($count) {
+				foreach($this->options[$matches[3]] as $number => $data) {
+					$data['number'] = $number;
+					$parsed .= $this->parse_config_values($matches[2], FALSE, "GLOBAL", $data);
+				}
+			}
+			$file_contents = preg_replace($pattern, $parsed, $file_contents, 1);
+		}
+		return($file_contents);
+	}
+
     /**
-     * Parse each invidivual line through use of {$variable.line.num} or {line_loop}{/line_loop}
+     * Parse each individual line through use of {$variable.line.num} or {line_loop}{/line_loop}
      * @param string $line_total Total Number of Lines on the specific Phone
      * @param string $file_contents Full Contents of the configuration file
      * @param boolean $keep_unknown Keep Unknown variables as {$variable} instead of erasing them (blanking the space), can be used to parse these variables later
@@ -225,7 +245,10 @@ abstract class endpoint_base {
      * @return string
      */
 
-    function parse_config_values($file_contents, $keep_unknown=FALSE, $specific_line="GLOBAL") {
+    function parse_config_values($file_contents, $keep_unknown=FALSE, $specific_line="GLOBAL", $options=NULL) {
+		if(!isset($options)) {
+			$options=$this->options;
+		}
         $family_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml");
 
         if (is_array($family_data['data']['model_list'])) {
@@ -306,13 +329,13 @@ abstract class endpoint_base {
             }
 
             //If the variable we found in the text file exists in the variables array then replace the variable in the text file with the value under our key
-            if (($specific_line == "GLOBAL") AND (isset($this->options[$variables]))) {
-                $this->options[$variables] = htmlspecialchars($this->options[$variables]);
-                $this->options[$variables] = $this->replace_static_variables($this->options[$variables]);
+            if (($specific_line == "GLOBAL") AND (isset($options[$variables]))) {
+                $options[$variables] = htmlspecialchars($options[$variables]);
+                $options[$variables] = $this->replace_static_variables($options[$variables]);
                 if (isset($default)) {
-                    $file_contents = str_replace('{$' . $original_variable . '|' . $default . '}', $this->options[$variables], $file_contents);
+                    $file_contents = str_replace('{$' . $original_variable . '|' . $default . '}', $options[$variables], $file_contents);
                 } else {
-                    $file_contents = str_replace('{$' . $original_variable . '}', $this->options[$variables], $file_contents);
+                    $file_contents = str_replace('{$' . $original_variable . '}', $options[$variables], $file_contents);
                 }
             } elseif (($specific_line != "GLOBAL") AND (isset($this->lines[$specific_line][$variables]))) {
 	
