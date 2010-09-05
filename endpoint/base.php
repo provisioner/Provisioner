@@ -186,6 +186,8 @@ abstract class endpoint_base {
 					}
 				}
 				$file_contents = preg_replace($pattern, $parsed, $file_contents, 1);
+			} else {
+				$file_contents = preg_replace($pattern, "", $file_contents, 1);
 			}
 		}
 		return($file_contents);
