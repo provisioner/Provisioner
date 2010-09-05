@@ -2,7 +2,6 @@
 // "Extend" our endpointBrand "file"class"/object
 $(document).bind('endpoints.init', function() {
     $.extend(endpointYealink, endpointBrand);
-    endpoints.register(this.brandName, this);
     endpointYealink.init();
 });
 
@@ -11,6 +10,7 @@ var endpointYealink = {
     
 
     init: function(){
+        endpoints.register(this.brandName, this);
         this.loadFamilies();    // Call our inherited family, model & template loader
         this.bind();
     },

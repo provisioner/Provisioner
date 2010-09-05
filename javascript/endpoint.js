@@ -20,6 +20,7 @@ endpoints = {
     init: function() {
         // Find all brands that are registered
         $(document).trigger('endpoints.init');
+        console.log(this.brands);
     },
 
     register: function(brandName, obj) {
@@ -94,10 +95,10 @@ endpointBrand = {
         this.families = families['family'];
         console.log('Loaded family data for brand ' + this.brandName, this.brandData, this.families);
 
-        if (this.families.name) {
+        if (this.families['name']) {
             // We know there's only one family in this particular brand'
             console.log('Loading models for family ' + this.families['name']);
-            this.loadModels(this.brandName,this.families['directory']);
+            this.families['models'] = this.loadModels(this.brandName,this.families['directory']);
         } else {
             // Cycle through each family
             for (i = 0; i < this.families.length; i++) {
@@ -121,18 +122,27 @@ endpointBrand = {
             dataType: "xml",
             async:false,
             success: function(data){
+                templateFields = {};
                 $(data).find('data model_list').each(function() {
-                    templates = {};
                     // Here, we have the <model_list></model_list> guts
                     modelName = $(this).find('model').text();
+                    templateFields[modelName] = [];
                     $(this).find('template_data files').each(function() {
-                        templates[modelName] = endpointBrand.loadTemplatesData(brand,family,$(this).text());
-                        console.log('Loaded template file ' + $(this).text() + ' for ' + modelName + '...', templates[modelName])
+                        filename = $(this).text();
+                        templateData = endpointBrand.loadTemplatesData(brand,family,$(this).text());
+                        $(templateData.item).each(function() {
+                            templateFields[modelName].push(this);
+                        });
+                        console.log('Loaded template file ' + filename + ' for ' + modelName + '...', templateFields[modelName])
                     });
                 // Store the template for use everywhere
                 });
             }
         })
+
+        console.log(templateFields);
+
+        return templateFields;
 
     },
 
@@ -151,7 +161,41 @@ endpointBrand = {
             }
         });
 
-        return result;
+
+        // If there is any loop data, process it
+        if (result['item']['type'] == 'loop') {
+            templateData = {'item' : new Array};
+            start = result['item']['loop_start'];
+            end = result['item']['loop_end'];
+            for (i = start; i <= end; i++) {
+                //console.log('Creating key #' + i);
+                keys = $.extend(true, {}, result['item']['data']['item']);
+                numKeys = result['item']['data']['item'].length;
+                for (field = 0 ; field < numKeys; field++) {
+                    option = keys[field];
+                    if (option['description']) {
+                        option['description'] = option['description'].replace('{$count}', i + '');
+                    }
+                    if (option['variable']) {
+                        tmp = option['variable'].split('_', 2);
+                        option['variable'] = tmp[0] + '[' + i + '][' + tmp[1] + ']';
+                    }
+                    templateData['item'][(i * numKeys) + field] = option;
+                    //console.log('In the loop.', field, );
+                }
+            }
+        } else {
+            templateData = result;
+        }
+
+        // Strip dollar signs from all variable names
+        $(templateData['item']).each(function() {
+            if (this['variable']) {
+                this['variable'] = this['variable'].replace('$', '');
+            }
+        })
+
+        return templateData;
 
     }
 };
