@@ -38,33 +38,39 @@ class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
 				break;
 		}
 		
-		foreach($this->options['sdext38'] as $key => $data) {
-			if ($this->options['sdext38'][$key]['type'] == '16') {
-				$this->options['sdext38'][$key]['pickup_value'] = '**8';
-			} elseif ($this->options['sdext38'][$key]['type'] == '0') {
-				unset($this->options['sdext38'][$key]);
-			} else {
-				$this->options['sdext38'][$key]['pickup_value'] = '*8';
+		if(isset($this->options['sdext38'])) {
+			foreach($this->options['sdext38'] as $key => $data) {
+				if ($this->options['sdext38'][$key]['type'] == '16') {
+					$this->options['sdext38'][$key]['pickup_value'] = '**8';
+				} elseif ($this->options['sdext38'][$key]['type'] == '0') {
+					unset($this->options['sdext38'][$key]);
+				} else {
+					$this->options['sdext38'][$key]['pickup_value'] = '*8';
+				}
 			}
 		}
 		
-		foreach($this->options['memkey'] as $key => $data) {
-			if ($this->options['memkey'][$key]['type'] == '16') {
-				$this->options['memkey'][$key]['pickup_value'] = '**8';
-			} elseif ($this->options['memkey'][$key]['type'] == '0') {
-				unset($this->options['memkey'][$key]);
-			} else {
-				$this->options['memkey'][$key]['pickup_value'] = '*8';
+		if(isset($this->options['memkey'])) {
+			foreach($this->options['memkey'] as $key => $data) {
+				if ($this->options['memkey'][$key]['type'] == '16') {
+					$this->options['memkey'][$key]['pickup_value'] = '**8';
+				} elseif ($this->options['memkey'][$key]['type'] == '0') {
+					unset($this->options['memkey'][$key]);
+				} else {
+					$this->options['memkey'][$key]['pickup_value'] = '*8';
+				}
 			}
 		}
 		
-		foreach($this->options['memkey2'] as $key => $data) {
-			if ($this->options['memkey2'][$key]['type'] == '16') {
-				$this->options['memkey2'][$key]['pickup_value'] = '**8';
-			} elseif ($this->options['memkey2'][$key]['type'] == '0') {
-				unset($this->options['memkey2'][$key]);
-			} else {
-				$this->options['memkey2'][$key]['pickup_value'] = '*8';
+		if(isset($this->options['memkey2'])) {
+			foreach($this->options['memkey2'] as $key => $data) {
+				if ($this->options['memkey2'][$key]['type'] == '16') {
+					$this->options['memkey2'][$key]['pickup_value'] = '**8';
+				} elseif ($this->options['memkey2'][$key]['type'] == '0') {
+					unset($this->options['memkey2'][$key]);
+				} else {
+					$this->options['memkey2'][$key]['pickup_value'] = '*8';
+				}
 			}
 		}
 		
