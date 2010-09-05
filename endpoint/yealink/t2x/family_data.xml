@@ -14,6 +14,8 @@
 		<id>1</id>
 		<template_data>
 			<files>template_data.xml</files>
+			<files>memory_keys.xml</files>
+			<files>ext38.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -22,6 +24,8 @@
 		<id>2</id>
 		<template_data>
 			<files>template_data.xml</files>
+			<files>memory_keys.xml</files>
+			<files>ext38.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -40,6 +44,8 @@
 		<id>4</id>
 		<template_data>
 			<files>template_data.xml</files>
+			<files>memory_keys.xml</files>
+			<files>ext38.xml</files>
 		</template_data>
 	</model_list>
 </data>
