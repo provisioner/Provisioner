@@ -227,6 +227,8 @@ endpointBrand = {
             }
         });
 
+        content += '<input type="submit" value="Save Config"><br/>';
+
         // Add the content
         $('.phone_options').html(content);
     }
