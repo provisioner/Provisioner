@@ -176,16 +176,17 @@ abstract class endpoint_base {
         //Find line looping data betwen {line_loop}{/line_loop}
         $pattern = "/{loop_(.*?)}(.*?){\/loop_(.*?)}/si";
         while (preg_match($pattern, $file_contents, $matches)) {
-			//print_r($matches);
-			$count = count($this->options[$matches[3]]);
-			$parsed = "";
-			if($count) {
-				foreach($this->options[$matches[3]] as $number => $data) {
-					$data['number'] = $number;
-					$parsed .= $this->parse_config_values($matches[2], FALSE, "GLOBAL", $data);
+			if(isset($this->options[$matches[3]])) {
+				$count = count($this->options[$matches[3]]);
+				$parsed = "";
+				if($count) {
+					foreach($this->options[$matches[3]] as $number => $data) {
+						$data['number'] = $number;
+						$parsed .= $this->parse_config_values($matches[2], FALSE, "GLOBAL", $data);
+					}
 				}
+				$file_contents = preg_replace($pattern, $parsed, $file_contents, 1);
 			}
-			$file_contents = preg_replace($pattern, $parsed, $file_contents, 1);
 		}
 		return($file_contents);
 	}
