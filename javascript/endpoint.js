@@ -103,7 +103,7 @@ endpointBrand = {
             // Cycle through each family
             for (i = 0; i < this.families.length; i++) {
                 console.log('Loading models for family ' + this.families[i]['name']);
-                this.loadModels(this.brandName,this.families[i]['directory']);
+                this.families['models'] = this.loadModels(this.brandName,this.families[i]['directory']);
             }
         }
         console.log('Done loading family info...');
@@ -130,7 +130,7 @@ endpointBrand = {
                     $(this).find('template_data files').each(function() {
                         filename = $(this).text();
                         templateData = endpointBrand.loadTemplatesData(brand,family,$(this).text());
-                        $(templateData.item).each(function() {
+                        $(templateData).each(function() {
                             templateFields[modelName].push(this);
                         });
                         console.log('Loaded template file ' + filename + ' for ' + modelName + '...', templateFields[modelName])
@@ -168,17 +168,18 @@ endpointBrand = {
                 templateData = this.processTemplate(result['item'][i]);
             }
         } else {
-            templateData = this.processTemplate(result);
+            templateData = this.processTemplate(result['item']);
         }
 
         return templateData;
     },
 
     processTemplate: function(result) {
+        console.log('Post processing', result);
         // If there is any loop data, process it
         if (result['type'] == 'loop') {
             console.log('In a loop for this file!');
-            templateData = {'item' : new Array};
+            templateData = [];
             start = result['loop_start'];
             end = result['loop_end'];
             for (i = start; i <= end; i++) {
@@ -194,7 +195,7 @@ endpointBrand = {
                         tmp = option['variable'].split('_', 2);
                         option['variable'] = tmp[0] + '[' + i + '][' + tmp[1] + ']';
                     }
-                    templateData['item'][(i * numKeys) + field] = option;
+                    templateData[(i * numKeys) + field] = option;
                     //console.log('In the loop.', field, );
                 }
             }
@@ -203,7 +204,7 @@ endpointBrand = {
         }
 
         // Strip dollar signs from all variable names
-        $(templateData['item']).each(function() {
+        $(templateData).each(function() {
             if (this['variable']) {
                 this['variable'] = this['variable'].replace('$', '');
             }
@@ -212,8 +213,22 @@ endpointBrand = {
         return templateData;
     },
 
-    returnButtons : function(model, category) {
-        
+    returnButtons : function(selector, model, category) {
+        console.log('Stuff for ' + model + ' / category');
+
+        content = '';
+
+        // Go get all fields and make some content
+        $(this.families.models[model]).each(function() {
+            if (this['type'] == 'break') {
+                content += '<hr>';
+            } else {
+                content += this['description'] + '<input name="' + this['variable'] + '"><br/>';
+            }
+        });
+
+        // Add the content
+        $('.phone_options').html(content);
     }
 };
 

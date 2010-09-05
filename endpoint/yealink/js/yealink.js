@@ -60,6 +60,12 @@ var endpointYealink = {
         $('.phone_config.yealink_t22').each(function() {
             endpointYealink.display('t22', this)
         });
+
+        // Show fields
+        $('.show_options').live('click', function(event) {
+            event.preventDefault();
+            endpointYealink.returnButtons('.phone_config', 'T26', 'GeneralSettings');
+        });
     },
 
     display: function(model, obj) {

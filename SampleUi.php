@@ -64,6 +64,10 @@ $phoneModel = 't22';
     <div class="phone_config yealink_t22">
     </div>
 
+    <button class="show_options">Click here to show options</button>
+    
+    <div class="phone_options"></div>
+
 </form>
 
 </body>
