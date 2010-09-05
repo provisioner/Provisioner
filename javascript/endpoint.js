@@ -162,15 +162,29 @@ endpointBrand = {
         });
 
 
+        if (result['item'][0] && result['item'][0]['data']) {
+            for (i = 0; i < result['item'].length; i++) {
+                // We're in a list - do a loop'
+                templateData = this.processTemplate(result['item'][i]);
+            }
+        } else {
+            templateData = this.processTemplate(result);
+        }
+
+        return templateData;
+    },
+
+    processTemplate: function(result) {
         // If there is any loop data, process it
-        if (result['item']['type'] == 'loop') {
+        if (result['type'] == 'loop') {
+            console.log('In a loop for this file!');
             templateData = {'item' : new Array};
-            start = result['item']['loop_start'];
-            end = result['item']['loop_end'];
+            start = result['loop_start'];
+            end = result['loop_end'];
             for (i = start; i <= end; i++) {
                 //console.log('Creating key #' + i);
-                keys = $.extend(true, {}, result['item']['data']['item']);
-                numKeys = result['item']['data']['item'].length;
+                keys = $.extend(true, {}, result['data']['item']);
+                numKeys = result['data']['item'].length;
                 for (field = 0 ; field < numKeys; field++) {
                     option = keys[field];
                     if (option['description']) {
@@ -196,7 +210,10 @@ endpointBrand = {
         })
 
         return templateData;
+    },
 
+    returnButtons : function(model, category) {
+        
     }
 };
 
