@@ -23,7 +23,7 @@
 	<item>
 		<!-- XML Phone Book server Path -->
 		<variable>$firmware_upgrade_type</variable>
-		<default_value>1</default_value>
+		<default_value>0</default_value>
 		<description>Firmware Upgrade Server Type</description>
 		<type>radio</type>
 		<data>
