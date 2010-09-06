@@ -426,10 +426,14 @@ abstract class endpoint_base {
 	                $variables = $variables[0];
 					switch ($variables) {
 						case "ext":
-							$contents = str_replace('{$ext.line.' . $specific_line . '}', $this->lines[$specific_line]['ext'], $contents);
+							if(isset($this->lines[$specific_line]['ext'])) {
+								$contents = str_replace('{$ext.line.' . $specific_line . '}', $this->lines[$specific_line]['ext'], $contents);
+							}
 							break;
 						case "displayname":
-			            	$contents = str_replace('{$displayname.line.' . $specific_line . '}', $this->lines[$specific_line]['displayname'], $contents);
+							if(isset($this->lines[$specific_line]['ext'])) {
+			            		$contents = str_replace('{$displayname.line.' . $specific_line . '}', $this->lines[$specific_line]['displayname'], $contents);
+							}
 							break;
 					}
 	            }
