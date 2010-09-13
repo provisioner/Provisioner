@@ -64,7 +64,7 @@ var endpointYealink = {
         // Show fields
         $('.show_options').live('click', function(event) {
             event.preventDefault();
-            endpointYealink.returnButtons('.phone_config', 'T26', 'GeneralSettings');
+            endpointYealink.returnButtons('.phone_options .general', 'T26', 'GeneralSettings');
         });
     },
 
