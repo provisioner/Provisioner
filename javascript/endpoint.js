@@ -221,16 +221,14 @@ endpointBrand = {
         // Go get all fields and make some content
         $(this.families.models[model]).each(function() {
             if (this['type'] == 'break') {
-                content += '<hr>';
+                content += '<div class="break"></div>';
             } else {
-                content += this['description'] + '<input name="' + this['variable'] + '"><br/>';
+                content += '<div class="field"><label class="' + this['variable'] + '">' + this['description'] + '</label><input name="' + this['variable'] + '" value="' + this['value'] + '"></div>';
             }
         });
 
-        content += '<input type="submit" value="Save Config"><br/>';
-
         // Add the content
-        $('.phone_options').html(content);
+        $(selector).html(content);
     }
 };
 
