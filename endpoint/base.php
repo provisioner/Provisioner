@@ -60,7 +60,8 @@ abstract class endpoint_base {
 	function get_gmtoffset($timezone) {
 		$timezone = str_replace(":", ".", $timezone);
 		$timezone = str_replace("30", "5", $timezone);
-		$timezone = (int)$timezone;		
+		$num = explode("-",$timezone);
+		$num = $num[1];
 		if(strrchr($timezone,'+')) {
 			$offset = $num * 3600;
 		} elseif(strrchr($timezone,'-')) {
@@ -87,15 +88,20 @@ abstract class endpoint_base {
 	}
 	
 	/**
-     * Determines the type of timezone information we are working with, -3600 (gmtoffset) or -7:30 (timezone)
+     * Setup and fill in timezone data
      * @param Send this something like PST-7 or -36000
-     * @return Returns either GMTOFFSET or TIMEZONE
      */
-	function determine_tz_type($timezone) {
-		if(($timezone <= -3600) or ($timezone >= 3600)) {
-			$type = 'GMTOFFSET';
-		} else {
-			$type = 'TIMEZONE';
+	function setup_tz() {
+		if(!is_array($this->timezone)) {
+			$timezone = $this->timezone;
+			$this->timezone = array();
+			if(($timezone <= -3600) or ($timezone >= 3600)) {
+				$this->timezone['gmtoffset'] = $timezone;
+				$this->timezone['timezone'] = $this->get_timezone($timezone);
+			} else {
+				$this->timezone['timezone'] = $timezone;
+				$this->timezone['gmtoffset'] = $this->get_gmtoffset($timezone);
+			}
 		}
 	}
 	
@@ -165,6 +171,8 @@ abstract class endpoint_base {
             $line_total = $lines;
         }
 
+		$this->setup_tz();
+		
         $file_contents = $this->parse_lines($line_total, $file_contents, $keep_unknown = FALSE, $specific_line);
 		$file_contents = $this->parse_loops($line_total,$file_contents, $keep_unknown = FALSE, $specific_line);
         $file_contents = $this->parse_config_values($file_contents);
@@ -248,7 +256,7 @@ abstract class endpoint_base {
      * @return string
      */
 
-    function parse_config_values($file_contents, $keep_unknown=FALSE, $specific_line_master="GLOBAL", $options=NULL) {
+    function parse_config_values($file_contents, $keep_unknown=FALSE, $specific_line="GLOBAL", $options=NULL) {
 		if(!isset($options)) {
 			$options=$this->options;
 		}
@@ -305,7 +313,6 @@ abstract class endpoint_base {
         //loop though each variable found in the text file
         foreach ($no_brackets as $variables) {
             $variables = str_replace("$", "", $variables);
-			$specific_line = $specific_line_master;
 
             //Users can set defaults within template files with pipes, they will over-ride whatever is in the XML file.
             if (strstr($variables, "|")) {
@@ -393,9 +400,12 @@ abstract class endpoint_base {
 		}
         $contents = str_replace('{$mac}', $this->mac, $contents);
         $contents = str_replace('{$model}', $this->model, $contents);
-        $contents = str_replace('{$gmtoff}', $this->timezone, $contents);
-        $contents = str_replace('{$gmthr}', $this->timezone, $contents);
-        $contents = str_replace('{$timezone}', $this->timezone, $contents);
+        $contents = str_replace('{$timezone_gmtoffset}', $this->timezone['gmtoffset'], $contents);
+		$contents = str_replace('{$timezone_timezone}', $this->timezone['timezone'], $contents);
+		$contents = str_replace('{$timezone}', $this->timezone['timezone'], $contents);
+		//Depreciated
+		$contents = str_replace('{$gmtoff}', $this->timezone['gmtoffset'], $contents);
+        $contents = str_replace('{$gmthr}', $this->timezone['gmtoffset'], $contents);
 
         if (($specific_line != "GLOBAL") AND ($looping == TRUE)) {
             $contents = str_replace('{$line}', $specific_line, $contents);
@@ -427,14 +437,10 @@ abstract class endpoint_base {
 	                $variables = $variables[0];
 					switch ($variables) {
 						case "ext":
-							if(isset($this->lines[$specific_line]['ext'])) {
-								$contents = str_replace('{$ext.line.' . $specific_line . '}', $this->lines[$specific_line]['ext'], $contents);
-							}
+							$contents = str_replace('{$ext.line.' . $specific_line . '}', $this->lines[$specific_line]['ext'], $contents);
 							break;
 						case "displayname":
-							if(isset($this->lines[$specific_line]['ext'])) {
-			            		$contents = str_replace('{$displayname.line.' . $specific_line . '}', $this->lines[$specific_line]['displayname'], $contents);
-							}
+			            	$contents = str_replace('{$displayname.line.' . $specific_line . '}', $this->lines[$specific_line]['displayname'], $contents);
 							break;
 					}
 	            }
