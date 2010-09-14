@@ -24,42 +24,42 @@
 	<item>
 		<!-- Function Key 6 -->
 		<variable>$function_key_6</variable>
-		<default_value>dest &lt;sip:71@{$srvip};user=phone&gt;</default_value>
+		<default_value>dest &lt;sip:71@{$server.ip.1};user=phone&gt;</default_value>
 		<description>Function Key #6</description>
 		<type>input</type>
 	</item>
 	<item>
 		<!-- Function Key 7 -->
 		<variable>$function_key_7</variable>
-		<default_value>dest &lt;sip:72@{$srvip};user=phone&gt;</default_value>
+		<default_value>dest &lt;sip:72@{$server.ip.1};user=phone&gt;</default_value>
 		<description>Function Key #7</description>
 		<type>input</type>
 	</item>
 	<item>
 		<!-- Function Key 8 -->
 		<variable>$function_key_8</variable>
-		<default_value>dest &lt;sip:73@{$srvip};user=phone&gt;</default_value>
+		<default_value>dest &lt;sip:73@{$server.ip.1};user=phone&gt;</default_value>
 		<description>Function Key #8</description>
 		<type>input</type>
 	</item>
 	<item>
 		<!-- Function Key 9 -->
 		<variable>$function_key_9</variable>
-		<default_value>dest &lt;sip:74@{$srvip};user=phone&gt;</default_value>
+		<default_value>dest &lt;sip:74@{$server.ip.1};user=phone&gt;</default_value>
 		<description>Function Key #9</description>
 		<type>input</type>
 	</item>
 	<item>
 		<!-- Function Key 10 -->
 		<variable>$function_key_10</variable>
-		<default_value>dest &lt;sip:75@{$srvip};user=phone&gt;</default_value>
+		<default_value>dest &lt;sip:75@{$server.ip.1};user=phone&gt;</default_value>
 		<description>Function Key #10</description>
 		<type>input</type>
 	</item>
 	<item>
 		<!-- Function Key 11 -->
 		<variable>$function_key_11</variable>
-		<default_value>dest &lt;sip:76@{$srvip};user=phone&gt;</default_value>
+		<default_value>dest &lt;sip:76@{$server.ip.1};user=phone&gt;</default_value>
 		<description>Function Key #11</description>
 		<type>input</type>
 	</item>
