@@ -1,75 +1,56 @@
-
 // "Extend" our endpointBrand "file"class"/object
 $(document).bind('endpoints.init', function() {
-    $.extend(endpointYealink, endpointBrand);
-    endpointYealink.init();
+    yealink = $.extend({}, endpointClass, yealink);   // Merge base classes in
+    yealink.init();
 });
 
-var endpointYealink = {
+yealink = {
     brandName : 'yealink',
-    
+
 
     init: function(){
-        endpoints.register(this.brandName, this);
+        $.endpoints.register(this.brandName, this);
         this.loadFamilies();    // Call our inherited family, model & template loader
         this.bind();
     },
 
     configureHandset: function () {
-        $.colorbox({
-            width:"50%",
-            inline:true,
-            href:"#configureHandset"
-        });
+        yealink.displayOptions('.phone_options .display', 'T26', 'handset');
     },
 
     configureDisplay: function () {
-        $.colorbox({
-            width:"50%",
-            inline:true,
-            href:"#configureDisplay"
-        });
+        yealink.displayOptions('.phone_options .display', 'T26', 'display');
     },
 
     configureKey: function (){
-        $.colorbox({
-            width:"50%",
-            inline:true,
-            href:"#configureKey"
-        });
+        yealink.displayOptions('.phone_options .display', 'T26', 'softkey');
     },
 
     configureVoicemail: function (){
-        alert('Configure voicemail here!');
+        yealink.displayOptions('.phone_options .display', 'T26', 'voicemail');
     },
 
     configureHeadset: function (){
-        alert('Configure your headset volume, gain, etc.');
+        yealink.displayOptions('.phone_options .display', 'T26', 'headset');
     },
 
     configureForward: function (){
-        alert('Change your forwarding options');
+        yealink.displayOptions('.phone_options .display', 'T26', 'forward');
     },
-    
+
     bind: function() {
-        $('.phone_selector .yealink_t22').live('click', function() {
-            endpointYealink.display('t22', $('.phone_config', $(this).parent().parent()));
+        $('.endpoint_select .yealink_t22').live('click', function() {
+            yealink.display('t22', $('.endpoint_configure', $(this).parent().parent()));
         });
 
         // Init already drawn items
-        $('.phone_config.yealink_t22').each(function() {
-            endpointYealink.display('t22', this)
-        });
-
-        // Show fields
-        $('.show_options').live('click', function(event) {
-            event.preventDefault();
-            endpointYealink.returnButtons('.phone_options .general', 'T26', 'GeneralSettings');
+        $('.endpoint_configure.yealink_t22').each(function() {
+            yealink.display('t22', this)
         });
     },
 
     display: function(model, obj) {
-        $(obj).addClass('yealink_t22');
+        $(obj).addClass('yealink_' + model);
         // phone handset - 18,3   88,3  18,287  88, 287
         // display - 154,60  247,60    155,107    247,018
         // key 1 - 268,61    279, 73
@@ -108,4 +89,4 @@ var endpointYealink = {
         $(obj).imagemap(points);
     }
 
-}
+};

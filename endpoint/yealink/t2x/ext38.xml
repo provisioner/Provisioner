@@ -6,6 +6,7 @@
 		<loop_end>37</loop_end>
 		<data>
 			<item>
+                		<category>sidecar</category>
 				<variable>$sdext38_type</variable>
 				<default_value>0</default_value>
 				<description>EXT38 Key {$count} Type</description>
@@ -104,6 +105,7 @@
 				</data>
 			</item>
 			<item>
+                		<category>sidecar</category>
 				<variable>$sdext38_btype</variable>
 				<default_value>0</default_value>
 				<description>EXT38 Key {$count} DSS Type</description>
@@ -119,6 +121,7 @@
 			</item>
 			<item>
 				<!-- Web Administration Password -->
+                		<category>sidecar</category>
 				<variable>$sdext38_value</variable>
 				<default_value></default_value>
 				<description>EXT38 Key {$count} Value</description>

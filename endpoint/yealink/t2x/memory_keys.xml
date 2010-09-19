@@ -8,6 +8,7 @@
 			<item>
 				<variable>$memkey_type</variable>
 				<default_value>0</default_value>
+                		<category>keys</category>
 				<description>Memory Key {$count} Type</description>
 				<type>list</type>
 				<data>
