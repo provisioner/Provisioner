@@ -336,7 +336,9 @@ abstract class endpoint_base {
                     $variables = explode(".", $variables);
                     $specific_line = $variables[2];
                     $variables = $variables[0];
-                }
+				} else {
+					$specific_line = 'GLOBAL';
+				}
             }
 
             //If the variable we found in the text file exists in the variables array then replace the variable in the text file with the value under our key
