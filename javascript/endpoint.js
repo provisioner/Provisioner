@@ -11,64 +11,67 @@
  * 7. Display a response from the server after any JSON posts
  */
 
-/**
- * Main endpoint manager
- */
-endpoints = {
-    brands: {},
-
-    init: function() {
-        // Find all brands that are registered
-        $(document).trigger('endpoints.init');
-        console.log(this.brands);
-    },
-
-    register: function(brandName, obj) {
-        this.brands[brandName] = obj;
-
-        console.log ('Registered brand ' + brandName);
-    },
+(function($) {
 
     /**
-     * Load all known brands
-     * NOTE: Don't use this. We would only use this if we wanted to force loading of every brand. But in this case,
-     * we get more flexibility letting the caller load the JS files for the models/brands he/she cares about.
+     * Main endpoint manager
      */
-    /*loadBrands: function() {
-        console.log('Loading all known brand info...');
-        $.ajax({
-            url: 'endpoint/master.xml',
-            global: false,
-            type: "GET",
-            dataType: "xml",
-            async:false,
-            success: function(data){
-                $(data).find('data brands').each(function() {
-                    // Here, we have the <model_list></model_list> guts
-                    name = $(this).find('name').text();
-                    directory = $(this).find('directory').text();
-                    console.log('Brand name ' + name + ' in directory ' + directory);
-                });
+    $.endpoints = {
+        brands: {},
+
+        init: function() {
+            // Find all brands that are registered
+            $(document).trigger('endpoints.init');
+            console.log(this.brands);
+        },
+
+        register: function(brandName, obj) {
+            this.brands[brandName] = obj;
+
+            console.log ('Registered brand ' + brandName);
+        },
+
+        /**
+         * Load all known brands
+         * NOTE: Don't use this. We would only use this if we wanted to force loading of every brand. But in this case,
+         * we get more flexibility letting the caller load the JS files for the models/brands he/she cares about.
+         */
+        /*loadBrands: function() {
+            console.log('Loading all known brand info...');
+            $.ajax({
+                url: 'endpoint/master.xml',
+                global: false,
+                type: "GET",
+                dataType: "xml",
+                async:false,
+                success: function(data){
+                    $(data).find('data brands').each(function() {
+                        // Here, we have the <model_list></model_list> guts
+                        name = $(this).find('name').text();
+                        directory = $(this).find('directory').text();
+                        console.log('Brand name ' + name + ' in directory ' + directory);
+                    });
+                }
+            });
+
+            this.brands[name] = directory;
+            console.log('Done loading brand info...');
+        },*/
+
+        listBrands: function() {
+            for ( var i in endpoints.brands )
+            {
+                console.log('Brand ' + i + ' is registered.');
             }
-        });
-
-        this.brands[name] = directory;
-        console.log('Done loading brand info...');
-    },*/
-
-    listBrands: function() {
-        for ( var i in endpoints.brands )
-        {
-            console.log('Brand ' + i + ' is registered.');
         }
-    }
-};
+    };
+})(jQuery);
 
 
 /**
  * Individual brands
  */
-endpointBrand = {
+endpointClass = {
     brandData : {},
     families : {},
 
@@ -129,11 +132,11 @@ endpointBrand = {
                     templateFields[modelName] = [];
                     $(this).find('template_data files').each(function() {
                         filename = $(this).text();
-                        templateData = endpointBrand.loadTemplatesData(brand,family,$(this).text());
+                        templateData = endpointClass.loadTemplatesData(brand,family,$(this).text());
                         $(templateData).each(function() {
                             templateFields[modelName].push(this);
                         });
-                        console.log('Loaded template file ' + filename + ' for ' + modelName + '...', templateFields[modelName])
+                        console.log('Loaded template file ' + filename + ' for ' + modelName + '...')
                     });
                 // Store the template for use everywhere
                 });
@@ -175,10 +178,10 @@ endpointBrand = {
     },
 
     processTemplate: function(result) {
-        console.log('Post processing', result);
+        //console.log('Post processing', result);
         // If there is any loop data, process it
         if (result['type'] == 'loop') {
-            console.log('In a loop for this file!');
+            //console.log('In a loop for this file!');
             templateData = [];
             start = result['loop_start'];
             end = result['loop_end'];
@@ -213,27 +216,38 @@ endpointBrand = {
         return templateData;
     },
 
-    returnButtons : function(selector, model, category) {
-        console.log('Stuff for ' + model + ' / category');
+    displayOptions : function(selector, model, category) {
+        console.log('Display config options for ' + model + ' / category ' + category);
 
         content = '';
 
         // Go get all fields and make some content
         $(this.families.models[model]).each(function() {
-            if (this['type'] == 'break') {
-                content += '<div class="break"></div>';
-            } else {
-                content += '<div class="field"><label class="' + this['variable'] + '">' + this['description'] + '</label><input name="' + this['variable'] + '" value="' + this['value'] + '"></div>';
+            if (this['category'] == category) {
+                if (this['type'] == 'break') {
+                    content += '<div class="break"></div>';
+                } else {
+                    content += '<div class="field"><label class="' + this['variable'] + '">' + this['description'] + '</label><input name="' + this['variable'] + '" value="' + this['value'] + '"></div>';
+                }
             }
         });
 
-        // Add the content
         $(selector).html(content);
+
+        // Add the content
+        $.colorbox({
+            width:"50%",
+            inline:true,
+            href:selector
+        });
     }
 };
 
 
+
+
 // Initialize all loaded endpoint drivers when the document is all setup
 $(document).ready(function() {
-    endpoints.init();
+    $.endpoints.init();
 });
+
