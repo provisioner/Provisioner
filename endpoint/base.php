@@ -256,7 +256,7 @@ abstract class endpoint_base {
      * @return string
      */
 
-    function parse_config_values($file_contents, $keep_unknown=FALSE, $specific_line="GLOBAL", $options=NULL) {
+    function parse_config_values($file_contents, $keep_unknown=FALSE, $specific_line_master="GLOBAL", $options=NULL) {
 		if(!isset($options)) {
 			$options=$this->options;
 		}
@@ -313,7 +313,7 @@ abstract class endpoint_base {
         //loop though each variable found in the text file
         foreach ($no_brackets as $variables) {
             $variables = str_replace("$", "", $variables);
-
+			$specific_line = $specific_line_master;
             //Users can set defaults within template files with pipes, they will over-ride whatever is in the XML file.
             if (strstr($variables, "|")) {
                 $original_variable = $variables;
