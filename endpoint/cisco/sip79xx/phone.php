@@ -12,7 +12,7 @@ class endpoint_cisco_sip79xx_phone extends endpoint_cisco_base {
 	
 	function generate_config() {
 
-		if(strlen($this->displayname) > 12) {
+		if(strlen($this->lines[1]['displayname']) > 12) {
 			$name = explode(" ", $this->lines[1]['displayname']);
 			$this->lines[1]['displayname'] = substr($name[0],0,12);
 		}
