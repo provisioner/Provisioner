@@ -12,7 +12,7 @@ class endpoint_cisco_spa_phone extends endpoint_cisco_base {
 	
 	function generate_config() {
 		//spa likes lower case letters in its mac address
-		$this->mac = strtoupper($this->mac);
+		$this->mac = strtolower($this->mac);
 		$this->model = strtoupper($this->model);
 		
 		//{$model}.cfg
