@@ -81,7 +81,11 @@ $returned_data = $endpoint->generate_config();
 
 if((isset($_POST['brand'])) OR (isset($_REQUEST['brand']))) {
     foreach($returned_data as $key => $files) {
-        echo 'File:'.$key.'<br/><textarea rows="50" cols="100">'.$files.'</textarea><br/><br/>';
+        echo 'File:'.$key;
+        if(in_array($key, $endpoint->protected_files)){
+        	echo " [<b>PROTECTED</b>]";
+        }
+        echo '<br/><textarea rows="50" cols="100">'.$files.'</textarea><br/><br/>';
     }
 } else {
     print_r($returned_data);
