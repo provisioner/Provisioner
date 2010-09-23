@@ -12,8 +12,9 @@ class endpoint_cisco_sip79xx_phone extends endpoint_cisco_base {
 	
 	function generate_config() {
 
-		if(mb_strlen($this->displayname) > 12) {
-			$this->displayname = mb_substr($this->displayname,0,12);
+		if(strlen($this->displayname) > 12) {
+			$name = explode(" ", $this->lines[1]['displayname']);
+			$this->lines[1]['displayname'] = substr($name[0],0,12);
 		}
 		//Cisco likes lower case letters in its mac address
 		$this->mac = strtoupper($this->mac);
