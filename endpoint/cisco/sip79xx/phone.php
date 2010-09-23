@@ -11,7 +11,10 @@ class endpoint_cisco_sip79xx_phone extends endpoint_cisco_base {
 	public $family_line = 'sip79xx';
 	
 	function generate_config() {
-			
+
+		if(mb_strlen($this->displayname) > 12) {
+			$this->displayname = mb_substr($this->displayname,0,12);
+		}
 		//Cisco likes lower case letters in its mac address
 		$this->mac = strtoupper($this->mac);
 		//Cisco time offset is in minutes, our global variable is in seconds
