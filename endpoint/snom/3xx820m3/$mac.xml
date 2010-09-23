@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <settings>
 <phone-settings>
-<user_host idx="1" perm="">{$srvip}</user_host>
-<user_realname idx="1" perm="">{$ext}</user_realname>
-<user_name idx="1" perm="">{$ext}</user_name>
-<user_pname idx="1" perm="">{$ext}</user_pname>
-<user_pass idx="1" perm="">{$pass}</user_pass>
-<user_idle_text idx="1" perm="">{$ext} {$displayname}</user_idle_text>
+<user_host idx="1" perm="">{$server.ip.1}</user_host>
+<user_realname idx="1" perm="">{$ext.line.1}</user_realname>
+<user_name idx="1" perm="">{$ext.line.1}</user_name>
+<user_pname idx="1" perm="">{$ext.line.1}</user_pname>
+<user_pass idx="1" perm="">{$secret.line.1}</user_pass>
+<user_idle_text idx="1" perm="">{$ext.line.1} {$displayname.line.1}</user_idle_text>
 </phone-settings>
 <functionKeys>
 <fkey idx="6" context="active" perm="">{$function_key_6}</fkey>
