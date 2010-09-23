@@ -7,7 +7,7 @@
 <dnd_off_code perm="">*79</dnd_off_code>
 <dhcp perm="">on</dhcp>
 <utc_offset perm="">{$gmtoff}</utc_offset>
-<ntp_server perm="">{$srvip}</ntp_server>
+<ntp_server perm="">{$server.ip.1}</ntp_server>
 <dst perm="">3600 03.02.07 02:00:00 11.01.07 02:00:00</dst>
 <timezone perm="">{$tz}</timezone>
 <ring_sound perm="">Ringer6</ring_sound>
@@ -27,8 +27,8 @@
 <dkey_retrieve perm="">speed *97</dkey_retrieve>
 <dkey_redial perm="">keyevent F_REDIAL</dkey_redial>
 <dkey_directory perm="">keyevent F_ADR_BOOK</dkey_directory>
-<user_host idx="1" perm="">{$srvip}</user_host>
-<user_outbound idx="1" perm="">{$srvip}</user_outbound>
+<user_host idx="1" perm="">{$server.ip.1}</user_host>
+<user_outbound idx="1" perm="">{$server.ip.1}</user_outbound>
 <display_method perm="">display_number_name</display_method>
 <record_missed_calls idx="" perm="">off</record_missed_calls>
 </phone-settings>
