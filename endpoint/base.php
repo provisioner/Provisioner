@@ -60,11 +60,13 @@ abstract class endpoint_base {
 	function get_gmtoffset($timezone) {
 		$timezone = str_replace(":", ".", $timezone);
 		$timezone = str_replace("30", "5", $timezone);
-		$num = explode("-",$timezone);
-		$num = $num[1];
 		if(strrchr($timezone,'+')) {
+        	$num = explode("+",$timezone);
+        	$num = $num[1];
 			$offset = $num * 3600;
 		} elseif(strrchr($timezone,'-')) {
+        	$num = explode("-",$timezone);
+        	$num = $num[1];
 			$offset = $num * -3600;
 		}
 		return($offset);
