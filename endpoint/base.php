@@ -219,7 +219,7 @@ abstract class endpoint_base {
             $parsed = "";
             //If specific line is set to ALL then loop through all lines
             if ($specific_line == "ALL") {
-                while ($i <= $line_total) {
+                while ($i <= $line_total) {	
                     if (isset($this->lines[$i]['secret'])) {
                         $parsed_2 = $this->replace_static_variables($matches[1], $i, TRUE);
                         $parsed .= $this->parse_config_values($parsed_2, TRUE, $i);
@@ -338,8 +338,6 @@ abstract class endpoint_base {
                     $variables = explode(".", $variables);
                     $specific_line = $variables[2];
                     $variables = $variables[0];
-				} else {
-					$specific_line = 'GLOBAL';
 				}
             }
 
@@ -352,8 +350,7 @@ abstract class endpoint_base {
                 } else {
                     $file_contents = str_replace('{$' . $original_variable . '}', $options[$variables], $file_contents);
                 }
-            } elseif (($specific_line != "GLOBAL") AND (isset($this->lines[$specific_line][$variables]))) {
-	
+            } elseif (($specific_line != "GLOBAL") AND (isset($this->lines[$specific_line][$variables]))) {		
 				
                 $this->lines[$specific_line][$variables] = htmlspecialchars($this->lines[$specific_line][$variables]);
 
