@@ -7,7 +7,7 @@
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
  */
-include('setup.php');
+include('../autoload.php');
 
 
 // Allow running this test from the command line
