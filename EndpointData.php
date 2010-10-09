@@ -1,7 +1,6 @@
 <?php
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/*
+ * This is totally cheating and either needs to be fixed or needs to be re-implemented properly
  */
 
 $xml = simplexml_load_file($_GET['filename']);
