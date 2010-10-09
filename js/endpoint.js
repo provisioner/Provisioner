@@ -39,7 +39,7 @@
         /*loadBrands: function() {
             console.log('Loading all known brand info...');
             $.ajax({
-                url: 'endpoint/master.xml',
+                url: '../endpoint/master.xml',
                 global: false,
                 type: "GET",
                 dataType: "xml",
@@ -81,7 +81,7 @@ endpointClass = {
     loadFamilies: function() {
         console.log('Loading family info for ' + this.brandName + '...');
         $.ajax({
-            url: 'EndpointData.php?filename=endpoint/' + this.brandName + '/brand_data.xml',
+            url: '../EndpointData.php?filename=endpoint/' + this.brandName + '/brand_data.xml',
             global: false,
             type: "GET",
             dataType: "json",
@@ -119,7 +119,7 @@ endpointClass = {
         // Load stuff?
 
         $.ajax({
-            url: 'endpoint/' + brand + '/' + family + '/family_data.xml',
+            url: '../endpoint/' + brand + '/' + family + '/family_data.xml',
             global: false,
             type: "GET",
             dataType: "xml",
@@ -153,7 +153,7 @@ endpointClass = {
         console.log('Loading template for ' + brand + ' / ' + family + ' / ' + file);
         // Load stuff?
         $.ajax({
-            url: 'EndpointData.php?filename=endpoint/' + brand + '/' + family + '/'+file,
+            url: '../EndpointData.php?filename=endpoint/' + brand + '/' + family + '/'+file,
             global: false,
             type: "GET",
             dataType: "json",
