@@ -3,12 +3,12 @@
         <!-- Begin JavaScript -->
         <script type="text/javascript" src="http://www.the159.com/test/jquery.js"></script>
 	<script type="text/javascript" src="http://plugins.jquery.com/files/jquery.imagemap.js_1.txt"></script>
-	<script src="js/jquery.colorbox.js"></script>
+	<script type="text/javascript" src="../js/jquery.colorbox.js"></script>
+        <script type="text/javascript" src="../js/endpoint.js"></script>
 
-        <link media="screen" rel="stylesheet" href="colorbox.css" />
-	<link media="screen" rel="stylesheet" href="css/endpoint.css" />
+        <link media="screen" rel="stylesheet" href="../css/colorbox.css" />
+	<link media="screen" rel="stylesheet" href="../css/endpoint.css" />
 
-        <script src="js/endpoint.js"></script>
 
 <?php
 include('EndpointUi.php');
