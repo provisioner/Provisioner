@@ -13,7 +13,7 @@
 <?php
 include('EndpointUi.php');
 
-EndpointUi::$moduleDir = 'endpoint/';
+EndpointUi::$moduleDir = '../endpoint/';
 
 $js = EndpointUi::JsList();
 $css = EndpointUi::CssList();
