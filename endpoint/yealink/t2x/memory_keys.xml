@@ -2,8 +2,8 @@
 	<item>
 		<description>Memory Keys (1-10)</description>
 		<type>loop</type>
-		<loop_start>0</loop_start>
-		<loop_end>9</loop_end>
+		<loop_start>1</loop_start>
+		<loop_end>10</loop_end>
 		<data>
 			<item>
 				<variable>$memkey_type</variable>
@@ -133,8 +133,8 @@
 	<item>
 		<description>Memory Keys (11-16)</description>
 		<type>loop</type>
-		<loop_start>10</loop_start>
-		<loop_end>15</loop_end>
+		<loop_start>11</loop_start>
+		<loop_end>16</loop_end>
 		<data>
 			<item>
 				<variable>$memkey2_type</variable>
