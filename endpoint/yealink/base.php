@@ -27,6 +27,8 @@ abstract class endpoint_yealink_base extends endpoint_base {
 			} elseif(strrchr($timezone,'-')) {
 	        	$num = explode("-",$timezone);
 	        	$num = "-".$num[1];
+			} else {
+				$num = $timezone;
 			}
 			return $num;
 		} else {
