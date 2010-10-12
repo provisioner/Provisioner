@@ -16,5 +16,23 @@ abstract class endpoint_yealink_base extends endpoint_base {
 		}
 	}
 	
+	/**
+	* $type is either gmt or tz
+	*/
+	function setup_timezone($timezone,$type) {
+		if($type == 'TZ') {
+			if(strrchr($timezone,'+')) {
+	        	$num = explode("+",$timezone);
+	        	$num = "+".$num[1];
+			} elseif(strrchr($timezone,'-')) {
+	        	$num = explode("-",$timezone);
+	        	$num = "-".$num[1];
+			}
+			return $num;
+		} else {
+			return FALSE;
+		}
+	}
+	
 }
 ?>

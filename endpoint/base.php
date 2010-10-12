@@ -117,6 +117,23 @@ abstract class endpoint_base {
 		$dateTime->setTimeZone(new DateTimeZone('America/Los_Angeles')); 
 		return $dateTime->format('T');
 	}
+	
+	/**
+	* $type is either gmt or tz
+	*/
+	function setup_timezone($timezone,$type) {
+		if($type == 'GMT') {
+			return $this->timezone['gmtoffset'];
+		} elseif($type == 'TZ') {
+			return $this->timezone['timezone'];
+		} else {
+			return FALSE;
+		}
+	}
+	
+	function setup_languages() {
+		return $languages;
+	}
 
     /**
      * Takes the name of a local configuration file and either returns that file from the hard drive as a string or takes the string from the array and returns that as a string
@@ -174,6 +191,9 @@ abstract class endpoint_base {
         }
 
 		$this->setup_tz();
+		
+		$this->timezone['gmtoffset'] = $this->setup_timezone($this->timezone['gmtoffset'], 'GMT');
+		$this->timezone['timezone'] = $this->setup_timezone($this->timezone['timezone'], 'TZ');
 		
         $file_contents = $this->parse_lines($line_total, $file_contents, $keep_unknown = FALSE, $specific_line);
 		$file_contents = $this->parse_loops($line_total,$file_contents, $keep_unknown = FALSE, $specific_line);
@@ -404,6 +424,8 @@ abstract class endpoint_base {
         $contents = str_replace('{$timezone_gmtoffset}', $this->timezone['gmtoffset'], $contents);
 		$contents = str_replace('{$timezone_timezone}', $this->timezone['timezone'], $contents);
 		$contents = str_replace('{$timezone}', $this->timezone['timezone'], $contents);
+		
+		
 		//Depreciated
 		$contents = str_replace('{$gmtoff}', $this->timezone['gmtoffset'], $contents);
         $contents = str_replace('{$gmthr}', $this->timezone['gmtoffset'], $contents);
