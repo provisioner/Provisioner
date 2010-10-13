@@ -2,41 +2,5 @@
 <!-- $RCSfile: 000000000000-directory~.xml,v $  $Revision: 1.3 $ -->
 <directory>
 	<item_list>
-		<item>
-			<ln>Doe</ln>
-			<fn>John</fn>
-			<ct>1001</ct>
-			<sd>1</sd>
-			<rt>3</rt>
-			<dc/>
-			<ad>0</ad>
-			<ar>0</ar>
-			<bw>0</bw>
-			<bb>0</bb>
-		</item>
-		<item>
-			<ln>Parker</ln>
-			<fn>Jane</fn>
-			<ct>1002</ct>
-			<sd>2</sd>
-			<rt>3</rt>
-			<dc/>
-			<ad>0</ad>
-			<ar>0</ar>
-			<bw>0</bw>
-			<bb>0</bb>
-		</item>
-		<item>
-			<ln>Smith</ln>
-			<fn>Bill</fn>
-			<ct>1003</ct>
-			<sd>3</sd>
-			<rt>3</rt>
-			<dc/>
-			<ad>0</ad>
-			<ar>0</ar>
-			<bw>0</bw>
-			<bb>0</bb>
-		</item>
 	</item_list>
 </directory>
