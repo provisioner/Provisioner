@@ -39,6 +39,7 @@ yealink = {
     },
 
     bind: function() {
+        // Bind to option bar that lists phone types
         $('.endpoint_select .yealink_t22').live('click', function() {
             yealink.display('t22', $('.endpoint_configure', $(this).parent().parent()));
         });
@@ -50,7 +51,12 @@ yealink = {
     },
 
     display: function(model, obj) {
+        // Add picture of phone to the requested class, for the requested model
         $(obj).addClass('yealink_' + model);
+
+        // Draw imagemap hotspots according to the picture
+        // TODO: Move this somewhere else
+
         // phone handset - 18,3   88,3  18,287  88, 287
         // display - 154,60  247,60    155,107    247,018
         // key 1 - 268,61    279, 73
@@ -87,6 +93,20 @@ yealink = {
         }
 
         $(obj).imagemap(points);
+
+        // Draw all the hidden divs related to this phone. They will be displayed upon clicking a hotspot
+        // Go get all fields and make some content
+        $(this.families.models[model]).each(function() {
+            if (this['type'] == 'break') {
+                content['category'] += '<div class="break"></div>';
+            } else {
+                content['category'] += '<div class="field"><label class="' + this['variable'] + '">' + this['description'] + '</label><input name="' + this['variable'] + '" value="' + this['value'] + '"></div>';
+            }
+        });
+
+        
+        $(selector).html(content);
+
     }
 
 };
