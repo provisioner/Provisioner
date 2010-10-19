@@ -7,7 +7,9 @@
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
  */
-include('../autoload.php');
+define('PROVISIONER_BASE', '');
+
+include('autoload.php');
 
 
 // Allow running this test from the command line
