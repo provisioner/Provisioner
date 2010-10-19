@@ -1,8 +1,8 @@
 <html>
 <head>
         <!-- Begin JavaScript -->
-        <script type="text/javascript" src="http://www.the159.com/test/jquery.js"></script>
-	<script type="text/javascript" src="http://plugins.jquery.com/files/jquery.imagemap.js_1.txt"></script>
+        <script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../js/jquery.imagemap.js"></script>
 	<script type="text/javascript" src="../js/jquery.colorbox.js"></script>
         <script type="text/javascript" src="../js/endpoint.js"></script>
 
