@@ -4,7 +4,7 @@
 		<type>group</type>
 	</item>
 	<item>
-		<category>handset</category>
+		<category>general</category>
 		<variable>$contact_list_address</variable>
 		<default_value></default_value>
 		<description>Contact List URL</description>
@@ -14,7 +14,7 @@
 		<type>break</type>
 	</item>
 	<item>
-		<category>general</category>
+		<category>handset</category>
 		<variable>$ringtone_url</variable>
 		<default_value></default_value>
 		<description>Ringtone URL</description>

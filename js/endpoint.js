@@ -238,7 +238,11 @@ endpointClass = {
         $.colorbox({
             width:"50%",
             inline:true,
-            href:selector
+            href:selector,
+            onClosed:function(stuff) {
+                console.log(this, stuff);
+                alert('got here');
+            }
         });
     }
 };
