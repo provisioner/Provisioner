@@ -28,8 +28,8 @@ class ProvisionerConfig {
         // Try to include the class
         $file = str_replace('_', DIRECTORY_SEPARATOR, $class) . '.php';
 
-        if (is_file($file)) {
-            require $file;
+        if (is_file(PROVISIONER_BASE . $file)) {
+            require PROVISIONER_BASE . $file;
 
             return TRUE;
         }
