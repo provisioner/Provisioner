@@ -1,5 +1,5 @@
 <?PHP
-/*
+/**
 This file, when run from the web, creates all the needed packages in the releases folder and also generates http://www.provisioner.net/releases
 */
 $master_xml = array();
