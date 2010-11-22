@@ -4,8 +4,8 @@
 	<version>0.7</version>
 	<directory>aap9xxx6xxx</directory>
 	<package>aap9_6-0_7.tgz</package>
-	<firmware_ver></firmware_ver>
-	<firmware_pkg>NULL</firmware_pkg>
+	<firmware_ver>1290334377</firmware_ver>
+	<firmware_pkg>aap9xxx6xxx_firmware.tgz</firmware_pkg>
 	<description>Initial Files</description>
 	<configuration_files>$mac.cfg,aastra.cfg</configuration_files>
 	<changelog></changelog>
@@ -15,6 +15,7 @@
 		<id>1</id>
 		<template_data>
 			<files>template_data.xml</files>
+			<files>prgkeys.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -23,14 +24,17 @@
 		<id>2</id>
 		<template_data>
 			<files>template_data.xml</files>
+			<files>featurekeys.xml</files>
+			<files>prgkeys.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
-		<model>9143</model>
+		<model>9143i</model>
 		<lines>3</lines>
 		<id>3</id>
 		<template_data>
 			<files>template_data.xml</files>
+			<files>prgkeys.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -39,6 +43,7 @@
 		<id>4</id>
 		<template_data>
 			<files>template_data.xml</files>
+			<files>prgkeys.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -47,6 +52,7 @@
 		<id>5</id>
 		<template_data>
 			<files>template_data.xml</files>
+			<files>prgkeys.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -55,6 +61,10 @@
 		<id>6</id>
 		<template_data>
 			<files>template_data.xml</files>
+			<files>softkeys.xml</files>
+			<files>expmod1.xml</files>
+			<files>expmod2.xml</files>
+			<files>expmod3.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -63,6 +73,11 @@
 		<id>7</id>
 		<template_data>
 			<files>template_data.xml</files>
+			<files>prgkeys.xml</files>
+			<files>softkeys.xml</files>
+			<files>expmod1.xml</files>
+			<files>expmod2.xml</files>
+			<files>expmod3.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -71,6 +86,11 @@
 		<id>8</id>
 		<template_data>
 			<files>template_data.xml</files>
+			<files>prgkeys.xml</files>
+			<files>softkeys.xml</files>
+			<files>expmod1.xml</files>
+			<files>expmod2.xml</files>
+			<files>expmod3.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -79,6 +99,11 @@
 		<id>9</id>
 		<template_data>
 			<files>template_data.xml</files>
+			<files>prgkeys.xml</files>
+			<files>softkeys.xml</files>
+			<files>expmod1.xml</files>
+			<files>expmod2.xml</files>
+			<files>expmod3.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -87,6 +112,11 @@
 		<id>10</id>
 		<template_data>
 			<files>template_data.xml</files>
+			<files>topkeys.xml</files>
+			<files>softkeys.xml</files>
+			<files>expmod1.xml</files>
+			<files>expmod2.xml</files>
+			<files>expmod3.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -95,6 +125,11 @@
 		<id>11</id>
 		<template_data>
 			<files>template_data.xml</files>
+			<files>topkeys.xml</files>
+			<files>softkeys.xml</files>
+			<files>expmod1.xml</files>
+			<files>expmod2.xml</files>
+			<files>expmod3.xml</files>
 		</template_data>
 	</model_list>
 </data>
