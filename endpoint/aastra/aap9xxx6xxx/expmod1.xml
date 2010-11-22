@@ -1,0 +1,72 @@
+<template_data>
+	<item>
+		<description>Expansion Module Keys 1 (M670i/M675i)</description>
+		<type>loop</type>
+		<loop_start>1</loop_start>
+		<loop_end>60</loop_end>
+		<data>
+			<item>
+				<variable>$expmod1_type</variable>
+				<default_value>empty</default_value>
+                <category>keys</category>
+				<description>Expansion Module 1 Key {$count} Type</description>
+				<type>list</type>
+				<data>
+                        <text>Empty</text>
+                        <value>empty</value>
+                </data>
+                <data>
+                        <text>Services</text>
+                        <value>services</value>
+                </data>
+                <data>
+                        <text>Speed Dial</text>
+                        <value>speeddial</value>
+                </data>
+                <data>
+                        <text>Line</text>
+                        <value>line</value>
+                </data>
+                <data>
+                        <text>BLF</text>
+                        <value>blf</value>
+                </data>
+                <data>
+                        <text>List</text>
+                        <value>list</value>
+                </data>
+                <data>
+                        <text>Do Not Disturb</text>
+                        <value>dnd</value>
+                </data>
+                <data>
+                        <text>XML URL</text>
+                        <value>xml</value>
+                </data>
+                <data>
+                        <text>Park</text>
+                        <value>park</value>
+                </data>
+                <data>
+                        <text>Directory</text>
+                        <value>directory</value>
+                </data>
+			</item>
+			<item>
+                <variable>$expmod1_label</variable>
+                <default_value></default_value>
+                <description>Expansion Module 1 Key {$count} Label</description>
+                <type>input</type>
+			</item>
+			<item>
+                <variable>$expmod1_value</variable>
+                <default_value></default_value>
+                <description>Expansion Module 1 Key {$count} Value</description>
+                <type>input</type>
+			</item>
+			<item>
+				<type>break</type>
+			</item>
+		</data>
+	</item>
+</template_data>
