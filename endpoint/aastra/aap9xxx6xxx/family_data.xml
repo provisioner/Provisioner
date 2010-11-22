@@ -15,7 +15,7 @@
 		<id>1</id>
 		<template_data>
 			<files>template_data.xml</files>
-			<files>prgkeys.xml</files>
+			<files>softkeys.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -25,7 +25,7 @@
 		<template_data>
 			<files>template_data.xml</files>
 			<files>featurekeys.xml</files>
-			<files>prgkeys.xml</files>
+			<files>softkeys.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
