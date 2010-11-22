@@ -24,8 +24,8 @@
 		<id>2</id>
 		<template_data>
 			<files>template_data.xml</files>
-			<files>featurekeys.xml</files>
 			<files>softkeys.xml</files>
+			<files>featurekeys.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -127,6 +127,7 @@
 			<files>template_data.xml</files>
 			<files>topkeys.xml</files>
 			<files>softkeys.xml</files>
+			<files>featurekeys.xml</files>
 			<files>expmod1.xml</files>
 			<files>expmod2.xml</files>
 			<files>expmod3.xml</files>
