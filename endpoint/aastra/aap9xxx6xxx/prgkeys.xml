@@ -3,7 +3,7 @@
 		<description>Programmable Keys (9143i/6753i/6755i)</description>
 		<type>loop</type>
 		<loop_start>1</loop_start>
-		<loop_end>6</loop_end>
+		<loop_end>7</loop_end>
 		<data>
 			<item>
 				<variable>$prgkey_type</variable>
@@ -51,12 +51,6 @@
                         <text>Directory</text>
                         <value>directory</value>
                 </data>
-			</item>
-			<item>
-                <variable>$prgkey_label</variable>
-                <default_value></default_value>
-                <description>Programmable Key {$count} Label</description>
-                <type>input</type>
 			</item>
 			<item>
                 <variable>$prgkey_value</variable>
