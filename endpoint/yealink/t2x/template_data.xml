@@ -64,4 +64,11 @@
 		<description>Firmware File Name</description>
 		<type>input</type>
 	</item>
+	<item>
+		<category>system</category>
+		<variable>$call_pickup</variable>
+		<default_value>**</default_value>
+		<description>Call Pickup Value (For BLF)</description>
+		<type>input</type>
+	</item>
 </template_data>
