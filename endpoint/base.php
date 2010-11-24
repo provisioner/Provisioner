@@ -205,8 +205,13 @@ abstract class endpoint_base {
 		$this->timezone['gmtoffset'] = $this->setup_timezone($this->timezone['gmtoffset'], 'GMT');
 		$this->timezone['timezone'] = $this->setup_timezone($this->timezone['timezone'], 'TZ');		
 
-		$key = $this->arraysearchrecursive($family_data['data']['directory'], $brand_data['data']['brands']['family_list'], "directory");				
-		$file_contents = $this->generate_info($file_contents, $brand_data['data']['brands']['last_modified'], $brand_data['data']['brands']['family_list']['family'][$key[1]]['last_modified']);
+        if (array_key_exists('0', $brand_data['data']['brands']['family_list']['family'])) {	
+			$key = $this->arraysearchrecursive($family_data['data']['directory'], $brand_data['data']['brands']['family_list'], "directory");				
+            $brand_mod = $brand_data['data']['brands']['family_list']['family'][$key[1]]['last_modified'];
+        } else {
+            $brand_mod = $brand_data['data']['brands']['family_list']['family']['last_modified'];
+        }
+		$file_contents = $this->generate_info($file_contents, $brand_data['data']['brands']['last_modified'], $brand_mod);
 		
         $file_contents = $this->parse_lines($line_total, $file_contents, $keep_unknown = FALSE, $specific_line);
 		$file_contents = $this->parse_loops($line_total,$file_contents, $keep_unknown = FALSE, $specific_line);
@@ -524,7 +529,7 @@ abstract class endpoint_base {
     }
 
     /**
-     * Function xml2array has a bad habbit of returning blank xml values as empty arrays.
+     * Function xml2array has a bad habit of returning blank xml values as empty arrays.
      * Also if the xml children only loops once then the array is put into a normal array (array[variable]).
      * However if it loops more than once then it is put into a counted array (array[0][variable])
      * We fix that issue here by returning blank values on empty arrays or always returning array[0]
