@@ -52,6 +52,15 @@ abstract class endpoint_base {
 		
 	}
 	
+	function generate_info($file_contents, $brand_ts, $family_ts) {
+		$file_contents = str_replace('{$provisioner_processor_info}', $this->processor_info, $file_contents);
+		$file_contents = str_replace('{$provisioner_timestamp}', $this->processor_info, $file_contents);
+		$file_contents = str_replace('{$provisioner_brand_timestamp}', $brand_ts ." (".date('l jS \of F Y h:i:s A', $brand_ts).")", $file_contents);
+		$file_contents = str_replace('{$provisioner_family_timestamp}', $family_ts." (".date('l jS \of F Y h:i:s A', $family_ts).")", $file_contents);
+		$file_contents = str_replace('{$provisioner_generated_timestamp}', date('l jS \of F Y h:i:s A'), $file_contents);
+		return($file_contents);
+	}
+	
 	/**
      * Turns a string like PST-7 or UTC+1 into a GMT offset by stripping out Characters and replacing + and -
      * @param Send this something like PST-7
@@ -173,6 +182,7 @@ abstract class endpoint_base {
      */
     function parse_config_file($file_contents, $keep_unknown=FALSE, $lines=NULL, $specific_line='ALL') {
         $family_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml");
+        $brand_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/brand_data.xml");
 
         //Get number of lines for this model from the family_data.xml file
         if (is_array($family_data['data']['model_list'])) {
@@ -193,7 +203,10 @@ abstract class endpoint_base {
 		$this->setup_tz();
 		
 		$this->timezone['gmtoffset'] = $this->setup_timezone($this->timezone['gmtoffset'], 'GMT');
-		$this->timezone['timezone'] = $this->setup_timezone($this->timezone['timezone'], 'TZ');
+		$this->timezone['timezone'] = $this->setup_timezone($this->timezone['timezone'], 'TZ');		
+
+		$key = $this->arraysearchrecursive($family_data['data']['directory'], $brand_data['data']['brands']['family_list'], "directory");				
+		$file_contents = $this->generate_info($file_contents, $brand_data['data']['brands']['last_modified'], $brand_data['data']['brands']['family_list']['family'][$key[1]]['last_modified']);
 		
         $file_contents = $this->parse_lines($line_total, $file_contents, $keep_unknown = FALSE, $specific_line);
 		$file_contents = $this->parse_loops($line_total,$file_contents, $keep_unknown = FALSE, $specific_line);
