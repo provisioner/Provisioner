@@ -12,12 +12,7 @@ class endpoint_snom_3xx820m3_phone extends endpoint_snom_base {
 	
 	function generate_config() {	
 		#SNOM likes lower case letters in its mac address
-		$this->mac = strtolower($this->mac);
-		
-		
-		//$mac_firmware.xml
-		$contents = $this->open_config_file("\$mac_firmware.xml");
-		$final[$this->mac."_firmware.xml"] = $this->parse_config_file($contents, FALSE);		
+		$this->mac = strtoupper($this->mac);		
 		
 		//snom(model).htm
 		$contents = $this->open_config_file("snom\$model.htm");
@@ -30,20 +25,12 @@ class endpoint_snom_3xx820m3_phone extends endpoint_snom_base {
 		//general.xml
 		$contents = $this->open_config_file("general.xml");
 		$final["general.xml"] = $this->parse_config_file($contents, FALSE);		
-		
-		//write out mac.xml
-		$contents = $this->open_config_file("\$mac.xml");	
-		$final[$this->mac.".xml"] = $this->parse_config_file($contents, FALSE);
 
 		//write out general_custom.xml
 		$contents = $this->open_config_file("general_custom.xml");	
-		$final["general_custom.xml"] = $this->parse_config_file($contents, FALSE);	
-
-		//write out $mac_$ext_custom.xml
-		$contents = $this->open_config_file("\$mac_\$ext_custom.xml");	
-		$final[$this->mac."_".$this->lines[1]['ext']."_custom.xml"] = $this->parse_config_file($contents, FALSE);
+		$final["general_custom.xml"] = $this->parse_config_file($contents, FALSE);
 		
-		$this->protected_files = array('general_custom.xml',$this->mac."_".$this->lines[1]['ext']."_custom.xml");
+		$this->protected_files = array('general_custom.xml');
 		
 		return($final);
 	}
