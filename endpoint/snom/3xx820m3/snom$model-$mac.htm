@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<setting-files>
-  <file url="tftp://{$server.ip.1}/{$mac}.xml"/>
-  <file url="tftp://{$server.ip.1}/{$mac}_{$ext.line.1}_custom.xml"/>
-  <file url="tftp://{$server.ip.1}/{$mac}_firmware.xml"/>
-  <file url="{$phone_book_url}"/>
-</setting-files>
+<settings>
+	<phone-settings>
+		<user_host idx="1" perm="">{$server.ip.1}</user_host>
+		<user_realname idx="1" perm="">{$ext.line.1}</user_realname>
+		<user_name idx="1" perm="">{$ext.line.1}</user_name>
+		<user_pname idx="1" perm="">{$ext.line.1}</user_pname>
+		<user_pass idx="1" perm="">{$secret.line.1}</user_pass>
+		<user_idle_text idx="1" perm="">{$ext.line.1} {$displayname.line.1}</user_idle_text>
+	</phone-settings>
+	<functionKeys>
+		<fkey idx="0" context="active" perm=""></fkey>
+		<fkey idx="1" context="active" perm=""></fkey>
+		<fkey idx="2" context="active" perm=""></fkey>
+		<fkey idx="3" context="active" perm=""></fkey>
+		<fkey idx="4" context="active" perm=""></fkey>
+		<fkey idx="5" context="active" perm=""></fkey>
+		<fkey idx="6" context="active" perm="">{$function_key_6}</fkey>
+		<fkey idx="7" context="active" perm="">{$function_key_7}</fkey>
+		<fkey idx="8" context="active" perm="">{$function_key_8}</fkey>
+		<fkey idx="9" context="active" perm="">{$function_key_9}</fkey>
+		<fkey idx="10" context="active" perm="">{$function_key_10}</fkey>
+		<fkey idx="11" context="active" perm="">{$function_key_11}</fkey>
+	</functionKeys>
+	<firmware-settings> 
+		<firmware perm="">{$firmware_url}</firmware>
+	</firmware-settings>
+</settings>
