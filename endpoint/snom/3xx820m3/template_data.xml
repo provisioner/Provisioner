@@ -18,6 +18,35 @@
 		<type>input</type>
 	</item>
 	<item>
+		<!-- HTTP User -->
+		<variable>$http_user</variable>
+		<default_value></default_value>
+		<description>Phone Web Interface Username</description>
+		<type>input</type>
+	</item>
+	<item>
+		<!-- HTTP Password -->
+		<variable>$http_pass</variable>
+		<default_value></default_value>
+		<description>Phone Web Interface Password</description>
+		<type>input</type>
+	</item>
+	<item>
+		<!-- Admin Mode Password -->
+		<variable>$admin_mode_pass</variable>
+		<default_value></default_value>
+		<description>Admin Mode Password (Digits ONLY)</description>
+		<type>input</type>
+	</item>
+	<item>
+		<!-- Admin Mode PAssword Confirm -->
+		<variable>$admin_mode_pass_confirm</variable>
+		<default_value></default_value>
+		<description>Admin Password (Confirm)</description>
+		<type>input</type>
+	</item>
+
+	<item>
 		<description>Function Keys (0-11)</description>
 		<type>group</type>
 	</item>
