@@ -1,6 +1,6 @@
 <?php
 /**
- * HandyTone 286, 486 GXP Phone File
+ * Snom 300, 320, 360, 370, 820 & M3 Provisioning System
  *
  * @author Andrew Nagy
  * @license MPL / GPLv2 / LGPL
@@ -11,7 +11,7 @@ class endpoint_snom_3xx820m3_phone extends endpoint_snom_base {
 	public $family_line = '3xx820m3';
 	
 	function generate_config() {	
-		#SNOM likes lower case letters in its mac address
+		#SNOM likes UPPER case letters in its mac address
 		$this->mac = strtoupper($this->mac);		
 		
 		//snom(model).htm
