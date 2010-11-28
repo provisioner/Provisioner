@@ -18,8 +18,50 @@
 		<type>input</type>
 	</item>
 	<item>
-		<description>Function Keys (6-11)</description>
+		<description>Function Keys (0-11)</description>
 		<type>group</type>
+	</item>
+	<item>
+		<!-- Function Key 0 -->
+		<variable>$function_key_0</variable>
+		<default_value></default_value>
+		<description>Function Key #0</description>
+		<type>input</type>
+	</item>
+	<item>
+		<!-- Function Key 1 -->
+		<variable>$function_key_1</variable>
+		<default_value></default_value>
+		<description>Function Key #1</description>
+		<type>input</type>
+	</item>
+	<item>
+		<!-- Function Key 2 -->
+		<variable>$function_key_2</variable>
+		<default_value></default_value>
+		<description>Function Key #2</description>
+		<type>input</type>
+	</item>
+	<item>
+		<!-- Function Key 3 -->
+		<variable>$function_key_3</variable>
+		<default_value></default_value>
+		<description>Function Key #3</description>
+		<type>input</type>
+	</item>
+	<item>
+		<!-- Function Key 4 -->
+		<variable>$function_key_4</variable>
+		<default_value></default_value>
+		<description>Function Key #4</description>
+		<type>input</type>
+	</item>
+	<item>
+		<!-- Function Key 5 -->
+		<variable>$function_key_5</variable>
+		<default_value></default_value>
+		<description>Function Key #5</description>
+		<type>input</type>
 	</item>
 	<item>
 		<!-- Function Key 6 -->
