@@ -7,10 +7,12 @@
 		<user_pname idx="1" perm="">{$ext.line.1}</user_pname>
 		<user_pass idx="1" perm="">{$secret.line.1}</user_pass>
 		<user_idle_text idx="1" perm="">{$ext.line.1} {$displayname.line.1}</user_idle_text>
-        	<http_user perm="R">{$http_user}</http_user>
-        	<http_pass perm="R">{$http_pass}</http_pass>
-        	<admin_mode_password perm="R">{$admin_mode_password}</admin_mode_password>
-        	<admin_mode_password_confirm perm="R">{$admin_mode_password_confirm}</admin_mode_password_confirm>
+        <http_user perm="R">{$http_user}</http_user>
+        <http_pass perm="R">{$http_pass}</http_pass>
+        <admin_mode_password perm="R">{$admin_mode_password}</admin_mode_password>
+        <admin_mode_password_confirm perm="R">{$admin_mode_password_confirm}</admin_mode_password_confirm>
+		<firmware_status perm="R">tftp://{$server.ip.1}/{$mac}_firmware.xml</firmware_status>
+		<update_policy perm="">auto_update</update_policy>
 	</phone-settings>
 	<functionKeys>
 		<fkey idx="0" context="active" perm="">{$function_key_0}</fkey>
