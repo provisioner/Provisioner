@@ -29,6 +29,10 @@ class endpoint_snom_3xx820m3_phone extends endpoint_snom_base {
 		//write out general_custom.xml
 		$contents = $this->open_config_file("general_custom.xml");	
 		$final["general_custom.xml"] = $this->parse_config_file($contents, FALSE);
+
+		//write out (mac)_firmware.xml
+		$contents = $this->open_config_file("\$mac_firmware.xml");
+		$final[$this->mac."_firmware.xml"] = $this->parse_config_file($contents, FALSE);
 		
 		$this->protected_files = array('general_custom.xml');
 		
