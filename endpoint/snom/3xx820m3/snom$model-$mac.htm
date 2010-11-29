@@ -5,14 +5,30 @@
 		<user_realname idx="1" perm="">{$ext.line.1}</user_realname>
 		<user_name idx="1" perm="">{$ext.line.1}</user_name>
 		<user_pname idx="1" perm="">{$ext.line.1}</user_pname>
+		<user_mailbox idx="1" perm="">{$ext.line.1}</user_mailbox>
 		<user_pass idx="1" perm="">{$secret.line.1}</user_pass>
 		<user_idle_text idx="1" perm="">{$ext.line.1} {$displayname.line.1}</user_idle_text>
-        <http_user perm="R">{$http_user}</http_user>
-        <http_pass perm="R">{$http_pass}</http_pass>
-        <admin_mode_password perm="R">{$admin_mode_password}</admin_mode_password>
-        <admin_mode_password_confirm perm="R">{$admin_mode_password_confirm}</admin_mode_password_confirm>
+		<user_dtmf_info idx="1" perm="">{$ext.dtmf.1}</user_dtmf_info>
+		<http_user perm="R">{$http_user}</http_user>
+		<http_pass perm="R">{$http_pass}</http_pass>
+		<admin_mode_password perm="R">{$admin_mode_password}</admin_mode_password>
+		<admin_mode_password_confirm perm="R">{$admin_mode_password_confirm}</admin_mode_password_confirm>
 		<firmware_status perm="R">tftp://{$server.ip.1}/{$mac}_firmware.xml</firmware_status>
 		<update_policy perm="">auto_update</update_policy>
+		<gui_fkey1 perm="">{$gui_fkey1}</gui_fkey1>
+		<gui_fkey2 perm="">{$gui_fkey2}</gui_fkey2>
+		<gui_fkey3 perm="">{$gui_fkey3}</gui_fkey3>
+		<gui_fkey4 perm="">{$gui_fkey4}</gui_fkey4>
+		<dkey_help perm="">{$dkey_help}</dkey_help>
+		<dkey_snom perm="">{$dkey_snom}</dkey_snom>
+		<dkey_conf perm="">{$dkey_conf}</dkey_conf>
+		<dkey_transfer perm="">{$dkey_transfer}</dkey_transfer>
+		<dkey_hold perm="">{$dkey_hold}</dkey_hold>
+		<dkey_dnd perm="">{$dkey_dnd}</dkey_dnd>
+		<dkey_record perm="">{$dkey_record}</dkey_record>
+		<dkey_retrieve perm="">{$dkey_retrieve}</dkey_retrieve>
+		<dkey_redial perm="">{$dkey_redial}</dkey_redial>
+		<dkey_directory perm="">{$dkey_directory}</dkey_directory>
 	</phone-settings>
 	<functionKeys>
 		<fkey idx="0" context="active" perm="">{$function_key_0}</fkey>
@@ -28,7 +44,4 @@
 		<fkey idx="10" context="active" perm="">{$function_key_10}</fkey>
 		<fkey idx="11" context="active" perm="">{$function_key_11}</fkey>
 	</functionKeys>
-	<firmware-settings> 
-		<firmware perm="">{$firmware_url}</firmware>
-	</firmware-settings>
 </settings>
