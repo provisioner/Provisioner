@@ -17,16 +17,6 @@
 <rtp_port_end perm="">20000</rtp_port_end>
 <tone_scheme perm="">USA</tone_scheme>
 <block_url_dialing perm="">on</block_url_dialing>
-<dkey_help perm="">keyevent F_HELP</dkey_help>
-<dkey_snom perm="">dtmf ##70</dkey_snom>
-<dkey_conf perm="">keyevent F_CONFERENCE</dkey_conf>
-<dkey_transfer perm="">dtmf *2</dkey_transfer>
-<dkey_hold perm="">keyevent F_R</dkey_hold>
-<dkey_dnd perm="">keyevent F_DND</dkey_dnd>
-<dkey_record perm="">dtmf *1</dkey_record>
-<dkey_retrieve perm="">speed *97</dkey_retrieve>
-<dkey_redial perm="">keyevent F_REDIAL</dkey_redial>
-<dkey_directory perm="">keyevent F_ADR_BOOK</dkey_directory>
 <user_host idx="1" perm="">{$server.ip.1}</user_host>
 <user_outbound idx="1" perm="">{$server.ip.1}</user_outbound>
 <display_method perm="">display_number_name</display_method>
