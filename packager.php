@@ -42,7 +42,12 @@ $endpoint_max = max($endpoint_max);
 
 exec("tar zcf ".RELEASE_DIR."/provisioner_net.tgz --exclude .svn -C /chroot/home/tm1000/public_html/repo/ setup.php endpoint/base.php");
 
-$html = "======= Provisioner.net Library Releases ======= \n == Note: This page is edited by an outside script and can not be edited == \n<html>";
+$filename = "/chroot/home/tm1000/public_html/repo/commit_message.txt";
+$handle = fopen($filename, "r");
+$c_message = fread($handle, filesize($filename));
+fclose($handle);
+
+$html = "======= Provisioner.net Library Releases ======= \n == Note: This page is edited by an outside script and can not be edited == \n Latest Commit Message: //".$c_message."//\n<html>";
 
 $fp = fopen(MODULES_DIR.'/master.xml', 'w');
 $data = "";
@@ -67,6 +72,13 @@ $data .= "\n</data>";
 
 fwrite($fp, $data);
 fclose($fp);
+
+	echo "\t\t\tCreating JSON file of master.xml\n";
+	$xml = simplexml_load_file(MODULES_DIR."/master.xml");
+	$json = json_encode($xml);
+	$fp2 = fopen(MODULES_DIR."/master.json", 'w');
+	fwrite($fp2, $json);
+	fclose($fp2);
 
 copy(MODULES_DIR."/master.xml", RELEASE_DIR."/master.xml");
 
@@ -122,12 +134,32 @@ function create_brand_pkg($rawname,$version,$brand_name) {
 			$dir_iterator = new RecursiveDirectoryIterator($family_folders."/");
 			$iterator = new RecursiveIteratorIterator($dir_iterator, RecursiveIteratorIterator::SELF_FIRST);
 			
-			//foreach (glob($family_folders."/*") as $family_files) {
 			foreach ($iterator as $family_files) {
-				if((!is_dir($family_files)) && (dirname($family_files) != $family_folders."/firmware")) {
+				if((!is_dir($family_files)) && (dirname($family_files) != $family_folders."/firmware") && (dirname($family_files) != $family_folders."/json")) {
 					if(basename($family_files) != "family_data.xml") {
 						$files_array[$i] = filemtime($family_files);
 						echo "\t\tParsing File: ".basename($family_files)."|".$files_array[$i]."\n";
+						if(pathinfo($family_files, PATHINFO_EXTENSION) == "xml") {
+							if(file_exists($family_folders."/json/")) {
+								echo "\t\t\tCreating JSON file of ". basename($family_files) ."\n";
+								$xml = simplexml_load_file($family_files);
+								$json = json_encode($xml);
+								$fp2 = fopen($family_folders."/json/".pathinfo($family_files, PATHINFO_FILENAME).".json", 'w');
+								fwrite($fp2, $json);
+								fclose($fp2);
+							} else {
+								if (!mkdir($family_folders."/json/")) {
+								    echo "\t\t\tFailed to create JSON folder...\n";
+								} else {
+									echo "\t\t\tCreating JSON file of ". basename($family_files) ."\n";
+									$xml = simplexml_load_file($family_files);
+									$json = json_encode($xml);
+									$fp2 = fopen($family_folders."/json/".pathinfo($family_files, PATHINFO_FILENAME).".json", 'w');
+									fwrite($fp2, $json);
+									fclose($fp2);
+								}	
+							}
+						}
 						$i++;
 					}
 				} 
@@ -173,24 +205,44 @@ function create_brand_pkg($rawname,$version,$brand_name) {
 				$parsed = "<firmware_ver>".$firmware_max."</firmware_ver>";
 				$contents = preg_replace($pattern, $parsed, $contents, 1);
 				
-				$pattern = "/<firmware_md5>(.*?)<\/firmware_md5>/si";
-				$parsed = "<firmware_md5>".$firmware_md5."</firmware_md5>";
+				$pattern = "/<firmware_md5sum>(.*?)<\/firmware_md5sum>/si";
+				$parsed = "<firmware_md5sum>".$firmware_md5."</firmware_md5sum>";
 				$contents = preg_replace($pattern, $parsed, $contents, 1);
 
 				$pattern = "/<firmware_pkg>(.*?)<\/firmware_pkg>/si";
 				$parsed = "<firmware_pkg>".$family_xml['data']['directory']."_firmware.tgz</firmware_pkg>";
 				$contents = preg_replace($pattern, $parsed, $contents, 1);
+
 				
 				$fp = fopen($family_folders."/family_data.xml", 'w');
 				fwrite($fp, $contents);
 				fclose($fp);
+				
+				if(file_exists($family_folders."/family_data.xml")) {
+					echo "\t\t\tCreating JSON file of family_data.xml\n";
+					$xml = simplexml_load_file($family_folders."/family_data.xml");
+					$json = json_encode($xml);
+					$fp2 = fopen($family_folders."/family_data.json", 'w');
+					fwrite($fp2, $json);
+					fclose($fp2);
+				} else {
+					if (!mkdir($family_folders."/json/")) {
+					    echo "\t\t\tFailed to create JSON folder...\n";
+					} else {
+						echo "\t\t\tCreating JSON file of family_data.xml\n";
+						$xml = simplexml_load_file($family_folders."/family_data.xml");
+						$json = json_encode($xml);
+						$fp2 = fopen($family_folders."/family_data.json", 'w');
+						fwrite($fp2, $json);
+						fclose($fp2);
+					}	
+				}
 			}
 			
 			$z++;
 			
 			echo "\tComplete..Continuing..\n";
             
-			
 			$family_list .= "
 			<family>
 				<name>".$family_xml['data']['name']."</name>
@@ -218,8 +270,8 @@ function create_brand_pkg($rawname,$version,$brand_name) {
 	$parsed = "<family_list>".$family_list."\n\t\t</family_list>";
 	$contents = preg_replace($pattern, $parsed, $contents, 1);
 	
-	$pattern = "/<family_md5>(.*?)<\/family_md5>/si";
-	$parsed = "<family_md5>".$family_md5."\n\t\t</family_md5>";
+	$pattern = "/<md5sum>(.*?)<\/md5sum>/si";
+	$parsed = "<md5sum>".$family_md5."</md5sum>";
 	$contents = preg_replace($pattern, $parsed, $contents, 1);
 	
 	$pattern = "/<package>(.*?)<\/package>/si";
@@ -251,6 +303,14 @@ function create_brand_pkg($rawname,$version,$brand_name) {
 	$fp = fopen(MODULES_DIR."/".$rawname."/brand_data.xml", 'w');
 	fwrite($fp, $contents);
 	fclose($fp);
+	
+
+			echo "\t\t\tCreating JSON file of brand_data.xml\n";
+			$xml = simplexml_load_file(MODULES_DIR."/".$rawname."/brand_data.xml");
+			$json = json_encode($xml);
+			$fp2 = fopen(MODULES_DIR."/".$rawname."/brand_data.json", 'w');
+			fwrite($fp2, $json);
+			fclose($fp2);
 	
 	copy(MODULES_DIR."/".$rawname."/brand_data.xml", RELEASE_DIR."/".$rawname."/".$rawname.".xml");
 	
