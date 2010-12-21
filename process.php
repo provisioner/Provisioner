@@ -14,7 +14,6 @@ define('PROVISIONER_BASE', '');
 
 include('autoload.php');
 
-
 // Allow running this test from the command line
 if (isset($_POST['brand'])) {
     $brand = $_POST['brand'];
@@ -28,6 +27,9 @@ if (isset($_POST['family'])) {
     $family = $_POST['family'];
 } elseif (isset($_REQUEST['family'])) {
     $family = $_REQUEST['family'];
+} elseif (isset($_REQUEST['model_demo'])) {
+    $temp = explode('+',$_REQUEST['model_demo']);
+    $family = $temp[0];
 } else {
     $family = $argv[2];
 }
@@ -36,6 +38,9 @@ if (isset($_POST['model'])) {
     $model = $_POST['model'];
 } elseif (isset($_REQUEST['model'])) {
 	$model = $_REQUEST['model'];
+} elseif (isset($_REQUEST['model_demo'])) {
+    $temp = explode('+',$_REQUEST['model_demo']);
+    $model = $temp[1];
 } else {
     $model = $argv[3];
 }
@@ -73,11 +78,15 @@ $endpoint->server[2]['port'] = 7000;
 //$endpoint->config_files_override['$mac.cfg'] = "{\$srvip}\n{\$admin_pass|0}\n{\$test.line.1}";
 
 //Pretend we have three lines, we could just have one line or 20...whatever the phone supports
-$endpoint->lines[1] = array('ext' => '103', 'secret' => 'blah', 'displayname' => 'Joe Blow');
-$endpoint->lines[1]['options'] = array('display_name' => 'buddy');
+if(!isset($_REQUEST['secret'])) {
+    $endpoint->lines[1] = array('ext' => '103', 'secret' => 'blah', 'displayname' => 'Joe Blow');
+    $endpoint->lines[1]['options'] = array('display_name' => 'buddy');
 
-$endpoint->lines[2] = array('ext' => '104', 'secret' => 'blah4', 'displayname' => 'Display Name');
-$endpoint->lines[3] = array('ext' => '105', 'secret' => 'blah5', 'displayname' => 'Other Account');
+    $endpoint->lines[2] = array('ext' => '104', 'secret' => 'blah4', 'displayname' => 'Display Name');
+    $endpoint->lines[3] = array('ext' => '105', 'secret' => 'blah5', 'displayname' => 'Other Account');
+} else {
+    $endpoint->lines[1] = array('ext' => $_REQUEST['ext'], 'secret' => $_REQUEST['secret'], 'displayname' => $_REQUEST['displayname']);
+}
 
 
 //Set Variables according to the template_data files included. We can include different template.xml files within family_data.xml also one can create
