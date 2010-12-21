@@ -261,7 +261,7 @@ abstract class endpoint_base {
                 while ($i <= $line_total) {	
                     if (isset($this->lines[$i]['secret'])) {
                         $parsed_2 = $this->replace_static_variables($matches[1], $i, TRUE);
-                        $parsed .= $this->parse_config_values($parsed_2, TRUE, $i);
+                        $parsed .= $this->parse_config_values($parsed_2, FALSE, $i);
                         //echo $parsed;
                     }
                     $i++;
@@ -404,10 +404,24 @@ abstract class endpoint_base {
                 if (!$keep_unknown) {
                     //read default template values here, blank unknowns or arrays (which are blanks anyways)
                     $key1 = $this->arraysearchrecursive('$' . $variables, $template_data, 'variable');
+                    $default_hard_value = NULL;
+
+                    //Check for looping statements. They are all setup logically the same. Ergo if the first multi-dimensional array has a variable key its not a loop.
+                    if($key1['1'] == 'variable') {
+                        $default_hard_value = $this->fix_single_array_keys($template_data[$key1[0]]['default_value']);
+                    } elseif($key1['4'] == 'variable') {
+                        
+                        //replace count variable with line number
+                        $template_data[$key1[0]][$key1[1]][$key1[2]][$key1[3]]['default_value'] = str_replace('{$count}', $specific_line, $template_data[$key1[0]][$key1[1]][$key1[2]][$key1[3]]['default_value']);
+                        $template_data[$key1[0]][$key1[1]][$key1[2]][$key1[3]]['default_value'] = str_replace('{$number}', $specific_line, $template_data[$key1[0]][$key1[1]][$key1[2]][$key1[3]]['default_value']);
+
+                        $default_hard_value = $this->replace_static_variables($this->fix_single_array_keys($template_data[$key1[0]][$key1[1]][$key1[2]][$key1[3]]['default_value']));
+                    }
+
                     if (isset($default)) {
                         $file_contents = str_replace('{$' . $original_variable . '|' . $default . '}', $default, $file_contents);
-                    } elseif ((isset($template_data[$key1[0]]['default_value'])) AND (!is_array($template_data[$key1[0]]['default_value']))) {
-                        $file_contents = str_replace('{$' . $original_variable . '}', $template_data[$key1[0]]['default_value'], $file_contents);
+                    } elseif (isset($default_hard_value)) {
+                        $file_contents = str_replace('{$' . $original_variable . '}', $default_hard_value, $file_contents);
                     } else {
                         $file_contents = str_replace('{$' . $original_variable . '}', "", $file_contents);
                     }
@@ -539,14 +553,34 @@ abstract class endpoint_base {
      * @return mixed
      */
     function fix_single_array_keys($array) {
+        if (!is_array($array))
+        {
+            return $array;
+        }
+
+        if((empty($array[0])) AND (!empty($array)))
+        {
+            $array_n[0] = $array;
+
+            return($array_n);
+        }
+
+        return empty($array) ? '' : $array;
+
+        /*
         if((empty($array[0])) AND (!empty($array))) {
             $array_n[0] = $array;
             return($array_n);
         } elseif(!empty($array)) {
             return($array);
+        //This is so stupid?! PHP gets confused.
+        } elseif($array == '0') {
+            return($array);
         } else {
             return("");
         }
+         * *
+         */
     }
     
     /**

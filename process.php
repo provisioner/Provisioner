@@ -7,6 +7,9 @@
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
  */
+echo "<pre>";
+            error_reporting(E_ALL);
+            ini_set('display_errors', 1);
 define('PROVISIONER_BASE', '');
 
 include('autoload.php');
@@ -15,29 +18,29 @@ include('autoload.php');
 // Allow running this test from the command line
 if (isset($_POST['brand'])) {
     $brand = $_POST['brand'];
-} elseif (isset($_REQUEST['brand_list'])) {
-        $brand = $_REQUEST['brand_list'];
+} elseif (isset($_REQUEST['brand'])) {
+        $brand = $_REQUEST['brand'];
 } else {
     $brand = $argv[1];
 }
 
 if (isset($_POST['family'])) {
     $family = $_POST['family'];
-} elseif (isset($_REQUEST['model_list'])) {
-        $temp = explode('+',$_REQUEST['model_list']);
-		$family = $temp[0];
+} elseif (isset($_REQUEST['family'])) {
+    $family = $_REQUEST['family'];
 } else {
     $family = $argv[2];
 }
 
 if (isset($_POST['model'])) {
     $model = $_POST['model'];
-} elseif (isset($_REQUEST['model_list'])) {
-    $temp = explode('+',$_REQUEST['model_list']);
-	$model = $temp[1];
+} elseif (isset($_REQUEST['model'])) {
+	$model = $_REQUEST['model'];
 } else {
     $model = $argv[3];
 }
+
+date_default_timezone_set('America/Los_Angeles');
 
 $class = "endpoint_" . $brand . "_" . $family . '_phone';
 
@@ -46,6 +49,8 @@ $endpoint = new $class();
 //have to because of versions less than php5.3
 $endpoint->brand_name = $brand;
 $endpoint->family_line = $family;
+
+$endpoint->processor_info = "Web Provisioner 1.0";
 
 //Mac Address
 $endpoint->mac = '000B820D0057';
@@ -56,10 +61,11 @@ $endpoint->model = $model;
 //Timezone
 $endpoint->timezone = 'GMT-11:00';
 
-//Server IP
+//Server IP Address & Port
 $endpoint->server[1]['ip'] = "10.10.10.10";
 $endpoint->server[1]['port'] = 5060;
 
+//Backup Server Address
 $endpoint->server[2]['ip'] = "20.20.20.20";
 $endpoint->server[2]['port'] = 7000;
 
@@ -67,7 +73,9 @@ $endpoint->server[2]['port'] = 7000;
 //$endpoint->config_files_override['$mac.cfg'] = "{\$srvip}\n{\$admin_pass|0}\n{\$test.line.1}";
 
 //Pretend we have three lines, we could just have one line or 20...whatever the phone supports
-$endpoint->lines[1] = array('ext' => '103', 'secret' => 'blah', 'displayname' => 'Joe Blow', 'vmail' => 'whee');
+$endpoint->lines[1] = array('ext' => '103', 'secret' => 'blah', 'displayname' => 'Joe Blow');
+$endpoint->lines[1]['options'] = array('display_name' => 'buddy');
+
 $endpoint->lines[2] = array('ext' => '104', 'secret' => 'blah4', 'displayname' => 'Display Name');
 $endpoint->lines[3] = array('ext' => '105', 'secret' => 'blah5', 'displayname' => 'Other Account');
 
@@ -83,7 +91,7 @@ $endpoint->options =    array("admin_pass" =>  "password","main_icon" => "Main I
 // Because every brand is an extension (eventually) of endpoint, you know this function will exist regardless of who it is
 $returned_data = $endpoint->generate_config();
 
-if((isset($_POST['brand'])) OR (isset($_REQUEST['brand_list']))) {
+if((isset($_POST['brand'])) OR (isset($_REQUEST['brand']))) {
     foreach($returned_data as $key => $files) {
         echo 'File:'.$key;
         if(in_array($key, $endpoint->protected_files)){
