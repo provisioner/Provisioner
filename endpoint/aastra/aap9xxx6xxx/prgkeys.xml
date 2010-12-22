@@ -1,66 +1,72 @@
 <template_data>
-	<item>
-		<description>Programmable Keys (9143i/6753i/6755i)</description>
-		<type>loop</type>
-		<loop_start>1</loop_start>
-		<loop_end>7</loop_end>
-		<data>
-			<item>
-				<variable>$prgkey_type</variable>
-				<default_value>empty</default_value>
-                <category>keys</category>
-				<description>Programmable key {$count} Type</description>
-				<type>list</type>
-				<data>
-                        <text>Empty</text>
-                        <value>empty</value>
-                </data>
+    <category>
+        <name>keys</name>
+        <subcategory>
+            <name>Programmable Keys (9143i/6753i/6755i)</name>
+            <item>
+                <description>Programmable Keys (9143i/6753i/6755i)</description>
+                <type>loop</type>
+                <loop_start>1</loop_start>
+                <loop_end>7</loop_end>
                 <data>
-                        <text>Services</text>
-                        <value>services</value>
+                    <item>
+                        <variable>$prgkey_type</variable>
+                        <default_value>empty</default_value>
+                        <category>keys</category>
+                        <description>Programmable key {$count} Type</description>
+                        <type>list</type>
+                        <data>
+                            <text>Empty</text>
+                            <value>empty</value>
+                        </data>
+                        <data>
+                            <text>Services</text>
+                            <value>services</value>
+                        </data>
+                        <data>
+                            <text>Speed Dial</text>
+                            <value>speeddial</value>
+                        </data>
+                        <data>
+                            <text>Line</text>
+                            <value>line</value>
+                        </data>
+                        <data>
+                            <text>BLF</text>
+                            <value>blf</value>
+                        </data>
+                        <data>
+                            <text>List</text>
+                            <value>list</value>
+                        </data>
+                        <data>
+                            <text>Do Not Disturb</text>
+                            <value>dnd</value>
+                        </data>
+                        <data>
+                            <text>XML URL</text>
+                            <value>xml</value>
+                        </data>
+                        <data>
+                            <text>Park</text>
+                            <value>park</value>
+                        </data>
+                        <data>
+                            <text>Directory</text>
+                            <value>directory</value>
+                        </data>
+                    </item>
+                    <item>
+                        <variable>$prgkey_value</variable>
+                        <default_value></default_value>
+                        <description>Programmable Key {$count} Value</description>
+                        <type>input</type>
+                    </item>
+                    <item>
+                        <type>break</type>
+                    </item>
                 </data>
-                <data>
-                        <text>Speed Dial</text>
-                        <value>speeddial</value>
-                </data>
-                <data>
-                        <text>Line</text>
-                        <value>line</value>
-                </data>
-                <data>
-                        <text>BLF</text>
-                        <value>blf</value>
-                </data>
-                <data>
-                        <text>List</text>
-                        <value>list</value>
-                </data>
-                <data>
-                        <text>Do Not Disturb</text>
-                        <value>dnd</value>
-                </data>
-                <data>
-                        <text>XML URL</text>
-                        <value>xml</value>
-                </data>
-                <data>
-                        <text>Park</text>
-                        <value>park</value>
-                </data>
-                <data>
-                        <text>Directory</text>
-                        <value>directory</value>
-                </data>
-			</item>
-			<item>
-                <variable>$prgkey_value</variable>
-                <default_value></default_value>
-                <description>Programmable Key {$count} Value</description>
-                <type>input</type>
-			</item>
-			<item>
-				<type>break</type>
-			</item>
-		</data>
-	</item>
+            </item>
+        </subcategory>
+    </category>
 </template_data>
