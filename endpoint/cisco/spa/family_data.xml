@@ -15,6 +15,7 @@
 		<id>1</id>
 		<template_data>
 			<files>template_data.xml</files>
+                        <files>keys.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -23,6 +24,7 @@
 		<id>2</id>
 		<template_data>
 			<files>template_data.xml</files>
+                        <files>keys.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -31,6 +33,7 @@
 		<id>3</id>
 		<template_data>
 			<files>template_data.xml</files>
+                        <files>keys.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -39,6 +42,7 @@
 		<id>4</id>
 		<template_data>
 			<files>template_data.xml</files>
+                        <files>keys.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -47,6 +51,7 @@
 		<id>5</id>
 		<template_data>
 			<files>template_data.xml</files>
+                        <files>keys.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -55,6 +60,7 @@
 		<id>6</id>
 		<template_data>
 			<files>template_data.xml</files>
+                        <files>keys.xml</files>
 		</template_data>
 	</model_list>
 </data>

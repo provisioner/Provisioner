@@ -3,8 +3,9 @@
 	<id>1</id>
 	<version>1.5</version>
 	<directory>gxp</directory>
-	<firmware_ver>1.2.2.26</firmware_ver>
-	<firmware_pkg>Release_BT200_GXP_1.2.2.26.zip</firmware_pkg>
+	<firmware_ver>1290334189</firmware_ver>
+	<firmware_md5sum>146d8f834d088a908e2a5d0de5e7f1fd</firmware_md5sum>
+	<firmware_pkg>gxp_firmware.tgz</firmware_pkg>
 	<description>Use Grandstream Encrypted Compiler By Default</description>
 	<configuration_files>$mac.cfg</configuration_files>
 	<changelog></changelog>
@@ -14,6 +15,7 @@
 		<id>1</id>
 		<template_data>
 			<files>template_data.xml</files>
+                        <files>keys.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -22,6 +24,7 @@
 		<id>2</id>
 		<template_data>
 			<files>template_data.xml</files>
+                        <files>keys.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -30,6 +33,7 @@
 		<id>3</id>
 		<template_data>
 			<files>template_data.xml</files>
+                        <files>keys.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -38,6 +42,7 @@
 		<id>4</id>
 		<template_data>
 			<files>template_data.xml</files>
+                        <files>keys.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -46,6 +51,7 @@
 		<id>5</id>
 		<template_data>
 			<files>template_data.xml</files>
+                        <files>keys.xml</files>
 		</template_data>
 	</model_list>
 </data>

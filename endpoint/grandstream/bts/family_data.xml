@@ -3,8 +3,9 @@
 	<id>2</id>
 	<version>1.0</version>
 	<directory>bts</directory>
-	<firmware_ver>1.2.2.26</firmware_ver>
-	<firmware_pkg>Release_BT200_GXP_1.2.2.26.zip</firmware_pkg>
+	<firmware_ver>1290334299</firmware_ver>
+	<firmware_md5sum>147177492069ceceb843f2af379899ab</firmware_md5sum>
+	<firmware_pkg>bts_firmware.tgz</firmware_pkg>
 	<description>Fixed Timezone Issues + Use Grandstream Encrypted Compiler By Default</description>
 	<configuration_files>$mac.cfg</configuration_files>
 	<changelog></changelog>
