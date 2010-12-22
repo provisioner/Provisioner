@@ -321,27 +321,51 @@ abstract class endpoint_base {
             foreach ($template_data_list['files'] as $files) {
                 if (file_exists($this->root_dir.self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $files)) {
                     $template_data_multi = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $files);
-                    $template_data_multi = $this->fix_single_array_keys($template_data_multi['template_data']['item']);
-                    $template_data = array_merge($template_data, $template_data_multi);
+                    $template_data_multi = $this->fix_single_array_keys($template_data_multi['template_data']['category']);
+                    foreach($template_data_multi as $categories) {
+                        $subcats = $this->fix_single_array_keys($categories['subcategory']);
+                        foreach($subcats as $subs) {
+                            $items = $this->fix_single_array_keys($subs['item']);
+                            $template_data = array_merge($template_data, $items);
+                        }
+                    } 
                 }
             }
         } else {
             if (file_exists($this->root_dir.self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $template_data_list['files'])) {
                 $template_data_multi = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $template_data_list['files']);
-                $template_data = $this->fix_single_array_keys($template_data_multi['template_data']['item']);
+                foreach($template_data_multi as $categories) {
+                    $subcats = $this->fix_single_array_keys($categories['subcategory']);
+                    foreach($subcats as $subs) {
+                        $items = $this->fix_single_array_keys($subs['item']);
+                        $template_data = array_merge($template_data, $items);
+                    }
+                }
             }
         }
         
         if (file_exists($this->root_dir.self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_custom.xml")) {
             $template_data_multi = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_custom.xml");
             $template_data_multi = $this->fix_single_array_keys($template_data_multi['template_data']['item']);
-            $template_data = array_merge($template_data, $template_data_multi);
+            foreach($template_data_multi as $categories) {
+                $subcats = $this->fix_single_array_keys($categories['subcategory']);
+                foreach($subcats as $subs) {
+                    $items = $this->fix_single_array_keys($subs['item']);
+                    $template_data = array_merge($template_data, $items);
+                }
+            }
         }
         
         if (file_exists($this->root_dir.self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_" . $this->model . "_custom.xml")) {
             $template_data_multi = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_" . $this->model . "_custom.xml");
             $template_data_multi = $this->fix_single_array_keys($template_data_multi['template_data']['item']);
-            $template_data = array_merge($template_data, $template_data_multi);
+            foreach($template_data_multi as $categories) {
+                $subcats = $this->fix_single_array_keys($categories['subcategory']);
+                foreach($subcats as $subs) {
+                    $items = $this->fix_single_array_keys($subs['item']);
+                    $template_data = array_merge($template_data, $items);
+                }
+            }
         }
         
         //Find all matched variables in the text file between "{$" and "}"
