@@ -1,74 +1,76 @@
 <template_data>
-	<item>
-		<description>General Settings</description>
-		<type>group</type>
-	</item>
-	<item>
-		<category>general</category>
-		<variable>$contact_list_address</variable>
-		<default_value></default_value>
-		<description>Contact List URL</description>
-		<type>input</type>
-	</item>
-	<item>
-		<type>break</type>
-	</item>
-	<item>
-		<category>handset</category>
-		<variable>$ringtone_url</variable>
-		<default_value></default_value>
-		<description>Ringtone URL</description>
-		<type>input</type>
-	</item>
-	<item>
-		<type>break</type>
-	</item>
-	<item>
-		<category>general</category>
-		<variable>$remote_phone_book_name</variable>
-		<default_value></default_value>
-		<description>Remote Phone Book Name</description>
-		<type>input</type>
-	</item>
-	<item>
-		<category>general</category>
-		<variable>$remote_phone_book_url</variable>
-		<default_value></default_value>
-		<description>Remote Phone Book URL</description>
-		<type>input</type>
-	</item>
-	<item>
-		<type>break</type>
-	</item>
-	<item>
-		<category>display</category>
-		<variable>$logo_url</variable>
-		<default_value></default_value>
-		<description>Logo URL</description>
-		<type>input</type>
-	</item>
-	<item>
-		<type>break</type>
-	</item>
-	<item>
-		<category>system</category>
-		<variable>$firmware_server</variable>
-		<default_value>{$server.ip.1}</default_value>
-		<description>Firmware Server IP</description>
-		<type>input</type>
-	</item>
-	<item>
-		<category>system</category>
-		<variable>$firmware_name</variable>
-		<default_value></default_value>
-		<description>Firmware File Name</description>
-		<type>input</type>
-	</item>
-	<item>
-		<category>system</category>
-		<variable>$call_pickup</variable>
-		<default_value>**</default_value>
-		<description>Call Pickup Value (For BLF)</description>
-		<type>input</type>
-	</item>
+    <category>
+        <name>general</name>
+        <subcategory>
+            <name>Internet Port (WAN)</name>
+            <item>
+                <category>general</category>
+                <variable>$contact_list_address</variable>
+                <default_value></default_value>
+                <description>Contact List URL</description>
+                <type>input</type>
+            </item>
+            <item>
+                <type>break</type>
+            </item>
+            <item>
+                <category>handset</category>
+                <variable>$ringtone_url</variable>
+                <default_value></default_value>
+                <description>Ringtone URL</description>
+                <type>input</type>
+            </item>
+            <item>
+                <type>break</type>
+            </item>
+            <item>
+                <category>general</category>
+                <variable>$remote_phone_book_name</variable>
+                <default_value></default_value>
+                <description>Remote Phone Book Name</description>
+                <type>input</type>
+            </item>
+            <item>
+                <category>general</category>
+                <variable>$remote_phone_book_url</variable>
+                <default_value></default_value>
+                <description>Remote Phone Book URL</description>
+                <type>input</type>
+            </item>
+            <item>
+                <type>break</type>
+            </item>
+            <item>
+                <category>display</category>
+                <variable>$logo_url</variable>
+                <default_value></default_value>
+                <description>Logo URL</description>
+                <type>input</type>
+            </item>
+            <item>
+                <type>break</type>
+            </item>
+            <item>
+                <category>system</category>
+                <variable>$firmware_server</variable>
+                <default_value>{$server.ip.1}</default_value>
+                <description>Firmware Server IP</description>
+                <type>input</type>
+            </item>
+            <item>
+                <category>system</category>
+                <variable>$firmware_name</variable>
+                <default_value></default_value>
+                <description>Firmware File Name</description>
+                <type>input</type>
+            </item>
+            <item>
+                <category>system</category>
+                <variable>$call_pickup</variable>
+                <default_value>**</default_value>
+                <description>Call Pickup Value (For BLF)</description>
+                <type>input</type>
+            </item>
+        </subcategory>
+    </category>
 </template_data>
