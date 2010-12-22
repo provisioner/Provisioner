@@ -1,90 +1,95 @@
 <template_data>
-    <item>
-        <description>Soft Keys (1-4)</description>
-        <type>loop</type>
-        <loop_start>1</loop_start>
-        <loop_end>4</loop_end>
-        <data>
+    <category>
+        <name>keys</name>
+        <subcategory>
+            <name>basic</name>
             <item>
-                <variable>$softkey_type</variable>
-                <default_value>28</default_value>
-                <description>Soft Key {$count} Type</description>
-                <type>list</type>
+                <description>Soft Keys (1-4)</description>
+                <type>loop</type>
+                <loop_start>1</loop_start>
+                <loop_end>4</loop_end>
                 <data>
-                    <text>N/A</text>
-                    <value>0</value>
-                </data>
-                <data>
-                    <text>Forward</text>
-                    <value>2</value>
-                </data>
-                <data>
-                    <text>Do Not Disturb</text>
-                    <value>5</value>
-                </data>
-                <data>
-                    <text>Redial</text>
-                    <value>6</value>
-                </data>
-                <data>
-                    <text>Call Return</text>
-                    <value>7</value>
-                </data>
-                <data>
-                    <text>SMS</text>
-                    <value>8</value>
-                </data>
-                <data>
-                    <text>Call Pickup</text>
-                    <value>9</value>
-                </data>
-                <data>
-                    <text>Speed Dial</text>
-                    <value>13</value>
-                </data>
-                <data>
-                    <text>Intercom</text>
-                    <value>14</value>
-                </data>
-                <data>
-                    <text>XML Phonebook</text>
-                    <value>22</value>
-                </data>
-                <data>
-                    <text>History</text>
-                    <value>28</value>
-                </data>
-                <data>
-                    <text>Directory</text>
-                    <value>29</value>
-                </data>
-                <data>
-                    <text>Menu</text>
-                    <value>30</value>
-                </data>
-                <data>
-                    <text>Status</text>
-                    <value>33</value>
-                </data>
-                <data>
-                    <text>SwitchAccount</text>
-                    <value>31</value>
-                </data>
-                <data>
-                    <text>NewSMS</text>
-                    <value>32</value>
+                    <item>
+                        <variable>$softkey_type</variable>
+                        <default_value>28</default_value>
+                        <description>Soft Key {$count} Type</description>
+                        <type>list</type>
+                        <data>
+                            <text>N/A</text>
+                            <value>0</value>
+                        </data>
+                        <data>
+                            <text>Forward</text>
+                            <value>2</value>
+                        </data>
+                        <data>
+                            <text>Do Not Disturb</text>
+                            <value>5</value>
+                        </data>
+                        <data>
+                            <text>Redial</text>
+                            <value>6</value>
+                        </data>
+                        <data>
+                            <text>Call Return</text>
+                            <value>7</value>
+                        </data>
+                        <data>
+                            <text>SMS</text>
+                            <value>8</value>
+                        </data>
+                        <data>
+                            <text>Call Pickup</text>
+                            <value>9</value>
+                        </data>
+                        <data>
+                            <text>Speed Dial</text>
+                            <value>13</value>
+                        </data>
+                        <data>
+                            <text>Intercom</text>
+                            <value>14</value>
+                        </data>
+                        <data>
+                            <text>XML Phonebook</text>
+                            <value>22</value>
+                        </data>
+                        <data>
+                            <text>History</text>
+                            <value>28</value>
+                        </data>
+                        <data>
+                            <text>Directory</text>
+                            <value>29</value>
+                        </data>
+                        <data>
+                            <text>Menu</text>
+                            <value>30</value>
+                        </data>
+                        <data>
+                            <text>Status</text>
+                            <value>33</value>
+                        </data>
+                        <data>
+                            <text>SwitchAccount</text>
+                            <value>31</value>
+                        </data>
+                        <data>
+                            <text>NewSMS</text>
+                            <value>32</value>
+                        </data>
+                    </item>
+                    <item>
+                        <variable>$softkey_value</variable>
+                        <default_value></default_value>
+                        <description>Soft Key {$count} Value</description>
+                        <type>input</type>
+                    </item>
+                    <item>
+                        <type>break</type>
+                    </item>
                 </data>
             </item>
-            <item>
-                <!-- Web Administration Password -->
-                <variable>$softkey_value</variable>
-                <default_value></default_value>
-                <description>Soft Key {$count} Value</description>
-                <type>input</type>
-            </item>
-            <item>
-                <type>break</type>
-            </item>
-        </data>
-    </item>
+        </subcategory>
+    </category>
 </template_data>
