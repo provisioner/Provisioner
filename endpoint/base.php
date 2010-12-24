@@ -334,6 +334,7 @@ abstract class endpoint_base {
         } else {
             if (file_exists($this->root_dir.self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $template_data_list['files'])) {
                 $template_data_multi = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $template_data_list['files']);
+				$template_data_multi = $this->fix_single_array_keys($template_data_multi['template_data']['category']);
                 foreach($template_data_multi as $categories) {
                     $subcats = $this->fix_single_array_keys($categories['subcategory']);
                     foreach($subcats as $subs) {
@@ -346,7 +347,7 @@ abstract class endpoint_base {
         
         if (file_exists($this->root_dir.self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_custom.xml")) {
             $template_data_multi = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_custom.xml");
-            $template_data_multi = $this->fix_single_array_keys($template_data_multi['template_data']['item']);
+            $template_data_multi = $this->fix_single_array_keys($template_data_multi['template_data']['category']);
             foreach($template_data_multi as $categories) {
                 $subcats = $this->fix_single_array_keys($categories['subcategory']);
                 foreach($subcats as $subs) {
@@ -358,7 +359,7 @@ abstract class endpoint_base {
         
         if (file_exists($this->root_dir.self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_" . $this->model . "_custom.xml")) {
             $template_data_multi = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_" . $this->model . "_custom.xml");
-            $template_data_multi = $this->fix_single_array_keys($template_data_multi['template_data']['item']);
+            $template_data_multi = $this->fix_single_array_keys($template_data_multi['template_data']['category']);
             foreach($template_data_multi as $categories) {
                 $subcats = $this->fix_single_array_keys($categories['subcategory']);
                 foreach($subcats as $subs) {
