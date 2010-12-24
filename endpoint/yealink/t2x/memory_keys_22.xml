@@ -3,189 +3,137 @@
         <name>keys</name>
         <subcategory>
             <name>basic</name>
-            <item>
-                <description>Line Keys (1-3)</description>
-                <type>loop</type>
-                <loop_start>1</loop_start>
-                <loop_end>3</loop_end>
-                <data>
-                    <item>
-                        <variable>$linekey_type</variable>
-                        <default_value>15</default_value>
-                        <description>Line Key {$count} Type</description>
-                        <type>list</type>
-                        <data>
-                            <text>Speed Dial</text>
-                            <value>13</value>
-                            <disable>$linekey_mode_{$count},$linekey_pickup_{$count}</disable>
-                            <enable>$linekey_line_{$count},$linekey_extension_{$count}</enable>
-                        </data>
-                        <data>
-                            <text>Key Event</text>
-                            <value>13</value>
-                            <disable>$linekey_line_{$count},$linekey_extension_{$count},$linekey_pickup_{$count}</disable>
-                            <enable>$linekey_mode_{$count}</enable>
-                        </data>
-                        <data>
-                            <text>Intercom</text>
-                            <value>14</value>
-                            <disable>$linekey_mode_{$count},$linekey_pickup_{$count}</disable>
-                            <enable>$linekey_line_{$count},$linekey_extension_{$count}</enable>
-                        </data>
-                        <data>
-                            <text>XML Browser</text>
-                            <value>14</value>
-                            <disable>$linekey_mode_{$count},$linekey_pickup_{$count}</disable>
-                            <enable>$linekey_line_{$count},$linekey_extension_{$count}</enable>
-                        </data>
-                        <data>
-                            <text>BLF</text>
-                            <value>14</value>
-                            <disable>$linekey_mode_{$count}</disable>
-                            <enable>$linekey_line_{$count},$linekey_extension_{$count},$linekey_pickup_{$count}</enable>
-                        </data>
-                        <data>
-                            <text>Line</text>
-                            <value>15</value>
-                            <disable>$linekey_mode_{$count},$linekey_extension_{$count},$linekey_pickup_{$count}</disable>
-                            <enable>$linekey_line_{$count}</enable>
-                        </data>
-                        <data>
-                            <text>URL</text>
-                            <value>17</value>
-                            <disable>$linekey_line_{$count},$linekey_mode_{$count},$linekey_pickup_{$count}</disable>
-                            <enable>$linekey_extension_{$count}</enable>
-                        </data>
-                    </item>
-                    <item>
-                        <variable>$linekey_mode</variable>
-                        <default_value>1</default_value>
-                        <description>Line Key {$count} Event Mode</description>
-                        <type>list</type>
-                        <data>
-                            <text>Conference</text>
-                            <value>1</value>
-                        </data>
-                        <data>
-                            <text>Forward</text>
-                            <value>2</value>
-                        </data>
-                        <data>
-                            <text>Transfer</text>
-                            <value>3</value>
-                        </data>
-                        <data>
-                            <text>Hold</text>
-                            <value>4</value>
-                        </data>
-                        <data>
-                            <text>Do Not Disturb</text>
-                            <value>5</value>
-                        </data>
-                        <data>
-                            <text>Redial</text>
-                            <value>6</value>
-                        </data>
-                        <data>
-                            <text>Call Return</text>
-                            <value>7</value>
-                        </data>
-                        <data>
-                            <text>SMS</text>
-                            <value>8</value>
-                        </data>
-                        <data>
-                            <text>Call Pickup</text>
-                            <value>9</value>
-                        </data>
-                        <data>
-                            <text>Call Park</text>
-                            <value>10</value>
-                        </data>
-                        <data>
-                            <text>DTMF</text>
-                            <value>11</value>
-                        </data>
-                        <data>
-                            <text>Voicemail</text>
-                            <value>12</value>
-                        </data>
-                        <data>
-                            <text>Speed Dial</text>
-                            <value>13</value>
-                        </data>
-                        <data>
-                            <text>Intercom</text>
-                            <value>14</value>
-                        </data>
-                        <data>
-                            <text>BLF</text>
-                            <value>16</value>
-                        </data>
-                        <data>
-                            <text>URL</text>
-                            <value>17</value>
-                        </data>
-                        <data>
-                            <text>Group Listing</text>
-                            <value>18</value>
-                        </data>
-                        <data>
-                            <text>Public Hold</text>
-                            <value>19</value>
-                        </data>
-                        <data>
-                            <text>Private Hold</text>
-                            <value>20</value>
-                        </data>
-                        <data>
-                            <text>Shared Line</text>
-                            <value>21</value>
-                        </data>
-                        <data>
-                            <text>XML Phonebook</text>
-                            <value>22</value>
-                        </data>
-                    </item>
-                    <item>
-                        <variable>$linekey_line</variable>
-                        <default_value></default_value>
-                        <description>Line Key {$count} Line</description>
-                        <type>list</type>
-                        <data>
-                            <text>Auto</text>
-                            <value>0</value>
-                        </data>
-                        <data>
-                            <text>Line 1</text>
-                            <value>1</value>
-                        </data>
-                        <data>
-                            <text>Line 2</text>
-                            <value>2</value>
-                        </data>
-                        <data>
-                            <text>Line 3</text>
-                            <value>3</value>
-                        </data>
-                    </item>
-                    <item>
-                        <variable>$linekey_extension</variable>
-                        <default_value></default_value>
-                        <description>Line Key {$count} Extension</description>
-                        <type>input</type>
-                    </item>
-                    <item>
-                        <variable>$linekey_pickup</variable>
-                        <default_value></default_value>
-                        <description>Line Key {$count} Pickup Number</description>
-                        <type>input</type>
-                    </item>
-                    <item>
-                        <type>break</type>
-                    </item>
-                </data>
-            </item>
+				<item>
+					<description>Side Keys (1-10)</description>
+					<type>loop</type>
+					<loop_start>1</loop_start>
+					<loop_end>10</loop_end>
+					<data>
+						<item>
+							<variable>$memkey_type</variable>
+							<default_value>0</default_value>
+			                <category>keys</category>
+							<description>Side Key {$count} Type</description>
+							<type>list</type>
+							<data>
+								<text>N/A</text>
+								<value>0</value>
+							</data>
+							<data>
+								<text>Conference</text>
+								<value>1</value>
+							</data>
+							<data>
+								<text>Forward</text>
+								<value>2</value>
+							</data>
+							<data>
+								<text>Transfer</text>
+								<value>3</value>
+							</data>
+							<data>
+								<text>Hold</text>
+								<value>4</value>
+							</data>
+							<data>
+								<text>Do Not Disturb</text>
+								<value>5</value>
+							</data>
+							<data>
+								<text>Redial</text>
+								<value>6</value>
+							</data>
+							<data>
+								<text>Call Return</text>
+								<value>7</value>
+							</data>
+							<data>
+								<text>SMS</text>
+								<value>8</value>
+							</data>
+							<data>
+								<text>Call Pickup</text>
+								<value>9</value>
+							</data>
+							<data>
+								<text>Call Park</text>
+								<value>10</value>
+							</data>
+							<data>
+								<text>DTMF</text>
+								<value>11</value>
+							</data>
+							<data>
+								<text>Voicemail</text>
+								<value>12</value>
+							</data>
+							<data>
+								<text>Speed Dial</text>
+								<value>13</value>
+							</data>
+							<data>
+								<text>Intercom</text>
+								<value>14</value>
+							</data>
+							<data>
+								<text>Line(for line key only)</text>
+								<value>15</value>
+							</data>
+							<data>
+								<text>BLF</text>
+								<value>16</value>
+							</data>
+							<data>
+								<text>URL</text>
+								<value>17</value>
+							</data>
+							<data>
+								<text>Group Listing</text>
+								<value>18</value>
+							</data>
+							<data>
+								<text>Public Hold</text>
+								<value>19</value>
+							</data>
+							<data>
+								<text>Private Hold</text>
+								<value>20</value>
+							</data>
+							<data>
+								<text>Shared Line</text>
+								<value>21</value>
+							</data>
+							<data>
+								<text>XML Phonebook</text>
+								<value>22</value>
+							</data>
+						</item>
+						<item>
+							<variable>$memkey_btype</variable>
+							<default_value>0</default_value>
+							<description>Side Key {$count} DSS Type</description>
+							<type>list</type>
+							<data>
+								<text>BLF</text>
+								<value>blf</value>
+							</data>
+							<data>
+								<text>BLA</text>
+								<value>bla</value>
+							</data>
+						</item>
+						<item>
+							<!-- Web Administration Password -->
+							<variable>$memkey_value</variable>
+							<default_value></default_value>
+							<description>Side Key {$count} Value</description>
+							<type>input</type>
+						</item>
+						<item>
+							<type>break</type>
+						</item>
+					</data>
+				</item>
         </subcategory>
     </category>
 </template_data>

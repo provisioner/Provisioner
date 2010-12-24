@@ -38,6 +38,61 @@ class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
                 break;
         }
 
+		if(isset($this->options['linekey'])) {
+			foreach($this->options['linekey'] as $key => $data) {
+				switch ($key) {
+					case "1":
+					$this->options['linekey'][11]['type'] = $this->options['linekey'][$key]['type'];
+					$this->options['linekey'][11]['mode'] = $this->options['linekey'][$key]['mode'];
+					$this->options['linekey'][11]['line'] = $this->options['linekey'][$key]['line'];
+					$this->options['linekey'][11]['extension'] = $this->options['linekey'][$key]['extension'];
+					$this->options['linekey'][11]['pickup'] = $this->options['linekey'][$key]['pickup'];
+					unset($this->options['linekey'][$key]);
+					break;	
+					case "2":
+					$this->options['linekey'][12]['type'] = $this->options['linekey'][$key]['type'];
+					$this->options['linekey'][12]['mode'] = $this->options['linekey'][$key]['mode'];
+					$this->options['linekey'][12]['line'] = $this->options['linekey'][$key]['line'];
+					$this->options['linekey'][12]['extension'] = $this->options['linekey'][$key]['extension'];
+					$this->options['linekey'][12]['pickup'] = $this->options['linekey'][$key]['pickup'];
+					unset($this->options['linekey'][$key]);
+					break;
+					case "3":
+					$this->options['linekey'][13]['type'] = $this->options['linekey'][$key]['type'];
+					$this->options['linekey'][13]['mode'] = $this->options['linekey'][$key]['mode'];
+					$this->options['linekey'][13]['line'] = $this->options['linekey'][$key]['line'];
+					$this->options['linekey'][13]['extension'] = $this->options['linekey'][$key]['extension'];
+					$this->options['linekey'][13]['pickup'] = $this->options['linekey'][$key]['pickup'];
+					unset($this->options['linekey'][$key]);
+					break;
+					case "4":
+					$this->options['linekey'][14]['type'] = $this->options['linekey'][$key]['type'];
+					$this->options['linekey'][14]['mode'] = $this->options['linekey'][$key]['mode'];
+					$this->options['linekey'][14]['line'] = $this->options['linekey'][$key]['line'];
+					$this->options['linekey'][14]['extension'] = $this->options['linekey'][$key]['extension'];
+					$this->options['linekey'][14]['pickup'] = $this->options['linekey'][$key]['pickup'];
+					unset($this->options['linekey'][$key]);
+					break;
+					case "5":
+					$this->options['linekey'][15]['type'] = $this->options['linekey'][$key]['type'];
+					$this->options['linekey'][15]['mode'] = $this->options['linekey'][$key]['mode'];
+					$this->options['linekey'][15]['line'] = $this->options['linekey'][$key]['line'];
+					$this->options['linekey'][15]['extension'] = $this->options['linekey'][$key]['extension'];
+					$this->options['linekey'][15]['pickup'] = $this->options['linekey'][$key]['pickup'];
+					unset($this->options['linekey'][$key]);
+					break;		
+				}
+			}
+		}
+		
+		if(isset($this->options['softkey'])) {
+            foreach($this->options['softkey'] as $key => $data) {
+                if ($this->options['softkey'][$key]['type'] == '0') {
+                    unset($this->options['softkey'][$key]);
+				}
+			}
+		}
+
         if(isset($this->options['sdext38'])) {
             foreach($this->options['sdext38'] as $key => $data) {
                 if ($this->options['sdext38'][$key]['type'] == '16') {
