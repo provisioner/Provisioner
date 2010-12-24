@@ -11,7 +11,7 @@
                 <data>
                     <item>
                         <variable>$softkey_type</variable>
-                        <default_value>28</default_value>
+                        <default_value>0</default_value>
                         <description>Soft Key {$count} Type</description>
                         <type>list</type>
                         <data>
