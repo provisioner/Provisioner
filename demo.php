@@ -122,7 +122,7 @@ function xml2array($url, $get_attributes = 1, $priority = 'tag') {
     }
     return ($xml_array);
 }
-$brands_list = xml2array('http://192.168.0.166/provisioner/endpoint/master.xml');
+$brands_list = xml2array('http://www.provisioner.net/repo/endpoint/master.xml');
 $brands_list = $brands_list['data']['brands'];
 ?>
 <html>

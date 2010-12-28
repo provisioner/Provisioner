@@ -141,13 +141,13 @@ function fix_single_array_keys($array) {
     }
 }
 
-$product_list = xml2array('http://192.168.0.166/provisioner/endpoint/'.$_REQUEST['id'].'/brand_data.xml');
+$product_list = xml2array('http://www.provisioner.net/repo/endpoint/'.$_REQUEST['id'].'/brand_data.xml');
 $product_list = fix_single_array_keys($product_list['data']['brands']['family_list']['family']);
 $out[0]['optionValue'] = "";
 $out[0]['optionDisplay'] = "";
 $i = 1;
 foreach($product_list as $list) {
-	$family_list = xml2array('http://192.168.0.166/provisioner/endpoint/'.$_REQUEST['id'].'/'.$list['directory'].'/family_data.xml');
+	$family_list = xml2array('http://www.provisioner.net/repo/endpoint/'.$_REQUEST['id'].'/'.$list['directory'].'/family_data.xml');
 	$family_list = fix_single_array_keys($family_list['data']['model_list']);
 	foreach($family_list as $model_l) {
 		$out[$i]['optionValue'] = $list['directory'].'+'.$model_l['model'];
