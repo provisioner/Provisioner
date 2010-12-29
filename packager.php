@@ -280,7 +280,7 @@ function create_brand_pkg($rawname,$version,$brand_name) {
 	
 	$i=0;
 	foreach (glob(MODULES_DIR."/".$rawname."/*") as $brand_files) {
-		if((!is_dir($brand_files)) AND (basename($brand_files) != "brand_data.xml")) {
+		if((!is_dir($brand_files)) AND (basename($brand_files) != "brand_data.xml") AND (basename($brand_files) != "brand_data.json")) {
 			$brand_files_array[$i] = filemtime($brand_files);
 			echo "\t\tParsing File: ".basename($brand_files)."|".$brand_files_array[$i]."\n";
 			$i++;
