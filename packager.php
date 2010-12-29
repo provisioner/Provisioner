@@ -136,7 +136,8 @@ function create_brand_pkg($rawname,$version,$brand_name) {
 			
 			foreach ($iterator as $family_files) {
 				if((!is_dir($family_files)) && (dirname($family_files) != $family_folders."/firmware") && (dirname($family_files) != $family_folders."/json")) {
-					if(basename($family_files) != "family_data.xml") {
+					$path_parts = pathinfo($family_files);
+					if((basename($family_files) != "family_data.xml") AND ($path_parts['extension'] != "json")) {
 						$files_array[$i] = filemtime($family_files);
 						echo "\t\tParsing File: ".basename($family_files)."|".$files_array[$i]."\n";
 						if(pathinfo($family_files, PATHINFO_EXTENSION) == "xml") {
