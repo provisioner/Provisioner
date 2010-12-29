@@ -1,0 +1,69 @@
+<template_data>
+    <category>
+        <name>general</name>
+        <subcategory>
+            <name>general</name>
+            <item>
+                <!-- Ringer -->
+                <variable>$extringer1</variable>
+                <default_value>Ringer9</default_value>
+                <description>Ringer</description>
+                <type>input</type>
+            </item>
+            <item>
+                <!-- DTMF via Sip INFO (rfc2833) -->
+                <variable>$ext.dtmf.1</variable>
+                <default_value>on</default_value>
+                <description>DTMF via SIP INFO (RFC2833)</description>
+                <type>input</type>
+            </item>
+            <item>
+                <!-- PhoneBook URL -->
+                <variable>$phone_book_url</variable>
+                <default_value></default_value>
+                <description>PhoneBook URL</description>
+                <type>input</type>
+            </item>
+            <item>
+                <!-- Firmware URL -->
+                <variable>$firmware_url</variable>
+                <default_value></default_value>
+                <description>Firmware URL</description>
+                <type>input</type>
+            </item>
+            <item>
+                <!-- HTTP User -->
+                <variable>$http_user</variable>
+                <default_value></default_value>
+                <description>Phone Web Interface Username</description>
+                <type>input</type>
+            </item>
+            <item>
+                <!-- HTTP Password -->
+                <variable>$http_pass</variable>
+                <default_value></default_value>
+                <description>Phone Web Interface Password</description>
+                <type>input</type>
+            </item>
+            <item>
+                <!-- Admin Mode Password -->
+                <variable>$admin_mode_password</variable>
+                <default_value></default_value>
+                <description>Admin Mode Password (Digits ONLY)</description>
+                <type>input</type>
+            </item>
+            <item>
+                <!-- Admin Mode PAssword Confirm -->
+                <variable>$admin_mode_password_confirm</variable>
+                <default_value></default_value>
+                <description>Admin Password (Confirm)</description>
+                <type>input</type>
+            </item>
+            <item>
+                <description>Soft Keys</description>
+                <type>group</type>
+            </item>
+            
+        </subcategory>
+    </category>
+</template_data>

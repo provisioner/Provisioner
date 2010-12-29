@@ -1,0 +1,20 @@
+<data>
+	<name>Snom Models [870]</name>
+	<id>2</id>
+	<directory>8xx</directory>
+	<version>1</version>
+	<package></package>
+	<firmware_ver></firmware_ver>
+	<firmware_pkg>NULL</firmware_pkg>
+	<description>Server + Password Settings, htm File Fixes</description>
+	<configuration_files>general_custom.xml,general.xml,$mac_$ext_custom.xml,$mac.xml,snom$model-$mac.htm,snom$model.htm,$mac_firmware.xml</configuration_files>
+	<changelog></changelog>
+	<model_list>
+		<model>870</model>
+		<lines>12</lines>
+		<id>1</id>
+		<template_data>
+			<files>line_options.xml</files>
+		</template_data>
+	</model_list>
+</data>

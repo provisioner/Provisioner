@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<settings>
+	<phone-settings>
+		{line_loop}
+		<user_active idx="1" perm="">on</user_active>
+		<user_host idx="1" perm="">{$user_host}</user_host>
+		<user_outbound idx="1" perm="">{$user_outbound}</user_outbound>	
+		<user_realname idx="1" perm="">{$realname}</user_realname>
+		<user_name idx="1" perm="">{$ext}</user_name>
+		<user_pname idx="1" perm="">{$ext}</user_pname>
+		<user_mailbox idx="1" perm="">{$ext}</user_mailbox>
+		<user_pass idx="1" perm="">{$secret}</user_pass>
+		<user_idle_text idx="1" perm="">{$idle_text}</user_idle_text>
+		<user_dtmf_info idx="1" perm="">{$dtmf}</user_dtmf_info>
+		<user_ringer idx="1" perm="">{$extringer}</user_ringer>
+		<user_xml_screen_url idx="1" perm="">{$idle_screen_url}</user_xml_screen_url>
+		<user_idle_text idx="1" perm="">{$display_text_url}</user_idle_text>
+		{/line_loop}
+		<intercom_connect_type perm="">intercom_connect_type_handsfree</intercom_connect_type>
+		<answer_after_policy>idle</answer_after_policy>
+		<phone_name perm="">{$phone_name}</phone_name>
+		<http_user perm="R">{$http_user}</http_user>
+		<http_pass perm="R">{$http_pass}</http_pass>
+		<https_port perm="">443</https_port>
+        <webserver_type perm="">http_https</webserver_type>
+        <webserver_cert perm=""></webserver_cert>
+        <admin_mode_login perm=""></admin_mode_login>
+		<admin_mode_password perm="R">{$admin_mode_password}</admin_mode_password>
+		<admin_mode_password_confirm perm="R">{$admin_mode_password_confirm}</admin_mode_password_confirm>
+        <admin_mode perm="">on</admin_mode>
+		<firmware_status perm="R">tftp://{$server.ip.1}/{$mac}_firmware.xml</firmware_status>
+		<update_policy perm="">auto_update</update_policy>
+		<backlight perm="">15</backlight>
+		<backlight_idle perm="">8</backlight_idle>
+        <contrast perm="">12</contrast>
+        <vol_headset perm="">10</vol_headset>
+        <vol_speaker perm="">8</vol_speaker>
+        <vol_ringer perm="">10</vol_ringer>
+        <vol_handset perm="">13</vol_handset>
+        <vol_speaker_mic perm="">5</vol_speaker_mic>
+        <vol_handset_mic perm="">5</vol_handset_mic>
+        <vol_headset_mic perm="">5</vol_headset_mic>
+        <dkey_touch_idle_support perm="">keyevent F_SUPPORT</dkey_touch_idle_support>
+        <dkey_touch_idle_menu perm="">keyevent F_SETTINGS</dkey_touch_idle_menu>
+        <dkey_touch_idle_adr_book perm="">keyevent F_ADR_BOOK</dkey_touch_idle_adr_book>
+        <dkey_touch_idle_dir_search perm="">keyevent F_REMOTE_DIR</dkey_touch_idle_dir_search>
+        <dkey_touch_idle_dnd perm="">keyevent F_DND</dkey_touch_idle_dnd>
+        <dkey_touch_idle_redirect perm="">keyevent F_REDIRECT</dkey_touch_idle_redirect>
+        <dkey_touch_idle_regs perm="">keyevent F_REGS</dkey_touch_idle_regs>
+        <dkey_touch_idle_clock perm="">keyevent F_CLOCK</dkey_touch_idle_clock>
+        <dkey_touch_idle_status perm="">keyevent F_STATUS</dkey_touch_idle_status>
+        <dkey_touch_idle_list_missed perm="">keyevent F_MISSED_LIST</dkey_touch_idle_list_missed>
+        <dkey_touch_idle_list_taken perm="">keyevent F_ACCEPTED_LIST</dkey_touch_idle_list_taken>
+        <dkey_touch_idle_redial perm="">keyevent F_REDIAL</dkey_touch_idle_redial>
+        <dkey_touch_idle_dialog perm="">keyevent F_DIALOG</dkey_touch_idle_dialog>
+        <dkey_touch_idle_favorites perm="">keyevent F_FAVORITES</dkey_touch_idle_favorites>
+        <dkey_touch_idle_list_pkeys perm="">keyevent F_PKEY_LIST</dkey_touch_idle_list_pkeys>
+		<gui_fkey1 perm="">{$gui_fkey1|F_REGS}</gui_fkey1>
+		<gui_fkey2 perm="">{$gui_fkey2|F_CALL_LIST}</gui_fkey2>
+		<gui_fkey3 perm="">{$gui_fkey3|F_REDIRECT}</gui_fkey3>
+		<gui_fkey4 perm="">{$gui_fkey4|F_SUPPORT}</gui_fkey4>
+		<dkey_help perm="">{$dkey_help|keyevent F_SUPPORT}</dkey_help>
+		<dkey_snom perm="">{$dkey_snom|keyevent none}</dkey_snom>
+		<dkey_conf perm="">{$dkey_conf|keyevent F_CONFERENCE}</dkey_conf>
+		<dkey_transfer perm="">{$dkey_transfer|keyevent F_TRANSFER}</dkey_transfer>
+		<dkey_hold perm="">{$dkey_hold|keyevent F_R}</dkey_hold>
+		<dkey_dnd perm="">{$dkey_dnd|keyevent F_DND}</dkey_dnd>
+		<dkey_record perm="">{$dkey_record|keyevent F_REC}</dkey_record>
+		<dkey_retrieve perm="">dtmf F_REDIAL</dkey_retrieve>
+		<dkey_retrieve perm="">{$dkey_retrieve|keyevent F_RETRIEVE}</dkey_retrieve>
+		<dkey_redial perm="">{$dkey_redial|keyevent F_REDIAL}</dkey_redial>
+		<dkey_directory perm="">{$dkey_directory|keyevent F_ADR_BOOK}</dkey_directory>
+		<dkey_menu perm="">keyevent F_SETTINGS</dkey_menu>
+		<action_received_subscr_notify_url perm=""></action_received_subscr_notify_url>
+        <action_dnd_on_url perm="">dndon url</action_dnd_on_url>
+        <action_dnd_off_url perm=""></action_dnd_off_url>
+        <action_redirection_on_url perm=""></action_redirection_on_url>
+        <action_redirection_off_url perm=""></action_redirection_off_url>
+        <action_incoming_url perm=""></action_incoming_url>
+        <action_outgoing_url perm=""></action_outgoing_url>
+        <action_setup_url perm=""></action_setup_url>
+        <action_offhook_url perm=""></action_offhook_url>
+        <action_onhook_url perm=""></action_onhook_url>
+        <action_missed_url perm=""></action_missed_url>
+        <action_connected_url perm=""></action_connected_url>
+        <action_disconnected_url perm=""></action_disconnected_url>
+        <advertisement perm="">on</advertisement>
+        <advertisement_url perm="">http://www.snom.com/{web_lng_iso_code}/AddOn</advertisement_url>
+        <speed idx="0" perm="">speeddial0</speed>
+        <speed idx="1" perm=""></speed>
+        <speed idx="2" perm=""></speed>
+        <speed idx="3" perm=""></speed>
+        <speed idx="4" perm=""></speed>
+        <speed idx="5" perm=""></speed>
+        <speed idx="6" perm=""></speed>
+        <speed idx="7" perm=""></speed>
+        <speed idx="8" perm=""></speed>
+        <speed idx="9" perm=""></speed>
+        <speed idx="10" perm=""></speed>
+        <speed idx="11" perm="">sppedial*</speed>
+        <speed idx="12" perm=""></speed>
+        <speed idx="13" perm=""></speed>
+        <speed idx="14" perm=""></speed>
+        <speed idx="15" perm=""></speed>
+        <speed idx="16" perm=""></speed>
+        <speed idx="17" perm=""></speed>
+        <speed idx="18" perm=""></speed>
+        <speed idx="19" perm=""></speed>
+        <speed idx="20" perm=""></speed>
+        <speed idx="21" perm=""></speed>
+        <speed idx="22" perm=""></speed>
+        <speed idx="23" perm=""></speed>
+        <speed idx="24" perm=""></speed>
+        <speed idx="25" perm=""></speed>
+        <speed idx="26" perm=""></speed>
+        <speed idx="27" perm=""></speed>
+        <speed idx="28" perm=""></speed>
+        <speed idx="29" perm=""></speed>
+        <speed idx="30" perm=""></speed>
+        <speed idx="31" perm=""></speed>
+        <speed idx="32" perm=""></speed>
+	</phone-settings>
+	<functionKeys>
+		<fkey idx="0" context="1" label="shorttext" perm="">multicast numberaaa</fkey>		
+		<fkey idx="0" context="active" label="shorttext" perm="">{$function_key_0}</fkey>
+		<fkey idx="1" context="active" perm="">{$function_key_1}</fkey>
+		<fkey idx="2" context="active" perm="">{$function_key_2}</fkey>
+		<fkey idx="3" context="active" perm="">{$function_key_3}</fkey>
+		<fkey idx="4" context="active" perm="">{$function_key_4}</fkey>
+		<fkey idx="5" context="active" perm="">{$function_key_5}</fkey>
+		<fkey idx="6" context="active" perm="">{$function_key_6}</fkey>
+		<fkey idx="7" context="active" perm="">{$function_key_7}</fkey>
+		<fkey idx="8" context="active" perm="">{$function_key_8}</fkey>
+		<fkey idx="9" context="active" perm="">{$function_key_9}</fkey>
+		<fkey idx="10" context="active" perm="">{$function_key_10}</fkey>
+		<fkey idx="11" context="active" perm="">{$function_key_11}</fkey>
+        <springboard_pkey idx="0" context="active" perm=""></springboard_pkey>
+        <springboard_pkey idx="1" context="active" perm=""></springboard_pkey>
+        <springboard_pkey idx="2" context="active" perm=""></springboard_pkey>
+        <springboard_pkey idx="3" context="active" perm=""></springboard_pkey>
+        <springboard_pkey idx="4" context="active" perm=""></springboard_pkey>
+        <springboard_pkey idx="5" context="active" perm=""></springboard_pkey>
+        <springboard_pkey idx="6" context="active" perm=""></springboard_pkey>
+        <springboard_pkey idx="7" context="active" perm=""></springboard_pkey>
+        <springboard_pkey idx="8" context="active" perm=""></springboard_pkey>
+        <springboard_pkey idx="9" context="active" perm=""></springboard_pkey>
+        <springboard_pkey idx="10" context="active" perm=""></springboard_pkey>
+        <springboard_pkey idx="11" context="active" perm=""></springboard_pkey>
+        <springboard_pkey idx="12" context="active" perm=""></springboard_pkey>
+        <springboard_pkey idx="13" context="active" perm=""></springboard_pkey>
+        <springboard_pkey idx="14" context="active" perm=""></springboard_pkey>
+	</functionKeys>
+</settings>
