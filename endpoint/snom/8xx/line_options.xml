@@ -112,13 +112,13 @@
                     </item>
                     <item>
                         <variable>$idle_screen_url</variable>
-                        <default_value>{$server.ip.2}</default_value>
+                        <default_value></default_value>
                         <description>IDLE Screen URL</description>
                         <type>input</type>
                     </item>
                     <item>
                         <variable>$display_text_url</variable>
-                        <default_value>{$server.port.2}</default_value>
+                        <default_value></default_value>
                         <description>Display text for Idle Screen</description>
                         <type>input</type>
                     </item>
