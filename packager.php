@@ -5,7 +5,7 @@ This file, when run from the web, creates all the needed packages in the release
 $master_xml = array();
 echo "<pre>";
 define("MODULES_DIR", "/chroot/home/tm1000/public_html/repo/endpoint");
-define("RELEASE_DIR", "/chroot/home/tm1000/public_html/release");
+define("RELEASE_DIR", "/chroot/home/tm1000/public_html/release3");
 
 set_time_limit(0);
 
