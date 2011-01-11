@@ -2,6 +2,8 @@
 /*
 This file, when run from the web, creates all the needed packages in the releases folder and also generates http://www.provisioner.net/releases
 */
+$supported_phones = array();
+
 $master_xml = array();
 echo "<pre>";
 define("MODULES_DIR", "/chroot/home/tm1000/public_html/repo/endpoint");
@@ -57,7 +59,7 @@ $data .= "\n\t<last_modified>".$endpoint_max."</last_modified>";
 $data .= "\n\t<package>provisioner_net.tgz</package>";
 
 $html .= "<hr><h3>Provisoner.net Package (Last Modified: ".date('m/d/Y',$endpoint_max)." at ".date("G:i",$endpoint_max).")</h3>";
-$html .= "<a href='/release/provisioner_net.tgz'>provisioner_net.tgz</a>";
+$html .= "<a href='/release3/provisioner_net.tgz'>provisioner_net.tgz</a>";
 
 foreach($master_xml['brands'] as $master_list) {
 	$data .= "\n\t<brands>";
@@ -83,14 +85,26 @@ fclose($fp);
 copy(MODULES_DIR."/master.xml", RELEASE_DIR."/master.xml");
 
 $html .= "<hr><h3>Master List File</h3>";
-$html .= "<a href='/release/master.xml'>master.xml</a>";
+$html .= "<a href='/release3/master.xml'>master.xml</a>";
 
 $html .= "<hr><h3>Brand Packages</h3>".$brands_html;
 
 $html .= "</html>";
 echo "\nDone!";
-$fp = fopen('/chroot/home/tm1000/provisioner.net/data/pages/releases.txt', 'w');
+$fp = fopen('/chroot/home/tm1000/provisioner.net/data/pages/releases3.txt', 'w');
 fwrite($fp, $html);
+fclose($fp);
+
+$fp = fopen('/chroot/home/tm1000/provisioner.net/data/pages/supported.txt', 'w');
+$html2 = "=======This is the list of Supported Phones======= \n == Note: This page is edited by an outside script and can not be edited == \n";
+
+foreach($supported_phones as $key => $data) {
+	$html2 .= "==".$key."==\n";
+	foreach($data as $more_data) {
+		$html2 .= "\t*".$more_data."\n";
+	}
+}
+fwrite($fp, $html2);
 fclose($fp);
 
 function fix_single_array_keys($array) {
@@ -112,7 +126,7 @@ function flush_buffers(){
 }
 
 function create_brand_pkg($rawname,$version,$brand_name) {	
-	global $brands_html;
+	global $brands_html, $supported_phones;
 	$version = str_replace(".","_",$version);
 	
 	$pkg_name = $rawname . "-" . $version;
@@ -129,6 +143,13 @@ function create_brand_pkg($rawname,$version,$brand_name) {
 			$family_xml = xml2array($family_folders."/family_data.xml");
 			echo "\n\t==========".$family_xml['data']['name']."==========\n";
 			echo "\tFound family_data.xml in ". $family_folders ."\n";
+
+			$b = $z;
+			foreach($family_xml['data']['model_list'] as $data) {
+				$supported_phones[$brand_name][$b] = $data['model'];
+				$b++;
+			}
+			
 			$i=0;
 			
 			$dir_iterator = new RecursiveDirectoryIterator($family_folders."/");
@@ -319,8 +340,8 @@ function create_brand_pkg($rawname,$version,$brand_name) {
 	$brand_max = max($brand_max,$temp);
 	
 	$brands_html .= "<h4>".$rawname." (Last Modified: ".date('m/d/Y',$brand_max)." at ".date("G:i",$brand_max).")</h4>";
-	$brands_html .= "XML File: <a href='/release/".$rawname."/".$rawname.".xml'>".$rawname.".xml</a><br/>";
-	$brands_html .= "Package File: <a href='/release/".$rawname."/".$pkg_name.".tgz'>".$pkg_name.".tgz</a><br/>";
+	$brands_html .= "XML File: <a href='/release3/".$rawname."/".$rawname.".xml'>".$rawname.".xml</a><br/>";
+	$brands_html .= "Package File: <a href='/release3/".$rawname."/".$pkg_name.".tgz'>".$pkg_name.".tgz</a><br/>";
 	echo "\tComplete..Continuing..\n";
 }
 
