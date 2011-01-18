@@ -1,0 +1,264 @@
+<template_data>
+    <category>
+        <name>keys</name>
+        <subcategory>
+            <name>Multi Function Keys</name>
+            <item>
+                <variable>$key_mode_01</variable>
+                <default_value>0</default_value>
+                <description>Key 1 Mode</description>
+                <type>list</type>
+                <data>
+                    <text>Speed Dial</text>
+                    <value>0</value>
+                </data>
+                <data>
+                    <text>BLF</text>
+                    <value>1</value>
+                </data>
+                <data>
+                    <text>Presence Watcher</text>
+                    <value>2</value>
+                </data>
+                <data>
+                    <text>Eventlist BLF</text>
+                    <value>3</value>
+                </data>
+            </item>
+            <item>
+                <variable>$key_name_01</variable>
+                <default_value>Speed Dial 1</default_value>
+                <description>Key Name</description>
+                <type>input</type>
+            </item>
+            <item>
+                <variable>$speed_dial_01</variable>
+                <default_value>*01</default_value>
+                <description>Value #1</description>
+                <type>input</type>
+            </item>
+            <item>
+                <type>break</type>
+            </item>
+            <item>
+                <variable>$key_mode_02</variable>
+                <default_value>0</default_value>
+                <description>Key 2 Mode</description>
+                <type>list</type>
+                <data>
+                    <text>Speed Dial</text>
+                    <value>0</value>
+                </data>
+                <data>
+                    <text>BLF</text>
+                    <value>1</value>
+                </data>
+                <data>
+                    <text>Presence Watcher</text>
+                    <value>2</value>
+                </data>
+                <data>
+                    <text>Eventlist BLF</text>
+                    <value>3</value>
+                </data>
+            </item>
+            <item>
+                <variable>$key_name_02</variable>
+                <default_value>Speed Dial 2</default_value>
+                <description>Key Name</description>
+                <type>input</type>
+            </item>
+            <item>
+                <variable>$speed_dial_02</variable>
+                <default_value>*02</default_value>
+                <description>Value #2</description>
+                <type>input</type>
+            </item>
+            <item>
+                <type>break</type>
+            </item>
+            <item>
+                <variable>$key_mode_03</variable>
+                <default_value>0</default_value>
+                <description>Key 3 Mode</description>
+                <type>list</type>
+                <data>
+                    <text>Speed Dial</text>
+                    <value>0</value>
+                </data>
+                <data>
+                    <text>BLF</text>
+                    <value>1</value>
+                </data>
+                <data>
+                    <text>Presence Watcher</text>
+                    <value>2</value>
+                </data>
+                <data>
+                    <text>Eventlist BLF</text>
+                    <value>3</value>
+                </data>
+            </item>
+            <item>
+                <variable>$key_name_03</variable>
+                <default_value>Speed Dial 3</default_value>
+                <description>Key Name</description>
+                <type>input</type>
+            </item>
+            <item>
+                <variable>$speed_dial_03</variable>
+                <default_value>*03</default_value>
+                <description>Value #3</description>
+                <type>input</type>
+            </item>
+            <item>
+                <type>break</type>
+            </item>
+            <item>
+                <variable>$key_mode_04</variable>
+                <default_value>0</default_value>
+                <description>Key 4 Mode</description>
+                <type>list</type>
+                <data>
+                    <text>Speed Dial</text>
+                    <value>0</value>
+                </data>
+                <data>
+                    <text>BLF</text>
+                    <value>1</value>
+                </data>
+                <data>
+                    <text>Presence Watcher</text>
+                    <value>2</value>
+                </data>
+                <data>
+                    <text>Eventlist BLF</text>
+                    <value>3</value>
+                </data>
+            </item>
+            <item>
+                <variable>$key_name_04</variable>
+                <default_value>Speed Dial 4</default_value>
+                <description>Key Name</description>
+                <type>input</type>
+            </item>
+            <item>
+                <variable>$speed_dial_04</variable>
+                <default_value>*04</default_value>
+                <description>Value #4</description>
+                <type>input</type>
+            </item>
+            <item>
+                <type>break</type>
+            </item>
+            <item>
+                <variable>$key_mode_05</variable>
+                <default_value>0</default_value>
+                <description>Key 5 Mode</description>
+                <type>list</type>
+                <data>
+                    <text>Speed Dial</text>
+                    <value>0</value>
+                </data>
+                <data>
+                    <text>BLF</text>
+                    <value>1</value>
+                </data>
+                <data>
+                    <text>Presence Watcher</text>
+                    <value>2</value>
+                </data>
+                <data>
+                    <text>Eventlist BLF</text>
+                    <value>3</value>
+                </data>
+            </item>
+            <item>
+                <variable>$key_name_05</variable>
+                <default_value>Speed Dial 5</default_value>
+                <description>Key Name</description>
+                <type>input</type>
+            </item>
+            <item>
+                <variable>$speed_dial_05</variable>
+                <default_value>*05</default_value>
+                <description>Value #5</description>
+                <type>input</type>
+            </item>
+            <item>
+                <type>break</type>
+            </item>
+            <item>
+                <variable>$key_mode_06</variable>
+                <default_value>0</default_value>
+                <description>Key 6 Mode</description>
+                <type>list</type>
+                <data>
+                    <text>Speed Dial</text>
+                    <value>0</value>
+                </data>
+                <data>
+                    <text>BLF</text>
+                    <value>1</value>
+                </data>
+                <data>
+                    <text>Presence Watcher</text>
+                    <value>2</value>
+                </data>
+                <data>
+                    <text>Eventlist BLF</text>
+                    <value>3</value>
+                </data>
+            </item>
+            <item>
+                <variable>$key_name_06</variable>
+                <default_value>Speed Dial 6</default_value>
+                <description>Key Name</description>
+                <type>input</type>
+            </item>
+            <item>
+                <variable>$speed_dial_06</variable>
+                <default_value>*06</default_value>
+                <description>Value #6</description>
+                <type>input</type>
+            </item>
+            <item>
+                <type>break</type>
+            </item>
+            <item>
+                <variable>$key_mode_07</variable>
+                <default_value>0</default_value>
+                <description>Key 7 Mode</description>
+                <type>list</type>
+                <data>
+                    <text>Speed Dial</text>
+                    <value>0</value>
+                </data>
+                <data>
+                    <text>BLF</text>
+                    <value>1</value>
+                </data>
+                <data>
+                    <text>Presence Watcher</text>
+                    <value>2</value>
+                </data>
+                <data>
+                    <text>Eventlist BLF</text>
+                    <value>3</value>
+                </data>
+            </item>
+            <item>
+                <variable>$key_name_07</variable>
+                <default_value>Speed Dial 7</default_value>
+                <description>Key Name</description>
+                <type>input</type>
+            </item>
+            <item>
+                <variable>$speed_dial_07</variable>
+                <default_value>*07</default_value>
+                <description>Value #7</description>
+                <type>input</type>
+            </item>
+        </subcategory>
+    </category>
+</template_data>
