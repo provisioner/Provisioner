@@ -1,0 +1,135 @@
+<template_data>
+    <category>
+        <name>General</name>
+        <subcategory>
+            <name>General Settings</name>
+            <item>
+                <description>General Settings</description>
+                <type>group</type>
+            </item>
+            <item>
+                <!-- Web Administration Password -->
+                <variable>$admin_pass</variable>
+                <default_value>admin</default_value>
+                <description>Administration Password</description>
+                <type>input</type>
+            </item>
+            <item>
+                <type>break</type>
+            </item>
+            <item>
+                <!-- Firmware Server Path -->
+                <variable>$firmware_srv_path</variable>
+                <default_value></default_value>
+                <description>Firmware Server Path</description>
+                <type>input</type>
+            </item>
+            <item>
+                <!-- XML Phone Book server Path -->
+                <variable>$firmware_upgrade_type</variable>
+                <default_value>0</default_value>
+                <description>Firmware Upgrade Server Type</description>
+                <type>radio</type>
+                <data>
+                    <text>TFTP</text>
+                    <value>0</value>
+                </data>
+                <data>
+                    <text>HTTP</text>
+                    <value>1</value>
+                </data>
+            </item>
+            <item>
+                <!-- Firmware Auto Update (1-no, 2-Yes) -->
+                <variable>$auto_up</variable>
+                <default_value>0</default_value>
+                <description>Automatic Upgrade</description>
+                <type>radio</type>
+                <data>
+                    <text>Yes</text>
+                    <value>1</value>
+                </data>
+                <data>
+                    <text>No</text>
+                    <value>0</value>
+                </data>
+            </item>
+            <item>
+                <type>break</type>
+            </item>
+            <item>
+                <!-- Enable XML Phone Book -->
+                <variable>$enable_xml_phonebook</variable>
+                <default_value>0</default_value>
+                <description>Enable XML Phone Book</description>
+                <type>radio</type>
+                <data>
+                    <text>Yes(HTTP)</text>
+                    <value>1</value>
+                </data>
+                <data>
+                    <text>Yes(TFTP)</text>
+                    <value>2</value>
+                </data>
+                <data>
+                    <text>No</text>
+                    <value>0</value>
+                </data>
+            </item>
+            <item>
+                <!-- XML Phone Book server Path -->
+                <variable>$xml_server_path</variable>
+                <default_value></default_value>
+                <description>XML Phone Book Server Path</description>
+                <type>input</type>
+            </item>
+            <item>
+                <type>break</type>
+            </item>
+            <item>
+                <!-- XML Phone Book server Path -->
+                <variable>$enable_idle_screen</variable>
+                <default_value>0</default_value>
+                <description>Enable XML Idle Screen</description>
+                <type>radio</type>
+                <data>
+                    <text>Yes(HTTP)</text>
+                    <value>1</value>
+                </data>
+                <data>
+                    <text>Yes(TFTP)</text>
+                    <value>2</value>
+                </data>
+                <data>
+                    <text>No</text>
+                    <value>0</value>
+                </data>
+            </item>
+            <item>
+                <!-- XML Phone Book server Path -->
+                <variable>$idle_screen_server_path</variable>
+                <default_value></default_value>
+                <description>Idle Screen Server Path</description>
+                <type>input</type>
+            </item>
+            <item>
+                <type>break</type>
+            </item>
+            <item>
+                <!-- XML Phone Book server Path -->
+                <variable>$enable_call_features</variable>
+                <default_value>1</default_value>
+                <description>Enable Call Features</description>
+                <type>radio</type>
+                <data>
+                    <text>Yes</text>
+                    <value>1</value>
+                </data>
+                <data>
+                    <text>No</text>
+                    <value>0</value>
+                </data>
+            </item>
+        </subcategory>
+    </category>
+</template_data>
