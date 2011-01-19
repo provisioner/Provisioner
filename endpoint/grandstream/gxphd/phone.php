@@ -43,6 +43,11 @@ class endpoint_grandstream_gxphd_phone extends endpoint_grandstream_base {
         }
 
 	function generate_config() {		
+		if($this->model == 'GXP2110') {
+		    $this->options['comment_out'] = '#';
+		} else {
+		    $this->options['comment_out'] = '';
+		} 
 		//Grandstream likes lower case letters in its mac address
 		$this->mac = strtolower($this->mac);
 
