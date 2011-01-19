@@ -34,7 +34,7 @@
             <item>
                 <!-- Web Administration Password -->
                 <variable>$digitmap</variable>
-                <default_value>[2-9]11|0T|011xxx.T|[0-1][2-9]xxxxxxxxx|[2-9]xxxxxxxxx|[1-9]xx|[2-9]xxxT</default_value>
+                <default_value>[2-9]11|0T|011xxx.T|[0-1][2-9]xxxxxxxxx|[2-9]xxxxxxxxx|[1-9]xxT|[2-9]xxxT</default_value>
                 <description>Digit Maps</description>
                 <type>input</type>
             </item>
