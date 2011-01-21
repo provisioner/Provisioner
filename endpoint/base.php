@@ -31,6 +31,7 @@ abstract class endpoint_base {
     public $directory_structure = array();	//Directory structure to create as an array
     public $protected_files = array();	//array list of file to NOT over-write on every config file build. They are protected.
     public $copy_files = array();		//array of files or directories to copy. Directories will be recursive
+	public $en_htmlspecialchars = TRUE;	//Enable or Disable PHP's htmlspecialchars() function for variables
     
     // Old
     /**
@@ -408,7 +409,11 @@ abstract class endpoint_base {
             
             //If the variable we found in the text file exists in the variables array then replace the variable in the text file with the value under our key
             if (($specific_line == "GLOBAL") AND (isset($options[$variables]))) {
-                $options[$variables] = htmlspecialchars($options[$variables]);
+				if($this->en_htmlspecialchars) {
+                	$options[$variables] = htmlspecialchars($options[$variables]);
+				} else {
+					$options[$variables] = $options[$variables];
+				}
                 $options[$variables] = $this->replace_static_variables($options[$variables]);
                 if (isset($default)) {
                     $file_contents = str_replace('{$' . $original_variable . '|' . $default . '}', $options[$variables], $file_contents);
@@ -416,8 +421,11 @@ abstract class endpoint_base {
                     $file_contents = str_replace('{$' . $original_variable . '}', $options[$variables], $file_contents);
                 }
             } elseif (($specific_line != "GLOBAL") AND (isset($this->lines[$specific_line]['options'][$variables]))) {
-                
-                $this->lines[$specific_line]['options'][$variables] = htmlspecialchars($this->lines[$specific_line]['options'][$variables]);
+                if($this->en_htmlspecialchars) {
+                	$this->lines[$specific_line]['options'][$variables] = htmlspecialchars($this->lines[$specific_line]['options'][$variables]);
+				} else {
+					$this->lines[$specific_line]['options'][$variables] = $this->lines[$specific_line]['options'][$variables];
+				}
                 
                 $this->lines[$specific_line]['options'][$variables] = $this->replace_static_variables($this->lines[$specific_line]['options'][$variables]);
                 if (isset($default)) {

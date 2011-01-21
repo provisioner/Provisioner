@@ -9,7 +9,9 @@
 class endpoint_aastra_aap9xxx6xxx_phone extends endpoint_aastra_base {
 	public $family_line = 'aap9xxx6xxx';
 	
-	function generate_config() {	
+	function generate_config() {
+
+		$this->en_htmlspecialchars = FALSE;
 		
 		if(isset($this->options['softkey'])) {
 			foreach($this->options['softkey'] as $key => $data) {

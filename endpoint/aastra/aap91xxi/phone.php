@@ -9,7 +9,10 @@
 class endpoint_aastra_aap91xxi_phone extends endpoint_aastra_base {
 	public $family_line = 'aap91xxi';
 	
-	function generate_config() {	
+	function generate_config() {
+
+		$this->en_htmlspecialchars = FALSE;
+
 		//mac.cfg
 		$contents = $this->open_config_file("\$mac.cfg");
 		$final[$this->mac.'.cfg'] = $this->parse_config_file($contents, FALSE);
