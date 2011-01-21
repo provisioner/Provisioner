@@ -13,6 +13,14 @@ class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
 	function generate_config() {			
 		//Polycom likes lower case letters in its mac address
 		$this->mac = strtolower($this->mac);
+		
+        for ($i = 1; $i < 10; $i++) {
+			if(isset($this->lines[$i]['secret'])) {
+            	$this->lines[$i]['options']['digitmap'] = (isset($this->options['digitmap']) ? $this->options['digitmap'] : '');
+            	$this->lines[$i]['options']['digitmaptimeout'] = (isset($this->options['digitmaptimeout']) ? $this->options['digitmaptimeout'] : '');
+
+			}
+        }
 
 		$contents = $this->open_config_file('server.cfg');
 		$final['server.cfg'] = $this->parse_config_file($contents, FALSE);
