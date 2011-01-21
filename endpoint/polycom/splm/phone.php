@@ -14,10 +14,13 @@ class endpoint_polycom_splm_phone extends endpoint_polycom_base {
 		//Polycom likes lower case letters in its mac address
 		$this->mac = strtolower($this->mac);
 
-		for ($i = 1; $i < 10; $i++) {
+        for ($i = 1; $i < 10; $i++) {
 			if(isset($this->lines[$i]['secret'])) {
             	$this->lines[$i]['options']['digitmap'] = (isset($this->options['digitmap']) ? $this->options['digitmap'] : '');
             	$this->lines[$i]['options']['digitmaptimeout'] = (isset($this->options['digitmaptimeout']) ? $this->options['digitmaptimeout'] : '');
+            	$this->lines[$i]['options']['microbrowser_main_home'] = (isset($this->options['microbrowser_main_home']) ? $this->options['microbrowser_main_home'] : '');
+            	$this->lines[$i]['options']['idle_display'] = (isset($this->options['idle_display']) ? $this->options['idle_display'] : '');
+            	$this->lines[$i]['options']['idle_display_refresh'] = (isset($this->options['idle_display_refresh']) ? $this->options['idle_display_refresh'] : '');
 			}
         }
 
