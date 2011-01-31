@@ -441,7 +441,7 @@ abstract class endpoint_base {
 
                     //Check for looping statements. They are all setup logically the same. Ergo if the first multi-dimensional array has a variable key its not a loop.
                     if($key1['1'] == 'variable') {
-                        $default_hard_value = $this->fix_single_array_keys($template_data[$key1[0]]['default_value']);
+                        $default_hard_value = $this->replace_static_variables($this->fix_single_array_keys($template_data[$key1[0]]['default_value']));
                     } elseif($key1['4'] == 'variable') {
                         
                         //replace count variable with line number
