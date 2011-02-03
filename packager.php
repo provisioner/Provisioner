@@ -11,6 +11,13 @@ define("RELEASE_DIR", "/chroot/home/tm1000/public_html/release3");
 
 set_time_limit(0);
 
+$filename = "/chroot/home/tm1000/public_html/repo/commit_message.txt";
+$handle = fopen($filename, "r");
+$c_message = fread($handle, filesize($filename));
+fclose($handle);
+
+echo "COMMIT MESSAGE: ".$c_message."<br />";
+
 foreach (glob(MODULES_DIR."/*", GLOB_ONLYDIR) as $filename) {
 	flush_buffers();
     if(file_exists($filename."/brand_data.xml")) {
@@ -43,11 +50,6 @@ $endpoint_max[1] = filemtime("/chroot/home/tm1000/public_html/repo/endpoint/base
 $endpoint_max = max($endpoint_max);
 
 exec("tar zcf ".RELEASE_DIR."/provisioner_net.tgz --exclude .svn -C /chroot/home/tm1000/public_html/repo/ setup.php endpoint/base.php");
-
-$filename = "/chroot/home/tm1000/public_html/repo/commit_message.txt";
-$handle = fopen($filename, "r");
-$c_message = fread($handle, filesize($filename));
-fclose($handle);
 
 $html = "======= Provisioner.net Library Releases ======= \n == Note: This page is edited by an outside script and can not be edited == \n Latest Commit Message: //".$c_message."//\n<html>";
 
