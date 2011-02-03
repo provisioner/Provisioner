@@ -98,10 +98,14 @@ fclose($fp);
 $fp = fopen('/chroot/home/tm1000/provisioner.net/data/pages/supported.txt', 'w');
 $html2 = "=======This is the list of Supported Phones======= \n == Note: This page is edited by an outside script and can not be edited == \n";
 
-foreach($supported_phones as $key => $data) {
+array_multisort($supported_phones);
+
+foreach($supported_phones as $key => $data2) {
 	$html2 .= "==".$key."==\n";
-	foreach($data as $more_data) {
-		$html2 .= "\t*".$more_data."\n";
+	foreach($data2 as $data) {
+		foreach($data as $more_data) {
+			$html2 .= "\t*".$more_data."\n";
+		}
 	}
 }
 fwrite($fp, $html2);
@@ -144,9 +148,10 @@ function create_brand_pkg($rawname,$version,$brand_name) {
 			echo "\n\t==========".$family_xml['data']['name']."==========\n";
 			echo "\tFound family_data.xml in ". $family_folders ."\n";
 
-			$b = $z;
+			$b = 0;
 			foreach($family_xml['data']['model_list'] as $data) {
-				$supported_phones[$brand_name][$b] = $data['model'];
+				//echo "|".$brand_name."|".$z."|".$b."|".$data['model']."<br />";
+				$supported_phones[$brand_name][$z][$b] = $data['model'];
 				$b++;
 			}
 			
