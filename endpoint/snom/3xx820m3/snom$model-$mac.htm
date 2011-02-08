@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <settings>
 	<phone-settings>
-		<user_host idx="1" perm="">{$server.ip.1}</user_host>
-		<user_realname idx="1" perm="">{$ext.line.1}</user_realname>
-		<user_name idx="1" perm="">{$ext.line.1}</user_name>
-		<user_pname idx="1" perm="">{$ext.line.1}</user_pname>
-		<user_mailbox idx="1" perm="">{$ext.line.1}</user_mailbox>
-		<user_pass idx="1" perm="">{$secret.line.1}</user_pass>
-		<user_idle_text idx="1" perm="">{$ext.line.1} {$displayname.line.1}</user_idle_text>
-		<user_dtmf_info idx="1" perm="">{$ext.dtmf.1}</user_dtmf_info>
-		<user_ringer idx="1" perm="">{$extringer1}</user_ringer>
+		{line_loop}
+		<user_active idx="{$line}" perm="">on</user_active>
+		<user_host idx="{$line}" perm="">{$user_host}</user_host>
+		<user_outbound idx="{$line}" perm="">{$user_outbound}</user_outbound>	
+		<user_realname idx="{$line}" perm="">{$realname}</user_realname>
+		<user_name idx="{$line}" perm="">{$ext}</user_name>
+		<user_pname idx="{$line}" perm="">{$ext}</user_pname>
+		<user_mailbox idx="{$line}" perm="">{$ext}</user_mailbox>
+		<user_pass idx="{$line}" perm="">{$secret}</user_pass>
+		<user_idle_text idx="{$line}" perm="">{$idle_text}</user_idle_text>
+		<user_dtmf_info idx="{$line}" perm="">{$dtmf}</user_dtmf_info>
+		<user_ringer idx="{$line}" perm="">{$extringer}</user_ringer>
+		<user_xml_screen_url idx="{$line}" perm="">{$idle_screen_url}</user_xml_screen_url>
+		<user_idle_text idx="{$line}" perm="">{$display_text_url}</user_idle_text>
+		{/line_loop}
 		<intercom_connect_type perm="">intercom_connect_type_handsfree</intercom_connect_type>
 		<answer_after_policy>idle</answer_after_policy>
 		<http_user perm="R">{$http_user}</http_user>
@@ -32,19 +38,31 @@
 		<dkey_retrieve perm="">{$dkey_retrieve}</dkey_retrieve>
 		<dkey_redial perm="">{$dkey_redial}</dkey_redial>
 		<dkey_directory perm="">{$dkey_directory}</dkey_directory>
+		<action_received_subscr_notify_url perm="">{$action_received_subscr_notify_url}</action_received_subscr_notify_url>
+        <action_dnd_on_url perm="">{$action_dnd_on_url}</action_dnd_on_url>
+        <action_dnd_off_url perm="">{$action_dnd_off_url}</action_dnd_off_url>
+        <action_redirection_on_url perm="">{$action_redirection_on_url}</action_redirection_on_url>
+        <action_redirection_off_url perm="">{$action_redirection_off_url}</action_redirection_off_url>
+        <action_incoming_url perm="">{$action_incoming_url}</action_incoming_url>
+        <action_outgoing_url perm="">{$action_outgoing_url}</action_outgoing_url>
+        <action_setup_url perm="">{$action_setup_url}</action_setup_url>
+        <action_offhook_url perm="">{$action_offhook_url}</action_offhook_url>
+        <action_onhook_url perm="">{$action_onhook_url}</action_onhook_url>
+        <action_missed_url perm="">{$action_missed_url}</action_missed_url>
+        <action_connected_url perm="">{$action_connected_url}</action_connected_url>
+        <action_disconnected_url perm="">{$action_disconnected_url}</action_disconnected_url>
+		{loop_speeddial1}
+        <speed idx="{$number}" perm="">{$value}</speed>
+		{/loop_speeddial1}
+        <speed idx="10" perm="">{$speeddial_pound}</speed>
+        <speed idx="11" perm="">{$speeddial_asterisk}</speed>
+		{loop_speeddial2}
+        <speed idx="{$number}" perm="">{$value}</speed>
+		{/loop_speeddial2}
 	</phone-settings>
 	<functionKeys>
-		<fkey idx="0" context="active" perm="">{$function_key_0}</fkey>
-		<fkey idx="1" context="active" perm="">{$function_key_1}</fkey>
-		<fkey idx="2" context="active" perm="">{$function_key_2}</fkey>
-		<fkey idx="3" context="active" perm="">{$function_key_3}</fkey>
-		<fkey idx="4" context="active" perm="">{$function_key_4}</fkey>
-		<fkey idx="5" context="active" perm="">{$function_key_5}</fkey>
-		<fkey idx="6" context="active" perm="">{$function_key_6}</fkey>
-		<fkey idx="7" context="active" perm="">{$function_key_7}</fkey>
-		<fkey idx="8" context="active" perm="">{$function_key_8}</fkey>
-		<fkey idx="9" context="active" perm="">{$function_key_9}</fkey>
-		<fkey idx="10" context="active" perm="">{$function_key_10}</fkey>
-		<fkey idx="11" context="active" perm="">{$function_key_11}</fkey>
+		{loop_functionkey}
+		<fkey idx="0" context="{$context}" label="{$label}" perm="">{$type} {$value}</fkey>
+		{/loop_functionkey}
 	</functionKeys>
 </settings>

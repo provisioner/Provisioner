@@ -14,7 +14,11 @@
 		<lines>2</lines>
 		<id>1</id>
 		<template_data>
+			<files>line_options.xml</files>
 			<files>template_data.xml</files>
+			<files>action_urls.xml</files>
+			<files>keys.xml</files>
+			<files>speed_dials.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -22,7 +26,11 @@
 		<lines>2</lines>
 		<id>2</id>
 		<template_data>
+			<files>line_options.xml</files>
 			<files>template_data.xml</files>
+			<files>action_urls.xml</files>
+			<files>keys.xml</files>
+			<files>speed_dials.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -30,7 +38,11 @@
 		<lines>3</lines>
 		<id>3</id>
 		<template_data>
+			<files>line_options.xml</files>
 			<files>template_data.xml</files>
+			<files>action_urls.xml</files>
+			<files>keys.xml</files>
+			<files>speed_dials.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -38,7 +50,11 @@
 		<lines>2</lines>
 		<id>4</id>
 		<template_data>
+			<files>line_options.xml</files>
 			<files>template_data.xml</files>
+			<files>action_urls.xml</files>
+			<files>keys.xml</files>
+			<files>speed_dials.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -46,7 +62,11 @@
 		<lines>4</lines>
 		<id>5</id>
 		<template_data>
+			<files>line_options.xml</files>
 			<files>template_data.xml</files>
+			<files>action_urls.xml</files>
+			<files>keys.xml</files>
+			<files>speed_dials.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -54,7 +74,11 @@
 		<lines>8</lines>
 		<id>6</id>
 		<template_data>
+			<files>line_options.xml</files>
 			<files>template_data.xml</files>
+			<files>action_urls.xml</files>
+			<files>keys.xml</files>
+			<files>speed_dials.xml</files>
 		</template_data>
 	</model_list>
 </data>
