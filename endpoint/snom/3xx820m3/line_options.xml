@@ -1,0 +1,129 @@
+<!-- Use this to loop through for different line options -->
+<template_data>
+    <category>
+        <name>lines</name>
+        <subcategory>
+            <name>basic</name>
+            <item>
+                <description>Line Options</description>
+                <type>loop_line_options</type>
+                <data>
+	                <item>
+                        <variable>$user_host</variable>
+                        <default_value>{$server.ip.1}</default_value>
+                        <description>User Host</description>
+                        <type>input</type>
+                    </item>
+                    <item>
+                        <variable>$user_outbound</variable>
+                        <default_value>{$server.ip.1}</default_value>
+                        <description>User Outbound</description>
+                        <type>input</type>
+                    </item>
+                    <item>
+                        <variable>$realname</variable>
+                        <default_value>{$displayname.line.{$count}}</default_value>
+                        <description>Real Name (Display Name)</description>
+                        <type>input</type>
+                    </item>
+                    <item>
+                        <type>break</type>
+                    </item>
+                    <item>
+                        <variable>$idle_text</variable>
+                        <default_value>{$ext.line.{$count}} - {$displayname.line.{$count}}</default_value>
+                        <description>Idle Text</description>
+                        <type>input</type>
+                    </item>
+                    <item>
+                        <variable>$dtmf</variable>
+                        <default_value>off</default_value>
+                        <description>DTMF Value</description>
+                        <type>radio</type>
+                        <data>
+                            <text>On</text>
+                            <value>on</value>
+                        </data>
+                        <data>
+                            <text>SIP INFO Only</text>
+                            <value>sip_info_only</value>
+                        </data>
+                        <data>
+                            <text>Off</text>
+                            <value>off</value>
+                        </data>
+                    </item>
+                    <item>
+                        <variable>$extringer</variable>
+                        <default_value>Ringer1</default_value>
+                        <description>Ringtone for this line</description>
+                        <type>list</type>
+                        <data>
+                            <text>Ringer1</text>
+                            <value>Ringer1</value>
+                        </data>
+                        <data>
+                            <text>Ringer2</text>
+                            <value>Ringer2</value>
+                        </data>
+                        <data>
+                            <text>Ringer3</text>
+                            <value>Ringer3</value>
+                        </data>
+                        <data>
+                            <text>Ringer4</text>
+                            <value>Ringer4</value>
+                        </data>
+                        <data>
+                            <text>Ringer5</text>
+                            <value>Ringer5</value>
+                        </data>
+                        <data>
+                            <text>Ringer6</text>
+                            <value>Ringer6</value>
+                        </data>
+                        <data>
+                            <text>Ringer7</text>
+                            <value>Ringer7</value>
+                        </data>
+                        <data>
+                            <text>Ringer8</text>
+                            <value>Ringer8</value>
+                        </data>
+                        <data>
+                            <text>Ringer9</text>
+                            <value>Ringer9</value>
+                        </data>
+                        <data>
+                            <text>Ringer10</text>
+                            <value>Ringer10</value>
+                        </data>
+                        <data>
+                            <text>Silent</text>
+                            <value>Silent</value>
+                        </data>
+                        <data>
+                            <text>Custom</text>
+                            <value>Custom</value>
+                        </data>
+                    </item>
+                    <item>
+                        <type>break</type>
+                    </item>
+                    <item>
+                        <variable>$idle_screen_url</variable>
+                        <default_value></default_value>
+                        <description>IDLE Screen URL</description>
+                        <type>input</type>
+                    </item>
+                    <item>
+                        <variable>$display_text_url</variable>
+                        <default_value></default_value>
+                        <description>Display text for Idle Screen</description>
+                        <type>input</type>
+                    </item>
+                </data>
+            </item>
+        </subcategory>
+    </category>
+</template_data>
