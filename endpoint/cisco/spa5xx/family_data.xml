@@ -38,7 +38,7 @@
 	<model_list>
 		<model>SPA508G</model>
 		<lines>8</lines>
-		<id>3</id>
+		<id>4</id>
 		<template_data>
 			<files>template_data.xml</files>
                         <files>keys.xml</files>
@@ -47,7 +47,7 @@
 	<model_list>
 		<model>SPA509G</model>
 		<lines>12</lines>
-		<id>3</id>
+		<id>5</id>
 		<template_data>
 			<files>template_data.xml</files>
                         <files>keys.xml</files>
@@ -56,7 +56,7 @@
 	<model_list>
 		<model>SPA525G</model>
 		<lines>5</lines>
-		<id>4</id>
+		<id>6</id>
 		<template_data>
 			<files>template_data.xml</files>
                         <files>keys.xml</files>
@@ -65,7 +65,7 @@
 	<model_list>
 		<model>SPA525G2</model>
 		<lines>5</lines>
-		<id>5</id>
+		<id>7</id>
 		<template_data>
 			<files>template_data.xml</files>
                         <files>keys.xml</files>
