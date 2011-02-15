@@ -288,8 +288,6 @@ function create_brand_pkg($rawname,$version,$brand_name) {
 	
 	echo "\n\t==========".$brand_name."==========\n";
 	echo "\tCreating Completed Package\n";
-	exec("tar zcf ".RELEASE_DIR."/".$rawname."/".$pkg_name.".tgz --exclude .svn --exclude firmware -C ".MODULES_DIR." ".$rawname);
-	$brand_md5 = md5_file(RELEASE_DIR."/".$rawname."/".$pkg_name.".tgz");
 	
 	$fp = fopen(MODULES_DIR."/".$rawname."/brand_data.xml", 'r');
 	$contents = fread($fp, filesize(MODULES_DIR."/".$rawname."/brand_data.xml"));
@@ -318,8 +316,6 @@ function create_brand_pkg($rawname,$version,$brand_name) {
 	
 	$brand_max = max($brand_files_array);
 	echo "\t\t\tTotal Brand Timestamp: ".$brand_max."\n";
-	echo "\t\tPackage MD5 SUM: ".$brand_md5."\n";
-	
 	
 	$pattern = "/<last_modified>(.*?)<\/last_modified>/si";
 	$parsed = "<last_modified>".$brand_max."</last_modified>";
@@ -345,6 +341,10 @@ function create_brand_pkg($rawname,$version,$brand_name) {
 	
 	$temp = max($family_max_array);
 	$brand_max = max($brand_max,$temp);
+	
+	exec("tar zcf ".RELEASE_DIR."/".$rawname."/".$pkg_name.".tgz --exclude .svn --exclude firmware -C ".MODULES_DIR." ".$rawname);
+	$brand_md5 = md5_file(RELEASE_DIR."/".$rawname."/".$pkg_name.".tgz");
+	echo "\t\tPackage MD5 SUM: ".$brand_md5."\n";
 	
 	$brands_html .= "<h4>".$rawname." (Last Modified: ".date('m/d/Y',$brand_max)." at ".date("G:i",$brand_max).")</h4>";
 	$brands_html .= "XML File: <a href='/release3/".$rawname."/".$rawname.".xml'>".$rawname.".xml</a><br/>";
