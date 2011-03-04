@@ -3,9 +3,9 @@
 	<id>2</id>
 	<version>0.5</version>
 	<directory>spa</directory>
-	<package>spa-0_5.tgz</package>
 	<firmware_ver></firmware_ver>
 	<firmware_pkg>NULL</firmware_pkg>
+	<firmware_md5sum></firmware_md5sum>
 	<description>XML Escape Errors Fixed</description>
 	<configuration_files>$mac.cfg,global.cfg</configuration_files>
 	<changelog></changelog>

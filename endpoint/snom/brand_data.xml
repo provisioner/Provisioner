@@ -6,6 +6,7 @@
 		<directory>snom</directory>
 		<brand_id>6</brand_id>
 		<package>snom-0_6.tgz</package>
+        <md5sum></md5sum>
 		<last_modified>1281514093</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->

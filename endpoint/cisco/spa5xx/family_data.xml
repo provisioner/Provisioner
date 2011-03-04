@@ -4,6 +4,7 @@
 	<directory>spa5xx</directory>
 	<firmware_ver></firmware_ver>
 	<firmware_pkg>NULL</firmware_pkg>
+	<firmware_md5sum></firmware_md5sum>
 	<configuration_files>$mac.cfg,global.cfg</configuration_files>
 	<changelog></changelog>
 	<description></description>

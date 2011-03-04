@@ -5,6 +5,7 @@
 	<directory>t2x</directory>
 	<firmware_ver></firmware_ver>
 	<firmware_pkg>NULL</firmware_pkg>
+    <firmware_md5sum></firmware_md5sum>
 	<description>Variables Issues Solved (Not writing accounts + passwords in files)</description>
 	<configuration_files>y000000000000.cfg,$mac.cfg</configuration_files>
 	<changelog></changelog>
