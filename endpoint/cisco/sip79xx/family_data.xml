@@ -3,8 +3,9 @@
 	<id>1</id>
 	<version>0.6</version>
 	<directory>sip79xx</directory>
-	<firmware_ver>3.8.12.00</firmware_ver>
-	<firmware_pkg>cisco_sip_P0S3-8-12-00.zip</firmware_pkg>
+	<firmware_ver></firmware_ver>
+	<firmware_pkg>NULL</firmware_pkg>
+	<firmware_md5sum></firmware_md5sum>
 	<description></description>
 	<configuration_files>SIP$mac.cnf,SIPDefault.cnf,XMLDefault.cnf.xml,SEP$mac.cnf.xml,RINGLIST.DAT,ringlist.xml,OS79XX.TXT</configuration_files>
 	<changelog></changelog>

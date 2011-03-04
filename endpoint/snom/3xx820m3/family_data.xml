@@ -6,6 +6,7 @@
 	<package></package>
 	<firmware_ver></firmware_ver>
 	<firmware_pkg>NULL</firmware_pkg>
+    <firmware_md5sum></firmware_md5sum>
 	<description>Server + Password Settings, htm File Fixes</description>
 	<configuration_files>general_custom.xml,general.xml,$mac_$ext_custom.xml,$mac.xml,snom$model-$mac.htm,snom$model.htm,$mac_firmware.xml</configuration_files>
 	<changelog></changelog>
