@@ -135,6 +135,7 @@ class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
         for ($i = 1; $i < 6; $i++) {
             $this->lines[$i]['options']['line_active'] = (isset($this->lines[$i]['secret']) ? '1' : '0');
             $this->lines[$i]['options']['line_m1'] = (isset($this->lines[$i]['secret']) ? $i-1 : '');
+            $this->lines[$i]['options']['voicemail_number'] = (isset($this->options['voicemail_number']) ? $this->options['voicemail_number'] : '');
         }
 
 
