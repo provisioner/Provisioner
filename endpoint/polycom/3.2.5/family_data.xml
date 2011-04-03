@@ -1,0 +1,29 @@
+<data>
+	<name>SoundPoint IP 430 [430]</name>
+	<id>4</id>
+	<version>0.8.1</version>
+	<directory>3.2.5</directory>
+	<package></package>
+	<firmware_ver>1290334071</firmware_ver>
+	<firmware_md5sum>1237ffc4e7f06c33c5943c997aefc6a2</firmware_md5sum>
+	<firmware_pkg>spipm_firmware.tgz</firmware_pkg>
+	<description>Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality</description>
+	<configuration_files>{$mac}-phone.cfg,{$mac}.cfg,server.cfg,phone1.cfg,{$mac}_reg.cfg,sip.cfg,000000000000.cfg</configuration_files>
+	<changelog></changelog>
+	<model_list>
+		<model>SoundPoint IP 430</model>
+		<lines>2</lines>
+		<id>1</id>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>SoundPoint IP 430</model>
+		<lines>2</lines>
+		<id>2</id>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+</data>
