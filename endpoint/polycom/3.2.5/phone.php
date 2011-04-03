@@ -6,9 +6,9 @@
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
  */
-class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
+class endpoint_polycom_3.2.5_phone extends endpoint_polycom_base {
 
-	public $family_line = 'spipm';	
+	public $family_line = '3.2.5';	
 		
 	function generate_config() {			
 		//Polycom likes lower case letters in its mac address
@@ -26,7 +26,7 @@ class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
 
 		$contents = $this->open_config_file('server.cfg');
 		$final['server.cfg'] = $this->parse_config_file($contents, FALSE);
-		$file_list = 'server.cfg, ';
+		$file_list = 'server_325.cfg, ';
 		
 		$contents = $this->open_config_file('{$mac}_reg.cfg');
 		$final[$this->mac.'_reg.cfg'] = $this->parse_config_file($contents,FALSE);
@@ -34,11 +34,11 @@ class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
 		
 		$contents = $this->open_config_file('phone1.cfg');
 		$final['phone1.cfg'] = $this->parse_config_file($contents, FALSE);
-		$file_list .= ' phone1.cfg, ';
+		$file_list .= ' phone1_325.cfg, ';
 		
 		$contents = $this->open_config_file('sip.cfg');
 		$final['sip.cfg'] = $this->parse_config_file($contents, FALSE);
-		$file_list .= ' sip.cfg';
+		$file_list .= ' sip_325.cfg';
 				
 		$this->options['createdFiles'] = $file_list;
 		
