@@ -1,5 +1,5 @@
 <data>
-	<name>SoundPoint/Station/VVX In-Production Models [321,331,335,430,450,550,560,650,670,6000,7000,1500]</name>
+	<name>SoundPoint/Station/VVX In-Production Models [320,330,321,331,335,450,550,560,650,670,5000,6000,7000,1500]</name>
 	<id>3</id>
 	<version>0.8.1</version>
 	<directory>spipm</directory>
@@ -102,6 +102,30 @@
 		<model>SoundPoint IP VVX 1500</model>
 		<id>12</id>
 		<lines>3</lines>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>SoundPoint IP 320</model>
+		<id>13</id>
+		<lines>2</lines>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>SoundPoint IP 330</model>
+		<id>14</id>
+		<lines>2</lines>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>SoundPoint IP 5000</model>
+		<id>14</id>
+		<lines>2</lines>
 		<template_data>
 			<files>template_data.xml</files>
 		</template_data>

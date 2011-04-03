@@ -1,5 +1,5 @@
 <data>
-	<name>SoundPoint/Station Legacy Models [301,320,330,501,600,601,4000]</name>
+	<name>SoundPoint/Station Legacy Models [301,501,600,601,4000]</name>
 	<id>2</id>
 	<version>0.7.6</version>
 	<directory>splm</directory>
@@ -14,22 +14,6 @@
 		<model>SoundPoint IP 301</model>
 		<lines>2</lines>
 		<id>1</id>
-		<template_data>
-			<files>template_data.xml</files>
-		</template_data>
-	</model_list>
-	<model_list>
-		<model>SoundPoint IP 320</model>
-		<lines>2</lines>
-		<id>2</id>
-		<template_data>
-			<files>template_data.xml</files>
-		</template_data>
-	</model_list>
-	<model_list>
-		<model>SoundPoint IP 330</model>
-		<lines>2</lines>
-		<id>3</id>
 		<template_data>
 			<files>template_data.xml</files>
 		</template_data>
