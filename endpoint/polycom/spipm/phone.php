@@ -23,27 +23,16 @@ class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
             	$this->lines[$i]['options']['idle_display_refresh'] = (isset($this->options['idle_display_refresh']) ? $this->options['idle_display_refresh'] : '');
 			}
         }
-
-		$contents = $this->open_config_file('server.cfg');
-		$final['server.cfg'] = $this->parse_config_file($contents, FALSE);
-		$file_list = 'server.cfg, ';
 		
 		$contents = $this->open_config_file('{$mac}_reg.cfg');
 		$final[$this->mac.'_reg.cfg'] = $this->parse_config_file($contents,FALSE);
 		$file_list = $this->mac.'_reg.cfg, ';
-		
-		$contents = $this->open_config_file('phone1.cfg');
-		$final['phone1.cfg'] = $this->parse_config_file($contents, FALSE);
-		$file_list .= ' phone1.cfg, ';
 		
 		$contents = $this->open_config_file('sip.cfg');
 		$final['sip.cfg'] = $this->parse_config_file($contents, FALSE);
 		$file_list .= ' sip.cfg';
 				
 		$this->options['createdFiles'] = $file_list;
-		
-		$contents = $this->open_config_file('000000000000.cfg');
-		$final['000000000000.cfg'] = $this->parse_config_file($contents, FALSE);
 		
 		//Old School
 		$contents = $this->open_config_file('{$mac}.cfg');
