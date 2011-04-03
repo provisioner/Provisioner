@@ -35,14 +35,6 @@
 		</template_data>
 	</model_list>
 	<model_list>
-		<model>SoundPoint IP 430</model>
-		<lines>2</lines>
-		<id>4</id>
-		<template_data>
-			<files>template_data.xml</files>
-		</template_data>
-	</model_list>
-	<model_list>
 		<model>SoundPoint IP 450</model>
 		<lines>3</lines>
 		<id>5</id>
