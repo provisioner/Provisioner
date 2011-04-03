@@ -124,7 +124,7 @@
 	</model_list>
 	<model_list>
 		<model>SoundPoint IP 5000</model>
-		<id>14</id>
+		<id>15</id>
 		<lines>2</lines>
 		<template_data>
 			<files>template_data.xml</files>
