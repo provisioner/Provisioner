@@ -2,7 +2,7 @@
 	<name>SoundPoint IP 430 [430]</name>
 	<id>4</id>
 	<version>0.8.1</version>
-	<directory>3.2.5</directory>
+	<directory>firmware325</directory>
 	<package></package>
 	<firmware_ver>1290334071</firmware_ver>
 	<firmware_md5sum>1237ffc4e7f06c33c5943c997aefc6a2</firmware_md5sum>
