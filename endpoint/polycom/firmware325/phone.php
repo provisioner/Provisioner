@@ -6,9 +6,9 @@
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
  */
-class endpoint_polycom_3.2.5_phone extends endpoint_polycom_base {
+class endpoint_polycom_firmware325_phone extends endpoint_polycom_base {
 
-	public $family_line = '3.2.5';	
+	public $family_line = 'firmware325';	
 		
 	function generate_config() {			
 		//Polycom likes lower case letters in its mac address
