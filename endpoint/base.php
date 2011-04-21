@@ -81,11 +81,13 @@ abstract class endpoint_base {
     }
     
     function generate_info($file_contents, $brand_ts, $family_ts) {
-        $file_contents = str_replace('{$provisioner_processor_info}', $this->processor_info, $file_contents);
-        $file_contents = str_replace('{$provisioner_timestamp}', $this->processor_info, $file_contents);
-        $file_contents = str_replace('{$provisioner_brand_timestamp}', $brand_ts ." (".date('l jS \of F Y h:i:s A', $brand_ts).")", $file_contents);
-        $file_contents = str_replace('{$provisioner_family_timestamp}', $family_ts." (".date('l jS \of F Y h:i:s A', $family_ts).")", $file_contents);
-        $file_contents = str_replace('{$provisioner_generated_timestamp}', date('l jS \of F Y h:i:s A'), $file_contents);
+		if($this->server_type == "file") {
+	        $file_contents = str_replace('{$provisioner_processor_info}', $this->processor_info, $file_contents);
+	        $file_contents = str_replace('{$provisioner_timestamp}', $this->processor_info, $file_contents);
+	        $file_contents = str_replace('{$provisioner_brand_timestamp}', $brand_ts ." (".date('l jS \of F Y h:i:s A', $brand_ts).")", $file_contents);
+	        $file_contents = str_replace('{$provisioner_family_timestamp}', $family_ts." (".date('l jS \of F Y h:i:s A', $family_ts).")", $file_contents);
+	        $file_contents = str_replace('{$provisioner_generated_timestamp}', date('l jS \of F Y h:i:s A'), $file_contents);
+		}
         return($file_contents);
     }
     
