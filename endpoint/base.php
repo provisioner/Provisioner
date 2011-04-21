@@ -138,14 +138,14 @@ abstract class endpoint_base {
 		
 		$array[1]['gmt'] = 'GMT+1:00';
 		$array[1]['offset'] = '3600';
-		$array[1][0]['name'] ] 'ECT';
+		$array[1][0]['name'] = 'ECT';
 		$array[1][0]['description'] = 'European Central Time';
 		
 		$array[2]['gmt'] = 'GMT+2:00';
 		$array[2]['offset'] = '7200';
-		$array[2][0]['name'] ] 'EET';
+		$array[2][0]['name'] = 'EET';
 		$array[2][0]['description'] = 'Eastern European Time';
-		$array[2][1]['name'] ] 'ART';
+		$array[2][1]['name'] = 'ART';
 		$array[2][1]['description'] = '(Arabic) Egypt Standard Time';
 		
 		$array[3]['gmt'] = 'GMT+3:00';
