@@ -69,6 +69,26 @@ class endpoint_aastra_aap9xxx6xxx_phone extends endpoint_aastra_base {
 			}
 		}
 		
+		if(!isset($this->options['provisioning_server'])) {
+			$this->options['provisioning_server'] = $this->server[1]['ip'];
+		}
+		
+		if(!isset($this->options['provisioning_path'])) {
+			$this->options['provisioning_path'] = '';
+		}
+				
+		switch($this->provisioning_type) {
+			case "tftp":
+				$this->options['provisioning_protocol'] = 'TFTP';
+				break;
+			case "http":
+				$this->options['provisioning_protocol'] = 'HTTP';
+				break;
+			case "https":
+				$this->options['provisioning_protocol'] = 'HTTPS';
+				break;
+		}		
+				
 		//mac.cfg
 		$contents = $this->open_config_file("\$mac.cfg");
 		$final[$this->mac.'.cfg'] = $this->parse_config_file($contents, FALSE);
