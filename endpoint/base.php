@@ -33,6 +33,7 @@ abstract class endpoint_base {
     public $copy_files = array();		//array of files or directories to copy. Directories will be recursive
 	public $en_htmlspecialchars = TRUE;	//Enable or Disable PHP's htmlspecialchars() function for variables
 	public $server_type = 'file';		//Can be file or dynamic
+	public $provisioning_type = 'tftp';		//can be tftp,http,ftp ??
     
     // Old
     /**
@@ -51,6 +52,30 @@ abstract class endpoint_base {
         self::$modules_path = $path;
     }
     
+	//Set all default values here and fix errors before they hit us in the ass later on. 
+	function data_integrity() {
+		switch($this->server_type) {
+			case "file":
+				break;
+			case "dynamic":
+				break;
+			default:
+				$this->server_type = 'file';
+				break;
+		}
+		switch($this->provisioning_type) {
+			case "tftp":
+				break;
+			case "http":
+				break;
+			case "ftp":
+				break;
+			default:
+				$this->provisioning_type = "tftp";
+				break;
+		}
+	}
+
     function reboot() {
         
     }
@@ -183,6 +208,7 @@ abstract class endpoint_base {
      * </code>
      */
     function open_config_file($filename) {
+		$this->data_integrity();
         //if there is no configuration file over ridding the default then load up $contents with the file's information, where $key is the name of the default configuration file
         if (!isset($this->config_files_override[$filename])) {
             $hd_file = $this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $filename;
