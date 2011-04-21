@@ -32,6 +32,7 @@ abstract class endpoint_base {
     public $protected_files = array();	//array list of file to NOT over-write on every config file build. They are protected.
     public $copy_files = array();		//array of files or directories to copy. Directories will be recursive
 	public $en_htmlspecialchars = TRUE;	//Enable or Disable PHP's htmlspecialchars() function for variables
+	public $server_type = 'file';		//Can be file or dynamic
     
     // Old
     /**
@@ -128,7 +129,33 @@ abstract class endpoint_base {
         $dateTime->setTimeZone(new DateTimeZone('America/Los_Angeles')); 
         return $dateTime->format('T');
     }
-    
+
+    function timezone_array() {
+		$array[0]['gmt'] = 'GMT';
+		$array[0]['offset'] = '0';
+		$array[0][0]['name'] = 'UTC';
+		$array[0][0]['description'] = 'Universal Coordinated Time (and Greenwich Mean Time)';
+		
+		$array[1]['gmt'] = 'GMT+1:00';
+		$array[1]['offset'] = '3600';
+		$array[1][0]['name'] ] 'ECT';
+		$array[1][0]['description'] = 'European Central Time';
+		
+		$array[2]['gmt'] = 'GMT+2:00';
+		$array[2]['offset'] = '7200';
+		$array[2][0]['name'] ] 'EET';
+		$array[2][0]['description'] = 'Eastern European Time';
+		$array[2][1]['name'] ] 'ART';
+		$array[2][1]['description'] = '(Arabic) Egypt Standard Time';
+		
+		$array[3]['gmt'] = 'GMT+3:00';
+		$array[3]['offset'] = '10800';
+		$array[3][0]['name'] = 'EAT';
+		$array[3][0]['description'] = 'Eastern African Time';
+	
+		return($array);
+	}
+
     /**
      * $type is either gmt or tz
      */
