@@ -79,7 +79,20 @@ class endpoint_aastra_aap9xxx6xxx_phone extends endpoint_aastra_base {
 		$contents = $this->open_config_file("aastra.cfg");
 		$final['aastra.cfg'] = $this->parse_config_file($contents, FALSE);
 		
-		return($final);
+		if($this->server_type == 'dynamic') {
+			$out = '';
+			$out[$this->mac.'.cfg'] = '';
+			foreach($final as $key => $value) {
+				$out[$this->mac.'.cfg'] .= $value . "\n";
+				if($key != $this->mac.'.cfg') {
+					$out[$key] = '#This File is intentionally left blank';
+				}
+			}
+			
+			return($out);
+		} else {
+			return($final);
+		}
 	}
 }
 ?>
