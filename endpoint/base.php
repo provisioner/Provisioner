@@ -34,6 +34,7 @@ abstract class endpoint_base {
 	public $en_htmlspecialchars = TRUE;	//Enable or Disable PHP's htmlspecialchars() function for variables
 	public $server_type = 'file';		//Can be file or dynamic
 	public $provisioning_type = 'tftp';		//can be tftp,http,ftp ??
+	public $enable_encryption = FALSE;		//Enable file encryption
     
     // Old
     /**
