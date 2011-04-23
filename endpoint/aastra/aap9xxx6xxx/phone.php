@@ -92,9 +92,7 @@ class endpoint_aastra_aap9xxx6xxx_phone extends endpoint_aastra_base {
 		//mac.cfg
 		$contents = $this->open_config_file("\$mac.cfg");
 		$final[$this->mac.'.cfg'] = $this->parse_config_file($contents, FALSE);
-
-
-		
+	
 		//aastra.cfg
 		$contents = $this->open_config_file("aastra.cfg");
 		$final['aastra.cfg'] = $this->parse_config_file($contents, FALSE);
@@ -108,8 +106,14 @@ class endpoint_aastra_aap9xxx6xxx_phone extends endpoint_aastra_base {
 					$out[$key] = '#This File is intentionally left blank';
 				}
 			}
-			
-			return($out);
+			if($this->enable_encryption) {
+				$this->enable_encryption();
+				$new_out = $this->encrypt_files($out);
+				return($new_out);
+			} else {
+				$this->disable_encryption();
+				return($out);
+			}
 		} else {
 			return($final);
 		}
