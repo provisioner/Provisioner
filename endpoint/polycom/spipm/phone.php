@@ -29,30 +29,34 @@ class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
 		$file_list = $this->mac.'_reg.cfg, ';
 		
 		$contents = $this->open_config_file('sip.cfg');
-		$final['sip.cfg'] = $this->parse_config_file($contents, FALSE);
-		$file_list .= ' sip.cfg';
+		if($this->server_type == 'dynamic') {
+			$file_list .= $this->mac.'_sip.cfg';
+			$final[$this->mac.'_sip.cfg'] = $this->parse_config_file($contents, FALSE);
+		} else {
+			$file_list .= ' sip.cfg';
+			$final['sip.cfg'] = $this->parse_config_file($contents, FALSE);
+			
+			$this->directory_structure = array("logs","overrides","contacts","licenses","SoundPointIPLocalization");
+
+			$this->copy_files = array("SoundPointIPLocalization","SoundPointIPWelcome.wav","LoudRing.wav");
+
+			$contents = $this->open_config_file('000000000000-directory.xml');
+			$final['contacts/000000000000-directory.xml'] = $contents;
+
+			$final['logs/'.$this->mac.'-boot.log'] = "";
+			$final['logs/'.$this->mac.'-app.log'] = "";
+
+			$this->protected_files = array('overrides/'.$this->mac.'-phone.cfg', 'logs/'.$this->mac.'-boot.log', 'logs/'.$this->mac.'-app.log','SoundPointIPLocalization');
+
+			$contents = $this->open_config_file('{$mac}-phone.cfg');
+			$final['overrides/'.$this->mac.'-phone.cfg'] = $this->parse_config_file($contents, FALSE);
+		}
 				
 		$this->options['createdFiles'] = $file_list;
 		
-		//Old School
 		$contents = $this->open_config_file('{$mac}.cfg');
 		$final[$this->mac.'.cfg'] = $this->parse_config_file($contents, FALSE);
-		
-		$this->directory_structure = array("logs","overrides","contacts","licenses","SoundPointIPLocalization");
-		
-		$this->copy_files = array("SoundPointIPLocalization","SoundPointIPWelcome.wav","LoudRing.wav");
-		
-		$contents = $this->open_config_file('000000000000-directory.xml');
-		$final['contacts/000000000000-directory.xml'] = $contents;
-		
-		$final['logs/'.$this->mac.'-boot.log'] = "";
-		$final['logs/'.$this->mac.'-app.log'] = "";
-		
-		$this->protected_files = array('overrides/'.$this->mac.'-phone.cfg', 'logs/'.$this->mac.'-boot.log', 'logs/'.$this->mac.'-app.log','SoundPointIPLocalization');
-		
-		$contents = $this->open_config_file('{$mac}-phone.cfg');
-		$final['overrides/'.$this->mac.'-phone.cfg'] = $this->parse_config_file($contents, FALSE);
-				
+					
 		return($final);
 	}
 
