@@ -17,7 +17,8 @@ class endpoint_cisco_base extends endpoint_base {
 				exec("asterisk -rx 'sip notify cisco-check-cfg ".$this->lines[1]['ext']."'");
 			} elseif($this->family_line == "spa") {
 				exec("asterisk -rx 'sip notify spa-reboot ".$this->lines[1]['ext']."'");				
-			}
+			} elseif($this->family_line == "spa5xx") {
+				exec("asterisk -rx 'sip notify spa-reboot ".$this->lines[1]['ext']."'");
 		}
 	}
 }
