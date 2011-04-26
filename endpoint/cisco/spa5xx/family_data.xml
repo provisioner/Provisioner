@@ -32,6 +32,7 @@
 		<lines>4</lines>
 		<id>3</id>
 		<template_data>
+			<files>line_options.xml</files>
 			<files>template_data.xml</files>
                         <files>keys.xml</files>
 		</template_data>
