@@ -1,0 +1,41 @@
+<!-- Use this to loop through for different line options -->
+<template_data>
+    <category>
+        <name>lines</name>
+        <subcategory>
+            <name>basic</name>
+            <item>
+                <description>Line Options</description>
+                <type>loop_line_options</type>
+                <data>
+                    <item>
+                        <variable>$display_name_line</variable>
+                        <default_value>{$displayname.line.{$count}}</default_value>
+                        <description>Line Key Display Name</description>
+                        <type>input</type>
+                    </item>
+		            <item>
+		                <variable>$line_key_type</variable>
+		                <default_value>line</default_value>
+		                <description>Line Key Type</description>
+		                <type>list</type>
+		                <data>
+		                    <text>Line</text>
+		                    <value>line</value>
+		                </data>
+		                <data>
+		                    <text>BLF</text>
+		                    <value>blf</value>
+		                </data>
+		            </item>
+		            <item>
+                        <variable>$blf_ext</variable>
+                        <default_value></default_value>
+                        <description>BLF Extension</description>
+                        <type>input</type>
+                    </item>
+                </data>
+            </item>
+        </subcategory>
+    </category>
+</template_data>
