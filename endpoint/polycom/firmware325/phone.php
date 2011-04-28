@@ -25,7 +25,7 @@ class endpoint_polycom_firmware325_phone extends endpoint_polycom_base {
         }
 
 		$contents = $this->open_config_file('server.cfg');
-		$final['server.cfg'] = $this->parse_config_file($contents, FALSE);
+		$final['server_325.cfg'] = $this->parse_config_file($contents, FALSE);
 		$file_list = 'server_325.cfg, ';
 		
 		$contents = $this->open_config_file('{$mac}_reg.cfg');
@@ -33,11 +33,11 @@ class endpoint_polycom_firmware325_phone extends endpoint_polycom_base {
 		$file_list = $this->mac.'_reg.cfg, ';
 		
 		$contents = $this->open_config_file('phone1.cfg');
-		$final['phone1.cfg'] = $this->parse_config_file($contents, FALSE);
+		$final['phone1_325.cfg'] = $this->parse_config_file($contents, FALSE);
 		$file_list .= ' phone1_325.cfg, ';
 		
 		$contents = $this->open_config_file('sip.cfg');
-		$final['sip.cfg'] = $this->parse_config_file($contents, FALSE);
+		$final['sip_325.cfg'] = $this->parse_config_file($contents, FALSE);
 		$file_list .= ' sip_325.cfg';
 				
 		$this->options['createdFiles'] = $file_list;
