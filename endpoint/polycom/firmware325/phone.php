@@ -66,6 +66,4 @@ class endpoint_polycom_firmware325_phone extends endpoint_polycom_base {
 				
 		return($final);
 	}
-
-
 }
