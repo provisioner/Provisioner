@@ -209,6 +209,7 @@ abstract class endpoint_base {
      * <code>
      * 	$full_file = $this->open_config_file("local_file.cfg");
      * </code>
+	 * @author Andrew Nagy
      */
     function open_config_file($filename) {
 		$this->data_integrity();
@@ -237,6 +238,7 @@ abstract class endpoint_base {
      * @param integer $lines The total number of lines for this model, NULL if defining a model
      * @param integer $specific_line The specific line number to manipulate. If no line number set then assume All Lines
      * @return string Full Contents of the configuration file (After Parsing)
+	 * @author Andrew Nagy
      */
     function parse_config_file($file_contents, $keep_unknown=FALSE, $lines=NULL, $specific_line='ALL') {
         $family_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml");
@@ -269,15 +271,48 @@ abstract class endpoint_base {
         } else {
             $brand_mod = $brand_data['data']['brands']['family_list']['family']['last_modified'];
         }
+
         $file_contents = $this->generate_info($file_contents, $brand_data['data']['brands']['last_modified'], $brand_mod);
-        
+
+		$file_contents = $this->parse_conditional_model($file_contents);
         $file_contents = $this->parse_lines($line_total, $file_contents, $keep_unknown = FALSE, $specific_line);
         $file_contents = $this->parse_loops($line_total,$file_contents, $keep_unknown = FALSE, $specific_line);
         $file_contents = $this->parse_config_values($file_contents);
         
         return $file_contents;
     }
+
+    /**
+     * Simple Model if then statement, should be called before any parsing!
+     * @param string $file_contents Full Contents of the configuration file
+     * @return string Full Contents of the configuration file (After Parsing)
+	 * @example {if model="6757*"}{/if}
+	 * @author Andrew Nagy
+     */
+	function parse_conditional_model($file_contents) {
+		$pattern = "/{if model=\"(.*?)\"}(.*?){\/if}/si";
+        while (preg_match($pattern, $file_contents, $matches)) {
+			//This is exactly like the fnmatch function except it will work on POSIX compliant systems
+			//http://php.net/manual/en/function.fnmatch.php
+			if(preg_match("#^".strtr(preg_quote($matches[1], '#'), array('\*' => '.*', '\?' => '.', '\[' => '[', '\]' => ']'))."$#i", $this->model)) {
+				$file_contents = preg_replace($pattern, $matches[2], $file_contents, 1);
+			} else {
+				$file_contents = preg_replace($pattern, "", $file_contents, 1);
+			}
+		}
+		return($file_contents);
+	}
     
+    /**
+     * Parse data between {loop_*}{/loop_*}
+     * @param string $line_total Total Number of Lines on the specific Phone
+     * @param string $file_contents Full Contents of the configuration file
+     * @param boolean $keep_unknown Keep Unknown variables as {$variable} instead of erasing them (blanking the space), can be used to parse these variables later
+     * @param integer $specific_line The specific line number to manipulate. If no line number set then assume All Lines
+     * @return string Full Contents of the configuration file (After Parsing)
+	 * @example {loop_keys}{/loop_keys}
+	 * @author Andrew Nagy
+     */
     function parse_loops($line_total, $file_contents, $keep_unknown=FALSE, $specific_line='ALL') {
         //Find line looping data betwen {line_loop}{/line_loop}
         $pattern = "/{loop_(.*?)}(.*?){\/loop_(.*?)}/si";
@@ -306,6 +341,7 @@ abstract class endpoint_base {
      * @param boolean $keep_unknown Keep Unknown variables as {$variable} instead of erasing them (blanking the space), can be used to parse these variables later
      * @param integer $specific_line The specific line number to manipulate. If no line number set then assume All Lines
      * @return string Full Contents of the configuration file (After Parsing)
+	 * @author Andrew Nagy
      */
     function parse_lines($line_total, $file_contents, $keep_unknown=FALSE, $specific_line='ALL') {
         //Find line looping data betwen {line_loop}{/line_loop}
@@ -348,13 +384,14 @@ abstract class endpoint_base {
     }
     
     /**
-     *
-     * @param string $file_contents
-     * @param boolean $keep_unknown
-     * @param string $specific_line
+     * This function will replace variables, eg {$variable}
+     * @param string $file_contents Full Contents of the configuration file
+     * @param boolean $keep_unknown Keep Unknown variables as {$variable} instead of erasing them (blanking the space), can be used to parse these variables later
+	 * @param string $specific_line_master The specific line number to manipulate. If no line number set then assume GLOBAL variable. This will reset back to whatever it was sent for every variable
+	 * @param string $options 
      * @return string
+	 * @author Andrew Nagy
      */
-    
     function parse_config_values($file_contents, $keep_unknown=FALSE, $specific_line_master="GLOBAL", $options=NULL) {
         if(!isset($options)) {
             $options=$this->options;
@@ -523,19 +560,18 @@ abstract class endpoint_base {
     }
     
     /**
-     *
+     * This will replace statically known variables
+     * variables: {$server.ip.*}, {$server.port.*}, {$mac}, {$model}, {$line}, {$ext}, {$displayname}, {$secret}, {$pass}, etc.
      * @param string $contents
      * @param string $specific_line
      * @param boolean $looping
      * @return string
      */
-    
     function replace_static_variables($contents, $specific_line="GLOBAL", $looping=TRUE) {
         foreach($this->server as $key => $servers) {
             $contents = str_replace('{$server.ip.'.$key.'}', $servers['ip'], $contents);
             $contents = str_replace('{$server.port.'.$key.'}', $servers['port'], $contents);
-        }
-        
+        }       
         if(isset($this->proxy)) {
             foreach($this->proxy as $key => $proxies) {
                 $contents = str_replace('{$proxy.ip.'.$key.'}', $proxies['ip'], $contents);
@@ -547,12 +583,9 @@ abstract class endpoint_base {
         $contents = str_replace('{$timezone_gmtoffset}', $this->timezone['gmtoffset'], $contents);
         $contents = str_replace('{$timezone_timezone}', $this->timezone['timezone'], $contents);
         $contents = str_replace('{$timezone}', $this->timezone['timezone'], $contents);
-        
-        
         //Depreciated
         $contents = str_replace('{$gmtoff}', $this->timezone['gmtoffset'], $contents);
         $contents = str_replace('{$gmthr}', $this->timezone['gmtoffset'], $contents);
-        
         if (($specific_line != "GLOBAL") AND ($looping == TRUE)) {
             $contents = str_replace('{$line}', $specific_line, $contents);
             $contents = str_replace('{$ext}', $this->lines[$specific_line]['ext'], $contents);
@@ -614,12 +647,11 @@ abstract class endpoint_base {
                 }
             }
         }
-        
         return($contents);
     }
     
     /**
-     *
+     * Merge two arrays only if the old array is an array, otherwise just return the new array
      * @param array $array_old
      * @param array $array_new
      * @return array
@@ -640,6 +672,7 @@ abstract class endpoint_base {
      * We fix that issue here by returning blank values on empty arrays or always returning array[0]
      * @param array $array
      * @return mixed
+	 * @author Karl Anderson
      */
     function fix_single_array_keys($array) {
         if (!is_array($array))
@@ -673,7 +706,7 @@ abstract class endpoint_base {
     }
     
     /**
-     *
+     * Search Recursively through an array
      * @param string $Needle
      * @param array $Haystack
      * @param string $NeedleKey
@@ -701,11 +734,12 @@ abstract class endpoint_base {
     }
     
     /**
-     *
-     * @param <type> $url
-     * @param <type> $get_attributes
-     * @param <type> $priority
-     * @return <type>
+	 * xml2array() will convert the given XML text to an array in the XML structure. 
+	 * @author http://www.bin-co.com/php/scripts/xml2array/ 
+     * @param <type> $url The XML file
+     * @param <type> $get_attributes 1 or 0. If this is 1 the function will get the attributes as well as the tag values - this results in a different array structure in the return value.
+     * @param <type> $priority Can be 'tag' or 'attribute'. This will change the way the resulting array structure. For 'tag', the tags are given more importance.
+     * @return <type> The parsed XML in an array form. Use print_r() to see the resulting array structure.
      */
     function xml2array($url, $get_attributes = 1, $priority = 'tag') {
         $contents = "";
