@@ -1,5 +1,5 @@
 <data>
-	<name>Mitel 5xxx Models: [5340, 5324, 5215, 5220]</name>
+	<name>Mitel 5xxx Models: [5304, 5312, 5320, 5324, 5330, 5340, 5360]</name>
 	<id>1</id>
 	<version>0.7.5</version>
 	<directory>53xx</directory>
