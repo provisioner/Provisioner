@@ -33,11 +33,11 @@ class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
 			$file_list .= $this->mac.'_sip.cfg';
 			$final[$this->mac.'_sip.cfg'] = $this->parse_config_file($contents, FALSE);
 		} else {
-			$contents = $this->open_config_file('000000000000.cfg');
-			$final['000000000000.cfg'] = $this->parse_config_file($contents, FALSE);
-
 			$file_list .= ' sip.cfg';
 			$final['sip.cfg'] = $this->parse_config_file($contents, FALSE);
+
+			$contents = $this->open_config_file('000000000000.cfg');
+			$final['000000000000.cfg'] = $this->parse_config_file($contents, FALSE);
 			
 			$this->directory_structure = array("logs","overrides","contacts","licenses","SoundPointIPLocalization");
 
