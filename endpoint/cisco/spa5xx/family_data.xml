@@ -32,9 +32,9 @@
 		<lines>4</lines>
 		<id>3</id>
 		<template_data>
-			<files>line_options.xml</files>
+			<files>4_lines.xml</files>
 			<files>template_data.xml</files>
-                        <files>keys.xml</files>
+            <files>keys.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
