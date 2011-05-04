@@ -6,12 +6,13 @@ $supported_phones = array();
 
 $master_xml = array();
 echo "<pre>";
-define("MODULES_DIR", "/chroot/home/tm1000/public_html/repo/endpoint");
-define("RELEASE_DIR", "/chroot/home/tm1000/public_html/release3");
+define("MODULES_DIR", "/var/www/html/repo/endpoint");
+define("RELEASE_DIR", "/var/www/html/release3");
+define("ROOT_DIR", "/var/www/html/repo");
 
 set_time_limit(0);
 
-$filename = "/chroot/home/tm1000/public_html/repo/commit_message.txt";
+$filename = ROOT_DIR."/commit_message.txt";
 $handle = fopen($filename, "r");
 $c_message = fread($handle, filesize($filename));
 fclose($handle);
@@ -43,13 +44,13 @@ foreach (glob(MODULES_DIR."/*", GLOB_ONLYDIR) as $filename) {
 		echo "\n\n";
 	}
 }
-copy("/chroot/home/tm1000/public_html/repo/autoload.php","/chroot/home/tm1000/public_html/repo/setup.php");
-$endpoint_max[0] = filemtime("/chroot/home/tm1000/public_html/repo/autoload.php");
-$endpoint_max[1] = filemtime("/chroot/home/tm1000/public_html/repo/endpoint/base.php");
+copy(ROOT_DIR."/autoload.php",ROOT_DIR."/setup.php");
+$endpoint_max[0] = filemtime(ROOT_DIR."/autoload.php");
+$endpoint_max[1] = filemtime(MODULES_DIR."/base.php");
 
 $endpoint_max = max($endpoint_max);
 
-exec("tar zcf ".RELEASE_DIR."/provisioner_net.tgz --exclude .svn -C /chroot/home/tm1000/public_html/repo/ setup.php endpoint/base.php");
+exec("tar zcf ".RELEASE_DIR."/provisioner_net.tgz --exclude .svn -C ".ROOT_DIR."/ setup.php endpoint/base.php");
 
 $html = "======= Provisioner.net Library Releases ======= \n == Note: This page is edited by an outside script and can not be edited == \n Latest Commit Message: //".$c_message."//\n<html>";
 
@@ -93,11 +94,11 @@ $html .= "<hr><h3>Brand Packages</h3>".$brands_html;
 
 $html .= "</html>";
 echo "\nDone!";
-$fp = fopen('/chroot/home/tm1000/provisioner.net/data/pages/releases3.txt', 'w');
+$fp = fopen('/var/www/data/pages/releases3.txt', 'w');
 fwrite($fp, $html);
 fclose($fp);
 
-$fp = fopen('/chroot/home/tm1000/provisioner.net/data/pages/supported.txt', 'w');
+$fp = fopen('/var/www/data/pages/supported.txt', 'w');
 $html2 = "=======This is the list of Supported Phones======= \n == Note: This page is edited by an outside script and can not be edited == \n";
 
 array_multisort($supported_phones);
