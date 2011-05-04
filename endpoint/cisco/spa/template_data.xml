@@ -14,7 +14,7 @@
             </item>
             <item>
                 <variable>$page_code</variable>
-                <default_value>*80</default_value>
+                <default_value></default_value>
                 <description>Paging Code</description>
                 <type>input</type>
             </item>
