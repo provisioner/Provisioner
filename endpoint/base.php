@@ -18,7 +18,6 @@ abstract class endpoint_base {
     
     public $mac;            // Device mac address
     public $model;			// Model of phone, must match the model name inside of the famil_data.xml file in each family folder.
-    public $description;    // Generic description
     public $timezone;       // Global timezone var
     public $server;         // Contains an array of valid server IPs & ports, in case phones support backups
     public $proxy;			// Contains an array of valid proxy IPs & ports
@@ -44,6 +43,7 @@ abstract class endpoint_base {
      */
     public $ext;
     public $secret;
+    public $description;    // Generic description
     
     public static function get_modules_path() {
         return self::$modules_path;
@@ -52,6 +52,19 @@ abstract class endpoint_base {
     public static function set_modules_path($path) {
         self::$modules_path = $path;
     }
+
+	//Initialize all child functions
+    function reboot() {
+        
+    }
+
+    /**
+     * This is hooked into the middle of the line loop function to allow parsing of variables without having to create a sub foreach or for statement
+     * @param String $line The Line number.
+     */
+	function parse_lines_hook($line) {
+
+	}
     
 	//Set all default values here and fix errors before they hit us in the ass later on. 
 	function data_integrity() {
@@ -76,10 +89,6 @@ abstract class endpoint_base {
 				break;
 		}
 	}
-
-    function reboot() {
-        
-    }
     
     function generate_info($file_contents, $brand_ts, $family_ts) {
 		if($this->server_type == "file") {
@@ -351,7 +360,8 @@ abstract class endpoint_base {
             $parsed = "";
             //If specific line is set to ALL then loop through all lines
             if ($specific_line == "ALL") {
-                while ($i <= $line_total) {	
+                while ($i <= $line_total) {
+					$this->parse_lines_hook($i);
                     if (isset($this->lines[$i]['secret'])) {
                         $parsed_2 = $this->replace_static_variables($matches[1], $i, TRUE);
                         $parsed .= $this->parse_config_values($parsed_2, FALSE, $i);
@@ -361,6 +371,7 @@ abstract class endpoint_base {
                 }
                 //If Specific Line is set to a number greater than 0 then only process the loop for that line
             } else {
+				$this->parse_lines_hook($specific_line);
                 $parsed_2 = $this->replace_static_variables($matches[1], $specific_line, TRUE);
                 $parsed = $this->parse_config_values($parsed_2, TRUE, $specific_line);
             }
