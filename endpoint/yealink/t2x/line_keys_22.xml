@@ -40,7 +40,7 @@
                         </data>
                         <data>
                             <text>BLF</text>
-                            <value>14</value>
+                            <value>16</value>
                             <disable>$linekey_mode_{$count}</disable>
                             <enable>$linekey_line_{$count},$linekey_extension_{$count},$linekey_pickup_{$count}</enable>
                         </data>
@@ -62,90 +62,14 @@
                         <default_value>1</default_value>
                         <description>Line Key {$count} Event Mode</description>
                         <type>list</type>
-                        <data>
-                            <text>Conference</text>
-                            <value>1</value>
-                        </data>
-                        <data>
-                            <text>Forward</text>
-                            <value>2</value>
-                        </data>
-                        <data>
-                            <text>Transfer</text>
-                            <value>3</value>
-                        </data>
-                        <data>
-                            <text>Hold</text>
-                            <value>4</value>
-                        </data>
-                        <data>
-                            <text>Do Not Disturb</text>
-                            <value>5</value>
-                        </data>
-                        <data>
-                            <text>Redial</text>
-                            <value>6</value>
-                        </data>
-                        <data>
-                            <text>Call Return</text>
-                            <value>7</value>
-                        </data>
-                        <data>
-                            <text>SMS</text>
-                            <value>8</value>
-                        </data>
-                        <data>
-                            <text>Call Pickup</text>
-                            <value>9</value>
-                        </data>
-                        <data>
-                            <text>Call Park</text>
-                            <value>10</value>
-                        </data>
-                        <data>
-                            <text>DTMF</text>
-                            <value>11</value>
-                        </data>
-                        <data>
-                            <text>Voicemail</text>
-                            <value>12</value>
-                        </data>
-                        <data>
-                            <text>Speed Dial</text>
-                            <value>13</value>
-                        </data>
-                        <data>
-                            <text>Intercom</text>
-                            <value>14</value>
-                        </data>
-                        <data>
-                            <text>BLF</text>
-                            <value>16</value>
-                        </data>
-                        <data>
-                            <text>URL</text>
-                            <value>17</value>
-                        </data>
-                        <data>
-                            <text>Group Listing</text>
-                            <value>18</value>
-                        </data>
-                        <data>
-                            <text>Public Hold</text>
-                            <value>19</value>
-                        </data>
-                        <data>
-                            <text>Private Hold</text>
-                            <value>20</value>
-                        </data>
-                        <data>
-                            <text>Shared Line</text>
-                            <value>21</value>
-                        </data>
-                        <data>
-                            <text>XML Phonebook</text>
-                            <value>22</value>
-                        </data>
+						<data>
+							<text>BLF</text>
+							<value>blf</value>
+						</data>
+						<data>
+							<text>BLA</text>
+							<value>bla</value>
+						</data>
                     </item>
                     <item>
                         <variable>$linekey_line</variable>
