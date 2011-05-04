@@ -1,0 +1,45 @@
+<template_data>
+    <category>
+        <name>Line Options</name>
+        <subcategory>
+            <name>Line Options</name>
+            <item>
+                <description>Top Soft Keys (6757i)</description>
+                <type>loop</type>
+                <loop_start>1</loop_start>
+                <loop_end>4</loop_end>
+                <data>
+					<item>
+					    <variable>$lineops_displaynameline</variable>
+					    <default_value>{$displayname.line.{$count}}</default_value>
+					    <description>Line Key {$count} Display Name</description>
+					    <type>input</type>
+					</item>
+					<item>
+					    <variable>$lineops_keytype</variable>
+					    <default_value>line</default_value>
+					    <description>Line Key {$count} Type</description>
+					    <type>list</type>
+					    <data>
+					        <text>Line</text>
+					        <value>line</value>
+					    </data>
+					    <data>
+					        <text>BLF</text>
+					        <value>blf</value>
+					    </data>
+					</item>
+					<item>
+					    <variable>$lineops_blfext</variable>
+					    <default_value></default_value>
+					    <description>BLF {$count} Extension</description>
+					    <type>input</type>
+					</item>
+					<item>
+						<type>break</type>
+					</item>
+                </data>
+            </item>
+        </subcategory>
+    </category>
+</template_data>
