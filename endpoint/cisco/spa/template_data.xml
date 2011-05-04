@@ -4,8 +4,13 @@
         <subcategory>
             <name>General Settings</name>
             <item>
-                <description>General Settings</description>
-                <type>group</type>
+                <variable>$station_name</variable>
+                <default_value></default_value>
+                <description>Station Name</description>
+                <type>input</type>
+            </item>
+            <item>
+                <type>break</type>
             </item>
             <item>
                 <variable>$page_code</variable>
@@ -93,10 +98,6 @@
                 <default_value>(*xx.|7xxxS0|9[3469]11S0|9[2-9]xxxxxxS0|91xxx[2-9]xxxxxxS0|xxxxxxxxxxxx.)</default_value>
                 <description>Dial Plan</description>
                 <type>input</type>
-            </item>
-            <item>
-                <description>Logos/Backgrounds</description>
-                <type>group</type>
             </item>
             <item>
                 <variable>$text_logo</variable>
