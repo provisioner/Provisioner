@@ -1,6 +1,6 @@
 <?php
 /**
- * Polycom SoundPoint In Production Modules Phone File
+ * Yealink Modules Phone File
  *
  * @author Andrew Nagy
  * @license MPL / GPLv2 / LGPL
