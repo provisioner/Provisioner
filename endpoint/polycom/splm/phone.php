@@ -25,20 +25,20 @@ class endpoint_polycom_splm_phone extends endpoint_polycom_base {
         }
 
 		$contents = $this->open_config_file('server.cfg');
-		$final['server_316.cfg'] = $this->parse_config_file($contents, FALSE);
-		$file_list = 'server_316.cfg, ';
+		$final['server_317.cfg'] = $this->parse_config_file($contents, FALSE);
+		$file_list = 'server_317.cfg, ';
 		
 		$contents = $this->open_config_file('{$mac}_reg.cfg');
 		$final[$this->mac.'_reg.cfg'] = $this->parse_config_file($contents,FALSE);
 		$file_list = $this->mac.'_reg.cfg, ';
 		
 		$contents = $this->open_config_file('phone1.cfg');
-		$final['phone1_316.cfg'] = $this->parse_config_file($contents, FALSE);
-		$file_list .= ' phone1_316.cfg, ';
+		$final['phone1_317.cfg'] = $this->parse_config_file($contents, FALSE);
+		$file_list .= ' phone1_317.cfg, ';
 		
 		$contents = $this->open_config_file('sip.cfg');
-		$final['sip_316.cfg'] = $this->parse_config_file($contents, FALSE);
-		$file_list .= ' sip_316.cfg';
+		$final['sip_317.cfg'] = $this->parse_config_file($contents, FALSE);
+		$file_list .= ' sip_317.cfg';
 				
 		$this->options['createdFiles'] = $file_list;
 		
