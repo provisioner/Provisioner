@@ -4,7 +4,7 @@
         <subcategory>
             <name>Line Options</name>
             <item>
-                <description>Top Soft Keys (6757i)</description>
+                <description>Line Keys</description>
                 <type>loop</type>
                 <loop_start>1</loop_start>
                 <loop_end>4</loop_end>
