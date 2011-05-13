@@ -11,6 +11,7 @@ class endpoint_cisco_spa_phone extends endpoint_cisco_base {
 	public $family_line = 'spa';
 	
 	function parse_lines_hook($line) {
+		$short_name = substr($this->lines[$line]['displayname'], 0, 8) . "...";
 		if((isset($this->lines[$line]['secret'])) && ($this->lines[$line]['secret'] != "")) {
 			$this->lines[$line]['options']['dial_plan'] = $this->options['dial_plan'];
 		} else {
@@ -38,6 +39,12 @@ class endpoint_cisco_spa_phone extends endpoint_cisco_base {
 					$this->lines[$line]['options']['extended_function'] = "";
 				}
 			}
+		} else {
+			$this->lines[$line]['options']['displaynameline'] = $this->lines[$line]['displayname'];
+			$this->lines[$line]['options']['short_name'] = $short_name;
+			$this->lines[$line]['options']['blf_ext_type'] = "1";
+			$this->lines[$line]['options']['share_call_appearance'] = "private";
+			$this->lines[$line]['options']['extended_function'] = "";
 		}
 	}
 	
