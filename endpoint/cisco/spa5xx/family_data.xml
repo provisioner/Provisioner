@@ -70,6 +70,7 @@
 		<lines>5</lines>
 		<id>7</id>
 		<template_data>
+		<files>5_lines.xml</files>
 			<files>template_data.xml</files>
                         <files>keys.xml</files>
 		</template_data>
