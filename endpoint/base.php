@@ -189,6 +189,127 @@ abstract class endpoint_base {
 		$array[3]['offset'] = '10800';
 		$array[3][0]['name'] = 'EAT';
 		$array[3][0]['description'] = 'Eastern African Time';
+		
+		$array[4]['gmt'] = 'GMT+3:30';
+		$array[4]['offset'] = '12600';
+		$array[4][0]['name'] = 'MET';
+		$array[4][0]['description'] = 'Middle East Time';
+		
+		$array[5]['gmt'] = 'GMT+4:00';
+		$array[5]['offset'] = '14400';
+		$array[5][0]['name'] = 'NET';
+		$array[5][0]['description'] = 'Near East Time';		
+		
+		$array[6]['gmt'] = 'GMT+5:00';
+		$array[6]['offset'] = '18000';
+		$array[6][0]['name'] = 'PLT';
+		$array[6][0]['description'] = 'Pakistan Lahore Time';
+		
+		$array[7]['gmt'] = 'GMT+5:30';
+		$array[7]['offset'] = '19800';
+		$array[7][0]['name'] = 'IST';
+		$array[7][0]['description'] = 'India Standard Time';
+		
+		$array[8]['gmt'] = 'GMT+6:00';
+		$array[8]['offset'] = '21600';
+		$array[8][0]['name'] = 'BST';
+		$array[8][0]['description'] = 'Bangladesh Standard Time';
+		
+		$array[9]['gmt'] = 'GMT+7:00';
+		$array[9]['offset'] = '25200';
+		$array[9][0]['name'] = 'VST';
+		$array[9][0]['description'] = 'Vietnam Standard Time';
+		
+		$array[10]['gmt'] = 'GMT+8:00';
+		$array[10]['offset'] = '28800';
+		$array[10][0]['name'] = 'CTT';
+		$array[10][0]['description'] = 'China Taiwan Time';
+		
+		$array[11]['gmt'] = 'GMT+9:00';
+		$array[11]['offset'] = '32400';
+		$array[11][0]['name'] = 'JST';
+		$array[11][0]['description'] = 'Japan Standard Time';
+		
+		$array[12]['gmt'] = 'GMT+9:30';
+		$array[12]['offset'] = '34200';
+		$array[12][0]['name'] = 'ACT';
+		$array[12][0]['description'] = 'Australia Central Time';
+		
+		$array[13]['gmt'] = 'GMT+10:00';
+		$array[13]['offset'] = '36000';
+		$array[13][0]['name'] = 'AET';
+		$array[13][0]['description'] = 'Australia Eastern Time';
+		
+		$array[14]['gmt'] = 'GMT+11:00';
+		$array[14]['offset'] = '39600';
+		$array[14][0]['name'] = 'SST';
+		$array[14][0]['description'] = 'Solomon Standard Time';
+		
+		$array[15]['gmt'] = 'GMT+12:00';
+		$array[15]['offset'] = '43200';
+		$array[15][0]['name'] = 'NST';
+		$array[15][0]['description'] = 'New Zealand Standard Time';
+		
+		$array[16]['gmt'] = 'GMT-11:00';
+		$array[16]['offset'] = '-39600';
+		$array[16][0]['name'] = 'MIT';
+		$array[16][0]['description'] = 'Midway Islands Time';
+		
+		$array[17]['gmt'] = 'GMT-10:00';
+		$array[17]['offset'] = '-36000';
+		$array[17][0]['name'] = 'HST';
+		$array[17][0]['description'] = 'Hawaii Standard Time';
+		
+		$array[18]['gmt'] = 'GMT-9:00';
+		$array[18]['offset'] = '-32400';
+		$array[18][0]['name'] = 'AST';
+		$array[18][0]['description'] = 'Alaska Standard Time';
+		
+		$array[19]['gmt'] = 'GMT-8:00';
+		$array[19]['offset'] = '-28800';
+		$array[19][0]['name'] = 'PST';
+		$array[19][0]['description'] = 'Pacific Standard Time';	
+		
+		$array[20]['gmt'] = 'GMT-7:00';
+		$array[20]['offset'] = '-25200';
+		$array[20][0]['name'] = 'PNT';
+		$array[20][0]['description'] = 'Phoenix Standard Time';	
+		$array[20][1]['name'] = 'MST';
+		$array[20][1]['description'] = 'Mountain Standard Time';
+		
+		$array[21]['gmt'] = 'GMT-6:00';
+		$array[21]['offset'] = '-21600';
+		$array[21][0]['name'] = 'CST';
+		$array[21][0]['description'] = 'Central Standard Time';
+		
+		$array[22]['gmt'] = 'GMT-5:00';
+		$array[22]['offset'] = '-18000';
+		$array[22][0]['name'] = 'EST';
+		$array[22][0]['description'] = 'Eastern Standard Time';
+		$array[22][1]['name'] = 'IET';
+		$array[22][1]['description'] = 'Indiana Eastern Standard Time';
+		
+		$array[23]['gmt'] = 'GMT-4:00';
+		$array[23]['offset'] = '-14400';
+		$array[23][0]['name'] = 'PRT';
+		$array[23][0]['description'] = 'Puerto Rico and US Virgin Islands Time';
+		
+		$array[24]['gmt'] = 'GMT-3:30';
+		$array[24]['offset'] = '-12600';
+		$array[24][0]['name'] = 'CNT';
+		$array[24][0]['description'] = 'Canada Newfoundland Time';
+		
+		$array[25]['gmt'] = 'GMT-3:00';
+		$array[25]['offset'] = '-10800';
+		$array[25][0]['name'] = 'AGT';
+		$array[25][0]['description'] = 'Argentina Standard Time';
+		$array[25][1]['name'] = 'BET';
+		$array[25][1]['description'] = 'Brazil Eastern Time';
+		
+		$array[26]['gmt'] = 'GMT-1:00';
+		$array[26]['offset'] = '-3600';
+		$array[26][0]['name'] = 'CAT';
+		$array[26][0]['description'] = 'Central African Time';
 	
 		return($array);
 	}
@@ -489,7 +610,7 @@ abstract class endpoint_base {
             //Users can set defaults within template files with pipes, they will over-ride whatever is in the XML file.
             if (strstr($variables, "|")) {
                 $original_variable = $variables;
-                $variables = explode("|", $variables);
+                $variables = explode("|", $variables,2);
                 $default = $variables[1];
                 $variables = $variables[0];
                 if (strstr($variables, ".")) {
