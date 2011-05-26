@@ -9,7 +9,11 @@
  */
 class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
 
-	public $family_line = 'spipm';	
+	public $family_line = 'spipm';
+
+	function parse_lines_hook($line,$line_total) {
+		$this->lines[$line]['options']['lineKeys'] = $line_total;
+	}
 		
 	function generate_config() {			
 		//Polycom likes lower case letters in its mac address
