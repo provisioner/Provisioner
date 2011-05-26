@@ -492,7 +492,7 @@ abstract class endpoint_base {
                 }
                 //If Specific Line is set to a number greater than 0 then only process the loop for that line
             } else {
-				$this->parse_lines_hook($specific_line);
+				$this->parse_lines_hook($specific_line,$line_total);
                 $parsed_2 = $this->replace_static_variables($matches[1], $specific_line, TRUE);
                 $parsed = $this->parse_config_values($parsed_2, TRUE, $specific_line);
             }
