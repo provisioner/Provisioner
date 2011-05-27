@@ -62,7 +62,7 @@ abstract class endpoint_base {
      * This is hooked into the middle of the line loop function to allow parsing of variables without having to create a sub foreach or for statement
      * @param String $line The Line number.
      */
-	function parse_lines_hook($line) {
+	function parse_lines_hook($line,$line_total) {
 
 	}
     
@@ -482,7 +482,7 @@ abstract class endpoint_base {
             //If specific line is set to ALL then loop through all lines
             if ($specific_line == "ALL") {
                 while ($i <= $line_total) {
-					$this->parse_lines_hook($i);
+					$this->parse_lines_hook($i,$line_total);
                     if (isset($this->lines[$i]['secret'])) {
                         $parsed_2 = $this->replace_static_variables($matches[1], $i, TRUE);
                         $parsed .= $this->parse_config_values($parsed_2, FALSE, $i);
