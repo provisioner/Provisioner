@@ -126,7 +126,33 @@ foreach($supported_phones as $key => $data2) {
 fwrite($fp, $html2);
 fclose($fp);
 
-exec("git add .");
+echo "===GIT Information===\n";
+
+echo "Running Git Add, Status:\n";
+exec("git add .",$output);
+foreach($output as $data) {
+	echo "\t".$data . "\n";
+}
+
+echo "Running Git Delete, Status:\n";
+exec("git add -u",$output);
+foreach($output as $data) {
+	echo "\t".$data . "\n";
+}
+
+echo "Running Git Commit, Status:\n";
+exec('git commit -m "Web Test"',$output);
+foreach($output as $data) {
+	echo "\t".$data . "\n";
+}
+
+echo "Running Git Push, Status:\n";
+exec("git push",$output);
+foreach($output as $data) {
+	echo "\t".$data . "\n";
+}
+
+echo "=====================\n\n";
 
 /************
 * FUNCTIONS ONLY BELOW HERE!
