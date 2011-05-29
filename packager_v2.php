@@ -19,8 +19,6 @@ echo "===GIT Information===\n";
 echo "COMMIT MESSAGE: ".$c_message."\n";
 echo "Pulling GIT Master Repo......\n";
 exec("git pull origin master", $output);
-exec('git config --global user.name "Provisioner.net Web Interface"');
-exec('git config --global user.email andrew.nagy@the159.com');
 echo "GIT REPORTED: \n";
 foreach($output as $data) {
 	echo "\t".$data . "\n";
