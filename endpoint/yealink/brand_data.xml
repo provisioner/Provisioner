@@ -7,7 +7,7 @@
 		<directory>yealink</directory>
 		<package>yealink-0_5.tgz</package>
         <md5sum></md5sum>
-		<last_modified>1282508949</last_modified>
+		<last_modified>1306641962</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -17,7 +17,7 @@
 				<description>Variables Issues Solved (Not writing accounts + passwords in files)</description>
 				<changelog></changelog>
 				<id>1</id>
-				<last_modified>1282508950</last_modified>
+				<last_modified>1306641962</last_modified>
 			</family>
 <!--End Auto Generated-->
 
