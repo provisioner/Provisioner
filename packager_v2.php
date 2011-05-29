@@ -3,6 +3,10 @@
 This file, when run from the web, creates all the needed packages in the releases folder and also generates http://www.provisioner.net/releases
 */
 set_time_limit(0);
+define("MODULES_DIR", "/var/www/html/repo/endpoint");
+define("RELEASE_DIR", "/var/www/html/release3");
+define("ROOT_DIR", "/var/www/html/repo");
+define("FIRMWARE_DIR", "/var/www/html/repo_firmwares");
 
 echo "======PROVISIONER.NET REPO MAINTENANCE SCRIPT======\n\n\n\n";
 
@@ -10,11 +14,12 @@ $supported_phones = array();
 
 $master_xml = array();
 echo "<pre>";
-define("MODULES_DIR", "/var/www/html/repo/endpoint");
-define("RELEASE_DIR", "/var/www/html/release3");
-define("ROOT_DIR", "/var/www/html/repo");
 
-$c_message = "N/A";
+if(isset($_REQUEST['commit_message'])) {
+	$c_message = $_REQUEST['commit_message'];
+} else {
+	$c_message = "N/A";
+}
 echo "===GIT Information===\n";
 echo "COMMIT MESSAGE: ".$c_message."\n";
 echo "Pulling GIT Master Repo......\n";
@@ -125,33 +130,35 @@ foreach($supported_phones as $key => $data2) {
 fwrite($fp, $html2);
 fclose($fp);
 
-echo "===GIT Information===\n";
+if(!isset($_REQUEST['dont_push'])) {
+	echo "===GIT Information===\n";
 
-echo "Running Git Add, Status:\n";
-exec("git add .",$output);
-foreach($output as $data) {
-	echo "\t".$data . "\n";
+	echo "Running Git Add, Status:\n";
+	exec("git add .",$output);
+	foreach($output as $data) {
+		echo "\t".$data . "\n";
+	}
+
+	echo "Running Git Delete, Status:\n";
+	exec("git add -u",$output);
+	foreach($output as $data) {
+		echo "\t".$data . "\n";
+	}
+
+	echo "Running Git Commit, Status:\n";
+	exec('git commit -m "'.$c_message.'"',$output);
+	foreach($output as $data) {
+		echo "\t".$data . "\n";
+	}
+
+	echo "Running Git Push, Status:\n";
+	exec("git push",$output);
+	foreach($output as $data) {
+		echo "\t".$data . "\n";
+	}
+
+	echo "=====================\n\n";
 }
-
-echo "Running Git Delete, Status:\n";
-exec("git add -u",$output);
-foreach($output as $data) {
-	echo "\t".$data . "\n";
-}
-
-echo "Running Git Commit, Status:\n";
-exec('git commit -m "Web Test"',$output);
-foreach($output as $data) {
-	echo "\t".$data . "\n";
-}
-
-echo "Running Git Push, Status:\n";
-exec("git push",$output);
-foreach($output as $data) {
-	echo "\t".$data . "\n";
-}
-
-echo "=====================\n\n";
 
 echo "\nDone!";
 
@@ -241,15 +248,15 @@ function create_brand_pkg($rawname,$version,$brand_name) {
 			$family_max = max($files_array);
 			$family_max_array[$z] = $family_max;
 			echo "\t\t\tTotal Family Timestamp: ". $family_max ."\n";
-						
-			if(file_exists($family_folders."/firmware")) {
+			
+			if(file_exists(FIRMWARE_DIR."/".$rawname."/".$family_xml['data']['directory']."/firmware")) {
 				echo "\t\tFound Firmware Folder in ".$family_xml['data']['directory']."\n";
 				echo "\t\t\tCreating Firmware Package\n";
 				flush_buffers();
-				exec("tar zcf ".RELEASE_DIR."/".$rawname."/".$family_xml['data']['directory']."_firmware.tgz --exclude .svn -C ".$family_folders." firmware");
+				exec("tar zcf ".RELEASE_DIR."/".$rawname."/".$family_xml['data']['directory']."_firmware.tgz --exclude .svn -C ".FIRMWARE_DIR."/".$rawname."/".$family_xml['data']['directory']." firmware");
 				$firmware_md5 = md5_file(RELEASE_DIR."/".$rawname."/".$family_xml['data']['directory']."_firmware.tgz");
 				$x=0;
-				foreach (glob($family_folders."/firmware/*") as $firmware_files) {
+				foreach (glob(FIRMWARE_DIR."/".$rawname."/".$family_xml['data']['directory']."/firmware/*") as $firmware_files) {
 					flush_buffers();
 					if(!is_dir($firmware_files)) {
 						$firmware_files_array[$x] = filemtime($firmware_files);
