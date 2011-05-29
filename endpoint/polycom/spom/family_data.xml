@@ -5,7 +5,7 @@
 	<directory>spom</directory>
 	<package>spom-0_8_6.tgz</package>
 	<firmware_ver>1304380043</firmware_ver>
-	<firmware_md5sum>15705ee8fe6a9c577bd9db4d6e9595c6</firmware_md5sum>
+	<firmware_md5sum>dd28d25ae4f2c2f677552c671197ed00</firmware_md5sum>
 	<firmware_pkg>spom_firmware.tgz</firmware_pkg>
 	<description>Fixed Digit Map Problems with three digit extensions in the 1xx range</description>
 	<configuration_files>{$mac}-phone.cfg,{$mac}.cfg,server.cfg,phone1.cfg,{$mac}_reg.cfg,sip.cfg,000000000000.cfg</configuration_files>
