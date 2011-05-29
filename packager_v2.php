@@ -18,7 +18,7 @@ echo "<pre>";
 if(isset($_REQUEST['commit_message'])) {
 	$c_message = $_REQUEST['commit_message'];
 } else {
-	$c_message = "N/A";
+	$c_message = file_get_contents('/var/www/html/c_message.txt');
 }
 echo "===GIT Information===\n";
 echo "COMMIT MESSAGE: ".$c_message."\n";
