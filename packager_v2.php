@@ -105,7 +105,6 @@ $html .= "<a href='/release3/master.xml'>master.xml</a>";
 $html .= "<hr><h3>Brand Packages</h3>".$brands_html;
 
 $html .= "</html>";
-echo "\nDone!";
 $fp = fopen('/var/www/data/pages/releases3.txt', 'w');
 fwrite($fp, $html);
 fclose($fp);
@@ -146,6 +145,8 @@ foreach($output as $data) {
 	echo "\t".$data . "\n";
 }
 
+exec("git commit --amend --author='Provisoner.net Web Interface'");
+
 echo "Running Git Push, Status:\n";
 exec("git push",$output);
 foreach($output as $data) {
@@ -153,6 +154,8 @@ foreach($output as $data) {
 }
 
 echo "=====================\n\n";
+
+echo "\nDone!";
 
 /************
 * FUNCTIONS ONLY BELOW HERE!
