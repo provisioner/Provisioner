@@ -2,22 +2,36 @@
 /*
 This file, when run from the web, creates all the needed packages in the releases folder and also generates http://www.provisioner.net/releases
 */
+set_time_limit(0);
+define("MODULES_DIR", "/var/www/html/repo/endpoint");
+define("RELEASE_DIR", "/var/www/html/release3");
+define("ROOT_DIR", "/var/www/html/repo");
+define("FIRMWARE_DIR", "/var/www/html/repo_firmwares");
+
+echo "======PROVISIONER.NET REPO MAINTENANCE SCRIPT======\n\n\n\n";
+
 $supported_phones = array();
 
 $master_xml = array();
 echo "<pre>";
-define("MODULES_DIR", "/var/www/html/repo/endpoint");
-define("RELEASE_DIR", "/var/www/html/release3");
-define("ROOT_DIR", "/var/www/html/repo");
 
-set_time_limit(0);
+if(isset($_REQUEST['commit_message'])) {
+	$c_message = $_REQUEST['commit_message'];
+} else {
+	$c_message = "PACKAGER: ".file_get_contents('/var/www/html/c_message.txt');
+}
+echo "===GIT Information===\n";
+echo "COMMIT MESSAGE: ".$c_message."\n";
+echo "Pulling GIT Master Repo......\n";
+exec("git pull origin master", $output);
+echo "GIT REPORTED: \n";
+foreach($output as $data) {
+	echo "\t".$data . "\n";
+}
+echo "Revision information is as follows: " . file_get_contents(ROOT_DIR . "/.git/FETCH_HEAD");
+echo "=====================\n\n";
 
-$filename = ROOT_DIR."/commit_message.txt";
-$handle = fopen($filename, "r");
-$c_message = fread($handle, filesize($filename));
-fclose($handle);
-
-echo "COMMIT MESSAGE: ".$c_message."<br />";
+echo "Starting Processing of Directories\n";
 
 foreach (glob(MODULES_DIR."/*", GLOB_ONLYDIR) as $filename) {
 	flush_buffers();
@@ -44,6 +58,7 @@ foreach (glob(MODULES_DIR."/*", GLOB_ONLYDIR) as $filename) {
 		echo "\n\n";
 	}
 }
+
 copy(ROOT_DIR."/autoload.php",ROOT_DIR."/setup.php");
 $endpoint_max[0] = filemtime(ROOT_DIR."/autoload.php");
 $endpoint_max[1] = filemtime(MODULES_DIR."/base.php");
@@ -78,12 +93,14 @@ $data .= "\n</data>";
 fwrite($fp, $data);
 fclose($fp);
 
+	/**TODO
 	echo "\t\t\tCreating JSON file of master.xml\n";
 	$xml = simplexml_load_file(MODULES_DIR."/master.xml");
 	$json = json_encode($xml);
 	$fp2 = fopen(MODULES_DIR."/master.json", 'w');
 	fwrite($fp2, $json);
 	fclose($fp2);
+	**/
 
 copy(MODULES_DIR."/master.xml", RELEASE_DIR."/master.xml");
 
@@ -93,7 +110,6 @@ $html .= "<a href='/release3/master.xml'>master.xml</a>";
 $html .= "<hr><h3>Brand Packages</h3>".$brands_html;
 
 $html .= "</html>";
-echo "\nDone!";
 $fp = fopen('/var/www/data/pages/releases3.txt', 'w');
 fwrite($fp, $html);
 fclose($fp);
@@ -114,6 +130,45 @@ foreach($supported_phones as $key => $data2) {
 fwrite($fp, $html2);
 fclose($fp);
 
+if(!isset($_REQUEST['dont_push'])) {
+	echo "===GIT Information===\n";
+
+	echo "Running Git Add, Status:\n";
+	exec("git add .",$output);
+	foreach($output as $data) {
+		echo "\t".$data . "\n";
+	}
+
+	echo "Running Git Delete, Status:\n";
+	exec("git add -u",$output);
+	foreach($output as $data) {
+		echo "\t".$data . "\n";
+	}
+
+	echo "Running Git Commit, Status:\n";
+	exec('git commit -m "'.$c_message.'"',$output);
+	foreach($output as $data) {
+		echo "\t".$data . "\n";
+	}
+
+	echo "Running Git Push, Status:\n";
+	exec("git push",$output);
+	foreach($output as $data) {
+		echo "\t".$data . "\n";
+	}
+
+	echo "=====================\n\n";
+}
+
+echo "\nDone!";
+
+/************
+* FUNCTIONS ONLY BELOW HERE!
+*
+*
+*
+*************/
+
 function fix_single_array_keys($array) {
 	if((empty($array[0])) AND (!empty($array))) {
 		$array_n[0] = $array;
@@ -123,13 +178,6 @@ function fix_single_array_keys($array) {
 	} else {
 		return("");
 	}	
-}
-
-function flush_buffers(){
-    ob_end_flush();
-    //ob_flush();
-    flush();
-    ob_start();
 }
 
 function create_brand_pkg($rawname,$version,$brand_name) {	
@@ -170,6 +218,7 @@ function create_brand_pkg($rawname,$version,$brand_name) {
 						$files_array[$i] = filemtime($family_files);
 						echo "\t\tParsing File: ".basename($family_files)."|".$files_array[$i]."\n";
 						if(pathinfo($family_files, PATHINFO_EXTENSION) == "xml") {
+							/*** JSON STUFF TO BE FIXED
 							if(file_exists($family_folders."/json/")) {
 								echo "\t\t\tCreating JSON file of ". basename($family_files) ."\n";
 								$xml = simplexml_load_file($family_files);
@@ -189,6 +238,7 @@ function create_brand_pkg($rawname,$version,$brand_name) {
 									fclose($fp2);
 								}	
 							}
+							**/
 						}
 						$i++;
 					}
@@ -198,15 +248,15 @@ function create_brand_pkg($rawname,$version,$brand_name) {
 			$family_max = max($files_array);
 			$family_max_array[$z] = $family_max;
 			echo "\t\t\tTotal Family Timestamp: ". $family_max ."\n";
-						
-			if(file_exists($family_folders."/firmware")) {
+			
+			if(file_exists(FIRMWARE_DIR."/".$rawname."/".$family_xml['data']['directory']."/firmware")) {
 				echo "\t\tFound Firmware Folder in ".$family_xml['data']['directory']."\n";
 				echo "\t\t\tCreating Firmware Package\n";
 				flush_buffers();
-				exec("tar zcf ".RELEASE_DIR."/".$rawname."/".$family_xml['data']['directory']."_firmware.tgz --exclude .svn -C ".$family_folders." firmware");
+				exec("tar zcf ".RELEASE_DIR."/".$rawname."/".$family_xml['data']['directory']."_firmware.tgz --exclude .svn -C ".FIRMWARE_DIR."/".$rawname."/".$family_xml['data']['directory']." firmware");
 				$firmware_md5 = md5_file(RELEASE_DIR."/".$rawname."/".$family_xml['data']['directory']."_firmware.tgz");
 				$x=0;
-				foreach (glob($family_folders."/firmware/*") as $firmware_files) {
+				foreach (glob(FIRMWARE_DIR."/".$rawname."/".$family_xml['data']['directory']."/firmware/*") as $firmware_files) {
 					flush_buffers();
 					if(!is_dir($firmware_files)) {
 						$firmware_files_array[$x] = filemtime($firmware_files);
@@ -248,6 +298,7 @@ function create_brand_pkg($rawname,$version,$brand_name) {
 				fwrite($fp, $contents);
 				fclose($fp);
 				
+				/**JSON TO BE FIXED
 				if(file_exists($family_folders."/family_data.xml")) {
 					echo "\t\t\tCreating JSON file of family_data.xml\n";
 					$xml = simplexml_load_file($family_folders."/family_data.xml");
@@ -267,6 +318,7 @@ function create_brand_pkg($rawname,$version,$brand_name) {
 						fclose($fp2);
 					}	
 				}
+				**/
 			}
 			
 			$z++;
@@ -330,13 +382,14 @@ function create_brand_pkg($rawname,$version,$brand_name) {
 	fwrite($fp, $contents);
 	fclose($fp);
 	
-
+			/**TODO
 			echo "\t\t\tCreating JSON file of brand_data.xml\n";
 			$xml = simplexml_load_file(MODULES_DIR."/".$rawname."/brand_data.xml");
 			$json = json_encode($xml);
 			$fp2 = fopen(MODULES_DIR."/".$rawname."/brand_data.json", 'w');
 			fwrite($fp2, $json);
 			fclose($fp2);
+			**/
 	
 	copy(MODULES_DIR."/".$rawname."/brand_data.xml", RELEASE_DIR."/".$rawname."/".$rawname.".xml");
 	
@@ -351,6 +404,14 @@ function create_brand_pkg($rawname,$version,$brand_name) {
 	$brands_html .= "XML File: <a href='/release3/".$rawname."/".$rawname.".xml'>".$rawname.".xml</a><br/>";
 	$brands_html .= "Package File: <a href='/release3/".$rawname."/".$pkg_name.".tgz'>".$pkg_name.".tgz</a><br/>";
 	echo "\tComplete..Continuing..\n";
+}
+
+
+function flush_buffers(){
+    ob_end_flush();
+    //ob_flush();
+    flush();
+    ob_start();
 }
 
 function xml2array($url, $get_attributes = 1, $priority = 'tag')
