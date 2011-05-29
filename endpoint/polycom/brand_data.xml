@@ -7,26 +7,35 @@
 		<brand_id>4</brand_id>
 		<package>polycom-0_7.tgz</package>
 		<md5sum></md5sum>
-		<last_modified>1282508952</last_modified>
+		<last_modified>1306641962</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>
-				<name>SoundPoint/Station/VVX In-Production Models [321,331,335,430,450,550,560,650,670,6000,7000,1500]</name>
+				<name>SoundPoint IP 430 [430]</name>
+				<directory>firmware325</directory>
+				<version>0.8.1</version>
+				<description>Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality</description>
+				<changelog></changelog>
+				<id>4</id>
+				<last_modified>1306641962</last_modified>
+			</family>
+			<family>
+				<name>SoundPoint/Station/VVX In-Production Models [320,330,321,331,335,450,550,560,650,670,5000,6000,7000,1500]</name>
 				<directory>spipm</directory>
 				<version>0.8.1</version>
 				<description>Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality</description>
 				<changelog></changelog>
 				<id>3</id>
-				<last_modified>1282894390</last_modified>
+				<last_modified>1306641962</last_modified>
 			</family>
 			<family>
-				<name>SoundPoint/Station Legacy Models [301,320,330,501,600,601,4000]</name>
+				<name>SoundPoint/Station Legacy Models [301,501,600,601,4000]</name>
 				<directory>splm</directory>
 				<version>0.7.6</version>
 				<description>Fixed Digit Map Problems with three digit extensions in the 1xx range</description>
 				<changelog></changelog>
 				<id>2</id>
-				<last_modified>1282894333</last_modified>
+				<last_modified>1306641962</last_modified>
 			</family>
 			<family>
 				<name>SoundPoint Old Models [300,500]</name>
@@ -35,7 +44,7 @@
 				<description>Fixed Digit Map Problems with three digit extensions in the 1xx range</description>
 				<changelog></changelog>
 				<id>1</id>
-				<last_modified>1282894361</last_modified>
+				<last_modified>1306641962</last_modified>
 			</family>
 <!--End Auto Generated-->
 
