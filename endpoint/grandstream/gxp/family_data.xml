@@ -4,7 +4,7 @@
 	<version>1.5</version>
 	<directory>gxp</directory>
 	<firmware_ver>1304379279</firmware_ver>
-	<firmware_md5sum>2d26ad2d5aedd54b13d109d10e38d5fa</firmware_md5sum>
+	<firmware_md5sum>a0a20a975f2912f517e934d1ecf61aa9</firmware_md5sum>
 	<firmware_pkg>gxp_firmware.tgz</firmware_pkg>
 	<description>Use Grandstream Encrypted Compiler By Default</description>
 	<configuration_files>$mac.cfg</configuration_files>
