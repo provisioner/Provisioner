@@ -5,7 +5,7 @@
 	<directory>spipm</directory>
 	<package>spipm-0_8_1.tgz</package>
 	<firmware_ver>1304379892</firmware_ver>
-	<firmware_md5sum>324f4894678bef1e5765885f48b568a0</firmware_md5sum>
+	<firmware_md5sum>c1365a1e18874346a5083a435ab2882c</firmware_md5sum>
 	<firmware_pkg>spipm_firmware.tgz</firmware_pkg>
 	<description>Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality</description>
 	<configuration_files>{$mac}-phone.cfg,{$mac}.cfg,{$mac}_reg.cfg,sip.cfg,000000000000.cfg</configuration_files>
