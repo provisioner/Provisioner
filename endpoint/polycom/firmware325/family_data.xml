@@ -5,7 +5,7 @@
 	<directory>firmware325</directory>
 	<package></package>
 	<firmware_ver>1304379586</firmware_ver>
-	<firmware_md5sum>1e03465a53112b0f580d5376f788c904</firmware_md5sum>
+	<firmware_md5sum>f4fce9f1fd62e86f97edbd0d2f790d90</firmware_md5sum>
 	<firmware_pkg>firmware325_firmware.tgz</firmware_pkg>
 	<description>Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality</description>
 	<configuration_files>{$mac}-phone.cfg,{$mac}.cfg,server.cfg,phone1.cfg,{$mac}_reg.cfg,sip.cfg,000000000000.cfg</configuration_files>
