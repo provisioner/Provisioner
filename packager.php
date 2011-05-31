@@ -67,6 +67,8 @@ $endpoint_max = max($endpoint_max);
 
 exec("tar zcf ".RELEASE_DIR."/provisioner_net.tgz --exclude .svn -C ".ROOT_DIR."/ setup.php endpoint/base.php");
 
+unlink(ROOT_DIR."/setup.php");
+
 $html = "======= Provisioner.net Library Releases ======= \n == Note: This page is edited by an outside script and can not be edited == \n Latest Commit Message: //".$c_message."//\n<html>";
 
 $fp = fopen(MODULES_DIR.'/master.xml', 'w');
