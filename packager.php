@@ -11,8 +11,8 @@ define("FIRMWARE_DIR", "/var/www/html/repo_firmwares");
 echo "======PROVISIONER.NET REPO MAINTENANCE SCRIPT======\n\n\n\n";
 
 $supported_phones = array();
-
 $master_xml = array();
+
 echo "<pre>";
 
 if(isset($_REQUEST['commit_message'])) {
@@ -324,13 +324,15 @@ function create_brand_pkg($rawname,$version,$brand_name) {
 			$z++;
 			
 			echo "\tComplete..Continuing..\n";
-            
+
+			$description = fix_single_array_keys($family_xml['data']['description']);
+
 			$family_list .= "
 			<family>
 				<name>".$family_xml['data']['name']."</name>
 				<directory>".$family_xml['data']['directory']."</directory>
 				<version>".$family_xml['data']['version']."</version>
-				<description>".fix_single_array_keys($family_xml['data']['description'])."</description>
+				<description>".$description."</description>
 				<changelog>".fix_single_array_keys($family_xml['data']['changelog'])."</changelog>
 				<id>".$family_xml['data']['id']."</id>
 				<last_modified>".$family_max."</last_modified>
@@ -348,10 +350,6 @@ function create_brand_pkg($rawname,$version,$brand_name) {
 	
 	$pattern = "/<family_list>(.*?)<\/family_list>/si";
 	$parsed = "<family_list>".$family_list."\n\t\t</family_list>";
-	$contents = preg_replace($pattern, $parsed, $contents, 1);
-	
-	$pattern = "/<md5sum>(.*?)<\/md5sum>/si";
-	$parsed = "<md5sum>".$family_md5."</md5sum>";
 	$contents = preg_replace($pattern, $parsed, $contents, 1);
 	
 	$pattern = "/<package>(.*?)<\/package>/si";
@@ -399,6 +397,20 @@ function create_brand_pkg($rawname,$version,$brand_name) {
 	exec("tar zcf ".RELEASE_DIR."/".$rawname."/".$pkg_name.".tgz --exclude .svn --exclude firmware -C ".MODULES_DIR." ".$rawname);
 	$brand_md5 = md5_file(RELEASE_DIR."/".$rawname."/".$pkg_name.".tgz");
 	echo "\t\tPackage MD5 SUM: ".$brand_md5."\n";
+	
+	$fp = fopen(MODULES_DIR."/".$rawname."/brand_data.xml", 'r');
+	$contents = fread($fp, filesize(MODULES_DIR."/".$rawname."/brand_data.xml"));
+	fclose($fp);
+	
+	$pattern = "/<md5sum>(.*?)<\/md5sum>/si";
+	$parsed = "<md5sum>".$brand_md5."</md5sum>";
+	$contents = preg_replace($pattern, $parsed, $contents, 1);
+	
+	$fp = fopen(MODULES_DIR."/".$rawname."/brand_data.xml", 'w');
+	fwrite($fp, $contents);
+	fclose($fp);
+	
+	copy(MODULES_DIR."/".$rawname."/brand_data.xml", RELEASE_DIR."/".$rawname."/".$rawname.".xml");
 	
 	$brands_html .= "<h4>".$rawname." (Last Modified: ".date('m/d/Y',$brand_max)." at ".date("G:i",$brand_max).")</h4>";
 	$brands_html .= "XML File: <a href='/release3/".$rawname."/".$rawname.".xml'>".$rawname.".xml</a><br/>";
