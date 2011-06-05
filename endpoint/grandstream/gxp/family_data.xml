@@ -52,4 +52,12 @@
                         <files>keys_18.xml</files>
 		</template_data>
 	</model_list>
+	<model_list>
+		<model>GXP1450</model>
+		<lines>2</lines>
+		<id>6</id>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
 </data>
