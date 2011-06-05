@@ -6,7 +6,7 @@
 		<directory>grandstream</directory>
 		<brand_id>2</brand_id>
 		<package>grandstream-0_7.tgz</package>
-		<md5sum>5b5f75f59f8cf3b7b3a635bbc3e7ee0a</md5sum>
+		<md5sum>b085cfcf74854fd5dbb3b412b0b7029a</md5sum>
 		<last_modified>1306641962</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
@@ -17,7 +17,7 @@
 				<description>Fixed Timezone Issues + Use Grandstream Encrypted Compiler By Default</description>
 				<changelog></changelog>
 				<id>2</id>
-				<last_modified>1306641962</last_modified>
+				<last_modified>1307240194</last_modified>
 			</family>
 			<family>
 				<name>GXP Enterprise IP series [280,1200,2000,2010,2020]</name>
@@ -26,7 +26,7 @@
 				<description>Use Grandstream Encrypted Compiler By Default</description>
 				<changelog></changelog>
 				<id>1</id>
-				<last_modified>1306641962</last_modified>
+				<last_modified>1307240194</last_modified>
 			</family>
 			<family>
 				<name>GXP Enterprise HD series [2100,2110,2120]</name>
