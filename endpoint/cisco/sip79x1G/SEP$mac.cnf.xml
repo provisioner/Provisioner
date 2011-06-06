@@ -50,7 +50,7 @@
      <callLogBlfEnabled>2</callLogBlfEnabled>
   </commonProfile>
 
-  <loadInformation>SIP41.8-5-2S</loadInformation>
+  <loadInformation>{$image_name}</loadInformation>
 
   <vendorConfig>
      <disableSpeaker>false</disableSpeaker>
