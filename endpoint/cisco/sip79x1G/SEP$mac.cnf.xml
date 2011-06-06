@@ -1,0 +1,218 @@
+<!--
+#################PROVISIONER.NET#################
+# This Configuration file was generated from the Provisioner.net Library by {$provisioner_processor_info}
+# Generated on: {$provisioner_generated_timestamp}
+# 
+# Provisioner Information Follows:
+# Brand Revision Timestamp: {$provisioner_brand_timestamp}
+# Family Revision Timestamp: {$provisioner_family_timestamp}
+#
+##################################################
+-->
+<device>
+
+  <deviceProtocol>SIP</deviceProtocol>
+
+  <sshUserId>admin</sshUserId>
+  <sshPassword>cisco</sshPassword>
+
+  <devicePool>
+        <dateTimeSetting>
+                <dateTemplate>M/D/Ya</dateTemplate>
+                <timeZone>Eastern Standard/Daylight Time</timeZone>
+                <ntps>
+                        <ntp>
+                                <name>0.pool.ntp.org</name>
+                                <ntpMode>Unicast</ntpMode>
+                        </ntp>
+                </ntps>
+        </dateTimeSetting>
+
+     <callManagerGroup>
+        <members>
+           <member priority="0">
+              <callManager>
+                 <ports>
+                    <ethernetPhonePort>2000</ethernetPhonePort>
+                    <sipPort>{$server.port.1}</sipPort>
+                    <securedSipPort>5061</securedSipPort>
+                 </ports>
+                 <processNodeName>{$server.ip.1}</processNodeName>
+              </callManager>
+           </member>
+        </members>
+     </callManagerGroup>
+  </devicePool>
+
+  <commonProfile>
+     <phonePassword></phonePassword>
+     <backgroundImageAccess>true</backgroundImageAccess>
+     <callLogBlfEnabled>2</callLogBlfEnabled>
+  </commonProfile>
+
+  <loadInformation>SIP41.8-5-2S</loadInformation>
+
+  <vendorConfig>
+     <disableSpeaker>false</disableSpeaker>
+     <disableSpeakerAndHeadset>false</disableSpeakerAndHeadset>
+     <pcPort>0</pcPort>
+     <settingsAccess>1</settingsAccess>
+     <garp>0</garp>
+     <voiceVlanAccess>0</voiceVlanAccess>
+     <videoCapability>0</videoCapability>
+     <autoSelectLineEnable>0</autoSelectLineEnable>
+
+     <webAccess>1</webAccess>
+     <spanToPCPort>1</spanToPCPort>
+     <loggingDisplay>1</loggingDisplay>
+     <loadServer></loadServer>
+  </vendorConfig>
+
+  <networkLocale>United_States</networkLocale>
+
+        <networkLocaleInfo>
+                <name>United_States</name>
+                <uid>64</uid>
+                <version>1.0.0.0-1</version>
+        </networkLocaleInfo>
+
+  <deviceSecurityMode>0</deviceSecurityMode>
+
+  <authenticationURL></authenticationURL>
+  <directoryURL>{$directory_url}</directoryURL>
+  <idleURL></idleURL>
+  <informationURL></informationURL>
+
+  <messagesURL></messagesURL>
+  <proxyServerURL></proxyServerURL>
+  <servicesURL>{$services_url}</servicesURL>
+  <dscpForSCCPPhoneConfig>96</dscpForSCCPPhoneConfig>
+  <dscpForSCCPPhoneServices>0</dscpForSCCPPhoneServices>
+  <dscpForCm2Dvce>96</dscpForCm2Dvce>
+
+  <transportLayerProtocol>4</transportLayerProtocol>
+
+  <capfAuthMode>0</capfAuthMode>
+  <capfList>
+     <capf>
+        <phonePort>3804</phonePort>
+     </capf>
+  </capfList>
+
+  <certHash></certHash>
+  <encrConfig>false</encrConfig>
+
+   <sipProfile>
+     <sipProxies>
+        <backupProxy></backupProxy>
+        <backupProxyPort></backupProxyPort>
+        <emergencyProxy></emergencyProxy>
+        <emergencyProxyPort></emergencyProxyPort>
+        <outboundProxy></outboundProxy>
+        <outboundProxyPort></outboundProxyPort>
+        <registerWithProxy>true</registerWithProxy>
+     </sipProxies>
+
+     <sipCallFeatures>
+        <cnfJoinEnabled>true</cnfJoinEnabled>
+        <callForwardURI>x--serviceuri-cfwdall</callForwardURI>
+        <callPickupURI>x-cisco-serviceuri-pickup</callPickupURI>
+        <callPickupListURI>x-cisco-serviceuri-opickup</callPickupListURI>
+        <callPickupGroupURI>x-cisco-serviceuri-gpickup</callPickupGroupURI>
+        <meetMeServiceURI>x-cisco-serviceuri-meetme</meetMeServiceURI>
+        <abbreviatedDialURI>x-cisco-serviceuri-abbrdial</abbreviatedDialURI>
+        <rfc2543Hold>true</rfc2543Hold>
+        <callHoldRingback>2</callHoldRingback>
+        <localCfwdEnable>true</localCfwdEnable>
+        <semiAttendedTransfer>true</semiAttendedTransfer>
+        <anonymousCallBlock>2</anonymousCallBlock>
+        <callerIdBlocking>2</callerIdBlocking>
+        <dndControl>0</dndControl>
+        <remoteCcEnable>true</remoteCcEnable>
+     </sipCallFeatures>
+
+     <sipStack>
+        <sipInviteRetx>6</sipInviteRetx>
+        <sipRetx>10</sipRetx>
+        <timerInviteExpires>180</timerInviteExpires>
+        <timerRegisterExpires>3600</timerRegisterExpires>
+        <timerRegisterDelta>5</timerRegisterDelta>
+        <timerKeepAliveExpires>120</timerKeepAliveExpires>
+        <timerSubscribeExpires>120</timerSubscribeExpires>
+        <timerSubscribeDelta>5</timerSubscribeDelta>
+        <timerT1>500</timerT1>
+        <timerT2>4000</timerT2>
+        <maxRedirects>70</maxRedirects>
+        <remotePartyID>false</remotePartyID>
+        <userInfo>None</userInfo>
+     </sipStack>
+
+     <autoAnswerTimer>1</autoAnswerTimer>
+     <autoAnswerAltBehavior>false</autoAnswerAltBehavior>
+     <autoAnswerOverride>true</autoAnswerOverride>
+     <transferOnhookEnabled>false</transferOnhookEnabled>
+     <enableVad>false</enableVad>
+     <preferredCodec>none</preferredCodec>
+     <dtmfAvtPayload>101</dtmfAvtPayload>
+     <dtmfDbLevel>3</dtmfDbLevel>
+     <dtmfOutofBand>avt</dtmfOutofBand>
+     <alwaysUsePrimeLine>false</alwaysUsePrimeLine>
+     <alwaysUsePrimeLineVoiceMail>false</alwaysUsePrimeLineVoiceMail>
+     <kpml>3</kpml>
+
+     <natEnabled>false</natEnabled>
+     <natAddress></natAddress>
+
+     <stutterMsgWaiting>0</stutterMsgWaiting>
+
+     <callStats>false</callStats>
+     <silentPeriodBetweenCallWaitingBursts>10</silentPeriodBetweenCallWaitingBursts>
+     <disableLocalSpeedDialConfig>false</disableLocalSpeedDialConfig>
+
+
+     <startMediaPort>16384</startMediaPort>
+     <stopMediaPort>32766</stopMediaPort>
+
+         <voipControlPort>5060</voipControlPort>
+     <dscpForAudio>184</dscpForAudio>
+     <ringSettingBusyStationPolicy>0</ringSettingBusyStationPolicy>
+     <dialTemplate>dialplan.xml</dialTemplate>
+
+         <phoneLabel>{$displayname.line.1}'s Phone </phoneLabel>
+     <sipLines>
+		{line_loop}
+        <line button="{$line}">
+           <featureID>9</featureID>
+           <featureLabel>{$ext}</featureLabel>
+                   <name>{$ext}</name>
+                   <displayName>{$displayname}</displayName>
+                   <contact>{$ext}</contact>
+
+           <proxy>{$server.ip.1}</proxy>
+           <port>{$server.port.1}</port>
+           <autoAnswer>
+              <autoAnswerEnabled>2</autoAnswerEnabled>
+           </autoAnswer>
+           <callWaiting>3</callWaiting>
+
+           <authName>{$ext}</authName>
+           <authPassword>{$secret}</authPassword>
+
+           <sharedLine>false</sharedLine>
+           <messageWaitingLampPolicy>1</messageWaitingLampPolicy>
+           <messagesNumber>*97</messagesNumber>
+           <ringSettingIdle>4</ringSettingIdle>
+           <ringSettingActive>5</ringSettingActive>
+
+           <forwardCallInfoDisplay>
+              <callerName>true</callerName>
+              <callerNumber>false</callerNumber>
+              <redirectedNumber>false</redirectedNumber>
+              <dialedNumber>true</dialedNumber>
+           </forwardCallInfoDisplay>
+        </line>
+	{/line_loop}
+     </sipLines>
+  </sipProfile>
+</device>
+
