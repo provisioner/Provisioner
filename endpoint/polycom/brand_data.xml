@@ -6,7 +6,7 @@
 		<directory>polycom</directory>
 		<brand_id>4</brand_id>
 		<package>polycom-0_7.tgz</package>
-		<md5sum>f155f26c2621f6829c81fb4333903114</md5sum>
+		<md5sum>7b340bb5ad0c013f9ce227bf57931fb1</md5sum>
 		<last_modified>1306641962</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
@@ -26,7 +26,7 @@
 				<description>Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality</description>
 				<changelog></changelog>
 				<id>3</id>
-				<last_modified>1306641962</last_modified>
+				<last_modified>1307524297</last_modified>
 			</family>
 			<family>
 				<name>SoundPoint/Station Legacy Models [301,501,600,601,4000]</name>
@@ -35,7 +35,7 @@
 				<description>Fixed Digit Map Problems with three digit extensions in the 1xx range</description>
 				<changelog></changelog>
 				<id>2</id>
-				<last_modified>1306641962</last_modified>
+				<last_modified>1307524297</last_modified>
 			</family>
 			<family>
 				<name>SoundPoint Old Models [300,500]</name>
@@ -44,7 +44,7 @@
 				<description>Fixed Digit Map Problems with three digit extensions in the 1xx range</description>
 				<changelog></changelog>
 				<id>1</id>
-				<last_modified>1306641962</last_modified>
+				<last_modified>1307524297</last_modified>
 			</family>
 <!--End Auto Generated-->
 
