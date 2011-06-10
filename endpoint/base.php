@@ -129,8 +129,10 @@ abstract class endpoint_base {
     function get_timezone($offset) {
         $timezone = $offset / 3600;
         if($timezone < 0) {
+            $timezone = str_replace("-", "", $timezone);
             $timezone = '-'.$timezone;
         } else {
+            $timezone = str_replace("+", "", $timezone);
             $timezone = '+'.$timezone;
         }
         $timezone = str_replace(".", ":", $timezone);
