@@ -1,7 +1,7 @@
 <?php
 /**
  * Cisco SIP 7900 Phone File
- *
+ **
  * @author Andrew Nagy
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
