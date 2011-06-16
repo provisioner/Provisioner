@@ -20,8 +20,8 @@ start_media_port: "16348"
 end_media_port:  "20134" 
 nat_received_processing: "0" 
 
-phone_label: "{$displayname.line.1}'s Phone "
-time_zone: PST 
+phone_label: "{$displayname.line.1} "
+time_zone: {$sip_7940_7960_time_zone}
 services_url: "{$services_url}"
 directory_url: "{$directory_url}"               
 logo_url: "{$logo_url}"

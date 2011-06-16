@@ -4,6 +4,13 @@
     <subcategory>
         <name>General Settings</name>
         <item>
+              	<!-- Time Zone -->
+                <variable>$sip_7940_7960_time_zone</variable>
+                <default_value>PST</default_value>
+                <description>Time Zone (3 Letter Abr)</description>
+                <type>input</type>
+        </item>
+        <item>
             <!-- Services URL -->
             <variable>$services_url</variable>
             <default_value></default_value>
