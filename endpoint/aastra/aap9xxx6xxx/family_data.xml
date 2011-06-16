@@ -5,7 +5,7 @@
 	<directory>aap9xxx6xxx</directory>
 	<package>aap9_6-0_7.tgz</package>
 	<firmware_ver>1304379137</firmware_ver>
-	<firmware_md5sum>1990eecd127cefd45b06b5a96ac53de7</firmware_md5sum>
+	<firmware_md5sum>7a39a96b1fdb3117633b09c2327c115f</firmware_md5sum>
 	<firmware_pkg>aap9xxx6xxx_firmware.tgz</firmware_pkg>
 	<description>Initial Files</description>
 	<configuration_files>$mac.cfg,aastra.cfg</configuration_files>

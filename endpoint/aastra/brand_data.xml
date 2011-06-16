@@ -6,7 +6,7 @@
 		<version>0.5</version>
 		<directory>aastra</directory>
 		<package>aastra-0_5.tgz</package>
-		<md5sum>327df1c740e6177f415c07614acfa6dd</md5sum>
+		<md5sum>eba7b0f32fec7c273ce948bf581a0637</md5sum>
 		<last_modified>1306641961</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
@@ -26,7 +26,7 @@
 				<description>Initial Files</description>
 				<changelog></changelog>
 				<id>2</id>
-				<last_modified>1306641961</last_modified>
+				<last_modified>1308256307</last_modified>
 			</family>
 <!--End Auto Generated-->
 
