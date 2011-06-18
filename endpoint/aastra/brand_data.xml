@@ -6,7 +6,7 @@
 		<version>0.5</version>
 		<directory>aastra</directory>
 		<package>aastra-0_5.tgz</package>
-		<md5sum>21fb2be5eed8b370c41aafc42f2d594a</md5sum>
+		<md5sum>83fd79ae320fed99b107ff468764cd29</md5sum>
 		<last_modified>1306641961</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
@@ -17,7 +17,7 @@
 				<description>Initial Files</description>
 				<changelog></changelog>
 				<id>1</id>
-				<last_modified>1308254928</last_modified>
+				<last_modified>1308420127</last_modified>
 			</family>
 			<family>
 				<name>Aastra Models: 94xx, 67xx, 9143i [9480i, 9480i CT, 9143i,67xx]</name>
