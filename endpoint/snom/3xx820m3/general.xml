@@ -21,6 +21,7 @@
 <user_outbound idx="1" perm="">{$server.ip.1}</user_outbound>
 <display_method perm="">display_number_name</display_method>
 <record_missed_calls idx="" perm="">off</record_missed_calls>
+<cw_dialtone perm="">off</cw_dialtone>
 </phone-settings>
 
 <dialplan>
