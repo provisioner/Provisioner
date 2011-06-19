@@ -162,6 +162,8 @@ if(!isset($_REQUEST['dont_push'])) {
 	echo "=====================\n\n";
 }
 
+file_put_contents('/var/www/html/sync_check', '1');
+
 echo "\nDone!";
 
 /************
