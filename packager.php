@@ -2,6 +2,16 @@
 /*
 This file, when run from the web, creates all the needed packages in the releases folder and also generates http://www.provisioner.net/releases
 */
+if (!isset($_SERVER['PHP_AUTH_USER'])) {
+    header('WWW-Authenticate: Basic realm="My Realm"');
+    header('HTTP/1.0 401 Unauthorized');
+	die('no');
+} else {
+	if(($_SERVER['PHP_AUTH_USER'] != 'maint') && ($_SERVER['PHP_AUTH_PW'] != 'maint')) {
+		die('no');
+	}
+}
+
 set_time_limit(0);
 define("MODULES_DIR", "/var/www/html/repo/endpoint");
 define("RELEASE_DIR", "/var/www/html/release3");
