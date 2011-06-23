@@ -2,6 +2,7 @@
 /*
 This file, when run from the web, creates all the needed packages in the releases folder and also generates http://www.provisioner.net/releases
 */
+//This is not for any 'scary' security measures, it's just so I can prevent robots from running the script all the time.
 if (!isset($_SERVER['PHP_AUTH_USER'])) {
     header('WWW-Authenticate: Basic realm="My Realm"');
     header('HTTP/1.0 401 Unauthorized');
