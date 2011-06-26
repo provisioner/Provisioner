@@ -17,7 +17,7 @@ class endpoint_cisco_ata18x_phone extends endpoint_cisco_base {
 			$this->lines[1]['displayname'] = substr($name[0],0,12);
 		}
 		//Cisco likes lower case letters in its mac address
-		$this->mac = strtoupper($this->mac);
+		$this->mac = strtolower($this->mac);
 		//Cisco time offset is in minutes, our global variable is in seconds
 		//$this->timezone = $global_cfg['gmtoff']/60;
 

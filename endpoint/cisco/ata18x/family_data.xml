@@ -1,6 +1,6 @@
 <data>
 	<name>Cisco SIP ATA-18x Models [186,188]</name>
-	<id>5</id>
+	<id>1</id>
 	<version>0.1</version>
 	<directory>ata18x</directory>
 	<firmware_ver></firmware_ver>
@@ -10,7 +10,7 @@
 	<configuration_files>ata$mac.txt</configuration_files>
 	<changelog></changelog>
 	<model_list>
-		<model>186</model>
+		<model>ATA186</model>
 		<lines>2</lines>
 		<id>1</id>
 		<template_data>
@@ -18,7 +18,7 @@
 		</template_data>
 	</model_list>
 	<model_list>
-		<model>188</model>
+		<model>ATA188</model>
 		<lines>2</lines>
 		<id>2</id>
 		<template_data>
