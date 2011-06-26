@@ -19,7 +19,7 @@
   <devicePool>
         <dateTimeSetting>
                 <dateTemplate>M/D/Ya</dateTemplate>
-                <timeZone>Eastern Standard/Daylight Time</timeZone>
+                <timeZone>Central Standard/Daylight Time</timeZone>
                 <ntps>
                         <ntp>
                                 <name>0.pool.ntp.org</name>
@@ -178,7 +178,7 @@
      <ringSettingBusyStationPolicy>0</ringSettingBusyStationPolicy>
      <dialTemplate>dialplan.xml</dialTemplate>
 
-         <phoneLabel>{$displayname.line.1}'s Phone </phoneLabel>
+         <phoneLabel>x{$ext.line.1}</phoneLabel>
      <sipLines>
 		{line_loop}
         <line button="{$line}">
