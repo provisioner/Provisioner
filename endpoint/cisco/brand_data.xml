@@ -6,8 +6,8 @@
 		<version>0.5</version>
 		<directory>cisco</directory>
 		<package>cisco-0_5.tgz</package>
-		<md5sum>845642ffcb03dcd7a72b74626f10c836</md5sum>
-		<last_modified>1309090629</last_modified>
+		<md5sum>a26658fd9edf0e0b3bd808392486bc53</md5sum>
+		<last_modified>1309097519</last_modified>
 				<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -16,8 +16,8 @@
 				<version>0.1</version>
 				<description></description>
 				<changelog></changelog>
-				<id>5</id>
-				<last_modified>1309090629</last_modified>
+				<id>1</id>
+				<last_modified>1309097519</last_modified>
 			</family>
 			<family>
 				<name>Cisco SIP 79x1G Models [7940G,7941G,7961G]</name>
