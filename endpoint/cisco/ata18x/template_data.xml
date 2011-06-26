@@ -1,0 +1,36 @@
+<template_data>
+<category>
+    <name>General</name>
+    <subcategory>
+        <name>General Settings</name>
+        <item>
+              	<!-- Time Zone -->
+                <variable>$sip_ata18x_time_zone</variable>
+                <default_value>Central Standard/Daylight Time</default_value>
+                <description>Time Zone (Full Name/Daylight Time)</description>
+                <type>input</type>
+        </item>
+        <item>
+            <!-- Image ID -->
+            <variable>$image_id</variable>
+            <default_value>0x050616a</default_value>
+            <description>Firmware Image ID (example - 0x123456a)</description>
+            <type>input</type>
+        </item>		
+        <item>
+            <!-- Image Name -->
+            <variable>$image_name</variable>
+            <default_value>ATA030201050616A.zup</default_value>
+            <description>Firmware Image File Name</description>
+            <type>input</type>
+        </item>
+        <item>
+            <!-- Dialplan -->
+            <variable>$atadialplan</variable>
+            <default_value>*St4-|#St4-|9911|911|1>#t8.r9t2-|0>#t811.rat4-|^1t4>#.-</default_value>
+            <description>Dialplan String</description>
+            <type>input</type>
+        </item>
+    </subcategory>
+</category>
+<template_data>

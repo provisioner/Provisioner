@@ -6,7 +6,7 @@
 		<version>0.5</version>
 		<directory>cisco</directory>
 		<package>cisco-0_5.tgz</package>
-		<md5sum>79936028e5ce734b69940a3516a73446</md5sum>
+		<md5sum>2abe7cb61a483d824cc214f51f9dff08</md5sum>
 		<last_modified>1306641961</last_modified>
 				<family_list>
 <!--Below is Auto Generated-->
@@ -17,7 +17,7 @@
 				<description></description>
 				<changelog></changelog>
 				<id>4</id>
-				<last_modified>1307352922</last_modified>
+				<last_modified>1309076932</last_modified>
 			</family>
 			<family>
 				<name>Cisco SIP 79x0 Models [7940,7960]</name>
@@ -28,6 +28,15 @@
 				<id>1</id>
 				<last_modified>1308256096</last_modified>
 			</family>
+                        <family>
+                                <name>Cisco ATA 18x Models [186,188]</name>
+                                <directory>ata18x</directory>
+                                <version>0.1</version>
+                                <description></description>
+                                <changelog></changelog>
+                                <id>5</id>
+                                <last_modified>1308256096</last_modified>
+                        </family>
 			<family>
 				<name>Linksys/Cisco/Sipura SPA Phone Models [901,921,922,941,942,962]</name>
 				<directory>spa</directory>
