@@ -54,6 +54,30 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
 		$temp_model = strtoupper($this->model);
 		$temp_model = str_replace("SPA", "spa", $temp_model);
 		
+		if(isset($this->options['unit1'])) {
+            foreach($this->options['unit1'] as $key => $data) {
+                if ($this->options['unit1'][$key]['data'] == '') {
+                    unset($this->options['unit1'][$key]);
+				}
+				if(($this->options['unit1'][$key]['data'] != '') && ($this->options['unit1'][$key]['keytype'] == 'blf')) {
+					$temp_ext = $this->options['unit1'][$key]['data'];
+					$this->options['unit1'][$key]['data'] = "fnc=blf+sd+cp;sub=".$temp_ext."@".$this->server[1]['ip'];
+				}
+			}
+		}
+		
+		if(isset($this->options['unit2'])) {
+            foreach($this->options['unit2'] as $key => $data) {
+                if ($this->options['unit2'][$key]['data'] == '') {
+                    unset($this->options['unit2'][$key]);
+				}
+				if(($this->options['unit2'][$key]['data'] != '') && ($this->options['unit2'][$key]['keytype'] == 'blf')) {
+					$temp_ext = $this->options['unit2'][$key]['data'];
+					$this->options['unit2'][$key]['data'] = "fnc=blf+sd+cp;sub=".$temp_ext."@".$this->server[1]['ip'];
+				}
+			}
+		}
+		
 		//{$model}.cfg
 		$contents = $this->open_config_file("global.cfg");
 		$final[$temp_model.'.cfg'] = $this->parse_config_file($contents, FALSE);
