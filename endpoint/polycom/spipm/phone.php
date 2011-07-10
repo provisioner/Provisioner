@@ -39,7 +39,7 @@ class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
             $file_list .= $this->mac.'_sip.cfg';
             $final[$this->mac.'_sip.cfg'] = $this->parse_config_file($contents, FALSE);
         } else {
-            if(isset($this->options['file_prefix'])) {
+            if((isset($this->options['file_prefix'])) && ($this->options['file_prefix'] != "")) {
                 $prefix = $this->options['file_prefix']."_";
             } else {
                 $prefix = "";
