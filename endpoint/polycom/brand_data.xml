@@ -6,7 +6,7 @@
 		<directory>polycom</directory>
 		<brand_id>4</brand_id>
 		<package>polycom-0_7.tgz</package>
-		<md5sum>ee34ae84b0aa8dae166304a0c8ec3cf6</md5sum>
+		<md5sum>653afb772dbd0d0af66b90c0e36ff729</md5sum>
 		<last_modified>1306641962</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
@@ -26,7 +26,7 @@
 				<description>Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality</description>
 				<changelog></changelog>
 				<id>3</id>
-				<last_modified>1307829216</last_modified>
+				<last_modified>1310338013</last_modified>
 			</family>
 			<family>
 				<name>SoundPoint/Station Legacy Models [301,501,600,601,4000]</name>
