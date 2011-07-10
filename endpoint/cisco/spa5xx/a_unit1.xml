@@ -1,0 +1,42 @@
+<template_data>
+    <category>
+        <name>expansion</name>
+        <subcategory>
+            <name>Soft Keys (9480i/6755i/6757i)</name>
+            <item>
+                <description>Soft Keys (9480i/6755i/6757i)</description>
+                <type>loop</type>
+                <loop_start>1</loop_start>
+                <loop_end>32</loop_end>
+                <data>
+					<item>
+					    <variable>$unit1_keytype</variable>
+					    <default_value>line</default_value>
+					    <description>Unit1 Key {$count} Type</description>
+					    <type>list</type>
+					    <data>
+					        <text>Speed Dial</text>
+					        <value>speed</value>
+					    </data>
+					    <data>
+					        <text>BLF</text>
+					        <value>blf</value>
+					    </data>
+					</item>
+					<item>
+					    <variable>$unit1_data</variable>
+					    <default_value></default_value>
+					    <description>BLF/Speed Dial {$count} Extension</description>
+					    <type>input</type>
+					</item>
+					<item>
+		                <type>break</type>
+		            </item>
+                </data>
+            </item>
+            <item>
+                <type>break</type>
+            </item>
+        </subcategory>
+    </category>
+</template_data>
