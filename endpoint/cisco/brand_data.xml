@@ -6,7 +6,7 @@
 		<version>0.5</version>
 		<directory>cisco</directory>
 		<package>cisco-0_5.tgz</package>
-		<md5sum>103f427d64b9e328fff77991e03fb7aa</md5sum>
+		<md5sum>f93c9f6c2333912573188e46d3f3baca</md5sum>
 		<last_modified>1309097519</last_modified>
 				<family_list>
 <!--Below is Auto Generated-->
@@ -53,7 +53,7 @@
 				<description></description>
 				<changelog></changelog>
 				<id>3</id>
-				<last_modified>1309090629</last_modified>
+				<last_modified>1310326192</last_modified>
 			</family>
 <!--End Auto Generated-->
 
