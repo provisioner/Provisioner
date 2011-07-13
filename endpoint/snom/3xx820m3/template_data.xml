@@ -60,6 +60,27 @@
                 <type>input</type>
             </item>
             <item>
+                <!-- Path, within the $provisioning_type server, of the files for this type of phone. -->
+                <variable>$provisioning_path</variable>
+                <default_value></default_value>
+                <description>Path, within the provisioning server, to files</description>
+                <type>input</type>
+            </item>
+            <item>
+                <!-- Protocol for provisioning -->
+                <variable>$provisioning_type</variable>
+                <default_value>tftp</defaultvalue>
+                <description>Protocol this phone should use for provisioning</description>
+                <type>list</type>
+                <data>
+                    <text>tftp</text>
+                    <value>tftp</text>
+                </data>
+                <data>
+                    <text>http</text>
+                    <value>http</text>
+                </data>
+            <item>
                 <description>Soft Keys</description>
                 <type>group</type>
             </item>
