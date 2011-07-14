@@ -12,11 +12,7 @@ class endpoint_grandstream_base extends endpoint_base {
 	
 	function reboot() {
 		if(($this->engine == "asterisk") AND ($this->system == "unix")) {
-			if(!isset($this->engine_location)) {
-				$output = shell_exec("asterisk -rx 'sip show peers like ".$this->lines[1]['ext']."'");
-			} else {
-				$output = shell_exec($this->engine_location. " -rx 'sip show peers like ".$this->lines[1]['ext']."'");
-			}
+				exec($this->engine_location. " -rx 'sip show peers like ".$this->lines[1]['ext']."'");
 			if(preg_match("/\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/",$output,$matches)) {
 				$ip = $matches[0];
 				$pass = (isset($this->options['admin_pass']) ? $this->options['admin_pass'] : 'admin');

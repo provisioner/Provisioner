@@ -26,7 +26,7 @@ abstract class endpoint_base {
     public $options;        // Misc. options for phones
     public $root_dir = "";		//need to define the root directory for the location of the library (/var/www/html/)
     public $engine;			//Can be asterisk or freeswitch. This is for the reboot commands.
-    public $engine_location;	//Location of the executable for said engine above
+    public $engine_location = "";	//Location of the executable for said engine above
     public $system;			//unix or windows or bsd. etc
     public $directory_structure = array();	//Directory structure to create as an array
     public $protected_files = array();	//array list of file to NOT over-write on every config file build. They are protected.
@@ -401,6 +401,14 @@ abstract class endpoint_base {
 
         $this->setup_tz();
         $this->setup_ntp();
+
+        if(empty($this->engine_location) {
+			if($this->engine == 'asterisk') {
+				$this->engine_location = 'asterisk';
+			} elseif($this->engine == 'freeswitch') {
+				$this->engine_location = 'freeswitch';
+			}
+        }
 
         $this->timezone['gmtoffset'] = $this->setup_timezone($this->timezone['gmtoffset'], 'GMT');
         $this->timezone['timezone'] = $this->setup_timezone($this->timezone['timezone'], 'TZ');
