@@ -402,7 +402,7 @@ abstract class endpoint_base {
         $this->setup_tz();
         $this->setup_ntp();
 
-        if(empty($this->engine_location) {
+        if(empty($this->engine_location)) {
 			if($this->engine == 'asterisk') {
 				$this->engine_location = 'asterisk';
 			} elseif($this->engine == 'freeswitch') {
