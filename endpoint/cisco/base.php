@@ -14,14 +14,14 @@ class endpoint_cisco_base extends endpoint_base {
 	function reboot() {
 		if(($this->engine == "asterisk") AND ($this->system == "unix")) {
 			if($this->family_line == "sip79xx") {
-				exec("asterisk -rx 'sip notify cisco-check-cfg ".$this->lines[1]['ext']."'");
-                        } elseif($this->family_line == "ata18x") {
+				exec($this->engine_location." -rx 'sip notify cisco-check-cfg ".$this->lines[1]['ext']."'");
+            } elseif($this->family_line == "ata18x") {
 				exec("/tftpboot/cfgfmt.linux -t/tftpboot/ptag.dat /tftpboot/ata".strtolower($this->mac).".txt /tftpboot/ata".strtolower($this->mac));
-                                exec("asterisk -rx 'sip notify cisco-check-cfg ".$this->lines[1]['ext']."'");
+                exec($this->engine_location." -rx 'sip notify cisco-check-cfg ".$this->lines[1]['ext']."'");
 			} elseif($this->family_line == "spa") {
-				exec("asterisk -rx 'sip notify spa-reboot ".$this->lines[1]['ext']."'");				
+				exec($this->engine_location." -rx 'sip notify spa-reboot ".$this->lines[1]['ext']."'");				
 			} elseif($this->family_line == "spa5xx") {
-				exec("asterisk -rx 'sip notify spa-reboot ".$this->lines[1]['ext']."'");
+				exec($this->engine_location." -rx 'sip notify spa-reboot ".$this->lines[1]['ext']."'");
 			}
 		}
 	}
