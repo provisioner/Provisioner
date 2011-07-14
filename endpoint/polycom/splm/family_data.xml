@@ -5,7 +5,7 @@
 	<directory>splm</directory>
 	<package>splm-0_7_6.tgz</package>
 	<firmware_ver>1307524297</firmware_ver>
-	<firmware_md5sum>ccc9fa2ef90fbd9b6bd914e3c19c6f3b</firmware_md5sum>
+	<firmware_md5sum>aabc5c71395f11eb0062d118c108c103</firmware_md5sum>
 	<firmware_pkg>splm_firmware.tgz</firmware_pkg>
 	<description>Fixed Digit Map Problems with three digit extensions in the 1xx range</description>
 	<configuration_files>{$mac}-phone.cfg,{$mac}.cfg,server.cfg,phone1.cfg,{$mac}_reg.cfg,sip.cfg,000000000000.cfg</configuration_files>

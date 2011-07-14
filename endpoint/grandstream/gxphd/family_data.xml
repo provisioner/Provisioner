@@ -4,7 +4,7 @@
 	<version>0.1</version>
 	<directory>gxphd</directory>
 	<firmware_ver>1304379346</firmware_ver>
-	<firmware_md5sum>14fae85a1d6c75353edd4903bb095ebb</firmware_md5sum>
+	<firmware_md5sum>f0cd227b395919bc7986818038bf7092</firmware_md5sum>
 	<firmware_pkg>gxphd_firmware.tgz</firmware_pkg>
 	<description>Use Grandstream Encrypted Compiler By Default</description>
 	<configuration_files>$mac.cfg</configuration_files>
