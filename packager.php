@@ -1,5 +1,5 @@
 <?PHP
-/*
+/*l
 This file, when run from the web, creates all the needed packages in the releases folder and also generates http://www.provisioner.net/releases
 */
 //This is not for any 'scary' security measures, it's just so I can prevent robots from running the script all the time.
