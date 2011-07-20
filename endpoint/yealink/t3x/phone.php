@@ -5,6 +5,7 @@
  * @author Andrew Nagy
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
+ * 
  */
 class endpoint_yealink_t3x_phone extends endpoint_yealink_base {
 
