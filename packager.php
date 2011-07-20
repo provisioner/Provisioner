@@ -287,18 +287,6 @@ function create_brand_pkg($rawname,$version,$brand_name,$old_brand_timestamp,$c_
 					fwrite($fp, $contents);
 					fclose($fp);
 				} else {
-					$firmware_md5 = md5_file(RELEASE_DIR."/".$rawname."/".$family_xml['data']['directory']."_firmware.tgz");
-					$fp = fopen($family_folders."/family_data.xml", 'r');
-					$contents = fread($fp, filesize($family_folders."/family_data.xml"));
-					fclose($fp);
-					
-					$pattern = "/<firmware_md5sum>(.*?)<\/firmware_md5sum>/si";
-					$parsed = "<firmware_md5sum>".$firmware_md5."</firmware_md5sum>";
-					$contents = preg_replace($pattern, $parsed, $contents, 1);
-					
-					$fp = fopen($family_folders."/family_data.xml", 'w');
-					fwrite($fp, $contents);
-					fclose($fp);
 					echo "\t\t\tFirmware has not changed, not updating package\n";
 				}
 			}
