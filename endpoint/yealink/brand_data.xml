@@ -6,7 +6,7 @@
 		<brand_id>8</brand_id>
 		<directory>yealink</directory>
 		<package>yealink-0_5.tgz</package>
-        <md5sum>45ccde9c53bd0de3c5ab316b35f5bca3</md5sum>
+        <md5sum>d401f5005c1262f481825ebf70711d0a</md5sum>
 		<last_modified>1310667268</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
@@ -15,7 +15,7 @@
 				<directory>t2x</directory>
 				<version>0.7.5</version>
 				<description>Variables Issues Solved (Not writing accounts + passwords in files)</description>
-				<changelog></changelog>
+				<changelog>PACKAGER: PACKAGER: PACKAGER: PACKAGER: Updating%packager.php</changelog>
 				<id>1</id>
 				<last_modified>1307829216</last_modified>
 			</family>

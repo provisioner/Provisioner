@@ -6,9 +6,9 @@
 		<version>0.5</version>
 		<directory>aastra</directory>
 		<package>aastra-0_5.tgz</package>
-		<md5sum>ad922b2db5d3da673cf8b5ba6340e9dc</md5sum>
+		<md5sum>9acc4489ed3ecda4be4fe11559ab9245</md5sum>
 		<last_modified>1310667268</last_modified>
-		<changelog></changelog>
+		<changelog>PACKAGER: PACKAGER: PACKAGER: PACKAGER: Updating%packager.php</changelog>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>

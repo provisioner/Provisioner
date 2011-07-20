@@ -6,7 +6,7 @@
 		<directory>snom</directory>
 		<brand_id>6</brand_id>
 		<package>snom-0_6.tgz</package>
-        <md5sum>7bfe6fc0ed73d34ee5e8d60d8860d497</md5sum>
+        <md5sum>b2451eca4d9d0bfa0a850f421cd2c766</md5sum>
 		<last_modified>1310667268</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
@@ -15,7 +15,7 @@
 				<directory>3xx820m3</directory>
 				<version>1</version>
 				<description>Server + Password Settings, htm File Fixes</description>
-				<changelog></changelog>
+				<changelog>PACKAGER: PACKAGER: PACKAGER: PACKAGER: Updating%packager.php</changelog>
 				<id>1</id>
 				<last_modified>1308417646</last_modified>
 			</family>
