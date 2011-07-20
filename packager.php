@@ -337,6 +337,9 @@ function create_brand_pkg($rawname,$version,$brand_name,$old_brand_timestamp,$c_
 	$brand_max = max($brand_files_array);
 	echo "\t\t\tTotal Brand Timestamp: ".$brand_max."\n";
 	
+	$temp = max($family_max_array);
+	$brand_max = max($brand_max,$temp);
+	
 	if($brand_max != $old_brand_timestamp) {
 		$pattern = "/<last_modified>(.*?)<\/last_modified>/si";
 		$parsed = "<last_modified>".$brand_max."</last_modified>";
@@ -347,9 +350,6 @@ function create_brand_pkg($rawname,$version,$brand_name,$old_brand_timestamp,$c_
 		fclose($fp);
 	
 		copy(MODULES_DIR."/".$rawname."/brand_data.xml", RELEASE_DIR."/".$rawname."/".$rawname.".xml");
-	
-		$temp = max($family_max_array);
-		$brand_max = max($brand_max,$temp);
 	
 		exec("tar zcf ".RELEASE_DIR."/".$rawname."/".$pkg_name.".tgz --exclude .svn --exclude firmware -C ".MODULES_DIR." ".$rawname);
 		$brand_md5 = md5_file(RELEASE_DIR."/".$rawname."/".$pkg_name.".tgz");

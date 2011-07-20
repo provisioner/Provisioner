@@ -6,8 +6,8 @@
 		<brand_id>8</brand_id>
 		<directory>yealink</directory>
 		<package>yealink-0_5.tgz</package>
-        <md5sum>d401f5005c1262f481825ebf70711d0a</md5sum>
-		<last_modified>1310667268</last_modified>
+        <md5sum>e3557b990684617088305c3b35470435</md5sum>
+		<last_modified>1311144400</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -15,9 +15,18 @@
 				<directory>t2x</directory>
 				<version>0.7.5</version>
 				<description>Variables Issues Solved (Not writing accounts + passwords in files)</description>
-				<changelog>PACKAGER: PACKAGER: PACKAGER: PACKAGER: Updating%packager.php</changelog>
+				<changelog>PACKAGER: Preliminary support for the Yealink T38G and (completely untested for obvious reasons) the upcoming T32G.</changelog>
 				<id>1</id>
 				<last_modified>1307829216</last_modified>
+			</family>
+			<family>
+				<name>Yealink/Dreamwave T3X Models: [T32, T38]</name>
+				<directory>t3x</directory>
+				<version>0.0.1</version>
+				<description>Configuration for the Yealink T3X series of phones)</description>
+				<changelog></changelog>
+				<id>2</id>
+				<last_modified>1311144400</last_modified>
 			</family>
 <!--End Auto Generated-->
 
