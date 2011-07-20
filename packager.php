@@ -252,7 +252,7 @@ function create_brand_pkg($rawname,$version,$brand_name,$old_brand_timestamp,$c_
 				$firmware_max = max($firmware_files_array);
                 echo "\t\t\t\t\tTotal Firmware Timestamp: ". $firmware_max ."\n";
 
-				if($firmware_max != $old_firmware_ver) {
+				if($firmware_max == $old_firmware_ver) {
 					echo "\t\t\tFirmware package has changed...\n";
 					echo "\t\t\tCreating Firmware Package\n";
 					exec("tar zcf ".RELEASE_DIR."/".$rawname."/".$family_xml['data']['directory']."_firmware.tgz --exclude .svn -C ".FIRMWARE_DIR."/".$rawname."/".$family_xml['data']['directory']." firmware");
