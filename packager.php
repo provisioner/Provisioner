@@ -337,7 +337,7 @@ function create_brand_pkg($rawname,$version,$brand_name,$old_brand_timestamp,$c_
 	$brand_max = max($brand_files_array);
 	echo "\t\t\tTotal Brand Timestamp: ".$brand_max."\n";
 	
-	if($brand_max != $old_brand_timestamp) {
+	if($brand_max == $old_brand_timestamp) {
 		$pattern = "/<last_modified>(.*?)<\/last_modified>/si";
 		$parsed = "<last_modified>".$brand_max."</last_modified>";
 		$contents = preg_replace($pattern, $parsed, $contents, 1);

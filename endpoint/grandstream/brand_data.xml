@@ -6,7 +6,7 @@
 		<directory>grandstream</directory>
 		<brand_id>2</brand_id>
 		<package>grandstream-0_7.tgz</package>
-		<md5sum>1704daebe9eadabcde468811a0ba071d</md5sum>
+		<md5sum>4cb3d283649d8ca048a72dcc1e4cba28</md5sum>
 		<last_modified>1310667268</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
@@ -15,7 +15,7 @@
 				<directory>bts</directory>
 				<version>1.0</version>
 				<description>Fixed Timezone Issues + Use Grandstream Encrypted Compiler By Default</description>
-				<changelog></changelog>
+				<changelog>PACKAGER: PACKAGER: PACKAGER: PACKAGER: Updating%packager.php</changelog>
 				<id>2</id>
 				<last_modified>1307240194</last_modified>
 			</family>
