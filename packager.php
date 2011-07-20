@@ -265,6 +265,7 @@ function create_brand_pkg($rawname,$version,$brand_name,$old_brand_timestamp,$c_
 					if($firmware_max > $family_max) {
 						echo "\t\t\tFirmware Timestamp is newer than Family Timestamp, updating Family Timestamp to match\n";
 						$family_max = $firmware_max;
+						$family_max_array[$z] = $family_max;
 					}
                 
 					$fp = fopen($family_folders."/family_data.xml", 'r');
