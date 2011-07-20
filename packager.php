@@ -31,16 +31,18 @@ if(isset($_REQUEST['commit_message'])) {
 } else {
 	$c_message = "PACKAGER: ".file_get_contents('/var/www/html/c_message.txt');
 }
-echo "===GIT Information===\n";
-echo "COMMIT MESSAGE: ".$c_message."\n";
-echo "Pulling GIT Master Repo......\n";
-exec("git pull origin master", $output);
-echo "GIT REPORTED: \n";
-foreach($output as $data) {
-	echo "\t".$data . "\n";
+if(!isset($_REQUEST['dont_push'])) {
+	echo "===GIT Information===\n";
+	echo "COMMIT MESSAGE: ".$c_message."\n";
+	echo "Pulling GIT Master Repo......\n";
+	exec("git pull origin master", $output);
+	echo "GIT REPORTED: \n";
+	foreach($output as $data) {
+		echo "\t".$data . "\n";
+	}
+	echo "Revision information is as follows: " . file_get_contents(ROOT_DIR . "/.git/FETCH_HEAD");
+	echo "=====================\n\n";
 }
-echo "Revision information is as follows: " . file_get_contents(ROOT_DIR . "/.git/FETCH_HEAD");
-echo "=====================\n\n";
 
 echo "Starting Processing of Directories\n";
 
@@ -48,6 +50,7 @@ foreach (glob(MODULES_DIR."/*", GLOB_ONLYDIR) as $filename) {
 	flush_buffers();
     if(file_exists($filename."/brand_data.xml")) {
 		$brand_xml = xml2array($filename."/brand_data.xml");
+		$old_brand_timestamp = $brand_xml['data']['brands']['last_modified'];
 		echo "==============".$brand_xml['data']['brands']['name']."==============\n";
 		echo "Found brand_data.xml in ". $filename ." continuing...\n";
 		echo "\tAttempting to parse data into array....";
@@ -59,7 +62,7 @@ foreach (glob(MODULES_DIR."/*", GLOB_ONLYDIR) as $filename) {
 				$key = $brand_xml['data']['brands']['brand_id'];
 				$master_xml['brands'][$key]['name'] =  $brand_xml['data']['brands']['name'];
 				$master_xml['brands'][$key]['directory'] =  $brand_xml['data']['brands']['directory'];
-				create_brand_pkg($master_xml['brands'][$key]['directory'],$brand_xml['data']['brands']['version'],$brand_xml['data']['brands']['name']);
+				create_brand_pkg($master_xml['brands'][$key]['directory'],$brand_xml['data']['brands']['version'],$brand_xml['data']['brands']['name'],$old_brand_timestamp,$c_message);
 			} else {
 				echo "\n\tError with the XML in file (brand_id is blank?): ". $filename."/brand_data.xml";
 			}
@@ -105,15 +108,6 @@ $data .= "\n</data>";
 
 fwrite($fp, $data);
 fclose($fp);
-
-	/**TODO
-	echo "\t\t\tCreating JSON file of master.xml\n";
-	$xml = simplexml_load_file(MODULES_DIR."/master.xml");
-	$json = json_encode($xml);
-	$fp2 = fopen(MODULES_DIR."/master.json", 'w');
-	fwrite($fp2, $json);
-	fclose($fp2);
-	**/
 
 copy(MODULES_DIR."/master.xml", RELEASE_DIR."/master.xml");
 
@@ -172,8 +166,9 @@ if(!isset($_REQUEST['dont_push'])) {
 
 	echo "=====================\n\n";
 }
-
-file_put_contents('/var/www/html/sync_check', '1');
+if(!isset($_REQUEST['dont_push'])) {
+	file_put_contents('/var/www/html/sync_check', '1');
+}
 
 echo "\nDone!";
 
@@ -195,7 +190,7 @@ function fix_single_array_keys($array) {
 	}	
 }
 
-function create_brand_pkg($rawname,$version,$brand_name) {	
+function create_brand_pkg($rawname,$version,$brand_name,$old_brand_timestamp,$c_message) {	
 	global $brands_html, $supported_phones;
 	$version = str_replace(".","_",$version);
 	
@@ -206,17 +201,17 @@ function create_brand_pkg($rawname,$version,$brand_name) {
 		
 	}
 	$family_list = "\n<!--Below is Auto Generated-->";
-	$z = 0;
+	$z = 0;	
 	foreach (glob(MODULES_DIR."/".$rawname."/*", GLOB_ONLYDIR) as $family_folders) {
 		flush_buffers();
 		if(file_exists($family_folders."/family_data.xml")) {
 			$family_xml = xml2array($family_folders."/family_data.xml");
+			$old_firmware_ver = $family_xml['data']['firmware_ver'];
 			echo "\n\t==========".$family_xml['data']['name']."==========\n";
 			echo "\tFound family_data.xml in ". $family_folders ."\n";
 
 			$b = 0;
 			foreach($family_xml['data']['model_list'] as $data) {
-				//echo "|".$brand_name."|".$z."|".$b."|".$data['model']."<br />";
 				$supported_phones[$brand_name][$z][$b] = $data['model'];
 				$b++;
 			}
@@ -232,29 +227,6 @@ function create_brand_pkg($rawname,$version,$brand_name) {
 					if((basename($family_files) != "family_data.xml") AND ($path_parts['extension'] != "json")) {
 						$files_array[$i] = filemtime($family_files);
 						echo "\t\tParsing File: ".basename($family_files)."|".$files_array[$i]."\n";
-						if(pathinfo($family_files, PATHINFO_EXTENSION) == "xml") {
-							/*** JSON STUFF TO BE FIXED
-							if(file_exists($family_folders."/json/")) {
-								echo "\t\t\tCreating JSON file of ". basename($family_files) ."\n";
-								$xml = simplexml_load_file($family_files);
-								$json = json_encode($xml);
-								$fp2 = fopen($family_folders."/json/".pathinfo($family_files, PATHINFO_FILENAME).".json", 'w');
-								fwrite($fp2, $json);
-								fclose($fp2);
-							} else {
-								if (!mkdir($family_folders."/json/")) {
-								    echo "\t\t\tFailed to create JSON folder...\n";
-								} else {
-									echo "\t\t\tCreating JSON file of ". basename($family_files) ."\n";
-									$xml = simplexml_load_file($family_files);
-									$json = json_encode($xml);
-									$fp2 = fopen($family_folders."/json/".pathinfo($family_files, PATHINFO_FILENAME).".json", 'w');
-									fwrite($fp2, $json);
-									fclose($fp2);
-								}	
-							}
-							**/
-						}
 						$i++;
 					}
 				} 
@@ -264,12 +236,9 @@ function create_brand_pkg($rawname,$version,$brand_name) {
 			$family_max_array[$z] = $family_max;
 			echo "\t\t\tTotal Family Timestamp: ". $family_max ."\n";
 			
-			if(file_exists(FIRMWARE_DIR."/".$rawname."/".$family_xml['data']['directory']."/firmware")) {
+			if(file_exists(FIRMWARE_DIR."/".$rawname."/".$family_xml['data']['directory']."/firmware")) {		
 				echo "\t\tFound Firmware Folder in ".$family_xml['data']['directory']."\n";
-				echo "\t\t\tCreating Firmware Package\n";
 				flush_buffers();
-				exec("tar zcf ".RELEASE_DIR."/".$rawname."/".$family_xml['data']['directory']."_firmware.tgz --exclude .svn -C ".FIRMWARE_DIR."/".$rawname."/".$family_xml['data']['directory']." firmware");
-				$firmware_md5 = md5_file(RELEASE_DIR."/".$rawname."/".$family_xml['data']['directory']."_firmware.tgz");
 				$x=0;
 				foreach (glob(FIRMWARE_DIR."/".$rawname."/".$family_xml['data']['directory']."/firmware/*") as $firmware_files) {
 					flush_buffers();
@@ -282,58 +251,44 @@ function create_brand_pkg($rawname,$version,$brand_name) {
 				
 				$firmware_max = max($firmware_files_array);
                 echo "\t\t\t\t\tTotal Firmware Timestamp: ". $firmware_max ."\n";
+
+				if($firmware_max != $old_firmware_ver) {
+					echo "\t\t\tFirmware package has changed...\n";
+					echo "\t\t\tCreating Firmware Package\n";
+					exec("tar zcf ".RELEASE_DIR."/".$rawname."/".$family_xml['data']['directory']."_firmware.tgz --exclude .svn -C ".FIRMWARE_DIR."/".$rawname."/".$family_xml['data']['directory']." firmware");
+					$firmware_md5 = md5_file(RELEASE_DIR."/".$rawname."/".$family_xml['data']['directory']."_firmware.tgz");
 				
-				echo "\t\t\tPackage MD5 SUM: ".$firmware_md5."\n";
+					echo "\t\t\tPackage MD5 SUM: ".$firmware_md5."\n";
 				
-				echo "\t\t\tAdding Firmware Package Information to family_data.xml File\n";
+					echo "\t\t\tAdding Firmware Package Information to family_data.xml File\n";
 				
-				if($firmware_max > $family_max) {
-					echo "\t\t\tFirmware Timestamp is newer than Family Timestamp, updating Family Timestamp to match\n";
-					$family_max = $firmware_max;
-				}
+					if($firmware_max > $family_max) {
+						echo "\t\t\tFirmware Timestamp is newer than Family Timestamp, updating Family Timestamp to match\n";
+						$family_max = $firmware_max;
+					}
                 
-				$fp = fopen($family_folders."/family_data.xml", 'r');
-				$contents = fread($fp, filesize($family_folders."/family_data.xml"));
-				fclose($fp);
+					$fp = fopen($family_folders."/family_data.xml", 'r');
+					$contents = fread($fp, filesize($family_folders."/family_data.xml"));
+					fclose($fp);
 				
-				$pattern = "/<firmware_ver>(.*?)<\/firmware_ver>/si";
-				$parsed = "<firmware_ver>".$firmware_max."</firmware_ver>";
-				$contents = preg_replace($pattern, $parsed, $contents, 1);
+					$pattern = "/<firmware_ver>(.*?)<\/firmware_ver>/si";
+					$parsed = "<firmware_ver>".$firmware_max."</firmware_ver>";
+					$contents = preg_replace($pattern, $parsed, $contents, 1);
 				
-				$pattern = "/<firmware_md5sum>(.*?)<\/firmware_md5sum>/si";
-				$parsed = "<firmware_md5sum>".$firmware_md5."</firmware_md5sum>";
-				$contents = preg_replace($pattern, $parsed, $contents, 1);
+					$pattern = "/<firmware_md5sum>(.*?)<\/firmware_md5sum>/si";
+					$parsed = "<firmware_md5sum>".$firmware_md5."</firmware_md5sum>";
+					$contents = preg_replace($pattern, $parsed, $contents, 1);
 
-				$pattern = "/<firmware_pkg>(.*?)<\/firmware_pkg>/si";
-				$parsed = "<firmware_pkg>".$family_xml['data']['directory']."_firmware.tgz</firmware_pkg>";
-				$contents = preg_replace($pattern, $parsed, $contents, 1);
-
-				
-				$fp = fopen($family_folders."/family_data.xml", 'w');
-				fwrite($fp, $contents);
-				fclose($fp);
-				
-				/**JSON TO BE FIXED
-				if(file_exists($family_folders."/family_data.xml")) {
-					echo "\t\t\tCreating JSON file of family_data.xml\n";
-					$xml = simplexml_load_file($family_folders."/family_data.xml");
-					$json = json_encode($xml);
-					$fp2 = fopen($family_folders."/family_data.json", 'w');
-					fwrite($fp2, $json);
-					fclose($fp2);
+					$pattern = "/<firmware_pkg>(.*?)<\/firmware_pkg>/si";
+					$parsed = "<firmware_pkg>".$family_xml['data']['directory']."_firmware.tgz</firmware_pkg>";
+					$contents = preg_replace($pattern, $parsed, $contents, 1);
+			
+					$fp = fopen($family_folders."/family_data.xml", 'w');
+					fwrite($fp, $contents);
+					fclose($fp);
 				} else {
-					if (!mkdir($family_folders."/json/")) {
-					    echo "\t\t\tFailed to create JSON folder...\n";
-					} else {
-						echo "\t\t\tCreating JSON file of family_data.xml\n";
-						$xml = simplexml_load_file($family_folders."/family_data.xml");
-						$json = json_encode($xml);
-						$fp2 = fopen($family_folders."/family_data.json", 'w');
-						fwrite($fp2, $json);
-						fclose($fp2);
-					}	
+					echo "\t\t\tFirmware has not changed, not updating package\n";
 				}
-				**/
 			}
 			
 			$z++;
@@ -379,58 +334,53 @@ function create_brand_pkg($rawname,$version,$brand_name) {
 			$i++;
 		}
 	}
-	
 	$brand_max = max($brand_files_array);
 	echo "\t\t\tTotal Brand Timestamp: ".$brand_max."\n";
 	
-	$pattern = "/<last_modified>(.*?)<\/last_modified>/si";
-	$parsed = "<last_modified>".$brand_max."</last_modified>";
-	$contents = preg_replace($pattern, $parsed, $contents, 1);
+	if($brand_max != $old_brand_timestamp) {
+		$pattern = "/<last_modified>(.*?)<\/last_modified>/si";
+		$parsed = "<last_modified>".$brand_max."</last_modified>";
+		$contents = preg_replace($pattern, $parsed, $contents, 1);
 	
-	$pattern = "/<md5sum>(.*?)<\/md5sum>/si";
-	$parsed = "<md5sum>".$brand_md5."</md5sum>";
-	$contents = preg_replace($pattern, $parsed, $contents, 1);
+		$fp = fopen(MODULES_DIR."/".$rawname."/brand_data.xml", 'w');
+		fwrite($fp, $contents);
+		fclose($fp);
 	
-	$fp = fopen(MODULES_DIR."/".$rawname."/brand_data.xml", 'w');
-	fwrite($fp, $contents);
-	fclose($fp);
+		copy(MODULES_DIR."/".$rawname."/brand_data.xml", RELEASE_DIR."/".$rawname."/".$rawname.".xml");
 	
-			/**TODO
-			echo "\t\t\tCreating JSON file of brand_data.xml\n";
-			$xml = simplexml_load_file(MODULES_DIR."/".$rawname."/brand_data.xml");
-			$json = json_encode($xml);
-			$fp2 = fopen(MODULES_DIR."/".$rawname."/brand_data.json", 'w');
-			fwrite($fp2, $json);
-			fclose($fp2);
-			**/
+		$temp = max($family_max_array);
+		$brand_max = max($brand_max,$temp);
 	
-	copy(MODULES_DIR."/".$rawname."/brand_data.xml", RELEASE_DIR."/".$rawname."/".$rawname.".xml");
+		exec("tar zcf ".RELEASE_DIR."/".$rawname."/".$pkg_name.".tgz --exclude .svn --exclude firmware -C ".MODULES_DIR." ".$rawname);
+		$brand_md5 = md5_file(RELEASE_DIR."/".$rawname."/".$pkg_name.".tgz");
+		echo "\t\tPackage MD5 SUM: ".$brand_md5."\n";
 	
-	$temp = max($family_max_array);
-	$brand_max = max($brand_max,$temp);
+		$fp = fopen(MODULES_DIR."/".$rawname."/brand_data.xml", 'r');
+		$contents = fread($fp, filesize(MODULES_DIR."/".$rawname."/brand_data.xml"));
+		fclose($fp);
 	
-	exec("tar zcf ".RELEASE_DIR."/".$rawname."/".$pkg_name.".tgz --exclude .svn --exclude firmware -C ".MODULES_DIR." ".$rawname);
-	$brand_md5 = md5_file(RELEASE_DIR."/".$rawname."/".$pkg_name.".tgz");
-	echo "\t\tPackage MD5 SUM: ".$brand_md5."\n";
+		$pattern = "/<md5sum>(.*?)<\/md5sum>/si";
+		$parsed = "<md5sum>".$brand_md5."</md5sum>";
+		$contents = preg_replace($pattern, $parsed, $contents, 1);
+		
+		$pattern = "/<changelog>(.*?)<\/changelog>/si";
+		$parsed = "<changelog>".$c_message."</changelog>";
+		$contents = preg_replace($pattern, $parsed, $contents, 1);
 	
-	$fp = fopen(MODULES_DIR."/".$rawname."/brand_data.xml", 'r');
-	$contents = fread($fp, filesize(MODULES_DIR."/".$rawname."/brand_data.xml"));
-	fclose($fp);
+		$fp = fopen(MODULES_DIR."/".$rawname."/brand_data.xml", 'w');
+		fwrite($fp, $contents);
+		fclose($fp);
 	
-	$pattern = "/<md5sum>(.*?)<\/md5sum>/si";
-	$parsed = "<md5sum>".$brand_md5."</md5sum>";
-	$contents = preg_replace($pattern, $parsed, $contents, 1);
+		copy(MODULES_DIR."/".$rawname."/brand_data.xml", RELEASE_DIR."/".$rawname."/".$rawname.".xml");
 	
-	$fp = fopen(MODULES_DIR."/".$rawname."/brand_data.xml", 'w');
-	fwrite($fp, $contents);
-	fclose($fp);
-	
-	copy(MODULES_DIR."/".$rawname."/brand_data.xml", RELEASE_DIR."/".$rawname."/".$rawname.".xml");
-	
-	$brands_html .= "<h4>".$rawname." (Last Modified: ".date('m/d/Y',$brand_max)." at ".date("G:i",$brand_max).")</h4>";
-	$brands_html .= "XML File: <a href='/release3/".$rawname."/".$rawname.".xml'>".$rawname.".xml</a><br/>";
-	$brands_html .= "Package File: <a href='/release3/".$rawname."/".$pkg_name.".tgz'>".$pkg_name.".tgz</a><br/>";
-	echo "\tComplete..Continuing..\n";
+		$brands_html .= "<h4>".$rawname." (Last Modified: ".date('m/d/Y',$brand_max)." at ".date("G:i",$brand_max).")</h4>";
+		$brands_html .= "XML File: <a href='/release3/".$rawname."/".$rawname.".xml'>".$rawname.".xml</a><br/>";
+		$brands_html .= "Package File: <a href='/release3/".$rawname."/".$pkg_name.".tgz'>".$pkg_name.".tgz</a><br/>";
+		
+		echo "\tComplete..Continuing..\n";
+	} else {
+		echo "\tNothing changed! Aborting Package Creation!\n";
+	}
 }
 
 
