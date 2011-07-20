@@ -1,0 +1,41 @@
+<data>
+	<name>Yealink/Dreamwave T3X Models: [T32, T38]</name>
+	<id>2</id>
+	<version>0.0.1</version>
+	<directory>t3x</directory>
+	<firmware_ver></firmware_ver>
+	<firmware_pkg>NULL</firmware_pkg>
+    <firmware_md5sum></firmware_md5sum>
+	<description>Configuration for the Yealink T3X series of phones)</description>
+	<configuration_files>y000000000000.cfg,$mac.cfg</configuration_files>
+	<changelog></changelog>
+	<model_list>
+		<model>T32</model>
+		<lines>2</lines>
+		<id>1</id>
+		<template_data>
+			<files>line_options_22.xml</files>
+			<files>template_data.xml</files>
+			<files>network_22.xml</files>
+			<files>line_keys_22.xml</files>
+			<files>soft_keys_22.xml</files>
+			<files>hard_keys_22.xml</files>
+			<files>ext38.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>T38</model>
+		<lines>6</lines>
+		<id>2</id>
+		<template_data>
+                        <files>line_options_22.xml</files>
+			<files>template_data.xml</files>
+			<files>network_22.xml</files>
+			<files>line_keys_28.xml</files>
+			<files>soft_keys_22.xml</files>
+			<files>hard_keys_22.xml</files>
+			<files>memory_keys_22.xml</files>
+			<files>ext38.xml</files>
+		</template_data>
+	</model_list>
+</data>
