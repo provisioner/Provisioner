@@ -6,8 +6,8 @@
 		<brand_id>8</brand_id>
 		<directory>yealink</directory>
 		<package>yealink-0_5.tgz</package>
-        <md5sum>e3557b990684617088305c3b35470435</md5sum>
-		<last_modified>1311144400</last_modified>
+        <md5sum>60ccc350d1e098caa640977ecb475230</md5sum>
+		<last_modified>1311145473</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -26,7 +26,7 @@
 				<description>Configuration for the Yealink T3X series of phones)</description>
 				<changelog></changelog>
 				<id>2</id>
-				<last_modified>1311144400</last_modified>
+				<last_modified>1311145473</last_modified>
 			</family>
 <!--End Auto Generated-->
 
