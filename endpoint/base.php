@@ -35,6 +35,7 @@ abstract class endpoint_base {
     public $server_type = 'file';		//Can be file or dynamic
     public $provisioning_type = 'tftp';		//can be tftp,http,ftp ??
     public $enable_encryption = FALSE;		//Enable file encryption
+    public $provisioning_path;                  //Path to provisioner, used in http/https/ftp/tftp
 
     // Old
     /**
