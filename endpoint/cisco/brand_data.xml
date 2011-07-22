@@ -6,8 +6,8 @@
 		<version>0.5</version>
 		<directory>cisco</directory>
 		<package>cisco-0_5.tgz</package>
-		<md5sum>32c06af05c66c37c3f5031a09b5191a0</md5sum>
-		<last_modified>1310667268</last_modified>
+		<md5sum>4bb33147bc8e65040915e0c417410c9f</md5sum>
+		<last_modified>1311365330</last_modified>
 				<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -15,7 +15,7 @@
 				<directory>ata18x</directory>
 				<version>0.1</version>
 				<description></description>
-				<changelog>PACKAGER: PACKAGER: PACKAGER: PACKAGER: Updating%packager.php</changelog>
+				<changelog>PACKAGER: Added BMP Picture URL to SPA 5xx phones</changelog>
 				<id>5</id>
 				<last_modified>1309110193</last_modified>
 			</family>
@@ -53,7 +53,7 @@
 				<description></description>
 				<changelog></changelog>
 				<id>3</id>
-				<last_modified>1310326192</last_modified>
+				<last_modified>1311365330</last_modified>
 			</family>
 <!--End Auto Generated-->
 
