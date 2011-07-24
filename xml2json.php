@@ -78,6 +78,11 @@ switch($request) {
 				}
 				$data['lines'] = $temp['data']['model_list'][$test[2]]['lines'];
 				$files = fix_single_array_keys($temp['data']['model_list'][$test[2]]['template_data']['files']);
+				if(!is_array($files)) {
+					$file[0] = $files;
+					unlink($files);
+					$files = $file;
+				}
 				foreach($files as $files_data) {
 					if(file_exists(PROVISIONER_PATH."endpoint/".$brand."/".$product."/".$files_data)) {
 						$temp_files_data = xml2array(PROVISIONER_PATH."endpoint/".$brand."/".$product."/".$files_data);
