@@ -65,11 +65,79 @@
                 <type>input</type>
             </item>
             <item>
+                <type>break</type>
+            </item>
+            <item>
+            	<category>system</category>
+            	<variable>$update_mode</variable>
+            	<default_value>7</default_value>
+            	<description>Config Update Mode</description>
+            	<type>list</type>
+            	<data>
+            		<text>Disabled</text>
+            		<value>0</value>
+            		<disable>$update_frequency</disable>
+            	</data>
+            	<data>
+            		<text>Power on</text>
+            		<value>1</value>
+            		<disable>$update_frequency</disable>
+            	</data>
+            	<data>
+            		<text>Repeatedly</text>
+            		<value>4</value>
+            		<enable>$update_frequency</enable>
+            	</data>
+            	<data>
+            		<text>Weekly</text>
+            		<value>5</value>
+            		<disable>$update_frequency</disable>
+            	</data>
+            	<data>
+            		<text>Power on + Repeatedly</text>
+            		<value>6</value>
+            		<enable>$update_frequency</enable>
+            	</data>
+            	<data>
+            		<text>Power on + Weekly</text>
+            		<value>7</value>
+            		<disable>$update_frequency</disable>
+            	</data>
+            </item>
+            <item>
+            	<category>system</category>
+            	<variable>$update_frequency</variable>
+            	<description>Update Frequency (mins)</description>
+            	<default_value>1440</default_value>
+            	<type>input</type>
+            	<max_len>5</max_len>
+            </item>
+            <item>
+                <type>break</type>
+            </item>
+            <item>
                 <category>system</category>
                 <variable>$call_pickup</variable>
                 <default_value>**</default_value>
                 <description>Call Pickup Value (For BLF)</description>
                 <type>input</type>
+            </item>
+            <item>
+                <type>break</type>
+            </item>
+            <item>
+            	<category>system</category>
+            	<variable>$adminpw</variable>
+            	<default_value />
+            	<description>Web administration password</description>
+            	<type>input</type>
+            </item>
+            <item>
+            	<category>system</category>
+            	<variable>$tones_country</variable>
+            	<default_value>United States</default_value>
+            	<description>Tones Country</description>
+            	<type>input</type>
             </item>
         </subcategory>
     </category>

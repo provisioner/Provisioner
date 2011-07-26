@@ -52,17 +52,13 @@
             </item>
             <item>
                 <category>system</category>
-                <variable>$firmware_server</variable>
-                <default_value>{$server.ip.1}</default_value>
-                <description>Firmware Server IP</description>
+                <variable>$firmware_name</variable>
+                <default_value></default_value>
+                <description>Firmware URL</description>
                 <type>input</type>
             </item>
             <item>
-                <category>system</category>
-                <variable>$firmware_name</variable>
-                <default_value></default_value>
-                <description>Firmware File Name</description>
-                <type>input</type>
+                <type>break</type>
             </item>
             <item>
                 <category>system</category>
@@ -70,6 +66,23 @@
                 <default_value>**</default_value>
                 <description>Call Pickup Value (For BLF)</description>
                 <type>input</type>
+            </item>
+            <item>
+                <type>break</type>
+            </item>
+            <item>
+            	<category>system</category>
+            	<variable>$adminpw</variable>
+            	<default_value />
+            	<description>Web administration password</description>
+            	<type>input</type>
+            </item>
+            <item>
+            	<category>system</category>
+            	<variable>$tones_country</variable>
+            	<default_value>United States</default_value>
+            	<description>Tones Country</description>
+            	<type>input</type>
             </item>
         </subcategory>
     </category>
