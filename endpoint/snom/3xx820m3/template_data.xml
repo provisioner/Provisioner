@@ -60,6 +60,13 @@
                 <type>input</type>
             </item>
             <item>
+                <!-- Path, within the $provisioning_type server, of the files for this type of phone. -->
+                <variable>$provisioning_path</variable>
+                <default_value></default_value>
+                <description>Path, within the provisioning server, to files</description>
+                <type>input</type>
+            </item>
+            <item>
                 <description>Soft Keys</description>
                 <type>group</type>
             </item>
