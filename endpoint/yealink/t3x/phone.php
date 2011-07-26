@@ -5,7 +5,6 @@
  * @author Andrew Nagy
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
- * 
  */
 class endpoint_yealink_t3x_phone extends endpoint_yealink_base {
 
@@ -74,6 +73,14 @@ class endpoint_yealink_t3x_phone extends endpoint_yealink_base {
 					$this->options['linekey'][15]['pickup'] = $this->options['linekey'][$key]['pickup'];
 					unset($this->options['linekey'][$key]);
 					break;		
+					case "6":
+					$this->options['linekey'][16]['type'] = $this->options['linekey'][$key]['type'];
+					$this->options['linekey'][16]['mode'] = $this->options['linekey'][$key]['mode'];
+					$this->options['linekey'][16]['line'] = $this->options['linekey'][$key]['line'];
+					$this->options['linekey'][16]['extension'] = $this->options['linekey'][$key]['extension'];
+					$this->options['linekey'][16]['pickup'] = $this->options['linekey'][$key]['pickup'];
+					unset($this->options['linekey'][$key]);
+					break;		
 				}
 			}
 		}
@@ -121,9 +128,7 @@ class endpoint_yealink_t3x_phone extends endpoint_yealink_base {
                 }
             }
         }
-
-
-
+        
         //Yealink support lines 2-6, so let's add them if they're set
         for ($i = 1; $i < 6; $i++) {
             $this->lines[$i]['options']['line_active'] = (isset($this->lines[$i]['secret']) ? '1' : '0');
@@ -138,6 +143,13 @@ class endpoint_yealink_t3x_phone extends endpoint_yealink_base {
         $contents = $this->open_config_file("\$mac.cfg");
 
         $final[$this->mac.'.cfg'] = $this->parse_config_file($contents, FALSE);
+
+
+	//dialnow.xml file
+	$contents = $this->open_config_file("dialnow.xml");
+
+	$final['dialnow.xml'] = $this->parse_config_file($contents, FALSE);
+
 
         return($final);
     }

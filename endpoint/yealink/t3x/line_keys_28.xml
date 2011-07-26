@@ -4,7 +4,7 @@
         <subcategory>
             <name>basic</name>
             <item>
-                <description>Line Keys (1-5)</description>
+                <description>Line Keys (1-6)</description>
                 <type>loop</type>
                 <loop_start>1</loop_start>
                 <loop_end>6</loop_end>
