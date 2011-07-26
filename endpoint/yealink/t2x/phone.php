@@ -57,6 +57,14 @@ class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
 					$this->options['linekey'][15]['pickup'] = $this->options['linekey'][$line]['pickup'];
 					unset($this->options['linekey'][$line]);
 					break;		
+				case "5":
+					$this->options['linekey'][16]['type'] = $this->options['linekey'][$line]['type'];
+					$this->options['linekey'][16]['mode'] = $this->options['linekey'][$line]['mode'];
+					$this->options['linekey'][16]['line'] = $this->options['linekey'][$line]['line'];
+					$this->options['linekey'][16]['extension'] = $this->options['linekey'][$line]['extension'];
+					$this->options['linekey'][16]['pickup'] = $this->options['linekey'][$line]['pickup'];
+					unset($this->options['linekey'][$line]);
+					break;		
 			}
 		}
 	}
