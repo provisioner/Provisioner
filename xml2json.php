@@ -90,41 +90,51 @@ switch($request) {
 							$subcategories = fix_single_array_keys($cat_data['subcategory']);
 							foreach($subcategories as $subcat_data) {
 								$items = fix_single_array_keys($subcat_data['item']);
-								if($hide_loops) {
-									$items_loop = array();
-									foreach($items as $loop_data) {
-										if($loop_data['type'] == 'loop') {
-											$z = 0;
-											for($i = $loop_data['loop_start']; $i <= $loop_data['loop_end']; $i++) {
-												foreach($loop_data['data']['item'] as $item_loop) {
-													$items_loop[$z] = $item_loop;
-													$items_loop[$z]['description'] = str_replace('{$count}', $i, $items_loop[$z]['description']);
-													//$items_loop[$z]['variable'] = str_replace('_', '_'.$i.'_', $items_loop[$z]['variable']);
-													$items_loop[$z]['default_value'] = fix_single_array_keys($items_loop[$z]['default_value']);
-													$items_loop[$z]['loop'] = 'TRUE';
-													$items_loop[$z]['loop_count'] = $i;
-													$z++;
+								$items_loop = array();
+								foreach($items as $key => $loop_data) {
+									if($loop_data['type'] == 'loop') {
+										for($i = $loop_data['loop_start']; $i <= $loop_data['loop_end']; $i++) {
+											$name = explode("_",$loop_data['data']['item'][0]['variable']);
+											$var_nam = str_replace("\$","",$name[0])."_".$i;
+											foreach($loop_data['data']['item'] as $item_loop) {
+												if($item_loop['type'] != 'break') {												
+													$z_tmp = explode("_",$item_loop['variable']);
+													$z = $z_tmp[1];
+													$items_loop[$var_nam][$z] = $item_loop;
+													$items_loop[$var_nam][$z]['description'] = str_replace('{$count}', $i, $items_loop[$var_nam][$z]['description']);
+													$items_loop[$var_nam][$z]['variable'] = str_replace('_', '_'.$i.'_', $items_loop[$var_nam][$z]['variable']);
+													$items_loop[$var_nam][$z]['default_value'] = fix_single_array_keys($items_loop[$var_nam][$z]['default_value']);
+													$items_loop[$var_nam][$z]['loop'] = 'TRUE';
+													$items_loop[$var_nam][$z]['loop_count'] = $i;
 												}
 											}
-											unlink($items);
-											$items = $items_loop;
-										} elseif($loop_data['type'] == 'loop_line_options') {
-											$z = 0;
-											for($i = 1; $i <= $data['lines']; $i++) {
-												foreach($loop_data['data']['item'] as $item_loop) {
-													$items_loop[$z] = $item_loop;
-													$items_loop[$z]['description'] = str_replace('{$count}', $i, $items_loop[$z]['description']);													
-													//$items_loop[$z]['variable'] = str_replace('_', '_'.$i.'_', $items_loop[$z]['variable']);
-													$items_loop[$z]['default_value'] = fix_single_array_keys($items_loop[$z]['default_value']);
-													$items_loop[$z]['default_value'] = str_replace('{$count}', $i, $items_loop[$z]['default_value']);
-													$items_loop[$z]['line_loop'] = 'TRUE';
-													$items_loop[$z]['line_count'] = $i;
-													$z++;
-												}
-											}
-											unlink($items);
-											$items = $items_loop;
 										}
+										$items = array();
+										$items = $items_loop;
+									} elseif($loop_data['type'] == 'loop_line_options') {
+										for($i = 1; $i <= $data['lines']; $i++) {
+											$var_nam = "lineloop_".$i;
+											foreach($loop_data['data']['item'] as $item_loop) {
+												if($item_loop['type'] != 'break') {
+													$z = str_replace("\$","",$item_loop['variable']);
+													$items_loop[$var_nam][$z] = $item_loop;
+													$items_loop[$var_nam][$z]['description'] = str_replace('{$count}', $i, $items_loop[$var_nam][$z]['description']);													
+													//$items_loop[$var_nam][$z]['variable'] = str_replace('_', '_'.$i.'_', $items_loop[$var_nam][$z]['variable']);
+													$items_loop[$var_nam][$z]['default_value'] = fix_single_array_keys($items_loop[$var_nam][$z]['default_value']);
+													$items_loop[$var_nam][$z]['default_value'] = str_replace('{$count}', $i, $items_loop[$var_nam][$z]['default_value']);
+													$items_loop[$var_nam][$z]['line_loop'] = 'TRUE';
+													$items_loop[$var_nam][$z]['line_count'] = $i;
+												}
+											}
+										}
+										$items = array();
+										$items = $items_loop;
+									} elseif($loop_data['type'] == 'break') {
+										unset($items[$key]);
+									} else {
+										unset($items[$key]);
+										$var_nam = str_replace("\$","",$loop_data['variable']);
+										$items[$var_nam] = $loop_data;					
 									}
 								}
 								if(array_key_exists($subcat_data['name'],$data['data'][$cat_data['name']])) {
