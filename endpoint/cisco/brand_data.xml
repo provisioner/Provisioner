@@ -6,8 +6,8 @@
 		<version>0.5</version>
 		<directory>cisco</directory>
 		<package>cisco-0_5.tgz</package>
-		<md5sum>275aa537422a1a25ca66cb9041fc5c0b</md5sum>
-		<last_modified>1311441576</last_modified>
+		<md5sum>84178900507303c05c34c4ccd746ff47</md5sum>
+		<last_modified>1312343588</last_modified>
 				<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -15,7 +15,7 @@
 				<directory>ata18x</directory>
 				<version>0.1</version>
 				<description></description>
-				<changelog>PACKAGER: Fixed double $ issue on cisco SPA5xx</changelog>
+				<changelog>PACKAGER: Adding OUI to Cisco and forcing update</changelog>
 				<id>5</id>
 				<last_modified>1309110193</last_modified>
 			</family>
