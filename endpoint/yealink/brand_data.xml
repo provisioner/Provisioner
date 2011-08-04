@@ -7,7 +7,7 @@
 		<directory>yealink</directory>
 		<package>yealink-0_5.tgz</package>
         <md5sum>704a2b98cd70c1648e206f27f91f5516</md5sum>
-		<last_modified>1311664690</last_modified>
+		<last_modified>1312426228</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -24,7 +24,7 @@
 ! Fix phone.php to allow all six lines to be configured on a T38 or T28.
 ! Fix a couple of typos in the default $mac.cfg for T3X series</changelog>
 				<id>1</id>
-				<last_modified>1311664690</last_modified>
+				<last_modified>1312426228</last_modified>
 			</family>
 			<family>
 				<name>Yealink/Dreamwave T3X Models: [T32, T38]</name>
@@ -33,7 +33,7 @@
 				<description>Make more settings available in user interface</description>
 				<changelog></changelog>
 				<id>2</id>
-				<last_modified>1311664690</last_modified>
+				<last_modified>1312426228</last_modified>
 			</family>
 <!--End Auto Generated-->
 
