@@ -1,0 +1,34 @@
+﻿<template_data>
+	<category>
+		<name>dialnow</name>
+		<subcategory>
+			<name>dialnow</name>
+			<item>
+				<variable>$dialnowdelay</variable>
+				<description>DialNow Delay (seconds)</description>
+				<type>input</type>
+				<default_value>0</default_value>
+				<max_chars>2</max_chars>
+			</item>
+			<item>
+				<type>break</type>
+			</item>
+			<item>
+				<description>Dial Now Rules (1-16)</description>
+				<type>loop</type>
+				<loop_start>1</loop_start>
+				<loop_end>16</loop_end>
+				<data>
+					<item>
+						<variable>$dialnow_rule</variable>
+						<description>Dial Now Rule {$count}</description>
+						<type>input</type>
+					</item>
+					<item>
+						<type>break</type>
+					</item>
+				</data>
+			</item>
+		</subcategory>
+	</category>
+</template_data>
