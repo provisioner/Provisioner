@@ -1,0 +1,5 @@
+<DialNow>
+{loop_dialnow}
+	<Data DialNowRule="{$rule}" LineID="" />
+{/loop_dialnow}
+</DialNow>
