@@ -7,7 +7,7 @@
 	<firmware_pkg>NULL</firmware_pkg>
 	<firmware_md5sum></firmware_md5sum>
 	<description></description>
-	<configuration_files>SIP$mac.cnf,SIPDefault.cnf,XMLDefault.cnf.xml,SEP$mac.cnf.xml,RINGLIST.DAT,ringlist.xml</configuration_files>
+	<configuration_files>SEP$mac.cnf.xml,SIPDefault.cnf,XMLDefault.cnf.xml,RINGLIST.DAT,ringlist.xml</configuration_files>
 	<changelog></changelog>
 	<model_list>
 		<model>7940G</model>
