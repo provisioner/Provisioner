@@ -737,6 +737,9 @@ abstract class endpoint_base {
         $contents = str_replace('{$timezone_timezone}', $this->timezone['timezone'], $contents);
         $contents = str_replace('{$timezone}', $this->timezone['timezone'], $contents);
         $contents = str_replace('{$network_time_server}', $this->ntp, $contents);
+		$contents = str_replace('{$provisioning_type}', $this->provisioning_type, $contents);
+		$contents = str_replace('{$provisioning_path}', $this->provisioning_path, $contents);
+		
         //Depreciated
         $contents = str_replace('{$gmtoff}', $this->timezone['gmtoffset'], $contents);
         $contents = str_replace('{$gmthr}', $this->timezone['gmtoffset'], $contents);
