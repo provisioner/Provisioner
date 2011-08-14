@@ -6,8 +6,8 @@
 		<brand_id>8</brand_id>
 		<directory>yealink</directory>
 		<package>yealink-0_5.tgz</package>
-        <md5sum>220ccbf4ae6631cc001b6ff37a6f9c90</md5sum>
-		<last_modified>1312447828</last_modified>
+        <md5sum>13fa88daba433b2edc4e5a5bb62de9ec</md5sum>
+		<last_modified>1312781072</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -15,9 +15,9 @@
 				<directory>t2x</directory>
 				<version>0.7.7</version>
 				<description>Make more configuration settings available from UI</description>
-				<changelog>PACKAGER: Commit dialnow_22.xml and dialnow.xml to repository properly.</changelog>
+				<changelog>PACKAGER: Fixed $mac.cfg conflict with upstream - should be able to merge upstream now.</changelog>
 				<id>1</id>
-				<last_modified>1312447828</last_modified>
+				<last_modified>1312754371</last_modified>
 			</family>
 			<family>
 				<name>Yealink/Dreamwave T3X Models: [T32, T38]</name>
@@ -26,7 +26,7 @@
 				<description>Make more settings available in user interface</description>
 				<changelog></changelog>
 				<id>2</id>
-				<last_modified>1312447828</last_modified>
+				<last_modified>1312781072</last_modified>
 			</family>
 <!--End Auto Generated-->
 
