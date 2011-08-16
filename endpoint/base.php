@@ -357,16 +357,7 @@ abstract class endpoint_base {
         $this->data_integrity();
         //if there is no configuration file over ridding the default then load up $contents with the file's information, where $key is the name of the default configuration file
         if (!isset($this->config_files_override[$filename])) {
-            $hd_file = $this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $filename;
-            //always use 'rb' says php.net
-            $handle = fopen($hd_file, "rb");
-            if(filesize($hd_file) > 0) {
-                $contents = fread($handle, filesize($hd_file));
-            } else {
-                $contents = "";
-            }
-            fclose($handle);
-            return($contents);
+            return file_get_contents($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $filename);
         } else {
             return($this->config_files_override[$filename]);
         }
