@@ -145,8 +145,12 @@ abstract class endpoint_base {
             $timezone = str_replace("+", "", $timezone);
             $timezone = '+'.$timezone;
         }
-        $timezone = str_replace(".", ":", $timezone);
-        $timezone = str_replace("5", "30", $timezone);
+        if(strstr($timezone, ".")) {
+            $timezone = str_replace(".", ":", $timezone);
+            $timezone = str_replace(":5", ":30", $timezone);
+        } else {
+            $timezone = "GMT".$timezone . ":00";
+        }
         return($timezone);
     }
 
