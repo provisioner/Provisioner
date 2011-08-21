@@ -6,8 +6,8 @@
 		<directory>polycom</directory>
 		<brand_id>4</brand_id>
 		<package>polycom-0_7.tgz</package>
-		<md5sum>64af1ec7908cf52a23fa92fe858bfc69</md5sum>
-		<last_modified>1310667268</last_modified>
+		<md5sum>627693ac1d2cc82fefb448ed724eb3f9</md5sum>
+		<last_modified>1313833120</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -15,7 +15,7 @@
 				<directory>firmware325</directory>
 				<version>0.8.1</version>
 				<description>Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality</description>
-				<changelog>PACKAGER: PACKAGER: PACKAGER: PACKAGER: Updating%packager.php</changelog>
+				<changelog>PACKAGER: Fixed timezone issues for several phones.</changelog>
 				<id>4</id>
 				<last_modified>1307829216</last_modified>
 			</family>
@@ -26,7 +26,7 @@
 				<description>Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality</description>
 				<changelog></changelog>
 				<id>3</id>
-				<last_modified>1310338709</last_modified>
+				<last_modified>1313833120</last_modified>
 			</family>
 			<family>
 				<name>SoundPoint/Station Legacy Models [301,501,600,601,4000]</name>
@@ -35,7 +35,7 @@
 				<description>Fixed Digit Map Problems with three digit extensions in the 1xx range</description>
 				<changelog></changelog>
 				<id>2</id>
-				<last_modified>1307829216</last_modified>
+				<last_modified>1313833120</last_modified>
 			</family>
 			<family>
 				<name>SoundPoint Old Models [300,500]</name>
@@ -44,7 +44,7 @@
 				<description>Fixed Digit Map Problems with three digit extensions in the 1xx range</description>
 				<changelog></changelog>
 				<id>1</id>
-				<last_modified>1307829216</last_modified>
+				<last_modified>1313833120</last_modified>
 			</family>
 <!--End Auto Generated-->
 

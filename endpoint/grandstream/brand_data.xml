@@ -6,8 +6,8 @@
 		<directory>grandstream</directory>
 		<brand_id>2</brand_id>
 		<package>grandstream-0_7.tgz</package>
-		<md5sum>4cb3d283649d8ca048a72dcc1e4cba28</md5sum>
-		<last_modified>1310667268</last_modified>
+		<md5sum>56da81fe54f601c307441000832bb26f</md5sum>
+		<last_modified>1313967173</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -15,7 +15,7 @@
 				<directory>bts</directory>
 				<version>1.0</version>
 				<description>Fixed Timezone Issues + Use Grandstream Encrypted Compiler By Default</description>
-				<changelog>PACKAGER: PACKAGER: PACKAGER: PACKAGER: Updating%packager.php</changelog>
+				<changelog>PACKAGER: Fixed timezone issues for several phones.</changelog>
 				<id>2</id>
 				<last_modified>1307240194</last_modified>
 			</family>
@@ -26,7 +26,7 @@
 				<description>Use Grandstream Encrypted Compiler By Default</description>
 				<changelog></changelog>
 				<id>1</id>
-				<last_modified>1307240194</last_modified>
+				<last_modified>1313967173</last_modified>
 			</family>
 			<family>
 				<name>GXP Enterprise HD series [2100,2110,2120]</name>
