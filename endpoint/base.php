@@ -22,6 +22,7 @@ abstract class endpoint_base {
     public $server;         // Contains an array of valid server IPs & ports, in case phones support backups
     public $proxy;			// Contains an array of valid proxy IPs & ports
     public $ntp;            //network time protocol server
+    public $daylight_savings = FALSE	//Daylight savings time on or off.
     public $lines;          // Individual line settings
     public $options;        // Misc. options for phones
     public $root_dir = "";		//need to define the root directory for the location of the library (/var/www/html/)
