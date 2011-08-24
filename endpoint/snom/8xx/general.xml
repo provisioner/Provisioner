@@ -7,8 +7,8 @@
 		<dhcp perm="">on</dhcp>
 		<utc_offset perm="">{$gmtoff}</utc_offset>
 		<ntp_server perm="">{$server.ip.1}</ntp_server>
-		<dst perm="">3600 03.02.07 02:00:00 11.01.07 02:00:00</dst>
-		<timezone perm="">{$tz}</timezone>
+		<dst perm=""></dst>
+		<timezone perm="">{$timezone}</timezone>
 		<ring_sound perm="">Ringer6</ring_sound>
 		<network_id_port perm="">5060</network_id_port>
 		<challenge_response perm="">off</challenge_response>
