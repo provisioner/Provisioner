@@ -22,9 +22,10 @@ License.
 
 The Original Code is the Provisioner System for VoIP/PBX/SWITCH Servers.
 
-The Initial Developer of the Original Code is Andrew Nagy.
-Portions created by the Initial Developer are Copyright (C) 2010
-the Initial Developer. All Rights Reserved.
+The Initial Developer of the Original Code is Jort Bloem working for 
+Business Techology Group.  Portions created by the Initial Developer are 
+Copyright (C) 2011 Business Technology Group http://www.btg.co.nz/ . 
+All Rights Reserved.
 
 Contributor(s): 
 	Jort Bloem
