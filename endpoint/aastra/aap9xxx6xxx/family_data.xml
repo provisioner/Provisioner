@@ -113,6 +113,7 @@
 		<id>10</id>
 		<template_data>
 			<files>template_data.xml</files>
+            <files>prgkeys.xml</files>
 			<files>topkeys.xml</files>
 			<files>softkeys.xml</files>
 			<files>expmod1.xml</files>
