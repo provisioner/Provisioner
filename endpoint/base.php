@@ -22,6 +22,7 @@ abstract class endpoint_base {
     public $server;         // Contains an array of valid server IPs & ports, in case phones support backups
     public $proxy;			// Contains an array of valid proxy IPs & ports
     public $ntp;            //network time protocol server
+    public $daylight_savings = FALSE;	//Daylight savings time on or off.
     public $lines;          // Individual line settings
     public $options;        // Misc. options for phones
     public $root_dir = "";		//need to define the root directory for the location of the library (/var/www/html/)
@@ -145,8 +146,12 @@ abstract class endpoint_base {
             $timezone = str_replace("+", "", $timezone);
             $timezone = '+'.$timezone;
         }
-        $timezone = str_replace(".", ":", $timezone);
-        $timezone = str_replace("5", "30", $timezone);
+        if(strstr($timezone, ".")) {
+            $timezone = str_replace(".", ":", $timezone);
+            $timezone = str_replace(":5", ":30", $timezone);
+        } else {
+            $timezone = "GMT".$timezone . ":00";
+        }
         return($timezone);
     }
 
@@ -357,16 +362,7 @@ abstract class endpoint_base {
         $this->data_integrity();
         //if there is no configuration file over ridding the default then load up $contents with the file's information, where $key is the name of the default configuration file
         if (!isset($this->config_files_override[$filename])) {
-            $hd_file = $this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $filename;
-            //always use 'rb' says php.net
-            $handle = fopen($hd_file, "rb");
-            if(filesize($hd_file) > 0) {
-                $contents = fread($handle, filesize($hd_file));
-            } else {
-                $contents = "";
-            }
-            fclose($handle);
-            return($contents);
+            return file_get_contents($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $filename);
         } else {
             return($this->config_files_override[$filename]);
         }
@@ -737,6 +733,9 @@ abstract class endpoint_base {
         $contents = str_replace('{$timezone_timezone}', $this->timezone['timezone'], $contents);
         $contents = str_replace('{$timezone}', $this->timezone['timezone'], $contents);
         $contents = str_replace('{$network_time_server}', $this->ntp, $contents);
+		$contents = str_replace('{$provisioning_type}', $this->provisioning_type, $contents);
+		$contents = str_replace('{$provisioning_path}', $this->provisioning_path, $contents);
+		
         //Depreciated
         $contents = str_replace('{$gmtoff}', $this->timezone['gmtoffset'], $contents);
         $contents = str_replace('{$gmthr}', $this->timezone['gmtoffset'], $contents);

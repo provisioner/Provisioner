@@ -201,6 +201,7 @@ function create_brand_pkg($rawname,$version,$brand_name,$old_brand_timestamp,$c_
 		
 	}
 	$family_list = "\n<!--Below is Auto Generated-->";
+	$family_max_array = array(); //Clear family array
 	$z = 0;	
 	foreach (glob(MODULES_DIR."/".$rawname."/*", GLOB_ONLYDIR) as $family_folders) {
 		flush_buffers();
@@ -238,6 +239,7 @@ function create_brand_pkg($rawname,$version,$brand_name,$old_brand_timestamp,$c_
 			
 			if(file_exists(FIRMWARE_DIR."/".$rawname."/".$family_xml['data']['directory']."/firmware")) {		
 				echo "\t\tFound Firmware Folder in ".$family_xml['data']['directory']."\n";
+				$firmware_files_array = array(); //Clear firmware array
 				flush_buffers();
 				$x=0;
 				foreach (glob(FIRMWARE_DIR."/".$rawname."/".$family_xml['data']['directory']."/firmware/*") as $firmware_files) {

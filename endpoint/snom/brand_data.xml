@@ -6,8 +6,8 @@
 		<directory>snom</directory>
 		<brand_id>6</brand_id>
 		<package>snom-0_6.tgz</package>
-        <md5sum>464eb42aae89eaf789f655c71ed23d29</md5sum>
-		<last_modified>1311664690</last_modified>
+        <md5sum>d44add9e519cbf09c4e55cd876272ed1</md5sum>
+		<last_modified>1314081820</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -15,16 +15,9 @@
 				<directory>3xx820m3</directory>
 				<version>1</version>
 				<description>Server + Password Settings, htm File Fixes</description>
-				<changelog>PACKAGER: Several updates have been made to both the T2X and T3X families, including:-
-+ Support for DialNow
-+ Ability to specify how often the phone will check for configuration updates in the user interface (T2X only)
-+ Ability to set the phone's user interface password from the user interface + Ability to set the phone's dial tone country in the user interface
-+ Ability to set full firmware URL, rather than have TFTP forced on you (T3X only)
-- Remove specific settings for handset/headset/speakerphone volume settings so user preferences don't get overridden every time the phone re-provisions
-! Fix phone.php to allow all six lines to be configured on a T38 or T28.
-! Fix a couple of typos in the default $mac.cfg for T3X series</changelog>
+				<changelog>PACKAGER: Remove default value of daylight savings time being enabled on all phones. Going to add a future feature here to set a global called $daylight_savings</changelog>
 				<id>1</id>
-				<last_modified>1311664690</last_modified>
+				<last_modified>1314081820</last_modified>
 			</family>
 			<family>
 				<name>Snom Models [870]</name>
@@ -33,7 +26,7 @@
 				<description>Server + Password Settings, htm File Fixes</description>
 				<changelog></changelog>
 				<id>2</id>
-				<last_modified>1307687656</last_modified>
+				<last_modified>1314081820</last_modified>
 			</family>
 <!--End Auto Generated-->
 
