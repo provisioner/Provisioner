@@ -104,8 +104,24 @@
 								<value>21</value>
 							</data>
 							<data>
-								<text>XML Phonebook</text>
+								<text>XML Group</text>
 								<value>22</value>
+							</data>
+							<data>
+								<text>XMLBrowser</text>
+								<value>27</value>
+							</data>
+							<data>
+								<text>LDAP</text>
+								<value>38</value>
+							</data>
+							<data>
+								<text>Local Group</text>
+								<value>45</value>
+							</data>
+							<data>
+								<text>XML Phonebook</text>
+								<value>47</value>
 							</data>
 						</item>
 						<item>
