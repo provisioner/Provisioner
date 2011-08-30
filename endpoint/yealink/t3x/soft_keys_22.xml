@@ -51,8 +51,12 @@
                             <value>14</value>
                         </data>
                         <data>
-                            <text>XML Phonebook</text>
+                            <text>XML Group</text>
                             <value>22</value>
+                        </data>
+                        <data>
+                            <text>XML Phonebook</text>
+                            <value>47</value>
                         </data>
                         <data>
                             <text>History</text>
