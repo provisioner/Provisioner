@@ -24,28 +24,30 @@
                 <type>break</type>
             </item>
             <item>
-                <category>general</category>
-                <variable>$remote_phone_book_name</variable>
-                <default_value></default_value>
-                <description>Remote Phone Book Name</description>
-                <type>input</type>
-            </item>
-            <item>
-                <category>general</category>
-                <variable>$remote_phone_book_url</variable>
-                <default_value></default_value>
-                <description>Remote Phone Book URL</description>
-                <type>input</type>
-            </item>
-            <item>
-                <type>break</type>
-            </item>
-            <item>
                 <category>display</category>
                 <variable>$logo_url</variable>
                 <default_value></default_value>
                 <description>Logo URL</description>
                 <type>input</type>
+            </item>
+            <item>
+                <category>display</category>
+                <variable>$lcdlogo</variable>
+                <default_value>1</default_value>
+                <description>Logo to Display</description>
+                <type>list</type>
+                <data>
+                	<text>None</text>
+                	<value>0</value>
+                </data>
+                <data>
+                	<text>Default Logo</text>
+                	<value>1</value>
+                </data>
+                <data>
+                	<text>Custom Logo</text>
+                	<value>2</value>
+                </data>
             </item>
             <item>
                 <type>break</type>
@@ -139,6 +141,26 @@
             	<description>Tones Country</description>
             	<type>input</type>
             </item>
+            <item>
+                <description>Remote Phone Books (0-4)</description>
+                <type>loop</type>
+                <loop_start>0</loop_start>
+                <loop_end>4</loop_end>
+                <data>
+					<item>
+					    <variable>$remotephonebook_name</variable>
+					    <default_value></default_value>
+					    <description>Remote Phone Book {$count} Name</description>
+					    <type>input</type>
+					</item>
+					<item>
+					    <variable>$remotephonebook_url</variable>
+						<default_value></default_value>
+						<description>Remote Phone Book {$count} URL</description>
+						<type>input</type>
+					</item>
+				</data>
+			</item>
         </subcategory>
     </category>
 </template_data>
