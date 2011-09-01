@@ -6,8 +6,8 @@
 		<brand_id>8</brand_id>
 		<directory>yealink</directory>
 		<package>yealink-0_5.tgz</package>
-        <md5sum>13fa88daba433b2edc4e5a5bb62de9ec</md5sum>
-		<last_modified>1312781072</last_modified>
+        	<md5sum>e061975246cd3b71695521e846175d7b</md5sum>
+		<last_modified>1314901096</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -15,9 +15,12 @@
 				<directory>t2x</directory>
 				<version>0.7.7</version>
 				<description>Make more configuration settings available from UI</description>
-				<changelog>PACKAGER: Fixed $mac.cfg conflict with upstream - should be able to merge upstream now.</changelog>
+				<changelog>PACKAGER: Merge remote-tracking branch 'upstream/master'.  Correct y0*.cfg so that country tones are properly set.
+
+Conflicts:
+	endpoint/yealink/brand_data.xml - MD5sums and last modified dates.  Merged.</changelog>
 				<id>1</id>
-				<last_modified>1312754371</last_modified>
+				<last_modified>1314901096</last_modified>
 			</family>
 			<family>
 				<name>Yealink/Dreamwave T3X Models: [T32, T38]</name>
@@ -26,7 +29,7 @@
 				<description>Make more settings available in user interface</description>
 				<changelog></changelog>
 				<id>2</id>
-				<last_modified>1312781072</last_modified>
+				<last_modified>1314901096</last_modified>
 			</family>
 <!--End Auto Generated-->
 
