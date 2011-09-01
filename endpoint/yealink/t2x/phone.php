@@ -16,55 +16,8 @@ class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
         $this->lines[$line]['options']['voicemail_number'] = (isset($this->options['voicemail_number']) ? $this->options['voicemail_number'] : '');
 		
 		if(isset($this->options['linekey'])) {
-			switch ($line) {
-				case "1":
-					$this->options['linekey'][11]['type'] = $this->options['linekey'][$line]['type'];
-					$this->options['linekey'][11]['mode'] = $this->options['linekey'][$line]['mode'];
-					$this->options['linekey'][11]['line'] = $this->options['linekey'][$line]['line'];
-					$this->options['linekey'][11]['extension'] = $this->options['linekey'][$line]['extension'];
-					$this->options['linekey'][11]['pickup'] = $this->options['linekey'][$line]['pickup'];
-					unset($this->options['linekey'][$line]);
-					break;	
-				case "2":
-					$this->options['linekey'][12]['type'] = $this->options['linekey'][$line]['type'];
-					$this->options['linekey'][12]['mode'] = $this->options['linekey'][$line]['mode'];
-					$this->options['linekey'][12]['line'] = $this->options['linekey'][$line]['line'];
-					$this->options['linekey'][12]['extension'] = $this->options['linekey'][$line]['extension'];
-					$this->options['linekey'][12]['pickup'] = $this->options['linekey'][$line]['pickup'];
-					unset($this->options['linekey'][$line]);
-					break;
-				case "3":
-					$this->options['linekey'][13]['type'] = $this->options['linekey'][$line]['type'];
-					$this->options['linekey'][13]['mode'] = $this->options['linekey'][$line]['mode'];
-					$this->options['linekey'][13]['line'] = $this->options['linekey'][$line]['line'];
-					$this->options['linekey'][13]['extension'] = $this->options['linekey'][$line]['extension'];
-					$this->options['linekey'][13]['pickup'] = $this->options['linekey'][$line]['pickup'];
-					unset($this->options['linekey'][$line]);
-					break;
-				case "4":
-					$this->options['linekey'][14]['type'] = $this->options['linekey'][$line]['type'];
-					$this->options['linekey'][14]['mode'] = $this->options['linekey'][$line]['mode'];
-					$this->options['linekey'][14]['line'] = $this->options['linekey'][$line]['line'];
-					$this->options['linekey'][14]['extension'] = $this->options['linekey'][$line]['extension'];
-					$this->options['linekey'][14]['pickup'] = $this->options['linekey'][$line]['pickup'];
-					unset($this->options['linekey'][$line]);
-					break;
-				case "5":
-					$this->options['linekey'][15]['type'] = $this->options['linekey'][$line]['type'];
-					$this->options['linekey'][15]['mode'] = $this->options['linekey'][$line]['mode'];
-					$this->options['linekey'][15]['line'] = $this->options['linekey'][$line]['line'];
-					$this->options['linekey'][15]['extension'] = $this->options['linekey'][$line]['extension'];
-					$this->options['linekey'][15]['pickup'] = $this->options['linekey'][$line]['pickup'];
-					unset($this->options['linekey'][$line]);
-					break;		
-				case "5":
-					$this->options['linekey'][16]['type'] = $this->options['linekey'][$line]['type'];
-					$this->options['linekey'][16]['mode'] = $this->options['linekey'][$line]['mode'];
-					$this->options['linekey'][16]['line'] = $this->options['linekey'][$line]['line'];
-					$this->options['linekey'][16]['extension'] = $this->options['linekey'][$line]['extension'];
-					$this->options['linekey'][16]['pickup'] = $this->options['linekey'][$line]['pickup'];
-					unset($this->options['linekey'][$line]);
-					break;		
+			if (($line >= 1) && ($line <=6))
+				$this->options['linekey'][$line+10]=$this->options['linekey'][$line];
 			}
 		}
 	}
