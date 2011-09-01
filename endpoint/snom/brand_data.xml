@@ -6,8 +6,8 @@
 		<directory>snom</directory>
 		<brand_id>6</brand_id>
 		<package>snom-0_6.tgz</package>
-        <md5sum>d44add9e519cbf09c4e55cd876272ed1</md5sum>
-		<last_modified>1314081820</last_modified>
+        <md5sum>5235df43d2547772e9d4742cbdf09f06</md5sum>
+		<last_modified>1314901096</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -15,9 +15,12 @@
 				<directory>3xx820m3</directory>
 				<version>1</version>
 				<description>Server + Password Settings, htm File Fixes</description>
-				<changelog>PACKAGER: Remove default value of daylight savings time being enabled on all phones. Going to add a future feature here to set a global called $daylight_savings</changelog>
+				<changelog>PACKAGER: Merge remote-tracking branch 'upstream/master'.  Correct y0*.cfg so that country tones are properly set.
+
+Conflicts:
+	endpoint/yealink/brand_data.xml - MD5sums and last modified dates.  Merged.</changelog>
 				<id>1</id>
-				<last_modified>1314081820</last_modified>
+				<last_modified>1314901096</last_modified>
 			</family>
 			<family>
 				<name>Snom Models [870]</name>
