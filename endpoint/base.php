@@ -19,6 +19,7 @@ abstract class endpoint_base {
     public $mac;            // Device mac address
     public $model;			// Model of phone, must match the model name inside of the famil_data.xml file in each family folder.
     public $timezone;       // Global timezone var
+    public $DateTimeZone;   // timezone, as a DateTimezone object, much more flexible than just an offset and name.
     public $server;         // Contains an array of valid server IPs & ports, in case phones support backups
     public $proxy;			// Contains an array of valid proxy IPs & ports
     public $ntp;            //network time protocol server
@@ -113,77 +114,71 @@ abstract class endpoint_base {
     }
 
     /**
-     * Turns a string like PST-7 or UTC+1 into a GMT offset by stripping out Characters and replacing + and -
-     * @param Send this something like PST-7
-     * @return Offset (eg. -3600)
+     * NOTE: Wherever possible, try $this->DateTimeZone->getOffset(new DateTime) FIRST, which takes Daylight savings into account, too.
+     * Turns a string like PST-7 or UTC+1 into a GMT offset in seconds
+     * @param Send this a timezone like PST-7
+     * @return Offset from GMT, in seconds (eg. -25200, =3600*-7)
      */
     function get_gmtoffset($timezone) {
-        $timezone = str_replace(":", ".", $timezone);
-        $timezone = str_replace("30", "5", $timezone);
-        if(strrchr($timezone,'+')) {
-            $num = explode("+",$timezone);
-            $num = $num[1];
-            $offset = $num * 3600;
-        } elseif(strrchr($timezone,'-')) {
-            $num = explode("-",$timezone);
-            $num = $num[1];
-            $offset = $num * -3600;
-        }
-        return($offset);
+	# Divide the timezone up into it's 3 interesting parts; the sign (+/-), hours, and if they exist, minutes.
+	# note that matches[0] is the entire matched string, so these 3 parts are $matches[1], [2] and [3].
+	preg_match('/([\-\+])([\d]+):?(\d*)/',$timezone,$matches);
+	# $matches is now an array; $matches[1] is the sign (+ or -); $matches[2] is number of hours, $matches[3] is minutes (or empty)
+	return intval($matches[1]."1")*($matches[2]*3600+$matches[3]*60);
     }
 
     /**
-     * Turns a string like PST-7 or UTC+1 into a GMT offset by stripping out Characters and replacing + and -
-     * @param Send this something like -3600
-     * @return timezone (eg. +7 or +7:30)
+     * Turns an integer like -3600 (seconds) into a GMT offset like GMT-1
+     * @param Time offset in seconds, like 3600 or -25200 or -27000
+     * @return timezone (eg. GMT+1 or GMT-7 or GMT-7:30)
      */
     function get_timezone($offset) {
-        $timezone = $offset / 3600;
-        if($timezone < 0) {
-            $timezone = str_replace("-", "", $timezone);
-            $timezone = '-'.$timezone;
-        } else {
-            $timezone = str_replace("+", "", $timezone);
-            $timezone = '+'.$timezone;
-        }
-        if(strstr($timezone, ".")) {
-            $timezone = str_replace(".", ":", $timezone);
-            $timezone = str_replace(":5", ":30", $timezone);
-        } else {
-            $timezone = "GMT".$timezone . ":00";
-        }
-        return($timezone);
+	if ($offset<0) {
+		$result="GMT-";
+		$offset=abs($offset);
+	} else {
+		$result="GMT+";
+	}
+	$result.=int($offset/3600);
+	if ($result%3600>0) {
+		$result.=":".(($offset%3600)/60);
+	}
+	return $result;
     }
 
     /**
      * Setup and fill in timezone data
-     * @param Send this something like PST-7 or -36000
      */
     function setup_tz() {
-        if(!is_array($this->timezone)) {
-            $timezone = $this->timezone;
-            $this->timezone = array();
-            if(($timezone <= -3600) or ($timezone >= 3600)) {
-                $this->timezone['gmtoffset'] = $timezone;
-                $this->timezone['timezone'] = $this->get_timezone($timezone);
-            } else {
-                $this->timezone['timezone'] = $timezone;
-                $this->timezone['gmtoffset'] = $this->get_gmtoffset($timezone);
+	if (isset($this->DateTimeZone)) {
+		$this->timezone=array(
+			'gmtoffset'=>$this->DateTimeZone->getOffset(new DateTime),
+			'timezone' =>$this->get_timezone($this->DateTimeZone->getOffset(new DateTime)
+		);
+	} elseif(is_array($this->timezone)) {
+		#Do nothing
+	} elseif (is_numeric($this->timezone)) {
+		$this->timezone=array(
+			'gmtoffset'=>$this->timezone,
+			'timezone'=>$this->get_timezone($this->timezone),
+		);
+        } else {
+		$this->timezone=array(
+			'gmtoffset'=>$this->get_gmtoffset($this->timezone),
+			'timezone'=>$timezone,
+		);
             }
         }
     }
 
-    /**
-     * Returns Abbreviated Timezone
-     * @param Send this something like -3600
-     * @return PST
+    /*
+     * WARNING - use of this function is depricated.
+     * Note that the timezone "name" is NOT UNIQUE - BST covers both British and Bangladesh Standard time.
+     * This is a tiny subset of timezones, and is incorrect - NZ time is either NZST or NZDT, never NST.
+     * NST is Newfoundland Standard time.
+     * Best to use DateTimeZone - native in PHP 5.3; there's a simulation library in samples/tz.php - which
+     * has a subset of PHP 5.3 DateTimeZone calls.
      */
-    function get_abbreviated_tz() {
-        $dateTime = new DateTime();
-        $dateTime->setTimeZone(new DateTimeZone('America/Los_Angeles'));
-        return $dateTime->format('T');
-    }
-
     function timezone_array() {
         $array[0]['gmt'] = 'GMT';
         $array[0]['offset'] = '0';
