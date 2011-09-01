@@ -39,6 +39,12 @@ abstract class endpoint_base {
     public $enable_encryption = FALSE;		//Enable file encryption
     public $provisioning_path;                  //Path to provisioner, used in http/https/ftp/tftp
 
+    // Note: these can be override by descendant classes.
+    private $server_type_list=array('file','dynamic');  // acceptable values for $server_type
+    private $default_server_type='file';		// if server_type is invalid
+    private $provisioning_type_list=array('tftp','http','ftp'); //acceptable values for $provisioning_type
+    private $default_provisioning_type='tftp';	// if provisioning_type is invalid
+
     // Old
     /**
      *
@@ -72,26 +78,12 @@ abstract class endpoint_base {
 
     //Set all default values here and fix errors before they hit us in the ass later on.
     function data_integrity() {
-        switch($this->server_type) {
-            case "file":
-                break;
-            case "dynamic":
-                break;
-            default:
-                $this->server_type = 'file';
-                break;
-        }
-        switch($this->provisioning_type) {
-            case "tftp":
-                break;
-            case "http":
-                break;
-            case "ftp":
-                break;
-            default:
-                $this->provisioning_type = "tftp";
-                break;
-        }
+	if (!in_array($this->server_type,$this->server_type_list)) {
+		$this->server_type=$this->default_server_type;
+	}
+	if (!in_array($this->provisioning_type,$this->provisioning_type_list)) {
+		$this->provisioning_type=$this->default_provisioning_type;
+	}
     }
 
     function generate_info($file_contents, $brand_ts, $family_ts) {
