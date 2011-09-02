@@ -54,6 +54,9 @@ abstract class endpoint_base {
     public $ext;
     public $secret;
     public $description;    // Generic description
+    function __construct() {
+	$this->root_dir=dirname(dirname(__FILE__))."/";
+    }
 
     public static function get_modules_path() {
         return self::$modules_path;
@@ -131,7 +134,7 @@ abstract class endpoint_base {
 	} else {
 		$result="GMT+";
 	}
-	$result.=int($offset/3600);
+	$result.=(int)($offset/3600);
 	if ($result%3600>0) {
 		$result.=":".(($offset%3600)/60);
 	}
@@ -145,7 +148,7 @@ abstract class endpoint_base {
 	if (isset($this->DateTimeZone)) {
 		$this->timezone=array(
 			'gmtoffset'=>$this->DateTimeZone->getOffset(new DateTime),
-			'timezone' =>$this->get_timezone($this->DateTimeZone->getOffset(new DateTime)
+			'timezone' =>$this->get_timezone($this->DateTimeZone->getOffset(new DateTime))
 		);
 	} elseif(is_array($this->timezone)) {
 		#Do nothing
@@ -159,8 +162,64 @@ abstract class endpoint_base {
 			'gmtoffset'=>$this->get_gmtoffset($this->timezone),
 			'timezone'=>$timezone,
 		);
-            }
         }
+    }
+
+    /**
+     * Override this to do any configuration testing/sorting/preparing
+     * Dont forget to call parent::prepare_for_generateconfig if you
+     * do override it.
+    **/
+    function prepare_for_generateconfig() {
+        $this->family_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml");
+        $this->brand_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/brand_data.xml");
+        $this->setup_tz();
+        $this->setup_ntp();
+    }
+
+    /**
+     * This generates a list of config files, and the files on which they
+     * are based.
+     * @return array ($outputfilename=>$sourcefilename,...)
+     *		both filenames are strings, sourcefilename may occur more 
+     *          than once.
+     * override this, if you feel so inclined - you probably want to call
+     *    $result=parent::config_files() first, then modify $result as you like.
+     *
+     * You should call prepare_for_generateconfig() before calling this.
+    **/
+    function config_files() {
+	$replacements=array('$mac'=>$this->mac,'$model'=>$this->model);
+	foreach (explode(",",$this->family_data['data']['configuration_files']) AS $configfile) {
+		$outputfile=str_replace(array_keys($replacements),array_values($replacements),$configfile);
+		$result[$outputfile]=$configfile;
+	}
+	return $result;
+    }
+
+    /** 
+     * Generate one config file. Most settings are taken from $this.
+     * This is a good thing to overide.
+     * if you do, you can do a first cut by calling 
+     *    $result=parent::generate_file, then tweaking the result,
+     *    or if ($sourcefile=..) {} else {return parent::generate_file}
+     */
+    function generate_file($filename,$extradata) {
+	$data=$this->open_config_file($extradata);
+	return $this->parse_config_file($data);
+	#TODO: if ($this->server_type=='dynamic') {
+    }
+
+    /**
+     * generate_config() - this shouldn't need to be overridden.
+     */
+    function generate_config() {
+	$this->prepare_for_generateconfig();
+	$output=array();
+	foreach ($this->config_files() AS $filename=>$sourcefile) {
+		$output[$filename]=$this->generate_file($filename,$sourcefile);
+	}
+	return $output;
     }
 
     /*
