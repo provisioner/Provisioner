@@ -72,7 +72,7 @@
                 <category>network</category>
                 <sub_category>PC Port</sub_category>
                 <variable>$pcport_act_as</variable>
-                <default_value>0</default_value>
+                <default_value>1</default_value>
                 <description>PC Port act as</description>
                 <type>radio</type>
                 <data>
