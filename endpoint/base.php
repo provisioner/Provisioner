@@ -173,10 +173,9 @@ abstract class endpoint_base {
      * do override it.
     **/
     function prepare_for_generateconfig() {
-        $this->family_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml");
-        $this->brand_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/brand_data.xml");
         $this->setup_tz();
         $this->setup_ntp();
+    	$this->data_integrity();
     }
 
     /**
@@ -192,7 +191,8 @@ abstract class endpoint_base {
     **/
     function config_files() {
 	$replacements=array('$mac'=>$this->mac,'$model'=>$this->model);
-	foreach (explode(",",$this->family_data['data']['configuration_files']) AS $configfile) {
+        $family_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml");
+	foreach (explode(",",$family_data['data']['configuration_files']) AS $configfile) {
 		$outputfile=str_replace(array_keys($replacements),array_values($replacements),$configfile);
 		$result[$outputfile]=$configfile;
 	}
