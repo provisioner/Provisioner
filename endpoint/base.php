@@ -38,7 +38,8 @@ abstract class endpoint_base {
     public $provisioning_type = 'tftp';		//can be tftp,http,ftp ??
     public $enable_encryption = FALSE;		//Enable file encryption
     public $provisioning_path;                  //Path to provisioner, used in http/https/ftp/tftp
-    public $dynamic_mapping;		// ARRAY('thisfile.htm'=>'# Intentionally left blank','thatfile$mac.htm'=>array('thisfile.htm','thatfile$mac.htm'));
+    public $dynamic_mapping;		// e.g. ARRAY('thisfile.htm'=>'# Intentionally left blank','thatfile$mac.htm'=>array('thisfile.htm','thatfile$mac.htm'));
+					// files not in this array are passed through untouched. Strings are returned as is. For arrays, generate_file is called for each entry, and they are combined.
 
     // Note: these can be override by descendant classes.
     private $server_type_list=array('file','dynamic');  // acceptable values for $server_type
