@@ -16,7 +16,6 @@
 		<template_data>
 			<files>line_options_22.xml</files>
 			<files>template_data.xml</files>
-			<files>network_22.xml</files>
 			<files>line_keys_22.xml</files>
 			<files>soft_keys_22.xml</files>
 			<files>hard_keys_22.xml</files>
@@ -31,7 +30,6 @@
 		<template_data>
       <files>line_options_22.xml</files>
 			<files>template_data.xml</files>
-			<files>network_22.xml</files>
 			<files>line_keys_28.xml</files>
 			<files>soft_keys_22.xml</files>
 			<files>hard_keys_22.xml</files>
