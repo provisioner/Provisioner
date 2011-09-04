@@ -38,6 +38,7 @@ abstract class endpoint_base {
     public $provisioning_type = 'tftp';		//can be tftp,http,ftp ??
     public $enable_encryption = FALSE;		//Enable file encryption
     public $provisioning_path;                  //Path to provisioner, used in http/https/ftp/tftp
+    public $dynamic_mapping;		// ARRAY('thisfile.htm'=>'# Intentionally left blank','thatfile$mac.htm'=>array('thisfile.htm','thatfile$mac.htm'));
 
     // Note: these can be override by descendant classes.
     private $server_type_list=array('file','dynamic');  // acceptable values for $server_type
@@ -203,11 +204,25 @@ abstract class endpoint_base {
      * if you do, you can do a first cut by calling 
      *    $result=parent::generate_file, then tweaking the result,
      *    or if ($sourcefile=..) {} else {return parent::generate_file}
+     *
+     * Note that, if you use dynamic a server type, $filename refers to the
+     *    FINAL output file, not the piece that we're generating. In general,
+     *    $filename is probably unlikely to be used.
      */
-    function generate_file($filename,$extradata) {
-	$data=$this->open_config_file($extradata);
-	return $this->parse_config_file($data);
-	#TODO: if ($this->server_type=='dynamic') {
+    function generate_file($filename,$extradata,$ignoredynamicmapping=FALSE) {
+	# Note: server_type='dynamic' is ignored if ignoredynamicmapping, if there is no $this->dynamic_mapping, or that is not an array.
+	if ((!$ignoredynamicmapping) || ($this->server_type!='dynamic') || (!is_array($this->dynamic_mapping) || (!array_key_exists($extradata,$this->dynamic_mapping)) {
+		$data=$this->open_config_file($extradata);
+		return $this->parse_config_file($data);
+	} elseif (!is_array($this->dynamic_mapping[$extradata])) {
+		return $this->dynamic_mapping[$extradata];
+	} else {
+		$data="";
+		foreach ($this->dynamic_mapping[$extradata] AS $recurseextradata) {
+			$data.=$this->generate_file($filename,$recurseextradata,TRUE);
+		}
+		return $data;
+	}
     }
 
     /**
