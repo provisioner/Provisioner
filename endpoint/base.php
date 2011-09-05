@@ -40,6 +40,7 @@ abstract class endpoint_base {
     public $provisioning_path;                  //Path to provisioner, used in http/https/ftp/tftp
     public $dynamic_mapping;		// e.g. ARRAY('thisfile.htm'=>'# Intentionally left blank','thatfile$mac.htm'=>array('thisfile.htm','thatfile$mac.htm'));
 					// files not in this array are passed through untouched. Strings are returned as is. For arrays, generate_file is called for each entry, and they are combined.
+    public $config_file_replacements=array();
 
     // Note: these can be override by descendant classes.
     private $server_type_list=array('file','dynamic');  // acceptable values for $server_type
@@ -176,6 +177,12 @@ abstract class endpoint_base {
         $this->setup_tz();
         $this->setup_ntp();
     	$this->data_integrity();
+	if (!in_array('$mac',$this->config_file_replacements)) {
+		$this->config_file_replacements['$mac']=$this->mac;
+	}
+	if (!in_array('$model',$this->config_file_replacements)) {
+		$this->config_file_replacements['$model']=$this->model;
+	}
     }
 
     /**
@@ -190,10 +197,9 @@ abstract class endpoint_base {
      * You should call prepare_for_generateconfig() before calling this.
     **/
     function config_files() {
-	$replacements=array('$mac'=>$this->mac,'$model'=>$this->model);
         $family_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml");
 	foreach (explode(",",$family_data['data']['configuration_files']) AS $configfile) {
-		$outputfile=str_replace(array_keys($replacements),array_values($replacements),$configfile);
+		$outputfile=str_replace(array_keys($this->config_file_replacements),array_values($this->config_file_replacements),$configfile);
 		$result[$outputfile]=$configfile;
 	}
 	return $result;
@@ -209,6 +215,8 @@ abstract class endpoint_base {
      * Note that, if you use dynamic a server type, $filename refers to the
      *    FINAL output file, not the piece that we're generating. In general,
      *    $filename is probably unlikely to be used.
+     *
+     * You should call prepare_for_generateconfig() before calling this.
      */
     function generate_file($filename,$extradata,$ignoredynamicmapping=FALSE) {
 	# Note: server_type='dynamic' is ignored if ignoredynamicmapping, if there is no $this->dynamic_mapping, or that is not an array.

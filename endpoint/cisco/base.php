@@ -12,6 +12,13 @@ class endpoint_cisco_base extends endpoint_base {
 	
 	public $brand_name = 'cisco';
 	
+	function prepare_for_generateconfig() {
+		//spa likes lower case letters in its mac address
+		$this->mac = strtoupper($this->mac);
+		$this->model = strtolower ($this->model);
+		parent::prepare_for_generateconfig();
+	}
+
 	function reboot() {
 		if(($this->engine == "asterisk") AND ($this->system == "unix")) {
 			if($this->family_line == "sip79xx") {
