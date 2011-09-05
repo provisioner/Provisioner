@@ -93,6 +93,7 @@ $endpoint->options =    array("admin_pass" =>  "password","main_icon" => "Main I
 
 // Because every brand is an extension (eventually) of endpoint, you know this function will exist regardless of who it is
 $returned_data = $endpoint->generate_config();
+ksort($returned_data);
 
 if (isset($_REQUEST['brand'])) {
     foreach($returned_data as $key => $files) {
