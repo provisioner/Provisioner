@@ -163,7 +163,7 @@ abstract class endpoint_base {
         } else {
 		$this->timezone=array(
 			'gmtoffset'=>$this->get_gmtoffset($this->timezone),
-			'timezone'=>$timezone,
+			'timezone'=>$this->timezone,
 		);
         }
     }
