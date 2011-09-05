@@ -8,11 +8,25 @@
  */
 class endpoint_aastra_aap9xxx6xxx_phone extends endpoint_aastra_base {
 	public $family_line = 'aap9xxx6xxx';
-	
-	function generate_config() {
+	public $en_htmlspecialchars = FALSE;
+	public $dynamic_mapping = array(
+		'$mac.cfg'=>array('$mac.cfg','aastra.cfg'),
+		'aastra.cfg'=>'#This File is intentionally left blank'
+	);
 
-		$this->en_htmlspecialchars = FALSE;
-		
+	function generate_file($file,$extradata,$ignoredynamicmapping=FALSE) {
+		$config=parent::generate_config($file,$extradata,$ignoredynamicmapping);
+		if (($extradata=='$mac.cfg') && ($ignoredynamicmapping===FALSE) && ($this->enable_encryption)) {
+			$this->enable_encryption();
+			$config=$this->encrypt_files(array('$mac.cfg'=>$config));
+			return $config['$mac.cfg'];
+		} else {
+			$this->disable_encryption();
+			return $config;
+		}
+	}
+	
+	function prepare_for_generateconfig() {
 		if(isset($this->options['softkey'])) {
 			foreach($this->options['softkey'] as $key => $data) {
 				if ($this->options['softkey'][$key]['type'] == 'empty') {
@@ -89,34 +103,6 @@ class endpoint_aastra_aap9xxx6xxx_phone extends endpoint_aastra_base {
 				break;
 		}		
 				
-		//mac.cfg
-		$contents = $this->open_config_file("\$mac.cfg");
-		$final[$this->mac.'.cfg'] = $this->parse_config_file($contents, FALSE);
-	
-		//aastra.cfg
-		$contents = $this->open_config_file("aastra.cfg");
-		$final['aastra.cfg'] = $this->parse_config_file($contents, FALSE);
-		
-		if($this->server_type == 'dynamic') {
-			$out = '';
-			$out[$this->mac.'.cfg'] = '';
-			foreach($final as $key => $value) {
-				$out[$this->mac.'.cfg'] .= $value . "\n";
-				if($key != $this->mac.'.cfg') {
-					$out[$key] = '#This File is intentionally left blank';
-				}
-			}
-			if($this->enable_encryption) {
-				$this->enable_encryption();
-				$new_out = $this->encrypt_files($out);
-				return($new_out);
-			} else {
-				$this->disable_encryption();
-				return($out);
-			}
-		} else {
-			return($final);
-		}
 	}
 }
 ?>
