@@ -8,11 +8,13 @@
  */
 class endpoint_aastra_aap91xxi_phone extends endpoint_aastra_base {
 	public $family_line = 'aap91xxi';
-	
-	function generate_config() {
+	public $en_htmlspecialchars = FALSE;
+	public $dynamic_mapping = array(
+		'$mac.cfg'=>array('$mac.cfg','aastra.cfg'),
+		'aastra.cfg'=>'#This File is intentionally left blank'
+	);
 
-		$this->en_htmlspecialchars = FALSE;
-
+	function prepare_for_generateconfig() {
 		if(!isset($this->options['provisioning_server'])) {
 			$this->options['provisioning_server'] = $this->server[1]['ip'];
 		}
@@ -33,27 +35,6 @@ class endpoint_aastra_aap91xxi_phone extends endpoint_aastra_base {
 				break;
 		}
 		
-		//mac.cfg
-		$contents = $this->open_config_file("\$mac.cfg");
-		$final[$this->mac.'.cfg'] = $this->parse_config_file($contents, FALSE);
-		
-		//aastra.cfg
-		$contents = $this->open_config_file("aastra.cfg");
-		$final['aastra.cfg'] = $this->parse_config_file($contents, FALSE);
-		
-		if($this->server_type == 'dynamic') {
-			$out = '';
-			$out[$this->mac.'.cfg'] = '';
-			foreach($final as $key => $value) {
-				$out[$this->mac.'.cfg'] .= $value . "\n";
-				if($key != $this->mac.'.cfg') {
-					$out[$key] = '#This File is intentionally left blank';
-				}
-			}
-			return($out);
-		} else {
-			return($final);
-		}
 	}
 }
 ?>
