@@ -58,6 +58,14 @@ class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
 			}
 		}
 
+		if(isset($this->options['remotephonebook'])) {
+            foreach($this->options['remotephonebook'] as $key => $data) {
+                if ($this->options['remotephonebook'][$key]['url'] == '') {
+                    unset($this->options['remotephonebook'][$key]);
+				}
+			}
+		}
+	
         if(isset($this->options['sdext38'])) {
             foreach($this->options['sdext38'] as $key => $data) {
                 if ($this->options['sdext38'][$key]['type'] == '16') {
