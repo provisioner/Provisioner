@@ -5,7 +5,7 @@
 	<directory>t2x</directory>
 	<firmware_ver></firmware_ver>
 	<firmware_pkg>NULL</firmware_pkg>
-    <firmware_md5sum></firmware_md5sum>
+	<firmware_md5sum></firmware_md5sum>
 	<description>Make more configuration settings available from UI</description>
 	<configuration_files>y000000000000.cfg,$mac.cfg</configuration_files>
 	<changelog></changelog>
@@ -28,7 +28,6 @@
 		<template_data>
 			<files>line_options_22.xml</files>
 			<files>template_data.xml</files>
-			<files>network_22.xml</files>
 			<files>line_keys_22.xml</files>
 			<files>soft_keys_22.xml</files>
 			<files>hard_keys_22.xml</files>
@@ -43,7 +42,6 @@
 		<template_data>
 			<files>line_options_22.xml</files>
 			<files>template_data.xml</files>
-			<files>network_22.xml</files>
 			<files>line_keys_22.xml</files>
 			<files>soft_keys_22.xml</files>
 			<files>hard_keys_22.xml</files>
@@ -59,7 +57,6 @@
 		<template_data>
 			<files>line_options_22.xml</files>
 			<files>template_data.xml</files>
-			<files>network_22.xml</files>
 			<files>line_keys_28.xml</files>
 			<files>soft_keys_22.xml</files>
 			<files>hard_keys_22.xml</files>
