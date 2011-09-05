@@ -7,7 +7,7 @@
                 <description>Programmable Keys (9143i/6753i/6755i)</description>
                 <type>loop</type>
                 <loop_start>1</loop_start>
-                <loop_end>7</loop_end>
+                <loop_end>8</loop_end>
                 <data>
                     <item>
                         <variable>$prgkey_type</variable>
@@ -18,6 +18,22 @@
                         <data>
                             <text>Empty</text>
                             <value>empty</value>
+                        </data>
+                        <data>
+                            <text>Callers List</text>
+                            <value>callers</value>
+                        </data>
+                        <data>
+                            <text>Delete</text>
+                            <value>delete</value>
+                        </data>
+                        <data>
+                            <text>Save</text>
+                            <value>save</value>
+                        </data>
+                        <data>
+                            <text>Intercom</text>
+                            <value>icom</value>
                         </data>
                         <data>
                             <text>Services</text>
@@ -50,6 +66,10 @@
                         <data>
                             <text>Park</text>
                             <value>park</value>
+                        </data>
+                        <data>
+                            <text>Transfer</text>
+                            <value>xfer</value>
                         </data>
                         <data>
                             <text>Directory</text>
