@@ -15,8 +15,9 @@ class endpoint_cisco_base extends endpoint_base {
 	function prepare_for_generateconfig() {
 		//spa likes lower case letters in its mac address
 		$this->mac = strtoupper($this->mac);
-		$this->model = strtolower ($this->model);
 		parent::prepare_for_generateconfig();
+		$this->config_file_replacements['$mac']=strtolower($this->mac);
+		$this->config_file_replacements['$model']=str_replace('SPA','spa',strtoupper($this->model));
 	}
 
 	function reboot() {
