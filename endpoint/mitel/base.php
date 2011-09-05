@@ -8,6 +8,12 @@
  */
 abstract class endpoint_mitel_base extends endpoint_base {
 	
-	public $brand_name = 'mitel';	
+    public $brand_name = 'mitel';
+
+    function prepare_for_generateconfig() {
+        //Mitel likes lower case letters in its mac address
+        $this->mac = strtoupper($this->mac);
+	$this->options['model'] = $this->model;
+    }
 }
 ?>
