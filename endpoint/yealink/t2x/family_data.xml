@@ -7,7 +7,7 @@
 	<firmware_pkg>NULL</firmware_pkg>
 	<firmware_md5sum></firmware_md5sum>
 	<description>Make more configuration settings available from UI</description>
-	<configuration_files>y000000000000.cfg,$mac.cfg</configuration_files>
+	<configuration_files>y0000000000$suffix.cfg,$mac.cfg</configuration_files>
 	<changelog></changelog>
 	<model_list>
 		<model>T20</model>
