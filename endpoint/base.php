@@ -220,7 +220,7 @@ abstract class endpoint_base {
      */
     function generate_file($filename,$extradata,$ignoredynamicmapping=FALSE) {
 	# Note: server_type='dynamic' is ignored if ignoredynamicmapping, if there is no $this->dynamic_mapping, or that is not an array.
-	if ((!$ignoredynamicmapping) || ($this->server_type!='dynamic') || (!is_array($this->dynamic_mapping) || (!array_key_exists($extradata,$this->dynamic_mapping)) {
+	if ((!$ignoredynamicmapping) || ($this->server_type!='dynamic') || (!is_array($this->dynamic_mapping)) || (!array_key_exists($extradata,$this->dynamic_mapping))) {
 		$data=$this->open_config_file($extradata);
 		return $this->parse_config_file($data);
 	} elseif (!is_array($this->dynamic_mapping[$extradata])) {
