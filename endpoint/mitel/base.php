@@ -14,6 +14,7 @@ abstract class endpoint_mitel_base extends endpoint_base {
         //Mitel likes lower case letters in its mac address
         $this->mac = strtoupper($this->mac);
 	$this->options['model'] = $this->model;
+	parent::prepare_for_generateconfig();
     }
 }
 ?>
