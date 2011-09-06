@@ -492,8 +492,8 @@ abstract class endpoint_base {
         $file_contents = $this->generate_info($file_contents, $brand_data['data']['brands']['last_modified'], $brand_mod);
 
         $file_contents = $this->parse_conditional_model($file_contents);
-        $file_contents = $this->parse_lines($line_total, $file_contents, $keep_unknown = FALSE, $specific_line);
-        $file_contents = $this->parse_loops($line_total,$file_contents, $keep_unknown = FALSE, $specific_line);
+        $file_contents = $this->parse_lines($line_total, $file_contents, $keep_unknown, $specific_line);
+        $file_contents = $this->parse_loops($line_total,$file_contents, $keep_unknown, $specific_line);
         $file_contents = $this->parse_config_values($file_contents);
 
         return $file_contents;
