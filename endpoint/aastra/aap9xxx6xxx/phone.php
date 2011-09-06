@@ -27,6 +27,7 @@ class endpoint_aastra_aap9xxx6xxx_phone extends endpoint_aastra_base {
 	}
 	
 	function prepare_for_generateconfig() {
+		parent::prepare_for_generateconfig();
 		if(isset($this->options['softkey'])) {
 			foreach($this->options['softkey'] as $key => $data) {
 				if ($this->options['softkey'][$key]['type'] == 'empty') {

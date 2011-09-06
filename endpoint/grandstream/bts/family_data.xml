@@ -7,7 +7,7 @@
 	<firmware_md5sum>6c9f9fd885190582bba850fd134edc58</firmware_md5sum>
 	<firmware_pkg>bts_firmware.tgz</firmware_pkg>
 	<description>Fixed Timezone Issues + Use Grandstream Encrypted Compiler By Default</description>
-	<configuration_files>$mac.cfg</configuration_files>
+	<configuration_files>cfg$mac</configuration_files>
 	<changelog></changelog>
 	<model_list>
 		<model>BT200</model>
