@@ -15,6 +15,7 @@ class endpoint_aastra_aap91xxi_phone extends endpoint_aastra_base {
 	);
 
 	function prepare_for_generateconfig() {
+		parent::prepare_for_generateconfig();
 		if(!isset($this->options['provisioning_server'])) {
 			$this->options['provisioning_server'] = $this->server[1]['ip'];
 		}

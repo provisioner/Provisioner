@@ -197,7 +197,7 @@ abstract class endpoint_base {
      * You should call prepare_for_generateconfig() before calling this.
     **/
     function config_files() {
-        $family_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml");
+        $family_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml",1,'tag',array('model_list'));
 	foreach (explode(",",$family_data['data']['configuration_files']) AS $configfile) {
 		$outputfile=str_replace(array_keys($this->config_file_replacements),array_values($this->config_file_replacements),$configfile);
 		$result[$outputfile]=$configfile;
@@ -449,7 +449,7 @@ abstract class endpoint_base {
      * @author Andrew Nagy
      */
     function parse_config_file($file_contents, $keep_unknown=FALSE, $lines=NULL, $specific_line='ALL') {
-        $family_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml");
+        $family_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml",1,'tag',array('model_list'));
         $brand_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/brand_data.xml");
 
         //Get number of lines for this model from the family_data.xml file
@@ -615,7 +615,7 @@ abstract class endpoint_base {
         if(!isset($options)) {
             $options=$this->options;
         }
-        $family_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml");
+        $family_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml",1,'tag',array('model_list'));
 
         if (is_array($family_data['data']['model_list'])) {
             $key = $this->arraysearchrecursive($this->model, $family_data, "model");
@@ -960,9 +960,10 @@ abstract class endpoint_base {
      * @param <type> $url The XML file
      * @param <type> $get_attributes 1 or 0. If this is 1 the function will get the attributes as well as the tag values - this results in a different array structure in the return value.
      * @param <type> $priority Can be 'tag' or 'attribute'. This will change the way the resulting array structure. For 'tag', the tags are given more importance.
+     * @param <type> $array_tags - any tag names listed here will allways be returned as an array, even if there is only one of them.
      * @return <type> The parsed XML in an array form. Use print_r() to see the resulting array structure.
      */
-    function xml2array($url, $get_attributes = 1, $priority = 'tag') {
+    function xml2array($url, $get_attributes = 1, $priority = 'tag', $array_tags=array()) {
         $contents = "";
         if (!function_exists('xml_parser_create')) {
             return array();
@@ -1012,13 +1013,19 @@ abstract class endpoint_base {
             }
             if ($type == "open") {
                 $parent[$level - 1] = & $current;
-                if (!is_array($current) or (!in_array($tag, array_keys($current)))) {
-                    $current[$tag] = $result;
-                    if ($attributes_data) {
-                        $current[$tag . '_attr'] = $attributes_data;
-                    }
-                    $repeated_tag_index[$tag . '_' . $level] = 1;
-                    $current = & $current[$tag];
+		if (!is_array($current) or (!in_array($tag, array_keys($current)))) {
+		    if (in_array($tag,$array_tags)) {
+                        $current[$tag][0] = $result;
+                        $repeated_tag_index[$tag . '_' . $level]=1;
+                    	$current = & $current[$tag][0];
+		    } else {
+			$current[$tag] = $result;
+			if ($attributes_data) {
+				$current[$tag . '_attr'] = $attributes_data;
+			}
+			$repeated_tag_index[$tag . '_' . $level] = 1;
+			$current = & $current[$tag];
+		   }
                 } else {
                     if (isset($current[$tag][0])) {
                         $current[$tag][$repeated_tag_index[$tag . '_' . $level]] = $result;
