@@ -6,8 +6,8 @@
 		<brand_id>8</brand_id>
 		<directory>yealink</directory>
 		<package>yealink-0_5.tgz</package>
-        	<md5sum>e061975246cd3b71695521e846175d7b</md5sum>
-		<last_modified>1314901096</last_modified>
+        	<md5sum>af9bce76a6764d702c6332f7fac850a8</md5sum>
+		<last_modified>1315345623</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -15,12 +15,9 @@
 				<directory>t2x</directory>
 				<version>0.7.7</version>
 				<description>Make more configuration settings available from UI</description>
-				<changelog>PACKAGER: Merge remote-tracking branch 'upstream/master'.  Correct y0*.cfg so that country tones are properly set.
-
-Conflicts:
-	endpoint/yealink/brand_data.xml - MD5sums and last modified dates.  Merged.</changelog>
+				<changelog>PACKAGER: Minor tweaks, to get the new library to behave the same as the old one.</changelog>
 				<id>1</id>
-				<last_modified>1314901096</last_modified>
+				<last_modified>1315345623</last_modified>
 			</family>
 			<family>
 				<name>Yealink/Dreamwave T3X Models: [T32, T38]</name>
