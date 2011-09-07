@@ -147,7 +147,7 @@ $brands_list = $brands_list['data']['brands'];
 <body>
 <h2>Provisioner.net Demo</h2>
 <br />
-<form name="form1" method="post" action="process.php">
+<form name="form1" method="post" action="display.php">
 <label>Please select Brand of Phone:<select name="brand" id="brand">
 	<? foreach($brands_list as $data){ ?>
   <option value="<? echo $data['directory']  ?>"><? echo $data['name']  ?></option>
@@ -158,17 +158,14 @@ $brands_list = $brands_list['data']['brands'];
 <option></option>
 </select></label>
 <br />
-  <label>Display Name:
-    <input type="text" name="displayname" id="displayname">
-  </label>
-<br />
-  <label>Extension:
-    <input type="text" name="ext" id="displayname">
-  </label>
-<br />
-  <label>Secret:
-    <input type="password" name="secret" id="displayname">
-  </label>
+  <label>Configure # Registrations:
+    <input type="text" name="registrations" id="registrations">
+  </label><br />
+<label>Please Select Output Type:<select name="output" id="output">
+	<option value="TFTP">FILE</option>
+  <option value="HTTP">HTTP</option>
+</select>
+</label>
 <br />
 <label>
   <input type="submit" name="Configure Phone" id="button" value="Configure Phone">

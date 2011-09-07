@@ -1,4 +1,3 @@
-#!/usr/bin/php
 <?php
 /**
  * Demo Script for Provisioner
@@ -11,7 +10,7 @@ echo "<pre>";
             error_reporting(E_ALL);
             ini_set('display_errors', 1);
 define('PROVISIONER_BASE', '');
-
+print_r($_REQUEST);
 include('autoload.php');
 
 // Allow running this test from the command line
@@ -49,7 +48,7 @@ $endpoint = new $class();
 $endpoint->brand_name = $brand;
 $endpoint->family_line = $family;
 
-$endpoint->processor_info = "Web Provisioner 1.0";
+$endpoint->processor_info = "Web Provisioner 2.0";
 
 //Mac Address
 $endpoint->mac = '000B820D0057';
