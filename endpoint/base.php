@@ -3,7 +3,7 @@
 /**
  * Base Class for Provisioner
  *
- * @author Darren Schreiber & Andrew Nagy
+ * @author Darren Schreiber & Andrew Nagy & Jort Bloem
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
  */
@@ -39,7 +39,7 @@ abstract class endpoint_base {
     public $enable_encryption = FALSE;		//Enable file encryption
     public $provisioning_path;                  //Path to provisioner, used in http/https/ftp/tftp
     public $dynamic_mapping;		// e.g. ARRAY('thisfile.htm'=>'# Intentionally left blank','thatfile$mac.htm'=>array('thisfile.htm','thatfile$mac.htm'));
-					// files not in this array are passed through untouched. Strings are returned as is. For arrays, generate_file is called for each entry, and they are combined.
+									// files not in this array are passed through untouched. Strings are returned as is. For arrays, generate_file is called for each entry, and they are combined.
     public $config_file_replacements=array();
 
     // Note: these can be override by descendant classes.
@@ -48,17 +48,9 @@ abstract class endpoint_base {
     private $provisioning_type_list=array('tftp','http','ftp'); //acceptable values for $provisioning_type
     private $default_provisioning_type='tftp';	// if provisioning_type is invalid
 
-    // Old
-    /**
-     *
-     * @var string
-     * @deprecated
-     */
-    public $ext;
-    public $secret;
-    public $description;    // Generic description
+
     function __construct() {
-	$this->root_dir=dirname(dirname(__FILE__))."/";
+		$this->root_dir=dirname(dirname(__FILE__))."/";
     }
 
     public static function get_modules_path() {
@@ -116,62 +108,66 @@ abstract class endpoint_base {
      * Turns a string like PST-7 or UTC+1 into a GMT offset in seconds
      * @param Send this a timezone like PST-7
      * @return Offset from GMT, in seconds (eg. -25200, =3600*-7)
+	 * @author Jort Bloem
      */
     function get_gmtoffset($timezone) {
-	# Divide the timezone up into it's 3 interesting parts; the sign (+/-), hours, and if they exist, minutes.
-	# note that matches[0] is the entire matched string, so these 3 parts are $matches[1], [2] and [3].
-	preg_match('/([\-\+])([\d]+):?(\d*)/',$timezone,$matches);
-	# $matches is now an array; $matches[1] is the sign (+ or -); $matches[2] is number of hours, $matches[3] is minutes (or empty)
-	return intval($matches[1]."1")*($matches[2]*3600+$matches[3]*60);
+		# Divide the timezone up into it's 3 interesting parts; the sign (+/-), hours, and if they exist, minutes.
+		# note that matches[0] is the entire matched string, so these 3 parts are $matches[1], [2] and [3].
+		preg_match('/([\-\+])([\d]+):?(\d*)/',$timezone,$matches);
+		# $matches is now an array; $matches[1] is the sign (+ or -); $matches[2] is number of hours, $matches[3] is minutes (or empty)
+		return intval($matches[1]."1")*($matches[2]*3600+$matches[3]*60);
     }
 
     /**
      * Turns an integer like -3600 (seconds) into a GMT offset like GMT-1
      * @param Time offset in seconds, like 3600 or -25200 or -27000
      * @return timezone (eg. GMT+1 or GMT-7 or GMT-7:30)
+	 * @author Jort Bloem
      */
     function get_timezone($offset) {
-	if ($offset<0) {
-		$result="GMT-";
-		$offset=abs($offset);
-	} else {
-		$result="GMT+";
-	}
-	$result.=(int)($offset/3600);
-	if ($result%3600>0) {
-		$result.=":".(($offset%3600)/60);
-	}
-	return $result;
+		if ($offset<0) {
+			$result="GMT-";
+			$offset=abs($offset);
+		} else {
+			$result="GMT+";
+		}
+		$result.=(int)($offset/3600);
+		if ($result%3600>0) {
+			$result.=":".(($offset%3600)/60);
+		}
+		return $result;
     }
 
     /**
      * Setup and fill in timezone data
+	 * @author Jort Bloem
      */
     function setup_tz() {
-	if (isset($this->DateTimeZone)) {
-		$this->timezone=array(
-			'gmtoffset'=>$this->DateTimeZone->getOffset(new DateTime),
-			'timezone' =>$this->get_timezone($this->DateTimeZone->getOffset(new DateTime))
-		);
-	} elseif(is_array($this->timezone)) {
-		#Do nothing
-	} elseif (is_numeric($this->timezone)) {
-		$this->timezone=array(
-			'gmtoffset'=>$this->timezone,
-			'timezone'=>$this->get_timezone($this->timezone),
-		);
-        } else {
-		$this->timezone=array(
-			'gmtoffset'=>$this->get_gmtoffset($this->timezone),
-			'timezone'=>$this->timezone,
-		);
-        }
+		if (isset($this->DateTimeZone)) {
+			$this->timezone=array(
+				'gmtoffset'=>$this->DateTimeZone->getOffset(new DateTime),
+				'timezone' =>$this->get_timezone($this->DateTimeZone->getOffset(new DateTime))
+			);
+		} elseif(is_array($this->timezone)) {
+			#Do nothing
+		} elseif (is_numeric($this->timezone)) {
+			$this->timezone=array(
+				'gmtoffset'=>$this->timezone,
+				'timezone'=>$this->get_timezone($this->timezone),
+			);
+	        } else {
+			$this->timezone=array(
+				'gmtoffset'=>$this->get_gmtoffset($this->timezone),
+				'timezone'=>$this->timezone,
+			);
+	    }
     }
 
     /**
      * Override this to do any configuration testing/sorting/preparing
      * Dont forget to call parent::prepare_for_generateconfig if you
      * do override it.
+	 * @author Jort Bloem
     **/
     function prepare_for_generateconfig() {
         $this->setup_tz();
@@ -188,6 +184,7 @@ abstract class endpoint_base {
     /**
      * This generates a list of config files, and the files on which they
      * are based.
+	 * @author Jort Bloem
      * @return array ($outputfilename=>$sourcefilename,...)
      *		both filenames are strings, sourcefilename may occur more 
      *          than once.
@@ -217,6 +214,7 @@ abstract class endpoint_base {
      *    $filename is probably unlikely to be used.
      *
      * You should call prepare_for_generateconfig() before calling this.
+	 * @author Jort Bloem
      */
     function generate_file($filename,$extradata,$ignoredynamicmapping=FALSE) {
 	# Note: server_type='dynamic' is ignored if ignoredynamicmapping, if there is no $this->dynamic_mapping, or that is not an array.
@@ -236,6 +234,7 @@ abstract class endpoint_base {
 
     /**
      * generate_config() - this shouldn't need to be overridden.
+	 * @author Jort Bloem
      */
     function generate_config() {
 	$this->prepare_for_generateconfig();
@@ -246,163 +245,9 @@ abstract class endpoint_base {
 	return $output;
     }
 
-    /*
-     * WARNING - use of this function is depricated.
-     * Note that the timezone "name" is NOT UNIQUE - BST covers both British and Bangladesh Standard time.
-     * This is a tiny subset of timezones, and is incorrect - NZ time is either NZST or NZDT, never NST.
-     * NST is Newfoundland Standard time.
-     * Best to use DateTimeZone - native in PHP 5.3; there's a simulation library in samples/tz.php - which
-     * has a subset of PHP 5.3 DateTimeZone calls.
-     */
-    function timezone_array() {
-        $array[0]['gmt'] = 'GMT';
-        $array[0]['offset'] = '0';
-        $array[0]['info'][0]['name'] = 'UTC';
-        $array[0]['info'][0]['description'] = 'Universal Coordinated Time (and Greenwich Mean Time)';
-
-        $array[1]['gmt'] = 'GMT+1:00';
-        $array[1]['offset'] = '3600';
-        $array[1]['info'][0]['name'] = 'ECT';
-        $array[1]['info'][0]['description'] = 'European Central Time';
-
-        $array[2]['gmt'] = 'GMT+2:00';
-        $array[2]['offset'] = '7200';
-        $array[2]['info'][0]['name'] = 'EET';
-        $array[2]['info'][0]['description'] = 'Eastern European Time';
-        $array[2]['info'][1]['name'] = 'ART';
-        $array[2]['info'][1]['description'] = '(Arabic) Egypt Standard Time';
-
-        $array[3]['gmt'] = 'GMT+3:00';
-        $array[3]['offset'] = '10800';
-        $array[3]['info'][0]['name'] = 'EAT';
-        $array[3]['info'][0]['description'] = 'Eastern African Time';
-
-        $array[4]['gmt'] = 'GMT+3:30';
-        $array[4]['offset'] = '12600';
-        $array[4]['info'][0]['name'] = 'MET';
-        $array[4]['info'][0]['description'] = 'Middle East Time';
-
-        $array[5]['gmt'] = 'GMT+4:00';
-        $array[5]['offset'] = '14400';
-        $array[5]['info'][0]['name'] = 'NET';
-        $array[5]['info'][0]['description'] = 'Near East Time';
-
-        $array[6]['gmt'] = 'GMT+5:00';
-        $array[6]['offset'] = '18000';
-        $array[6]['info'][0]['name'] = 'PLT';
-        $array[6]['info'][0]['description'] = 'Pakistan Lahore Time';
-
-        $array[7]['gmt'] = 'GMT+5:30';
-        $array[7]['offset'] = '19800';
-        $array[7]['info'][0]['name'] = 'IST';
-        $array[7]['info'][0]['description'] = 'India Standard Time';
-
-        $array[8]['gmt'] = 'GMT+6:00';
-        $array[8]['offset'] = '21600';
-        $array[8]['info'][0]['name'] = 'BST';
-        $array[8]['info'][0]['description'] = 'Bangladesh Standard Time';
-
-        $array[9]['gmt'] = 'GMT+7:00';
-        $array[9]['offset'] = '25200';
-        $array[9]['info'][0]['name'] = 'VST';
-        $array[9]['info'][0]['description'] = 'Vietnam Standard Time';
-
-        $array[10]['gmt'] = 'GMT+8:00';
-        $array[10]['offset'] = '28800';
-        $array[10]['info'][0]['name'] = 'CTT';
-        $array[10]['info'][0]['description'] = 'China Taiwan Time';
-
-        $array[11]['gmt'] = 'GMT+9:00';
-        $array[11]['offset'] = '32400';
-        $array[11]['info'][0]['name'] = 'JST';
-        $array[11]['info'][0]['description'] = 'Japan Standard Time';
-
-        $array[12]['gmt'] = 'GMT+9:30';
-        $array[12]['offset'] = '34200';
-        $array[12]['info'][0]['name'] = 'ACT';
-        $array[12]['info'][0]['description'] = 'Australia Central Time';
-
-        $array[13]['gmt'] = 'GMT+10:00';
-        $array[13]['offset'] = '36000';
-        $array[13]['info'][0]['name'] = 'AET';
-        $array[13]['info'][0]['description'] = 'Australia Eastern Time';
-
-        $array[14]['gmt'] = 'GMT+11:00';
-        $array[14]['offset'] = '39600';
-        $array[14]['info'][0]['name'] = 'SST';
-        $array[14]['info'][0]['description'] = 'Solomon Standard Time';
-
-        $array[15]['gmt'] = 'GMT+12:00';
-        $array[15]['offset'] = '43200';
-        $array[15]['info'][0]['name'] = 'NST';
-        $array[15]['info'][0]['description'] = 'New Zealand Standard Time';
-
-        $array[16]['gmt'] = 'GMT-11:00';
-        $array[16]['offset'] = '-39600';
-        $array[16]['info'][0]['name'] = 'MIT';
-        $array[16]['info'][0]['description'] = 'Midway Islands Time';
-
-        $array[17]['gmt'] = 'GMT-10:00';
-        $array[17]['offset'] = '-36000';
-        $array[17]['info'][0]['name'] = 'HST';
-        $array[17]['info'][0]['description'] = 'Hawaii Standard Time';
-
-        $array[18]['gmt'] = 'GMT-9:00';
-        $array[18]['offset'] = '-32400';
-        $array[18]['info'][0]['name'] = 'AST';
-        $array[18]['info'][0]['description'] = 'Alaska Standard Time';
-
-        $array[19]['gmt'] = 'GMT-8:00';
-        $array[19]['offset'] = '-28800';
-        $array[19]['info'][0]['name'] = 'PST';
-        $array[19]['info'][0]['description'] = 'Pacific Standard Time';
-
-        $array[20]['gmt'] = 'GMT-7:00';
-        $array[20]['offset'] = '-25200';
-        $array[20]['info'][0]['name'] = 'PNT';
-        $array[20]['info'][0]['description'] = 'Phoenix Standard Time';
-        $array[20]['info'][1]['name'] = 'MST';
-        $array[20]['info'][1]['description'] = 'Mountain Standard Time';
-
-        $array[21]['gmt'] = 'GMT-6:00';
-        $array[21]['offset'] = '-21600';
-        $array[21]['info'][0]['name'] = 'CST';
-        $array[21]['info'][0]['description'] = 'Central Standard Time';
-
-        $array[22]['gmt'] = 'GMT-5:00';
-        $array[22]['offset'] = '-18000';
-        $array[22]['info'][0]['name'] = 'EST';
-        $array[22]['info'][0]['description'] = 'Eastern Standard Time';
-        $array[22]['info'][1]['name'] = 'IET';
-        $array[22]['info'][1]['description'] = 'Indiana Eastern Standard Time';
-
-        $array[23]['gmt'] = 'GMT-4:00';
-        $array[23]['offset'] = '-14400';
-        $array[23]['info'][0]['name'] = 'PRT';
-        $array[23]['info'][0]['description'] = 'Puerto Rico and US Virgin Islands Time';
-
-        $array[24]['gmt'] = 'GMT-3:30';
-        $array[24]['offset'] = '-12600';
-        $array[24]['info'][0]['name'] = 'CNT';
-        $array[24]['info'][0]['description'] = 'Canada Newfoundland Time';
-
-        $array[25]['gmt'] = 'GMT-3:00';
-        $array[25]['offset'] = '-10800';
-        $array[25]['info'][0]['name'] = 'AGT';
-        $array[25]['info'][0]['description'] = 'Argentina Standard Time';
-        $array[25]['info'][1]['name'] = 'BET';
-        $array[25]['info'][1]['description'] = 'Brazil Eastern Time';
-
-        $array[26]['gmt'] = 'GMT-1:00';
-        $array[26]['offset'] = '-3600';
-        $array[26]['info'][0]['name'] = 'CAT';
-        $array[26]['info'][0]['description'] = 'Central African Time';
-
-        return($array);
-    }
-
     /**
      * $type is either gmt or tz
+	 * @author Jort Bloem
      */
     function setup_timezone($timezone,$type) {
         if($type == 'GMT') {
@@ -540,6 +385,7 @@ abstract class endpoint_base {
                 if($count) {
                     foreach($this->options[$matches[3]] as $number => $data) {
                         $data['number'] = $number;
+						$data['count'] = $number;
                         $parsed .= $this->parse_config_values($matches[2], FALSE, "GLOBAL", $data);
                     }
                 }
