@@ -8,7 +8,7 @@
 	<firmware_md5sum>0445a3c5bfb8e520f2d0430c3a3b587f</firmware_md5sum>
 	<firmware_pkg>spom_firmware.tgz</firmware_pkg>
 	<description>Fixed Digit Map Problems with three digit extensions in the 1xx range</description>
-	<configuration_files>logs/$mac-app.log,logs/$mac-boot.log,$mac-phone.cfg,contacts/000000000000-directory.xml,$mac.cfg,server_123.cfg,phone1.cfg,$mac_reg.cfg,sip_213.cfg,000000000000.cfg</configuration_files>
+	<configuration_files>logs/$mac-app.log,logs/$mac-boot.log,$mac-phone.cfg,contacts/000000000000-directory.xml,$mac.cfg,server_213.cfg,phone1_213.cfg,$mac_reg.cfg,sip_213.cfg,000000000000.cfg</configuration_files>
 	<changelog></changelog>
 	<model_list>
 		<model>SoundPoint IP 300</model>
