@@ -10,14 +10,25 @@
 class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
 
     public $family_line = 'spipm';
+    public $directory_structure = array("logs","overrides","contacts","licenses","SoundPointIPLocalization");
+    public $copy_files = array("SoundPointIPLocalization","SoundPointIPWelcome.wav","LoudRing.wav");
 
     function parse_lines_hook($line,$line_total) {
         $this->lines[$line]['options']['lineKeys'] = $line_total;
     }
 
-    function generate_config() {
-        //Polycom likes lower case letters in its mac address
-        $this->mac = strtolower($this->mac);
+    function config_files() {
+	$result=parent::config_files();
+	if((isset($this->options['file_prefix'])) && ($this->options['file_prefix'] != "")) {
+		$fn=$this->options['file_prefix'].'_sip.cfg';
+		$result[$fn]=$result['sip.cfg'];
+		unset($result['sip.cfg']);
+		$this->options['createdFiles'] = str_replace(", sip.cfg,",", $fn,",$this->options['createdFiles']);
+	}
+	return $result;
+    }
+
+    function prepare_for_generateconfig() {
 
         for ($i = 1; $i < 10; $i++) {
             if(isset($this->lines[$i]['secret'])) {
@@ -29,49 +40,9 @@ class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
             }
         }
 
-        $contents = $this->open_config_file('{$mac}_reg.cfg');
-        $final[$this->mac.'_reg.cfg'] = $this->parse_config_file($contents,FALSE);
-        $file_list = $this->mac.'_reg.cfg, ';
+        $this->options['createdFiles'] = $this->mac.'_reg.cfg, sip.cfg';
 
-        $contents = $this->open_config_file('sip.cfg');
-
-        if($this->server_type == 'dynamic') {
-            $file_list .= $this->mac.'_sip.cfg';
-            $final[$this->mac.'_sip.cfg'] = $this->parse_config_file($contents, FALSE);
-        } else {
-            if((isset($this->options['file_prefix'])) && ($this->options['file_prefix'] != "")) {
-                $prefix = $this->options['file_prefix']."_";
-            } else {
-                $prefix = "";
-            }
-            $file_list .= ' '.$prefix.'sip.cfg';
-            $final[$prefix.'sip.cfg'] = $this->parse_config_file($contents, FALSE);
-
-            $contents = $this->open_config_file('000000000000.cfg');
-            $final['000000000000.cfg'] = $this->parse_config_file($contents, FALSE);
-
-            $this->directory_structure = array("logs","overrides","contacts","licenses","SoundPointIPLocalization");
-
-            $this->copy_files = array("SoundPointIPLocalization","SoundPointIPWelcome.wav","LoudRing.wav");
-
-            $contents = $this->open_config_file('000000000000-directory.xml');
-            $final['contacts/000000000000-directory.xml'] = $contents;
-
-            $final['logs/'.$this->mac.'-boot.log'] = "";
-            $final['logs/'.$this->mac.'-app.log'] = "";
-
-            $this->protected_files = array('overrides/'.$this->mac.'-phone.cfg', 'logs/'.$this->mac.'-boot.log', 'logs/'.$this->mac.'-app.log','SoundPointIPLocalization');
-
-            $contents = $this->open_config_file('{$mac}-phone.cfg');
-            $final['overrides/'.$this->mac.'-phone.cfg'] = $this->parse_config_file($contents, FALSE);
-        }
-
-        $this->options['createdFiles'] = $file_list;
-
-        $contents = $this->open_config_file('{$mac}.cfg');
-        $final[$this->mac.'.cfg'] = $this->parse_config_file($contents, FALSE);
-
-        return($final);
+	$this->protected_files = array('overrides/'.$this->mac.'-phone.cfg', 'logs/'.$this->mac.'-boot.log', 'logs/'.$this->mac.'-app.log','SoundPointIPLocalization');
     }
 
 

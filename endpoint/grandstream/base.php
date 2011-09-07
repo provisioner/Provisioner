@@ -67,6 +67,20 @@ class endpoint_grandstream_base extends endpoint_base {
 
 		return $params;
 	}
+	function prepare_for_generateconfig() {
+		//Grandstream likes lower case letters in its mac address
+		$this->mac = strtolower($this->mac);
+		parent::prepare_for_generateconfig();
+		$this->timezone['timezone']=720+$this->timezone['gmtoffset']/60;
+	}
+	function generate_file($file,$extradata,$ignoredynamicmapping=FALSE) {
+		$data=parent::generate_file($file,$extradata,$ignoredynamicmapping);
+		if ($ignoredynamicmapping==FALSE) {
+			$data = array_values($this->create_encrypted_file(array("_tmp"=>$data)));
+			$data=$data[0];
+		}
+		return $data;
+	}
 
 
 	// MAC : 12 hex digits string
