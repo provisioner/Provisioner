@@ -145,6 +145,7 @@ function generate_gui_html($cfg_data,$custom_cfg_data=NULL, $admin=TRUE, $user_c
                 }                    
                 $template_variables_array[$group_count]['title'] = $cats['name'];
             }
+
             $cats = fix_single_array_keys($cats['subcategory']);
             foreach($cats as $subcats) {
                 $items = fix_single_array_keys($subcats['item']);
@@ -157,6 +158,26 @@ function generate_gui_html($cfg_data,$custom_cfg_data=NULL, $admin=TRUE, $user_c
                                     $group_count++;
                                     $variables_count = 0;
                                     $template_variables_array[$group_count]['title'] = "Line Options for Line ".$a;
+									
+									//Username (Auth Name)
+									$key = "line_static|".$a."|ext";
+									$items = array("variable" => "ext","default_value" => "", "description" => "Username/Auth [STATIC]", "type" => "input");
+                                    $template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$items,$key,$custom_cfg_data,$admin,$user_cfg_data,$custom_cfg_data_ari);
+                                    $template_variables_array[$group_count]['data'][$variables_count]['looping'] = TRUE;
+									$variables_count++;
+									//Secret
+									$key = "line_static|".$a."|secret";
+									$items = array("variable" => "secret","default_value" => "", "description" => "Secret/Password [STATIC]", "type" => "input");		
+                                    $template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$items,$key,$custom_cfg_data,$admin,$user_cfg_data,$custom_cfg_data_ari);
+                                    $template_variables_array[$group_count]['data'][$variables_count]['looping'] = TRUE;
+									$variables_count++;
+									//Display Name
+									$key = "line_static|".$a."|displayname";
+									$items = array("variable" => "displayname","default_value" => "", "description" => "Display Name [STATIC]", "type" => "input");
+                                    $template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$items,$key,$custom_cfg_data,$admin,$user_cfg_data,$custom_cfg_data_ari);
+                                    $template_variables_array[$group_count]['data'][$variables_count]['looping'] = TRUE;
+									$variables_count++;
+									
                                     foreach($config_options['data']['item'] as $items) {
                                         if(isset($items['description'])) {
                                             $items['description'] = str_replace('{$count}',$a,$items['description']);
