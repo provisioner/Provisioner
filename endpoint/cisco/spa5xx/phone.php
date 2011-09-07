@@ -48,16 +48,13 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
 		}
 	}
 	
-	function generate_config() {
-		//spa likes lower case letters in its mac address
-		$this->mac = strtolower($this->mac);
-		$temp_model = strtoupper($this->model);
-		$temp_model = str_replace("SPA", "spa", $temp_model);
+	function prepare_for_generateconfig() {
+		parent::prepare_for_generateconfig();
 		
 		if(isset($this->options['unit1'])) {
-            foreach($this->options['unit1'] as $key => $data) {
-                if ($this->options['unit1'][$key]['data'] == '') {
-                    unset($this->options['unit1'][$key]);
+			foreach($this->options['unit1'] as $key => $data) {
+				if ($this->options['unit1'][$key]['data'] == '') {
+					unset($this->options['unit1'][$key]);
 				}
 				if(($this->options['unit1'][$key]['data'] != '') && ($this->options['unit1'][$key]['keytype'] == 'blf')) {
 					$temp_ext = $this->options['unit1'][$key]['data'];
@@ -67,9 +64,9 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
 		}
 		
 		if(isset($this->options['unit2'])) {
-            foreach($this->options['unit2'] as $key => $data) {
-                if ($this->options['unit2'][$key]['data'] == '') {
-                    unset($this->options['unit2'][$key]);
+			foreach($this->options['unit2'] as $key => $data) {
+				if ($this->options['unit2'][$key]['data'] == '') {
+					unset($this->options['unit2'][$key]);
 				}
 				if(($this->options['unit2'][$key]['data'] != '') && ($this->options['unit2'][$key]['keytype'] == 'blf')) {
 					$temp_ext = $this->options['unit2'][$key]['data'];
@@ -78,14 +75,5 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
 			}
 		}
 		
-		//{$model}.cfg
-		$contents = $this->open_config_file("global.cfg");
-		$final[$temp_model.'.cfg'] = $this->parse_config_file($contents, FALSE);
-				
-		//{$mac}.cfg
-		$contents = $this->open_config_file("\$mac.cfg");
-		$final['spa'.$this->mac.'.xml'] = $this->parse_config_file($contents, FALSE);
-	
-		return($final);
 	}
 }

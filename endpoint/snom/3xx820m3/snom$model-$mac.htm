@@ -16,18 +16,21 @@
 		<user_xml_screen_url idx="{$line}" perm="">{$idle_screen_url}</user_xml_screen_url>
 		<user_idle_text idx="{$line}" perm="">{$display_text_url}</user_idle_text>
 		{/line_loop}
+
 		<intercom_connect_type perm="">intercom_connect_type_handsfree</intercom_connect_type>
 		<answer_after_policy>idle</answer_after_policy>
 		<http_user perm="R">{$http_user}</http_user>
 		<http_pass perm="R">{$http_pass}</http_pass>
 		<admin_mode_password perm="R">{$admin_mode_password}</admin_mode_password>
 		<admin_mode_password_confirm perm="R">{$admin_mode_password_confirm}</admin_mode_password_confirm>
-		<firmware_status perm="R">tftp://{$server.ip.1}/{$mac}_firmware.xml</firmware_status>
+		<firmware_status perm="R">{$provisioning_type}://{$server.ip.1}{$provisioning_path}/{$mac}_firmware.xml</firmware_status>
 		<update_policy perm="">auto_update</update_policy>
+
 		<gui_fkey1 perm="">{$gui_fkey1}</gui_fkey1>
 		<gui_fkey2 perm="">{$gui_fkey2}</gui_fkey2>
 		<gui_fkey3 perm="">{$gui_fkey3}</gui_fkey3>
 		<gui_fkey4 perm="">{$gui_fkey4}</gui_fkey4>
+
 		<dkey_help perm="">{$dkey_help}</dkey_help>
 		<dkey_snom perm="">{$dkey_snom}</dkey_snom>
 		<dkey_conf perm="">{$dkey_conf}</dkey_conf>
@@ -38,26 +41,28 @@
 		<dkey_retrieve perm="">{$dkey_retrieve}</dkey_retrieve>
 		<dkey_redial perm="">{$dkey_redial}</dkey_redial>
 		<dkey_directory perm="">{$dkey_directory}</dkey_directory>
+
 		<action_received_subscr_notify_url perm="">{$action_received_subscr_notify_url}</action_received_subscr_notify_url>
-        <action_dnd_on_url perm="">{$action_dnd_on_url}</action_dnd_on_url>
-        <action_dnd_off_url perm="">{$action_dnd_off_url}</action_dnd_off_url>
-        <action_redirection_on_url perm="">{$action_redirection_on_url}</action_redirection_on_url>
-        <action_redirection_off_url perm="">{$action_redirection_off_url}</action_redirection_off_url>
-        <action_incoming_url perm="">{$action_incoming_url}</action_incoming_url>
-        <action_outgoing_url perm="">{$action_outgoing_url}</action_outgoing_url>
-        <action_setup_url perm="">{$action_setup_url}</action_setup_url>
-        <action_offhook_url perm="">{$action_offhook_url}</action_offhook_url>
-        <action_onhook_url perm="">{$action_onhook_url}</action_onhook_url>
-        <action_missed_url perm="">{$action_missed_url}</action_missed_url>
-        <action_connected_url perm="">{$action_connected_url}</action_connected_url>
-        <action_disconnected_url perm="">{$action_disconnected_url}</action_disconnected_url>
+		<action_dnd_on_url perm="">{$action_dnd_on_url}</action_dnd_on_url>
+		<action_dnd_off_url perm="">{$action_dnd_off_url}</action_dnd_off_url>
+		<action_redirection_on_url perm="">{$action_redirection_on_url}</action_redirection_on_url>
+		<action_redirection_off_url perm="">{$action_redirection_off_url}</action_redirection_off_url>
+		<action_incoming_url perm="">{$action_incoming_url}</action_incoming_url>
+		<action_outgoing_url perm="">{$action_outgoing_url}</action_outgoing_url>
+		<action_setup_url perm="">{$action_setup_url}</action_setup_url>
+		<action_offhook_url perm="">{$action_offhook_url}</action_offhook_url>
+		<action_onhook_url perm="">{$action_onhook_url}</action_onhook_url>
+		<action_missed_url perm="">{$action_missed_url}</action_missed_url>
+		<action_connected_url perm="">{$action_connected_url}</action_connected_url>
+		<action_disconnected_url perm="">{$action_disconnected_url}</action_disconnected_url>
+
 		{loop_speeddial1}
-        <speed idx="{$number}" perm="">{$value}</speed>
+		<speed idx="{$number}" perm="">{$value}</speed>
 		{/loop_speeddial1}
-        <speed idx="10" perm="">{$speeddial_pound}</speed>
-        <speed idx="11" perm="">{$speeddial_asterisk}</speed>
+		<speed idx="10" perm="">{$speeddial_pound}</speed>
+		<speed idx="11" perm="">{$speeddial_asterisk}</speed>
 		{loop_speeddial2}
-        <speed idx="{$number}" perm="">{$value}</speed>
+		<speed idx="{$number}" perm="">{$value}</speed>
 		{/loop_speeddial2}
 	</phone-settings>
 	<functionKeys>

@@ -19,6 +19,7 @@ abstract class endpoint_base {
     public $mac;            // Device mac address
     public $model;			// Model of phone, must match the model name inside of the famil_data.xml file in each family folder.
     public $timezone;       // Global timezone var
+    public $DateTimeZone;   // timezone, as a DateTimezone object, much more flexible than just an offset and name.
     public $server;         // Contains an array of valid server IPs & ports, in case phones support backups
     public $proxy;			// Contains an array of valid proxy IPs & ports
     public $ntp;            //network time protocol server
@@ -37,6 +38,15 @@ abstract class endpoint_base {
     public $provisioning_type = 'tftp';		//can be tftp,http,ftp ??
     public $enable_encryption = FALSE;		//Enable file encryption
     public $provisioning_path;                  //Path to provisioner, used in http/https/ftp/tftp
+    public $dynamic_mapping;		// e.g. ARRAY('thisfile.htm'=>'# Intentionally left blank','thatfile$mac.htm'=>array('thisfile.htm','thatfile$mac.htm'));
+					// files not in this array are passed through untouched. Strings are returned as is. For arrays, generate_file is called for each entry, and they are combined.
+    public $config_file_replacements=array();
+
+    // Note: these can be override by descendant classes.
+    private $server_type_list=array('file','dynamic');  // acceptable values for $server_type
+    private $default_server_type='file';		// if server_type is invalid
+    private $provisioning_type_list=array('tftp','http','ftp'); //acceptable values for $provisioning_type
+    private $default_provisioning_type='tftp';	// if provisioning_type is invalid
 
     // Old
     /**
@@ -47,6 +57,9 @@ abstract class endpoint_base {
     public $ext;
     public $secret;
     public $description;    // Generic description
+    function __construct() {
+	$this->root_dir=dirname(dirname(__FILE__))."/";
+    }
 
     public static function get_modules_path() {
         return self::$modules_path;
@@ -71,26 +84,12 @@ abstract class endpoint_base {
 
     //Set all default values here and fix errors before they hit us in the ass later on.
     function data_integrity() {
-        switch($this->server_type) {
-            case "file":
-                break;
-            case "dynamic":
-                break;
-            default:
-                $this->server_type = 'file';
-                break;
-        }
-        switch($this->provisioning_type) {
-            case "tftp":
-                break;
-            case "http":
-                break;
-            case "ftp":
-                break;
-            default:
-                $this->provisioning_type = "tftp";
-                break;
-        }
+	if (!in_array($this->server_type,$this->server_type_list)) {
+		$this->server_type=$this->default_server_type;
+	}
+	if (!in_array($this->provisioning_type,$this->provisioning_type_list)) {
+		$this->provisioning_type=$this->default_provisioning_type;
+	}
     }
 
     function generate_info($file_contents, $brand_ts, $family_ts) {
@@ -113,77 +112,148 @@ abstract class endpoint_base {
     }
 
     /**
-     * Turns a string like PST-7 or UTC+1 into a GMT offset by stripping out Characters and replacing + and -
-     * @param Send this something like PST-7
-     * @return Offset (eg. -3600)
+     * NOTE: Wherever possible, try $this->DateTimeZone->getOffset(new DateTime) FIRST, which takes Daylight savings into account, too.
+     * Turns a string like PST-7 or UTC+1 into a GMT offset in seconds
+     * @param Send this a timezone like PST-7
+     * @return Offset from GMT, in seconds (eg. -25200, =3600*-7)
      */
     function get_gmtoffset($timezone) {
-        $timezone = str_replace(":", ".", $timezone);
-        $timezone = str_replace("30", "5", $timezone);
-        if(strrchr($timezone,'+')) {
-            $num = explode("+",$timezone);
-            $num = $num[1];
-            $offset = $num * 3600;
-        } elseif(strrchr($timezone,'-')) {
-            $num = explode("-",$timezone);
-            $num = $num[1];
-            $offset = $num * -3600;
-        }
-        return($offset);
+	# Divide the timezone up into it's 3 interesting parts; the sign (+/-), hours, and if they exist, minutes.
+	# note that matches[0] is the entire matched string, so these 3 parts are $matches[1], [2] and [3].
+	preg_match('/([\-\+])([\d]+):?(\d*)/',$timezone,$matches);
+	# $matches is now an array; $matches[1] is the sign (+ or -); $matches[2] is number of hours, $matches[3] is minutes (or empty)
+	return intval($matches[1]."1")*($matches[2]*3600+$matches[3]*60);
     }
 
     /**
-     * Turns a string like PST-7 or UTC+1 into a GMT offset by stripping out Characters and replacing + and -
-     * @param Send this something like -3600
-     * @return timezone (eg. +7 or +7:30)
+     * Turns an integer like -3600 (seconds) into a GMT offset like GMT-1
+     * @param Time offset in seconds, like 3600 or -25200 or -27000
+     * @return timezone (eg. GMT+1 or GMT-7 or GMT-7:30)
      */
     function get_timezone($offset) {
-        $timezone = $offset / 3600;
-        if($timezone < 0) {
-            $timezone = str_replace("-", "", $timezone);
-            $timezone = '-'.$timezone;
-        } else {
-            $timezone = str_replace("+", "", $timezone);
-            $timezone = '+'.$timezone;
-        }
-        if(strstr($timezone, ".")) {
-            $timezone = str_replace(".", ":", $timezone);
-            $timezone = str_replace(":5", ":30", $timezone);
-        } else {
-            $timezone = "GMT".$timezone . ":00";
-        }
-        return($timezone);
+	if ($offset<0) {
+		$result="GMT-";
+		$offset=abs($offset);
+	} else {
+		$result="GMT+";
+	}
+	$result.=(int)($offset/3600);
+	if ($result%3600>0) {
+		$result.=":".(($offset%3600)/60);
+	}
+	return $result;
     }
 
     /**
      * Setup and fill in timezone data
-     * @param Send this something like PST-7 or -36000
      */
     function setup_tz() {
-        if(!is_array($this->timezone)) {
-            $timezone = $this->timezone;
-            $this->timezone = array();
-            if(($timezone <= -3600) or ($timezone >= 3600)) {
-                $this->timezone['gmtoffset'] = $timezone;
-                $this->timezone['timezone'] = $this->get_timezone($timezone);
-            } else {
-                $this->timezone['timezone'] = $timezone;
-                $this->timezone['gmtoffset'] = $this->get_gmtoffset($timezone);
-            }
+	if (isset($this->DateTimeZone)) {
+		$this->timezone=array(
+			'gmtoffset'=>$this->DateTimeZone->getOffset(new DateTime),
+			'timezone' =>$this->get_timezone($this->DateTimeZone->getOffset(new DateTime))
+		);
+	} elseif(is_array($this->timezone)) {
+		#Do nothing
+	} elseif (is_numeric($this->timezone)) {
+		$this->timezone=array(
+			'gmtoffset'=>$this->timezone,
+			'timezone'=>$this->get_timezone($this->timezone),
+		);
+        } else {
+		$this->timezone=array(
+			'gmtoffset'=>$this->get_gmtoffset($this->timezone),
+			'timezone'=>$this->timezone,
+		);
         }
     }
 
     /**
-     * Returns Abbreviated Timezone
-     * @param Send this something like -3600
-     * @return PST
-     */
-    function get_abbreviated_tz() {
-        $dateTime = new DateTime();
-        $dateTime->setTimeZone(new DateTimeZone('America/Los_Angeles'));
-        return $dateTime->format('T');
+     * Override this to do any configuration testing/sorting/preparing
+     * Dont forget to call parent::prepare_for_generateconfig if you
+     * do override it.
+    **/
+    function prepare_for_generateconfig() {
+        $this->setup_tz();
+        $this->setup_ntp();
+    	$this->data_integrity();
+	if (!in_array('$mac',$this->config_file_replacements)) {
+		$this->config_file_replacements['$mac']=$this->mac;
+	}
+	if (!in_array('$model',$this->config_file_replacements)) {
+		$this->config_file_replacements['$model']=$this->model;
+	}
     }
 
+    /**
+     * This generates a list of config files, and the files on which they
+     * are based.
+     * @return array ($outputfilename=>$sourcefilename,...)
+     *		both filenames are strings, sourcefilename may occur more 
+     *          than once.
+     * override this, if you feel so inclined - you probably want to call
+     *    $result=parent::config_files() first, then modify $result as you like.
+     *
+     * You should call prepare_for_generateconfig() before calling this.
+    **/
+    function config_files() {
+        $family_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml",1,'tag',array('model_list'));
+	foreach (explode(",",$family_data['data']['configuration_files']) AS $configfile) {
+		$outputfile=str_replace(array_keys($this->config_file_replacements),array_values($this->config_file_replacements),$configfile);
+		$result[$outputfile]=$configfile;
+	}
+	return $result;
+    }
+
+    /** 
+     * Generate one config file. Most settings are taken from $this.
+     * This is a good thing to overide.
+     * if you do, you can do a first cut by calling 
+     *    $result=parent::generate_file, then tweaking the result,
+     *    or if ($sourcefile=..) {} else {return parent::generate_file}
+     *
+     * Note that, if you use dynamic a server type, $filename refers to the
+     *    FINAL output file, not the piece that we're generating. In general,
+     *    $filename is probably unlikely to be used.
+     *
+     * You should call prepare_for_generateconfig() before calling this.
+     */
+    function generate_file($filename,$extradata,$ignoredynamicmapping=FALSE) {
+	# Note: server_type='dynamic' is ignored if ignoredynamicmapping, if there is no $this->dynamic_mapping, or that is not an array.
+	if ((!$ignoredynamicmapping) || ($this->server_type!='dynamic') || (!is_array($this->dynamic_mapping)) || (!array_key_exists($extradata,$this->dynamic_mapping))) {
+		$data=$this->open_config_file($extradata);
+		return $this->parse_config_file($data);
+	} elseif (!is_array($this->dynamic_mapping[$extradata])) {
+		return $this->dynamic_mapping[$extradata];
+	} else {
+		$data="";
+		foreach ($this->dynamic_mapping[$extradata] AS $recurseextradata) {
+			$data.=$this->generate_file($filename,$recurseextradata,TRUE);
+		}
+		return $data;
+	}
+    }
+
+    /**
+     * generate_config() - this shouldn't need to be overridden.
+     */
+    function generate_config() {
+	$this->prepare_for_generateconfig();
+	$output=array();
+	foreach ($this->config_files() AS $filename=>$sourcefile) {
+		$output[$filename]=$this->generate_file($filename,$sourcefile);
+	}
+	return $output;
+    }
+
+    /*
+     * WARNING - use of this function is depricated.
+     * Note that the timezone "name" is NOT UNIQUE - BST covers both British and Bangladesh Standard time.
+     * This is a tiny subset of timezones, and is incorrect - NZ time is either NZST or NZDT, never NST.
+     * NST is Newfoundland Standard time.
+     * Best to use DateTimeZone - native in PHP 5.3; there's a simulation library in samples/tz.php - which
+     * has a subset of PHP 5.3 DateTimeZone calls.
+     */
     function timezone_array() {
         $array[0]['gmt'] = 'GMT';
         $array[0]['offset'] = '0';
@@ -379,7 +449,7 @@ abstract class endpoint_base {
      * @author Andrew Nagy
      */
     function parse_config_file($file_contents, $keep_unknown=FALSE, $lines=NULL, $specific_line='ALL') {
-        $family_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml");
+        $family_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml",1,'tag',array('model_list'));
         $brand_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/brand_data.xml");
 
         //Get number of lines for this model from the family_data.xml file
@@ -422,8 +492,8 @@ abstract class endpoint_base {
         $file_contents = $this->generate_info($file_contents, $brand_data['data']['brands']['last_modified'], $brand_mod);
 
         $file_contents = $this->parse_conditional_model($file_contents);
-        $file_contents = $this->parse_lines($line_total, $file_contents, $keep_unknown = FALSE, $specific_line);
-        $file_contents = $this->parse_loops($line_total,$file_contents, $keep_unknown = FALSE, $specific_line);
+        $file_contents = $this->parse_lines($line_total, $file_contents, $keep_unknown, $specific_line);
+        $file_contents = $this->parse_loops($line_total,$file_contents, $keep_unknown, $specific_line);
         $file_contents = $this->parse_config_values($file_contents);
 
         return $file_contents;
@@ -545,7 +615,7 @@ abstract class endpoint_base {
         if(!isset($options)) {
             $options=$this->options;
         }
-        $family_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml");
+        $family_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml",1,'tag',array('model_list'));
 
         if (is_array($family_data['data']['model_list'])) {
             $key = $this->arraysearchrecursive($this->model, $family_data, "model");
@@ -890,9 +960,10 @@ abstract class endpoint_base {
      * @param <type> $url The XML file
      * @param <type> $get_attributes 1 or 0. If this is 1 the function will get the attributes as well as the tag values - this results in a different array structure in the return value.
      * @param <type> $priority Can be 'tag' or 'attribute'. This will change the way the resulting array structure. For 'tag', the tags are given more importance.
+     * @param <type> $array_tags - any tag names listed here will allways be returned as an array, even if there is only one of them.
      * @return <type> The parsed XML in an array form. Use print_r() to see the resulting array structure.
      */
-    function xml2array($url, $get_attributes = 1, $priority = 'tag') {
+    function xml2array($url, $get_attributes = 1, $priority = 'tag', $array_tags=array()) {
         $contents = "";
         if (!function_exists('xml_parser_create')) {
             return array();
@@ -942,13 +1013,19 @@ abstract class endpoint_base {
             }
             if ($type == "open") {
                 $parent[$level - 1] = & $current;
-                if (!is_array($current) or (!in_array($tag, array_keys($current)))) {
-                    $current[$tag] = $result;
-                    if ($attributes_data) {
-                        $current[$tag . '_attr'] = $attributes_data;
-                    }
-                    $repeated_tag_index[$tag . '_' . $level] = 1;
-                    $current = & $current[$tag];
+		if (!is_array($current) or (!in_array($tag, array_keys($current)))) {
+		    if (in_array($tag,$array_tags)) {
+                        $current[$tag][0] = $result;
+                        $repeated_tag_index[$tag . '_' . $level]=1;
+                    	$current = & $current[$tag][0];
+		    } else {
+			$current[$tag] = $result;
+			if ($attributes_data) {
+				$current[$tag . '_attr'] = $attributes_data;
+			}
+			$repeated_tag_index[$tag . '_' . $level] = 1;
+			$current = & $current[$tag];
+		   }
                 } else {
                     if (isset($current[$tag][0])) {
                         $current[$tag][$repeated_tag_index[$tag . '_' . $level]] = $result;

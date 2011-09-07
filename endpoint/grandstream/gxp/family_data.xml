@@ -7,7 +7,7 @@
 	<firmware_md5sum>d026b537beef6b4423bbb832a431a35a</firmware_md5sum>
 	<firmware_pkg>gxp_firmware.tgz</firmware_pkg>
 	<description>Use Grandstream Encrypted Compiler By Default</description>
-	<configuration_files>$mac.cfg</configuration_files>
+	<configuration_files>cfg$mac</configuration_files>
 	<changelog></changelog>
 	<model_list>
 		<model>GXP280</model>
