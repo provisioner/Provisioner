@@ -58,6 +58,9 @@ foreach($html_array as $sections) {
 	}
 }
 ?>
+<input type="hidden" id="brand" name="brand" value="<?php echo $brand;?>" />
+<input type="hidden" id="product" name="product" value="<?php echo $product;?>" />
+<input type="hidden" id="model" name="model" value="<?php echo $model;?>" />
 <input type="submit" value="Submit" />
 </form>
 <?php
@@ -207,7 +210,7 @@ function generate_gui_html($cfg_data,$custom_cfg_data=NULL, $admin=TRUE, $user_c
                             break;
                         default:
                             if(array_key_exists('variable',$config_options)) {
-                                $key = str_replace('$','',$config_options['variable']);
+                                $key = 'option|'.str_replace('$','',$config_options['variable']);
                                 //TODO: Move this into the sync function
                                 //Checks to see if values are defined in the database, if not then we assume this is a new option and we need a default value here!
                                 if(!isset($custom_cfg_data[$key])) {

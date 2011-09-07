@@ -9,9 +9,41 @@
 echo "<pre>";
             error_reporting(E_ALL);
             ini_set('display_errors', 1);
-define('PROVISIONER_BASE', '');
-print_r($_REQUEST);
-include('autoload.php');
+define('PROVISIONER_BASE', '../');
+
+//Get line options
+foreach($_REQUEST as $key => $data) {
+	if(preg_match("/line\|(.*)\|(.*)/i",$key,$matches)) {
+		$stuff = $matches;
+		$line = $stuff[1];
+		$var = $stuff[2];
+		$req = $stuff[0];
+	
+		$line_options[$line]['options'][$var] = $_REQUEST[$req];
+		unset($_REQUEST[$req]);
+	}elseif(preg_match("/loop\|(.*)_(.*)_([\d]*)/i",$key,$matches)) {
+		$stuff = $matches;
+		
+		$loop = $stuff[1];
+		$var = $stuff[2];
+		$count = $stuff[3];
+		$req = $stuff[0];
+	
+		$loops_options[$loop][$count][$var] = $_REQUEST[$req];
+		unset($_REQUEST[$req]);
+	}elseif(preg_match("/option\|(.*)/i",$key,$matches)) {
+		$stuff = $matches;
+		$var = $stuff[1];
+		$req = $stuff[0];
+
+		$options[$var] = $_REQUEST[$req];
+		unset($_REQUEST[$req]);
+	}
+}
+
+$final_ops = array_merge($loops_options,$options);
+
+include('../autoload.php');
 
 // Allow running this test from the command line
 if (isset($_REQUEST['brand'])) {
@@ -22,6 +54,8 @@ if (isset($_REQUEST['brand'])) {
 
 if (isset($_REQUEST['family'])) {
     $family = $_REQUEST['family'];
+} elseif (isset($_REQUEST['product'])) {
+	$family = $_REQUEST['product'];
 } elseif (isset($_REQUEST['model_demo'])) {
     $temp = explode('+',$_REQUEST['model_demo']);
     $family = $temp[0];
@@ -73,19 +107,18 @@ $endpoint->server[2]['port'] = 7000;
 //Pretend we have three lines, we could just have one line or 20...whatever the phone supports
 if(!isset($_REQUEST['secret'])) {
     $endpoint->lines[1] = array('ext' => '103', 'secret' => 'blah', 'displayname' => 'Joe Blow');
-    $endpoint->lines[1]['options'] = array('display_name' => 'buddy');
-
-    $endpoint->lines[2] = array('ext' => '104', 'secret' => 'blah4', 'displayname' => 'Display Name');
-    $endpoint->lines[3] = array('ext' => '105', 'secret' => 'blah5', 'displayname' => 'Other Account');
 } else {
     $endpoint->lines[1] = array('ext' => $_REQUEST['ext'], 'secret' => $_REQUEST['secret'], 'displayname' => $_REQUEST['displayname']);
 }
 
+foreach($line_options as $key => $data) {
+	$endpoint->lines[$key]['options'] = $data['options'];
+}
 
 //Set Variables according to the template_data files included. We can include different template.xml files within family_data.xml also one can create
 //template_data_custom.xml which will get included or template_data_<model_name>_custom.xml which will also get included
 //line 'global' will set variables that aren't line dependant
-$endpoint->options =    array("admin_pass" =>  "password","main_icon" => "Main ICON Line #3");
+$endpoint->options =  $final_ops;
 //Setting a line variable here...these aren't defined in the template_data.xml file yet. however they will still be parsed 
 //and if they have defaults assigned in a future template_data.xml or in the config file using pipes (|) those will be used, pipes take precedence
 
