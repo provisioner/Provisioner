@@ -10,127 +10,12 @@ class endpoint_grandstream_gxp_phone extends endpoint_grandstream_base {
 
 	public $family_line = 'gxp';
 
-	function generate_config() {		
-		//Grandstream likes lower case letters in its mac address
-		$this->mac = strtolower($this->mac);
-
+	function prepare_for_generateconfig() {
+		parent::prepare_for_generateconfig();
                 // Grandstreams support lines 2-6, so let's add them if they're set
                 for ($i = 1; $i < 6; $i++) {
                     $this->lines[$i]['options']['line_active'] = (isset($this->lines[$i]['secret']) ? '1' : '0');
                 }
-
-		$contents = $this->open_config_file("\$mac.cfg");
-		$this->setup_tz();
-		switch(strtoupper($this->timezone['timezone'])) {
-			case "GMT-12:00":
-				$this->timezone = "0";
-				break;
-			case "GMT-11:00":
-				$this->timezone = "60";
-				break;
-			case "GMT-10:00":
-				$this->timezone = "120";
-				break;
-			case "GMT-9:00":
-				$this->timezone = "180";
-				break;
-			case "GMT-8:00":
-				$this->timezone = "240";
-				break;
-			case "GMT-7:00":
-				$this->timezone = "300";
-				break;
-			case "GMT-6:00":
-				$this->timezone = "360";
-				break;
-			case "GMT-5:00":
-				$this->timezone = "420";
-				break;
-			case "GMT-4:30":
-				$this->timezone = "450";
-				break;
-			case "GMT-4:00":
-				$this->timezone = "480";
-				break;
-			case "GMT-3:30":
-				$this->timezone = "510";
-				break;
-			case "GMT-3:00":
-				$this->timezone = "540";
-				break;
-			case "GMT-2:00":
-				$this->timezone = "600";
-				break;
-			case "GMT-1:00":
-				$this->timezone = "660";
-				break;
-			case "GMT":
-				$this->timezone = "720";
-				break;
-			case "GMT+1:00":
-				$this->timezone = "780";
-				break;
-			case "GMT+2:00":
-				$this->timezone = "840";
-				break;
-			case "GMT+3:00":
-				$this->timezone = "900";
-				break;
-			case "GMT+3:30":
-				$this->timezone = "930";
-				break;
-			case "GMT+4:00":
-				$this->timezone = "960";
-				break;
-			case "GMT+4:30":
-				$this->timezone = "990";
-				break;
-			case "GMT+5:00":
-				$this->timezone = "1020";
-				break;
-			case "GMT+5:30":
-				$this->timezone = "1050";
-				break;
-			case "GMT+5:45":
-				$this->timezone = "1065";
-				break;
-			case "GMT+6:00":
-				$this->timezone = "1080";
-				break;
-			case "GMT+6:30":
-				$this->timezone = "1110";
-				break;
-			case "GMT+7:00":
-				$this->timezone = "1140";
-				break;
-			case "GMT+8:00":
-				$this->timezone = "1200";
-				break;
-			case "GMT+9:00":
-				$this->timezone = "1260";
-				break;
-			case "GMT+9:30":
-				$this->timezone = "1290";
-				break;
-			case "GMT+10:00":
-				$this->timezone = "1320";
-				break;
-			case "GMT+11:00":
-				$this->timezone = "1380";
-				break;
-			case "GMT+12:00":
-				$this->timezone = "1440";
-				break;
-			case "GMT+13:00":
-				$this->timezone = "1500";
-				break;
-		}
-		
-		$final[$this->mac.".cfg"] = $this->parse_config_file($contents);
-		
-		$final = $this->create_encrypted_file($final);
-		
-		return($final);
 	}
 	
 }

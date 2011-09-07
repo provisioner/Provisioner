@@ -7,7 +7,7 @@
 	<firmware_md5sum>525a9e4c82dfd89c5ae4b6f38f09235b</firmware_md5sum>
 	<firmware_pkg>gxphd_firmware.tgz</firmware_pkg>
 	<description>Use Grandstream Encrypted Compiler By Default</description>
-	<configuration_files>$mac.cfg</configuration_files>
+	<configuration_files>cfg$mac</configuration_files>
 	<changelog></changelog>
 	<model_list>
 		<model>GXP2100</model>
