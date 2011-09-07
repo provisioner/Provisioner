@@ -8,7 +8,7 @@
 	<firmware_md5sum>10138a11ed1f01654d18a20687f58242</firmware_md5sum>
 	<firmware_pkg>splm_firmware.tgz</firmware_pkg>
 	<description>Fixed Digit Map Problems with three digit extensions in the 1xx range</description>
-	<configuration_files>$mac-phone.cfg,$mac.cfg,server_317.cfg,phone1_317.cfg,$mac_reg.cfg,sip_317.cfg,logs/$mac-boot.log,logs/$mac-app.log,contacts/000000000000.cfg</configuration_files>
+	<configuration_files>$mac-phone.cfg,$mac.cfg,server_317.cfg,phone1_317.cfg,$mac_reg.cfg,sip_317.cfg,logs/$mac-boot.log,logs/$mac-app.log,contacts/000000000000-directory.xml,000000000000.cfg</configuration_files>
 	<changelog></changelog>
 	<last_modified></last_modified>
 	<model_list>
