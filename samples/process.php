@@ -38,41 +38,23 @@ foreach($_REQUEST as $key => $data) {
 
 		$options[$var] = $_REQUEST[$req];
 		unset($_REQUEST[$req]);
+	}elseif(preg_match("/line_static\|(.*)\|(.*)/i",$key,$matches)) {
+		$stuff = $matches;
+		$line = $stuff[1];
+		$var = $stuff[2];
+		$req = $stuff[0];
+
+		$line_static[$line][$var] = $_REQUEST[$req];
+		unset($_REQUEST[$req]);
 	}
 }
-
 $final_ops = array_merge($loops_options,$options);
 
 include('../autoload.php');
 
-// Allow running this test from the command line
-if (isset($_REQUEST['brand'])) {
-        $brand = $_REQUEST['brand'];
-} else {
-    $brand = $argv[1];
-}
-
-if (isset($_REQUEST['family'])) {
-    $family = $_REQUEST['family'];
-} elseif (isset($_REQUEST['product'])) {
-	$family = $_REQUEST['product'];
-} elseif (isset($_REQUEST['model_demo'])) {
-    $temp = explode('+',$_REQUEST['model_demo']);
-    $family = $temp[0];
-} else {
-    $family = $argv[2];
-}
-
-if (isset($_REQUEST['model'])) {
-	$model = $_REQUEST['model'];
-} elseif (isset($_REQUEST['model_demo'])) {
-    $temp = explode('+',$_REQUEST['model_demo']);
-    $model = $temp[1];
-} else {
-    $model = $argv[3];
-}
-
-date_default_timezone_set('America/Los_Angeles');
+$brand = $_REQUEST['brand'];
+$family = $_REQUEST['product'];
+$model = $_REQUEST['model'];
 
 $class = "endpoint_" . $brand . "_" . $family . '_phone';
 
@@ -85,16 +67,17 @@ $endpoint->family_line = $family;
 $endpoint->processor_info = "Web Provisioner 2.0";
 
 //Mac Address
-$endpoint->mac = '000B820D0057';
+$endpoint->mac = $_REQUEST['mac'];
 
 //Phone Model (Please reference family_data.xml in the family directory for a list of recognized models)
 $endpoint->model = $model;
 
 //Timezone
-$endpoint->timezone = 'GMT-11:00';
+if (!class_exists("DateTimeZone")) { require('tz.php'); }
+$endpoint->DateTimeZone = new DateTimeZone($_REQUEST['timezone']);;
 
 //Server IP Address & Port
-$endpoint->server[1]['ip'] = "10.10.10.10";
+$endpoint->server[1]['ip'] = $_REQUEST['server'];
 $endpoint->server[1]['port'] = 5060;
 
 //Backup Server Address
@@ -104,11 +87,8 @@ $endpoint->server[2]['port'] = 7000;
 //Provide alternate Configuration file instead of the one from the hard drive
 //$endpoint->config_files_override['$mac.cfg'] = "{\$srvip}\n{\$admin_pass|0}\n{\$test.line.1}";
 
-//Pretend we have three lines, we could just have one line or 20...whatever the phone supports
-if(!isset($_REQUEST['secret'])) {
-    $endpoint->lines[1] = array('ext' => '103', 'secret' => 'blah', 'displayname' => 'Joe Blow');
-} else {
-    $endpoint->lines[1] = array('ext' => $_REQUEST['ext'], 'secret' => $_REQUEST['secret'], 'displayname' => $_REQUEST['displayname']);
+foreach($line_static as $key => $data) {
+	$endpoint->lines[$key] = $data;
 }
 
 foreach($line_options as $key => $data) {
