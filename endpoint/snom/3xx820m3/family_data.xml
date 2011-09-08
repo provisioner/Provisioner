@@ -12,7 +12,7 @@
 	<changelog></changelog>
 	<model_list>
 		<model>300</model>
-		<lines>2</lines>
+		<lines>4</lines>
 		<id>1</id>
 		<template_data>
 			<files>line_options.xml</files>
