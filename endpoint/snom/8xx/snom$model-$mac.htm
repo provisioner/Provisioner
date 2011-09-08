@@ -30,6 +30,11 @@
 		<admin_mode perm="">{$admin_mode}</admin_mode>
 		<firmware_status perm="R">{$provisioning_type}://{$server.ip.1}{$provisioning_path}/{$mac}_firmware.xml</firmware_status>
 		<update_policy perm="">auto_update</update_policy>
+		<timezone perm="R"></timezone>
+		<utc_offset perm="R">{$gmtoff}</utc_offset>
+		<dst perm="R">{$dstrule}</dst>
+		<tone_scheme perm="R">{$tone_scheme}</tone_scheme>
+
 		<backlight perm="">15</backlight>
 		<backlight_idle perm="">8</backlight_idle>
 		<contrast perm="">12</contrast>
