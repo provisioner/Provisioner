@@ -67,6 +67,30 @@
                 <description>Advertisement URL</description>
                 <type>input</type>
             </item>
+             <item>
+		<variable>$tone_scheme</variable>
+		<default_value>USA</default_value>
+		<description>Dialtone</description>
+		<type>list</type>
+		<data> <text>Australia</text> <value>AUS</value> </data>
+		<data> <text>Austria</text> <value>AUT</value> </data>
+		<data> <text>China</text> <value>CHN</value> </data>
+		<data> <text>Denmark</text> <value>DNK</value> </data>
+		<data> <text>France</text> <value>FRA</value> </data>
+		<data> <text>Germany</text> <value>GER</value> </data>
+		<data> <text>Great Britain</text> <value>GBR</value> </data>
+		<data> <text>India</text> <value>IND</value> </data>
+		<data> <text>Italy</text> <value>ITA</value> </data>
+		<data> <text>Japan</text> <value>JPN</value> </data>
+		<data> <text>Mexico</text> <value>MEX</value> </data>
+		<data> <text>Netherlands</text> <value>NLD</value> </data>
+		<data> <text>Norway</text> <value>NOR</value> </data>
+		<data> <text>New Zealand</text> <value>NZL</value> </data>
+		<data> <text>Spain</text> <value>ESP</value> </data>
+		<data> <text>Sweden</text> <value>SWE</value> </data>
+		<data> <text>Switzerland</text> <value>SWI</value> </data>
+		<data> <text>United States</text> <value>USA</value> </data>
+	    </item>
         </subcategory>
     </category>
 </template_data>
