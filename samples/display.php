@@ -4,6 +4,9 @@ ini_set('display_errors', 1);
 
 $brand = $_REQUEST['brand'];
 $product_model = explode('+',$_REQUEST['model_demo']);
+$mac = isset($_REQUEST['mac']) ? $_REQUEST['mac'] : '';
+$server = isset($_REQUEST['server']) ? $_REQUEST['server'] : '';
+$timezone = isset($_REQUEST['timezone']) ? $_REQUEST['timezone'] : '';
 
 $product = $product_model[0];
 $model = $product_model[1];
@@ -22,7 +25,7 @@ foreach($files as $data) {
 if(empty($template_data_array)) {
     die("No Template Data Found");
 }
-$html_array = generate_gui_html($template_data_array,NULL, TRUE, NULL,$_REQUEST['registrations']);
+$html_array = generate_gui_html($template_data_array,NULL, TRUE, NULL,$_REQUEST['regs']);
 ?>
 <form name="form1" method="post" action="process.php">
 <?php
@@ -61,6 +64,9 @@ foreach($html_array as $sections) {
 <input type="hidden" id="brand" name="brand" value="<?php echo $brand;?>" />
 <input type="hidden" id="product" name="product" value="<?php echo $product;?>" />
 <input type="hidden" id="model" name="model" value="<?php echo $model;?>" />
+<input type="hidden" id="mac" name="mac" value="<?php echo $mac;?>" />
+<input type="hidden" id="server" name="server" value="<?php echo $server;?>" />
+<input type="hidden" id="timezone" name="timezone" value="<?php echo $timezone;?>" />
 <input type="submit" value="Submit" />
 </form>
 <?php
@@ -127,6 +133,36 @@ function generate_gui_html($cfg_data,$custom_cfg_data=NULL, $admin=TRUE, $user_c
     $group_count = 0;
     $variables_count = 0;
 
+	for($a=1;$a <= $max_lines; $a++) {
+	    $template_variables_array[$group_count]['title'] = "Line Information for Line ".$a;
+
+		//Username (Auth Name)
+		$key = "line_static|".$a."|ext";
+		$items = array("variable" => "ext","default_value" => "", "description" => "Username/Auth [STATIC]", "type" => "input");
+	    $template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$items,$key,$custom_cfg_data,$admin,$user_cfg_data,$custom_cfg_data_ari);
+	    $template_variables_array[$group_count]['data'][$variables_count]['looping'] = TRUE;
+		$variables_count++;
+		//Secret
+		$key = "line_static|".$a."|secret";
+		$items = array("variable" => "secret","default_value" => "", "description" => "Secret/Password [STATIC]", "type" => "input");		
+	    $template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$items,$key,$custom_cfg_data,$admin,$user_cfg_data,$custom_cfg_data_ari);
+	    $template_variables_array[$group_count]['data'][$variables_count]['looping'] = TRUE;
+		$variables_count++;
+		//Display Name
+		$key = "line_static|".$a."|displayname";
+		$items = array("variable" => "displayname","default_value" => "", "description" => "Display Name [STATIC]", "type" => "input");
+	    $template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$items,$key,$custom_cfg_data,$admin,$user_cfg_data,$custom_cfg_data_ari);
+	    $template_variables_array[$group_count]['data'][$variables_count]['looping'] = TRUE;
+		$variables_count++;
+	
+		$key = "";
+		$items = array("type" => "break");
+	    $template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$items,$key,$custom_cfg_data,$admin,$user_cfg_data,$custom_cfg_data_ari);
+	    $template_variables_array[$group_count]['data'][$variables_count]['looping'] = TRUE;
+		$variables_count++;
+		$group_count++;
+	}
+
     foreach($cfg_data as $data) {
         $data = fix_single_array_keys($data['category']);
         foreach($data as $cats) {
@@ -145,6 +181,7 @@ function generate_gui_html($cfg_data,$custom_cfg_data=NULL, $admin=TRUE, $user_c
                 }                    
                 $template_variables_array[$group_count]['title'] = $cats['name'];
             }
+
             $cats = fix_single_array_keys($cats['subcategory']);
             foreach($cats as $subcats) {
                 $items = fix_single_array_keys($subcats['item']);
@@ -157,6 +194,7 @@ function generate_gui_html($cfg_data,$custom_cfg_data=NULL, $admin=TRUE, $user_c
                                     $group_count++;
                                     $variables_count = 0;
                                     $template_variables_array[$group_count]['title'] = "Line Options for Line ".$a;
+									
                                     foreach($config_options['data']['item'] as $items) {
                                         if(isset($items['description'])) {
                                             $items['description'] = str_replace('{$count}',$a,$items['description']);
@@ -259,7 +297,7 @@ function generate_form_data ($i,$cfg_data,$key=NULL,$custom_cfg_data=NULL,$admin
                 $template_variables_array['max_chars'] = $cfg_data['max_chars'];
             }
             $template_variables_array['key'] = $key;
-            $template_variables_array['value'] = $custom_cfg_data[$key];
+            $template_variables_array['value'] = isset($custom_cfg_data[$key]) ? $custom_cfg_data[$key] : '';
             $template_variables_array['description'] = $cfg_data['description'];
             break;
         case "radio":
