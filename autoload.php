@@ -18,7 +18,7 @@ class ProvisionerConfig {
         ));
     }
 
-    public static function endpointsAutoload($class) {
+    public static function endpointsAutoload($class) {		
         // If for some reason we get here and the class is already loaded, return
         if (class_exists($class, FALSE))
         {
@@ -27,7 +27,6 @@ class ProvisionerConfig {
 
         // Try to include the class
         $file = str_replace('_', DIRECTORY_SEPARATOR, $class) . '.php';
-
         if (is_file(PROVISIONER_BASE . $file)) {
             require PROVISIONER_BASE . $file;
 
