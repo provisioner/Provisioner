@@ -44,6 +44,7 @@ $zones = DateTimeZone::listIdentifiers();
 <form name="form1" method="post" action="display.php">
 <label>Mac Address:<input type="text" name="mac" id="mac" /></label><br />
 <label>Primary SIP Server:<input type="text" name="server" id="server" /></label><br />
+<label>Outbound Proxy Server:<input type="text" name="proxyserver" id="proxyserver" /></label><br />
 <label>Please select Brand of Phone:<select name="brand" id="brand">
 	<option value="--">--</option>
 	<? foreach($brands_list as $data){ ?>

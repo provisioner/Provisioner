@@ -640,7 +640,7 @@ abstract class endpoint_base {
         if(isset($this->proxy)) {
             foreach($this->proxy as $key => $proxies) {
                 $contents = str_replace('{$proxy.ip.'.$key.'}', $proxies['ip'], $contents);
-                $contents = str_replace('{$proxy.port'.$key.'}', $proxies['port'], $contents);
+                $contents = str_replace('{$proxy.port.'.$key.'}', $proxies['port'], $contents);
             }
         }
         $contents = str_replace('{$mac}', $this->mac, $contents);
@@ -650,6 +650,7 @@ abstract class endpoint_base {
         $contents = str_replace('{$timezone}', $this->timezone['timezone'], $contents);
         $contents = str_replace('{$network_time_server}', $this->ntp, $contents);
 		$contents = str_replace('{$provisioning_type}', $this->provisioning_type, $contents);
+		$this->provisioning_path = isset($this->provisioning_path) ? $this->provisioning_path : $this->server[1]['ip'];
 		$contents = str_replace('{$provisioning_path}', $this->provisioning_path, $contents);
 		
         //Depreciated

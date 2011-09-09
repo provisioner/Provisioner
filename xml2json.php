@@ -76,6 +76,9 @@ switch($request) {
 				if(!$test) {
 					die('cant find model');
 				}
+				$data['phone_data']['brand'] = $brand;
+				$data['phone_data']['product'] = $product;
+				$data['phone_data']['model'] = $model;
 				$data['lines'] = $temp['data']['model_list'][$test[2]]['lines'];
 				$files = fix_single_array_keys($temp['data']['model_list'][$test[2]]['template_data']['files']);
 				if(!is_array($files)) {
@@ -95,7 +98,7 @@ switch($request) {
 									if($loop_data['type'] == 'loop') {
 										for($i = $loop_data['loop_start']; $i <= $loop_data['loop_end']; $i++) {
 											$name = explode("_",$loop_data['data']['item'][0]['variable']);
-											$var_nam = str_replace("\$","",$name[0])."_".$i;
+											$var_nam = "loop|".str_replace("\$","",$name[0])."_".$i;
 											foreach($loop_data['data']['item'] as $item_loop) {
 												if($item_loop['type'] != 'break') {												
 													$z_tmp = explode("_",$item_loop['variable']);
@@ -103,8 +106,8 @@ switch($request) {
 													$items_loop[$var_nam][$z] = $item_loop;
 													$items_loop[$var_nam][$z]['description'] = str_replace('{$count}', $i, $items_loop[$var_nam][$z]['description']);
 													$items_loop[$var_nam][$z]['variable'] = str_replace('_', '_'.$i.'_', $items_loop[$var_nam][$z]['variable']);
-													$items_loop[$var_nam][$z]['default_value'] = fix_single_array_keys($items_loop[$var_nam][$z]['default_value']);
-													$items_loop[$var_nam][$z]['loop'] = 'TRUE';
+													$items_loop[$var_nam][$z]['default_value'] = isset($items_loop[$var_nam][$z]['default_value']) ? $items_loop[$var_nam][$z]['default_value'] : '';
+													$items_loop[$var_nam][$z]['loop'] = TRUE;
 													$items_loop[$var_nam][$z]['loop_count'] = $i;
 												}
 											}
@@ -113,7 +116,7 @@ switch($request) {
 										$items = $items_loop;
 									} elseif($loop_data['type'] == 'loop_line_options') {
 										for($i = 1; $i <= $data['lines']; $i++) {
-											$var_nam = "lineloop_".$i;
+											$var_nam = "lineloop|line_".$i;
 											foreach($loop_data['data']['item'] as $item_loop) {
 												if($item_loop['type'] != 'break') {
 													$z = str_replace("\$","",$item_loop['variable']);
@@ -122,7 +125,7 @@ switch($request) {
 													//$items_loop[$var_nam][$z]['variable'] = str_replace('_', '_'.$i.'_', $items_loop[$var_nam][$z]['variable']);
 													$items_loop[$var_nam][$z]['default_value'] = fix_single_array_keys($items_loop[$var_nam][$z]['default_value']);
 													$items_loop[$var_nam][$z]['default_value'] = str_replace('{$count}', $i, $items_loop[$var_nam][$z]['default_value']);
-													$items_loop[$var_nam][$z]['line_loop'] = 'TRUE';
+													$items_loop[$var_nam][$z]['line_loop'] = TRUE;
 													$items_loop[$var_nam][$z]['line_count'] = $i;
 												}
 											}
@@ -133,12 +136,13 @@ switch($request) {
 										unset($items[$key]);
 									} else {
 										unset($items[$key]);
-										$var_nam = str_replace("\$","",$loop_data['variable']);
+										$var_nam = "option|".str_replace("\$","",$loop_data['variable']);
 										$items[$var_nam] = $loop_data;					
 									}
 								}
 								if(array_key_exists($subcat_data['name'],$data['data'][$cat_data['name']])) {
-									//array_merge
+									$oldsub = $data['data'][$cat_data['name']][$subcat_data['name']];
+									$data['data'][$cat_data['name']][$subcat_data['name']] = array_merge($oldsub,$items);
 								} else {
 									$data['data'][$cat_data['name']][$subcat_data['name']] = $items;	
 								}

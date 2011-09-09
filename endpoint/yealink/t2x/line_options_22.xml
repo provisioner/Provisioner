@@ -66,34 +66,6 @@
                         </data>
                     </item>
                     <item>
-                        <variable>$outbound_proxy_server</variable>
-                        <default_value></default_value>
-                        <description>Outbound Proxy Server</description>
-                        <max_chars>16</max_chars>
-                        <type>input</type>
-                    </item>
-                    <item>
-                        <variable>$outbound_proxy_server_port</variable>
-                        <default_value>5060</default_value>
-                        <description>Outbound Proxy Server Port</description>
-                        <max_chars>6</max_chars>
-                        <type>input</type>
-                    </item>
-                    <item>
-                        <variable>$bk_outbound_proxy_server</variable>
-                        <default_value></default_value>
-                        <description>Backup Outbound Proxy Server</description>
-                        <max_chars>16</max_chars>
-                        <type>input</type>
-                    </item>
-                    <item>
-                        <variable>$bk_outbound_proxy_server_port</variable>
-                        <default_value>5060</default_value>
-                        <description>Backup Outbound Proxy Server Port</description>
-                        <max_chars>6</max_chars>
-                        <type>input</type>
-                    </item>
-                    <item>
                         <variable>$transport</variable>
                         <default_value>0</default_value>
                         <description>Transport</description>
