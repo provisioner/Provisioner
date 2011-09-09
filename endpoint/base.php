@@ -60,6 +60,20 @@ abstract class endpoint_base {
     public static function set_modules_path($path) {
         self::$modules_path = $path;
     }
+    
+    	/**
+	* List all global files as reg statements here.
+	* This should be called statically eg: $data=endpoint_base:dynamic_global_files($filename);
+	* Return data for global if valid
+	* else just return false (eg file does not exist)
+	* @param String $filename Name of the file: eg aastra.cfg
+	* @return String, data of that file: eg # This file intentionally left blank!
+	*/
+	function dynamic_global_files($filename) {
+		if($filename == 'aastra.cfg') {
+			return '# intentionally left blank';
+		} 
+	}
 
     //Initialize all child functions
     function reboot() {
