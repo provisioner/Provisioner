@@ -7,25 +7,16 @@ $product_model = explode('+',$_REQUEST['model_demo']);
 $mac = isset($_REQUEST['mac']) ? $_REQUEST['mac'] : '';
 $server = isset($_REQUEST['server']) ? $_REQUEST['server'] : '';
 $timezone = isset($_REQUEST['timezone']) ? $_REQUEST['timezone'] : '';
+$proxyserver = isset($_REQUEST['proxyserver']) ? $_REQUEST['proxyserver'] : '';
 
 $product = $product_model[0];
 $model = $product_model[1];
-$family_data = xml2array('../endpoint/'.$brand.'/'.$product.'/family_data.xml');
-$found = arraysearchrecursive($model, $family_data['data']['model_list'], 'model');
-$key = $found[0];
-$files = fix_single_array_keys($family_data['data']['model_list'][$key]['template_data']['files']);
-$template_data_array = array();
-foreach($files as $data) {
-    if(file_exists('../endpoint/'.$brand.'/'.$product.'/'.$data)) {
-        $template_data_xml = xml2array('../endpoint/'.$brand.'/'.$product.'/'.$data);
-        $template_data_xml = fix_single_array_keys($template_data_xml['template_data']);
-        $template_data_array = array_merge($template_data_array, $template_data_xml);
-    }
-}
-if(empty($template_data_array)) {
-    die("No Template Data Found");
-}
-$html_array = generate_gui_html($template_data_array,NULL, TRUE, NULL,$_REQUEST['regs']);
+
+$json_data = json_decode(file_get_contents('http://www.provisioner.net/repo/xml2json.php?request=data&brand='.$brand.'&product='.$product.'&model='.$model),true);
+
+$html_array = generate_gui_html($json_data,$_REQUEST['regs']);
+
+
 ?>
 <form name="form1" method="post" action="process.php">
 <?php
@@ -42,7 +33,8 @@ foreach($html_array as $sections) {
 			case 'list':
 				echo $html_els['description']."<select name='".$html_els['key']."'>";
 				foreach($html_els['data'] as $list) {
-					  echo '<option value="'.$list['value'].'">'.$list['description'].'</option>';
+					  $selected = ($html_els['value'] == $list['value']) ? 'selected' : '';
+					  echo '<option value="'.$list['value'].'" '.$selected.'>'.$list['description'].'</option>';
 				}
 				echo "</select><br />";
 				break;
@@ -67,6 +59,7 @@ foreach($html_array as $sections) {
 <input type="hidden" id="mac" name="mac" value="<?php echo $mac;?>" />
 <input type="hidden" id="server" name="server" value="<?php echo $server;?>" />
 <input type="hidden" id="timezone" name="timezone" value="<?php echo $timezone;?>" />
+<input type="hidden" id="proxyserver" name="proxyserver" value="<?echo $proxyserver;?>">
 <input type="submit" value="Submit" />
 </form>
 <?php
@@ -107,27 +100,10 @@ function fix_single_array_keys($array,$variable=FALSE) {
  * @param <type> $user_cfg_data
  * @return <type>
  */
-function generate_gui_html($cfg_data,$custom_cfg_data=NULL, $admin=TRUE, $user_cfg_data=NULL,$max_lines=3,$ext=NULL) {
+function generate_gui_html($cfg_data,$max_lines=3) {
     //take the data out of the database and turn it back into an array for use
 
-    $count = count($cfg_data);
-
-    //Check to see if there is a custom template for this phone already listed in the endpointman_mac_list database
-    if (!empty($custom_cfg_data)) {
-        $custom_cfg_data = unserialize($custom_cfg_data);
-        if(array_key_exists('data', $custom_cfg_data)) {
-            $custom_cfg_data_ari = $custom_cfg_data['ari'];
-            $custom_cfg_data = $custom_cfg_data['data'];
-        } else {
-            $custom_cfg_data_ari = array();
-        }
-    } else {
-        $custom_cfg_data = array();
-        $custom_cfg_data_ari = array();
-    }
-    if(isset($user_cfg_data)) {
-        $user_cfg_data = unserialize($user_cfg_data);
-    }
+	
 
     $template_variables_array = array();
     $group_count = 0;
@@ -139,141 +115,84 @@ function generate_gui_html($cfg_data,$custom_cfg_data=NULL, $admin=TRUE, $user_c
 		//Username (Auth Name)
 		$key = "line_static|".$a."|ext";
 		$items = array("variable" => "ext","default_value" => "", "description" => "Username/Auth [STATIC]", "type" => "input");
-	    $template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$items,$key,$custom_cfg_data,$admin,$user_cfg_data,$custom_cfg_data_ari);
+	    $template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$items,$key);
 	    $template_variables_array[$group_count]['data'][$variables_count]['looping'] = TRUE;
 		$variables_count++;
 		//Secret
 		$key = "line_static|".$a."|secret";
 		$items = array("variable" => "secret","default_value" => "", "description" => "Secret/Password [STATIC]", "type" => "input");		
-	    $template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$items,$key,$custom_cfg_data,$admin,$user_cfg_data,$custom_cfg_data_ari);
+	    $template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$items,$key);
 	    $template_variables_array[$group_count]['data'][$variables_count]['looping'] = TRUE;
 		$variables_count++;
 		//Display Name
 		$key = "line_static|".$a."|displayname";
 		$items = array("variable" => "displayname","default_value" => "", "description" => "Display Name [STATIC]", "type" => "input");
-	    $template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$items,$key,$custom_cfg_data,$admin,$user_cfg_data,$custom_cfg_data_ari);
+	    $template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$items,$key);
 	    $template_variables_array[$group_count]['data'][$variables_count]['looping'] = TRUE;
 		$variables_count++;
 	
 		$key = "";
 		$items = array("type" => "break");
-	    $template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$items,$key,$custom_cfg_data,$admin,$user_cfg_data,$custom_cfg_data_ari);
+	    $template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$items,$key);
 	    $template_variables_array[$group_count]['data'][$variables_count]['looping'] = TRUE;
 		$variables_count++;
 		$group_count++;
 	}
 
-    foreach($cfg_data as $data) {
-        $data = fix_single_array_keys($data['category']);
-        foreach($data as $cats) {
-            //We force the start of a new 'section' by increasing group_count and resetting variables_count to zero
-            if($cats['name'] != 'lines') {
-                $key = arraysearchrecursive($cats['name'], $template_variables_array, 'title');
-                if(is_array($key)) {
-                    $group_count == $key[0];
-                    $num = count(fix_single_array_keys($template_variables_array[$group_count]['data']));
-                    $variables_count == $num;
-                } else {
-                    if($admin) {
-                        $group_count++;
-                        $variables_count = 0;
-                    }
-                }                    
-                $template_variables_array[$group_count]['title'] = $cats['name'];
-            }
-
-            $cats = fix_single_array_keys($cats['subcategory']);
-            foreach($cats as $subcats) {
-                $items = fix_single_array_keys($subcats['item']);
-                foreach($items as $config_options) {
-                    if($admin) {
-                        //Administration View Only
-                        switch ($config_options['type']) {
-                            case "loop_line_options":
-                                for($a=1;$a <= $max_lines; $a++) {
-                                    $group_count++;
-                                    $variables_count = 0;
-                                    $template_variables_array[$group_count]['title'] = "Line Options for Line ".$a;
-									
-                                    foreach($config_options['data']['item'] as $items) {
-                                        if(isset($items['description'])) {
-                                            $items['description'] = str_replace('{$count}',$a,$items['description']);
-                                            $key = "line|".$a."|".str_replace('$','',$items['variable']);
-                                            if(array_key_exists($key,$custom_cfg_data)) {
-                                                $custom_cfg_data[$key] = $custom_cfg_data[$key];
-                                            } else {
-                                                $custom_cfg_data[$key] = str_replace('{$count}', $a, fix_single_array_keys($items['default_value']));
-                                            }
-                                        }
-                                        $items[$variables_count] = $items;
-                                        $template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$items,$key,$custom_cfg_data,$admin,$user_cfg_data,$custom_cfg_data_ari);
-                                        $template_variables_array[$group_count]['data'][$variables_count]['looping'] = TRUE;
-                                        $variables_count++;
-                                    }
-                                }
-                                continue 2;
-                            case "loop":
-                                //We force the start of a new 'section' by increasing group_count and resetting variables_count to zero
-                                $loop_start = $config_options['loop_start'];
-                                $loop_end = $config_options['loop_end'];
-                                for($a=$loop_start;$a<=$loop_end;$a++) {
-                                    foreach($config_options['data']['item'] as $items) {
-                                        if(isset($items['description'])) {
-                                            $items['description'] = str_replace('{$count}',$a,$items['description']);
-											$items['default_value'] = isset($items['default_value']) ? $items['default_value'] : '';
-                                            $key = "loop|".str_replace('$','',$items['variable'])."_".$a;
-                                            if(array_key_exists($key,$custom_cfg_data)) {
-                                                $custom_cfg_data[$key] = $custom_cfg_data[$key];
-                                            } else {
-                                                $custom_cfg_data[$key] = str_replace('{$count}', $a, fix_single_array_keys($items['default_value']));
-                                            }
-                                        }
-                                        $items[$variables_count] = $items;
-                                        $template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$items,$key,$custom_cfg_data,$admin,$user_cfg_data,$custom_cfg_data_ari);
-                                        $template_variables_array[$group_count]['data'][$variables_count]['looping'] = TRUE;
-                                        $variables_count++;
-                                    }
-                                }
-                                continue 2;
-                        }
-                    } else {
-
-
-                    }
-                    //Both Views
-                    switch ($config_options['type']) {
-                        case "break":
-                            $template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$config_options,$key,$custom_cfg_data,$admin,$user_cfg_data,$custom_cfg_data_ari);
-                            $variables_count++;
-                            break;
-                        default:
-                            if(array_key_exists('variable',$config_options)) {
-                                $key = 'option|'.str_replace('$','',$config_options['variable']);
-                                //TODO: Move this into the sync function
-                                //Checks to see if values are defined in the database, if not then we assume this is a new option and we need a default value here!
-                                if(!isset($custom_cfg_data[$key])) {
-                                    //xml2array will take values that have no data and turn them into arrays, we want to avoid the word 'array' as a default value, so we blank it out here if we are an array
-                                    if((array_key_exists('default_value',$config_options)) AND (is_array($config_options['default_value']))) {                                
-                                        $custom_cfg_data[$key] = "";
-                                    } elseif((array_key_exists('default_value',$config_options)) AND (!is_array($config_options['default_value']))) {
-                                        $custom_cfg_data[$key] = $config_options['default_value'];
-                                    }
-                                }
-                                if((!$admin) AND (isset($custom_cfg_data_ari[$key]))) {
-                                    $custom_cfg_data[$key] = $user_cfg_data[$key];
-                                    $template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$config_options,$key,$custom_cfg_data,$admin,$user_cfg_data,$custom_cfg_data_ari);
-                                    $variables_count++;
-                                } elseif($admin) {
-                                    $template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$config_options,$key,$custom_cfg_data,$admin,$user_cfg_data,$custom_cfg_data_ari);
-                                    $variables_count++;
-                                }
-                            }
-                            break;
-                    }
-                    continue;
-                }
-            }
-        }
+	$line_count = 1;
+    foreach($cfg_data['data'] as $key => $data) {
+		$template_variables_array[$group_count]['title'] = $key;
+		$variables_count = 0;
+		foreach($data as $key2 => $data2) {
+			foreach($data2 as $key3 => $data3) {
+				preg_match('/(.*)\|(.*)/i',$key3,$matches);				
+				$type = $matches[1];
+				$variable = $matches[2];
+				switch($type) {
+					case "lineloop":
+						if($line_count <= $max_lines) {
+							$variables_count = 0;
+							foreach($data3 as $items) {
+								$a = $items['line_loop'];
+								if(isset($items['description'])) {
+									$items['description'] = str_replace('{$count}',$a,$items['description']);
+									$key = $type."|".$a."|".str_replace('$','',$items['variable']);
+								}
+								$items[$variables_count] = $items;
+								$template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$items,$key);
+								$template_variables_array[$group_count]['data'][$variables_count]['looping'] = TRUE;
+								$variables_count++;
+							}
+						}
+						$line_count++;
+						break;
+					case "loop":
+						foreach($data3 as $items) {
+							$a = $items['loop_count'];
+							if(isset($items['description'])) {
+								$items['description'] = str_replace('{$count}',$a,$items['description']);
+								$key = $type."|".$a."|".str_replace('$','',$items['variable']);
+							}
+							$items[$variables_count] = $items;
+							$template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$items,$key);
+							$template_variables_array[$group_count]['data'][$variables_count]['looping'] = TRUE;
+							$variables_count++;
+						}
+						break;
+					case "option":
+						if(isset($data3['description'])) {
+							$data3['description'] = str_replace('{$count}',$a,$data3['description']);
+							$key = $type."|".str_replace('$','',$data3['variable']);
+							$template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$data3,$key);
+							$variables_count++;
+						}
+					default:
+						//echo $type."<br />";
+						break;
+				}
+			}
+		}
+		$group_count++;
     }
     return($template_variables_array);
 }
@@ -286,47 +205,33 @@ function generate_gui_html($cfg_data,$custom_cfg_data=NULL, $admin=TRUE, $user_c
  * @param array $custom_cfg_data
  * @return array
  */
-function generate_form_data ($i,$cfg_data,$key=NULL,$custom_cfg_data=NULL,$admin=FALSE,$user_cfg_data=NULL,$custom_cfg_data_ari=NULL) {
+function generate_form_data ($i,$cfg_data,$key=NULL) {
     switch ($cfg_data['type']) {
         case "input":
-            if((!$admin) && (isset($user_cfg_data[$key]))) {
-                $custom_cfg_data[$key] = $user_cfg_data[$key];
-            }
             $template_variables_array['type'] = "input";
-            if(isset($cfg_data['max_chars'])) {
-                $template_variables_array['max_chars'] = $cfg_data['max_chars'];
-            }
+            $template_variables_array['max_chars'] = isset($cfg_data['max_chars']) ? $cfg_data['max_chars'] : '';
             $template_variables_array['key'] = $key;
-            $template_variables_array['value'] = isset($custom_cfg_data[$key]) ? $custom_cfg_data[$key] : '';
+            $template_variables_array['value'] = isset($cfg_data['default_value']) && !empty($cfg_data['default_value']) ? $cfg_data['default_value'] : '';
             $template_variables_array['description'] = $cfg_data['description'];
             break;
         case "radio":
-            if((!$admin) && (isset($user_cfg_data[$key]))) {
-                $custom_cfg_data[$key] = $user_cfg_data[$key];
-            }
-            $num = $custom_cfg_data[$key];
             $template_variables_array['type'] = "radio";
             $template_variables_array['key'] = $key;
             $template_variables_array['description'] = $cfg_data['description'];
+            $template_variables_array['value'] = isset($cfg_data['default_value']) && !empty($cfg_data['default_value']) ? $cfg_data['default_value'] : '';
             $z = 0;
             while($z < count($cfg_data['data'])) {
                 $template_variables_array['data'][$z]['key'] = $key;
                 $template_variables_array['data'][$z]['value'] = $cfg_data['data'][$z]['value'];
                 $template_variables_array['data'][$z]['description'] = $cfg_data['data'][$z]['text'];
-                if ($cfg_data['data'][$z]['value'] == $num) {
-                    $template_variables_array['data'][$z]['checked'] = 'checked';
-                }
                 $z++;
             }
             break;
         case "list":
-            if((!$admin) && (isset($user_cfg_data[$key]))) {
-                $custom_cfg_data[$key] = $user_cfg_data[$key];
-            }
-            $num = $custom_cfg_data[$key];
             $template_variables_array['type'] = "list";
             $template_variables_array['key'] = $key;
             $template_variables_array['description'] = $cfg_data['description'];
+            $template_variables_array['value'] = isset($cfg_data['default_value']) && !empty($cfg_data['default_value']) ? $cfg_data['default_value'] : '';
             $z = 0;
             while($z < count($cfg_data['data'])) {
                 $template_variables_array['data'][$z]['value'] = $cfg_data['data'][$z]['value'];
@@ -339,61 +244,44 @@ function generate_form_data ($i,$cfg_data,$key=NULL,$custom_cfg_data=NULL,$admin
                     $cfg_data['data'][$z]['enable'] = str_replace('{$count}', $z, $cfg_data['data'][$z]['enable']);
                     $template_variables_array['data'][$z]['enables'] = explode(",", $cfg_data['data'][$z]['enable']);
                 }
-                if ($cfg_data['data'][$z]['value'] == $num) {
-                    $template_variables_array['data'][$z]['selected'] = 'selected';
-                }
                 $z++;
             }
             break;
         case "checkbox":
-            if((!$admin) && (isset($user_cfg_data[$key]))) {
-                $custom_cfg_data[$key] = $user_cfg_data[$key];
-            }
-            $num = $custom_cfg_data[$key];
             $template_variables_array['type'] = "checkbox";
             $template_variables_array['key'] = $key;
             $template_variables_array['description'] = $cfg_data['description'];
+            $template_variables_array['value'] = isset($cfg_data['default_value']) && !empty($cfg_data['default_value']) ? $cfg_data['default_value'] : '';
             $z = 0;
             while($z < count($cfg_data['data'])) {
                 $template_variables_array['data'][$z]['key'] = $key;
                 $template_variables_array['data'][$z]['value'] = $cfg_data['data'][$z]['value'];
                 $template_variables_array['data'][$z]['description'] = $cfg_data['data'][$z]['text'];
-                if ($cfg_data['data'][$z]['value'] == $num) {
-                    $template_variables_array['data'][$z]['checked'] = 'checked';
-                }
                 $z++;
             }
             break;
         case "file";
-            if((!$admin) && (isset($user_cfg_data[$key]))) {
-                $custom_cfg_data[$key] = $user_cfg_data[$key];
-            }
             $template_variables_array['type'] = "file";
+            $template_variables_array['value'] = isset($cfg_data['default_value']) && !empty($cfg_data['default_value']) ? $cfg_data['default_value'] : '';
             if(isset($cfg_data['max_chars'])) {
                 $template_variables_array['max_chars'] = $cfg_data['max_chars'];
             }
             $template_variables_array['key'] = $key;
-            $template_variables_array['value'] = $custom_cfg_data[$key];
+            $template_variables_array['value'] = '';
             $template_variables_array['description'] = $cfg_data['description'];
             break;
         case "textarea":
-            if((!$admin) && (isset($user_cfg_data[$key]))) {
-                $custom_cfg_data[$key] = $user_cfg_data[$key];
-            }
             $template_variables_array['type'] = "textarea";
+            $template_variables_array['value'] = isset($cfg_data['default_value']) && !empty($cfg_data['default_value']) ? $cfg_data['default_value'] : '';
             if(isset($cfg_data['max_chars'])) {
                 $template_variables_array['max_chars'] = $cfg_data['max_chars'];
             }
             $template_variables_array['key'] = $key;
-            $template_variables_array['value'] = $custom_cfg_data[$key];
+            $template_variables_array['value'] = '';
             $template_variables_array['description'] = $cfg_data['description'];
             break;
         case "break":
-           if($admin) {
-                $template_variables_array['type'] = "break";
-           } else {
-                $template_variables_array['type'] = "NA";
-           }
+            $template_variables_array['type'] = "break";
            break;
         default:
             $template_variables_array['type'] = "NA";
@@ -403,15 +291,6 @@ function generate_form_data ($i,$cfg_data,$key=NULL,$custom_cfg_data=NULL,$admin
 if(isset($cfg_data['description_attr']['tooltip'])) {
     $template_variables_array['tooltip'] = $cfg_data['description_attr']['tooltip'];
 }
-
-    if(($admin) AND ($cfg_data['type'] != "break") AND ($cfg_data['type'] != "group")) {
-       
-        $template_variables_array['aried'] = 1;
-        $template_variables_array['ari']['key'] = $key;
-        if(isset($custom_cfg_data_ari[$key])) {
-            $template_variables_array['ari']['checked'] = "checked";
-        }
-    }
     return($template_variables_array);
 }
 
