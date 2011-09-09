@@ -149,7 +149,12 @@ class FileRest {
 					$stuff['data']['message'] = $this->last_error;
 				}
 			} else {
-				$stuff['data'] = $data;
+				//Don't allow double data'ssssssss
+				if(array_key_exists('data',$data)) {
+					$stuff = $data;
+				} else {
+					$stuff['data'] = $data;
+				}		
 			}
 		}
 		$this->restapi->sendData($stuff);

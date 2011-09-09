@@ -138,13 +138,13 @@ if(!$data['data']['success']) {
 		if(!$data['data']['success']) {
 			echo "Error From Rest Server: ". $data['data']['message']."<br />";
 		} else {
-			echo 'Sucess!<br /><br />Point your phones provisioning address to: http://www.provisioner.net/g/v1/accounts/web/provision/'.$_REQUEST['mac'];
+			echo 'Sucess!<br /><br />Point your phones provisioning address to: http://www.provisioner.net/g/v1/accounts/web/provision/';
 		}
 	} else {
 		echo "Error From Rest Server: ". $data['data']['message']."<br />";
 	}
 } else {
-	echo 'Sucess!<br /><br />Point your phones provisioning address to: http://www.provisioner.net/g/v1/accounts/web/provision/'.$_REQUEST['mac'];
+	echo 'Sucess!<br /><br />Point your phones provisioning address to: http://www.provisioner.net/g/v1/accounts/web/provision/';
 }
 
 echo '<br/>';
