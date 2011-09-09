@@ -15,6 +15,7 @@
 		<user_ringer idx="{$line}" perm="">{$extringer}</user_ringer>
 		<user_xml_screen_url idx="{$line}" perm="">{$idle_screen_url}</user_xml_screen_url>
 		<user_idle_text idx="{$line}" perm="">{$display_text_url}</user_idle_text>
+		<user_srtp idx="{$line}" perm="">off</user_srtp>
 		{/line_loop}
 
 		<intercom_connect_type perm="">intercom_connect_type_handsfree</intercom_connect_type>
@@ -25,6 +26,10 @@
 		<admin_mode_password_confirm perm="R">{$admin_mode_password_confirm}</admin_mode_password_confirm>
 		<firmware_status perm="R">{$provisioning_type}://{$server.ip.1}{$provisioning_path}/{$mac}_firmware.xml</firmware_status>
 		<update_policy perm="">auto_update</update_policy>
+		<timezone perm="R"></timezone>
+		<utc_offset perm="R">{$gmtoff}</utc_offset>
+		<dst perm="R">{$dstrule}</dst>
+		<tone_scheme perm="R">{$tone_scheme}</tone_scheme>
 
 		<gui_fkey1 perm="">{$gui_fkey1}</gui_fkey1>
 		<gui_fkey2 perm="">{$gui_fkey2}</gui_fkey2>
