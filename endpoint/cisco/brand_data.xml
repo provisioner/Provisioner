@@ -55,6 +55,15 @@
 				<id>3</id>
 				<last_modified>1311441576</last_modified>
 			</family>
+			<family>
+				<name>Linksys/Cisco/Sipura SPA Adapter Models [2102, 3102(FXS Only)]</name>
+				<directory>spax102</directory>
+				<version>0.1</version>
+				<description></description>
+				<changelog></changelog>
+				<id>6</id>
+				<last_modified>1315656780</last_modified>
+			</family>
 <!--End Auto Generated-->
 
 		</family_list>
