@@ -60,6 +60,20 @@ abstract class endpoint_base {
     public static function set_modules_path($path) {
         self::$modules_path = $path;
     }
+    
+    	/**
+	* List all global files as reg statements here.
+	* This should be called statically eg: $data=endpoint_base:dynamic_global_files($filename);
+	* Return data for global if valid
+	* else just return false (eg file does not exist)
+	* @param String $filename Name of the file: eg aastra.cfg
+	* @return String, data of that file: eg # This file intentionally left blank!
+	*/
+	function dynamic_global_files($filename) {
+		if($filename == 'aastra.cfg') {
+			return '# intentionally left blank';
+		} 
+	}
 
     //Initialize all child functions
     function reboot() {
@@ -640,7 +654,7 @@ abstract class endpoint_base {
         if(isset($this->proxy)) {
             foreach($this->proxy as $key => $proxies) {
                 $contents = str_replace('{$proxy.ip.'.$key.'}', $proxies['ip'], $contents);
-                $contents = str_replace('{$proxy.port'.$key.'}', $proxies['port'], $contents);
+                $contents = str_replace('{$proxy.port.'.$key.'}', $proxies['port'], $contents);
             }
         }
         $contents = str_replace('{$mac}', $this->mac, $contents);
@@ -650,6 +664,7 @@ abstract class endpoint_base {
         $contents = str_replace('{$timezone}', $this->timezone['timezone'], $contents);
         $contents = str_replace('{$network_time_server}', $this->ntp, $contents);
 		$contents = str_replace('{$provisioning_type}', $this->provisioning_type, $contents);
+		$this->provisioning_path = isset($this->provisioning_path) ? $this->provisioning_path : $this->server[1]['ip'];
 		$contents = str_replace('{$provisioning_path}', $this->provisioning_path, $contents);
 		
         //Depreciated
