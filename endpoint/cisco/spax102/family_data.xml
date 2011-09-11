@@ -1,0 +1,30 @@
+<data>
+	<name>Linksys/Cisco/Sipura SPA Adapter Models [2102, 3102(FXS Only)]</name>
+	<id>6</id>
+	<version>0.1</version>
+	<directory>spax102</directory>
+	<firmware_ver></firmware_ver>
+	<firmware_pkg>NULL</firmware_pkg>
+	<firmware_md5sum></firmware_md5sum>
+	<description>New Device</description>
+	<configuration_files>$mac.cfg,global.cfg</configuration_files>
+	<changelog></changelog>
+	<model_list>
+		<model>SPA2102</model>
+		<lines>2</lines>
+		<id>1</id>
+		<template_data>
+			<files>template_data.xml</files>
+                        <files>keys.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>SPA3102</model>
+		<lines>1</lines>
+		<id>2</id>
+		<template_data>
+			<files>template_data.xml</files>
+                        <files>keys.xml</files>
+		</template_data>
+	</model_list>
+</data>

@@ -11,9 +11,11 @@ echo "<pre>";
             ini_set('display_errors', 1);
 define('PROVISIONER_BASE', '../');
 
+//print_r($_REQUEST);
+
 //Get line options
 foreach($_REQUEST as $key => $data) {
-	if(preg_match("/line\|(.*)\|(.*)/i",$key,$matches)) {
+	if(preg_match("/lineloop\|(.*)\|(.*)/i",$key,$matches)) {
 		$stuff = $matches;
 		$line = $stuff[1];
 		$var = $stuff[2];
@@ -21,12 +23,11 @@ foreach($_REQUEST as $key => $data) {
 	
 		$line_options[$line]['options'][$var] = $_REQUEST[$req];
 		unset($_REQUEST[$req]);
-	}elseif(preg_match("/loop\|(.*)_(.*)_([\d]*)/i",$key,$matches)) {
-		$stuff = $matches;
-		
+	}elseif(preg_match("/loop\|.*\|(.*)_([\d]*)_(.*)/i",$key,$matches)) {
+		$stuff = $matches;		
 		$loop = $stuff[1];
-		$var = $stuff[2];
-		$count = $stuff[3];
+		$var = $stuff[3];
+		$count = $stuff[2];
 		$req = $stuff[0];
 	
 		$loops_options[$loop][$count][$var] = $_REQUEST[$req];
@@ -84,6 +85,14 @@ $endpoint->server[1]['port'] = 5060;
 $endpoint->server[2]['ip'] = "20.20.20.20";
 $endpoint->server[2]['port'] = 7000;
 
+//Proxy Server IP Address & Port
+$endpoint->proxy[1]['ip'] = $_REQUEST['proxyserver'];
+$endpoint->proxy[1]['port'] = 5060;
+
+//Proxy Server Backup IP Address & Port
+//$endpoint->proxy[2]['ip'] = $_REQUEST['server'];
+//$endpoint->proxy[2]['port'] = 5060;
+
 //Provide alternate Configuration file instead of the one from the hard drive
 //$endpoint->config_files_override['$mac.cfg'] = "{\$srvip}\n{\$admin_pass|0}\n{\$test.line.1}";
 
@@ -106,6 +115,39 @@ $endpoint->options =  $final_ops;
 // Because every brand is an extension (eventually) of endpoint, you know this function will exist regardless of who it is
 $returned_data = $endpoint->generate_config();
 ksort($returned_data);
+
+$prov_data['type'] = 'WEB';
+$prov_data['statics']['brand'] = $brand;
+$prov_data['statics']['family'] = $family;
+$prov_data['statics']['model'] = $model;
+$prov_data['statics']['timezone'] = $_REQUEST['timezone'];
+$prov_data['statics']['server'] = $_REQUEST['server'];
+$prov_data['statics']['proxyserver'] = $_REQUEST['proxyserver'];
+$prov_data['lines'] = $endpoint->lines;
+$prov_data['options'] = $endpoint->options;
+
+echo 'Ok Pushing this to the REST Server so you can use it on your phone! :-) <br/>';
+require('Pest.php');
+$pest = new Pest('http://www.provisioner.net/r/v1/accounts');
+$data = $pest->put('/web/provision/'.$_REQUEST['mac'],json_encode($prov_data));
+$data = json_decode($data,TRUE);
+if(!$data['data']['success']) {
+	if($data['data']['message'] == 'Account Already Exists. Use POST instead') {
+		$data = $pest->post('/web/provision/'.$_REQUEST['mac'],json_encode($prov_data));
+		$data = json_decode($data,TRUE);
+		if(!$data['data']['success']) {
+			echo "Error From Rest Server: ". $data['data']['message']."<br />";
+		} else {
+			echo 'Sucess!<br /><br />Point your phones provisioning address to: http://www.provisioner.net/g/v1/accounts/web/provision/';
+		}
+	} else {
+		echo "Error From Rest Server: ". $data['data']['message']."<br />";
+	}
+} else {
+	echo 'Sucess!<br /><br />Point your phones provisioning address to: http://www.provisioner.net/g/v1/accounts/web/provision/';
+}
+
+echo '<br/>';
 
 if (isset($_REQUEST['brand'])) {
     foreach($returned_data as $key => $files) {
