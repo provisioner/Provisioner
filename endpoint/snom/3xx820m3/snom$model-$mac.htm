@@ -15,6 +15,7 @@
 		<user_ringer idx="{$line}" perm="">{$extringer}</user_ringer>
 		<user_xml_screen_url idx="{$line}" perm="">{$idle_screen_url}</user_xml_screen_url>
 		<user_idle_text idx="{$line}" perm="">{$display_text_url}</user_idle_text>
+		<user_srtp idx="{$line}" perm="">off</user_srtp>
 		{/line_loop}
 
 		<intercom_connect_type perm="">intercom_connect_type_handsfree</intercom_connect_type>
@@ -29,6 +30,8 @@
 		<utc_offset perm="R">{$gmtoff}</utc_offset>
 		<dst perm="R">{$dstrule}</dst>
 		<tone_scheme perm="R">{$tone_scheme}</tone_scheme>
+		<date_us_format>{$date_us_format}</date_us_format>
+		<time_24_format>{$time_24_format}</time_24_format>
 
 		<gui_fkey1 perm="">{$gui_fkey1}</gui_fkey1>
 		<gui_fkey2 perm="">{$gui_fkey2}</gui_fkey2>
