@@ -60,6 +60,22 @@
                 <type>input</type>
             </item>
             <item>
+		<variable>$date_us_format</variable>
+		<default_value>on</default_value>
+		<description>Date Format</description>
+		<type>list</type>
+		<data> <text>American</text> <value>on</value> </data>
+		<data> <text>European</text> <value>off</value> </data>
+            </item>
+            <item>
+		<variable>$time_24_format</variable>
+		<default_value>off</default_value>
+		<description>Time Format</description>
+		<type>list</type>
+		<data> <text>AM/PM</text> <value>on</value> </data>
+		<data> <text>24 hour</text> <value>off</value> </data>
+            </item>
+            <item>
 		<variable>$tone_scheme</variable>
 		<default_value>USA</default_value>
 		<description>Dialtone</description>
