@@ -21,7 +21,7 @@ abstract class endpoint_base {
     public $timezone;       // Global timezone var
     public $DateTimeZone;   // timezone, as a DateTimezone object, much more flexible than just an offset and name.
     public $server;         // Contains an array of valid server IPs & ports, in case phones support backups
-    public $proxy;			// Contains an array of valid proxy IPs & ports
+    public $proxy=array();	// Contains an array of valid proxy IPs & ports
     public $ntp;            //network time protocol server
     public $daylight_savings = FALSE;	//Daylight savings time on or off.
     public $lines;          // Individual line settings
@@ -187,6 +187,10 @@ abstract class endpoint_base {
         $this->setup_tz();
         $this->setup_ntp();
     	$this->data_integrity();
+	if (!isset($this->provisioning_path)) {
+		$this->provisioning_path = $this->server[1]['ip'];
+	}
+
 	if (!in_array('$mac',$this->config_file_replacements)) {
 		$this->config_file_replacements['$mac']=$this->mac;
 	}
@@ -647,29 +651,38 @@ abstract class endpoint_base {
      * @return string
      */
     function replace_static_variables($contents, $specific_line="GLOBAL", $looping=TRUE) {
+	$replace=array(
+		# These first ones have an identical field name in the object and the template.
+		# This is a good thing, and should be done wherever possible.
+		'{$mac}'=>$this->mac,
+		'{$model}'=>$this->model,
+		'{$provisioning_type}'=>$this->provisioning_type,
+		'{$provisioning_path}'=>$this->provisioning_path,
+
+		# These are not the same.
+		'{$timezone_gmtoffset}'=>$this->timezone['gmtoffset'],
+		'{$timezone_timezone}'=>$this->timezone['timezone'],
+		'{$timezone}'=>$this->timezone['timezone'], # Should this be depricated??
+		'{$network_time_server}'=>$this->ntp,
+
+		# The rest of these are depricated:
+		'{$gmtoff}'=>$this->timezone['gmtoffset'],
+		'{$gmthr}'=>$this->timezone['gmtoffset'],
+	);
+
+	# These are the loops
+	foreach($this->proxy as $key => $proxies) {
+		$replace['{$proxy.ip.'.$key.'}']=$proxies['ip'];
+		$replace['{$proxy.port.'.$key.'}']=$proxies['port'];
+	}
+
         foreach($this->server as $key => $servers) {
-            $contents = str_replace('{$server.ip.'.$key.'}', $servers['ip'], $contents);
-            $contents = str_replace('{$server.port.'.$key.'}', $servers['port'], $contents);
+		$replace['{$server.ip.'.$key.'}']=$servers['ip'];
+		$replace['{$server.port.'.$key.'}']=$servers['port'];
         }
-        if(isset($this->proxy)) {
-            foreach($this->proxy as $key => $proxies) {
-                $contents = str_replace('{$proxy.ip.'.$key.'}', $proxies['ip'], $contents);
-                $contents = str_replace('{$proxy.port.'.$key.'}', $proxies['port'], $contents);
-            }
-        }
-        $contents = str_replace('{$mac}', $this->mac, $contents);
-        $contents = str_replace('{$model}', $this->model, $contents);
-        $contents = str_replace('{$timezone_gmtoffset}', $this->timezone['gmtoffset'], $contents);
-        $contents = str_replace('{$timezone_timezone}', $this->timezone['timezone'], $contents);
-        $contents = str_replace('{$timezone}', $this->timezone['timezone'], $contents);
-        $contents = str_replace('{$network_time_server}', $this->ntp, $contents);
-		$contents = str_replace('{$provisioning_type}', $this->provisioning_type, $contents);
-		$this->provisioning_path = isset($this->provisioning_path) ? $this->provisioning_path : $this->server[1]['ip'];
-		$contents = str_replace('{$provisioning_path}', $this->provisioning_path, $contents);
-		
-        //Depreciated
-        $contents = str_replace('{$gmtoff}', $this->timezone['gmtoffset'], $contents);
-        $contents = str_replace('{$gmthr}', $this->timezone['gmtoffset'], $contents);
+
+	$contents = str_replace(array_keys($replace),array_values($replace),$contents);
+
         if (($specific_line != "GLOBAL") AND ($looping == TRUE)) {
             $contents = str_replace('{$line}', $specific_line, $contents);
             $contents = str_replace('{$ext}', $this->lines[$specific_line]['ext'], $contents);
