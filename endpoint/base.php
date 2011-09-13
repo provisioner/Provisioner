@@ -190,6 +190,12 @@ abstract class endpoint_base {
 	if (!isset($this->provisioning_path)) {
 		$this->provisioning_path = $this->server[1]['ip'];
 	}
+	if (!isset($this->vlan_id)) {
+		$this->vlan_id=0;
+	}
+	if (!isset($this->vlan_qos)) {
+		$this->vlan_qos=5;
+	}
 
 	if (!in_array('$mac',$this->config_file_replacements)) {
 		$this->config_file_replacements['$mac']=$this->mac;
@@ -658,6 +664,8 @@ abstract class endpoint_base {
 		'{$model}'=>$this->model,
 		'{$provisioning_type}'=>$this->provisioning_type,
 		'{$provisioning_path}'=>$this->provisioning_path,
+		'{$vlan_id}'=>$this->vlan_id,
+		'{$vlan_qos}'=>$this->vlan_qos,
 
 		# These are not the same.
 		'{$timezone_gmtoffset}'=>$this->timezone['gmtoffset'],
