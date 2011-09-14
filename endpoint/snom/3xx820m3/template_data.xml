@@ -84,8 +84,8 @@
 		<default_value>off</default_value>
 		<description>Time Format</description>
 		<type>list</type>
-		<data> <text>AM/PM</text> <value>on</value> </data>
-		<data> <text>24 hour</text> <value>off</value> </data>
+		<data> <text>AM/PM</text> <value>off</value> </data>
+		<data> <text>24 hour</text> <value>on</value> </data>
             </item>
             <item>
 		<variable>$tone_scheme</variable>
