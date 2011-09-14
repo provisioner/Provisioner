@@ -79,6 +79,7 @@ switch($request) {
 				$data['phone_data']['brand'] = $brand;
 				$data['phone_data']['product'] = $product;
 				$data['phone_data']['model'] = $model;
+				$data['admin'] = TRUE;
 				$data['lines'] = $temp['data']['model_list'][$test[2]]['lines'];
 				$files = fix_single_array_keys($temp['data']['model_list'][$test[2]]['template_data']['files']);
 				if(!is_array($files)) {

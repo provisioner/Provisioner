@@ -49,13 +49,13 @@ $handler->json_error();
 
 //$method = 'provision';
 switch ($method) {
-    case 'provision_template':
-         $response = $handler->$verb($uri, json_encode($data));
+    case 'provision':
+        $response = $handler->$verb($uri, json_encode($data));
 		if($response && $verb == 'GET') {
 			$response = json_decode($response);
 		}
-        break;
-    case 'provision':
+		break;
+    case 'provision_template':
         $response = $handler->$verb($uri, json_encode($data));
 		if($response && $verb == 'GET') {
 			$response = json_decode($response);

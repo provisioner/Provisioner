@@ -6,8 +6,8 @@
 		<version>0.5</version>
 		<directory>cisco</directory>
 		<package>cisco-0_5.tgz</package>
-		<md5sum>84178900507303c05c34c4ccd746ff47</md5sum>
-		<last_modified>1312343588</last_modified>
+		<md5sum>aa3f1b2fca5b5741ede54d1b1ab76f4e</md5sum>
+		<last_modified>1315984696</last_modified>
 				<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -15,9 +15,9 @@
 				<directory>ata18x</directory>
 				<version>0.1</version>
 				<description></description>
-				<changelog>PACKAGER: Adding OUI to Cisco and forcing update</changelog>
+				<changelog>PACKAGER: Commiting some changes</changelog>
 				<id>5</id>
-				<last_modified>1309110193</last_modified>
+				<last_modified>1315440476</last_modified>
 			</family>
 			<family>
 				<name>Cisco SIP 79x1G Models [7940G,7941G,7961G]</name>
@@ -26,7 +26,7 @@
 				<description></description>
 				<changelog></changelog>
 				<id>4</id>
-				<last_modified>1309090629</last_modified>
+				<last_modified>1315440476</last_modified>
 			</family>
 			<family>
 				<name>Cisco SIP 79x0 Models [7940,7960]</name>
@@ -35,7 +35,7 @@
 				<description></description>
 				<changelog></changelog>
 				<id>1</id>
-				<last_modified>1309090629</last_modified>
+				<last_modified>1315440476</last_modified>
 			</family>
 			<family>
 				<name>Linksys/Cisco/Sipura SPA Phone Models [901,921,922,941,942,962]</name>
@@ -44,7 +44,7 @@
 				<description>XML Escape Errors Fixed</description>
 				<changelog></changelog>
 				<id>2</id>
-				<last_modified>1309090629</last_modified>
+				<last_modified>1315440476</last_modified>
 			</family>
 			<family>
 				<name>Linksys/Cisco/Sipura SPA Phone Models 5xx [501G,502G,504G,525G,525G2]</name>
@@ -53,16 +53,16 @@
 				<description></description>
 				<changelog></changelog>
 				<id>3</id>
-				<last_modified>1311441576</last_modified>
+				<last_modified>1315440476</last_modified>
 			</family>
 			<family>
 				<name>Linksys/Cisco/Sipura SPA Adapter Models [2102, 3102(FXS Only)]</name>
 				<directory>spax102</directory>
 				<version>0.1</version>
-				<description></description>
+				<description>New Device</description>
 				<changelog></changelog>
 				<id>6</id>
-				<last_modified>1315656780</last_modified>
+				<last_modified>1315984696</last_modified>
 			</family>
 <!--End Auto Generated-->
 
