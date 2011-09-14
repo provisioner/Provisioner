@@ -29,7 +29,8 @@ class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
     }
 
     function prepare_for_generateconfig() {
-
+		$this->mac = strtolower($this->mac);
+		parent::prepare_for_generateconfig();
         for ($i = 1; $i < 10; $i++) {
             if(isset($this->lines[$i]['secret'])) {
                 $this->lines[$i]['options']['digitmap'] = (isset($this->options['digitmap']) ? $this->options['digitmap'] : NULL);
