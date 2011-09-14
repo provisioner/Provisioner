@@ -18,14 +18,11 @@
 		<user_srtp idx="{$line}" perm="">off</user_srtp>
 		{/line_loop}
 
-		<intercom_connect_type perm="">intercom_connect_type_handsfree</intercom_connect_type>
-		<answer_after_policy>idle</answer_after_policy>
 		<http_user perm="R">{$http_user}</http_user>
 		<http_pass perm="R">{$http_pass}</http_pass>
 		<admin_mode_password perm="R">{$admin_mode_password}</admin_mode_password>
 		<admin_mode_password_confirm perm="R">{$admin_mode_password}</admin_mode_password_confirm>
 		<firmware_status perm="R">{$provisioning_type}://{$server.ip.1}{$provisioning_path}/{$mac}_firmware.xml</firmware_status>
-		<update_policy perm="">auto_update</update_policy>
 		<timezone perm="R"></timezone>
 		<utc_offset perm="R">{$gmtoff}</utc_offset>
 		<dst perm="R">{$dstrule}</dst>
@@ -35,6 +32,25 @@
 		<vlan>{$vlan_id} {$vlan_qos}</vlan>
 		<vlan_id>{$vlan_id}</vlan>
 		<vlan_qos>{$vlan_qos}</vlan_qos>
+		<ntp_server>{$network_time_server}</ntp_server>
+
+		<answer_after_policy>idle</answer_after_policy>
+		<intercom_connect_type perm="">intercom_connect_type_handsfree</intercom_connect_type>
+		<update_policy perm="">auto_update</update_policy>
+		<challenge_response>off</challenge_response>
+		<filter_registrar>off</filter_registrar>
+		<logon_wizard>off</logon_wizard>
+		<message_led_other>off</message_led_other>
+		<led_message_usage>PhoneHasMailboxMessage</led_message_usage>
+		<user_phone>off</user_phone>
+		<intercom_enabled>on</intercom_enabled>
+		<block_url_dialing>on</block_url_dialing>
+		<web_logout_timer>5</web_logout_timer>
+		<admin_mode>on</admin_mode>
+		<language>English</language>
+		<cw_dialtone>on</cw_dialtone>
+		<auto_dial>4</auto_dial>
+		<use_backlight>on</use_backlight>
 
 		<gui_fkey1 perm="">{$gui_fkey1}</gui_fkey1>
 		<gui_fkey2 perm="">{$gui_fkey2}</gui_fkey2>

@@ -8,7 +8,19 @@
                 <variable>$extringer1</variable>
                 <default_value>Ringer9</default_value>
                 <description>Ringer</description>
-                <type>input</type>
+		<type>list</type>
+		<data> <text>Ringer 1</text> <value>Ringer1</value> </data>
+		<data> <text>Ringer 2</text> <value>Ringer2</value> </data>
+		<data> <text>Ringer 3</text> <value>Ringer3</value> </data>
+		<data> <text>Ringer 4</text> <value>Ringer4</value> </data>
+		<data> <text>Ringer 5</text> <value>Ringer5</value> </data>
+		<data> <text>Ringer 6</text> <value>Ringer6</value> </data>
+		<data> <text>Ringer 7</text> <value>Ringer7</value> </data>
+		<data> <text>Ringer 8</text> <value>Ringer8</value> </data>
+		<data> <text>Ringer 9</text> <value>Ringer9</value> </data>
+		<data> <text>Ringer 10</text> <value>Ringer10</value> </data>
+		<data> <text>Silent</text> <value>Silent</value> </data>
+		<data> <text>Custom</text> <value>Custom</value> </data>
             </item>
             <item>
                 <!-- DTMF via Sip INFO (rfc2833) -->
