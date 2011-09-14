@@ -6,8 +6,8 @@
 		<brand_id>9</brand_id>
 		<directory>mitel</directory>
 		<package>mitel-0_5.tgz</package>
-        <md5sum>34f19e930afb4c1a1a58c4e5ba70d3fa</md5sum>
-		<last_modified>1306641962</last_modified>
+        <md5sum>3b219dd6ac4b14bd33d2cbaebeb66dc8</md5sum>
+		<last_modified>1315440476</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -15,9 +15,9 @@
 				<directory>53xx</directory>
 				<version>0.7.5</version>
 				<description>Variables Issues Solved (Not writing accounts + passwords in files)</description>
-				<changelog>PACKAGER: PACKAGER: PACKAGER: PACKAGER: Updating%packager.php</changelog>
+				<changelog>PACKAGER: Commiting some changes</changelog>
 				<id>1</id>
-				<last_modified>1306641962</last_modified>
+				<last_modified>1315440476</last_modified>
 			</family>
 <!--End Auto Generated-->
 

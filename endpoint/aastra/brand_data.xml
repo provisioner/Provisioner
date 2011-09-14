@@ -6,9 +6,9 @@
 		<version>0.5</version>
 		<directory>aastra</directory>
 		<package>aastra-0_5.tgz</package>
-		<md5sum>56b16ec4d78cd8161e96a78035471c2f</md5sum>
-		<last_modified>1315345623</last_modified>
-		<changelog>PACKAGER: Minor tweaks, to get the new library to behave the same as the old one.</changelog>
+		<md5sum>5064c587cf45700a4c39e88c98656311</md5sum>
+		<last_modified>1315440476</last_modified>
+		<changelog>PACKAGER: Commiting some changes</changelog>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -18,7 +18,7 @@
 				<description>Initial Files</description>
 				<changelog></changelog>
 				<id>1</id>
-				<last_modified>1308420127</last_modified>
+				<last_modified>1315440476</last_modified>
 			</family>
 			<family>
 				<name>Aastra Models: 94xx, 67xx, 9143i [9480i, 9480i CT, 9143i,67xx]</name>
@@ -27,7 +27,7 @@
 				<description>Initial Files</description>
 				<changelog></changelog>
 				<id>2</id>
-				<last_modified>1315345623</last_modified>
+				<last_modified>1315440476</last_modified>
 			</family>
 <!--End Auto Generated-->
 

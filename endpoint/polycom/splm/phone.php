@@ -11,6 +11,7 @@ class endpoint_polycom_splm_phone extends endpoint_polycom_base {
 	public $family_line = 'splm';	
 		
 	function prepare_for_generateconfig() {
+		$this->mac = strtolower($this->mac);
 		parent::prepare_for_generateconfig();
 
 		for ($i = 1; $i < 10; $i++) {
