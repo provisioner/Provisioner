@@ -22,5 +22,11 @@
 			<files>speed_dials.xml</files>
 			<files>idle_touch_keys.xml</files>
 		</template_data>
+		<model>N/A</model>
+		<lines>1</lines>
+		<id>2</id>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
 	</model_list>
 </data>
