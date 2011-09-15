@@ -6,8 +6,8 @@
 		<version>0.5</version>
 		<directory>cisco</directory>
 		<package>cisco-0_5.tgz</package>
-		<md5sum>aa3f1b2fca5b5741ede54d1b1ab76f4e</md5sum>
-		<last_modified>1315984696</last_modified>
+		<md5sum>0f9510991e0cb26920f6ff5f0506deec</md5sum>
+		<last_modified>1316062634</last_modified>
 				<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -15,7 +15,7 @@
 				<directory>ata18x</directory>
 				<version>0.1</version>
 				<description></description>
-				<changelog>PACKAGER: Commiting some changes</changelog>
+				<changelog>PACKAGER: Fixed paths for cisco SPA</changelog>
 				<id>5</id>
 				<last_modified>1315440476</last_modified>
 			</family>
@@ -53,7 +53,7 @@
 				<description></description>
 				<changelog></changelog>
 				<id>3</id>
-				<last_modified>1315440476</last_modified>
+				<last_modified>1316062634</last_modified>
 			</family>
 			<family>
 				<name>Linksys/Cisco/Sipura SPA Adapter Models [2102, 3102(FXS Only)]</name>
