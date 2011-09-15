@@ -2,7 +2,7 @@
 /**
  * Snom 8xx (except 820) Provisioning System
  *
- * @author Andrew Nagy
+ * @author Andrew Nagy & Jort
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
  */
