@@ -6,8 +6,8 @@
 		<directory>snom</directory>
 		<brand_id>6</brand_id>
 		<package>snom-0_6.tgz</package>
-        <md5sum>5454e13a96238021de177fb5a0e6a45a</md5sum>
-		<last_modified>1315984696</last_modified>
+        <md5sum>5e5d81c738406e0e332336e5007dcaa2</md5sum>
+		<last_modified>1316062634</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -15,9 +15,9 @@
 				<directory>3xx820m3</directory>
 				<version>1</version>
 				<description>Server + Password Settings, htm File Fixes</description>
-				<changelog>PACKAGER: Commiting some changes</changelog>
+				<changelog>PACKAGER: Fixed paths for cisco SPA</changelog>
 				<id>1</id>
-				<last_modified>1315984696</last_modified>
+				<last_modified>1316062634</last_modified>
 			</family>
 			<family>
 				<name>Snom Models [870]</name>
