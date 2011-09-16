@@ -1,5 +1,5 @@
 <data>
-	<name>Linksys/Cisco/Sipura SPA Phone Models 5xx [501G,502G,504G,525G,525G2]</name>
+	<name>Linksys/Cisco/Sipura SPA Phone Models 5xx, 3xx [303,501G,502G,504G,525G,525G2]</name>
 	<id>3</id>
 	<directory>spa5xx</directory>
 	<firmware_ver></firmware_ver>
@@ -24,7 +24,7 @@
 		<id>2</id>
 		<template_data>
 			<files>template_data.xml</files>
-            <files>keys.xml</files>
+            		<files>keys.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -34,7 +34,7 @@
 		<template_data>
 			<files>4_lines.xml</files>
 			<files>template_data.xml</files>
-            <files>keys.xml</files>
+            		<files>keys.xml</files>
 			<files>a_unit1.xml</files>
 			<files>a_unit2.xml</files>
 		</template_data>
@@ -62,11 +62,11 @@
 		<lines>5</lines>
 		<id>6</id>
 		<template_data>
-		<files>5_lines.xml</files>
-		<files>template_data.xml</files>
-        <files>keys.xml</files>
-		<files>a_unit1.xml</files>
-		<files>a_unit2.xml</files>
+			<files>5_lines.xml</files>
+			<files>template_data.xml</files>
+        		<files>keys.xml</files>
+			<files>a_unit1.xml</files>
+			<files>a_unit2.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -74,7 +74,16 @@
 		<lines>5</lines>
 		<id>7</id>
 		<template_data>
-		<files>5_lines.xml</files>
+			<files>5_lines.xml</files>
+			<files>template_data.xml</files>
+                        <files>keys.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>SPA303</model>
+		<lines>3</lines>
+		<id>8</id>
+		<template_data>
 			<files>template_data.xml</files>
                         <files>keys.xml</files>
 		</template_data>
