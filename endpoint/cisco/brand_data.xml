@@ -6,8 +6,8 @@
 		<version>0.5</version>
 		<directory>cisco</directory>
 		<package>cisco-0_5.tgz</package>
-		<md5sum>0f9510991e0cb26920f6ff5f0506deec</md5sum>
-		<last_modified>1316062634</last_modified>
+		<md5sum>528e985d3a475a41f72d5c79423aaf9b</md5sum>
+		<last_modified>1316190304</last_modified>
 				<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -15,7 +15,7 @@
 				<directory>ata18x</directory>
 				<version>0.1</version>
 				<description></description>
-				<changelog>PACKAGER: Fixed paths for cisco SPA</changelog>
+				<changelog>PACKAGER: Spelling mistake</changelog>
 				<id>5</id>
 				<last_modified>1315440476</last_modified>
 			</family>
@@ -47,13 +47,13 @@
 				<last_modified>1315440476</last_modified>
 			</family>
 			<family>
-				<name>Linksys/Cisco/Sipura SPA Phone Models 5xx [501G,502G,504G,525G,525G2]</name>
+				<name>Linksys/Cisco/Sipura SPA Phone Models 5xx, 3xx [303,501G,502G,504G,525G,525G2]</name>
 				<directory>spa5xx</directory>
 				<version>0.6</version>
 				<description></description>
 				<changelog></changelog>
 				<id>3</id>
-				<last_modified>1316062634</last_modified>
+				<last_modified>1316190304</last_modified>
 			</family>
 			<family>
 				<name>Linksys/Cisco/Sipura SPA Adapter Models [2102, 3102(FXS Only)]</name>
