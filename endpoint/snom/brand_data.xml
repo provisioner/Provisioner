@@ -6,8 +6,8 @@
 		<directory>snom</directory>
 		<brand_id>6</brand_id>
 		<package>snom-0_6.tgz</package>
-        <md5sum>15eb0499264e0a545f5553bf0fa15624</md5sum>
-		<last_modified>1316063231</last_modified>
+        <md5sum>571fee0a7cac10208bdd1029d65c2d54</md5sum>
+		<last_modified>1316190304</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -15,9 +15,9 @@
 				<directory>3xx820m3</directory>
 				<version>1</version>
 				<description>Server + Password Settings, htm File Fixes</description>
-				<changelog>PACKAGER: Doing this to force a package update for FreePBX</changelog>
+				<changelog>PACKAGER: Spelling mistake</changelog>
 				<id>1</id>
-				<last_modified>1316062634</last_modified>
+				<last_modified>1316190304</last_modified>
 			</family>
 			<family>
 				<name>Snom Models [870]</name>
