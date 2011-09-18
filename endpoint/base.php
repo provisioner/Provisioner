@@ -947,17 +947,49 @@ abstract class endpoint_base {
 }
 
 class Provisioner_Globals {
-	/**
-	* List all global files as reg statements here.
-	* This should be called statically eg: $data=Provisioner_Globals:dynamic_global_files($filename);
-	* Return data for global if valid
-	* else just return false (eg file does not exist)
-	* @param String $filename Name of the file: eg aastra.cfg
-	* @return String, data of that file: eg # This file intentionally left blank!
-	*/
-	function dynamic_global_files($filename) {
-		if($filename == 'aastra.cfg') {
-			return '# intentionally left blank';
-		} 
-	}
+
+    /**
+     * List all global files as reg statements here.
+     * This should be called statically eg: $data=Provisioner_Globals:dynamic_global_files($filename);
+     * Return data for global if valid
+     * else just return false (eg file does not exist)
+     * @param String $filename Name of the file: eg aastra.cfg
+     * @return String, data of that file: eg # This file intentionally left blank!
+     */
+    function dynamic_global_files($file,$provisioner_path='/tmp/',$web_path='/') {
+
+        if (preg_match("/y[0]{11}[1-7].cfg/i", $file)) {
+            $file = 'y000000000000.cfg';
+        }
+        if(preg_match("/spa.*.cfg/i",$file)) {
+            $file = 'spa.cfg';
+        }
+        switch ($file) {
+            //spa-cisco-linksys
+            case 'spa.cfg':
+                return("<flat-profile>
+                    <!-- The Phone will load up this file first -->
+                    <!-- Don't put anything else into this file except the two lines below!! It will never be referenced again! -->
+                    <!-- Trick the Phone into loading a specific file for JUST that phone -->
+                    <!-- Set the resync to 3 second2 so it reboots automatically, we set this to 86400 seconds in the other file -->
+                    <Resync_Periodic>3</Resync_Periodic>
+                    <Profile_Rule>".$web_path."spa\$MA.xml</Profile_Rule>
+                    <Text_Logo group=\"Phone/General\">~PLEASE WAIT~</Text_Logo>
+                    <Select_Background_Picture ua=\"ro\">Text Logo</Select_Background_Picture>
+                </flat-profile>");
+                break;
+            //yealink
+            case 'y000000000000.cfg':
+                return("#left blank");
+                break;
+            //aastra
+            case "aastra.cfg":
+                return("#left blank");
+                break;
+            default:
+                return(FALSE);
+                break;
+        }
+    }
+
 }

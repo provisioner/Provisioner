@@ -19,18 +19,24 @@ class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
 
     function config_files() {
 	$result=parent::config_files();
+        $macprefix = $this->server_type == 'dynamic' ? $this->mac."_" : '';
 	if((isset($this->options['file_prefix'])) && ($this->options['file_prefix'] != "")) {
-		$fn=$this->options['file_prefix'].'_sip.cfg';
+		$fn=$macprefix.$this->options['file_prefix'].'_sip.cfg';
 		$result[$fn]=$result['sip.cfg'];
 		unset($result['sip.cfg']);
-		$this->options['createdFiles'] = str_replace(", sip.cfg,",", $fn,",$this->options['createdFiles']);
-	}
+		$this->options['createdFiles'] = str_replace(", sip.cfg",", $fn",$this->options['createdFiles']);
+	} else {
+                $fn=$macprefix.'sip.cfg';
+		$result[$fn]=$result['sip.cfg'];
+		unset($result['sip.cfg']);
+		$this->options['createdFiles'] = str_replace(", sip.cfg",", $fn",$this->options['createdFiles']);
+        }        
 	return $result;
     }
 
     function prepare_for_generateconfig() {
-		$this->mac = strtolower($this->mac);
-		parent::prepare_for_generateconfig();
+	$this->mac = strtolower($this->mac);
+	parent::prepare_for_generateconfig();
         for ($i = 1; $i < 10; $i++) {
             if(isset($this->lines[$i]['secret'])) {
                 $this->lines[$i]['options']['digitmap'] = (isset($this->options['digitmap']) ? $this->options['digitmap'] : NULL);
@@ -40,7 +46,6 @@ class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
                 $this->lines[$i]['options']['idle_display_refresh'] = (isset($this->options['idle_display_refresh']) ? $this->options['idle_display_refresh'] : NULL);
             }
         }
-
         $this->options['createdFiles'] = $this->mac.'_reg.cfg, sip.cfg';
 
 	$this->protected_files = array('overrides/'.$this->mac.'-phone.cfg', 'logs/'.$this->mac.'-boot.log', 'logs/'.$this->mac.'-app.log','SoundPointIPLocalization');
