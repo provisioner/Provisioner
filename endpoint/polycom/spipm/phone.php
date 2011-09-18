@@ -19,13 +19,13 @@ class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
 
     function config_files() {
 	$result=parent::config_files();
-        $macprefix = $this->server_type == 'dynamic' ? $this->mac."_" : '';
+        $macprefix = $this->server_type == 'dynamic' ? $this->mac."_" : NULL;
 	if((isset($this->options['file_prefix'])) && ($this->options['file_prefix'] != "")) {
 		$fn=$macprefix.$this->options['file_prefix'].'_sip.cfg';
 		$result[$fn]=$result['sip.cfg'];
 		unset($result['sip.cfg']);
 		$this->options['createdFiles'] = str_replace(", sip.cfg",", $fn",$this->options['createdFiles']);
-	} else {
+	} elseif(isset($macprefix)) {
                 $fn=$macprefix.'sip.cfg';
 		$result[$fn]=$result['sip.cfg'];
 		unset($result['sip.cfg']);
