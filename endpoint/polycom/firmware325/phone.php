@@ -23,7 +23,7 @@ class endpoint_polycom_firmware325_phone extends endpoint_polycom_base {
 		}
 
 		$this->options['createdFiles'] = 'server_325.cfg, ' . $this->mac.'_reg.cfg, phone1_325.cfg, sip_325.cfg';
-		
+		                
 		$this->directory_structure = array("logs","overrides","contacts","licenses","SoundPointIPLocalization");
 		
 		$this->copy_files = array("SoundPointIPLocalization","SoundPointIPWelcome.wav","LoudRing.wav");
