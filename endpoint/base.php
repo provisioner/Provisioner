@@ -549,8 +549,17 @@ abstract class endpoint_base {
         //loop though each variable found in the text file
         foreach ($no_brackets as $variables) {
             $variables = str_replace("$", "", $variables);
-            $specific_line = $specific_line_master;
+            //$specific_line = $specific_line_master;
             //Users can set defaults within template files with pipes, they will over-ride whatever is in the XML file.
+            $original_variable = $variables;
+            $default_exp = preg_split("/\|/i", $variables);
+            $default = isset($default_exp[1]) ? $default_exp[1] : NULL;
+            $variables = $default_exp[0];
+            
+            $line_exp = preg_split("/\./i", $variables);
+            $specific_line = isset($line_exp[2]) ? $line_exp[2] : $specific_line_master;
+            
+            /* old code
             if (strstr($variables, "|")) {
                 $original_variable = $variables;
                 $variables = explode("|", $variables,2);
@@ -574,33 +583,22 @@ abstract class endpoint_base {
                     $variables = $variables[0];
                 }
             }
+             * 
+             */
 
             //If the variable we found in the text file exists in the variables array then replace the variable in the text file with the value under our key
             if (($specific_line == "GLOBAL") AND (isset($options[$variables]))) {
-                if($this->en_htmlspecialchars) {
-                    $options[$variables] = htmlspecialchars($options[$variables]);
-                } else {
-                    $options[$variables] = $options[$variables];
-                }
-                $options[$variables] = $this->replace_static_variables($options[$variables]);
-                if (isset($default)) {
-                    $file_contents = str_replace('{$' . $original_variable . '|' . $default . '}', $options[$variables], $file_contents);
-                } else {
-                    $file_contents = str_replace('{$' . $original_variable . '}', $options[$variables], $file_contents);
-                }
+                
+                $options[$variables] = $this->en_htmlspecialchars ? $this->replace_static_variables(htmlspecialchars($options[$variables])) : $this->replace_static_variables($options[$variables]);
+                $file_contents = str_replace('{$' . $original_variable . '}', $options[$variables], $file_contents);
+                //echo '{$' . $original_variable . '}:'.$options[$variables].'<br />';
+                
             } elseif (($specific_line != "GLOBAL") AND (isset($this->lines[$specific_line]['options'][$variables]))) {
-                if($this->en_htmlspecialchars) {
-                    $this->lines[$specific_line]['options'][$variables] = htmlspecialchars($this->lines[$specific_line]['options'][$variables]);
-                } else {
-                    $this->lines[$specific_line]['options'][$variables] = $this->lines[$specific_line]['options'][$variables];
-                }
+                
+                $this->lines[$specific_line]['options'][$variables] = $this->en_htmlspecialchars ? $this->replace_static_variables(htmlspecialchars($this->lines[$specific_line]['options'][$variables])) : $this->replace_static_variables($this->lines[$specific_line]['options'][$variables]);
+                $file_contents = str_replace('{$' . $original_variable . '}', $this->lines[$specific_line]['options'][$variables], $file_contents);
+                //echo '{$' . $original_variable . '}:'.$this->lines[$specific_line]['options'][$variables].'<br />';
 
-                $this->lines[$specific_line]['options'][$variables] = $this->replace_static_variables($this->lines[$specific_line]['options'][$variables]);
-                if (isset($default)) {
-                    $file_contents = str_replace('{$' . $original_variable . '|' . $default . '}', $this->lines[$specific_line]['options'][$variables], $file_contents);
-                } else {
-                    $file_contents = str_replace('{$' . $original_variable . '}', $this->lines[$specific_line]['options'][$variables], $file_contents);
-                }
             } else {
                 if (!$keep_unknown) {
                     //read default template values here, blank unknowns or arrays (which are blanks anyways)
@@ -620,11 +618,17 @@ abstract class endpoint_base {
                     }
 
                     if (isset($default)) {
-                        $file_contents = str_replace('{$' . $original_variable . '|' . $default . '}', $default, $file_contents);
+                        $file_contents = str_replace('{$' . $original_variable . '}', $default, $file_contents);
+                        //echo '{$' . $original_variable . '}:'.$default.'<br />';
+
                     } elseif (isset($default_hard_value)) {
                         $file_contents = str_replace('{$' . $original_variable . '}', $default_hard_value, $file_contents);
+                        //echo '{$' . $original_variable . '}:'.$default_hard_value.'<br />';
+                        
                     } else {
                         $file_contents = str_replace('{$' . $original_variable . '}', "", $file_contents);
+                        //echo '{$' . $original_variable . '}:<br />';
+                        
                     }
                 }
             }
@@ -700,6 +704,50 @@ abstract class endpoint_base {
             foreach ($no_brackets as $variables) {
                 $variables = str_replace("$", "", $variables);
                 $original_variable = $variables;
+                
+                $default_exp = preg_split("/\|/i", $variables);
+                $default = isset($default_exp[1]) ? $default_exp[1] : '';
+                $variables = $default_exp[0];
+                
+                $line_exp = preg_split("/\./i", $variables);
+
+                //$specific_line = isset($line_exp[2]) ? $line_exp[2] : $specific_line_master;
+                //$variables = $variables[0];
+                if((isset($line_exp[1])) && ($line_exp[1] == 'line')) {
+                    
+                    switch ($line_exp[0]) {
+                        case "ext":
+                            if (isset($this->lines[$line_exp[2]]['ext'])) {
+                                $contents = str_replace('{$ext.line.' . $line_exp[2] . '}', $this->lines[$line_exp[2]]['ext'], $contents);
+                            } else {
+                                $contents = str_replace('{$ext.line.' . $line_exp[2] . '}', $default, $contents);
+                            }
+                            break;
+                        case "displayname":
+                            if (isset($this->lines[$line_exp[2]]['displayname'])) {
+                                $contents = str_replace('{$displayname.line.' . $line_exp[2] . '}', $this->lines[$line_exp[2]]['displayname'], $contents);
+                            } else {
+                                $contents = str_replace('{$displayname.line.' . $line_exp[2] . '}', $default, $contents);
+                            }
+                            break;
+                        case "secret":
+                            if (isset($this->lines[$line_exp[2]]['secret'])) {
+                                $contents = str_replace('{$secret.line.' . $line_exp[2] . '}', $this->lines[$line_exp[2]]['secret'], $contents);
+                            } else {
+                                $contents = str_replace('{$secret.line.' . $line_exp[2] . '}', $default, $contents);
+                            }
+                            break;
+                        case "pass":
+                            if (isset($this->lines[$line_exp[2]]['secret'])) {
+                                $contents = str_replace('{$pass.line.' . $line_exp[2] . '}', $this->lines[$line_exp[2]]['secret'], $contents);
+                            } else {
+                                $contents = str_replace('{$pass.line.' . $line_exp[2] . '}', $default, $contents);
+                            }
+                            break;
+                    }
+                }
+                
+                /**
                 if (strstr($variables, ".")) {
                     $original_variable = $variables;
                     $variables = explode(".", $variables);
@@ -736,6 +784,8 @@ abstract class endpoint_base {
                             break;
                     }
                 }
+                 * 
+                 */
             }
         }
         return($contents);
