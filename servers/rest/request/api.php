@@ -34,7 +34,7 @@ header('Access-Control-Allow-Origin:*');
 header('Access-Control-Max-Age:86400');
 
 // Adjust per your expectations from the software you're using
-$regex = !preg_match('/\/(.*)\/accounts\/(.*)\/(.*)\/(.*)\/(.*)/', $uri) ? '/\/(.*)\/accounts\/(.*)\/(.*)\/(.*)/' : '/\/(.*)\/accounts\/(.*)\/(.*)\/(.*)\/(.*)/';
+$regex = preg_match('/\/(.*)\/accounts\/(.*)\/(.*)\/(.*)/', $uri) ? '/\/(.*)\/accounts\/(.*)\/(.*)\/(.*)/' : '/\/(.*)\/accounts\/(.*)\/(.*)/';
 
 $handler->regex = $regex;
 preg_match($regex, $uri, $matches);
@@ -48,28 +48,68 @@ $data = $rest->getData();
 $handler->json_error();
 
 //$method = 'provision';
-switch ($method) {
-    case 'provision':
-        $response = $handler->$verb($uri, json_encode($data));
-		if($response && $verb == 'GET') {
-			$response = json_decode($response);
-		}
-		break;
-    case 'provision_template':
-        $response = $handler->$verb($uri, json_encode($data));
-		if($response && $verb == 'GET') {
-			$response = json_decode($response);
-		}
-		break;
-    default:
-            $response = array(
-                'data' => array(
-                    'success' => 'false',
-                    'message' => 'Unknown API command ' . $method
-                )
-            );
+if(isset($id)) {
+	switch ($method) {
+	    case 'provision':
+	        $response = $handler->$verb($uri, json_encode($data));
+			if($response && $verb == 'GET') {
+				$response = json_decode($response);
+			}
+			break;
+	    case 'provision_template':
+	        $response = $handler->$verb($uri, json_encode($data));
+			if($response && $verb == 'GET') {
+				$response = json_decode($response);
+			}
+			break;
+	    default:
+	            $response = array(
+	                'data' => array(
+	                    'success' => 'false',
+	                    'message' => 'Unknown API command ' . $method
+	                )
+	            );
 
-        break;
+	        break;
+	}
+} else {
+	switch ($method) {
+	    case 'provision_template':
+			$list = array();
+			foreach (glob("/var/www/rest/provision/".$account_id."/provision_template/*",GLOB_ONLYDIR) as $filename) {
+				$key = basename($filename);
+				if(file_exists("/var/www/rest/provision/".$account_id."/provision_template/".$key.'/data')) {
+					$data = file_get_contents("/var/www/rest/provision/".$account_id."/provision_template/".$key.'/data');
+					$data = json_decode($data,TRUE);
+					if(is_array($data) && array_key_exists('product',$data) && array_key_exists('brand',$data) && array_key_exists('model',$data)) {
+						$list[$key]['product'] = $data['product'];
+						$list[$key]['brand'] = $data['brand'];
+						$list[$key]['model'] = $data['model'];
+						$list[$key]['description'] = isset($data['description']) ? $data['description'] : '';
+					}
+				}				
+			}			
+			if(!empty($list) && $verb == 'GET') {
+				$response = $list;
+			} else {
+				$response = array(
+	                'data' => array(
+	                    'success' => 'false',
+	                    'message' => 'Not allowed: ' . $verb
+	                )
+	            );
+			}
+			break;
+	    default:
+	            $response = array(
+	                'data' => array(
+	                    'success' => 'false',
+	                    'message' => 'Unknown API command ' . $method
+	                )
+	            );
+
+	        break;
+	}
 }
 
 $handler->send($response);
