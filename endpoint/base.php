@@ -173,22 +173,22 @@ abstract class endpoint_base {
         $this->setup_tz();
         $this->setup_ntp();
     	$this->data_integrity();
-	if (!isset($this->provisioning_path)) {
-		$this->provisioning_path = $this->server[1]['ip'];
-	}
-	if (!isset($this->vlan_id)) {
-		$this->vlan_id=0;
-	}
-	if (!isset($this->vlan_qos)) {
-		$this->vlan_qos=5;
-	}
+		if (!isset($this->provisioning_path)) {
+			$this->provisioning_path = $this->server[1]['ip'];
+		}
+		if (!isset($this->vlan_id)) {
+			$this->vlan_id=0;
+		}
+		if (!isset($this->vlan_qos)) {
+			$this->vlan_qos=5;
+		}
 
-	if (!in_array('$mac',$this->config_file_replacements)) {
-		$this->config_file_replacements['$mac']=$this->mac;
-	}
-	if (!in_array('$model',$this->config_file_replacements)) {
-		$this->config_file_replacements['$model']=$this->model;
-	}
+		if (!in_array('$mac',$this->config_file_replacements)) {
+			$this->config_file_replacements['$mac']=$this->mac;
+		}
+		if (!in_array('$model',$this->config_file_replacements)) {
+			$this->config_file_replacements['$model']=$this->model;
+		}
     }
 
     /**
@@ -205,11 +205,11 @@ abstract class endpoint_base {
     **/
     function config_files() {
         $family_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml",1,'tag',array('model_list'));
-	foreach (explode(",",$family_data['data']['configuration_files']) AS $configfile) {
-		$outputfile=str_replace(array_keys($this->config_file_replacements),array_values($this->config_file_replacements),$configfile);
-		$result[$outputfile]=$configfile;
-	}
-	return $result;
+		foreach (explode(",",$family_data['data']['configuration_files']) AS $configfile) {
+			$outputfile=str_replace(array_keys($this->config_file_replacements),array_values($this->config_file_replacements),$configfile);
+			$result[$outputfile]=$configfile;
+		}
+		return $result;
     }
 
     /** 
@@ -227,19 +227,19 @@ abstract class endpoint_base {
 	 * @author Jort Bloem
      */
     function generate_file($filename,$extradata,$ignoredynamicmapping=FALSE) {
-	# Note: server_type='dynamic' is ignored if ignoredynamicmapping, if there is no $this->dynamic_mapping, or that is not an array.
-	if (($ignoredynamicmapping) || ($this->server_type!='dynamic') || (!is_array($this->dynamic_mapping)) || (!array_key_exists($extradata,$this->dynamic_mapping))) {
-		$data=$this->open_config_file($extradata);
-		return $this->parse_config_file($data);
-	} elseif (!is_array($this->dynamic_mapping[$extradata])) {
-		return $this->dynamic_mapping[$extradata];
-	} else {
-		$data="";
-		foreach ($this->dynamic_mapping[$extradata] AS $recurseextradata) {
-			$data.=$this->generate_file($filename,$recurseextradata,TRUE);
+		# Note: server_type='dynamic' is ignored if ignoredynamicmapping, if there is no $this->dynamic_mapping, or that is not an array.
+		if (($ignoredynamicmapping) || ($this->server_type!='dynamic') || (!is_array($this->dynamic_mapping)) || (!array_key_exists($extradata,$this->dynamic_mapping))) {
+			$data=$this->open_config_file($extradata);
+			return $this->parse_config_file($data);
+		} elseif (!is_array($this->dynamic_mapping[$extradata])) {
+			return $this->dynamic_mapping[$extradata];
+		} else {
+			$data="";
+			foreach ($this->dynamic_mapping[$extradata] AS $recurseextradata) {
+				$data.=$this->generate_file($filename,$recurseextradata,TRUE);
+			}
+			return $data;
 		}
-		return $data;
-	}
     }
 
     /**
@@ -247,12 +247,12 @@ abstract class endpoint_base {
 	 * @author Jort Bloem
      */
     function generate_config() {
-	$this->prepare_for_generateconfig();
-	$output=array();
-	foreach ($this->config_files() AS $filename=>$sourcefile) {
-		$output[$filename]=$this->generate_file($filename,$sourcefile);
-	}
-	return $output;
+		$this->prepare_for_generateconfig();
+		$output=array();
+		foreach ($this->config_files() AS $filename=>$sourcefile) {
+			$output[$filename]=$this->generate_file($filename,$sourcefile);
+		}
+		return $output;
     }
 
     /**
@@ -558,33 +558,6 @@ abstract class endpoint_base {
             
             $line_exp = preg_split("/\./i", $variables);
             $specific_line = isset($line_exp[2]) ? $line_exp[2] : $specific_line_master;
-            
-            /* old code
-            if (strstr($variables, "|")) {
-                $original_variable = $variables;
-                $variables = explode("|", $variables,2);
-                $default = $variables[1];
-                $variables = $variables[0];
-                if (strstr($variables, ".")) {
-                    $original_variable = $variables;
-                    $variables = explode(".", $variables);
-                    $specific_line = $variables[2];
-                    $variables = $variables[0];
-                } else {
-                    $original_variable = $variables;
-                }
-            } else {
-                unset($default);
-                $original_variable = $variables;
-                if (strstr($variables, ".")) {
-                    $original_variable = $variables;
-                    $variables = explode(".", $variables);
-                    $specific_line = $variables[2];
-                    $variables = $variables[0];
-                }
-            }
-             * 
-             */
 
             //If the variable we found in the text file exists in the variables array then replace the variable in the text file with the value under our key
             if (($specific_line == "GLOBAL") AND (isset($options[$variables]))) {
@@ -647,39 +620,39 @@ abstract class endpoint_base {
      * @return string
      */
     function replace_static_variables($contents, $specific_line="GLOBAL", $looping=TRUE) {
-	$replace=array(
-		# These first ones have an identical field name in the object and the template.
-		# This is a good thing, and should be done wherever possible.
-		'{$mac}'=>$this->mac,
-		'{$model}'=>$this->model,
-		'{$provisioning_type}'=>$this->provisioning_type,
-		'{$provisioning_path}'=>$this->provisioning_path,
-		'{$vlan_id}'=>$this->vlan_id,
-		'{$vlan_qos}'=>$this->vlan_qos,
+		$replace=array(
+			# These first ones have an identical field name in the object and the template.
+			# This is a good thing, and should be done wherever possible.
+			'{$mac}'=>$this->mac,
+			'{$model}'=>$this->model,
+			'{$provisioning_type}'=>$this->provisioning_type,
+			'{$provisioning_path}'=>$this->provisioning_path,
+			'{$vlan_id}'=>$this->vlan_id,
+			'{$vlan_qos}'=>$this->vlan_qos,
 
-		# These are not the same.
-		'{$timezone_gmtoffset}'=>$this->timezone['gmtoffset'],
-		'{$timezone_timezone}'=>$this->timezone['timezone'],
-		'{$timezone}'=>$this->timezone['timezone'], # Should this be depricated??
-		'{$network_time_server}'=>$this->ntp,
+			# These are not the same.
+			'{$timezone_gmtoffset}'=>$this->timezone['gmtoffset'],
+			'{$timezone_timezone}'=>$this->timezone['timezone'],
+			'{$timezone}'=>$this->timezone['timezone'], # Should this be depricated??
+			'{$network_time_server}'=>$this->ntp,
 
-		# The rest of these are depricated:
-		'{$gmtoff}'=>$this->timezone['gmtoffset'],
-		'{$gmthr}'=>$this->timezone['gmtoffset'],
-	);
+			# The rest of these are depricated:
+			'{$gmtoff}'=>$this->timezone['gmtoffset'],
+			'{$gmthr}'=>$this->timezone['gmtoffset'],
+		);
 
-	# These are the loops
-	foreach($this->proxy as $key => $proxies) {
-		$replace['{$proxy.ip.'.$key.'}']=$proxies['ip'];
-		$replace['{$proxy.port.'.$key.'}']=$proxies['port'];
-	}
+		# These are the loops
+		foreach($this->proxy as $key => $proxies) {
+			$replace['{$proxy.ip.'.$key.'}']=$proxies['ip'];
+			$replace['{$proxy.port.'.$key.'}']=$proxies['port'];
+		}
 
         foreach($this->server as $key => $servers) {
-		$replace['{$server.ip.'.$key.'}']=$servers['ip'];
-		$replace['{$server.port.'.$key.'}']=$servers['port'];
+			$replace['{$server.ip.'.$key.'}']=$servers['ip'];
+			$replace['{$server.port.'.$key.'}']=$servers['port'];
         }
 
-	$contents = str_replace(array_keys($replace),array_values($replace),$contents);
+		$contents = str_replace(array_keys($replace),array_values($replace),$contents);
 
         if (($specific_line != "GLOBAL") AND ($looping == TRUE)) {
             $contents = str_replace('{$line}', $specific_line, $contents);
@@ -746,46 +719,6 @@ abstract class endpoint_base {
                             break;
                     }
                 }
-                
-                /**
-                if (strstr($variables, ".")) {
-                    $original_variable = $variables;
-                    $variables = explode(".", $variables);
-                    $specific_line = $variables[2];
-                    $variables = $variables[0];
-                    switch ($variables) {
-                        case "ext":
-                            if(isset($this->lines[$specific_line]['ext'])) {
-                                $contents = str_replace('{$ext.line.' . $specific_line . '}', $this->lines[$specific_line]['ext'], $contents);
-                            } else {
-                                $contents = str_replace('{$ext.line.' . $specific_line . '}', '', $contents);
-                            }
-                            break;
-                        case "displayname":
-                            if(isset($this->lines[$specific_line]['displayname'])) {
-                                $contents = str_replace('{$displayname.line.' . $specific_line . '}', $this->lines[$specific_line]['displayname'], $contents);
-                            } else {
-                                $contents = str_replace('{$displayname.line.' . $specific_line . '}', '', $contents);
-                            }
-                            break;
-                        case "secret":
-                            if(isset($this->lines[$specific_line]['secret'])) {
-                                $contents = str_replace('{$secret.line.' . $specific_line . '}', $this->lines[$specific_line]['secret'], $contents);
-                            } else {
-                                $contents = str_replace('{$secret.line.' . $specific_line . '}', '', $contents);
-                            }
-                            break;
-                        case "pass":
-                            if(isset($this->lines[$specific_line]['secret'])) {
-                                $contents = str_replace('{$pass.line.' . $specific_line . '}', $this->lines[$specific_line]['secret'], $contents);
-                            } else {
-                                $contents = str_replace('{$pass.line.' . $specific_line . '}', '', $contents);
-                            }
-                            break;
-                    }
-                }
-                 * 
-                 */
             }
         }
         return($contents);
@@ -827,21 +760,6 @@ abstract class endpoint_base {
         }
 
         return empty($array) ? '' : $array;
-
-        /*
-        if((empty($array[0])) AND (!empty($array))) {
-            $array_n[0] = $array;
-            return($array_n);
-        } elseif(!empty($array)) {
-            return($array);
-        //This is so stupid?! PHP gets confused.
-        } elseif($array == '0') {
-            return($array);
-        } else {
-            return("");
-        }
-         * *
-        */
     }
 
     /**
