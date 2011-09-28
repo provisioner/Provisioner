@@ -20,6 +20,8 @@
 	<!-- this changes how the button works. If it's set when the phone isn't on blf then the button turns orange. so we probably need to remove this normally.-->
 	<Extended_Function_{$line}_ group="Phone/Line_Key_{$line}">{$extended_function}</Extended_Function_{$line}_>
 	<Dial_Plan_{$line}_ ua="na">{$dial_plan}</Dial_Plan_{$line}_>
+	<SIP_Port_{$line}_ group="Ext_{$line}/SIP_Settings">{$server.port.1}</SIP_Port_{$line}_>
+	<Proxy_{$line}_ group="Ext_{$line}/Proxy_and_Registration">{$server.ip.1}</Proxy_{$line}_>
 	{/line_loop}
 	
 	<!-- Proxy and Registration -->
