@@ -6,8 +6,8 @@
 		<version>0.5</version>
 		<directory>cisco</directory>
 		<package>cisco-0_5.tgz</package>
-		<md5sum>528e985d3a475a41f72d5c79423aaf9b</md5sum>
-		<last_modified>1316190304</last_modified>
+		<md5sum>4a38c9769915f06b9065dac1e76345d5</md5sum>
+		<last_modified>1317251165</last_modified>
 				<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -15,7 +15,7 @@
 				<directory>ata18x</directory>
 				<version>0.1</version>
 				<description></description>
-				<changelog>PACKAGER: Spelling mistake</changelog>
+				<changelog>PACKAGER: Changes to rest generator for visual GUI</changelog>
 				<id>5</id>
 				<last_modified>1315440476</last_modified>
 			</family>
@@ -53,7 +53,7 @@
 				<description></description>
 				<changelog></changelog>
 				<id>3</id>
-				<last_modified>1316190304</last_modified>
+				<last_modified>1317251165</last_modified>
 			</family>
 			<family>
 				<name>Linksys/Cisco/Sipura SPA Adapter Models [2102, 3102(FXS Only)]</name>
