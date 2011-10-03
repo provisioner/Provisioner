@@ -82,4 +82,16 @@
 			<files>speed_dials.xml</files>
 		</template_data>
 	</model_list>
+	<model_list>
+		<model>821</model>
+		<lines>12</lines>
+		<id>7</id>
+		<template_data>
+			<files>line_options.xml</files>
+			<files>template_data.xml</files>
+			<files>action_urls.xml</files>
+			<files>keys.xml</files>
+			<files>speed_dials.xml</files>
+		</template_data>
+	</model_list>
 </data>
