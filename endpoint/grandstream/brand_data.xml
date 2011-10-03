@@ -6,8 +6,8 @@
 		<directory>grandstream</directory>
 		<brand_id>2</brand_id>
 		<package>grandstream-0_7.tgz</package>
-		<md5sum>287febb3a32a2956fce830d542b8b769</md5sum>
-		<last_modified>1316461639</last_modified>
+		<md5sum>d524acda8e185254e005c7e39b9e25ac</md5sum>
+		<last_modified>1317675450</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -15,7 +15,7 @@
 				<directory>bts</directory>
 				<version>1.0</version>
 				<description>Fixed Timezone Issues + Use Grandstream Encrypted Compiler By Default</description>
-				<changelog>PACKAGER: Using preg_split instead of strstr and explode)</changelog>
+				<changelog>PACKAGER: Fixes to xml2json.php</changelog>
 				<id>2</id>
 				<last_modified>1316461639</last_modified>
 			</family>
@@ -26,7 +26,7 @@
 				<description>Use Grandstream Encrypted Compiler By Default</description>
 				<changelog></changelog>
 				<id>1</id>
-				<last_modified>1316461639</last_modified>
+				<last_modified>1317675450</last_modified>
 			</family>
 			<family>
 				<name>GXP Enterprise HD series [2100,2110,2120]</name>
@@ -35,7 +35,7 @@
 				<description>Use Grandstream Encrypted Compiler By Default</description>
 				<changelog></changelog>
 				<id>4</id>
-				<last_modified>1315440476</last_modified>
+				<last_modified>1317675450</last_modified>
 			</family>
 			<family>
 				<name>HandyTone [HT486 REV.2, HT286 REV.3]</name>
@@ -44,7 +44,7 @@
 				<description></description>
 				<changelog></changelog>
 				<id>3</id>
-				<last_modified>1315440476</last_modified>
+				<last_modified>1317675450</last_modified>
 			</family>
 <!--End Auto Generated-->
 
