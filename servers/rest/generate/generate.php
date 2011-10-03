@@ -108,9 +108,60 @@ if(preg_match('/[0-9A-Fa-f]{12}/i', $file, $matches) && !(preg_match('/[0]{10}[0
 		echo $returned_data[$file];
 	} else {
 		//rob junk
-		echo "rob junk";
-		print_r($data);
-		
+		echo "<pre>";
+		$out = array();
+		foreach($data['data'] as $cats) {
+			foreach($cats as $subcats) {
+				foreach($subcats as $var => $items) {
+					foreach($items as $subvar => $subitems) {
+						if(array_key_exists('value', $subitems)) {
+							echo $var . "_" . $subvar . ":". $subitems['value'] ."<br />";
+							$out[$var . "_" . $subvar] = $subitems['value'];
+						}
+					}
+				}
+			}
+		}
+		echo '<br/><br/>';
+		foreach($out as $key => $data) {
+			
+			echo $key . '<br>';
+			
+			if(preg_match("/lineloop\|(.*)_(.*)/i",$key,$matches)) {
+				$stuff = $matches;
+				$line = $stuff[1];
+				$var = $stuff[2];
+				$req = $stuff[0];
+
+				$line_options[$line]['options'][$var] = $out[$key];
+				unset($out[$req]);
+			}elseif(preg_match("/loop\|(.*)_([\d]*)_(.*)/i",$key,$matches)) {
+				$stuff = $matches;		
+				$loop = $stuff[1];
+				$var = $stuff[3];
+				$count = $stuff[2];
+				$req = $stuff[0];
+				
+				$loops_options[$loop][$count][$var] = $out[$key];
+				unset($out[$req]);
+			}elseif(preg_match("/option\|(.*)/i",$key,$matches)) {
+				$stuff = $matches;
+				$var = $stuff[1];
+				$req = $stuff[0];
+
+				$options[$var] = $_REQUEST[$req];
+				unset($_REQUEST[$req]);
+			}elseif(preg_match("/line_static\|(.*)\|(.*)/i",$key,$matches)) {
+				$stuff = $matches;
+				$line = $stuff[1];
+				$var = $stuff[2];
+				$req = $stuff[0];
+
+				$line_static[$line][$var] = $out[$key];
+				unset($out[$req]);
+			}
+		}
+		print_r($loops_options);	
 	}
 
 } elseif(preg_match('/[0]{10}[0-9]{2}/i',$file)) {

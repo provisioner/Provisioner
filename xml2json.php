@@ -113,8 +113,8 @@ switch($request) {
 												}
 											}
 										}
-										$items = array();
-										$items = $items_loop;
+										unset($items[$key]);
+										$items = array_merge($items, $items_loop);
 									} elseif($loop_data['type'] == 'loop_line_options') {
 										for($i = 1; $i <= $data['lines']; $i++) {
 											$var_nam = "lineloop|line_".$i;
@@ -131,17 +131,18 @@ switch($request) {
 												}
 											}
 										}
-										$items = array();
-										$items = $items_loop;
+										unset($items[$key]);
+										$items = array_merge($items, $items_loop);
 									} elseif($loop_data['type'] == 'break') {
 										unset($items[$key]);
 									} else {
 										unset($items[$key]);
 										$var_nam = "option|".str_replace("\$","",$loop_data['variable']);
-										$items[$var_nam] = $loop_data;					
+										$items[$var_nam][] = $loop_data;					
 									}
 								}
 								if(array_key_exists($subcat_data['name'],$data['data'][$cat_data['name']])) {
+									//die($subcat_data['name']);
 									$oldsub = $data['data'][$cat_data['name']][$subcat_data['name']];
 									$data['data'][$cat_data['name']][$subcat_data['name']] = array_merge($oldsub,$items);
 								} else {
