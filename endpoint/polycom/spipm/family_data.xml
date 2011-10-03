@@ -49,6 +49,7 @@
 		<id>6</id>
 		<template_data>
 			<files>template_data.xml</files>
+			<files>attendant_keys.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
