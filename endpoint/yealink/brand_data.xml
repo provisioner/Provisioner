@@ -6,7 +6,7 @@
 		<brand_id>8</brand_id>
 		<directory>yealink</directory>
 		<package>yealink-0_5.tgz</package>
-        	<md5sum>960a9b1e946b560f00c4fe41810ffdc8</md5sum>
+        	<md5sum>85ad213a229a6fa3f06f23eb30802211</md5sum>
 		<last_modified>1317359115</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
@@ -15,7 +15,7 @@
 				<directory>t2x</directory>
 				<version>0.7.7</version>
 				<description>Make more configuration settings available from UI</description>
-				<changelog>PACKAGER: Fixes to xml2json.php</changelog>
+				<changelog>PACKAGER: PACKAGER: Adding Jort Bloem to all license files.</changelog>
 				<id>1</id>
 				<last_modified>1317359115</last_modified>
 			</family>

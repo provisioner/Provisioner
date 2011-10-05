@@ -6,7 +6,7 @@
 		<directory>snom</directory>
 		<brand_id>6</brand_id>
 		<package>snom-0_6.tgz</package>
-        <md5sum>571fee0a7cac10208bdd1029d65c2d54</md5sum>
+        <md5sum>262877b24b0238c904367d79ba0007df</md5sum>
 		<last_modified>1316190304</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
@@ -15,7 +15,7 @@
 				<directory>3xx820m3</directory>
 				<version>1</version>
 				<description>Server + Password Settings, htm File Fixes</description>
-				<changelog>PACKAGER: Spelling mistake</changelog>
+				<changelog>PACKAGER: PACKAGER: Adding Jort Bloem to all license files.</changelog>
 				<id>1</id>
 				<last_modified>1316190304</last_modified>
 			</family>
