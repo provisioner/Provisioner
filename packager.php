@@ -15,7 +15,7 @@ if (!isset($_SERVER['PHP_AUTH_USER'])) {
 
 set_time_limit(0);
 define("MODULES_DIR", "/var/www/html/repo/endpoint");
-define("RELEASE_DIR", "/var/www/html/release3");
+define("RELEASE_DIR", "/var/www/html/release/v2.5");
 define("ROOT_DIR", "/var/www/html/repo");
 define("FIRMWARE_DIR", "/var/www/html/repo_firmwares");
 

@@ -7,7 +7,7 @@
 		<brand_id>4</brand_id>
 		<package>polycom-0_7.tgz</package>
 		<md5sum>9cccfdbcc617ae79992192bd852f8d2a</md5sum>
-		<last_modified>1316461639</last_modified>
+		<last_modified>1317851894</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -15,7 +15,7 @@
 				<directory>firmware325</directory>
 				<version>0.8.1</version>
 				<description>Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality</description>
-				<changelog>PACKAGER: Using preg_split instead of strstr and explode)</changelog>
+				<changelog>PACKAGER: Adding Jort Bloem to all license files.</changelog>
 				<id>4</id>
 				<last_modified>1316461639</last_modified>
 			</family>
@@ -26,7 +26,7 @@
 				<description>Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality</description>
 				<changelog></changelog>
 				<id>3</id>
-				<last_modified>1316461639</last_modified>
+				<last_modified>1317851894</last_modified>
 			</family>
 			<family>
 				<name>SoundPoint/Station Legacy Models [301,501,600,601,4000]</name>
