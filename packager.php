@@ -112,7 +112,7 @@ fclose($fp);
 copy(MODULES_DIR."/master.xml", RELEASE_DIR."/master.xml");
 
 $html .= "<hr><h3>Master List File</h3>";
-$html .= "<a href='/release3/master.xml'>master.xml</a>";
+$html .= "<a href='/release/v2.5/master.xml'>master.xml</a>";
 
 $html .= "<hr><h3>Brand Packages</h3>".$brands_html;
 

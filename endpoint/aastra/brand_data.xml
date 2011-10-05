@@ -6,9 +6,9 @@
 		<version>0.5</version>
 		<directory>aastra</directory>
 		<package>aastra-0_5.tgz</package>
-		<md5sum>5064c587cf45700a4c39e88c98656311</md5sum>
+		<md5sum>de75b992934a553f95ee20c14174af8e</md5sum>
 		<last_modified>1315440476</last_modified>
-		<changelog>PACKAGER: Commiting some changes</changelog>
+		<changelog>PACKAGER: PACKAGER: Adding Jort Bloem to all license files.</changelog>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>

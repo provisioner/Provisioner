@@ -6,7 +6,7 @@
 		<directory>grandstream</directory>
 		<brand_id>2</brand_id>
 		<package>grandstream-0_7.tgz</package>
-		<md5sum>d524acda8e185254e005c7e39b9e25ac</md5sum>
+		<md5sum>0e8d2d0e9aa8e2932296f8880f78bbc2</md5sum>
 		<last_modified>1317675450</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
@@ -15,7 +15,7 @@
 				<directory>bts</directory>
 				<version>1.0</version>
 				<description>Fixed Timezone Issues + Use Grandstream Encrypted Compiler By Default</description>
-				<changelog>PACKAGER: Fixes to xml2json.php</changelog>
+				<changelog>PACKAGER: PACKAGER: Adding Jort Bloem to all license files.</changelog>
 				<id>2</id>
 				<last_modified>1316461639</last_modified>
 			</family>
