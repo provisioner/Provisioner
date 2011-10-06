@@ -59,7 +59,7 @@ if(preg_match('/[0-9A-Fa-f]{12}/i', $file, $matches) && !(preg_match('/[0]{10}[0
 	$endpoint->model = $model;
 	
 	//This is very very important
-	$endpoint->provisioning_path = 'http://www.provisioner.net'.dirname($_SERVER['REQUEST_URI'])."/";
+	$endpoint->provisioning_path = 'www.provisioner.net'.dirname($_SERVER['REQUEST_URI'])."/";
 
 	if(!isset($data['phone_data']['brand'])) {
 		//Timezone
