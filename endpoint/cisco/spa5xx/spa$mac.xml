@@ -2,6 +2,7 @@
 	<!-- Reset the global configuration options, now we will reset per day instead of every second -->
 	<Resync_Periodic>86400</Resync_Periodic>
 	<Resync_On_Reset>Yes</Resync_On_Reset>
+	<Profile_Rule>{$provisioning_type}://{$provisioning_path}/spa$MA.xml</Profile_Rule>
 	
 	<!-- Line Registration Information -->
 	<Text_Logo group="Phone/General">{$text_logo}</Text_Logo>
