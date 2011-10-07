@@ -75,6 +75,58 @@
                             <text>Directory</text>
                             <value>directory</value>
                         </data>
+                        <data>
+                            <text>Auto Call Distribution [Sylantro Server]</text>
+                            <value>acd</value>
+                        </data>
+                        <data>
+                            <text>Directed Call Pickup [Sylantro Server]</text>
+                            <value>dcp</value>
+                        </data>
+                        <data>
+                            <text>Flash</text>
+                            <value>flash</value>
+                        </data>
+                        <data>
+                            <text>Server Specific Services [sprecode]</text>
+                            <value>sprecod</value>
+                        </data>
+                        <data>
+                            <text>Last Call Return</text>
+                            <value>lcr</value>
+                        </data>
+                        <data>
+                            <text>Call Forward</text>
+                            <value>callforward</value>
+                        </data>
+                        <data>
+                            <text>BLF Transfer</text>
+                            <value>blfxfer</value>
+                        </data>
+                        <data>
+                            <text>Speed Dial Transfer</text>
+                            <value>speeddialxfer</value>
+                        </data>
+                        <data>
+                            <text>Speed Dial Conference</text>
+                            <value>speeddialconf</value>
+                        </data>
+                        <data>
+                            <text>BLF Transfer</text>
+                            <value>blfxfer</value>
+                        </data>
+                        <data>
+                            <text>Conference</text>
+                            <value>conf</value>
+                        </data>
+                        <data>
+                            <text>Phone Lock</text>
+                            <value>phonelock</value>
+                        </data>
+                        <data>
+                            <text>Paging</text>
+                            <value>paging</value>
+                        </data>
                     </item>
                     <item>
                         <variable>$prgkey_value</variable>
