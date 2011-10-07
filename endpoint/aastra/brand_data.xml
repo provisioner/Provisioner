@@ -6,9 +6,9 @@
 		<version>0.5</version>
 		<directory>aastra</directory>
 		<package>aastra-0_5.tgz</package>
-		<md5sum>71b1ac7f3adb240354e9da27826850fc</md5sum>
-		<last_modified>1317977230</last_modified>
-		<changelog>PACKAGER: Some aastra updates from Martin John</changelog>
+		<md5sum>3170cde3cc113c7d154b4187e1b59826</md5sum>
+		<last_modified>1317978392</last_modified>
+		<changelog>PACKAGER: I totally forgot that ampersands are not allows in xml. wow. I hate xml</changelog>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -27,7 +27,7 @@
 				<description>Initial Files</description>
 				<changelog></changelog>
 				<id>2</id>
-				<last_modified>1317977230</last_modified>
+				<last_modified>1317978392</last_modified>
 			</family>
 <!--End Auto Generated-->
 
