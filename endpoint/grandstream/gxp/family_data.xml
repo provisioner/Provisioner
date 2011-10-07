@@ -32,6 +32,8 @@
 		<template_data>
 			<files>template_data.xml</files>
                         <files>keys_7.xml</files>
+                        <files>ext_b_1.xml</files>
+                        <files>ext_b_2.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
