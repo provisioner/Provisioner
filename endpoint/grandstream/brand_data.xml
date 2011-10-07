@@ -6,8 +6,8 @@
 		<directory>grandstream</directory>
 		<brand_id>2</brand_id>
 		<package>grandstream-0_7.tgz</package>
-		<md5sum>0e8d2d0e9aa8e2932296f8880f78bbc2</md5sum>
-		<last_modified>1317675450</last_modified>
+		<md5sum>37c51927fad60d469fb56d7dd76a55d4</md5sum>
+		<last_modified>1317979176</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -15,7 +15,7 @@
 				<directory>bts</directory>
 				<version>1.0</version>
 				<description>Fixed Timezone Issues + Use Grandstream Encrypted Compiler By Default</description>
-				<changelog>PACKAGER: PACKAGER: Adding Jort Bloem to all license files.</changelog>
+				<changelog>PACKAGER: Pushing GXP Changes</changelog>
 				<id>2</id>
 				<last_modified>1316461639</last_modified>
 			</family>
@@ -44,7 +44,7 @@
 				<description></description>
 				<changelog></changelog>
 				<id>3</id>
-				<last_modified>1317675450</last_modified>
+				<last_modified>1317979176</last_modified>
 			</family>
 <!--End Auto Generated-->
 
