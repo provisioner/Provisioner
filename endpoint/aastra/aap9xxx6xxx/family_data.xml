@@ -109,7 +109,7 @@
 	</model_list>
 	<model_list>
 		<model>6757i</model>
-		<lines>4</lines>
+		<lines>9</lines>
 		<id>10</id>
 		<template_data>
 			<files>template_data.xml</files>
@@ -122,7 +122,7 @@
 	</model_list>
 	<model_list>
 		<model>6757i CT</model>
-		<lines>4</lines>
+		<lines>9</lines>
 		<id>11</id>
 		<template_data>
 			<files>template_data.xml</files>

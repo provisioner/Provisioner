@@ -24,14 +24,6 @@
                             <value>callers</value>
                         </data>
                         <data>
-                            <text>Delete</text>
-                            <value>delete</value>
-                        </data>
-                        <data>
-                            <text>Save</text>
-                            <value>save</value>
-                        </data>
-                        <data>
                             <text>Intercom</text>
                             <value>icom</value>
                         </data>
@@ -66,10 +58,6 @@
                         <data>
                             <text>Park</text>
                             <value>park</value>
-                        </data>
-                        <data>
-                            <text>Transfer</text>
-                            <value>xfer</value>
                         </data>
                         <data>
                             <text>Directory</text>
