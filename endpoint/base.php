@@ -925,7 +925,19 @@ class Provisioner_Globals {
      * @return String, data of that file: eg # This file intentionally left blank!
      */
     function dynamic_global_files($file,$provisioner_path='/tmp/',$web_path='/') {
-
+        if(file_exists($provisioner_path.$file)) {
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename=' . basename($provisioner_path.$file));
+            header('Content-Transfer-Encoding: binary');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($provisioner_path.$file));
+            ob_clean();
+            flush();
+            readfile($provisioner_path.$file);
+        }
         if (preg_match("/y[0]{11}[1-7].cfg/i", $file)) {
             $file = 'y000000000000.cfg';
         }
