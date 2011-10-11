@@ -89,9 +89,9 @@
 	<Select_Logo ua="na">{$logo_type}</Select_Logo>
 	<Select_Background_Picture ua="ro">{$background_type}</Select_Background_Picture>
 	<BMP_Picture_Download_URL ua="ro">{$picture_url}</BMP_Picture_Download_URL>
-	<Syslog_Server group="System/Optional_Network_Configuration">192.168.1.5</Syslog_Server>
+	<Syslog_Server group="System/Optional_Network_Configuration">{$server.ip.1}</Syslog_Server>
 	<Debug_Level group="System/Optional_Network_Configuration">3</Debug_Level>
-	<Debug_Server group="System/Optional_Network_Configuration">192.168.1.5</Debug_Server>
+	<Debug_Server group="System/Optional_Network_Configuration">{$server.ip.1}</Debug_Server>
 
 	<Speed_Dial_2 ua="rw">{$speed_dial_2}</Speed_Dial_2>
 	<Speed_Dial_3 ua="rw">{$speed_dial_3}</Speed_Dial_3>
