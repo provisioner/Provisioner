@@ -135,7 +135,7 @@ abstract class endpoint_base {
 		if ($result%3600>0) {
 			$result.=":".(($offset%3600)/60);
 		} else {
-			$resule.=":00";
+			$result.=":00";
 		}
 		return $result;
     }
