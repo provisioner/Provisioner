@@ -52,6 +52,7 @@
 	<!-- options: -->
 	 <Daylight_Saving_Time_Rule ua="na">start=3/8/7/02:0:0;end=11/1/7/02:0:0;save=1</Daylight_Saving_Time_Rule>
 	 <Daylight_Saving_Time_Enable group="Regional/Miscellaneous">No</Daylight_Saving_Time_Enable>
+	 <Date_Format >{$date_format|month/day}</Date_Format>
 	 <Call_Return_Code ua="na"> </Call_Return_Code>
 	 <Blind_Transfer_Code > </Blind_Transfer_Code>
 	 <Call_Back_Act_Code> </Call_Back_Act_Code>
