@@ -158,7 +158,7 @@ define('JSON_PRETTY_PRINT', 100);
 	
 	function json_encode($input,$opts) {
 		$json = new Services_JSON();
-		if($opts = JSON_PRETTY_PRINT) {
+		if($opts == JSON_PRETTY_PRINT) {
 			return(indent($json->encode($input)));
 		} else {
 			return($json->encode($input));
