@@ -129,4 +129,17 @@
 	{loop_unit2}
 	<Unit_2_Key_{$number} group="Attendant_Console/Unit_2">{$data}</Unit_2_Key_{$number}>
 	{/loop_unit2}
+
+	<!-- Ring tones and Cadences -->
+	<Ring1 group="Phone/Ring_Tone">{$ring1|n=Classic-1;w=3;c=1}</Ring1>
+	<Ring2 group="Phone/Ring_Tone">{$ring2|n=Classic-2;w=3;c=2}</Ring2>
+	<Ring3 group="Phone/Ring_Tone">{$ring3|n=Classic-3;w=3;c=3}</Ring3>
+	<Ring4 group="Phone/Ring_Tone">{$ring4|n=Classic-4;w=3;c=4}</Ring4>
+	<Ring5 group="Phone/Ring_Tone">{$ring5|n=Simple-1;w=2;c=1}</Ring5>
+	<Ring6 group="Phone/Ring_Tone">{$ring6|n=Simple-2;w=2;c=2}</Ring6>
+	<Ring7 group="Phone/Ring_Tone">{$ring7|n=Simple-3;w=2;c=3}</Ring7>
+	<Ring8 group="Phone/Ring_Tone">{$ring8|n=Simple-4;w=2;c=4}</Ring8>
+	<Ring9 group="Phone/Ring_Tone">{$ring9|n=Simple-5;w=2;c=5}</Ring9>
+	<Ring10 group="Phone/Ring_Tone">{$ring10|n=Office;w=4;c=1}</Ring10>
+
 </flat-profile>
