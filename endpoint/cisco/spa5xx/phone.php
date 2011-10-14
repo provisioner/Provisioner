@@ -11,7 +11,11 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
 	public $family_line = 'spa5xx';
 	
 	function parse_lines_hook($line) {
-		$short_name = substr($this->lines[$line]['displayname'], 0, 8) . "...";
+		if (strlen($this->lines[$line]['displayname']) > 12) {
+			$short_name = substr($this->lines[$line]['displayname'], 0, 8) . "...";
+		} else {
+			$short_name = $this->lines[$line]['displayname'];
+		}
 		if((isset($this->lines[$line]['secret'])) && ($this->lines[$line]['secret'] != "")) {
 			$this->lines[$line]['options']['dial_plan'] = $this->options['dial_plan'];
 		} else {
