@@ -56,6 +56,8 @@
  * @link        http://pear.php.net/pepr/pepr-proposal-show.php?id=198
  */
 
+if(!function_exists('json_decode')) {
+
 /**
  * Marker constant for Services_JSON::decode(), used to flag stack state
  */
@@ -91,8 +93,11 @@ define('SERVICES_JSON_LOOSE_TYPE', 16);
  */
 define('SERVICES_JSON_SUPPRESS_ERRORS', 32);
 
+/**
+ *
+ */
+define('JSON_PRETTY_PRINT', 100);
 
-if(!function_exists('json_decode')) {
 	//Pretty Print json function
 	function indent($json) {
 
@@ -151,9 +156,13 @@ if(!function_exists('json_decode')) {
 		return($json->decode($input));
 	}
 	
-	function json_encode($input) {
+	function json_encode($input,$opts) {
 		$json = new Services_JSON();
-		return(indent($json->encode($input)));		
+		if($opts = JSON_PRETTY_PRINT) {
+			return(indent($json->encode($input)));
+		} else {
+			return($json->encode($input));
+		}
 	}
 }
 
