@@ -25,6 +25,8 @@
 		<template_data>
 			<files>template_data.xml</files>
             		<files>keys.xml</files>
+            		<files>a_unit1.xml</files>
+			<files>a_unit2.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
