@@ -24,7 +24,7 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
 		}
 		if(isset($this->options['lineops'][$line])) {
 			$this->lines[$line]['options']['displaynameline'] = $this->options['lineops'][$line]['displaynameline'];
-			$this->lines[$line]['options']['short_name'] = $short_name;
+			$this->lines[$line]['options']['short_name'] = $this->options['lineops'][$line]['displaynameline'];
 			if(($this->options['lineops'][$line]['keytype'] == "blf") AND ($this->options['lineops'][$line]['blfext'] != "")) {
 				$this->lines[$line]['ext'] = $this->options['lineops'][$line]['blfext'];
 				$this->lines[$line]['secret'] = 'n/a';
