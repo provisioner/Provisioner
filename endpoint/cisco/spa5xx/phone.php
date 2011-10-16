@@ -11,6 +11,7 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
 	public $family_line = 'spa5xx';
 	
 	function parse_lines_hook($line) {
+            
 		if (strlen($this->lines[$line]['displayname']) > 12) {
 			$short_name = substr($this->lines[$line]['displayname'], 0, 8) . "...";
 		} else {
@@ -21,8 +22,8 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
 		} else {
 			$this->lines[$line]['options']['dial_plan'] = "";
 		}
-		if(isset($this->options['lineops'])) {
-			$this->lines[$line]['options']['displaynameline'] = $this->options['lineops'][$line]['displaynameline'];
+		if(isset($this->options['lineops'][$line])) {
+			$this->lines[$line]['options']['displaynameline'] = str_replace($count, $line, $this->options['lineops'][$line]['displaynameline']);
 			$this->lines[$line]['options']['short_name'] = $this->options['lineops'][$line]['displaynameline'];
 			if(($this->options['lineops'][$line]['keytype'] == "blf") AND ($this->options['lineops'][$line]['blfext'] != "")) {
 				$this->lines[$line]['ext'] = $this->options['lineops'][$line]['blfext'];
@@ -42,7 +43,7 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
 					$this->lines[$line]['options']['share_call_appearance'] = "private";
 					$this->lines[$line]['options']['extended_function'] = "";
 				}
-			}
+			}                        
 		} else {
 			$this->lines[$line]['options']['displaynameline'] = $this->lines[$line]['displayname'];
 			$this->lines[$line]['options']['short_name'] = $short_name;
