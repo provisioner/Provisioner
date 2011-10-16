@@ -23,8 +23,8 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
 			$this->lines[$line]['options']['dial_plan'] = "";
 		}
 		if(isset($this->options['lineops'][$line])) {
-			$this->lines[$line]['options']['displaynameline'] = str_replace($count, $line, $this->options['lineops'][$line]['displaynameline']);
-			$this->lines[$line]['options']['short_name'] = $this->options['lineops'][$line]['displaynameline'];
+			$this->lines[$line]['options']['displaynameline'] = $this->options['lineops'][$line]['displaynameline'];
+			$this->lines[$line]['options']['short_name'] = $short_name;
 			if(($this->options['lineops'][$line]['keytype'] == "blf") AND ($this->options['lineops'][$line]['blfext'] != "")) {
 				$this->lines[$line]['ext'] = $this->options['lineops'][$line]['blfext'];
 				$this->lines[$line]['secret'] = 'n/a';
@@ -33,6 +33,8 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
 				$this->lines[$line]['options']['extended_function'] = "fnc=blf+sd+cp;sub=".$this->options['lineops'][$line]['blfext']."@".$this->server[1]['ip'];
 			} else {
 				if(!isset($this->lines[$line]['secret'])) {
+                                        $this->lines[$line]['options']['displaynameline'] = $this->lines[1]['options']['displaynameline'];
+                                        $this->lines[$line]['options']['short_name'] = $this->lines[1]['options']['short_name'];
 					$this->lines[$line]['ext'] = '';
 					$this->lines[$line]['secret'] = '';
 					$this->lines[$line]['options']['blf_ext_type'] = "1";
