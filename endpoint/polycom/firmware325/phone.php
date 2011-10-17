@@ -20,7 +20,7 @@ class endpoint_polycom_firmware325_phone extends endpoint_polycom_base {
 		$result=parent::config_files();
 	        $macprefix = $this->server_type == 'dynamic' ? $this->mac."_" : NULL;
 		if((isset($this->options['file_prefix'])) && ($this->options['file_prefix'] != "")) {
-			$fn=$macprefix.$this->options['file_prefix'].'_sip.cfg';
+			$fn=$macprefix.$this->options['file_prefix'].'_sip_325.cfg';
 			$result[$fn]=$result['sip.cfg'];
 			unset($result['sip.cfg']);
 			$this->options['createdFiles'] = str_replace(", sip.cfg",", $fn",$this->options['createdFiles']);
