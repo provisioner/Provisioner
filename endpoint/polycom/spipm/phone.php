@@ -57,7 +57,7 @@ class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
         }
         $this->options['createdFiles'] = $this->mac.'_reg.cfg, sip.cfg';
 
-		$this->protected_files = array('overrides/'.$this->mac.'-phone.cfg', 'logs/'.$this->mac.'-boot.log', 'logs/'.$this->mac.'-app.log','SoundPointIPLocalization');
+		$this->protected_files = array('overrides/'.$this->mac.'-phone.cfg', 'logs/'.$this->mac.'-boot.log', 'logs/'.$this->mac.'-app.log','SoundPointIPLocalization','overrides/'.$this->mac.'-phone.cfg');
     }
 
 
