@@ -6,8 +6,8 @@
             <item>
                 <description>Line Keys (1-3)</description>
                 <type>loop</type>
-                <loop_start>1</loop_start>
-                <loop_end>3</loop_end>
+                <loop_start>11</loop_start>
+                <loop_end>13</loop_end>
                 <data>
                     <item>
                         <variable>$linekey_type</variable>
