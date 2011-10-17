@@ -12,8 +12,7 @@ $proxyserver = isset($_REQUEST['proxyserver']) ? $_REQUEST['proxyserver'] : '';
 $product = $product_model[0];
 $model = $product_model[1];
 
-$json_data = json_decode(file_get_contents('http://www.provisioner.net/repo/xml2json.php?request=data&brand='.$brand.'&product='.$product.'&model='.$model),true);
-
+$json_data = json_decode(file_get_contents('http://www.provisioner.net/repo/xml2json.php?request=data&brand='.$brand.'&product='.$product.'&model='.urlencode($model)),true);
 $html_array = generate_gui_html($json_data,$_REQUEST['regs']);
 
 
@@ -49,6 +48,8 @@ foreach($html_array as $sections) {
 			case 'checkbox':
 				echo $html_els['description'].': <input type="checkbox" name="'.$html_els['key'].'" value="'.$html_els['key'].'"/><br />';
 				break;	
+			default:
+				break;
 		}
 	}
 }
@@ -149,6 +150,14 @@ function generate_gui_html($cfg_data,$max_lines=3) {
 				$type = $matches[1];
 				$variable = $matches[2];
 				switch($type) {
+					case "option":
+						if(isset($data3[0]['description'])) {
+							$data3[0]['description'] = str_replace('{$count}',$a,$data3[0]['description']);
+							$key = $type."|".str_replace('$','',$data3[0]['variable']);
+							$template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$data3[0],$key);
+							$variables_count++;
+						}
+						break;
 					case "lineloop":
 						if($line_count <= $max_lines) {
 							$variables_count = 0;
@@ -179,13 +188,7 @@ function generate_gui_html($cfg_data,$max_lines=3) {
 							$variables_count++;
 						}
 						break;
-					case "option":
-						if(isset($data3['description'])) {
-							$data3['description'] = str_replace('{$count}',$a,$data3['description']);
-							$key = $type."|".str_replace('$','',$data3['variable']);
-							$template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$data3,$key);
-							$variables_count++;
-						}
+
 					default:
 						//echo $type."<br />";
 						break;
