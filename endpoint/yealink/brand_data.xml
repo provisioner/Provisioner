@@ -6,8 +6,8 @@
 		<brand_id>8</brand_id>
 		<directory>yealink</directory>
 		<package>yealink-0_5.tgz</package>
-        	<md5sum>3a1172d7941c397b0c78ce9bb2709b2d</md5sum>
-		<last_modified>1318832408</last_modified>
+        	<md5sum>727d3cfa561b877681545f6cd61c4bad</md5sum>
+		<last_modified>1318832701</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -15,9 +15,9 @@
 				<directory>t2x</directory>
 				<version>0.7.7</version>
 				<description>Make more configuration settings available from UI</description>
-				<changelog>PACKAGER: Fixes to Line Buttons for Yealink Phones</changelog>
+				<changelog>PACKAGER: Fixes-Additions for T28</changelog>
 				<id>1</id>
-				<last_modified>1318832408</last_modified>
+				<last_modified>1318832701</last_modified>
 			</family>
 			<family>
 				<name>Yealink/Dreamwave T3X Models: [T32, T38]</name>
