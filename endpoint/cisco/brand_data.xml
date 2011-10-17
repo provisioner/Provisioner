@@ -6,8 +6,8 @@
 		<version>0.5</version>
 		<directory>cisco</directory>
 		<package>cisco-0_5.tgz</package>
-		<md5sum>76e2234e6bf5f6cbca3a70833510c3d7</md5sum>
-		<last_modified>1317978392</last_modified>
+		<md5sum>9cecfd6694605221076fa331eb16873a</md5sum>
+		<last_modified>1318832408</last_modified>
 				<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -15,7 +15,7 @@
 				<directory>ata18x</directory>
 				<version>0.1</version>
 				<description></description>
-				<changelog>PACKAGER: I totally forgot that ampersands are not allows in xml. wow. I hate xml</changelog>
+				<changelog>PACKAGER: Fixes to Line Buttons for Yealink Phones</changelog>
 				<id>5</id>
 				<last_modified>1315440476</last_modified>
 			</family>
@@ -53,7 +53,7 @@
 				<description></description>
 				<changelog></changelog>
 				<id>3</id>
-				<last_modified>1317978392</last_modified>
+				<last_modified>1318832408</last_modified>
 			</family>
 			<family>
 				<name>Linksys/Cisco/Sipura SPA Adapter Models [2102, 3102(FXS Only)]</name>
@@ -62,7 +62,7 @@
 				<description>New Device</description>
 				<changelog></changelog>
 				<id>6</id>
-				<last_modified>1315984696</last_modified>
+				<last_modified>1318832408</last_modified>
 			</family>
 <!--End Auto Generated-->
 
