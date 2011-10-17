@@ -9,6 +9,16 @@
             </item>
             <item>
                 <!-- Web Administration Password -->
+                <variable>$file_prefix</variable>
+                <default_value></default_value>
+                <description>Custom Global File Prefix (For sip,server)</description>
+                <type>input</type>
+            </item>
+            <item>
+                <type>break</type>
+            </item>
+            <item>
+                <!-- Web Administration Password -->
                 <variable>$microbrowser_main_home</variable>
                 <default_value></default_value>
                 <description>Microbrowser Main Home</description>
