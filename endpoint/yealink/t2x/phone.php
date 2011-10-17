@@ -21,7 +21,7 @@ class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
 		
 		if(isset($this->options['linekey'])) {
 			if (($line >= 1) && ($line <=6)) {
-				$this->options['linekey'][$line+10]=$this->options['linekey'][$line];
+				$this->options['linekey'][$line+10]=$this->options['linekey'][$line+10];
 			}
 		}
 	}
