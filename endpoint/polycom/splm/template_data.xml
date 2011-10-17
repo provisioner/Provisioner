@@ -4,10 +4,6 @@
         <subcategory>
             <name>general</name>
             <item>
-                <description>Micro Browser Settings</description>
-                <type>group</type>
-            </item>
-            <item>
                 <!-- Web Administration Password -->
                 <variable>$microbrowser_main_home</variable>
                 <default_value></default_value>

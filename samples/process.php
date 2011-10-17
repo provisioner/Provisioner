@@ -14,6 +14,11 @@ define('PROVISIONER_BASE', '../');
 //print_r($_REQUEST);
 
 //Get line options
+$line_options = array();
+$loops_options = array();
+$options = array();
+$line_static = array();
+
 foreach($_REQUEST as $key => $data) {
 	if(preg_match("/lineloop\|(.*)\|(.*)/i",$key,$matches)) {
 		$stuff = $matches;
@@ -49,7 +54,13 @@ foreach($_REQUEST as $key => $data) {
 		unset($_REQUEST[$req]);
 	}
 }
-$final_ops = array_merge($loops_options,$options);
+if(!empty($loops_options) && !empty($options)) {
+	$final_ops = array_merge($loops_options,$options);
+} elseif(empty($loops_options) && !empty($options)) {
+	$final_ops = $options;
+} elseif(!empty($loops_options) && empty($options)) {
+	$final_ops = $loops_options;
+}
 
 include('../autoload.php');
 
