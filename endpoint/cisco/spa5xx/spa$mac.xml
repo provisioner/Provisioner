@@ -142,4 +142,22 @@
 	<Ring9 group="Phone/Ring_Tone">{$ring9|n=Simple-5;w=2;c=5}</Ring9>
 	<Ring10 group="Phone/Ring_Tone">{$ring10|n=Office;w=4;c=1}</Ring10>
 
+	<!-- LDAP Settings for Directory -->
+	<LDAP_Dir_Enable group="Phone/LDAP_Corporate_Directory_Search">{$ldap_enabled|No}</LDAP_Dir_Enable>
+	<LDAP_Corp_Dir_Name group="Phone/LDAP_Corporate_Directory_Search">{$ldap_name}</LDAP_Corp_Dir_Name>
+	<LDAP_Server group="Phone/LDAP_Corporate_Directory_Search">{$ldap_server}</LDAP_Server>
+	<LDAP_Auth_Method group="Phone/LDAP_Corporate_Directory_Search">{Simple</LDAP_Auth_Method>
+	<LDAP_Client_DN group="Phone/LDAP_Corporate_Directory_Search">{$ldap_account}</LDAP_Client_DN>
+	<LDAP_Username group="Phone/LDAP_Corporate_Directory_Search">{$ldap_account}</LDAP_Username>
+	<LDAP_Password group="Phone/LDAP_Corporate_Directory_Search">{$ldap_password}</LDAP_Password>
+	<LDAP_Search_Base group="Phone/LDAP_Corporate_Directory_Search">{$ldap_base}</LDAP_Search_Base>
+	<LDAP_Last_Name_Filter group="Phone/LDAP_Corporate_Directory_Search">cn:(cn=*$VALUE*)</LDAP_Last_Name_Filter>
+	<LDAP_First_Name_Filter group="Phone/LDAP_Corporate_Directory_Search">cn:(cn=*$VALUE*)</LDAP_First_Name_Filter>
+	<LDAP_Search_Item_3 group="Phone/LDAP_Corporate_Directory_Search"/>
+	<LDAP_Item_3_Filter group="Phone/LDAP_Corporate_Directory_Search"/>
+	<LDAP_Search_Item_4 group="Phone/LDAP_Corporate_Directory_Search"/>
+	<LDAP_item_4_Filter group="Phone/LDAP_Corporate_Directory_Search"/>
+	<LDAP_Display_Attrs group="Phone/LDAP_Corporate_Directory_Search">a=cn;a=sn;a=telephoneNumber,n=Phone,t=p;</LDAP_Display_Attrs>
+	<LDAP_Number_Mapping group="Phone/LDAP_Corporate_Directory_Search"/>{$ldap_mapping}</LDAP_Number_Mapping>
+
 </flat-profile>
