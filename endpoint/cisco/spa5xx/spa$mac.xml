@@ -158,6 +158,6 @@
 	<LDAP_Search_Item_4 group="Phone/LDAP_Corporate_Directory_Search"/>
 	<LDAP_item_4_Filter group="Phone/LDAP_Corporate_Directory_Search"/>
 	<LDAP_Display_Attrs group="Phone/LDAP_Corporate_Directory_Search">{$ldap_attrs|a=cn;a=sn;a=telephoneNumber,n=Phone,t=p;}</LDAP_Display_Attrs>
-	<LDAP_Number_Mapping group="Phone/LDAP_Corporate_Directory_Search"/>{$ldap_mapping}</LDAP_Number_Mapping>
+	<LDAP_Number_Mapping group="Phone/LDAP_Corporate_Directory_Search">{$ldap_mapping}</LDAP_Number_Mapping>
 
 </flat-profile>
