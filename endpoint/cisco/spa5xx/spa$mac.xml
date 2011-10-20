@@ -146,7 +146,7 @@
 	<LDAP_Dir_Enable group="Phone/LDAP_Corporate_Directory_Search">{$ldap_enabled|No}</LDAP_Dir_Enable>
 	<LDAP_Corp_Dir_Name group="Phone/LDAP_Corporate_Directory_Search">{$ldap_name}</LDAP_Corp_Dir_Name>
 	<LDAP_Server group="Phone/LDAP_Corporate_Directory_Search">{$ldap_server}</LDAP_Server>
-	<LDAP_Auth_Method group="Phone/LDAP_Corporate_Directory_Search">{Simple</LDAP_Auth_Method>
+	<LDAP_Auth_Method group="Phone/LDAP_Corporate_Directory_Search">Simple</LDAP_Auth_Method>
 	<LDAP_Client_DN group="Phone/LDAP_Corporate_Directory_Search">{$ldap_account}</LDAP_Client_DN>
 	<LDAP_Username group="Phone/LDAP_Corporate_Directory_Search">{$ldap_account}</LDAP_Username>
 	<LDAP_Password group="Phone/LDAP_Corporate_Directory_Search">{$ldap_password}</LDAP_Password>
@@ -157,7 +157,7 @@
 	<LDAP_Item_3_Filter group="Phone/LDAP_Corporate_Directory_Search"/>
 	<LDAP_Search_Item_4 group="Phone/LDAP_Corporate_Directory_Search"/>
 	<LDAP_item_4_Filter group="Phone/LDAP_Corporate_Directory_Search"/>
-	<LDAP_Display_Attrs group="Phone/LDAP_Corporate_Directory_Search">a=cn;a=sn;a=telephoneNumber,n=Phone,t=p;</LDAP_Display_Attrs>
+	<LDAP_Display_Attrs group="Phone/LDAP_Corporate_Directory_Search">${ldap_attrs|a=cn;a=sn;a=telephoneNumber,n=Phone,t=p;}</LDAP_Display_Attrs>
 	<LDAP_Number_Mapping group="Phone/LDAP_Corporate_Directory_Search"/>{$ldap_mapping}</LDAP_Number_Mapping>
 
 </flat-profile>
