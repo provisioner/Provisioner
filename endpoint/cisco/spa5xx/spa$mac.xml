@@ -94,6 +94,7 @@
 	<Debug_Level group="System/Optional_Network_Configuration">3</Debug_Level>
 	<Debug_Server group="System/Optional_Network_Configuration">{$server.ip.1}</Debug_Server>
 
+	<Speed_Dial_1 ua="rw">{$speed_dial_1}</Speed_Dial_1>
 	<Speed_Dial_2 ua="rw">{$speed_dial_2}</Speed_Dial_2>
 	<Speed_Dial_3 ua="rw">{$speed_dial_3}</Speed_Dial_3>
 	<Speed_Dial_4 ua="rw">{$speed_dial_4}</Speed_Dial_4>

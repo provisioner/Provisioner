@@ -4,6 +4,12 @@
         <subcategory>
             <name>Keys</name>
             <item>
+                <variable>$speed_dial_1</variable>
+                <default_value></default_value>
+                <description>Speed Dial #1</description>
+                <type>input</type>
+            </item>
+            <item>
                 <variable>$speed_dial_2</variable>
                 <default_value></default_value>
                 <description>Speed Dial #2</description>
