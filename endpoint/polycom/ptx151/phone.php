@@ -9,15 +9,15 @@
 class endpoint_polycom_ptx151_phone extends endpoint_polycom_base {
 
 	public $family_line = 'ptx151';	
-		
-	function generate_config() {			
-		//Polycom likes lower case letters in its mac address
-		$this->mac = strtolower($this->mac);
+	public $copy_files = array("pg11gl3.bin","pg11sid.bin","pg11sid3.bin","pi110001.bin");
+	
+	function config_files() {
+		$result=parent::config_files();       
+		return $result;
+    }
 
-		//do stuff here
-		//$contents = $this->open_config_file('server.cfg');
-		//$final['server_325.cfg'] = $this->parse_config_file($contents, FALSE);
-				
-		return($final);
-	}
+    function prepare_for_generateconfig() {
+		$this->mac = strtolower($this->mac);
+		parent::prepare_for_generateconfig();
+    }
 }
