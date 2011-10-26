@@ -1,0 +1,26 @@
+<data>
+	<name>Polycom PTX151</name>
+	<id>5</id>
+	<directory>ptx151</directory>
+	<firmware_ver></firmware_ver>
+	<firmware_pkg>NULL</firmware_pkg>
+	<configuration_files>slnk_cfg.cfg,sip_allusers.cfg</configuration_files>
+	<changelog></changelog>
+	<last_modified></last_modified>
+	<model_list>
+		<model>Polycom PTX151</model>
+		<lines>4</lines>
+		<id>1</id>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>N/A</model>
+		<lines>1</lines>
+		<id>2</id>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+</data>
