@@ -28,6 +28,10 @@
 					        <text>BLF</text>
 					        <value>blf</value>
 					    </data>
+					    <data>
+					        <text>Speed Dial</text>
+					        <value>sd</value>
+					    </data>
 					</item>
 					<item>
 					    <variable>$lineops_blfext</variable>
