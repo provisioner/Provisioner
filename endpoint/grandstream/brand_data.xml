@@ -6,8 +6,8 @@
 		<directory>grandstream</directory>
 		<brand_id>2</brand_id>
 		<package>grandstream-0_7.tgz</package>
-		<md5sum>37c51927fad60d469fb56d7dd76a55d4</md5sum>
-		<last_modified>1317979176</last_modified>
+		<md5sum>76247e408afeabdd7c183a957c5a3941</md5sum>
+		<last_modified>1320041354</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -15,7 +15,7 @@
 				<directory>bts</directory>
 				<version>1.0</version>
 				<description>Fixed Timezone Issues + Use Grandstream Encrypted Compiler By Default</description>
-				<changelog>PACKAGER: Pushing GXP Changes</changelog>
+				<changelog>PACKAGER: Fixes to make the grandstream complier work again</changelog>
 				<id>2</id>
 				<last_modified>1316461639</last_modified>
 			</family>
@@ -35,7 +35,7 @@
 				<description>Use Grandstream Encrypted Compiler By Default</description>
 				<changelog></changelog>
 				<id>4</id>
-				<last_modified>1317675450</last_modified>
+				<last_modified>1320041354</last_modified>
 			</family>
 			<family>
 				<name>HandyTone [HT486 REV.2, HT286 REV.3]</name>
