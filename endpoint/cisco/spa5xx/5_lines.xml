@@ -32,12 +32,14 @@
 					    <default_value>{$displayname.line.{$count}}</default_value>
 					    <description>Line Key {$count} Description</description>
 					    <type>input</type>
+					    <enabled>{"$lineops_keytype":["blf","sd"]}</enabled>
 					</item>
 					<item>
 					    <variable>$lineops_blfext</variable>
 					    <default_value></default_value>
 					    <description>BLF {$count} Extension</description>
 					    <type>input</type>
+					    <enabled>{"$lineops_keytype":["blf","sd"]}</enabled>
 					</item>
 					<item>
 						<type>break</type>
