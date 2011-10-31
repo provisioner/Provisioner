@@ -10,12 +10,6 @@
                 <loop_end>4</loop_end>
                 <data>
 					<item>
-					    <variable>$lineops_displaynameline</variable>
-					    <default_value>{$displayname.line.{$count}}</default_value>
-					    <description>Line Key {$count} Display Name</description>
-					    <type>input</type>
-					</item>
-					<item>
 					    <variable>$lineops_keytype</variable>
 					    <default_value>line</default_value>
 					    <description>Line Key {$count} Type</description>
@@ -32,6 +26,12 @@
 					        <text>Speed Dial</text>
 					        <value>sd</value>
 					    </data>
+					</item>
+					<item>
+					    <variable>$lineops_displaynameline</variable>
+					    <default_value>{$displayname.line.{$count}}</default_value>
+					    <description>Line Key {$count} Description</description>
+					    <type>input</type>
 					</item>
 					<item>
 					    <variable>$lineops_blfext</variable>
