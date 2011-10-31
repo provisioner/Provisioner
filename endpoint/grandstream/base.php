@@ -25,15 +25,11 @@ class endpoint_grandstream_base extends endpoint_base {
 	
 	function create_encrypted_file($list) {
 		foreach($list as $key=>$data) {
-			$fp = fopen($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/".$key, 'w');
-			fwrite($fp, $data);
-			fclose($fp);
+			file_put_contents($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/".$key, $data);
 			
 			if(file_exists("/usr/src/GS_CFG_GEN/bin/encode.sh")) {
 				exec("/usr/src/GS_CFG_GEN/bin/encode.sh ".$this->mac." ".$this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/".$this->mac.".cfg ".$this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/cfg".$this->mac);
-				$handle = fopen($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/cfg".$this->mac, 'rb');
-				$contents = stream_get_contents($handle);
-				fclose($handle);
+				$contents = file_get_contents($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/cfg".$this->mac);
 				unlink($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/cfg".$this->mac);
 			} else {
 				$params = $this->parse_gs_config($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/".$key);
@@ -76,7 +72,7 @@ class endpoint_grandstream_base extends endpoint_base {
 	function generate_file($file,$extradata,$ignoredynamicmapping=FALSE) {
 		$data=parent::generate_file($file,$extradata,$ignoredynamicmapping);
 		if ($ignoredynamicmapping==FALSE) {
-			$data = array_values($this->create_encrypted_file(array("_tmp"=>$data)));
+			$data = array_values($this->create_encrypted_file(array($this->mac.".cfg" => $data)));
 			$data=$data[0];
 		}
 		return $data;
