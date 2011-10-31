@@ -166,13 +166,13 @@ P30 = {$server.ip.1}
 P144 = 1
 
 # SSL Certificate
-{$comment_out} P280 =
+{$comment_out|#} P280 =
 
 # SSL Private Key
-{$comment_out} P279 =
+{$comment_out|#} P279 =
 
 # SSL Private Key Password
-{$comment_out} P281 = 
+{$comment_out|#} P281 = 
 
 #---------------------------------------
 # Disctinctive Ring Tone
