@@ -27,7 +27,7 @@
 	
 	<!-- Proxy and Registration -->
 	 <Proxy_1_ ua="na">{$server.ip.1}</Proxy_1_>
-	 <Primary_NTP_Server ua="na">{$server.ip.1}</Primary_NTP_Server>
+	 <Primary_NTP_Server ua="na">{$network_time_server}</Primary_NTP_Server>
 	 <Upgrade_Enable ua="ro">{$enable_upgrade}</Upgrade_Enable>
 	 <Upgrade_Rule ua="ro">{$upgrade_path}</Upgrade_Rule>
 
