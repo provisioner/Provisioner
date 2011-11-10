@@ -6,9 +6,9 @@
 		<version>0.5</version>
 		<directory>aastra</directory>
 		<package>aastra-0_5.tgz</package>
-		<md5sum>867183481710ce0640800e76a6c770ce</md5sum>
-		<last_modified>1318834761</last_modified>
-		<changelog>PACKAGER: More Fixes to Polycom (more coming)</changelog>
+		<md5sum>5d2859fb91e7860ee8aee0bb610cdea0</md5sum>
+		<last_modified>1320953961</last_modified>
+		<changelog>PACKAGER: Fixes #30 and http://www.freepbx.org/forum/freepbx/general-help/problem-w-parking-on-9143i</changelog>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -18,7 +18,7 @@
 				<description>Initial Files</description>
 				<changelog></changelog>
 				<id>1</id>
-				<last_modified>1315440476</last_modified>
+				<last_modified>1320953961</last_modified>
 			</family>
 			<family>
 				<name>Aastra Models: 94xx, 67xx, 9143i [9480i, 9480i CT, 9143i,67xx]</name>
@@ -27,7 +27,7 @@
 				<description>Initial Files</description>
 				<changelog></changelog>
 				<id>2</id>
-				<last_modified>1318834761</last_modified>
+				<last_modified>1320953961</last_modified>
 			</family>
 <!--End Auto Generated-->
 
