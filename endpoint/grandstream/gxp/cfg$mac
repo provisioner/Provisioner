@@ -392,8 +392,8 @@ P209 = 100
 # 200 - 2 sec, 400 - 4 sec, 800 - 8 sec. Default 400.
 P250 = 400
 
-# SIP Transport. 1 - UDP, 2 - TCP.
-P130 = 1
+# SIP Transport. 0 - UDP, 1 - TCP, 2 - TLS/TCP
+P130 = 0
 
 # Use RFC3581 Symmetric Routing. 0 - no, 1 - yes
 P131 = 0
@@ -603,8 +603,8 @@ P440 = 100
 # 200 - 2 sec, 400 - 4 sec, 800 - 8 sec. Default 400.
 P441 = 400
 
-# SIP Transport. 1 - UDP, 2 - TCP.
-P448 = 1
+# SIP Transport. 0 - UDP, 1 - TCP, 2 - TLS/TCP
+P448 = 0
 
 # Use RFC3581 Symmetric Routing. 0 - no, 1 - yes
 P447 = 0
@@ -814,8 +814,8 @@ P540 = 100
 # 200 - 2 sec, 400 - 4 sec, 800 - 8 sec. Default 400.
 P541 = 400
 
-# SIP Transport. 1 - UDP, 2 - TCP.
-P548 = 1
+# SIP Transport. 0 - UDP, 1 - TCP, 2 - TLS/TCP
+P548 = 0
 
 # Use RFC3581 Symmetric Routing. 0 - no, 1 - yes
 P547 = 0
@@ -1025,8 +1025,8 @@ P640 = 100
 # 200 - 2 sec, 400 - 4 sec, 800 - 8 sec. Default 400.
 P641 = 400
 
-# SIP Transport. 1 - UDP, 2 - TCP.
-P648 = 1
+# SIP Transport. 0 - UDP, 1 - TCP, 2 - TLS/TCP
+P648 = 0
 
 # Use RFC3581 Symmetric Routing. 0 - no, 1 - yes
 P647 = 0
@@ -1238,8 +1238,8 @@ P1740 = 100
 # 200 - 2 sec, 400 - 4 sec, 800 - 8 sec. Default 400.
 P1741 = 400
 
-# SIP Transport. 1 - UDP, 2 - TCP.
-P1748 = 1
+# SIP Transport. 0 - UDP, 1 - TCP, 2 - TLS/TCP
+P1748 = 0
 
 # Use RFC3581 Symmetric Routing. 0 - no, 1 - yes
 P1747 = 0
@@ -1449,8 +1449,8 @@ P1840 = 100
 # 200 - 2 sec, 400 - 4 sec, 800 - 8 sec. Default 400.
 P1841 = 400
 
-# SIP Transport. 1 - UDP, 2 - TCP.
-P1848 = 1
+# SIP Transport. 0 - UDP, 1 - TCP, 2 - TLS/TCP
+P1848 = 0
 
 # Use RFC3581 Symmetric Routing. 0 - no, 1 - yes
 P1847 = 0
