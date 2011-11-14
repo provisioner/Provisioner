@@ -21,16 +21,16 @@ abstract class endpoint_yealink_base extends endpoint_base {
 	*/
 	function setup_timezone($timezone,$type) {
 		if($type == 'TZ') {
-			if(strrchr($timezone,'+')) {
-	        	$num = explode("+",$timezone);
-	        	$num = "+".$num[1];
-			} elseif(strrchr($timezone,'-')) {
-	        	$num = explode("-",$timezone);
-	        	$num = "-".$num[1];
-			} else {
-				$num = $timezone;
+			preg_match('/.*(-|\+)(\d*):(\d*)/i', $timezone,$matches);
+			switch($matches[3]) {
+				case '30':
+					$point = '.5';
+					break;
+				default:
+					$point = '';
+					break;
 			}
-			return $num;
+			return $matches[1].$matches[2].$point;
 		} else {
 			return FALSE;
 		}
