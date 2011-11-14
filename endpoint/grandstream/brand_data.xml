@@ -6,8 +6,8 @@
 		<directory>grandstream</directory>
 		<brand_id>2</brand_id>
 		<package>grandstream-0_7.tgz</package>
-		<md5sum>51b0362f3c546fae18cd783c82e72af9</md5sum>
-		<last_modified>1320044215</last_modified>
+		<md5sum>779406391ec756f906212db98e7760e8</md5sum>
+		<last_modified>1321263899</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -15,7 +15,7 @@
 				<directory>bts</directory>
 				<version>1.0</version>
 				<description>Fixed Timezone Issues + Use Grandstream Encrypted Compiler By Default</description>
-				<changelog>PACKAGER: Readjusting this</changelog>
+				<changelog>PACKAGER: Some Timezone changes</changelog>
 				<id>2</id>
 				<last_modified>1320044215</last_modified>
 			</family>
@@ -26,7 +26,7 @@
 				<description>Use Grandstream Encrypted Compiler By Default</description>
 				<changelog></changelog>
 				<id>1</id>
-				<last_modified>1320044215</last_modified>
+				<last_modified>1321263899</last_modified>
 			</family>
 			<family>
 				<name>GXP Enterprise HD series [2100,2110,2120]</name>

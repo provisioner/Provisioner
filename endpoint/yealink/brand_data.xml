@@ -6,8 +6,8 @@
 		<brand_id>8</brand_id>
 		<directory>yealink</directory>
 		<package>yealink-0_5.tgz</package>
-        	<md5sum>fb06f267a2ba2243a91c3cb0591cf7c5</md5sum>
-		<last_modified>1320044215</last_modified>
+        	<md5sum>52d9db04955d164098af2508b6293a02</md5sum>
+		<last_modified>1321263899</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -15,7 +15,7 @@
 				<directory>t2x</directory>
 				<version>0.7.7</version>
 				<description>Make more configuration settings available from UI</description>
-				<changelog>PACKAGER: Readjusting this</changelog>
+				<changelog>PACKAGER: Some Timezone changes</changelog>
 				<id>1</id>
 				<last_modified>1320044215</last_modified>
 			</family>
