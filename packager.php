@@ -1,5 +1,5 @@
 <?PHP
-/*l
+/*
 This file, when run from the web, creates all the needed packages in the releases folder and also generates http://www.provisioner.net/releases
 */
 //This is not for any 'scary' security measures, it's just so I can prevent robots from running the script all the time.
@@ -376,11 +376,14 @@ function create_brand_pkg($rawname,$version,$brand_name,$old_brand_timestamp,$c_
 		copy(MODULES_DIR."/".$rawname."/brand_data.xml", RELEASE_DIR."/".$rawname."/".$rawname.".xml");
 	
 		$brands_html .= "<h4>".$rawname." (Last Modified: ".date('m/d/Y',$brand_max)." at ".date("G:i",$brand_max).")</h4>";
-		$brands_html .= "XML File: <a href='/release3/".$rawname."/".$rawname.".xml'>".$rawname.".xml</a><br/>";
-		$brands_html .= "Package File: <a href='/release3/".$rawname."/".$pkg_name.".tgz'>".$pkg_name.".tgz</a><br/>";
+		$brands_html .= "XML File: <a href='/release/v2.5/".$rawname."/".$rawname.".xml'>".$rawname.".xml</a><br/>";
+		$brands_html .= "Package File: <a href='/release/v2.5/".$rawname."/".$pkg_name.".tgz'>".$pkg_name.".tgz</a><br/>";
 		
 		echo "\tComplete..Continuing..\n";
 	} else {
+		$brands_html .= "<h4>".$rawname." (Last Modified: ".date('m/d/Y',$brand_max)." at ".date("G:i",$brand_max).")</h4>";
+		$brands_html .= "XML File: <a href='/release/v2.5/".$rawname."/".$rawname.".xml'>".$rawname.".xml</a><br/>";
+		$brands_html .= "Package File: <a href='/release/v2.5/".$rawname."/".$pkg_name.".tgz'>".$pkg_name.".tgz</a><br/>";
 		echo "\tNothing changed! Aborting Package Creation!\n";
 	}
 }
