@@ -534,4 +534,3 @@ function xml2array($url, $get_attributes = 1, $priority = 'tag')
     }
     return ($xml_array);
 }
-?>
