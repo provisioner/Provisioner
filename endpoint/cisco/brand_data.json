@@ -1,0 +1,92 @@
+{
+  "data":{
+    "brands":{
+      "name":"Cisco\/Linksys",
+      "brand_id":"7",
+      "directory":"cisco",
+      "package":"cisco-0_5.tgz",
+      "md5sum":"adee96fca0426424aef77c119079cff0",
+      "last_modified":"1321263899",
+      "family_list":[
+        {
+          "name":"Cisco SIP ATA-18x Models [186,188]",
+          "directory":"ata18x",
+          "description":"",
+          "changelog":"PACKAGER: Some Timezone changes",
+          "id":"5",
+          "last_modified":"1315440476"
+        },
+        {
+          "name":"Cisco SIP 79x1G Models [7940G,7941G,7961G]",
+          "directory":"sip79x1G",
+          "description":"",
+          "changelog":"",
+          "id":"4",
+          "last_modified":"1315440476"
+        },
+        {
+          "name":"Cisco SIP 79x0 Models [7940,7960]",
+          "directory":"sip79xx",
+          "description":"",
+          "changelog":"",
+          "id":"1",
+          "last_modified":"1315440476"
+        },
+        {
+          "name":"Linksys\/Cisco\/Sipura SPA Phone Models [901,921,922,941,942,962]",
+          "directory":"spa",
+          "description":"XML Escape Errors Fixed",
+          "changelog":"",
+          "id":"2",
+          "last_modified":"1315440476"
+        },
+        {
+          "name":"Linksys\/Cisco\/Sipura SPA Phone Models 5xx, 3xx [303,501G,502G,504G,525G,525G2]",
+          "directory":"spa5xx",
+          "description":"",
+          "changelog":"",
+          "id":"3",
+          "last_modified":"1321263899"
+        },
+        {
+          "name":"Linksys\/Cisco\/Sipura SPA Adapter Models [2102, 3102(FXS Only)]",
+          "directory":"spax102",
+          "description":"New Device",
+          "changelog":"",
+          "id":"6",
+          "last_modified":"1320041354"
+        }
+      ],
+      "oui_list":[
+        "00036B",
+        "00000C",
+        "000142",
+        "000143",
+        "000163",
+        "000164",
+        "000196",
+        "000197",
+        "0001C7",
+        "0001C9",
+        "000F23",
+        "0013C4",
+        "0016C8",
+        "001818",
+        "001A2F",
+        "001C58",
+        "001DA2",
+        "002155",
+        "000E84",
+        "000E38",
+        "00070E",
+        "001BD4",
+        "0019AA",
+        "001D45",
+        "001EF7",
+        "000E08",
+        "1CDF0F",
+        "E05FB9"
+      ]
+    }
+  }
+}
