@@ -1,0 +1,64 @@
+{
+  "template_data":{
+    "category":[
+      {
+        "name":"Line Options",
+        "subcategory":[
+          {
+            "name":"Line Options",
+            "item":[
+              {
+                "description":"Line Keys",
+                "type":"loop",
+                "loop_start":"1",
+                "loop_end":"4",
+                "data":{
+                  "item":[
+                    {
+                      "variable":"$lineops_keytype",
+                      "default_value":"line",
+                      "description":"Line Key {$count} Type",
+                      "type":"list",
+                      "data":[
+                        {
+                          "text":"Line",
+                          "value":"line",
+                          "disabled":"[\"$lineops_displaynameline\",\"$lineops_blfext\"]"
+                        },
+                        {
+                          "text":"BLF",
+                          "value":"blf",
+                          "enabled":"[\"$lineops_displaynameline\",\"$lineops_blfext\"]"
+                        },
+                        {
+                          "text":"Speed Dial",
+                          "value":"sd",
+                          "enabled":"[\"$lineops_displaynameline\",\"$lineops_blfext\"]"
+                        }
+                      ]
+                    },
+                    {
+                      "variable":"$lineops_displaynameline",
+                      "default_value":"{$displayname.line.{$count}}",
+                      "description":"Line Key {$count} Description",
+                      "type":"input"
+                    },
+                    {
+                      "variable":"$lineops_blfext",
+                      "default_value":"",
+                      "description":"BLF {$count} Extension",
+                      "type":"input"
+                    },
+                    {
+                      "type":"break"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

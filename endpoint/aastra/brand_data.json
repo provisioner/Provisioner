@@ -1,0 +1,35 @@
+{
+  "data":{
+    "brands":{
+      "name":"Aastra",
+      "brand_id":"1",
+      "directory":"aastra",
+      "package":"aastra-0_5.tgz",
+      "md5sum":"5d2859fb91e7860ee8aee0bb610cdea0",
+      "last_modified":"1320953961",
+      "changelog":"PACKAGER: Fixes #30 and http:\/\/www.freepbx.org\/forum\/freepbx\/general-help\/problem-w-parking-on-9143i",
+      "family_list":[
+        {
+          "name":"Aastra Models: 91xxi [9112i, 9133i]",
+          "directory":"aap91xxi",
+          "description":"Initial Files",
+          "changelog":"",
+          "id":"1",
+          "last_modified":"1320953961"
+        },
+        {
+          "name":"Aastra Models: 94xx, 67xx, 9143i [9480i, 9480i CT, 9143i,67xx]",
+          "directory":"aap9xxx6xxx",
+          "description":"Initial Files",
+          "changelog":"",
+          "id":"2",
+          "last_modified":"1320953961"
+        }
+      ],
+      "oui_list":[
+        "00085D",
+        "0010BC"
+      ]
+    }
+  }
+}

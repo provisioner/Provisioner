@@ -1,0 +1,58 @@
+{
+  "data":{
+    "brands":{
+      "name":"Polycom",
+      "directory":"polycom",
+      "brand_id":"4",
+      "package":"polycom-0_7.tgz",
+      "md5sum":"11b830ac67e76623f92f81d803fe3829",
+      "last_modified":"1320044215",
+      "family_list":[
+        {
+          "name":"SoundPoint IP 430 [430]",
+          "directory":"firmware325",
+          "description":"Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality",
+          "changelog":"PACKAGER: Readjusting this",
+          "id":"4",
+          "last_modified":"1320041354"
+        },
+        {
+          "name":"Polycom PTX151",
+          "directory":"ptx151",
+          "description":"",
+          "changelog":"",
+          "id":"5",
+          "last_modified":"1319648886"
+        },
+        {
+          "name":"SoundPoint\/Station\/VVX In-Production Models [320,330,321,331,335,450,550,560,650,670,5000,6000,7000,1500]",
+          "directory":"spipm",
+          "description":"Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality",
+          "changelog":"",
+          "id":"3",
+          "last_modified":"1320044215"
+        },
+        {
+          "name":"SoundPoint\/Station Legacy Models [301,501,600,601,4000]",
+          "directory":"splm",
+          "description":"Fixed Digit Map Problems with three digit extensions in the 1xx range",
+          "changelog":"",
+          "id":"2",
+          "last_modified":"1320044215"
+        },
+        {
+          "name":"SoundPoint Old Models [300,500]",
+          "directory":"spom",
+          "description":"Fixed Digit Map Problems with three digit extensions in the 1xx range",
+          "changelog":"",
+          "id":"1",
+          "last_modified":"1320044215"
+        }
+      ],
+      "oui_list":[
+        "0004F2",
+        "00907A"
+      ]
+    }
+  }
+}
