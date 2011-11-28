@@ -1,33 +1,34 @@
 {
-  "data":{
-    "brands":{
-      "name":"Snom",
-      "directory":"snom",
-      "brand_id":"6",
-      "package":"snom-0_6.tgz",
-      "md5sum":"262877b24b0238c904367d79ba0007df",
-      "last_modified":"1316190304",
-      "family_list":[
+  "data": {
+    "brands": {
+      "name": "Snom",
+      "directory": "snom",
+      "brand_id": "6",
+      "package": "snom.tgz",
+      "md5sum": "76e58ae60b758bcf2976702320894fc7",
+      "last_modified": 1322439051,
+      "family_list": [
         {
-          "name":"Snom Models [300, 320, 360, 370, 820, M3]",
-          "directory":"3xx820m3",
-          "description":"Server + Password Settings, htm File Fixes",
-          "changelog":"PACKAGER: PACKAGER: Adding Jort Bloem to all license files.",
-          "id":"1",
-          "last_modified":"1316190304"
+          "id": "1",
+          "name": "Snom Models [300, 320, 360, 370, 820, M3]",
+          "directory": "3xx820m3",
+          "description": "Server + Password Settings, htm File Fixes",
+          "changelog": "",
+          "last_modified": null
         },
         {
-          "name":"Snom Models [870]",
-          "directory":"8xx",
-          "description":"Server + Password Settings, htm File Fixes",
-          "changelog":"",
-          "id":"2",
-          "last_modified":"1316063231"
+          "id": "2",
+          "name": "Snom Models [870]",
+          "directory": "8xx",
+          "description": "Server + Password Settings, htm File Fixes",
+          "changelog": "",
+          "last_modified": null
         }
       ],
-      "oui_list":[
+      "oui_list": [
         "000413"
-      ]
+      ],
+      "changelog": "PACKAGER: Fixes to new packager and renamed jsonparser to merge_data"
     }
   }
 }

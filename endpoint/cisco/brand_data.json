@@ -1,63 +1,63 @@
 {
-  "data":{
-    "brands":{
-      "name":"Cisco\/Linksys",
-      "brand_id":"7",
-      "directory":"cisco",
-      "package":"cisco-0_5.tgz",
-      "md5sum":"adee96fca0426424aef77c119079cff0",
-      "last_modified":"1321263899",
-      "family_list":[
+  "data": {
+    "brands": {
+      "name": "Cisco\/Linksys",
+      "brand_id": "7",
+      "directory": "cisco",
+      "package": "cisco.tgz",
+      "md5sum": "0f72e8f5146a4b48bf14b049a65de5ec",
+      "last_modified": 1322439051,
+      "family_list": [
         {
-          "name":"Cisco SIP ATA-18x Models [186,188]",
-          "directory":"ata18x",
-          "description":"",
-          "changelog":"PACKAGER: Some Timezone changes",
-          "id":"5",
-          "last_modified":"1315440476"
+          "id": "5",
+          "name": "Cisco SIP ATA-18x Models [186,188]",
+          "directory": "ata18x",
+          "description": "",
+          "changelog": "",
+          "last_modified": null
         },
         {
-          "name":"Cisco SIP 79x1G Models [7940G,7941G,7961G]",
-          "directory":"sip79x1G",
-          "description":"",
-          "changelog":"",
-          "id":"4",
-          "last_modified":"1315440476"
+          "id": "4",
+          "name": "Cisco SIP 79x1G Models [7940G,7941G,7961G]",
+          "directory": "sip79x1G",
+          "description": "",
+          "changelog": "",
+          "last_modified": null
         },
         {
-          "name":"Cisco SIP 79x0 Models [7940,7960]",
-          "directory":"sip79xx",
-          "description":"",
-          "changelog":"",
-          "id":"1",
-          "last_modified":"1315440476"
+          "id": "1",
+          "name": "Cisco SIP 79x0 Models [7940,7960]",
+          "directory": "sip79xx",
+          "description": "",
+          "changelog": "",
+          "last_modified": null
         },
         {
-          "name":"Linksys\/Cisco\/Sipura SPA Phone Models [901,921,922,941,942,962]",
-          "directory":"spa",
-          "description":"XML Escape Errors Fixed",
-          "changelog":"",
-          "id":"2",
-          "last_modified":"1315440476"
+          "id": "2",
+          "name": "Linksys\/Cisco\/Sipura SPA Phone Models [901,921,922,941,942,962]",
+          "directory": "spa",
+          "description": "XML Escape Errors Fixed",
+          "changelog": "",
+          "last_modified": null
         },
         {
-          "name":"Linksys\/Cisco\/Sipura SPA Phone Models 5xx, 3xx [303,501G,502G,504G,525G,525G2]",
-          "directory":"spa5xx",
-          "description":"",
-          "changelog":"",
-          "id":"3",
-          "last_modified":"1321263899"
+          "id": "3",
+          "name": "Linksys\/Cisco\/Sipura SPA Phone Models 5xx, 3xx [303,501G,502G,504G,525G,525G2]",
+          "directory": "spa5xx",
+          "description": "",
+          "changelog": "",
+          "last_modified": null
         },
         {
-          "name":"Linksys\/Cisco\/Sipura SPA Adapter Models [2102, 3102(FXS Only)]",
-          "directory":"spax102",
-          "description":"New Device",
-          "changelog":"",
-          "id":"6",
-          "last_modified":"1320041354"
+          "id": "6",
+          "name": "Linksys\/Cisco\/Sipura SPA Adapter Models [2102, 3102(FXS Only)]",
+          "directory": "spax102",
+          "description": "New Device",
+          "changelog": "",
+          "last_modified": null
         }
       ],
-      "oui_list":[
+      "oui_list": [
         "00036B",
         "00000C",
         "000142",
@@ -86,7 +86,8 @@
         "000E08",
         "1CDF0F",
         "E05FB9"
-      ]
+      ],
+      "changelog": "PACKAGER: Fixes to new packager and renamed jsonparser to merge_data"
     }
   }
 }

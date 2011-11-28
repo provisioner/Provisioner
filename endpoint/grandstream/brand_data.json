@@ -1,49 +1,50 @@
 {
-  "data":{
-    "brands":{
-      "name":"Grandstream",
-      "directory":"grandstream",
-      "brand_id":"2",
-      "package":"grandstream-0_7.tgz",
-      "md5sum":"779406391ec756f906212db98e7760e8",
-      "last_modified":"1321263899",
-      "family_list":[
+  "data": {
+    "brands": {
+      "name": "Grandstream",
+      "directory": "grandstream",
+      "brand_id": "2",
+      "package": "grandstream.tgz",
+      "md5sum": "ee321025eeaca7dbb1cc81a94854541b",
+      "last_modified": 1322439051,
+      "family_list": [
         {
-          "name":"BudgeTone series [200,201]",
-          "directory":"bts",
-          "description":"Fixed Timezone Issues + Use Grandstream Encrypted Compiler By Default",
-          "changelog":"PACKAGER: Some Timezone changes",
-          "id":"2",
-          "last_modified":"1320044215"
+          "id": "2",
+          "name": "BudgeTone series [200,201]",
+          "directory": "bts",
+          "description": "Fixed Timezone Issues + Use Grandstream Encrypted Compiler By Default",
+          "changelog": "",
+          "last_modified": null
         },
         {
-          "name":"GXP Enterprise IP series [280,1200,2000,2010,2020]",
-          "directory":"gxp",
-          "description":"Use Grandstream Encrypted Compiler By Default",
-          "changelog":"",
-          "id":"1",
-          "last_modified":"1321263899"
+          "id": "1",
+          "name": "GXP Enterprise IP series [280,1200,2000,2010,2020]",
+          "directory": "gxp",
+          "description": "Use Grandstream Encrypted Compiler By Default",
+          "changelog": "",
+          "last_modified": null
         },
         {
-          "name":"GXP Enterprise HD series [2100,2110,2120]",
-          "directory":"gxphd",
-          "description":"Use Grandstream Encrypted Compiler By Default",
-          "changelog":"",
-          "id":"4",
-          "last_modified":"1320044215"
+          "id": "4",
+          "name": "GXP Enterprise HD series [2100,2110,2120]",
+          "directory": "gxphd",
+          "description": "Use Grandstream Encrypted Compiler By Default",
+          "changelog": "",
+          "last_modified": null
         },
         {
-          "name":"HandyTone [HT486 REV.2, HT286 REV.3]",
-          "directory":"htx86",
-          "description":"",
-          "changelog":"",
-          "id":"3",
-          "last_modified":"1320044215"
+          "id": "3",
+          "name": "HandyTone [HT486 REV.2, HT286 REV.3]",
+          "directory": "htx86",
+          "description": "",
+          "changelog": "",
+          "last_modified": null
         }
       ],
-      "oui_list":[
+      "oui_list": [
         "000B82"
-      ]
+      ],
+      "changelog": "PACKAGER: Fixes to new packager and renamed jsonparser to merge_data"
     }
   }
 }
