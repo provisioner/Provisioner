@@ -310,18 +310,13 @@ abstract class endpoint_base {
      * @return string Full Contents of the configuration file (After Parsing)
      * @author Andrew Nagy
      */
-    function parse_config_file($file_contents, $keep_unknown=FALSE, $lines=NULL, $specific_line='ALL') {
-        $family_data = $this->file2json($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.json",1,'tag',array('model_list'));
+    function parse_config_file($file_contents) {
+        $family_data = $this->file2json($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.json");
         $brand_data = $this->file2json($this->root_dir. self::$modules_path . $this->brand_name . "/brand_data.json");
 
         //Get number of lines for this model from the family_data.json file
-        if (is_array($family_data['data']['model_list'])) {
-            $key = $this->arraysearchrecursive($this->model, $family_data, "model");
-            $line_total = $family_data['data']['model_list'][$key[2]]['lines'];
-        } else {
-            $line_total = $family_data['data']['model_list']['lines'];
-        }
-
+        $key = $this->arraysearchrecursive($this->model, $family_data, "model");
+        $line_total = $family_data['data']['model_list'][$key[2]]['lines'];
 
         if (($line_total <= 0) AND (!isset($lines))) {
             //There is no max number of lines for this phone. We default to 1 to be safe
@@ -349,8 +344,8 @@ abstract class endpoint_base {
         $file_contents = $this->generate_info($file_contents, $brand_data['data']['brands']['last_modified'], $brand_mod);
 
         $file_contents = $this->parse_conditional_model($file_contents);
-        $file_contents = $this->parse_lines($line_total, $file_contents, $keep_unknown, $specific_line);
-        $file_contents = $this->parse_loops($line_total,$file_contents, $keep_unknown, $specific_line);
+        $file_contents = $this->parse_lines($line_total, $file_contents, TRUE);
+        $file_contents = $this->parse_loops($line_total,$file_contents, TRUE);
         $file_contents = $this->parse_config_values($file_contents);
 
         return $file_contents;
@@ -387,7 +382,7 @@ abstract class endpoint_base {
      * @example {loop_keys}{/loop_keys}
      * @author Andrew Nagy
      */
-    function parse_loops($line_total, $file_contents, $keep_unknown=FALSE, $specific_line='ALL') {
+    function parse_loops($line_total, $file_contents, $keep_unknown=FALSE) {
         //Find line looping data betwen {line_loop}{/line_loop}
         $pattern = "/{loop_(.*?)}(.*?){\/loop_(.*?)}/si";
         while (preg_match($pattern, $file_contents, $matches)) {
@@ -395,6 +390,7 @@ abstract class endpoint_base {
 			$loop_contents = $matches[2];
             if(isset($this->settings[$loop_name])) {
                 $count = count($this->settings[$loop_name]);
+				echo "Replacing loop '".$loop_name."' ".$count." times\n";
                 $parsed = "";
                 if($count) {
                     foreach($this->settings[$loop_name] as $number => $data) {
@@ -406,6 +402,7 @@ abstract class endpoint_base {
                 $file_contents = preg_replace($pattern, $parsed, $file_contents, 1);
             } else {
                 $file_contents = preg_replace($pattern, "", $file_contents, 1);
+				echo "Blanking loop '".$loop_name."'";
             }
         }
         return($file_contents);
@@ -416,47 +413,23 @@ abstract class endpoint_base {
      * @param string $line_total Total Number of Lines on the specific Phone
      * @param string $file_contents Full Contents of the configuration file
      * @param boolean $keep_unknown Keep Unknown variables as {$variable} instead of erasing them (blanking the space), can be used to parse these variables later
-     * @param integer $specific_line The specific line number to manipulate. If no line number set then assume All Lines
      * @return string Full Contents of the configuration file (After Parsing)
      * @author Andrew Nagy
      */
-    function parse_lines($line_total, $file_contents, $keep_unknown=FALSE, $specific_line='ALL') {
+    function parse_lines($line_total, $file_contents, $keep_unknown=FALSE) {
         //Find line looping data betwen {line_loop}{/line_loop}
         $pattern = "/{line_loop}(.*?){\/line_loop}/si";
         while (preg_match($pattern, $file_contents, $matches)) {
 			$loop_contents = $matches[1];
-            $i = 1;
             $parsed = "";
-            //If specific line is set to ALL then loop through all lines
-            if ($specific_line == "ALL") {
-				foreach($this->settings['line'] as $key => $data) {
-					$line = $data['line'];
-					$this->parse_lines_hook($key,$line_total);
-					$loop_contents = $this->replace_static_variables($loop_contents,$this->settings['line'][$key]);
-					$parsed .= $this->parse_config_values($loop_contents,$this->settings['line'][$key],FALSE);
-				}
-                //If Specific Line is set to a number greater than 0 then only process the loop for that line
-            } else {
-                $this->parse_lines_hook($specific_line,$line_total);
-                $parsed_2 = $this->replace_static_variables($matches[1], $specific_line, TRUE);
-                $parsed = $this->parse_config_values($parsed_2, TRUE, $specific_line);
-            }
+			foreach($this->settings['line'] as $key => $data) {					
+				$line = $data['line'];
+				$this->parse_lines_hook($key,$line_total);
+				$line_settings = $this->settings['line'][$key]; //This is after parse_lines_hook, because that function could change these values.
+				$parsed .= $this->parse_config_values($this->replace_static_variables($loop_contents,$line_settings),$line_settings,$keep_unknown);
+			}
             $file_contents = preg_replace($pattern, $parsed, $file_contents, 1);
         }
-
-
-        //If secret is set for said line then assume it's active and pull it's data but only if said line can be used on the phone
-        //This will replace {$variable.line.num}
-        $i = 1;
-        while ($i <= $line_total) {
-            if (isset($this->lines[$i]['secret'])) {
-                $file_contents = $this->replace_static_variables($file_contents, $i, FALSE);
-            }
-            $i++;
-        }
-
-        $file_contents = $this->replace_static_variables($file_contents, "GLOBAL");
-
         return($file_contents);
     }
 
@@ -615,7 +588,7 @@ abstract class endpoint_base {
 
 		if(is_array($data)) {
 			$line = $data['line'];
-			
+						
 			$contents = str_replace('{$line}', $line, $contents);
             $contents = str_replace('{$ext}', $data['username'], $contents);
             $contents = str_replace('{$displayname}', $data['display_name'], $contents);
