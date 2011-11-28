@@ -294,7 +294,7 @@ function create_brand_pkg($rawname,$version,$brand_name,$old_brand_timestamp,$c_
 	$brand_max = max($brand_max,$temp);
 	echo "\t\t\tTotal Brand Timestamp: ".$brand_max."\n";
 	
-	if($brand_max == $old_brand_timestamp) {
+	if($brand_max != $old_brand_timestamp) {
 		$brand_array['data']['brands']['last_modified'] = $brand_max;
 		$brand_array['data']['brands']['changelog'] = $c_message;
 		$brand_array['data']['brands']['package'] = $pkg_name.".tgz";

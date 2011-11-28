@@ -1,26 +1,26 @@
 {
-  "data":{
-    "brands":{
-      "name":"Mitel",
-      "brand_id":"9",
-      "directory":"mitel",
-      "package":"mitel-0_5.tgz",
-      "md5sum":"c64c7a755b24bb1c78c42cd4b93fb4a8",
-      "last_modified":"1315440476",
-      "family_list":[
+  "data": {
+    "brands": {
+      "name": "Mitel",
+      "brand_id": "9",
+      "directory": "mitel",
+      "package": "mitel.tgz",
+      "md5sum": "496897d05172044b28ea755262bfd8a8",
+      "last_modified": 1322439051,
+      "family_list": [
         {
-          "name":"Mitel 5xxx Models: [5304, 5312, 5320, 5324, 5330, 5340, 5360]",
-          "directory":"53xx",
-          "version":"0.7.5",
-          "description":"Variables Issues Solved (Not writing accounts + passwords in files)",
-          "changelog":"PACKAGER: PACKAGER: Adding Jort Bloem to all license files.",
-          "id":"1",
-          "last_modified":"1315440476"
+          "id": "1",
+          "name": "Mitel 5xxx Models: [5304, 5312, 5320, 5324, 5330, 5340, 5360]",
+          "directory": "53xx",
+          "description": "Variables Issues Solved (Not writing accounts + passwords in files)",
+          "changelog": "",
+          "last_modified": null
         }
       ],
-      "oui_list":[
+      "oui_list": [
         "08000F"
-      ]
+      ],
+      "changelog": "PACKAGER: Fixes to new packager and renamed jsonparser to merge_data"
     }
   }
 }
