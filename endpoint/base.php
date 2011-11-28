@@ -396,7 +396,7 @@ abstract class endpoint_base {
                     foreach($this->settings[$loop_name] as $number => $data) {
                         $data['number'] = $number;
 						$data['count'] = $number;
-                        $parsed .= $this->parse_config_values($loop_contents,$data,FALSE);
+                        $parsed .= $this->parse_config_values($this->replace_static_variables($loop_contents),$data,FALSE);
                     }
                 }
                 $file_contents = preg_replace($pattern, $parsed, $file_contents, 1);
@@ -491,7 +491,7 @@ abstract class endpoint_base {
 	}
 	
 	function parse_config_values($file_contents, $data=NULL, $keep_unknown=FALSE) {
-		$template_data = $this->merge_files();
+		$template_data = $this->merge_files(); //TODO: this should only be one once, right now it's done a million times....very bad
 		
 		//Find all matched variables in the text file between "{$" and "}"
         preg_match_all('/[{\$](.*?)[}]/i', $file_contents, $match);
@@ -508,11 +508,13 @@ abstract class endpoint_base {
 
 			if(is_array($data)) {
 				if(isset($data[$variables])) {
+					$data[$variables] = $this->replace_static_variables($data[$variables]);
 					echo "Replacing '{".$original_variable."}' with ".$data[$variables]."\n";
 					$file_contents = str_replace('{' . $original_variable . '}', $data[$variables], $file_contents);
 				}			
 			} else {
 				if(isset($this->settings[$variables])) {
+					$this->settings[$variables] = $this->replace_static_variables($this->settings[$variables]);	
 					$file_contents = str_replace('{' . $original_variable . '}', $this->settings[$variables], $file_contents);
                 } elseif (!$keep_unknown) {
                     //read default template values here, blank unknowns or arrays (which are blanks anyways)
@@ -532,14 +534,17 @@ abstract class endpoint_base {
                     }
 
                     if (isset($default)) {
+						$default = $this->replace_static_variables($default);
                         $file_contents = str_replace('{' . $original_variable . '}', $default, $file_contents);
                         echo 'Replacing {' . $original_variable . '} with default piped value of:'.$default."\n";
 
                     } elseif (isset($default_hard_value)) {
+						$default_hard_value = $this->replace_static_variables($default_hard_value);
                         $file_contents = str_replace('{' . $original_variable . '}', $default_hard_value, $file_contents);
                         echo "Replacing {" . $original_variable . "} with default json value of: ".$default_hard_value."\n";
                         
                     } else {
+						//do one last replace statice here.
                         $file_contents = str_replace('{' . $original_variable . '}', "", $file_contents);
                         echo "Blanking {" . $original_variable . "}\n";
                         
