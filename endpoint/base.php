@@ -13,11 +13,16 @@ abstract class endpoint_base {
 
     public $brand_name = "undefined";
     public $family_line = "undefined";
+    public $model;			// Model of phone, must match the model name inside of the famil_data.json file in each family folder.
 
     public $config_files_override;
 
+	public $line_total = array();
+	public $settings = array();
+	public $config_files = array();
+	public $debug = TRUE;
+	public $debug_return = array();
     public $mac;            // Device mac address
-    public $model;			// Model of phone, must match the model name inside of the famil_data.xml file in each family folder.
     public $timezone;       // Global timezone var
     public $DateTimeZone;   // timezone, as a DateTimezone object, much more flexible than just an offset and name.
     public $server;         // Contains an array of valid server IPs & ports, in case phones support backups
@@ -76,12 +81,12 @@ abstract class endpoint_base {
 
     //Set all default values here and fix errors before they hit us in the ass later on.
     function data_integrity() {
-	if (!in_array($this->server_type,$this->server_type_list)) {
-		$this->server_type=$this->default_server_type;
-	}
-	if (!in_array($this->provisioning_type,$this->provisioning_type_list)) {
-		$this->provisioning_type=$this->default_provisioning_type;
-	}
+		if (!in_array($this->server_type,$this->server_type_list)) {
+			$this->server_type=$this->default_server_type;
+		}
+		if (!in_array($this->provisioning_type,$this->provisioning_type_list)) {
+			$this->provisioning_type=$this->default_provisioning_type;
+		}
     }
 
     function generate_info($file_contents, $brand_ts, $family_ts) {
@@ -206,7 +211,7 @@ abstract class endpoint_base {
      * You should call prepare_for_generateconfig() before calling this.
     **/
     function config_files() {
-        $family_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml",1,'tag',array('model_list'));
+        $family_data = $this->file2json($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.json",1,'tag',array('model_list'));
 		foreach (explode(",",$family_data['data']['configuration_files']) AS $configfile) {
 			$outputfile=str_replace(array_keys($this->config_file_replacements),array_values($this->config_file_replacements),$configfile);
 			$result[$outputfile]=$configfile;
@@ -306,10 +311,10 @@ abstract class endpoint_base {
      * @author Andrew Nagy
      */
     function parse_config_file($file_contents, $keep_unknown=FALSE, $lines=NULL, $specific_line='ALL') {
-        $family_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml",1,'tag',array('model_list'));
-        $brand_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/brand_data.xml");
+        $family_data = $this->file2json($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.json",1,'tag',array('model_list'));
+        $brand_data = $this->file2json($this->root_dir. self::$modules_path . $this->brand_name . "/brand_data.json");
 
-        //Get number of lines for this model from the family_data.xml file
+        //Get number of lines for this model from the family_data.json file
         if (is_array($family_data['data']['model_list'])) {
             $key = $this->arraysearchrecursive($this->model, $family_data, "model");
             $line_total = $family_data['data']['model_list'][$key[2]]['lines'];
@@ -339,12 +344,7 @@ abstract class endpoint_base {
         $this->timezone['gmtoffset'] = $this->setup_timezone($this->timezone['gmtoffset'], 'GMT');
         $this->timezone['timezone'] = $this->setup_timezone($this->timezone['timezone'], 'TZ');
 
-        if (array_key_exists('0', $brand_data['data']['brands']['family_list']['family'])) {
-            $key = $this->arraysearchrecursive($family_data['data']['directory'], $brand_data['data']['brands']['family_list'], "directory");
-            $brand_mod = $brand_data['data']['brands']['family_list']['family'][$key[1]]['last_modified'];
-        } else {
-            $brand_mod = $brand_data['data']['brands']['family_list']['family']['last_modified'];
-        }
+        $brand_mod = $brand_data['data']['brands']['last_modified'];
 
         $file_contents = $this->generate_info($file_contents, $brand_data['data']['brands']['last_modified'], $brand_mod);
 
@@ -391,14 +391,16 @@ abstract class endpoint_base {
         //Find line looping data betwen {line_loop}{/line_loop}
         $pattern = "/{loop_(.*?)}(.*?){\/loop_(.*?)}/si";
         while (preg_match($pattern, $file_contents, $matches)) {
-            if(isset($this->options[$matches[3]])) {
-                $count = count($this->options[$matches[3]]);
+			$loop_name = $matches[3];
+			$loop_contents = $matches[2];
+            if(isset($this->settings[$loop_name])) {
+                $count = count($this->settings[$loop_name]);
                 $parsed = "";
                 if($count) {
-                    foreach($this->options[$matches[3]] as $number => $data) {
+                    foreach($this->settings[$loop_name] as $number => $data) {
                         $data['number'] = $number;
 						$data['count'] = $number;
-                        $parsed .= $this->parse_config_values($matches[2], FALSE, "GLOBAL", $data);
+                        $parsed .= $this->parse_config_values($loop_contents,$data,FALSE);
                     }
                 }
                 $file_contents = preg_replace($pattern, $parsed, $file_contents, 1);
@@ -422,19 +424,17 @@ abstract class endpoint_base {
         //Find line looping data betwen {line_loop}{/line_loop}
         $pattern = "/{line_loop}(.*?){\/line_loop}/si";
         while (preg_match($pattern, $file_contents, $matches)) {
+			$loop_contents = $matches[1];
             $i = 1;
             $parsed = "";
             //If specific line is set to ALL then loop through all lines
             if ($specific_line == "ALL") {
-                while ($i <= $line_total) {
-                    $this->parse_lines_hook($i,$line_total);
-                    if (isset($this->lines[$i]['secret'])) {
-                        $parsed_2 = $this->replace_static_variables($matches[1], $i, TRUE);
-                        $parsed .= $this->parse_config_values($parsed_2, FALSE, $i);
-                        //echo $parsed;
-                    }
-                    $i++;
-                }
+				foreach($this->settings['line'] as $key => $data) {
+					$line = $data['line'];
+					$this->parse_lines_hook($key,$line_total);
+					$loop_contents = $this->replace_static_variables($loop_contents,$this->settings['line'][$key]);
+					$parsed .= $this->parse_config_values($loop_contents,$this->settings['line'][$key],FALSE);
+				}
                 //If Specific Line is set to a number greater than 0 then only process the loop for that line
             } else {
                 $this->parse_lines_hook($specific_line,$line_total);
@@ -460,20 +460,8 @@ abstract class endpoint_base {
         return($file_contents);
     }
 
-    /**
-     * This function will replace variables, eg {$variable}
-     * @param string $file_contents Full Contents of the configuration file
-     * @param boolean $keep_unknown Keep Unknown variables as {$variable} instead of erasing them (blanking the space), can be used to parse these variables later
-     * @param string $specific_line_master The specific line number to manipulate. If no line number set then assume GLOBAL variable. This will reset back to whatever it was sent for every variable
-     * @param string $options
-     * @return string
-     * @author Andrew Nagy
-     */
-    function parse_config_values($file_contents, $keep_unknown=FALSE, $specific_line_master="GLOBAL", $options=NULL) {
-        if(!isset($options)) {
-            $options=$this->options;
-        }
-        $family_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml",1,'tag',array('model_list'));
+	function merge_files() {
+		$family_data = $this->file2json($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.json");
 
         if (is_array($family_data['data']['model_list'])) {
             $key = $this->arraysearchrecursive($this->model, $family_data, "model");
@@ -488,130 +476,107 @@ abstract class endpoint_base {
 
         $template_data = array();
         $template_data_multi = "";
-        if (is_array($template_data_list['files'])) {
-            foreach ($template_data_list['files'] as $files) {
-                if (file_exists($this->root_dir.self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $files)) {
-                    $template_data_multi = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $files);
-                    $template_data_multi = $this->fix_single_array_keys($template_data_multi['template_data']['category']);
-                    foreach($template_data_multi as $categories) {
-                        $subcats = $this->fix_single_array_keys($categories['subcategory']);
-                        foreach($subcats as $subs) {
-                            $items = $this->fix_single_array_keys($subs['item']);
-                            $template_data = array_merge($template_data, $items);
-                        }
-                    }
-                }
-            }
-        } else {
-            if (file_exists($this->root_dir.self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $template_data_list['files'])) {
-                $template_data_multi = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $template_data_list['files']);
-                $template_data_multi = $this->fix_single_array_keys($template_data_multi['template_data']['category']);
+        foreach ($template_data_list as $files) {
+            if (file_exists($this->root_dir.self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $files)) {
+                $template_data_multi = $this->file2json($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $files);
+                $template_data_multi = $template_data_multi['template_data']['category'];
                 foreach($template_data_multi as $categories) {
-                    $subcats = $this->fix_single_array_keys($categories['subcategory']);
+                    $subcats = $categories['subcategory'];
                     foreach($subcats as $subs) {
-                        $items = $this->fix_single_array_keys($subs['item']);
+                        $items = $subs['item'];
                         $template_data = array_merge($template_data, $items);
                     }
                 }
             }
         }
 
-        if (file_exists($this->root_dir.self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_custom.xml")) {
-            $template_data_multi = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_custom.xml");
-            $template_data_multi = $this->fix_single_array_keys($template_data_multi['template_data']['category']);
+
+        if (file_exists($this->root_dir.self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_custom.json")) {
+            $template_data_multi = $this->file2json($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_custom.json");
+            $template_data_multi = $template_data_multi['template_data']['category'];
             foreach($template_data_multi as $categories) {
-                $subcats = $this->fix_single_array_keys($categories['subcategory']);
+                $subcats = $categories['subcategory'];
                 foreach($subcats as $subs) {
-                    $items = $this->fix_single_array_keys($subs['item']);
+                    $items = $subs['item'];
                     $template_data = array_merge($template_data, $items);
                 }
             }
         }
 
-        if (file_exists($this->root_dir.self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_" . $this->model . "_custom.xml")) {
-            $template_data_multi = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_" . $this->model . "_custom.xml");
-            $template_data_multi = $this->fix_single_array_keys($template_data_multi['template_data']['category']);
+        if (file_exists($this->root_dir.self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_" . $this->model . "_custom.json")) {
+            $template_data_multi = $this->file2json($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_" . $this->model . "_custom.json");
+            $template_data_multi = $template_data_multi['template_data']['category'];
             foreach($template_data_multi as $categories) {
-                $subcats = $this->fix_single_array_keys($categories['subcategory']);
+                $subcats = $categories['subcategory'];
                 foreach($subcats as $subs) {
-                    $items = $this->fix_single_array_keys($subs['item']);
+                    $items = $subs['item'];
                     $template_data = array_merge($template_data, $items);
                 }
             }
         }
-
-        //Find all matched variables in the text file between "{$" and "}"
+		return($template_data);
+	}
+	
+	function parse_config_values($file_contents, $data=NULL, $keep_unknown=FALSE) {
+		$template_data = $this->merge_files();
+		
+		//Find all matched variables in the text file between "{$" and "}"
         preg_match_all('/[{\$](.*?)[}]/i', $file_contents, $match);
         //Result without brackets (but with the $ variable identifier)
         $no_brackets = array_values(array_unique($match[1]));
         //Result with brackets
         $brackets = array_values(array_unique($match[0]));
-
-
-        //loop though each variable found in the text file
-        foreach ($no_brackets as $variables) {
+		
+		foreach ($no_brackets as $variables) {
+			$original_variable = $variables;
             $variables = str_replace("$", "", $variables);
-            //$specific_line = $specific_line_master;
-            //Users can set defaults within template files with pipes, they will over-ride whatever is in the XML file.
-            $original_variable = $variables;
             $default_exp = preg_split("/\|/i", $variables);
-            $default = isset($default_exp[1]) ? $default_exp[1] : NULL;
-            $variables = $default_exp[0];
-            
-            $line_exp = preg_split("/\./i", $variables);
-            $specific_line = isset($line_exp[2]) ? $line_exp[2] : $specific_line_master;
+			$default = isset($default_exp[1]) ? $default_exp[1] : null;
 
-            //If the variable we found in the text file exists in the variables array then replace the variable in the text file with the value under our key
-            if (($specific_line == "GLOBAL") AND (isset($options[$variables]))) {
-                
-                $options[$variables] = $this->en_htmlspecialchars ? $this->replace_static_variables(htmlspecialchars($options[$variables])) : $this->replace_static_variables($options[$variables]);
-                $file_contents = str_replace('{$' . $original_variable . '}', $options[$variables], $file_contents);
-                //echo '{$' . $original_variable . '}:'.$options[$variables].'<br />';
-                
-            } elseif (($specific_line != "GLOBAL") AND (isset($this->lines[$specific_line]['options'][$variables]))) {
-                
-                $this->lines[$specific_line]['options'][$variables] = $this->en_htmlspecialchars ? $this->replace_static_variables(htmlspecialchars($this->lines[$specific_line]['options'][$variables])) : $this->replace_static_variables($this->lines[$specific_line]['options'][$variables]);
-                $file_contents = str_replace('{$' . $original_variable . '}', $this->lines[$specific_line]['options'][$variables], $file_contents);
-                //echo '{$' . $original_variable . '}:'.$this->lines[$specific_line]['options'][$variables].'<br />';
-
-            } else {
-                if (!$keep_unknown) {
+			if(is_array($data)) {
+				if(isset($data[$variables])) {
+					echo "Replacing '{".$original_variable."}' with ".$data[$variables]."\n";
+					$file_contents = str_replace('{' . $original_variable . '}', $data[$variables], $file_contents);
+				}			
+			} else {
+				if(isset($this->settings[$variables])) {
+					$file_contents = str_replace('{' . $original_variable . '}', $this->settings[$variables], $file_contents);
+                } elseif (!$keep_unknown) {
                     //read default template values here, blank unknowns or arrays (which are blanks anyways)
                     $key1 = $this->arraysearchrecursive('$' . $variables, $template_data, 'variable');
                     $default_hard_value = NULL;
 
                     //Check for looping statements. They are all setup logically the same. Ergo if the first multi-dimensional array has a variable key its not a loop.
                     if($key1['1'] == 'variable') {
-                        $default_hard_value = $this->replace_static_variables($this->fix_single_array_keys($template_data[$key1[0]]['default_value']));
+                        $default_hard_value = $this->replace_static_variables($template_data[$key1[0]]['default_value']);
                     } elseif($key1['4'] == 'variable') {
 
                         //replace count variable with line number
-                        $template_data[$key1[0]][$key1[1]][$key1[2]][$key1[3]]['default_value'] = str_replace('{$count}', $specific_line, $template_data[$key1[0]][$key1[1]][$key1[2]][$key1[3]]['default_value']);
-                        $template_data[$key1[0]][$key1[1]][$key1[2]][$key1[3]]['default_value'] = str_replace('{$number}', $specific_line, $template_data[$key1[0]][$key1[1]][$key1[2]][$key1[3]]['default_value']);
+                        //$template_data[$key1[0]][$key1[1]][$key1[2]][$key1[3]]['default_value'] = str_replace('{$count}', $specific_line, $template_data[$key1[0]][$key1[1]][$key1[2]][$key1[3]]['default_value']);
+                        //$template_data[$key1[0]][$key1[1]][$key1[2]][$key1[3]]['default_value'] = str_replace('{$number}', $specific_line, $template_data[$key1[0]][$key1[1]][$key1[2]][$key1[3]]['default_value']);
 
-                        $default_hard_value = $this->replace_static_variables($this->fix_single_array_keys($template_data[$key1[0]][$key1[1]][$key1[2]][$key1[3]]['default_value']));
+                        $default_hard_value = $this->replace_static_variables($template_data[$key1[0]][$key1[1]][$key1[2]][$key1[3]]['default_value']);
                     }
 
                     if (isset($default)) {
-                        $file_contents = str_replace('{$' . $original_variable . '}', $default, $file_contents);
-                        //echo '{$' . $original_variable . '}:'.$default.'<br />';
+                        $file_contents = str_replace('{' . $original_variable . '}', $default, $file_contents);
+                        echo 'Replacing {' . $original_variable . '} with default piped value of:'.$default."\n";
 
                     } elseif (isset($default_hard_value)) {
-                        $file_contents = str_replace('{$' . $original_variable . '}', $default_hard_value, $file_contents);
-                        //echo '{$' . $original_variable . '}:'.$default_hard_value.'<br />';
+                        $file_contents = str_replace('{' . $original_variable . '}', $default_hard_value, $file_contents);
+                        echo "Replacing {" . $original_variable . "} with default json value of: ".$default_hard_value."\n";
                         
                     } else {
-                        $file_contents = str_replace('{$' . $original_variable . '}', "", $file_contents);
-                        //echo '{$' . $original_variable . '}:<br />';
+                        $file_contents = str_replace('{' . $original_variable . '}', "", $file_contents);
+                        echo "Blanking {" . $original_variable . "}\n";
                         
                     }
                 }
-            }
-        }
-
-
-        return $file_contents;
-    }
+			}
+		}
+		
+		return($file_contents);
+	}
 
     /**
      * This will replace statically known variables
@@ -621,11 +586,11 @@ abstract class endpoint_base {
      * @param boolean $looping
      * @return string
      */
-    function replace_static_variables($contents, $specific_line="GLOBAL", $looping=TRUE) {
+    function replace_static_variables($contents,$data=NULL) {
 		$replace=array(
 			# These first ones have an identical field name in the object and the template.
 			# This is a good thing, and should be done wherever possible.
-			'{$mac}'=>$this->mac,
+			'{$mac}'=>$this->settings['mac'],
 			'{$model}'=>$this->model,
 			'{$provisioning_type}'=>$this->provisioning_type,
 			'{$provisioning_path}'=>$this->provisioning_path,
@@ -637,38 +602,34 @@ abstract class endpoint_base {
 			'{$timezone_timezone}'=>$this->timezone['timezone'],
 			'{$timezone}'=>$this->timezone['timezone'], # Should this be depricated??
 			'{$network_time_server}'=>$this->ntp,
-
-			# The rest of these are depricated:
-			'{$gmtoff}'=>$this->timezone['gmtoffset'],
-			'{$gmthr}'=>$this->timezone['gmtoffset'],
+			
+			#old
+			'{$srvip}' => $this->settings['line'][0]['server_host'],
+			'{$server.ip.1}' => $this->settings['line'][0]['server_host'],
+			'{$server.port.1}' => $this->settings['line'][0]['server_port'],
+			'{$server.ip.2}' => $this->settings['line'][0]['backup_server_host'],
+			'{$server.port.2}' => $this->settings['line'][0]['backup_server_port']
 		);
-
-		# These are the loops
-		foreach($this->proxy as $key => $proxies) {
-			$replace['{$proxy.ip.'.$key.'}']=$proxies['ip'];
-			$replace['{$proxy.port.'.$key.'}']=$proxies['port'];
-		}
-
-        foreach($this->server as $key => $servers) {
-			$replace['{$server.ip.'.$key.'}']=$servers['ip'];
-			$replace['{$server.port.'.$key.'}']=$servers['port'];
-        }
 
 		$contents = str_replace(array_keys($replace),array_values($replace),$contents);
 
-        if (($specific_line != "GLOBAL") AND ($looping == TRUE)) {
-            $contents = str_replace('{$line}', $specific_line, $contents);
-            $contents = str_replace('{$ext}', $this->lines[$specific_line]['ext'], $contents);
-            $contents = str_replace('{$displayname}', $this->lines[$specific_line]['displayname'], $contents);
-            $contents = str_replace('{$secret}', $this->lines[$specific_line]['secret'], $contents);
-            $contents = str_replace('{$pass}', $this->lines[$specific_line]['secret'], $contents);
-        } elseif (($specific_line != "GLOBAL") AND ($looping == FALSE)) {
-            $contents = str_replace('{$line.line.' . $specific_line . '}', $specific_line, $contents);
-            $contents = str_replace('{$ext.line.' . $specific_line . '}', $this->lines[$specific_line]['ext'], $contents);
-            $contents = str_replace('{$displayname.line.' . $specific_line . '}', $this->lines[$specific_line]['displayname'], $contents);
-            $contents = str_replace('{$secret.line.' . $specific_line . '}', $this->lines[$specific_line]['secret'], $contents);
-            $contents = str_replace('{$pass.line.' . $specific_line . '}', $this->lines[$specific_line]['secret'], $contents);
-        } elseif ($specific_line == 'GLOBAL') {
+		if(is_array($data)) {
+			$line = $data['line'];
+			
+			$contents = str_replace('{$line}', $line, $contents);
+            $contents = str_replace('{$ext}', $data['username'], $contents);
+            $contents = str_replace('{$displayname}', $data['display_name'], $contents);
+            $contents = str_replace('{$secret}', $data['secret'], $contents);
+            $contents = str_replace('{$pass}', $data['secret'], $contents);
+            $contents = str_replace('{$server_host}', $data['server_host'], $contents);
+            $contents = str_replace('{$server_port}', $data['server_port'], $contents);
+
+            $contents = str_replace('{$line.line.' . $line . '}', $line, $contents);
+            $contents = str_replace('{$ext.line.' . $line . '}', $data['username'], $contents);
+            $contents = str_replace('{$displayname.line.' . $line . '}', $data['display_name'], $contents);
+            $contents = str_replace('{$secret.line.' . $line . '}', $data['secret'], $contents);
+            $contents = str_replace('{$pass.line.' . $line . '}', $data['secret'], $contents);
+		} else {
             //Find all matched variables in the text file between "{$" and "}"
             preg_match_all('/[{\$](.*?)[}]/i', $contents, $match);
             //Result without brackets (but with the $ variable identifier)
@@ -677,54 +638,32 @@ abstract class endpoint_base {
             $brackets = array_values(array_unique($match[0]));
             //loop though each variable found in the text file
             foreach ($no_brackets as $variables) {
+				$original_variable = $variables;
                 $variables = str_replace("$", "", $variables);
-                $original_variable = $variables;
-                
-                $default_exp = preg_split("/\|/i", $variables);
-                $default = isset($default_exp[1]) ? $default_exp[1] : '';
-                $variables = $default_exp[0];
                 
                 $line_exp = preg_split("/\./i", $variables);
 
-                //$specific_line = isset($line_exp[2]) ? $line_exp[2] : $specific_line_master;
-                //$variables = $variables[0];
                 if((isset($line_exp[1])) && ($line_exp[1] == 'line')) {
-                    
-                    switch ($line_exp[0]) {
-                        case "ext":
-                            if (isset($this->lines[$line_exp[2]]['ext'])) {
-                                $contents = str_replace('{$ext.line.' . $line_exp[2] . '}', $this->lines[$line_exp[2]]['ext'], $contents);
-                            } else {
-                                $contents = str_replace('{$ext.line.' . $line_exp[2] . '}', $default, $contents);
-                            }
-                            break;
-                        case "displayname":
-                            if (isset($this->lines[$line_exp[2]]['displayname'])) {
-                                $contents = str_replace('{$displayname.line.' . $line_exp[2] . '}', $this->lines[$line_exp[2]]['displayname'], $contents);
-                            } else {
-                                $contents = str_replace('{$displayname.line.' . $line_exp[2] . '}', $default, $contents);
-                            }
-                            break;
-                        case "secret":
-                            if (isset($this->lines[$line_exp[2]]['secret'])) {
-                                $contents = str_replace('{$secret.line.' . $line_exp[2] . '}', $this->lines[$line_exp[2]]['secret'], $contents);
-                            } else {
-                                $contents = str_replace('{$secret.line.' . $line_exp[2] . '}', $default, $contents);
-                            }
-                            break;
-                        case "pass":
-                            if (isset($this->lines[$line_exp[2]]['secret'])) {
-                                $contents = str_replace('{$pass.line.' . $line_exp[2] . '}', $this->lines[$line_exp[2]]['secret'], $contents);
-                            } else {
-                                $contents = str_replace('{$pass.line.' . $line_exp[2] . '}', $default, $contents);
-                            }
-                            break;
-                    }
-                }
-            }
-        }
+					$line = $line_exp[2];
+					$key1 = $this->arraysearchrecursive($line, $this->settings['line'], 'line');
+					$var = $line_exp[0];
+					$stored = isset($this->settings['line'][$key1[0]][$var]) ? $this->settings['line'][$key1[0]][$var] : '';
+					$contents = str_replace('{'.$original_variable.'}', $stored, $contents);
+				}
+			}
+		}
         return($contents);
     }
+
+	function file2json($file) {
+		if(file_exists($file)) {
+			$json = file_get_contents($file);
+			$data = json_decode($json,TRUE);
+			return($data);
+		} else {
+			
+		}
+	}
 
     /**
      * Merge two arrays only if the old array is an array, otherwise just return the new array
@@ -739,29 +678,6 @@ abstract class endpoint_base {
         } else {
             return($array_new);
         }
-    }
-
-    /**
-     * Function xml2array has a bad habit of returning blank xml values as empty arrays.
-     * Also if the xml children only loops once then the array is put into a normal array (array[variable]).
-     * However if it loops more than once then it is put into a counted array (array[0][variable])
-     * We fix that issue here by returning blank values on empty arrays or always returning array[0]
-     * @param array $array
-     * @return mixed
-     * @author Karl Anderson
-     */
-    function fix_single_array_keys($array) {
-        if (!is_array($array)) {
-            return $array;
-        }
-
-        if((empty($array[0])) AND (!empty($array))) {
-            $array_n[0] = $array;
-
-            return($array_n);
-        }
-
-        return empty($array) ? '' : $array;
     }
 
     /**
@@ -791,129 +707,6 @@ abstract class endpoint_base {
         }
         return false;
     }
-
-    /**
-     * xml2array() will convert the given XML text to an array in the XML structure.
-     * @author http://www.bin-co.com/php/scripts/xml2array/
-     * @param <type> $url The XML file
-     * @param <type> $get_attributes 1 or 0. If this is 1 the function will get the attributes as well as the tag values - this results in a different array structure in the return value.
-     * @param <type> $priority Can be 'tag' or 'attribute'. This will change the way the resulting array structure. For 'tag', the tags are given more importance.
-     * @param <type> $array_tags - any tag names listed here will allways be returned as an array, even if there is only one of them.
-     * @return <type> The parsed XML in an array form. Use print_r() to see the resulting array structure.
-     */
-    function xml2array($url, $get_attributes = 1, $priority = 'tag', $array_tags=array()) {
-        $contents = "";
-        if (!function_exists('xml_parser_create')) {
-            return array();
-        }
-        $parser = xml_parser_create('');
-        if (!($fp = @ fopen($url, 'rb'))) {
-            return array();
-        }
-        while (!feof($fp)) {
-            $contents .= fread($fp, 8192);
-        }
-        fclose($fp);
-        xml_parser_set_option($parser, XML_OPTION_TARGET_ENCODING, "UTF-8");
-        xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, 0);
-        xml_parser_set_option($parser, XML_OPTION_SKIP_WHITE, 1);
-        xml_parse_into_struct($parser, trim($contents), $xml_values);
-        xml_parser_free($parser);
-        if (!$xml_values) {
-            return; //Hmm...
-        }
-        $xml_array = array();
-        $parents = array();
-        $opened_tags = array();
-        $arr = array();
-        $current = & $xml_array;
-        $repeated_tag_index = array();
-        foreach ($xml_values as $data) {
-            unset($attributes, $value);
-            extract($data);
-            $result = array();
-            $attributes_data = array();
-            if (isset($value)) {
-                if ($priority == 'tag') {
-                    $result = $value;
-                } else {
-                    $result['value'] = $value;
-                }
-            }
-            if (isset($attributes) and $get_attributes) {
-                foreach ($attributes as $attr => $val) {
-                    if ($priority == 'tag') {
-                        $attributes_data[$attr] = $val;
-                    } else {
-                        $result['attr'][$attr] = $val; //Set all the attributes in a array called 'attr'
-                    }
-                }
-            }
-            if ($type == "open") {
-                $parent[$level - 1] = & $current;
-		if (!is_array($current) or (!in_array($tag, array_keys($current)))) {
-		    if (in_array($tag,$array_tags)) {
-                        $current[$tag][0] = $result;
-                        $repeated_tag_index[$tag . '_' . $level]=1;
-                    	$current = & $current[$tag][0];
-		    } else {
-			$current[$tag] = $result;
-			if ($attributes_data) {
-				$current[$tag . '_attr'] = $attributes_data;
-			}
-			$repeated_tag_index[$tag . '_' . $level] = 1;
-			$current = & $current[$tag];
-		   }
-                } else {
-                    if (isset($current[$tag][0])) {
-                        $current[$tag][$repeated_tag_index[$tag . '_' . $level]] = $result;
-                        $repeated_tag_index[$tag . '_' . $level]++;
-                    } else {
-                        $current[$tag] = array($current[$tag], $result);
-                        $repeated_tag_index[$tag . '_' . $level] = 2;
-                        if (isset($current[$tag . '_attr'])) {
-                            $current[$tag]['0_attr'] = $current[$tag . '_attr'];
-                            unset($current[$tag . '_attr']);
-                        }
-                    }
-                    $last_item_index = $repeated_tag_index[$tag . '_' . $level] - 1;
-                    $current = & $current[$tag][$last_item_index];
-                }
-            } else if ($type == "complete") {
-                if (!isset($current[$tag])) {
-                    $current[$tag] = $result;
-                    $repeated_tag_index[$tag . '_' . $level] = 1;
-                    if ($priority == 'tag' and $attributes_data) {
-                        $current[$tag . '_attr'] = $attributes_data;
-                    }
-                } else {
-                    if (isset($current[$tag][0]) and is_array($current[$tag])) {
-                        $current[$tag][$repeated_tag_index[$tag . '_' . $level]] = $result;
-                        if ($priority == 'tag' and $get_attributes and $attributes_data) {
-                            $current[$tag][$repeated_tag_index[$tag . '_' . $level] . '_attr'] = $attributes_data;
-                        }
-                        $repeated_tag_index[$tag . '_' . $level]++;
-                    } else {
-                        $current[$tag] = array($current[$tag], $result);
-                        $repeated_tag_index[$tag . '_' . $level] = 1;
-                        if ($priority == 'tag' and $get_attributes) {
-                            if (isset($current[$tag . '_attr'])) {
-                                $current[$tag]['0_attr'] = $current[$tag . '_attr'];
-                                unset($current[$tag . '_attr']);
-                            }
-                            if ($attributes_data) {
-                                $current[$tag][$repeated_tag_index[$tag . '_' . $level] . '_attr'] = $attributes_data;
-                            }
-                        }
-                        $repeated_tag_index[$tag . '_' . $level]++; //0 and 1 index is already taken
-                    }
-                }
-            } else if ($type == 'close') {
-                $current = & $parent[$level - 1];
-            }
-        }
-        return ($xml_array);
-    }
 }
 
 class Provisioner_Globals {
@@ -942,7 +735,7 @@ class Provisioner_Globals {
                     <!-- Trick the Phone into loading a specific file for JUST that phone -->
                     <!-- Set the resync to 3 second2 so it reboots automatically, we set this to 86400 seconds in the other file -->
                     <Resync_Periodic>3</Resync_Periodic>
-                    <Profile_Rule>".$web_path."spa\$MA.xml</Profile_Rule>
+                    <Profile_Rule>".$web_path."spa\$MA.json</Profile_Rule>
                     <Text_Logo group=\"Phone/General\">~PLEASE WAIT~</Text_Logo>
                     <Select_Background_Picture ua=\"ro\">Text Logo</Select_Background_Picture>
                 </flat-profile>");

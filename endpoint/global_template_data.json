@@ -167,6 +167,12 @@
                         "type": "break"
                     },
                     {
+                        "variable": "$ntp",
+                        "default_value": "",
+                        "description": "NTP Server",
+                        "type": "input"
+                    },
+                    {
                         "variable": "$use_dhcp",
                         "default_value": true,
                         "description": "Use DHCP",
@@ -203,6 +209,12 @@
                         "variable": "$vlan_id",
                         "default_value": "0",
                         "description": "VLAN ID",
+                        "type": "input"
+                    },
+                    {
+                        "variable": "$vlan_qos",
+                        "default_value": "0",
+                        "description": "VLAN QOS",
                         "type": "input"
                     },
                     {

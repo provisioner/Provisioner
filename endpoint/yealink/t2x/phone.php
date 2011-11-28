@@ -14,17 +14,12 @@ class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
 		'y0000000000$suffix.cfg'=>'#This File is intentionally left blank'
 	);
 
-	function parse_lines_hook($line) {
-		$this->lines[$line]['options']['line_active'] = (isset($this->lines[$line]['secret']) ? '1' : '0');
-		$this->lines[$line]['options']['line_m1'] = (isset($this->lines[$line]['secret']) ? $line-1 : '');
-		$this->lines[$line]['options']['voicemail_number'] = (isset($this->options['voicemail_number']) ? $this->options['voicemail_number'] : '');
-		
-		if(isset($this->options['linekey'])) {
-			if (($line >= 1) && ($line <=6)) {
-				$this->options['linekey'][$line+10]=$this->options['linekey'][$line+10];
-			}
-		}
+	function parse_lines_hook($key,$line_total) {
+		$this->settings['line'][$key]['line_active'] = 1;
+		$this->settings['line'][$key]['line_m1'] = $this->settings['line'][$key]['line']-1;
+		$this->settings['line'][$key]['voicemail_number'] = '*97';
 	}
+	
 	function prepare_for_generateconfig() {
 		# This contains the last 2 digits of y0000000000xx.cfg, for each model.
 		$model_suffixes=array('T28'=>'00','T26'=>'04','T22'=>'05','T20'=>'07');
