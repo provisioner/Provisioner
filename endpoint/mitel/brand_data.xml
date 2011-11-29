@@ -6,7 +6,7 @@
 		<brand_id>9</brand_id>
 		<directory>mitel</directory>
 		<package>mitel-0_5.tgz</package>
-        <md5sum>c64c7a755b24bb1c78c42cd4b93fb4a8</md5sum>
+        <md5sum>7f75192943018a21e2fa6e11277422b4</md5sum>
 		<last_modified>1315440476</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
@@ -15,7 +15,7 @@
 				<directory>53xx</directory>
 				<version>0.7.5</version>
 				<description>Variables Issues Solved (Not writing accounts + passwords in files)</description>
-				<changelog>PACKAGER: PACKAGER: Adding Jort Bloem to all license files.</changelog>
+				<changelog>PACKAGER: PACKAGER: couple more fixes</changelog>
 				<id>1</id>
 				<last_modified>1315440476</last_modified>
 			</family>

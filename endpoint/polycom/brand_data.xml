@@ -6,7 +6,7 @@
 		<directory>polycom</directory>
 		<brand_id>4</brand_id>
 		<package>polycom-0_7.tgz</package>
-		<md5sum>11b830ac67e76623f92f81d803fe3829</md5sum>
+		<md5sum>69afa0b8adb6f1a101a6a3695bae7d62</md5sum>
 		<last_modified>1320044215</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
@@ -15,7 +15,7 @@
 				<directory>firmware325</directory>
 				<version>0.8.1</version>
 				<description>Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality</description>
-				<changelog>PACKAGER: Readjusting this</changelog>
+				<changelog>PACKAGER: PACKAGER: couple more fixes</changelog>
 				<id>4</id>
 				<last_modified>1320041354</last_modified>
 			</family>
