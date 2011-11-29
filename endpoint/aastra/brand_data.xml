@@ -6,9 +6,9 @@
 		<version>0.5</version>
 		<directory>aastra</directory>
 		<package>aastra-0_5.tgz</package>
-		<md5sum>5d2859fb91e7860ee8aee0bb610cdea0</md5sum>
+		<md5sum>39ba058393cac90fd15ee003c6ea9345</md5sum>
 		<last_modified>1320953961</last_modified>
-		<changelog>PACKAGER: Fixes #30 and http://www.freepbx.org/forum/freepbx/general-help/problem-w-parking-on-9143i</changelog>
+		<changelog>PACKAGER: PACKAGER: couple more fixes</changelog>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>

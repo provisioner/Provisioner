@@ -6,7 +6,7 @@
 		<version>0.5</version>
 		<directory>cisco</directory>
 		<package>cisco-0_5.tgz</package>
-		<md5sum>adee96fca0426424aef77c119079cff0</md5sum>
+		<md5sum>fc9609c2ea39edd330a3fc50222f2d91</md5sum>
 		<last_modified>1321263899</last_modified>
 				<family_list>
 <!--Below is Auto Generated-->
@@ -15,7 +15,7 @@
 				<directory>ata18x</directory>
 				<version>0.1</version>
 				<description></description>
-				<changelog>PACKAGER: Some Timezone changes</changelog>
+				<changelog>PACKAGER: PACKAGER: couple more fixes</changelog>
 				<id>5</id>
 				<last_modified>1315440476</last_modified>
 			</family>
