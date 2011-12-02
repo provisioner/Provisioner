@@ -66,6 +66,7 @@
 		<id>8</id>
 		<template_data>
 			<files>template_data.xml</files>
+			<files>attendant_keys.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
@@ -74,6 +75,7 @@
 		<id>9</id>
 		<template_data>
 			<files>template_data.xml</files>
+			<files>attendant_keys.xml</files>
 		</template_data>
 	</model_list>
 	<model_list>
