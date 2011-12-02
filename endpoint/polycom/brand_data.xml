@@ -6,8 +6,8 @@
 		<directory>polycom</directory>
 		<brand_id>4</brand_id>
 		<package>polycom-0_7.tgz</package>
-		<md5sum>84c8383bf950ecaf69675d6f152009e5</md5sum>
-		<last_modified>1320044215</last_modified>
+		<md5sum>85f263a824c90803596742b6b089fb66</md5sum>
+		<last_modified>1322785422</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -15,7 +15,7 @@
 				<directory>firmware325</directory>
 				<version>0.8.1</version>
 				<description>Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality</description>
-				<changelog>PACKAGER: PACKAGER: PACKAGER: PACKAGER: couple more fixes</changelog>
+				<changelog>PACKAGER: Update endpoint/polycom/spipm/$mac.cfg</changelog>
 				<id>4</id>
 				<last_modified>1320041354</last_modified>
 			</family>
@@ -35,7 +35,7 @@
 				<description>Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality</description>
 				<changelog></changelog>
 				<id>3</id>
-				<last_modified>1320044215</last_modified>
+				<last_modified>1322785422</last_modified>
 			</family>
 			<family>
 				<name>SoundPoint/Station Legacy Models [301,501,600,601,4000]</name>
