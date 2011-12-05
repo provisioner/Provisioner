@@ -163,7 +163,7 @@ echo "\nDone!";
 *
 *************/
 function create_brand_pkg($rawname,$version,$brand_name,$old_brand_timestamp,$c_message) {	
-	global $brands_html, $supported_phones;
+	global $brands_html, $supported_phones, $force;
 
 	$pkg_name = $rawname;
 	

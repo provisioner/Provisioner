@@ -5,7 +5,7 @@
       "brand_id": "7",
       "directory": "cisco",
       "package": "cisco.tgz",
-      "md5sum": "0f72e8f5146a4b48bf14b049a65de5ec",
+      "md5sum": "af947a7d003113a38a378fd68e6d2fa8",
       "last_modified": 1322439051,
       "family_list": [
         {
@@ -87,7 +87,7 @@
         "1CDF0F",
         "E05FB9"
       ],
-      "changelog": "PACKAGER: Fixes to new packager and renamed jsonparser to merge_data"
+      "changelog": "PACKAGER: PACKAGER: PACKAGER: PACKAGER: PACKAGER: PACKAGER: Some Fixes to Images for Ciscos"
     }
   }
 }

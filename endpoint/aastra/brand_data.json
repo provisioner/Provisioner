@@ -5,9 +5,9 @@
       "brand_id": "1",
       "directory": "aastra",
       "package": "aastra.tgz",
-      "md5sum": "c5b2fd800bee47492dc49c70b06fe60c",
+      "md5sum": "858efc22ea1d1318e81a459f9f87c78a",
       "last_modified": 1322439051,
-      "changelog": "PACKAGER: Fixes to new packager and renamed jsonparser to merge_data",
+      "changelog": "PACKAGER: PACKAGER: PACKAGER: PACKAGER: PACKAGER: PACKAGER: Some Fixes to Images for Ciscos",
       "family_list": [
         {
           "id": "1",
