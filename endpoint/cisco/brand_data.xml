@@ -6,7 +6,7 @@
 		<version>0.5</version>
 		<directory>cisco</directory>
 		<package>cisco-0_5.tgz</package>
-		<md5sum>1ea7f73408d3f055e9b27ed640e12012</md5sum>
+		<md5sum>c4503d269e8eddd07ee818c98eb779b9</md5sum>
 		<last_modified>1322904753</last_modified>
 				<family_list>
 <!--Below is Auto Generated-->
@@ -15,7 +15,7 @@
 				<directory>ata18x</directory>
 				<version>0.1</version>
 				<description></description>
-				<changelog>PACKAGER: Some Fixes to Images for Ciscos</changelog>
+				<changelog>PACKAGER: PACKAGER: PACKAGER: PACKAGER: Some Fixes to Images for Ciscos</changelog>
 				<id>5</id>
 				<last_modified>1315440476</last_modified>
 			</family>

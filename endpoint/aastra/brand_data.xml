@@ -6,9 +6,9 @@
 		<version>0.5</version>
 		<directory>aastra</directory>
 		<package>aastra-0_5.tgz</package>
-		<md5sum>b6944137aa3a61599b9a03d0059f6b8f</md5sum>
+		<md5sum>37ebaa5e6626b32b5d72080fbf71911e</md5sum>
 		<last_modified>1320953961</last_modified>
-		<changelog>PACKAGER: PACKAGER: PACKAGER: PACKAGER: couple more fixes</changelog>
+		<changelog>PACKAGER: PACKAGER: PACKAGER: PACKAGER: Some Fixes to Images for Ciscos</changelog>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>

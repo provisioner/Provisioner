@@ -12,7 +12,7 @@ if (!isset($_SERVER['PHP_AUTH_USER'])) {
 		die('no');
 	}
 }
-
+global $force;
 $force = isset($_REQUEST['force']) ? TRUE : FALSE;
 
 set_time_limit(0);
@@ -193,7 +193,7 @@ function fix_single_array_keys($array) {
 }
 
 function create_brand_pkg($rawname,$version,$brand_name,$old_brand_timestamp,$c_message) {	
-	global $brands_html, $supported_phones;
+	global $brands_html, $supported_phones,$force;
 	$version = str_replace(".","_",$version);
 	
 	$pkg_name = $rawname . "-" . $version;

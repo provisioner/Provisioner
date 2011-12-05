@@ -6,7 +6,7 @@
 		<directory>snom</directory>
 		<brand_id>6</brand_id>
 		<package>snom-0_6.tgz</package>
-        <md5sum>53b1a6addff254221f7d6c8c0bb44519</md5sum>
+        <md5sum>73ccc87c3b68488395634914cea2608b</md5sum>
 		<last_modified>1316190304</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
@@ -15,7 +15,7 @@
 				<directory>3xx820m3</directory>
 				<version>1</version>
 				<description>Server + Password Settings, htm File Fixes</description>
-				<changelog>PACKAGER: PACKAGER: PACKAGER: PACKAGER: couple more fixes</changelog>
+				<changelog>PACKAGER: PACKAGER: PACKAGER: PACKAGER: Some Fixes to Images for Ciscos</changelog>
 				<id>1</id>
 				<last_modified>1316190304</last_modified>
 			</family>

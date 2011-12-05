@@ -4,7 +4,7 @@
 	<version>1.0</version>
 	<directory>bts</directory>
 	<firmware_ver>1304379216</firmware_ver>
-	<firmware_md5sum>f06945cda0c6338a561d4c6915c6826f</firmware_md5sum>
+	<firmware_md5sum>f0eb7ffc1ae0d93471c27f50f58ff012</firmware_md5sum>
 	<firmware_pkg>bts_firmware.tgz</firmware_pkg>
 	<description>Fixed Timezone Issues + Use Grandstream Encrypted Compiler By Default</description>
 	<configuration_files>cfg$mac</configuration_files>
