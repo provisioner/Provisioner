@@ -5,7 +5,7 @@
       "brand_id": "9",
       "directory": "mitel",
       "package": "mitel.tgz",
-      "md5sum": "90f47b60c74c1b564dfebf6927552dc5",
+      "md5sum": "7bb38b484fcc2ff66a1d2743a0e00fa9",
       "last_modified": 1322439051,
       "family_list": [
         {
@@ -20,7 +20,7 @@
       "oui_list": [
         "08000F"
       ],
-      "changelog": "PACKAGER: PACKAGER: PACKAGER: PACKAGER: PACKAGER: PACKAGER: Some Fixes to Images for Ciscos"
+      "changelog": "fixes"
     }
   }
 }

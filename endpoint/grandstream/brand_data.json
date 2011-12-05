@@ -5,7 +5,7 @@
       "directory": "grandstream",
       "brand_id": "2",
       "package": "grandstream.tgz",
-      "md5sum": "1e90c11aa2e480e5a94ab451b0e27f2f",
+      "md5sum": "c51625d9ad4d3addad22e3995c5dd166",
       "last_modified": 1322439051,
       "family_list": [
         {
@@ -44,7 +44,7 @@
       "oui_list": [
         "000B82"
       ],
-      "changelog": "PACKAGER: PACKAGER: PACKAGER: PACKAGER: PACKAGER: PACKAGER: Some Fixes to Images for Ciscos"
+      "changelog": "fixes"
     }
   }
 }

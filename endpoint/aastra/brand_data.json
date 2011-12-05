@@ -5,9 +5,9 @@
       "brand_id": "1",
       "directory": "aastra",
       "package": "aastra.tgz",
-      "md5sum": "858efc22ea1d1318e81a459f9f87c78a",
+      "md5sum": "3a4e2174b0d8138c04b60e46f0853983",
       "last_modified": 1322439051,
-      "changelog": "PACKAGER: PACKAGER: PACKAGER: PACKAGER: PACKAGER: PACKAGER: Some Fixes to Images for Ciscos",
+      "changelog": "fixes",
       "family_list": [
         {
           "id": "1",
