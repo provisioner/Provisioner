@@ -5,7 +5,7 @@
       "directory": "snom",
       "brand_id": "6",
       "package": "snom.tgz",
-      "md5sum": "bb71ed5386e46cfb675e656454ebac6a",
+      "md5sum": "a34b5547cf089518fbac3f2c1d5c4a32",
       "last_modified": 1322439051,
       "family_list": [
         {
@@ -28,7 +28,7 @@
       "oui_list": [
         "000413"
       ],
-      "changelog": "PACKAGER: PACKAGER: PACKAGER: PACKAGER: PACKAGER: PACKAGER: Some Fixes to Images for Ciscos"
+      "changelog": "fixes"
     }
   }
 }

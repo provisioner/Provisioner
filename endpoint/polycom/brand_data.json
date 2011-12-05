@@ -5,7 +5,7 @@
       "directory": "polycom",
       "brand_id": "4",
       "package": "polycom.tgz",
-      "md5sum": "27d297e58440f04030a02cefcc85449b",
+      "md5sum": "b4c26cfd2d119e36d8bc576f0698dadf",
       "last_modified": 1322439051,
       "family_list": [
         {
@@ -53,7 +53,7 @@
         "0004F2",
         "00907A"
       ],
-      "changelog": "PACKAGER: PACKAGER: PACKAGER: PACKAGER: PACKAGER: PACKAGER: Some Fixes to Images for Ciscos"
+      "changelog": "fixes"
     }
   }
 }
