@@ -13,6 +13,9 @@ if (!isset($_SERVER['PHP_AUTH_USER'])) {
 	}
 }
 
+global $force;
+$force = isset($_REQUEST['force']) ? TRUE : FALSE;
+
 set_time_limit(0);
 define("MODULES_DIR", "/var/www/html/beta/endpoint");
 define("RELEASE_DIR", "/var/www/html/release/v3");
@@ -127,14 +130,8 @@ fclose($fp);
 if(!isset($_REQUEST['dont_push'])) {
 	echo "===GIT Information===\n";
 
-	echo "Running Git Add, Status:\n";
-	exec("git add .",$output);
-	foreach($output as $data) {
-		echo "\t".$data . "\n";
-	}
-
-	echo "Running Git Delete, Status:\n";
-	exec("git add -u",$output);
+	echo "Running Git Add -A, Status:\n";
+	exec("git add -A",$output);
 	foreach($output as $data) {
 		echo "\t".$data . "\n";
 	}
@@ -227,7 +224,7 @@ function create_brand_pkg($rawname,$version,$brand_name,$old_brand_timestamp,$c_
 				$firmware_max = max($firmware_files_array);
                 echo "\t\t\t\t\tTotal Firmware Timestamp: ". $firmware_max ."\n";
 
-				if($firmware_max != $old_firmware_ver) {
+				if(($force) OR ($firmware_max != $old_firmware_ver)) {
 					echo "\t\t\tFirmware package has changed...\n";
 					echo "\t\t\tCreating Firmware Package\n";
 					exec("tar zcf ".RELEASE_DIR."/".$rawname."/".$family_xml['data']['directory']."_firmware.tgz --exclude .svn -C ".FIRMWARE_DIR."/".$rawname."/".$family_xml['data']['directory']." firmware");
@@ -294,7 +291,7 @@ function create_brand_pkg($rawname,$version,$brand_name,$old_brand_timestamp,$c_
 	$brand_max = max($brand_max,$temp);
 	echo "\t\t\tTotal Brand Timestamp: ".$brand_max."\n";
 	
-	if($brand_max != $old_brand_timestamp) {
+	if(($force) OR ($brand_max != $old_brand_timestamp)) {
 		$brand_array['data']['brands']['last_modified'] = $brand_max;
 		$brand_array['data']['brands']['changelog'] = $c_message;
 		$brand_array['data']['brands']['package'] = $pkg_name.".tgz";

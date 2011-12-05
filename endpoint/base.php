@@ -17,6 +17,7 @@ abstract class endpoint_base {
 
     public $config_files_override;
 
+	public $template_data = array();
 	public $line_total = array();
 	public $settings = array();
 	public $config_files = array();
