@@ -4,7 +4,7 @@
     "id": "1",
     "directory": "spom",
     "firmware_ver": 1304380043,
-    "firmware_md5sum": null,
+    "firmware_md5sum": "12cd744b47f0f03e9f53c06ddfa5ea53",
     "firmware_pkg": "spom_firmware.tgz",
     "description": "Fixed Digit Map Problems with three digit extensions in the 1xx range",
     "configuration_files": "logs\/$mac-app.log,logs\/$mac-boot.log,contacts\/000000000000-directory.xml,$mac.cfg,server_213.cfg,phone1_213.cfg,$mac_reg.cfg,sip_213.cfg,000000000000.cfg",

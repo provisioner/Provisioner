@@ -5,7 +5,7 @@
       "brand_id": "9",
       "directory": "mitel",
       "package": "mitel.tgz",
-      "md5sum": "7bb38b484fcc2ff66a1d2743a0e00fa9",
+      "md5sum": "40c87aa07d63b73929b7984725bfb5c7",
       "last_modified": 1322439051,
       "family_list": [
         {
@@ -20,7 +20,7 @@
       "oui_list": [
         "08000F"
       ],
-      "changelog": "fixes"
+      "changelog": "finally"
     }
   }
 }

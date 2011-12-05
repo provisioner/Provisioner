@@ -5,7 +5,7 @@
       "brand_id": "8",
       "directory": "yealink",
       "package": "yealink.tgz",
-      "md5sum": "24f496f3ccf04832e7f405dc5be36773",
+      "md5sum": "9cb9b7b3f2ec4e4b06d3e862e4233cb8",
       "last_modified": 1322472619,
       "family_list": [
         {
@@ -28,7 +28,7 @@
       "oui_list": [
         "001565"
       ],
-      "changelog": "fixes"
+      "changelog": "finally"
     }
   }
 }

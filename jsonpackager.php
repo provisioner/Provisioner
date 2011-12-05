@@ -247,7 +247,7 @@ function create_brand_pkg($rawname,$version,$brand_name,$old_brand_timestamp,$c_
 					$family_array = file2json($family_folders."/family_data.json");
 					
 					$family_array['data']['firmware_ver'] = $firmware_max;
-					$family_array['data']['firmware_md5sum'] = $firmware_md5sum;
+					$family_array['data']['firmware_md5sum'] = $firmware_md5;
 					$family_array['data']['firmware_pkg'] = $family_xml['data']['directory']."_firmware.tgz";
 					
 					file_put_contents($family_folders."/family_data.json",json_format(json_encode($family_array)));					

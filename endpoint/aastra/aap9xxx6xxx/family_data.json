@@ -4,7 +4,7 @@
     "id": "2",
     "directory": "aap9xxx6xxx",
     "firmware_ver": 1304379137,
-    "firmware_md5sum": null,
+    "firmware_md5sum": "399c2a414634a0546ec57a38fa5663db",
     "firmware_pkg": "aap9xxx6xxx_firmware.tgz",
     "description": "Initial Files",
     "configuration_files": "$mac.cfg,aastra.cfg",

@@ -4,7 +4,7 @@
     "id": "3",
     "directory": "spipm",
     "firmware_ver": 1313833120,
-    "firmware_md5sum": null,
+    "firmware_md5sum": "1ae72c76fb6cf9240f2f10b66844fcfd",
     "firmware_pkg": "spipm_firmware.tgz",
     "description": "Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality",
     "configuration_files": "$mac.cfg,$mac_reg.cfg,sip.cfg,000000000000.cfg,contacts\/000000000000-directory.xml,logs\/$mac-app.log,logs\/$mac-boot.log,overrides\/$mac-phone.cfg",
