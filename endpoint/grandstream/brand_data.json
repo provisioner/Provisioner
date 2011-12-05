@@ -5,7 +5,7 @@
       "directory": "grandstream",
       "brand_id": "2",
       "package": "grandstream.tgz",
-      "md5sum": "c51625d9ad4d3addad22e3995c5dd166",
+      "md5sum": "5e6a55c77cc3e230011c02c79d9c9369",
       "last_modified": 1322439051,
       "family_list": [
         {
@@ -44,7 +44,7 @@
       "oui_list": [
         "000B82"
       ],
-      "changelog": "fixes"
+      "changelog": "finally"
     }
   }
 }

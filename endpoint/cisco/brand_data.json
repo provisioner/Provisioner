@@ -5,7 +5,7 @@
       "brand_id": "7",
       "directory": "cisco",
       "package": "cisco.tgz",
-      "md5sum": "3eb1ef44b43a831c7f5c660008d78a23",
+      "md5sum": "5cd364d87dfd0eb6acce8b16c08e335c",
       "last_modified": 1322439051,
       "family_list": [
         {
@@ -87,7 +87,7 @@
         "1CDF0F",
         "E05FB9"
       ],
-      "changelog": "fixes"
+      "changelog": "finally"
     }
   }
 }

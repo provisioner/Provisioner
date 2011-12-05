@@ -4,7 +4,7 @@
     "id": "1",
     "directory": "gxp",
     "firmware_ver": 1304379279,
-    "firmware_md5sum": null,
+    "firmware_md5sum": "98a28f0b898f8923e0626e35cca9c018",
     "firmware_pkg": "gxp_firmware.tgz",
     "description": "Use Grandstream Encrypted Compiler By Default",
     "configuration_files": "cfg$mac",
