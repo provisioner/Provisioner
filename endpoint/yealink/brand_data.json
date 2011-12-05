@@ -5,8 +5,8 @@
       "brand_id": "8",
       "directory": "yealink",
       "package": "yealink.tgz",
-      "md5sum": "1e4ccf37d44706d89adfbd36a4faf12c",
-      "last_modified": 1322439051,
+      "md5sum": "2e185f8c97c78b3de25a43a9803a52c9",
+      "last_modified": 1322472619,
       "family_list": [
         {
           "id": "1",
@@ -28,7 +28,7 @@
       "oui_list": [
         "001565"
       ],
-      "changelog": "PACKAGER: Fixes to new packager and renamed jsonparser to merge_data"
+      "changelog": "PACKAGER: PACKAGER: PACKAGER: PACKAGER: PACKAGER: Some Fixes to Images for Ciscos"
     }
   }
 }
