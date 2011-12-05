@@ -82,10 +82,11 @@ foreach (glob(MODULES_DIR."/*", GLOB_ONLYDIR) as $filename) {
 copy(ROOT_DIR."/autoload.php",ROOT_DIR."/setup.php");
 $endpoint_max[0] = filemtime(ROOT_DIR."/autoload.php");
 $endpoint_max[1] = filemtime(MODULES_DIR."/base.php");
+$endpoint_mac[2] = filemtime(MODULES_DIR."/global_template_data.json");
 
 $endpoint_max = max($endpoint_max);
 
-exec("tar zcf ".RELEASE_DIR."/provisioner_net.tgz --exclude .svn -C ".ROOT_DIR."/ setup.php endpoint/base.php");
+exec("tar zcf ".RELEASE_DIR."/provisioner_net.tgz --exclude .svn -C ".ROOT_DIR."/ setup.php endpoint/base.php endpoint/global_template_data.json");
 
 unlink(ROOT_DIR."/setup.php");
 
