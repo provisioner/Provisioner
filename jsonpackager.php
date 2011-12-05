@@ -23,6 +23,8 @@ define("ROOT_DIR", "/var/www/html/beta");
 define("FIRMWARE_DIR", "/var/www/html/repo_firmwares");
 define("BRANCH", "develop");
 
+file_put_contents(RELEASE_DIR.'/update_status', '1');
+
 echo "======PROVISIONER.NET REPO MAINTENANCE SCRIPT======\n\n\n\n";
 
 $supported_phones = array();
@@ -153,6 +155,8 @@ if(!isset($_REQUEST['dont_push'])) {
 if(!isset($_REQUEST['dont_push'])) {
 	file_put_contents('/var/www/html/sync_check', '1');
 }
+
+file_put_contents(RELEASE_DIR.'/update_status', '0');
 
 echo "\nDone!";
 
