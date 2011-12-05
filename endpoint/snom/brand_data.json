@@ -5,7 +5,7 @@
       "directory": "snom",
       "brand_id": "6",
       "package": "snom.tgz",
-      "md5sum": "76e58ae60b758bcf2976702320894fc7",
+      "md5sum": "bb71ed5386e46cfb675e656454ebac6a",
       "last_modified": 1322439051,
       "family_list": [
         {
@@ -28,7 +28,7 @@
       "oui_list": [
         "000413"
       ],
-      "changelog": "PACKAGER: Fixes to new packager and renamed jsonparser to merge_data"
+      "changelog": "PACKAGER: PACKAGER: PACKAGER: PACKAGER: PACKAGER: PACKAGER: Some Fixes to Images for Ciscos"
     }
   }
 }

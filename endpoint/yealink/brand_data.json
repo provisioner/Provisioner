@@ -5,7 +5,7 @@
       "brand_id": "8",
       "directory": "yealink",
       "package": "yealink.tgz",
-      "md5sum": "2e185f8c97c78b3de25a43a9803a52c9",
+      "md5sum": "c183df7a526a01938c2c93cc5e01ab1b",
       "last_modified": 1322472619,
       "family_list": [
         {
@@ -28,7 +28,7 @@
       "oui_list": [
         "001565"
       ],
-      "changelog": "PACKAGER: PACKAGER: PACKAGER: PACKAGER: PACKAGER: Some Fixes to Images for Ciscos"
+      "changelog": "PACKAGER: PACKAGER: PACKAGER: PACKAGER: PACKAGER: PACKAGER: Some Fixes to Images for Ciscos"
     }
   }
 }

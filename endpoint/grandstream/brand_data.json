@@ -5,7 +5,7 @@
       "directory": "grandstream",
       "brand_id": "2",
       "package": "grandstream.tgz",
-      "md5sum": "ee321025eeaca7dbb1cc81a94854541b",
+      "md5sum": "1e90c11aa2e480e5a94ab451b0e27f2f",
       "last_modified": 1322439051,
       "family_list": [
         {
@@ -44,7 +44,7 @@
       "oui_list": [
         "000B82"
       ],
-      "changelog": "PACKAGER: Fixes to new packager and renamed jsonparser to merge_data"
+      "changelog": "PACKAGER: PACKAGER: PACKAGER: PACKAGER: PACKAGER: PACKAGER: Some Fixes to Images for Ciscos"
     }
   }
 }
