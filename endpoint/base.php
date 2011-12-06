@@ -562,13 +562,13 @@ abstract class endpoint_base {
             '{$model}' => $this->model,
             '{$provisioning_type}' => $this->provisioning_type,
             '{$provisioning_path}' => $this->provisioning_path,
-            '{$vlan_id}' => $this->vlan_id,
-            '{$vlan_qos}' => $this->vlan_qos,
+            '{$vlan_id}' => $this->settings['vlan_id'],
+            '{$vlan_qos}' => $this->settings['vlan_qos'],
             # These are not the same.
             '{$timezone_gmtoffset}' => $this->timezone['gmtoffset'],
             '{$timezone_timezone}' => $this->timezone['timezone'],
             '{$timezone}' => $this->timezone['timezone'], # Should this be depricated??
-            '{$network_time_server}' => $this->ntp,
+            '{$network_time_server}' => $this->settings['ntp'],
             #old
             '{$srvip}' => $this->settings['line'][0]['server_host'],
             '{$server.ip.1}' => $this->settings['line'][0]['server_host'],
