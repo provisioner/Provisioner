@@ -5,8 +5,8 @@
       "directory": "grandstream",
       "brand_id": "2",
       "package": "grandstream.tgz",
-      "md5sum": "5e6a55c77cc3e230011c02c79d9c9369",
-      "last_modified": 1322439051,
+      "md5sum": "a745565ddbf2c3882859edc643dfd55d",
+      "last_modified": 1323212296,
       "family_list": [
         {
           "id": "2",
@@ -44,7 +44,7 @@
       "oui_list": [
         "000B82"
       ],
-      "changelog": "finally"
+      "changelog": "PACKAGER: Lots of Changes,Fixes,Updates"
     }
   }
 }
