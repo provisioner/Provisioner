@@ -27,7 +27,7 @@
 	
 	<!-- Proxy and Registration -->
 	 <Proxy_1_ ua="na">{$server.ip.1}</Proxy_1_>
-	 <Primary_NTP_Server ua="na">{$server.ip.1}</Primary_NTP_Server>
+	 <Primary_NTP_Server ua="na">{$network_time_server}</Primary_NTP_Server>
 	 <Upgrade_Enable ua="ro">{$enable_upgrade}</Upgrade_Enable>
 	 <Upgrade_Rule ua="ro">{$upgrade_path}</Upgrade_Rule>
 
@@ -48,6 +48,7 @@
 	 <Enable_Web_Admin_Access ua="na">{$enable_webserver_admin}</Enable_Web_Admin_Access>
 	 <Admin_Passwd ua="na">{$administrator_password}</Admin_Passwd>
 	 <User_Password ua="na">{$user_password}</User_Password>
+	 <Enable_CDP group="System/VLAN_Settings">{$enable_cdp|No}</Enable_CDP>
 
 	<!-- options: -->
 	 <Daylight_Saving_Time_Rule ua="na">start=3/8/7/02:0:0;end=11/1/7/02:0:0;save=1</Daylight_Saving_Time_Rule>
@@ -87,6 +88,9 @@
 	 <Media_Loopback_Code> </Media_Loopback_Code>
 	 <Referral_Services_Codes> </Referral_Services_Codes>
 
+	 
+    <Logo_Type group="User/Screen">{$logo_type}</Logo_Type>
+    <Background_Picture_Type group="User/Screen">{$background_type}</Background_Picture_Type>
 	<Select_Logo ua="na">{$logo_type}</Select_Logo>
 	<Select_Background_Picture ua="ro">{$background_type}</Select_Background_Picture>
 	<BMP_Picture_Download_URL ua="ro">{$picture_url}</BMP_Picture_Download_URL>

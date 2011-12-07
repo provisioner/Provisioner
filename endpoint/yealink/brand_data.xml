@@ -6,8 +6,8 @@
 		<brand_id>8</brand_id>
 		<directory>yealink</directory>
 		<package>yealink-0_5.tgz</package>
-        	<md5sum>727d3cfa561b877681545f6cd61c4bad</md5sum>
-		<last_modified>1318832701</last_modified>
+        	<md5sum>9249bb610b637943ec62ec3b44c70d46</md5sum>
+		<last_modified>1321263899</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -15,9 +15,9 @@
 				<directory>t2x</directory>
 				<version>0.7.7</version>
 				<description>Make more configuration settings available from UI</description>
-				<changelog>PACKAGER: Fixes-Additions for T28</changelog>
+				<changelog>PACKAGER: PACKAGER: PACKAGER: PACKAGER: Some Fixes to Images for Ciscos</changelog>
 				<id>1</id>
-				<last_modified>1318832701</last_modified>
+				<last_modified>1320044215</last_modified>
 			</family>
 			<family>
 				<name>Yealink/Dreamwave T3X Models: [T32, T38]</name>
@@ -26,7 +26,7 @@
 				<description>Make more settings available in user interface</description>
 				<changelog></changelog>
 				<id>2</id>
-				<last_modified>1315440476</last_modified>
+				<last_modified>1320044215</last_modified>
 			</family>
 <!--End Auto Generated-->
 

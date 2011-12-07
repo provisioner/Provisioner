@@ -159,20 +159,20 @@ P207 =
 P208 = 0
 
 # NTP Server
-P30 = {$server.ip.1}
+P30 = {$network_time_server}
 
 # Allow DHCP Option 42 to override NTP server. 0 - No, 1 - Yes. Default is No.
 # When set to Yes(1), it will override the configured NTP server.
 P144 = 1
 
 # SSL Certificate
-{$comment_out} P280 =
+{$comment_out|#} P280 =
 
 # SSL Private Key
-{$comment_out} P279 =
+{$comment_out|#} P279 =
 
 # SSL Private Key Password
-{$comment_out} P281 = 
+{$comment_out|#} P281 = 
 
 #---------------------------------------
 # Disctinctive Ring Tone
