@@ -1,5 +1,5 @@
 <?PHP
-/*l
+/*
 This file, when run from the web, creates all the needed packages in the releases folder and also generates http://www.provisioner.net/releases
 */
 //This is not for any 'scary' security measures, it's just so I can prevent robots from running the script all the time.
@@ -12,6 +12,8 @@ if (!isset($_SERVER['PHP_AUTH_USER'])) {
 		die('no');
 	}
 }
+global $force;
+$force = isset($_REQUEST['force']) ? TRUE : FALSE;
 
 set_time_limit(0);
 define("MODULES_DIR", "/var/www/html/repo/endpoint");
@@ -191,7 +193,7 @@ function fix_single_array_keys($array) {
 }
 
 function create_brand_pkg($rawname,$version,$brand_name,$old_brand_timestamp,$c_message) {	
-	global $brands_html, $supported_phones;
+	global $brands_html, $supported_phones,$force;
 	$version = str_replace(".","_",$version);
 	
 	$pkg_name = $rawname . "-" . $version;
@@ -254,7 +256,7 @@ function create_brand_pkg($rawname,$version,$brand_name,$old_brand_timestamp,$c_
 				$firmware_max = max($firmware_files_array);
                 echo "\t\t\t\t\tTotal Firmware Timestamp: ". $firmware_max ."\n";
 
-				if($firmware_max != $old_firmware_ver) {
+				if(($force) OR ($firmware_max != $old_firmware_ver)) {
 					echo "\t\t\tFirmware package has changed...\n";
 					echo "\t\t\tCreating Firmware Package\n";
 					exec("tar zcf ".RELEASE_DIR."/".$rawname."/".$family_xml['data']['directory']."_firmware.tgz --exclude .svn -C ".FIRMWARE_DIR."/".$rawname."/".$family_xml['data']['directory']." firmware");
@@ -342,7 +344,7 @@ function create_brand_pkg($rawname,$version,$brand_name,$old_brand_timestamp,$c_
 	$brand_max = max($brand_max,$temp);
 	echo "\t\t\tTotal Brand Timestamp: ".$brand_max."\n";
 	
-	if($brand_max != $old_brand_timestamp) {
+	if(($force) OR ($brand_max != $old_brand_timestamp)) {
 		$pattern = "/<last_modified>(.*?)<\/last_modified>/si";
 		$parsed = "<last_modified>".$brand_max."</last_modified>";
 		$contents = preg_replace($pattern, $parsed, $contents, 1);
@@ -376,11 +378,14 @@ function create_brand_pkg($rawname,$version,$brand_name,$old_brand_timestamp,$c_
 		copy(MODULES_DIR."/".$rawname."/brand_data.xml", RELEASE_DIR."/".$rawname."/".$rawname.".xml");
 	
 		$brands_html .= "<h4>".$rawname." (Last Modified: ".date('m/d/Y',$brand_max)." at ".date("G:i",$brand_max).")</h4>";
-		$brands_html .= "XML File: <a href='/release3/".$rawname."/".$rawname.".xml'>".$rawname.".xml</a><br/>";
-		$brands_html .= "Package File: <a href='/release3/".$rawname."/".$pkg_name.".tgz'>".$pkg_name.".tgz</a><br/>";
+		$brands_html .= "XML File: <a href='/release/v2.5/".$rawname."/".$rawname.".xml'>".$rawname.".xml</a><br/>";
+		$brands_html .= "Package File: <a href='/release/v2.5/".$rawname."/".$pkg_name.".tgz'>".$pkg_name.".tgz</a><br/>";
 		
 		echo "\tComplete..Continuing..\n";
 	} else {
+		$brands_html .= "<h4>".$rawname." (Last Modified: ".date('m/d/Y',$brand_max)." at ".date("G:i",$brand_max).")</h4>";
+		$brands_html .= "XML File: <a href='/release/v2.5/".$rawname."/".$rawname.".xml'>".$rawname.".xml</a><br/>";
+		$brands_html .= "Package File: <a href='/release/v2.5/".$rawname."/".$pkg_name.".tgz'>".$pkg_name.".tgz</a><br/>";
 		echo "\tNothing changed! Aborting Package Creation!\n";
 	}
 }
@@ -531,4 +536,3 @@ function xml2array($url, $get_attributes = 1, $priority = 'tag')
     }
     return ($xml_array);
 }
-?>
