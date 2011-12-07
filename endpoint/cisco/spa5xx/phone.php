@@ -66,6 +66,9 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
 				if(($this->options['unit1'][$key]['data'] != '') && ($this->options['unit1'][$key]['keytype'] == 'blf')) {
 					$temp_ext = $this->options['unit1'][$key]['data'];
 					$this->options['unit1'][$key]['data'] = "fnc=blf+sd+cp;sub=".$temp_ext."@".$this->server[1]['ip'];
+				} elseif(($this->options['unit1'][$key]['data'] != '') && ($this->options['unit1'][$key]['keytype'] == 'speed')) {
+					$temp_ext = $this->options['unit1'][$key]['data'];
+					$this->options['unit1'][$key]['data'] = "fnc=sd;sub=".$temp_ext."@".$this->server[1]['ip'];
 				}
 			}
 		}
