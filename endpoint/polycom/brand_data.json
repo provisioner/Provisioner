@@ -5,8 +5,8 @@
       "directory": "polycom",
       "brand_id": "4",
       "package": "polycom.tgz",
-      "md5sum": "79a3e384e9842983ca0104bd957dd7e1",
-      "last_modified": 1323337748,
+      "md5sum": "8b173cbd11f56d8a2daa7db440a0c272",
+      "last_modified": 1323337953,
       "family_list": [
         {
           "id": "4",
@@ -61,7 +61,7 @@
         "0004F2",
         "00907A"
       ],
-      "changelog": "PACKAGER: Fixes to Polycoms, Updates to UCS4.0.1"
+      "changelog": "PACKAGER: Forcing Push"
     }
   }
 }
