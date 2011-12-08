@@ -5,8 +5,8 @@
       "directory": "grandstream",
       "brand_id": "2",
       "package": "grandstream.tgz",
-      "md5sum": "0f97869e4cdc7abb0028cf194ae8886f",
-      "last_modified": 1323333835,
+      "md5sum": "f34150e994d5bb6ef4884ae0d4d11a85",
+      "last_modified": 1323212296,
       "family_list": [
         {
           "id": "2",
@@ -44,7 +44,7 @@
       "oui_list": [
         "000B82"
       ],
-      "changelog": "PACKAGER: Fix BOTH sidecars, not just one."
+      "changelog": "PACKAGER: PACKAGER: Fix BOTH sidecars, not just one."
     }
   }
 }
