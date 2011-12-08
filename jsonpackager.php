@@ -20,7 +20,7 @@ set_time_limit(0);
 define("MODULES_DIR", "/var/www/html/beta/endpoint");
 define("RELEASE_DIR", "/var/www/html/release/v3");
 define("ROOT_DIR", "/var/www/html/beta");
-define("FIRMWARE_DIR", "/var/www/html/repo_firmwares");
+define("FIRMWARE_DIR", "/var/www/html/repo_firmwares_beta");
 define("BRANCH", "develop");
 
 file_put_contents(RELEASE_DIR.'/update_status', '1');

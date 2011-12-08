@@ -5,8 +5,8 @@
       "directory": "polycom",
       "brand_id": "4",
       "package": "polycom.tgz",
-      "md5sum": "e50b22e71409fd0fb464993056167422",
-      "last_modified": 1322439051,
+      "md5sum": "0ee2d41686658df9a93ea84381c8ed16",
+      "last_modified": 1323336123,
       "family_list": [
         {
           "id": "4",
@@ -53,7 +53,7 @@
         "0004F2",
         "00907A"
       ],
-      "changelog": "finally"
+      "changelog": "PACKAGER: PACKAGER: Fix BOTH sidecars, not just one."
     }
   }
 }

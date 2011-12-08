@@ -5,9 +5,9 @@
       "brand_id": "1",
       "directory": "aastra",
       "package": "aastra.tgz",
-      "md5sum": "b826cd275b6b96a15144d5df17d90991",
-      "last_modified": 1322439051,
-      "changelog": "finally",
+      "md5sum": "c3bc4cb7a1fcdf59457f48a5d03fa870",
+      "last_modified": 1323212296,
+      "changelog": "PACKAGER: PACKAGER: Fix BOTH sidecars, not just one.",
       "family_list": [
         {
           "id": "1",
