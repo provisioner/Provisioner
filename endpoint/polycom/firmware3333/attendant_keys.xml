@@ -1,0 +1,37 @@
+<template_data>
+    <category>
+        <name>attendant</name>
+        <subcategory>
+            <name>Attendant Keys</name>
+            <item>
+                <description>Attendant Keys</description>
+                <type>loop</type>
+                <loop_start>1</loop_start>
+                <loop_end>10</loop_end>
+                <data>
+                    <item>
+                        <variable>$attendant_label</variable>
+                        <default_value></default_value>
+                        <description>Attendant {$count} Label</description>
+                        <type>input</type>
+                    </item>
+                    <item>
+                        <variable>$attendant_ext</variable>
+                        <default_value></default_value>
+                        <description>Attendant {$count} Extension</description>
+                        <type>input</type>
+                    </item>
+                    <item>
+                        <variable>$attendant_server</variable>
+                        <default_value>{$server.ip.1}</default_value>
+                        <description>Attendant {$count} Server</description>
+                        <type>input</type>
+                    </item>
+                    <item>
+                        <type>break</type>
+                    </item>
+                </data>
+            </item>
+        </subcategory>
+    </category>
+</template_data>

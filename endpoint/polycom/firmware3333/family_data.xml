@@ -1,0 +1,127 @@
+<data>
+	<name>SoundPoint/Station/VVX In-Production Models [320,330,321,331,335,450,550,560,650,670,5000,6000,7000,1500]</name>
+	<id>3</id>
+	<version>0.8.1</version>
+	<directory>spipm</directory>
+	<package>spipm-0_8_1.tgz</package>
+	<firmware_ver>1313833120</firmware_ver>
+	<firmware_md5sum>27ad7e5ab2f43ac895b4a4850cfe2aa7</firmware_md5sum>
+	<firmware_pkg>spipm_firmware.tgz</firmware_pkg>
+	<description>Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality</description>
+	<configuration_files>$mac.cfg,$mac_reg.cfg,sip.cfg,000000000000.cfg,contacts/000000000000-directory.xml,logs/$mac-app.log,logs/$mac-boot.log,overrides/$mac-phone.cfg</configuration_files>
+	<changelog></changelog>
+	<last_modified></last_modified>
+	<model_list>
+		<model>SoundPoint IP 321</model>
+		<lines>2</lines>
+		<id>1</id>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>SoundPoint IP 331</model>
+		<lines>2</lines>
+		<id>2</id>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>SoundPoint IP 335</model>
+		<lines>2</lines>
+		<id>3</id>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>SoundPoint IP 450</model>
+		<lines>3</lines>
+		<id>5</id>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>SoundPoint IP 550</model>
+		<lines>4</lines>
+		<id>6</id>
+		<template_data>
+			<files>template_data.xml</files>
+			<files>attendant_keys.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>SoundPoint IP 560</model>
+		<lines>4</lines>
+		<id>7</id>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>SoundPoint IP 650</model>
+		<lines>6</lines>
+		<id>8</id>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>SoundPoint IP 670</model>
+		<lines>6</lines>
+		<id>9</id>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>SoundPoint IP 6000</model>
+		<id>10</id>
+		<lines>3</lines>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>SoundPoint IP 7000</model>
+		<id>11</id>
+		<lines>3</lines>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>SoundPoint IP VVX 1500</model>
+		<id>12</id>
+		<lines>3</lines>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>SoundPoint IP 320</model>
+		<id>13</id>
+		<lines>2</lines>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>SoundPoint IP 330</model>
+		<id>14</id>
+		<lines>2</lines>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+	<model_list>
+		<model>SoundPoint IP 5000</model>
+		<id>15</id>
+		<lines>2</lines>
+		<template_data>
+			<files>template_data.xml</files>
+		</template_data>
+	</model_list>
+</data>
