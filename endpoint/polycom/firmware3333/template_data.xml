@@ -1,0 +1,56 @@
+<template_data>
+    <category>
+        <name>general</name>
+        <subcategory>
+            <name>general</name>
+            <item>
+                <!-- Web Administration Password -->
+                <variable>$file_prefix</variable>
+                <default_value></default_value>
+                <description>Custom Global File Prefix (For sip,server)</description>
+                <type>input</type>
+            </item>
+            <item>
+                <type>break</type>
+            </item>
+            <item>
+                <!-- Web Administration Password -->
+                <variable>$microbrowser_main_home</variable>
+                <default_value></default_value>
+                <description>Microbrowser Main Home</description>
+                <type>input</type>
+            </item>
+            <item>
+                <!-- Web Administration Password -->
+                <variable>$idle_display</variable>
+                <default_value></default_value>
+                <description>Idle Display Webpage</description>
+                <type>input</type>
+            </item>
+            <item>
+                <!-- Web Administration Password -->
+                <variable>$idle_display_refresh</variable>
+                <default_value>900</default_value>
+                <description>Idle Display Webpage Refresh</description>
+                <type>input</type>
+            </item>
+            <item>
+                <type>break</type>
+            </item>
+            <item>
+                <!-- Web Administration Password -->
+                <variable>$digitmap</variable>
+                <default_value>[2-9]11|0T|011xxx.T|[0-1][2-9]xxxxxxxxx|[2-9]xxxxxxxxx|[1-9]xxT|[2-9]xxxT</default_value>
+                <description>Digit Maps</description>
+                <type>input</type>
+            </item>
+            <item>
+                <!-- Web Administration Password -->
+                <variable>$digitmaptimeout</variable>
+                <default_value>3|3|3|3|3|3|3</default_value>
+                <description>Digit Map Timeouts</description>
+                <type>input</type>
+            </item>
+        </subcategory>
+    </category>
+</template_data>
