@@ -5,13 +5,21 @@
       "directory": "polycom",
       "brand_id": "4",
       "package": "polycom.tgz",
-      "md5sum": "0ee2d41686658df9a93ea84381c8ed16",
-      "last_modified": 1323336123,
+      "md5sum": "79a3e384e9842983ca0104bd957dd7e1",
+      "last_modified": 1323337748,
       "family_list": [
         {
           "id": "4",
           "name": "SoundPoint IP 430 [430]",
           "directory": "firmware325",
+          "description": "Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality",
+          "changelog": "",
+          "last_modified": null
+        },
+        {
+          "id": "5",
+          "name": "SoundPoint IP 3xx [320,330]",
+          "directory": "firmware3333",
           "description": "Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality",
           "changelog": "",
           "last_modified": null
@@ -53,7 +61,7 @@
         "0004F2",
         "00907A"
       ],
-      "changelog": "PACKAGER: PACKAGER: Fix BOTH sidecars, not just one."
+      "changelog": "PACKAGER: Fixes to Polycoms, Updates to UCS4.0.1"
     }
   }
 }
