@@ -117,9 +117,7 @@
                                 },
 								{
 								  "variable":"$stun_server_port",
-								  "default_value":[
-
-								  ],
+								  "default_value": "",
 								  "description":"STUN Server Port",
 								  "max_chars":"6",
 								  "type":"input"

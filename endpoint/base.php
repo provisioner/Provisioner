@@ -23,12 +23,7 @@ abstract class endpoint_base {
     public $mac;            // Device mac address
     public $timezone;       // Global timezone var
     public $DateTimeZone;   // timezone, as a DateTimezone object, much more flexible than just an offset and name.
-    public $server;         // Contains an array of valid server IPs & ports, in case phones support backups
-    public $proxy = array(); // Contains an array of valid proxy IPs & ports
-    public $ntp;            //network time protocol server
     public $daylight_savings = FALSE; //Daylight savings time on or off.
-    public $lines;          // Individual line settings
-    public $options;        // Misc. options for phones
     public $root_dir = "";  //need to define the root directory for the location of the library (/var/www/html/)
     public $engine;   //Can be asterisk or freeswitch. This is for the reboot commands.
     public $engine_location = ""; //Location of the executable for said engine above
@@ -76,13 +71,17 @@ abstract class endpoint_base {
     }
 
     //Set all default values here and fix errors before they hit us in the ass later on.
-    function data_integrity() {
-        if (!in_array($this->server_type, $this->server_type_list)) {
+    function data_integrity() {        
+        if (!in_array($this->settings['provision']['type'], $this->server_type_list)) {
             $this->server_type = $this->default_server_type;
+        } else {
+            $this->server_type = $this->settings['provision']['type'];
         }
-        if (!in_array($this->provisioning_type, $this->provisioning_type_list)) {
+        if (!in_array($this->settings['provision']['protocol'], $this->provisioning_type_list)) {
             $this->provisioning_type = $this->default_provisioning_type;
-        }
+        } else {
+            $this->provisioning_type = $this->settings['provision']['protocol'];
+        }     
     }
 
     function generate_info($file_contents, $brand_ts, $family_ts) {
@@ -290,6 +289,7 @@ abstract class endpoint_base {
         $this->data_integrity();
         //if there is no configuration file over ridding the default then load up $contents with the file's information, where $key is the name of the default configuration file
         if (!isset($this->config_files_override[$filename])) {
+            //$this->debug_return('Opening File: '.$this->root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $filename."\n");
             return file_get_contents($this->root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $filename);
         } else {
             return($this->config_files_override[$filename]);
@@ -558,12 +558,12 @@ abstract class endpoint_base {
         $replace = array(
             # These first ones have an identical field name in the object and the template.
             # This is a good thing, and should be done wherever possible.
-            '{$mac}' => $this->settings['mac'],
+            '{$mac}' => $this->mac,
             '{$model}' => $this->model,
-            '{$provisioning_type}' => $this->provisioning_type,
-            '{$provisioning_path}' => $this->provisioning_path,
-            '{$vlan_id}' => $this->settings['vlan_id'],
-            '{$vlan_qos}' => $this->settings['vlan_qos'],
+            '{$provisioning_type}' => $this->settings['provision']['protocol'],
+            '{$provisioning_path}' => $this->settings['provision']['path'],
+            '{$vlan_id}' => $this->settings['network']['vlan']['id'],
+            '{$vlan_qos}' => $this->settings['network']['vlan']['qos'],
             # These are not the same.
             '{$timezone_gmtoffset}' => $this->timezone['gmtoffset'],
             '{$timezone_timezone}' => $this->timezone['timezone'],
