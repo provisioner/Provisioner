@@ -12,7 +12,7 @@ class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
     public $family_line = 'spipm';
     public $directory_structure = array("logs", "overrides", "contacts", "licenses", "SoundPointIPLocalization");
     public $copy_files = array("SoundPointIPLocalization", "SoundPointIPWelcome.wav", "LoudRing.wav");
-
+    
     function parse_lines_hook($line, $line_total) {
         $this->settings['line'][$line]['lineKeys'] = $line_total;
         $this->settings['line'][$line]['digitmap'] = (isset($this->settings['digitmap']) ? $this->settings['digitmap'] : NULL);
@@ -40,7 +40,6 @@ class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
     }
 
     function prepare_for_generateconfig() {
-        $this->mac = strtolower($this->mac);
         parent::prepare_for_generateconfig();
 
         if (isset($this->settings['attendant'])) {

@@ -11,10 +11,14 @@ abstract class endpoint_polycom_base extends endpoint_base {
 
     public $brand_name = 'polycom';
 
+    function config_files() {
+        $result = parent::config_files();
+		return $result;
+	}
+        
     function prepare_for_generateconfig() {
-        parent::prepare_for_generateconfig();
-        //Polycom likes lower case letters in its mac address
         $this->mac = strtolower($this->mac);
+        parent::prepare_for_generateconfig();
     }
 
     function reboot() {
