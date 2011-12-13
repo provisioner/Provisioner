@@ -647,6 +647,10 @@ abstract class endpoint_base {
                 $this->vlan_qos = 5;
             }
 
+			if(empty($this->mac)) {
+				die("mac can not be blank!");
+			}
+
             $this->initialized = TRUE;
         }
     }

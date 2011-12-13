@@ -20,7 +20,7 @@
                         "data": {
                             "item": [
                                 {
-                                    "variable": "$display_name",
+                                    "variable": "$displayname",
                                     "default_value": "{$displayname.line.{$count}}",
                                     "description": "Display Name",
                                     "type": "input"
@@ -33,7 +33,7 @@
                                 },
                                 {
                                     "variable": "$authname",
-                                    "default_value": "{$username.line.{$count}}",
+                                    "default_value": "{$authnam.line.{$count}}",
                                     "description": "Auth Name",
                                     "type": "input"
                                 },
