@@ -94,7 +94,7 @@ abstract class endpoint_base {
      * generate_config() - this shouldn't need to be overridden.
      * @author Jort Bloem
      */
-    public function generate_config() {
+    public function generate_all_files() {
         $this->prepare_for_generateconfig();
         $output = array();
         foreach ($this->config_files() AS $filename => $sourcefile) {
@@ -270,12 +270,12 @@ abstract class endpoint_base {
             $loop_name = $matches[3];
             $loop_contents = $matches[2];
             //TODO: This should be $this->settings['loop'][$loop_name]
-            if (isset($this->settings[$loop_name])) {
-                $count = count($this->settings[$loop_name]);
+            if (isset($this->settings['loops'][$loop_name])) {
+                $count = count($this->settings['loops'][$loop_name]);
                 $this->debug("Replacing loop '" . $loop_name . "' " . $count . " times");
                 $parsed = "";
                 if ($count) {
-                    foreach ($this->settings[$loop_name] as $number => $data) {
+                    foreach ($this->settings['loops'][$loop_name] as $number => $data) {
                         $data['number'] = $number;
                         $data['count'] = $number;
                         $parsed .= $this->parse_config_values($this->replace_static_variables($loop_contents), $data, FALSE);
