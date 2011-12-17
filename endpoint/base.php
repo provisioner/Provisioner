@@ -223,8 +223,8 @@ abstract class endpoint_base {
 
         $file_contents = $this->parse_conditional_model($file_contents);
 
-        $file_contents = $this->parse_lines($this->max_lines, $file_contents, TRUE);
-        $file_contents = $this->parse_loops($this->max_lines, $file_contents, TRUE);
+        $file_contents = $this->parse_lines($file_contents, TRUE);
+        $file_contents = $this->parse_loops($file_contents, TRUE);
 
         $file_contents = $this->replace_static_variables($file_contents);
         $file_contents = $this->parse_config_values($file_contents);
@@ -263,7 +263,7 @@ abstract class endpoint_base {
      * @example {loop_keys}{/loop_keys}
      * @author Andrew Nagy
      */
-    private function parse_loops($line_total, $file_contents, $keep_unknown=FALSE) {
+    private function parse_loops($file_contents, $keep_unknown=FALSE) {
         //Find line looping data betwen {line_loop}{/line_loop}
         $pattern = "/{loop_(.*?)}(.*?){\/loop_(.*?)}/si";
         while (preg_match($pattern, $file_contents, $matches)) {
@@ -308,7 +308,7 @@ abstract class endpoint_base {
      * @return string Full Contents of the configuration file (After Parsing)
      * @author Andrew Nagy
      */
-    private function parse_lines($line_total, $file_contents, $keep_unknown=FALSE) {
+    private function parse_lines($file_contents, $keep_unknown=FALSE) {
         //Find line looping data betwen {line_loop}{/line_loop}
         $pattern = "/{line_loop}(.*?){\/line_loop}/si";
         while (preg_match($pattern, $file_contents, $matches)) {
@@ -316,7 +316,9 @@ abstract class endpoint_base {
             $parsed = "";
             foreach ($this->settings['line'] as $key => $data) {
                 $line = $data['line'];
-                $line_settings = $this->parse_lines_hook($this->settings['line'][$key], $line_total); //This is after parse_lines_hook, because that function could change these values.
+                $data['number'] = $line;
+                $data['count'] = $line;
+                $line_settings = $this->parse_lines_hook($data, $this->max_lines); //This is after parse_lines_hook, because that function could change these values.
                 $parsed .= $this->parse_config_values($this->replace_static_variables($loop_contents, $line_settings), $line_settings, $keep_unknown);
             }
             $file_contents = preg_replace($pattern, $parsed, $file_contents, 1);
@@ -481,6 +483,13 @@ abstract class endpoint_base {
                     $line = $line_exp[1];
                     $key1 = $this->arraysearchrecursive($line, $this->settings['line'], 'line');
                     $var = $line_exp[2];
+                    $stored = isset($this->settings['line'][$key1[0]][$var]) ? $this->settings['line'][$key1[0]][$var] : '';
+                    $contents = str_replace('{' . $original_variable . '}', $stored, $contents);
+                } elseif ((isset($line_exp[1])) && ($line_exp[1] == 'line')) {
+                    $line = $line_exp[2];
+                    $key1 = $this->arraysearchrecursive($line, $this->settings['line'], 'line');
+                    $var = $line_exp[0];
+                    $this->settings['line'][$key1[0]]['ext'] = $this->settings['line'][$key1[0]]['username'];
                     $stored = isset($this->settings['line'][$key1[0]][$var]) ? $this->settings['line'][$key1[0]][$var] : '';
                     $contents = str_replace('{' . $original_variable . '}', $stored, $contents);
                 }
