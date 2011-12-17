@@ -5,8 +5,8 @@
       "brand_id": "8",
       "directory": "yealink",
       "package": "yealink.tgz",
-      "md5sum": "2821a8d8c40eb340b40f2c3622d38793",
-      "last_modified": 1323212296,
+      "md5sum": "3e884254246bc747281bc649bd03d0a4",
+      "last_modified": 1324162558,
       "family_list": [
         {
           "id": "1",
@@ -28,7 +28,7 @@
       "oui_list": [
         "001565"
       ],
-      "changelog": "PACKAGER: Lots of Changes,Fixes,Updates"
+      "changelog": "PACKAGER: Grandstream GXP fixes related to: http:\/\/www.freepbx.org\/forum\/freepbx-distro\/distro-discussion-help\/endpoint-manager-and-grandstream-phones"
     }
   }
 }
