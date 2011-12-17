@@ -15,10 +15,11 @@ class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
         'y0000000000$suffix.cfg' => '#This File is intentionally left blank'
     );
 
-    function parse_lines_hook($key, $line_total) {
-        $this->settings['line'][$key]['line_active'] = 1;
-        $this->settings['line'][$key]['line_m1'] = $this->settings['line'][$key]['line'] - 1;
-        $this->settings['line'][$key]['voicemail_number'] = '*97';
+    function parse_lines_hook($line_data, $line_total) {
+        $line_data['line_active'] = 1;
+        $line_data['line_m1'] = $line_data['line'] - 1;
+        $line_data['voicemail_number'] = '*97';
+        return($line_data);
     }
 
     function prepare_for_generateconfig() {
@@ -31,7 +32,8 @@ class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
 
         if (isset($this->options['softkey'])) {
             foreach ($this->options['softkey'] as $key => $data) {
-                if ($this->options['softkey'][$key]['type'] == '0') {
+				//HIstory, Dir, DND, and Menu
+               	if ($this->options['softkey'][$key]['type'] == '0') {
                     unset($this->options['softkey'][$key]);
                 }
             }
