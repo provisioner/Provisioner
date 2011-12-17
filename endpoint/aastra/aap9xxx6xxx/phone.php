@@ -12,7 +12,7 @@ class endpoint_aastra_aap9xxx6xxx_phone extends endpoint_aastra_base {
     public $family_line = 'aap9xxx6xxx';
     public $en_htmlspecialchars = FALSE;
     public $dynamic_mapping = array(
-        '$mac.cfg' => array('$mac.cfg', 'aastra.cfg'),
+        '$mac.cfg' => array('aastra.cfg','$mac.cfg'),
         'aastra.cfg' => '#This File is intentionally left blank'
     );
 
