@@ -21,19 +21,20 @@
                       "type":"list",
                       "data":[
                         {
+                          "text":"Disabled",
+                          "value":"disabled"
+                        },
+                        {
                           "text":"Line",
-                          "value":"line",
-                          "disabled":"[\"$lineops_displaynameline\",\"$lineops_blfext\"]"
+                          "value":"line"
                         },
                         {
                           "text":"BLF",
-                          "value":"blf",
-                          "enabled":"[\"$lineops_displaynameline\",\"$lineops_blfext\"]"
+                          "value":"blf"
                         },
                         {
                           "text":"Speed Dial",
-                          "value":"sd",
-                          "enabled":"[\"$lineops_displaynameline\",\"$lineops_blfext\"]"
+                          "value":"sd"
                         }
                       ]
                     },
