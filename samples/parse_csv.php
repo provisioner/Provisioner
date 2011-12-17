@@ -59,7 +59,7 @@ foreach($phone_data as $info_new) {
 	if (!$write) {
 	    $endpoint->settings['provision']['type'] = 'dynamic';
 	    $endpoint->settings['provision']['protocol'] = 'http';
-	    $endpoint->settings['provision']['path'] = 'http://' . $_SERVER["SERVER_ADDR"] . dirname($_SERVER['REQUEST_URI']) . '/';
+	    $endpoint->settings['provision']['path'] = $_SERVER["SERVER_ADDR"] . dirname($_SERVER['REQUEST_URI']) . '/';
 	    $endpoint->settings['provision']['encryption'] = FALSE;
 	} else {
 	    $endpoint->settings['provision']['type'] = 'file';
