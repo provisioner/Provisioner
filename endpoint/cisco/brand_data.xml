@@ -6,8 +6,8 @@
 		<version>0.5</version>
 		<directory>cisco</directory>
 		<package>cisco-0_5.tgz</package>
-		<md5sum>c4503d269e8eddd07ee818c98eb779b9</md5sum>
-		<last_modified>1322904753</last_modified>
+		<md5sum>660af40e80e362b202f751e4777e07e5</md5sum>
+		<last_modified>1324089549</last_modified>
 				<family_list>
 <!--Below is Auto Generated-->
 			<family>
@@ -15,7 +15,7 @@
 				<directory>ata18x</directory>
 				<version>0.1</version>
 				<description></description>
-				<changelog>PACKAGER: PACKAGER: PACKAGER: PACKAGER: Some Fixes to Images for Ciscos</changelog>
+				<changelog>PACKAGER: PACKAGER: Added CSV parsing example</changelog>
 				<id>5</id>
 				<last_modified>1315440476</last_modified>
 			</family>
@@ -53,7 +53,7 @@
 				<description></description>
 				<changelog></changelog>
 				<id>3</id>
-				<last_modified>1322904753</last_modified>
+				<last_modified>1324089549</last_modified>
 			</family>
 			<family>
 				<name>Linksys/Cisco/Sipura SPA Adapter Models [2102, 3102(FXS Only)]</name>

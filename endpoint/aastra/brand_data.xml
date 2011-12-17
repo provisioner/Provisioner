@@ -6,9 +6,9 @@
 		<version>0.5</version>
 		<directory>aastra</directory>
 		<package>aastra-0_5.tgz</package>
-		<md5sum>37ebaa5e6626b32b5d72080fbf71911e</md5sum>
+		<md5sum>08685f508118c5838cdf0a1bf433a9f0</md5sum>
 		<last_modified>1320953961</last_modified>
-		<changelog>PACKAGER: PACKAGER: PACKAGER: PACKAGER: Some Fixes to Images for Ciscos</changelog>
+		<changelog>PACKAGER: PACKAGER: Added CSV parsing example</changelog>
 		<family_list>
 <!--Below is Auto Generated-->
 			<family>

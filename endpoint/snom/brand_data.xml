@@ -6,7 +6,7 @@
 		<directory>snom</directory>
 		<brand_id>6</brand_id>
 		<package>snom-0_6.tgz</package>
-        <md5sum>73ccc87c3b68488395634914cea2608b</md5sum>
+        <md5sum>30d3aff558a52c3323ab64bbefa830a5</md5sum>
 		<last_modified>1316190304</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
@@ -15,7 +15,7 @@
 				<directory>3xx820m3</directory>
 				<version>1</version>
 				<description>Server + Password Settings, htm File Fixes</description>
-				<changelog>PACKAGER: PACKAGER: PACKAGER: PACKAGER: Some Fixes to Images for Ciscos</changelog>
+				<changelog>PACKAGER: PACKAGER: Added CSV parsing example</changelog>
 				<id>1</id>
 				<last_modified>1316190304</last_modified>
 			</family>
