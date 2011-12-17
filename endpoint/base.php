@@ -127,8 +127,8 @@ abstract class endpoint_base {
      * This is hooked into the middle of the line loop function to allow parsing of variables without having to create a sub foreach or for statement
      * @param String $line The Line number.
      */
-    protected function parse_lines_hook($line, $line_total) {
-        
+    protected function parse_lines_hook($line_data, $line_total) {
+        return($line_data);
     }
 
     /**
@@ -316,8 +316,7 @@ abstract class endpoint_base {
             $parsed = "";
             foreach ($this->settings['line'] as $key => $data) {
                 $line = $data['line'];
-                $this->parse_lines_hook($key, $line_total);
-                $line_settings = $this->settings['line'][$key]; //This is after parse_lines_hook, because that function could change these values.
+                $line_settings = $this->parse_lines_hook($this->settings['line'][$key], $line_total); //This is after parse_lines_hook, because that function could change these values.
                 $parsed .= $this->parse_config_values($this->replace_static_variables($loop_contents, $line_settings), $line_settings, $keep_unknown);
             }
             $file_contents = preg_replace($pattern, $parsed, $file_contents, 1);
