@@ -15,6 +15,12 @@ class endpoint_aastra_aap9xxx6xxx_phone extends endpoint_aastra_base {
         '$mac.cfg' => array('aastra.cfg','$mac.cfg'),
         'aastra.cfg' => '#This File is intentionally left blank'
     );
+    
+    function parse_lines_hook($line_data, $line_total) {
+        $line_data['outbound_proxy_host'] = isset($line_data['outbound_proxy_host']) ? $line_data['outbound_proxy_host'] : $line_data['server_host'];
+        $line_data['outbound_proxy_port'] = isset($line_data['outbound_proxy_port']) ? $line_data['outbound_proxy_port'] : $line_data['server_port'];
+        return($line_data);
+    }
 
     function generate_file($file, $extradata, $ignoredynamicmapping=FALSE) {
         $config = parent::generate_file($file, $extradata, $ignoredynamicmapping);
