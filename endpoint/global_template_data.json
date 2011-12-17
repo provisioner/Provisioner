@@ -144,7 +144,7 @@
 								},
 								{
 								  "variable":"$nat_Traversal",
-								  "default_value":"1",
+								  "default_value":"0",
 								  "description":"NAT Traversal",
 								  "type":"list",
 								  "data":[
