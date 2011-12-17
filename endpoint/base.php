@@ -297,7 +297,7 @@ abstract class endpoint_base {
                 return($family_data['data']['model_list'][$key[2]]);
             }
         }
-        die("Could Not find model");
+        throw new Exception('Could Not find model');
     }
 
     /**
@@ -466,21 +466,7 @@ abstract class endpoint_base {
         $contents = str_replace(array_keys($replace), array_values($replace), $contents);
 
         if (is_array($data)) {
-            $line = $data['line'];
-
-            $contents = str_replace('{$line}', $line, $contents);
-            $contents = str_replace('{$ext}', $data['username'], $contents);
-            $contents = str_replace('{$displayname}', $data['displayname'], $contents);
-            $contents = str_replace('{$secret}', $data['secret'], $contents);
-            $contents = str_replace('{$pass}', $data['secret'], $contents);
-            $contents = str_replace('{$server_host}', $data['server_host'], $contents);
-            $contents = str_replace('{$server_port}', $data['server_port'], $contents);
-
-            $contents = str_replace('{$line.line.' . $line . '}', $line, $contents);
-            $contents = str_replace('{$ext.line.' . $line . '}', $data['username'], $contents);
-            $contents = str_replace('{$displayname.line.' . $line . '}', $data['displayname'], $contents);
-            $contents = str_replace('{$secret.line.' . $line . '}', $data['secret'], $contents);
-            $contents = str_replace('{$pass.line.' . $line . '}', $data['secret'], $contents);
+            //not needed I dont think
         } else {
             //Find all matched variables in the text file between "{$" and "}"
             preg_match_all('/[{\$](.*?)[}]/i', $contents, $match);
@@ -494,12 +480,11 @@ abstract class endpoint_base {
                 $variables = str_replace("$", "", $variables);
 
                 $line_exp = preg_split("/\./i", $variables);
-
-                if ((isset($line_exp[1])) && ($line_exp[1] == 'line')) {
-                    $line = $line_exp[2];
+                                
+                if ((isset($line_exp[2])) && ($line_exp[0] == 'line')) {
+                    $line = $line_exp[1];
                     $key1 = $this->arraysearchrecursive($line, $this->settings['line'], 'line');
-                    $var = $line_exp[0];
-                    $this->settings['line'][$key1[0]]['ext'] = $this->settings['line'][$key1[0]]['username'];
+                    $var = $line_exp[2];
                     $stored = isset($this->settings['line'][$key1[0]][$var]) ? $this->settings['line'][$key1[0]][$var] : '';
                     $contents = str_replace('{' . $original_variable . '}', $stored, $contents);
                 }
@@ -582,7 +567,7 @@ abstract class endpoint_base {
             $data = json_decode($json, TRUE);
             return($data);
         } else {
-            die("Could not load: " . $file);
+            throw new Exception("Could not load: " . $file);
         }
     }
 
@@ -647,9 +632,9 @@ abstract class endpoint_base {
                 $this->vlan_qos = 5;
             }
 
-			if(empty($this->mac)) {
-				die("mac can not be blank!");
-			}
+            if(empty($this->mac)) {
+                    throw new Exception("mac can not be blank!");
+            }
 
             $this->initialized = TRUE;
         }
