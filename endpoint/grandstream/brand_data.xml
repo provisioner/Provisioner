@@ -6,7 +6,7 @@
 		<directory>grandstream</directory>
 		<brand_id>2</brand_id>
 		<package>grandstream-0_7.tgz</package>
-		<md5sum>964b070332d08960ed38470667036b93</md5sum>
+		<md5sum>cf4b7863ea6d28744b08b72e46caa6bd</md5sum>
 		<last_modified>1321263899</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
@@ -15,7 +15,7 @@
 				<directory>bts</directory>
 				<version>1.0</version>
 				<description>Fixed Timezone Issues + Use Grandstream Encrypted Compiler By Default</description>
-				<changelog>PACKAGER: PACKAGER: PACKAGER: PACKAGER: Some Fixes to Images for Ciscos</changelog>
+				<changelog>PACKAGER: PACKAGER: Added CSV parsing example</changelog>
 				<id>2</id>
 				<last_modified>1320044215</last_modified>
 			</family>

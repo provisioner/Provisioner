@@ -6,7 +6,7 @@
 		<brand_id>9</brand_id>
 		<directory>mitel</directory>
 		<package>mitel-0_5.tgz</package>
-        <md5sum>e1a58863beeac92cf10c5e15a778293a</md5sum>
+        <md5sum>d3d370bedf8a04f1cec34a7155a28ad5</md5sum>
 		<last_modified>1315440476</last_modified>
 		<family_list>
 <!--Below is Auto Generated-->
@@ -15,7 +15,7 @@
 				<directory>53xx</directory>
 				<version>0.7.5</version>
 				<description>Variables Issues Solved (Not writing accounts + passwords in files)</description>
-				<changelog>PACKAGER: PACKAGER: PACKAGER: PACKAGER: Some Fixes to Images for Ciscos</changelog>
+				<changelog>PACKAGER: PACKAGER: Added CSV parsing example</changelog>
 				<id>1</id>
 				<last_modified>1315440476</last_modified>
 			</family>
