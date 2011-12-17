@@ -13,13 +13,11 @@ class endpoint_polycom_firmware325_phone extends endpoint_polycom_base {
     public $directory_structure = array("logs", "overrides", "contacts", "licenses", "SoundPointIPLocalization");
     public $copy_files = array("SoundPointIPLocalization", "SoundPointIPWelcome.wav", "LoudRing.wav");
 
-    function parse_lines_hook($line, $line_total) {
-        $this->settings['line'][$line]['lineKeys'] = $line_total;
-        $this->settings['line'][$line]['digitmap'] = (isset($this->settings['digitmap']) ? $this->settings['digitmap'] : NULL);
-        $this->settings['line'][$line]['digitmaptimeout'] = (isset($this->settings['digitmaptimeout']) ? $this->settings['digitmaptimeout'] : NULL);
-        $this->settings['line'][$line]['microbrowser_main_home'] = (isset($this->settings['microbrowser_main_home']) ? $this->settings['microbrowser_main_home'] : NULL);
-        $this->settings['line'][$line]['idle_display'] = (isset($this->settings['idle_display']) ? $this->settings['idle_display'] : NULL);
-        $this->settings['line'][$line]['idle_display_refresh'] = (isset($this->settings['idle_display_refresh']) ? $this->settings['idle_display_refresh'] : NULL);
+    function parse_lines_hook($line_data, $line_total) {
+        $line_data['lineKeys'] = $line_total;
+        $line_data['digitmap'] = (isset($this->settings['digitmap']) ? $this->settings['digitmap'] : NULL);
+        $line_data['digitmaptimeout'] = (isset($this->settings['digitmaptimeout']) ? $this->settings['digitmaptimeout'] : NULL);
+        return($line_data);
     }
 
     function config_files() {
