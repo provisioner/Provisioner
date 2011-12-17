@@ -300,7 +300,7 @@ abstract class endpoint_base {
                 $line = $data['line'];
                 $data['number'] = $line;
                 $data['count'] = $line;
-                $line_settings = $this->parse_lines_hook($data, $this->max_lines); //This is after parse_lines_hook, because that function could change these values.
+                $line_settings = $this->parse_lines_hook($data, $this->max_lines);                
                 $parsed .= $this->parse_config_values($this->replace_static_variables($loop_contents, $line_settings), $line_settings, $keep_unknown);
             }
             $file_contents = preg_replace($pattern, $parsed, $file_contents, 1);
@@ -461,21 +461,33 @@ abstract class endpoint_base {
                 $variables = str_replace("$", "", $variables);
 
                 $line_exp = preg_split("/\./i", $variables);
-                                
-                if ((isset($line_exp[2])) && ($line_exp[0] == 'line')) {
-                    $line = $line_exp[1];
-                    $key1 = $this->arraysearchrecursive($line, $this->settings['line'], 'line');
-                    $var = $line_exp[2];
-                    $stored = isset($this->settings['line'][$key1[0]][$var]) ? $this->settings['line'][$key1[0]][$var] : '';
-                    $contents = str_replace('{' . $original_variable . '}', $stored, $contents);
-                } elseif ((isset($line_exp[1])) && ($line_exp[1] == 'line')) {
-                    $line = $line_exp[2];
-                    $key1 = $this->arraysearchrecursive($line, $this->settings['line'], 'line');
-                    $var = $line_exp[0];
-                    $this->settings['line'][$key1[0]]['ext'] = $this->settings['line'][$key1[0]]['username'];
-                    $stored = isset($this->settings['line'][$key1[0]][$var]) ? $this->settings['line'][$key1[0]][$var] : '';
+                
+                if((isset($line_exp[2]) AND (($line_exp[0] == 'line') OR ($line_exp[1] == 'line')))) {
+                    if ($line_exp[0] == 'line') {
+                        $line = explode("|", $line_exp[1]);                        
+                        $default = isset($line[1]) ? $line[1] : NULL;                        
+                        $line = $line[0];                        
+                        $key1 = $this->arraysearchrecursive($line, $this->settings['line'], 'line');                        
+                        $var = $line_exp[2];
+                    } elseif ($line_exp[1] == 'line') {                       
+                        $line = explode("|", $line_exp[2]);                        
+                        $default = isset($line[1]) ? $line[1] : NULL;                                                
+                        $line = $line[0];
+                        $key1 = $this->arraysearchrecursive($line, $this->settings['line'], 'line');                        
+                        $var = $line_exp[0];
+                        $this->settings['line'][$key1[0]]['ext'] = isset($this->settings['line'][$key1[0]]['username']) ? $this->settings['line'][$key1[0]]['username'] : NULL;
+                    }
+                    
+                    $data['number'] = $line;
+                    $data['count'] = $line;
+                    
+                    $line_settings = $this->parse_lines_hook($this->settings['line'][$key1[0]], $this->max_lines);
+                    
+                    $stored = isset($line_settings[$var]) ? $line_settings[$var] : '';
                     $contents = str_replace('{' . $original_variable . '}', $stored, $contents);
                 }
+                                
+
             }
         }
         return($contents);
