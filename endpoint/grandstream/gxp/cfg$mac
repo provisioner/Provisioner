@@ -340,7 +340,7 @@ P399 =
 P271 = {$line_active.line.1|1}
 
 # Account Name
-P270 = {$ext.line.1}
+P270 = {$username.line.1}
 
 # SIP Server
 P47 = {$server.ip.1}
@@ -349,13 +349,13 @@ P47 = {$server.ip.1}
 P48 = {$server.ip.1}
 
 # SIP User ID
-P35 = {$ext.line.1}
+P35 = {$username.line.1}
 
 # Authenticate ID
-P36 = {$ext.line.1}
+P36 = {$authname.line.1}
 
 # Authenticate password
-P34 = {$pass.line.1}
+P34 = {$secret.line.1}
 
 # Display Name (John Doe)
 P3 = {$displayname.line.1}
@@ -551,7 +551,7 @@ P198 = 100
 P401 = {$line_active.line.2|0}
 
 #Account Name
-P417 = {$ext.line.2}
+P417 = {$username.line.2}
 
 # SIP Server
 P402 = {$server.ip.1}
@@ -560,13 +560,13 @@ P402 = {$server.ip.1}
 P403 = {$server.ip.1}
 
 # Account 2 SIP User ID
-P404 = {$ext.line.2}
+P404 = {$username.line.2}
 
 # Authenticate ID
-P405 = {$ext.line.2}
+P405 = {$authname.line.2}
 
 # Authenticate Password
-P406 = {$pass.line.2}
+P406 = {$secret.line.2}
 
 # Display Name (John Doe)
 P407 = {$displayname.line.2}
@@ -762,7 +762,7 @@ P424 = 100
 P501 = {$line_active.line.3|0}
 
 # Account Name
-P517 = {$ext.line.3}
+P517 = {$username.line.3}
 
 # SIP Server
 P502 = {$server.ip.1}
@@ -771,13 +771,13 @@ P502 = {$server.ip.1}
 P503 = {$server.ip.1}
 
 # SIP User ID
-P504 = {$ext.line.3}
+P504 = {$username.line.3}
 
 # Authenticate ID
-P505 = {$ext.line.3}
+P505 = {$authname.line.3}
 
 # Authenticate Password
-P506 = {$pass.line.3}
+P506 = {$secret.line.3}
 
 # Display Name (John Doe)
 P507 = {$displayname.line.3}
@@ -973,7 +973,7 @@ P524 = 100
 P601 = {$line_active.line.4|0}
 
 #Account Name
-P617 = {$ext.line.4}
+P617 = {$username.line.4}
 
 # SIP Server
 P602 = {$server.ip.1}
@@ -982,13 +982,13 @@ P602 = {$server.ip.1}
 P603 = {$server.ip.1}
 
 # Account 4 SIP User ID
-P604 = {$ext.line.4}
+P604 = {$authname.line.4}
 
 # Authenticate ID
-P605 = {$ext.line.4}
+P605 = {$username.line.4}
 
 # Authenticate Password
-P606 = {$pass.line.4}
+P606 = {$secret.line.4}
 
 # Display Name (John Doe)
 P607 = {$displayname.line.4}
@@ -1186,7 +1186,7 @@ P624 = 100
 P1701 = {$line_active.line.5|0}
 
 #Account Name
-P1717 = {$ext.line.5}
+P1717 = {$username.line.5}
 
 # SIP Server
 P1702 = {$server.ip.1}
@@ -1195,13 +1195,13 @@ P1702 = {$server.ip.1}
 P1703 = {$server.ip.1}
 
 # Account 2 SIP User ID
-P1704 = {$ext.line.5}
+P1704 = {$username.line.5}
 
 # Authenticate ID
-P1705 = {$ext.line.5}
+P1705 = {$authname.line.5}
 
 # Authenticate Password
-P1706 = {$pass.line.5}
+P1706 = {$secret.line.5}
 
 # Display Name (John Doe)
 P1707 = {$displayname.line.5}
@@ -1397,7 +1397,7 @@ P1724 = 100
 P1801 = {$line_active.line.6|0}
 
 #Account Name
-P1817 = {$ext.line.6}
+P1817 = {$username.line.6}
 
 # SIP Server
 P1802 = {$server.ip.1}
@@ -1406,13 +1406,13 @@ P1802 = {$server.ip.1}
 P1803 = {$server.ip.1}
 
 # Account 2 SIP User ID
-P1804 = {$ext.line.6}
+P1804 = {$username.line.6}
 
 # Authenticate ID
-P1805 = {$ext.line.6}
+P1805 = {$authname.line.6}
 
 # Authenticate Password
-P1806 = {$pass.line.6}
+P1806 = {$secret.line.6}
 
 # Display Name (John Doe)
 P1807 = {$displayname.line.6}
