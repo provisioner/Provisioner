@@ -325,11 +325,7 @@ abstract class endpoint_base {
     }
 
     private function merge_files() {
-        $family_data = $this->family_data;
-
-        $model_data = $this->find_model($family_data);
-
-        $template_data_list['template_data'];
+        $template_data_list = $this->model_data['template_data'];
 
         $template_data = array();
         $template_data_multi = "";
@@ -344,6 +340,8 @@ abstract class endpoint_base {
                         $template_data = array_merge($template_data, $items);
                     }
                 }
+            } else {
+                throw new Exception("Template File: ".$files." doesnt exist!");
             }
         }
 
@@ -375,7 +373,6 @@ abstract class endpoint_base {
     }
 
     private function parse_config_values($file_contents, $data=NULL, $keep_unknown=FALSE) {
-        $template_data = $this->template_data;
         //Find all matched variables in the text file between "{$" and "}"
         preg_match_all('/[{\$](.*?)[}]/i', $file_contents, $match);
         //Result without brackets (but with the $ variable identifier)
@@ -401,14 +398,14 @@ abstract class endpoint_base {
                     $file_contents = str_replace('{' . $original_variable . '}', $this->settings[$variables], $file_contents);
                 } elseif (!$keep_unknown) {
                     //read default template values here, blank unknowns or arrays (which are blanks anyways)
-                    $key1 = $this->arraysearchrecursive('$' . $variables, $template_data, 'variable');
+                    $key1 = $this->arraysearchrecursive('$' . $variables, $this->template_data, 'variable');
                     $default_hard_value = NULL;
 
                     //Check for looping statements. They are all setup logically the same. Ergo if the first multi-dimensional array has a variable key its not a loop.
                     if ($key1['1'] == 'variable') {
-                        $default_hard_value = $this->replace_static_variables($template_data[$key1[0]]['default_value']);
+                        $default_hard_value = $this->replace_static_variables($this->template_data[$key1[0]]['default_value']);
                     } elseif ($key1['4'] == 'variable') {
-                        $default_hard_value = $this->replace_static_variables($template_data[$key1[0]][$key1[1]][$key1[2]][$key1[3]]['default_value']);
+                        $default_hard_value = $this->replace_static_variables($this->template_data[$key1[0]][$key1[1]][$key1[2]][$key1[3]]['default_value']);
                     }
 
                     if (isset($default)) {
