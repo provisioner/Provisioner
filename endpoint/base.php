@@ -167,20 +167,6 @@ abstract class endpoint_base {
         }
     }
 
-    /**
-     * $type is either gmt or tz
-     * @author Jort Bloem
-     */
-    private function setup_timezone($timezone, $type) {
-        if ($type == 'GMT') {
-            return $this->timezone['gmtoffset'];
-        } elseif ($type == 'TZ') {
-            return $this->timezone['timezone'];
-        } else {
-            return FALSE;
-        }
-    }
-
     private function setup_languages() {
         return $languages;
     }
@@ -215,10 +201,6 @@ abstract class endpoint_base {
      * @author Andrew Nagy
      */
     private function parse_config_file($file_contents) {
-        //TODO: why is this in here?
-        $this->timezone['gmtoffset'] = $this->setup_timezone($this->timezone['gmtoffset'], 'GMT');
-        $this->timezone['timezone'] = $this->setup_timezone($this->timezone['timezone'], 'TZ');
-
         $file_contents = $this->generate_info($file_contents);
 
         $file_contents = $this->parse_conditional_model($file_contents);
@@ -401,6 +383,7 @@ abstract class endpoint_base {
                 } elseif (!$keep_unknown) {
                     //read default template values here, blank unknowns or arrays (which are blanks anyways)
                     $key1 = $this->arraysearchrecursive('$' . $variables, $this->template_data, 'variable');
+                    
                     $default_hard_value = NULL;
 
                     //Check for looping statements. They are all setup logically the same. Ergo if the first multi-dimensional array has a variable key its not a loop.
@@ -539,7 +522,7 @@ abstract class endpoint_base {
      * Setup and fill in timezone data
      * @author Jort Bloem
      */
-    private function setup_tz() {
+    protected function setup_timezone() {
         if (isset($this->DateTimeZone)) {
             $this->timezone = array(
                 'gmtoffset' => $this->DateTimeZone->getOffset(new DateTime),
@@ -600,8 +583,8 @@ abstract class endpoint_base {
             $this->max_lines = isset($this->model_data['lines']) ? $this->model_data['lines'] : 1;
 
             $this->template_data = $this->merge_files();
-
-            $this->setup_tz();
+            
+            $this->setup_timezone();
 
             if (empty($this->engine_location)) {
                 if ($this->engine == 'asterisk') {
