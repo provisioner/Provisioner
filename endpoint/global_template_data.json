@@ -5,235 +5,235 @@
             "subcategory": [{
                 "name": "globals",
                 "item": [
-                    {
-                        "variable": "$mac",
-                        "default_value": "",
-                        "description": "Mac Address",
-                        "type": "input"
-                    },
-                    {
-                        "type": "break"
-                    },
-                    {
-                        "description": "Line Options",
-                        "type": "loop_line_options",
-                        "data": {
-                            "item": [
-                                {
-                                    "variable": "$displayname",
-                                    "default_value": "{$displayname.line.{$count}}",
-                                    "description": "Display Name",
-                                    "type": "input"
-                                },
-                                {
-                                    "variable": "$username",
-                                    "default_value": "{$username.line.{$count}}",
-                                    "description": "Username Name",
-                                    "type": "input"
-                                },
-                                {
-                                    "variable": "$authname",
-                                    "default_value": "{$authnam.line.{$count}}",
-                                    "description": "Auth Name",
-                                    "type": "input"
-                                },
-                                {
-                                    "variable": "$secret",
-                                    "default_value": "{$secret.line.{$count}}",
-                                    "description": "Secret/Password",
-                                    "type": "input"
-                                },
-                                {
-                                    "variable": "$server_host",
-                                    "default_value": "",
-                                    "description": "Server Host",
-                                    "type": "input"
-                                },
-                                {
-                                    "variable": "$server_port",
-                                    "default_value": "",
-                                    "description": "Server Port",
-                                    "type": "input"
-                                },
-                                {
-                                    "variable": "$backup_server_host",
-                                    "default_value": "",
-                                    "description": "Backup Server Host",
-                                    "type": "input"
-                                },
-                                {
-                                    "variable": "$backup_server_port",
-                                    "default_value": "",
-                                    "description": "Backup Server Port",
-                                    "type": "input"
-                                },
-                                {
-                                    "variable": "$use_outbound_proxy",
-                                    "default_value": false,
-                                    "description": "Use Outbound Proxy",
-                                    "type": "checkbox"
-                                },
-                                {
-                                    "variable": "$outbound_host",
-                                    "default_value": "",
-                                    "description": "Outbound Host",
-                                    "type": "input"
-                                },
-                                {
-                                    "variable": "$outbound_port",
-                                    "default_value": "",
-                                    "description": "Outbound Port",
-                                    "type": "input"
-                                },
-                                {
-                                    "variable": "$backup_outbound_host",
-                                    "default_value": "",
-                                    "description": "Backup Outbound Host",
-                                    "type": "input"
-                                },
-                                {
-                                    "variable": "$backup_outbound_port",
-                                    "default_value": "",
-                                    "description": "Backup Outbound Port",
-                                    "type": "input"
-                                },
-                                {
-                                    "variable": "$use_stun_server",
-                                    "default_value": false,
-                                    "description": "Use Stun Proxy",
-                                    "type": "checkbox"
-                                },
-                                {
-                                    "variable": "$backup_outbound_port",
-                                    "default_value": "",
-                                    "description": "Backup Outbound Port",
-                                    "type": "input"
-                                },
-                                {
-                                    "variable": "$stun_server",
-                                    "default_value": "",
-                                    "description": "STUN Server",
-                                    "type": "input"
-                                },
-								{
-								  "variable":"$stun_server_port",
-								  "default_value": "",
-								  "description":"STUN Server Port",
-								  "max_chars":"6",
-								  "type":"input"
-								},
-								{
-								  "variable":"$transport",
-								  "default_value":"0",
-								  "description":"Transport",
-								  "type":"list",
-								  "data":[
-								    {
-								      "text":"UDP",
-								      "value":"0"
-								    },
-								    {
-								      "text":"TCP",
-								      "value":"1"
-								    },
-								    {
-								      "text":"TLS",
-								      "value":"2"
-								    }
-								  ]
-								},
-								{
-								  "variable":"$nat_Traversal",
-								  "default_value":"0",
-								  "description":"NAT Traversal",
-								  "type":"list",
-								  "data":[
-								    {
-								      "text":"Disabled",
-								      "value":"0"
-								    },
-								    {
-								      "text":"STUN",
-								      "value":"1"
-								    }
-								  ]
-								}
-                            ]
-                        }
-                    },
-                    {
-                        "type": "break"
-                    },
-                    {
-                        "variable": "$ntp",
-                        "default_value": "",
-                        "description": "NTP Server",
-                        "type": "input"
-                    },
-                    {
-                        "variable": "$use_dhcp",
-                        "default_value": true,
-                        "description": "Use DHCP",
-                        "type": "checkbox"
-                    },
-                    {
-                        "variable": "$ip4_address",
-                        "default_value": "",
-                        "description": "IPv4 Address",
-                        "type": "input"
-                    },
-                    {
-                        "variable": "$ip6_address",
-                        "default_value": "",
-                        "description": "IPv6 Address",
-                        "type": "input"
-                    },
-                    {
-                        "variable": "$subnet_mask",
-                        "default_value": "255.255.255.0",
-                        "description": "Subnet Mask",
-                        "type": "input"
-                    },
-                    {
-                        "variable": "$gateway_address",
-                        "default_value": "",
-                        "description": "Gateway Address",
-                        "type": "input"
-                    },
-                    {
-                        "type": "break"
-                    },
-                    {
-                        "variable": "$vlan_id",
-                        "default_value": "0",
-                        "description": "VLAN ID",
-                        "type": "input"
-                    },
-                    {
-                        "variable": "$vlan_qos",
-                        "default_value": "0",
-                        "description": "VLAN QOS",
-                        "type": "input"
-                    },
-                    {
-                        "type": "break"
-                    },
-                    {
-                        "variable": "$provision_protocol",
-                        "default_value": "http",
-                        "description": "Provision Protocol",
-                        "type": "list",
-                        "data": [
+                {
+                    "variable": "$mac",
+                    "default_value": "",
+                    "description": "Mac Address",
+                    "type": "input"
+                },
+                {
+                    "type": "break"
+                },
+                {
+                    "description": "Line Options",
+                    "type": "loop_line_options",
+                    "data": {
+                        "item": [
+                       {
+                            "variable": "$line_enabled",
+                            "default_value": false,
+                            "description": "Enable Line {$count}",
+                            "type": "checkbox"
+                        },
+                        {
+                            "variable": "$displayname",
+                            "default_value": "",
+                            "description": "Display Name",
+                            "type": "input"
+                        },
+                        {
+                            "variable": "$username",
+                            "default_value": "",
+                            "description": "Username Name",
+                            "type": "input"
+                        },
+                        {
+                            "variable": "$authname",
+                            "default_value": "",
+                            "description": "Auth Name",
+                            "type": "input"
+                        },
+                        {
+                            "variable": "$secret",
+                            "default_value": "",
+                            "description": "Secret/Password",
+                            "type": "input"
+                        },
+                        {
+                            "variable": "$server_host",
+                            "default_value": "",
+                            "description": "Server Host",
+                            "type": "input"
+                        },
+                        {
+                            "variable": "$server_port",
+                            "default_value": "",
+                            "description": "Server Port",
+                            "type": "input"
+                        },
+                        {
+                            "variable": "$backup_server_host",
+                            "default_value": "",
+                            "description": "Backup Server Host",
+                            "type": "input"
+                        },
+                        {
+                            "variable": "$backup_server_port",
+                            "default_value": "",
+                            "description": "Backup Server Port",
+                            "type": "input"
+                        },
+                        {
+                            "variable": "$use_outbound_proxy",
+                            "default_value": false,
+                            "description": "Use Outbound Proxy",
+                            "type": "checkbox"
+                        },
+                        {
+                            "variable": "$outbound_host",
+                            "default_value": "",
+                            "description": "Outbound Host",
+                            "type": "input"
+                        },
+                        {
+                            "variable": "$outbound_port",
+                            "default_value": "",
+                            "description": "Outbound Port",
+                            "type": "input"
+                        },
+                        {
+                            "variable": "$backup_outbound_host",
+                            "default_value": "",
+                            "description": "Backup Outbound Host",
+                            "type": "input"
+                        },
+                        {
+                            "variable": "$backup_outbound_port",
+                            "default_value": "",
+                            "description": "Backup Outbound Port",
+                            "type": "input"
+                        },
+                        {
+                            "variable": "$use_stun_server",
+                            "default_value": false,
+                            "description": "Use Stun Proxy",
+                            "type": "checkbox"
+                        },
+                        {
+                            "variable": "$stun_server_host",
+                            "default_value": "",
+                            "description": "STUN Server",
+                            "type": "input"
+                        },
+                        {
+                            "variable":"$stun_server_port",
+                            "default_value": "",
+                            "description":"STUN Server Port",
+                            "max_chars":"6",
+                            "type":"input"
+                        },
+                        {
+                            "variable":"$transport",
+                            "default_value":"0",
+                            "description":"Transport",
+                            "type":"list",
+                            "data":[
                             {
-                                "text": "HTTP",
-                                "value": "http"
+                                "text":"UDP",
+                                "value":"0"
                             },
                             {
-                                "text": "TFTP",
-                                "value": "tftp"
+                                "text":"TCP",
+                                "value":"1"
+                            },
+                            {
+                                "text":"TLS",
+                                "value":"2"
                             }
+                            ]
+                        },
+                        {
+                            "variable":"$nat_traversal",
+                            "default_value":"0",
+                            "description":"NAT Traversal",
+                            "type":"list",
+                            "data":[
+                            {
+                                "text":"Disabled",
+                                "value":"0"
+                            },
+                            {
+                                "text":"STUN",
+                                "value":"1"
+                            }
+                            ]
+                        }
                         ]
                     }
+                },
+                {
+                    "type": "break"
+                },
+                {
+                    "variable": "$ntp",
+                    "default_value": "",
+                    "description": "NTP Server",
+                    "type": "input"
+                },
+                {
+                    "variable": "$use_dhcp",
+                    "default_value": true,
+                    "description": "Use DHCP",
+                    "type": "checkbox"
+                },
+                {
+                    "variable": "$ip4_address",
+                    "default_value": "",
+                    "description": "IPv4 Address",
+                    "type": "input"
+                },
+                {
+                    "variable": "$ip6_address",
+                    "default_value": "",
+                    "description": "IPv6 Address",
+                    "type": "input"
+                },
+                {
+                    "variable": "$subnet_mask",
+                    "default_value": "255.255.255.0",
+                    "description": "Subnet Mask",
+                    "type": "input"
+                },
+                {
+                    "variable": "$gateway_address",
+                    "default_value": "",
+                    "description": "Gateway Address",
+                    "type": "input"
+                },
+                {
+                    "type": "break"
+                },
+                {
+                    "variable": "$vlan_id",
+                    "default_value": "0",
+                    "description": "VLAN ID",
+                    "type": "input"
+                },
+                {
+                    "variable": "$vlan_qos",
+                    "default_value": "0",
+                    "description": "VLAN QOS",
+                    "type": "input"
+                },
+                {
+                    "type": "break"
+                },
+                {
+                    "variable": "$provision_protocol",
+                    "default_value": "http",
+                    "description": "Provision Protocol",
+                    "type": "list",
+                    "data": [
+                    {
+                        "text": "HTTP",
+                        "value": "http"
+                    },
+                    {
+                        "text": "TFTP",
+                        "value": "tftp"
+                    }
+                    ]
+                }
                 ]
             }]
         }]
