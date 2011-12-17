@@ -24,32 +24,36 @@ class endpoint_polycom_firmware325_phone extends endpoint_polycom_base {
 
     function config_files() {
         $result = parent::config_files();
-
-        $macprefix = $this->server_type == 'dynamic' ? strtolower($this->mac) : NULL;
-
+        
+        $this->configfiles = array(
+            '$mac.cfg' => $this->mac . '_reg.cfg',
+            'server_325.cfg' => 'server_325.cfg',
+            'phone1_325.cfg' => 'phone1_325.cfg',
+            'sip_325.cfg' => 'sip_325.cfg'
+        );
+        
+        $macprefix = $this->server_type == 'dynamic' ? $this->mac . "_" : NULL;        
         if ((isset($this->settings['file_prefix'])) && ($this->settings['file_prefix'] != "")) {
-
-            $prefix = $this->settings['file_prefix'] . '_';
-            $result[$prefix . 'server_325.cfg'] = 'server_325.cfg';
-            unset($result['server_325.cfg']);
-
-            $result[$prefix . 'sip_325.cfg'] = 'sip_325.cfg';
-            unset($result['sip_325.cfg']);
-
-            $result[$prefix . 'phone1_325.cfg'] = 'phone1_325.cfg';
-            unset($result['phone1_325.cfg']);
+            $fp = $this->settings['file_prefix'];
+            foreach(array_values($this->configfiles) as $data) {
+                if(isset($result[$data]) AND $data != $this->mac . '_reg.cfg') {
+                    $result[$fp.$data] = $result[$data];
+                    $this->configfiles[$data] = $fp.$data;
+                    unset($result[$data]);
+                }
+            }
         } elseif (isset($macprefix)) {
-            $prefix = $macprefix . '_';
-
-            $result[$prefix . 'server_325.cfg'] = 'server_325.cfg';
-            unset($result['server_325.cfg']);
-
-            $result[$prefix . 'sip_325.cfg'] = 'sip_325.cfg';
-            unset($result['sip_325.cfg']);
-
-            $result[$prefix . 'phone1_325.cfg'] = 'phone1_325.cfg';
-            unset($result['phone1_325.cfg']);
+            foreach(array_values($this->configfiles) as $data) {
+                if(isset($result[$data]) AND $data != $this->mac . '_reg.cfg') {
+                    $result[$macprefix.$data] = $result[$data];
+                    $this->configfiles[$data] = $macprefix.$data;
+                    unset($result[$data]);
+                }
+            }
         }
+        
+        $this->settings['createdFiles'] = implode(', ', array_values($this->configfiles));
+        
         return $result;
     }
 
@@ -59,8 +63,6 @@ class endpoint_polycom_firmware325_phone extends endpoint_polycom_base {
         $this->settings['mac'] = strtolower($this->mac);
 
         parent::prepare_for_generateconfig();
-
-        $this->settings['createdFiles'] = 'server_325.cfg, ' . $this->mac . '_reg.cfg, phone1_325.cfg, sip_325.cfg';
 
         $this->protected_files = array('overrides/' . $this->mac . '-phone.cfg', 'logs/' . $this->mac . '-boot.log', 'logs/' . $this->mac . '-app.log', 'SoundPointIPLocalization');
     }
