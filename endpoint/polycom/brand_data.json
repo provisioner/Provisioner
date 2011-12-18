@@ -5,8 +5,8 @@
       "directory": "polycom",
       "brand_id": "4",
       "package": "polycom.tgz",
-      "md5sum": "d73def11ff16181a01453b87824909ab",
-      "last_modified": 1323763502,
+      "md5sum": "f295248b3e05a6f7923bf74511bda83e",
+      "last_modified": 1324162558,
       "family_list": [
         {
           "id": "4",
@@ -61,7 +61,7 @@
         "0004F2",
         "00907A"
       ],
-      "changelog": "PACKAGER: Added CSV parsing example"
+      "changelog": "PACKAGER: Grandstream GXP fixes related to: http:\/\/www.freepbx.org\/forum\/freepbx-distro\/distro-discussion-help\/endpoint-manager-and-grandstream-phones"
     }
   }
 }
