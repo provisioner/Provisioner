@@ -2,6 +2,8 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+if(!isset($_REQUEST['model_demo'])) { die('must select model!'); }
+
 $brand = $_REQUEST['brand'];
 $product_model = explode('+',$_REQUEST['model_demo']);
 $mac = isset($_REQUEST['mac']) ? $_REQUEST['mac'] : '';
@@ -82,34 +84,6 @@ function generate_gui_html($cfg_data,$max_lines=1) {
 	//unset($cfg_data['data']['globals']);
 	for($a=1;$a <= $max_lines; $a++) {
 	    $template_variables_array[$group_count]['title'] = "Line Information for Line ".$a;
-
-		/*
-		//Username (Auth Name)
-		$key = "line_static|".$a."|ext";
-		$items = array("variable" => "ext","default_value" => "", "description" => "Username/Auth [STATIC]", "type" => "input");
-	    $template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$items,$key);
-	    $template_variables_array[$group_count]['data'][$variables_count]['looping'] = TRUE;
-		$variables_count++;
-		//Secret
-		$key = "line_static|".$a."|secret";
-		$items = array("variable" => "secret","default_value" => "", "description" => "Secret/Password [STATIC]", "type" => "input");		
-	    $template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$items,$key);
-	    $template_variables_array[$group_count]['data'][$variables_count]['looping'] = TRUE;
-		$variables_count++;
-		//Display Name
-		$key = "line_static|".$a."|displayname";
-		$items = array("variable" => "displayname","default_value" => "", "description" => "Display Name [STATIC]", "type" => "input");
-	    $template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$items,$key);
-	    $template_variables_array[$group_count]['data'][$variables_count]['looping'] = TRUE;
-		$variables_count++;
-	
-		$key = "";
-		$items = array("type" => "break");
-	    $template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$items,$key);
-	    $template_variables_array[$group_count]['data'][$variables_count]['looping'] = TRUE;
-		$variables_count++;
-		$group_count++;
-		*/
 	}
 	$line_count = 1;
     foreach($cfg_data['data'] as $key => $data) {
@@ -138,6 +112,10 @@ function generate_gui_html($cfg_data,$max_lines=1) {
 									$key = $type."|".$a."|".str_replace('$','',$items['variable']);
 								}
 								$items[$variables_count] = $items;
+								
+								if($items['variable'] == '$line_enabled') {
+									$items['default_value'] = TRUE;
+								}
 								$template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$items,$key);
 								$template_variables_array[$group_count]['data'][$variables_count]['looping'] = TRUE;
 								$variables_count++;

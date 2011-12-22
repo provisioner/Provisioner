@@ -434,7 +434,9 @@ abstract class endpoint_base {
      * @param boolean $looping
      * @return string
      */
-    private function replace_static_variables($contents, $data=NULL) {	
+    private function replace_static_variables($contents, $data=NULL) {
+		//bad
+		$this->settings['network']['local_port'] = isset($this->settings['network']['local_port']) ? $this->settings['network']['local_port'] : '5060';
         $replace = array(
             # These first ones have an identical field name in the object and the template.
             # This is a good thing, and should be done wherever possible.
