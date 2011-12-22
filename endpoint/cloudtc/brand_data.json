@@ -4,13 +4,13 @@
       "name": "CloudTC",
       "brand_id": "9",
       "directory": "cloudtc",
-      "package": "yealink.tgz",
-      "md5sum": "3e884254246bc747281bc649bd03d0a4",
-      "last_modified": 1324162558,
+      "package": "cloudtc.tgz",
+      "md5sum": "b3ba09a0d3e92255ad4c020a1220d43a",
+      "last_modified": 1324506768,
       "family_list": [
         {
           "id": "1",
-          "name": "Glass Models []",
+          "name": "CloudTC Glass Models",
           "directory": "glass",
           "description": "Make more configuration settings available from UI",
           "changelog": "",
@@ -20,7 +20,7 @@
       "oui_list": [
         "000000"
       ],
-      "changelog": "PACKAGER: Grandstream GXP fixes related to: http:\/\/www.freepbx.org\/forum\/freepbx-distro\/distro-discussion-help\/endpoint-manager-and-grandstream-phones"
+      "changelog": "PACKAGER: Should be network time server"
     }
   }
 }

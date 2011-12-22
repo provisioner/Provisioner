@@ -5,8 +5,8 @@
       "directory": "snom",
       "brand_id": "6",
       "package": "snom.tgz",
-      "md5sum": "5dddaff535de528ff6328547d5da01d2",
-      "last_modified": 1323212296,
+      "md5sum": "72884146acfced2327084e616d2b3399",
+      "last_modified": 1324516174,
       "family_list": [
         {
           "id": "1",
@@ -28,7 +28,7 @@
       "oui_list": [
         "000413"
       ],
-      "changelog": "PACKAGER: Lots of Changes,Fixes,Updates"
+      "changelog": "PACKAGER: Should be network time server"
     }
   }
 }

@@ -1,6 +1,6 @@
 {
   "data": {
-    "last_modified": 1324162558,
+    "last_modified": 1324524319,
     "package": "provisioner_net.tgz",
     "brands": [
       {
@@ -12,12 +12,12 @@
         "directory": "cisco"
       },
       {
-        "name": "Grandstream",
-        "directory": "grandstream"
-      },
-      {
         "name": "Mitel",
         "directory": "mitel"
+      },
+      {
+        "name": "Grandstream",
+        "directory": "grandstream"
       },
       {
         "name": "Polycom",
@@ -30,10 +30,6 @@
       {
         "name": "Yealink\/Dreamwave",
         "directory": "yealink"
-      },
-      {
-        "name": "CloudTC",
-        "directory": "cloudtc"
       }
     ],
     "version": "3"

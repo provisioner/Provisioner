@@ -5,8 +5,8 @@
       "directory": "grandstream",
       "brand_id": "2",
       "package": "grandstream.tgz",
-      "md5sum": "4085a883e0ed903de67e1b33d07fb09f",
-      "last_modified": 1324162558,
+      "md5sum": "50784b8ef3c7e04aad9c6b824a67a8be",
+      "last_modified": 1324487650,
       "family_list": [
         {
           "id": "2",
@@ -44,7 +44,7 @@
       "oui_list": [
         "000B82"
       ],
-      "changelog": "PACKAGER: Grandstream GXP fixes related to: http:\/\/www.freepbx.org\/forum\/freepbx-distro\/distro-discussion-help\/endpoint-manager-and-grandstream-phones"
+      "changelog": "PACKAGER: Should be network time server"
     }
   }
 }
