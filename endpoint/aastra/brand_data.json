@@ -5,9 +5,9 @@
       "brand_id": "1",
       "directory": "aastra",
       "package": "aastra.tgz",
-      "md5sum": "1437bcdb39306aa20b6d40f1526a638b",
-      "last_modified": 1324162558,
-      "changelog": "PACKAGER: Grandstream GXP fixes related to: http:\/\/www.freepbx.org\/forum\/freepbx-distro\/distro-discussion-help\/endpoint-manager-and-grandstream-phones",
+      "md5sum": "a31989685ef25a61f2036ea61dd8c6a9",
+      "last_modified": 1324487650,
+      "changelog": "PACKAGER: Should be network time server",
       "family_list": [
         {
           "id": "1",
