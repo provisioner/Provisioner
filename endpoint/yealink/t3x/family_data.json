@@ -7,7 +7,7 @@
     "firmware_pkg":"NULL",
     "firmware_md5sum":"",
     "description":"Make more settings available in user interface",
-    "configuration_files":"y0000000000$suffix.cfg,$mac.cfg,dialnow.xml",
+    "configuration_files":"y0000000000$suffix.cfg,$mac.cfg",
     "changelog":"",
     "model_list":[
       {
