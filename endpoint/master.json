@@ -12,6 +12,10 @@
         "directory": "cisco"
       },
       {
+	"name": "CloudTC",
+	"directory": "cloudtc"
+      },
+      {
         "name": "Mitel",
         "directory": "mitel"
       },
