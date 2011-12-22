@@ -29,7 +29,8 @@ $uri = $rest->getPath();
 $verb = $rest->getMethod();
 
 header('Access-Control-Allow-Headers:Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control, X-Auth-Token');
-header('Access-Control-Allow-Methods:'.$verb);
+//header('Access-Control-Allow-Methods:'.$verb);
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Origin:*');
 header('Access-Control-Max-Age:86400');
 

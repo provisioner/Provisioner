@@ -12,6 +12,12 @@ $pp = isset($_REQUEST['pp']) ? TRUE : FALSE;
 header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
 header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
 
+// The following CORS headers do not offer a proper/complete CORS solution, but they will work for the time being -Jon
+header("Access-Control-Allow-Origin: *"); // CORS header #1
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS"); // CORS header #2
+header("Access-Control-Expose-Headers: Content-Type, Location");
+header("Access-Control-Allow-Headers: Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since,  X-File-Name, Cache-Control, If-Match");
+
 switch ($request) {
     case 'list':
         $list_array = array();

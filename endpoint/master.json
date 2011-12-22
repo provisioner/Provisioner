@@ -30,6 +30,10 @@
       {
         "name": "Yealink\/Dreamwave",
         "directory": "yealink"
+      },
+      {
+        "name": "CloudTC",
+        "directory": "cloudtc"
       }
     ],
     "version": "3"
