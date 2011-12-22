@@ -139,6 +139,8 @@ fclose($fp);
 
 updatew('Supported',$html2,$c_message);
 
+unlink('cookie.txt');
+
 if(!isset($_REQUEST['dont_push'])) {
 	echo "===GIT Information===\n";
 
@@ -209,7 +211,7 @@ function create_brand_pkg($rawname,$version,$brand_name,$old_brand_timestamp,$c_
 			foreach ($iterator as $family_files) {
 				if((!is_dir($family_files)) && (dirname($family_files) != $family_folders."/firmware") && (dirname($family_files) != $family_folders."/json")) {
 					$path_parts = pathinfo($family_files);
-					if((basename($family_files) != "family_data.json") AND ($path_parts['extension'] != "json")) {
+					if((basename($family_files) != "family_data.json")) {
 						$files_array[$i] = filemtime($family_files);
 						echo "\t\tParsing File: ".basename($family_files)."|".$files_array[$i]."\n";
 						$i++;
