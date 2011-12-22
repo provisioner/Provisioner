@@ -57,8 +57,14 @@
                         },
                         {
                             "variable": "$server_port",
-                            "default_value": "",
+                            "default_value": "5060",
                             "description": "Server Port",
+                            "type": "input"
+                        },
+                        {
+                            "variable": "$server_expires",
+                            "default_value": "3600",
+                            "description": "Server Expires",
                             "type": "input"
                         },
                         {
@@ -69,8 +75,14 @@
                         },
                         {
                             "variable": "$backup_server_port",
-                            "default_value": "",
+                            "default_value": "5060",
                             "description": "Backup Server Port",
+                            "type": "input"
+                        },
+                        {
+                            "variable": "$backup_server_expires",
+                            "default_value": "3600",
+                            "description": "Backup Server Expires",
                             "type": "input"
                         },
                         {
@@ -87,7 +99,7 @@
                         },
                         {
                             "variable": "$outbound_port",
-                            "default_value": "",
+                            "default_value": "5060",
                             "description": "Outbound Port",
                             "type": "input"
                         },
@@ -168,6 +180,12 @@
                     "variable": "$ntp",
                     "default_value": "",
                     "description": "NTP Server",
+                    "type": "input"
+                },
+                {
+                    "variable": "$local_port",
+                    "default_value": "5060",
+                    "description": "SIP Local Port",
                     "type": "input"
                 },
                 {

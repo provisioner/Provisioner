@@ -313,6 +313,19 @@ abstract class endpoint_base {
 
         $template_data = array();
         $template_data_multi = "";
+
+		//Setup defaults from global file
+		$template_data_multi = $this->file2json(self::$root_dir . self::$modules_path.'/global_template_data.json');
+        $template_data_multi = $template_data_multi['template_data']['category'];
+        foreach ($template_data_multi as $categories) {
+            $subcats = $categories['subcategory'];
+            foreach ($subcats as $subs) {
+                $items = $subs['item'];
+                $template_data = array_merge($template_data, $items);
+			}
+		}
+
+		//Setup defaults from each template file
         foreach ($template_data_list as $files) {
             if (file_exists(self::$root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $files)) {
                 $template_data_multi = $this->file2json(self::$root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $files);
@@ -421,7 +434,7 @@ abstract class endpoint_base {
      * @param boolean $looping
      * @return string
      */
-    private function replace_static_variables($contents, $data=NULL) {
+    private function replace_static_variables($contents, $data=NULL) {	
         $replace = array(
             # These first ones have an identical field name in the object and the template.
             # This is a good thing, and should be done wherever possible.
@@ -436,6 +449,7 @@ abstract class endpoint_base {
             '{$timezone_timezone}' => $this->timezone['timezone'],
             '{$timezone}' => $this->timezone['timezone'], # Should this be depricated??
             '{$network_time_server}' => $this->settings['ntp'],
+			'{$local_port}' => $this->settings['network']['local_port'],
             #old
             '{$srvip}' => $this->settings['line'][0]['server_host'],
             '{$server.ip.1}' => $this->settings['line'][0]['server_host'],
@@ -607,8 +621,8 @@ abstract class endpoint_base {
             }
 
             //TODO: fix NTP
-            if (!isset($this->ntp)) {
-                $this->ntp = $this->server[1]['ip'];
+            if (!isset($this->settings['ntp'])) {
+                $this->settings['ntp'] = $this->settings['line'][0]['server_host'];
             }
 
             //TODO: Shorten
@@ -625,11 +639,11 @@ abstract class endpoint_base {
             }
 
             //TODO:fix
-            if (!isset($this->vlan_id)) {
-                $this->vlan_id = 0;
+            if (!isset($this->settings['network']['vlan']['id'])) {
+                $this->settings['network']['vlan']['id'] = 0;
             }
-            if (!isset($this->vlan_qos)) {
-                $this->vlan_qos = 5;
+            if (!isset($this->settings['network']['vlan']['qos'])) {
+                $this->settings['network']['vlan']['qos'] = 5;
             }
 
             if(empty($this->mac)) {
