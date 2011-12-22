@@ -98,24 +98,36 @@ $endpoint->DateTimeZone = new DateTimeZone($_REQUEST['timezone']);;
 //Provide alternate Configuration file instead of the one from the hard drive
 //$endpoint->config_files_override['$mac.cfg'] = "{\$srvip}\n{\$admin_pass|0}\n{\$test.line.1}";
 
+$endpoint->settings['provision']['type'] = 'dynamic';
+$endpoint->settings['provision']['protocol'] = 'http';
+$endpoint->settings['provision']['path'] = $_SERVER["SERVER_ADDR"] . dirname($_SERVER['REQUEST_URI']) . '/';
+$endpoint->settings['provision']['encryption'] = FALSE;
+
+$endpoint->settings['network']['dhcp'] = TRUE;
+$endpoint->settings['network']['ipv4'] = '';
+$endpoint->settings['network']['ipv6'] = '';
+$endpoint->settings['network']['subnet'] = '255.255.255.0';
+$endpoint->settings['network']['gateway'] = '';
+$endpoint->settings['network']['vlan']['id'] = '';
+$endpoint->settings['network']['vlan']['qos'] = '';
+$endpoint->settings['network']['local_port'] = $endpoint->settings['local_port'];
+
+$endpoint->settings['network']['ntp'] = $endpoint->settings['ntp'];
+
 // Because every brand is an extension (eventually) of endpoint, you know this function will exist regardless of who it is
-$returned_data = $endpoint->generate_config();
+
+//$endpoint->debug = TRUE;
+
+$returned_data = $endpoint->generate_all_files();
+
+//print_r($endpoint->debug_return);
 
 ksort($returned_data);
 
-/*
-$prov_data['type'] = 'WEB';
-$prov_data['statics']['brand'] = $brand;
-$prov_data['statics']['family'] = $family;
-$prov_data['statics']['model'] = $model;
-$prov_data['statics']['timezone'] = $_REQUEST['timezone'];
-$prov_data['statics']['server'] = $_REQUEST['server'];
-$prov_data['statics']['proxyserver'] = $_REQUEST['proxyserver'];
-$prov_data['lines'] = $endpoint->lines;
-$prov_data['options'] = $endpoint->options;
 
 echo 'Ok Pushing this to the REST Server so you can use it on your phone! :-) <br/>';
 require('Pest.php');
+/*
 $pest = new Pest('http://www.provisioner.net/r/v1/accounts');
 $data = $pest->put('/web/provision/'.$_REQUEST['mac'],json_encode($prov_data));
 $data = json_decode($data,TRUE);
