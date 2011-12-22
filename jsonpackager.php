@@ -13,6 +13,16 @@ if (!isset($_SERVER['PHP_AUTH_USER'])) {
 	}
 }
 
+if(file_exists('/var/www/html/includes/update_wiki.php')) {
+	include('/var/www/html/includes/update_wiki.php');
+	function updatew($page,$text,$message) {
+		update_wiki($page,$text,$message);
+	}
+} else {
+	function updatew($page,$text,$message) {
+	}
+}
+
 global $force;
 $force = isset($_REQUEST['force']) ? TRUE : FALSE;
 
@@ -90,7 +100,7 @@ exec("tar zcf ".RELEASE_DIR."/provisioner_net.tgz --exclude .svn -C ".ROOT_DIR."
 
 unlink(ROOT_DIR."/setup.php");
 
-$html = "======= Provisioner.net Library Releases ======= \n == Note: This page is edited by an outside script and can not be edited == \n Latest Commit Message: //".$c_message."//\n<html>";
+$html = "== Provisioner.net Library Releases == \n == Note: This page is edited by an outside script and can not be edited == \n Latest ''Commit Message: ".$c_message."''\n";
 
 $master_array = file2json(MODULES_DIR.'/master.json');
 $master_array['data']['last_modified'] = $endpoint_max;
@@ -99,36 +109,35 @@ $master_array['data']['brands'] = array_values($master_xml['brands']);
 
 file_put_contents(MODULES_DIR.'/master.json',json_format(json_encode($master_array)));
 
-$html .= "<hr><h3>Provisoner.net Package (Last Modified: ".date('m/d/Y',$endpoint_max)." at ".date("G:i",$endpoint_max).")</h3>";
-$html .= "<a href='/release/v3/provisioner_net.tgz'>provisioner_net.tgz</a>";
+$html .= "Provisoner.net Package (Last Modified: ".date('m/d/Y',$endpoint_max)." at ".date("G:i",$endpoint_max)."): ";
+$html .= " [http://www.provisioner.net/release/v3/provisioner_net.tgz provisioner_net.tgz]\n\n";
 
 copy(MODULES_DIR."/master.json", RELEASE_DIR."/master.json");
 
-$html .= "<hr><h3>Master List File</h3>";
-$html .= "<a href='/release/v3/master.json'>master.json</a>";
+$html .= "Master List File: ";
+$html .= "[http://www.provisioner.net/release/v3/master.json master.json]\n";
 
-$html .= "<hr><h3>Brand Packages</h3>".$brands_html;
+$html .= "== Brand Packages == \n".$brands_html;
 
-$html .= "</html>";
-$fp = fopen('/var/www/data/pages/releases3.txt', 'w');
-fwrite($fp, $html);
-fclose($fp);
+updatew('Releases',$html,$c_message);
 
 $fp = fopen('/var/www/data/pages/supported.txt', 'w');
-$html2 = "=======This is the list of Supported Phones======= \n == Note: This page is edited by an outside script and can not be edited == \n";
+$html2 = "==This is the list of Supported Phones== \n == Note: This page is edited by an outside script and can not be edited == \n";
 
-array_multisort($supported_phones);
+//array_multisort($supported_phones);
 
 foreach($supported_phones as $key => $data2) {
-	$html2 .= "==".$key."==\n";
+	$html2 .= "===".$key."===\n";
 	foreach($data2 as $data) {
 		foreach($data as $more_data) {
-			$html2 .= "\t*".$more_data."\n";
+			$html2 .= "* ".$more_data."\n";
 		}
 	}
 }
 fwrite($fp, $html2);
 fclose($fp);
+
+updatew('Supported',$html2,$c_message);
 
 if(!isset($_REQUEST['dont_push'])) {
 	echo "===GIT Information===\n";
@@ -315,15 +324,15 @@ function create_brand_pkg($rawname,$version,$brand_name,$old_brand_timestamp,$c_
 		file_put_contents(MODULES_DIR."/".$rawname."/brand_data.json",json_format(json_encode($brand_array)));
 		copy(MODULES_DIR."/".$rawname."/brand_data.json", RELEASE_DIR."/".$rawname."/".$rawname.".json");
 	
-		$brands_html .= "<h4>".$rawname." (Last Modified: ".date('m/d/Y',$brand_max)." at ".date("G:i",$brand_max).")</h4>";
-		$brands_html .= "XML File: <a href='/release/v3/".$rawname."/".$rawname.".json'>".$rawname.".json</a><br/>";
-		$brands_html .= "Package File: <a href='/release/v3/".$rawname."/".$pkg_name.".tgz'>".$pkg_name.".tgz</a><br/>";
+		$brands_html .= "==== ".$rawname." (Last Modified: ".date('m/d/Y',$brand_max)." at ".date("G:i",$brand_max).") ====\n";
+		$brands_html .= "XML File: [http://www.provisioner.net/release/v3/".$rawname."/".$rawname.".json ".$rawname.".json]\n\n";
+		$brands_html .= "Package File: [http://www.provisioner.net/release/v3/".$rawname."/".$pkg_name.".tgz' ".$pkg_name.".tgz]\n";
 		
 		echo "\tComplete..Continuing..\n";
 	} else {
-		$brands_html .= "<h4>".$rawname." (Last Modified: ".date('m/d/Y',$brand_max)." at ".date("G:i",$brand_max).")</h4>";
-		$brands_html .= "XML File: <a href='/release/v3/".$rawname."/".$rawname.".json'>".$rawname.".json</a><br/>";
-		$brands_html .= "Package File: <a href='/release/v3/".$rawname."/".$pkg_name.".tgz'>".$pkg_name.".tgz</a><br/>";
+		$brands_html .= "==== ".$rawname." (Last Modified: ".date('m/d/Y',$brand_max)." at ".date("G:i",$brand_max).") ====\n";
+		$brands_html .= "XML File: [http://www.provisioner.net/release/v3/".$rawname."/".$rawname.".json' ".$rawname.".json]\n\n";
+		$brands_html .= "Package File: [http://www.provisioner.net/release/v3/".$rawname."/".$pkg_name.".tgz' ".$pkg_name.".tgz]\n";
 		echo "\tNothing changed! Aborting Package Creation!\n";
 	}
 }
