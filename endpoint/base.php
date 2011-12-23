@@ -53,6 +53,7 @@ abstract class endpoint_base {
 
     function __construct() {
         self::$root_dir = dirname(dirname(__FILE__)) . "/";
+		$this->root_dir = dirname(dirname(__FILE__)) . "/";
     }
 
     /*     * *PUBLIC FUNCTIONS** */
@@ -455,9 +456,7 @@ abstract class endpoint_base {
             #old
             '{$srvip}' => $this->settings['line'][0]['server_host'],
             '{$server.ip.1}' => $this->settings['line'][0]['server_host'],
-            '{$server.port.1}' => $this->settings['line'][0]['server_port'],
-            '{$server.ip.2}' => $this->settings['line'][0]['backup_server_host'],
-            '{$server.port.2}' => $this->settings['line'][0]['backup_server_port']
+            '{$server.port.1}' => $this->settings['line'][0]['server_port']
         );
 
         $contents = str_replace(array_keys($replace), array_values($replace), $contents);
