@@ -1,0 +1,3 @@
+[submodule "servers/tftpserver"]
+	path = servers/tftpserver
+	url = git://github.com/tm1000/tftpserver.git
