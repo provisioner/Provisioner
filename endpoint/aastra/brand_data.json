@@ -5,9 +5,9 @@
       "brand_id": "1",
       "directory": "aastra",
       "package": "aastra.tgz",
-      "md5sum": "a31989685ef25a61f2036ea61dd8c6a9",
+      "md5sum": "d06b53edea30b2fe3208ee9aa94addc0",
       "last_modified": 1324487650,
-      "changelog": "PACKAGER: Should be network time server",
+      "changelog": "forcing update to fix firmware issue",
       "family_list": [
         {
           "id": "1",

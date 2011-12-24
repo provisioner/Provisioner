@@ -5,7 +5,7 @@
       "brand_id": "9",
       "directory": "mitel",
       "package": "mitel.tgz",
-      "md5sum": "af09733092c10608dffe07d2b05c7e1e",
+      "md5sum": "430d1ccef29d8478c80c79c687120b0a",
       "last_modified": 1324487650,
       "family_list": [
         {
@@ -20,7 +20,7 @@
       "oui_list": [
         "08000F"
       ],
-      "changelog": "PACKAGER: Should be network time server"
+      "changelog": "forcing update to fix firmware issue"
     }
   }
 }

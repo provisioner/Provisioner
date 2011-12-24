@@ -5,8 +5,8 @@
       "directory": "polycom",
       "brand_id": "4",
       "package": "polycom.tgz",
-      "md5sum": "30aa082a2de7469ccb602373c1ece387",
-      "last_modified": 1324590988,
+      "md5sum": "e1a81770095bc7a93f2d05b3a8e55755",
+      "last_modified": 1324612738,
       "family_list": [
         {
           "id": "4",
@@ -61,7 +61,7 @@
         "0004F2",
         "00907A"
       ],
-      "changelog": "PACKAGER: Should be network time server"
+      "changelog": "forcing update to fix firmware issue"
     }
   }
 }

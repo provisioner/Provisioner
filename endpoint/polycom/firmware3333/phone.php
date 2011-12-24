@@ -13,29 +13,43 @@ class endpoint_polycom_firmware3333_phone extends endpoint_polycom_base {
     public $directory_structure = array("logs", "overrides", "contacts", "licenses", "SoundPointIPLocalization");
     public $copy_files = array("SoundPointIPLocalization", "SoundPointIPWelcome.wav", "LoudRing.wav");
 
-    function parse_lines_hook($line, $line_total) {
-        $this->settings['line'][$line]['lineKeys'] = $line_total;
-        $this->settings['line'][$line]['digitmap'] = (isset($this->settings['digitmap']) ? $this->settings['digitmap'] : NULL);
-        $this->settings['line'][$line]['digitmaptimeout'] = (isset($this->settings['digitmaptimeout']) ? $this->settings['digitmaptimeout'] : NULL);
-        $this->settings['line'][$line]['microbrowser_main_home'] = (isset($this->settings['microbrowser_main_home']) ? $this->settings['microbrowser_main_home'] : NULL);
-        $this->settings['line'][$line]['idle_display'] = (isset($this->settings['idle_display']) ? $this->settings['idle_display'] : NULL);
-        $this->settings['line'][$line]['idle_display_refresh'] = (isset($this->settings['idle_display_refresh']) ? $this->settings['idle_display_refresh'] : NULL);
+    function parse_lines_hook($line_data, $line_total) {
+        $line_data['lineKeys'] = $line_total;
+        $line_data['digitmap'] = (isset($this->settings['digitmap']) ? $this->settings['digitmap'] : NULL);
+        $line_data['digitmaptimeout'] = (isset($this->settings['digitmaptimeout']) ? $this->settings['digitmaptimeout'] : NULL);
+        return($line_data);
     }
 
     function config_files() {
         $result = parent::config_files();
-        $macprefix = $this->server_type == 'dynamic' ? $this->mac . "_" : NULL;
+        
+        $this->configfiles = array(
+            '$mac.cfg' => $this->mac . '_reg.cfg',
+            'sip_3333.cfg' => 'sip_3333.cfg'
+        );
+        
+        $macprefix = $this->server_type == 'dynamic' ? $this->mac . "_" : NULL;        
         if ((isset($this->settings['file_prefix'])) && ($this->settings['file_prefix'] != "")) {
-            $fn = $macprefix . $this->settings['file_prefix'] . '_sip.cfg';
-            $result[$fn] = $result['sip.cfg'];
-            unset($result['sip.cfg']);
-            $this->settings['createdFiles'] = str_replace(", sip.cfg", ", $fn", $this->settings['createdFiles']);
+            $fp = $this->settings['file_prefix'];
+            foreach(array_values($this->configfiles) as $data) {
+                if(isset($result[$data]) AND $data != $this->mac . '_reg.cfg') {
+                    $result[$fp.$data] = $result[$data];
+                    $this->configfiles[$data] = $fp.$data;
+                    unset($result[$data]);
+                }
+            }
         } elseif (isset($macprefix)) {
-            $fn = $macprefix . 'sip.cfg';
-            $result[$fn] = $result['sip.cfg'];
-            unset($result['sip.cfg']);
-            $this->settings['createdFiles'] = str_replace(", sip.cfg", ", $fn", $this->settings['createdFiles']);
+            foreach(array_values($this->configfiles) as $data) {
+                if(isset($result[$data]) AND $data != $this->mac . '_reg.cfg') {
+                    $result[$macprefix.$data] = $result[$data];
+                    $this->configfiles[$data] = $macprefix.$data;
+                    unset($result[$data]);
+                }
+            }
         }
+        
+        $this->settings['createdFiles'] = implode(', ', array_values($this->configfiles));
+        
         return $result;
     }
 
