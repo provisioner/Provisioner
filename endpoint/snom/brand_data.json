@@ -5,7 +5,7 @@
       "directory": "snom",
       "brand_id": "6",
       "package": "snom.tgz",
-      "md5sum": "72884146acfced2327084e616d2b3399",
+      "md5sum": "d7c3b8261a497acac563ad5e67bf5cf2",
       "last_modified": 1324516174,
       "family_list": [
         {
@@ -28,7 +28,7 @@
       "oui_list": [
         "000413"
       ],
-      "changelog": "PACKAGER: Should be network time server"
+      "changelog": "forcing update to fix firmware issue"
     }
   }
 }

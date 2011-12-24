@@ -5,7 +5,7 @@
       "brand_id": "7",
       "directory": "cisco",
       "package": "cisco.tgz",
-      "md5sum": "eb66376769f8b53e453051ff76de28f7",
+      "md5sum": "14131fbbc36df863ef96862a1f2a35ce",
       "last_modified": 1324487650,
       "family_list": [
         {
@@ -87,7 +87,7 @@
         "1CDF0F",
         "E05FB9"
       ],
-      "changelog": "PACKAGER: Should be network time server"
+      "changelog": "forcing update to fix firmware issue"
     }
   }
 }

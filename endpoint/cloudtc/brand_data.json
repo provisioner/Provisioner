@@ -5,7 +5,7 @@
       "brand_id": "9",
       "directory": "cloudtc",
       "package": "cloudtc.tgz",
-      "md5sum": "b3ba09a0d3e92255ad4c020a1220d43a",
+      "md5sum": "f6af587021459d04f8bd593fa631222a",
       "last_modified": 1324506768,
       "family_list": [
         {
@@ -20,7 +20,7 @@
       "oui_list": [
         "000000"
       ],
-      "changelog": "PACKAGER: Should be network time server"
+      "changelog": "forcing update to fix firmware issue"
     }
   }
 }

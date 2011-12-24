@@ -4,7 +4,7 @@
     "id": "4",
     "directory": "firmware325",
     "firmware_ver": 1323333833,
-    "firmware_md5sum": "18056d75b0f85615809fadffbd66c8a2",
+    "firmware_md5sum": "8841034431731d91bf39ee433c35e76b",
     "firmware_pkg": "firmware325_firmware.tgz",
     "description": "Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality",
     "configuration_files": "logs\/$mac-boot.log,logs\/$mac-app.log,$mac-phone.cfg,$mac.cfg,server_325.cfg,phone1_325.cfg,$mac_reg.cfg,sip_325.cfg",

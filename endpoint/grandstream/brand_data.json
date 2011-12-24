@@ -5,8 +5,8 @@
       "directory": "grandstream",
       "brand_id": "2",
       "package": "grandstream.tgz",
-      "md5sum": "50784b8ef3c7e04aad9c6b824a67a8be",
-      "last_modified": 1324487650,
+      "md5sum": "45ae7e5e244107a5ede04f5f2ef55c7f",
+      "last_modified": 1324610885,
       "family_list": [
         {
           "id": "2",
@@ -44,7 +44,7 @@
       "oui_list": [
         "000B82"
       ],
-      "changelog": "PACKAGER: Should be network time server"
+      "changelog": "forcing update to fix firmware issue"
     }
   }
 }
