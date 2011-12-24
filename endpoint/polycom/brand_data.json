@@ -5,7 +5,7 @@
       "directory": "polycom",
       "brand_id": "4",
       "package": "polycom.tgz",
-      "md5sum": "e1a81770095bc7a93f2d05b3a8e55755",
+      "md5sum": "802507590f743afc6990809b973164dd",
       "last_modified": 1324612738,
       "family_list": [
         {
@@ -61,7 +61,7 @@
         "0004F2",
         "00907A"
       ],
-      "changelog": "forcing update to fix firmware issue"
+      "changelog": "PACKAGER: I knew I did this. Dang it"
     }
   }
 }

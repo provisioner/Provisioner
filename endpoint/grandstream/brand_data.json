@@ -5,7 +5,7 @@
       "directory": "grandstream",
       "brand_id": "2",
       "package": "grandstream.tgz",
-      "md5sum": "45ae7e5e244107a5ede04f5f2ef55c7f",
+      "md5sum": "70ebf6480a2603c7ffb7b6a1f68f4500",
       "last_modified": 1324610885,
       "family_list": [
         {
@@ -44,7 +44,7 @@
       "oui_list": [
         "000B82"
       ],
-      "changelog": "forcing update to fix firmware issue"
+      "changelog": "PACKAGER: I knew I did this. Dang it"
     }
   }
 }

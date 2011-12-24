@@ -5,7 +5,7 @@
       "directory": "snom",
       "brand_id": "6",
       "package": "snom.tgz",
-      "md5sum": "d7c3b8261a497acac563ad5e67bf5cf2",
+      "md5sum": "306c9a0fdabeda61e9d5ff9c56ca1941",
       "last_modified": 1324516174,
       "family_list": [
         {
@@ -28,7 +28,7 @@
       "oui_list": [
         "000413"
       ],
-      "changelog": "forcing update to fix firmware issue"
+      "changelog": "PACKAGER: I knew I did this. Dang it"
     }
   }
 }

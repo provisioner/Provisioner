@@ -5,7 +5,7 @@
       "brand_id": "8",
       "directory": "yealink",
       "package": "yealink.tgz",
-      "md5sum": "7ac496dc12586544db843c4f245371c1",
+      "md5sum": "dce7304a08b6a2554962a1fd992f9977",
       "last_modified": 1324490946,
       "family_list": [
         {
@@ -28,7 +28,7 @@
       "oui_list": [
         "001565"
       ],
-      "changelog": "forcing update to fix firmware issue"
+      "changelog": "PACKAGER: I knew I did this. Dang it"
     }
   }
 }

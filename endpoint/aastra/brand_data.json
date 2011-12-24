@@ -5,9 +5,9 @@
       "brand_id": "1",
       "directory": "aastra",
       "package": "aastra.tgz",
-      "md5sum": "d06b53edea30b2fe3208ee9aa94addc0",
+      "md5sum": "d28a7af0d81261a98ffcbf6dab589c83",
       "last_modified": 1324487650,
-      "changelog": "forcing update to fix firmware issue",
+      "changelog": "PACKAGER: I knew I did this. Dang it",
       "family_list": [
         {
           "id": "1",
