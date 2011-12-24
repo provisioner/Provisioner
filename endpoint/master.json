@@ -1,6 +1,6 @@
 {
   "data": {
-    "last_modified": 1324524319,
+    "last_modified": 1324725622,
     "package": "provisioner_net.tgz",
     "brands": [
       {
@@ -12,16 +12,16 @@
         "directory": "cisco"
       },
       {
-	"name": "CloudTC",
-	"directory": "cloudtc"
-      },
-      {
-        "name": "Mitel",
-        "directory": "mitel"
+        "name": "CloudTC",
+        "directory": "cloudtc"
       },
       {
         "name": "Grandstream",
         "directory": "grandstream"
+      },
+      {
+        "name": "Mitel",
+        "directory": "mitel"
       },
       {
         "name": "Polycom",
