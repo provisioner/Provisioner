@@ -2,7 +2,7 @@
   "data": {
     "brands": {
       "name": "CloudTC",
-      "brand_id": "9",
+      "brand_id": "10",
       "directory": "cloudtc",
       "package": "cloudtc.tgz",
       "md5sum": "f6af587021459d04f8bd593fa631222a",
