@@ -6,6 +6,7 @@
  * @author Darren Schreiber & Andrew Nagy & Jort Bloem
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
+ *
  */
 abstract class endpoint_base {
 
