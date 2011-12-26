@@ -5,8 +5,8 @@
       "brand_id": "7",
       "directory": "cisco",
       "package": "cisco.tgz",
-      "md5sum": "5e411dab74f5f3465e9ef738853404de",
-      "last_modified": 1324487650,
+      "md5sum": "11b1e34af07d71c8cd190aebc7dd976c",
+      "last_modified": 1324929544,
       "family_list": [
         {
           "id": "5",
@@ -14,6 +14,14 @@
           "directory": "ata18x",
           "description": "",
           "changelog": "",
+          "last_modified": null
+        },
+        {
+          "id": null,
+          "name": null,
+          "directory": null,
+          "description": null,
+          "changelog": null,
           "last_modified": null
         },
         {
@@ -45,14 +53,6 @@
           "name": "Linksys\/Cisco\/Sipura SPA Phone Models 5xx, 3xx [303,501G,502G,504G,525G,525G2]",
           "directory": "spa5xx",
           "description": "",
-          "changelog": "",
-          "last_modified": null
-        },
-        {
-          "id": "6",
-          "name": "Linksys\/Cisco\/Sipura SPA Adapter Models [2102, 3102(FXS Only)]",
-          "directory": "spax102",
-          "description": "New Device",
           "changelog": "",
           "last_modified": null
         }
@@ -87,7 +87,7 @@
         "1CDF0F",
         "E05FB9"
       ],
-      "changelog": "PACKAGER: I knew I did this. Dang it"
+      "changelog": "PACKAGER: Renamed and moved the spax102 models to linksys ata models, because thats what they are"
     }
   }
 }
