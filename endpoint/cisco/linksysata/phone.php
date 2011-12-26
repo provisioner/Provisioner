@@ -6,9 +6,9 @@
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
  */
-class endpoint_cisco_spax102_phone extends endpoint_cisco_base {
+class endpoint_cisco_linksysata_phone extends endpoint_cisco_base {
 	
-	public $family_line = 'spax102';
+	public $family_line = 'linksysata';
 	
 	function generate_config() {
 		//spa likes lower case letters in its mac address

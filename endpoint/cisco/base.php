@@ -32,7 +32,7 @@ class endpoint_cisco_base extends endpoint_base {
                 exec($this->engine_location . " -rx 'sip notify spa-reboot " . $this->settings['line'][0]['username'] . "'");
             } elseif ($this->family_line == "spa5xx") {
                 exec($this->engine_location . " -rx 'sip notify spa-reboot " . $this->settings['line'][0]['username'] . "'");
-            } elseif ($this->family_line == "spax102") {
+            } elseif ($this->family_line == "linksysata") {
                 exec($this->engine_location . " -rx 'sip notify spa-reboot " . $this->settings['line'][0]['username'] . "'");
             }
         }
