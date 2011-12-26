@@ -5,8 +5,8 @@
       "brand_id": "7",
       "directory": "cisco",
       "package": "cisco.tgz",
-      "md5sum": "11b1e34af07d71c8cd190aebc7dd976c",
-      "last_modified": 1324929544,
+      "md5sum": "a06e28aebb047a812ab95699ddc2cba8",
+      "last_modified": 1324930377,
       "family_list": [
         {
           "id": "5",
@@ -17,11 +17,11 @@
           "last_modified": null
         },
         {
-          "id": null,
-          "name": null,
-          "directory": null,
-          "description": null,
-          "changelog": null,
+          "id": "6",
+          "name": "Linksys\/Cisco\/Sipura SPA Adapter Models [AG310,PAP2T,RTP300,SPA1001,SPA2102,SPA3102,SPA8000,WRP400,WRTP54G,WRT54G2]",
+          "directory": "linksysata",
+          "description": "New Device",
+          "changelog": "",
           "last_modified": null
         },
         {
@@ -87,7 +87,7 @@
         "1CDF0F",
         "E05FB9"
       ],
-      "changelog": "PACKAGER: Renamed and moved the spax102 models to linksys ata models, because thats what they are"
+      "changelog": "PACKAGER: Updating"
     }
   }
 }
