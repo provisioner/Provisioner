@@ -5,8 +5,8 @@
       "directory": "polycom",
       "brand_id": "4",
       "package": "polycom.tgz",
-      "md5sum": "120ce5d19f64850603afb70104ffbaa5",
-      "last_modified": 1324932350,
+      "md5sum": "6378e7ab1219cbf69954ab48e91f4d57",
+      "last_modified": 1325020690,
       "family_list": [
         {
           "id": "4",
@@ -61,7 +61,7 @@
         "0004F2",
         "00907A"
       ],
-      "changelog": "PACKAGER: Polycom firmware 3.3.3.3 updates"
+      "changelog": "PACKAGER: Fixes"
     }
   }
 }
