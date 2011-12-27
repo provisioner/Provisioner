@@ -54,7 +54,7 @@ abstract class endpoint_base {
 
     function __construct() {
         self::$root_dir = dirname(dirname(__FILE__)) . "/";
-		$this->root_dir = dirname(dirname(__FILE__)) . "/";
+        $this->root_dir = dirname(dirname(__FILE__)) . "/";
     }
 
     /*     * *PUBLIC FUNCTIONS** */
@@ -73,8 +73,8 @@ abstract class endpoint_base {
      *
      * @author Jort Bloem
      */
-    public function generate_file($filename, $extradata, $ignoredynamicmapping=FALSE,$prepare=FALSE) {
-        if($prepare) {
+    public function generate_file($filename, $extradata, $ignoredynamicmapping=FALSE, $prepare=FALSE) {
+        if ($prepare) {
             $this->prepare_for_generateconfig();
         }
         # Note: server_type='dynamic' is ignored if ignoredynamicmapping, if there is no $this->dynamic_mapping, or that is not an array.
@@ -100,7 +100,7 @@ abstract class endpoint_base {
         $this->prepare_for_generateconfig();
         $output = array();
         foreach ($this->config_files() AS $filename => $sourcefile) {
-            $output[$filename] = $this->generate_file($filename, $sourcefile,FALSE,FALSE);
+            $output[$filename] = $this->generate_file($filename, $sourcefile, FALSE, FALSE);
         }
         return $output;
     }
@@ -207,8 +207,8 @@ abstract class endpoint_base {
 
         $file_contents = $this->parse_conditional_model($file_contents);
 
-        $file_contents = $this->parse_lines($file_contents, TRUE);
-        $file_contents = $this->parse_loops($file_contents, TRUE);
+        $file_contents = $this->parse_lines($file_contents, FALSE);
+        $file_contents = $this->parse_loops($file_contents, FALSE);
 
         $file_contents = $this->replace_static_variables($file_contents);
         $file_contents = $this->parse_config_values($file_contents);
@@ -302,7 +302,7 @@ abstract class endpoint_base {
                 $line = $data['line'];
                 $data['number'] = $line;
                 $data['count'] = $line;
-                $line_settings = $this->parse_lines_hook($data, $this->max_lines);                
+                $line_settings = $this->parse_lines_hook($data, $this->max_lines);
                 $parsed .= $this->parse_config_values($this->replace_static_variables($loop_contents, $line_settings), $line_settings, $keep_unknown);
             }
             $file_contents = preg_replace($pattern, $parsed, $file_contents, 1);
@@ -316,18 +316,18 @@ abstract class endpoint_base {
         $template_data = array();
         $template_data_multi = "";
 
-		//Setup defaults from global file
-		$template_data_multi = $this->file2json(self::$root_dir . self::$modules_path.'/global_template_data.json');
+        //Setup defaults from global file
+        $template_data_multi = $this->file2json(self::$root_dir . self::$modules_path . '/global_template_data.json');
         $template_data_multi = $template_data_multi['template_data']['category'];
         foreach ($template_data_multi as $categories) {
             $subcats = $categories['subcategory'];
             foreach ($subcats as $subs) {
                 $items = $subs['item'];
                 $template_data = array_merge($template_data, $items);
-			}
-		}
+            }
+        }
 
-		//Setup defaults from each template file
+        //Setup defaults from each template file
         foreach ($template_data_list as $files) {
             if (file_exists(self::$root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $files)) {
                 $template_data_multi = $this->file2json(self::$root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $files);
@@ -340,7 +340,7 @@ abstract class endpoint_base {
                     }
                 }
             } else {
-                throw new Exception("Template File: ".$files." doesnt exist!");
+                throw new Exception("Template File: " . $files . " doesnt exist!");
             }
         }
 
@@ -395,32 +395,46 @@ abstract class endpoint_base {
                 if (isset($this->settings[$variables])) {
                     $this->settings[$variables] = $this->replace_static_variables($this->settings[$variables]);
                     $file_contents = str_replace('{' . $original_variable . '}', $this->settings[$variables], $file_contents);
-                } elseif (!$keep_unknown) {
-                    //read default template values here, blank unknowns or arrays (which are blanks anyways)
-                    $key1 = $this->arraysearchrecursive('$' . $variables, $this->template_data, 'variable');
-                    
-                    $default_hard_value = NULL;
+                }
+            }
 
-                    //Check for looping statements. They are all setup logically the same. Ergo if the first multi-dimensional array has a variable key its not a loop.
-                    if ($key1['1'] == 'variable') {
-                        $default_hard_value = $this->replace_static_variables($this->template_data[$key1[0]]['default_value']);
-                    } elseif ($key1['4'] == 'variable') {
-                        $default_hard_value = $this->replace_static_variables($this->template_data[$key1[0]][$key1[1]][$key1[2]][$key1[3]]['default_value']);
-                    }
+            if (!$keep_unknown) {
+                //read default template values here, blank unknowns or arrays (which are blanks anyways)
+                $key1 = $this->arraysearchrecursive('$' . $variables, $this->template_data, 'variable');
 
-                    if (isset($default)) {
-                        $default = $this->replace_static_variables($default);
-                        $file_contents = str_replace('{' . $original_variable . '}', $default, $file_contents);
-                        $this->debug('Replacing {' . $original_variable . '} with default piped value of:' . $default);
-                    } elseif (isset($default_hard_value)) {
-                        $default_hard_value = $this->replace_static_variables($default_hard_value);
-                        $file_contents = str_replace('{' . $original_variable . '}', $default_hard_value, $file_contents);
-                        $this->debug("Replacing {" . $original_variable . "} with default json value of: " . $default_hard_value);
+                $default_hard_value = NULL;
+
+                //Check for looping statements. They are all setup logically the same. Ergo if the first multi-dimensional array has a variable key its not a loop.
+                if ($key1['1'] == 'variable') {
+                    if (is_array($data)) {
+                        $dhv = str_replace('{$count}', $data['line'], $this->template_data[$key1[0]]['default_value']);
+                        $dhv = str_replace('{$number}', $data['line'], $dhv);
                     } else {
-                        //do one last replace statice here.
-                        $file_contents = str_replace('{' . $original_variable . '}', "", $file_contents);
-                        $this->debug("Blanking {" . $original_variable . "}");
+                        $dhv = $this->template_data[$key1[0]]['default_value'];
                     }
+                    $default_hard_value = $this->replace_static_variables($dhv);
+                } elseif ($key1['4'] == 'variable') {
+                    if (is_array($data)) {
+                        $dhv = str_replace('{$count}', $data['line'], $this->template_data[$key1[0]][$key1[1]][$key1[2]][$key1[3]]['default_value']);
+                        $dhv = str_replace('{$number}', $data['line'], $dhv);
+                    } else {
+                        $dhv = $this->template_data[$key1[0]][$key1[1]][$key1[2]][$key1[3]]['default_value'];
+                    }
+                    $default_hard_value = $this->replace_static_variables($dhv);
+                }
+
+                if (isset($default)) {
+                    $default = $this->replace_static_variables($default);
+                    $file_contents = str_replace('{' . $original_variable . '}', $default, $file_contents);
+                    $this->debug('Replacing {' . $original_variable . '} with default piped value of:' . $default);
+                } elseif (isset($default_hard_value)) {
+                    $default_hard_value = $this->replace_static_variables($default_hard_value);
+                    $file_contents = str_replace('{' . $original_variable . '}', $default_hard_value, $file_contents);
+                    $this->debug("Replacing {" . $original_variable . "} with default json value of: " . $default_hard_value);
+                } else {
+                    //do one last replace statice here.
+                    $file_contents = str_replace('{' . $original_variable . '}', "", $file_contents);
+                    $this->debug("Blanking {" . $original_variable . "}");
                 }
             }
         }
@@ -437,8 +451,8 @@ abstract class endpoint_base {
      * @return string
      */
     private function replace_static_variables($contents, $data=NULL) {
-		//bad
-		$this->settings['network']['local_port'] = isset($this->settings['network']['local_port']) ? $this->settings['network']['local_port'] : '5060';
+        //bad
+        $this->settings['network']['local_port'] = isset($this->settings['network']['local_port']) ? $this->settings['network']['local_port'] : '5060';
         $replace = array(
             # These first ones have an identical field name in the object and the template.
             # This is a good thing, and should be done wherever possible.
@@ -453,13 +467,12 @@ abstract class endpoint_base {
             '{$timezone_timezone}' => $this->timezone['timezone'],
             '{$timezone}' => $this->timezone['timezone'], # Should this be depricated??
             '{$network_time_server}' => $this->settings['ntp'],
-			'{$local_port}' => $this->settings['network']['local_port'],
+            '{$local_port}' => $this->settings['network']['local_port'],
             #old
             '{$srvip}' => $this->settings['line'][0]['server_host'],
             '{$server.ip.1}' => $this->settings['line'][0]['server_host'],
             '{$server.port.1}' => $this->settings['line'][0]['server_port']
         );
-
         $contents = str_replace(array_keys($replace), array_values($replace), $contents);
 
         if (is_array($data)) {
@@ -477,33 +490,31 @@ abstract class endpoint_base {
                 $variables = str_replace("$", "", $variables);
 
                 $line_exp = preg_split("/\./i", $variables);
-                
-                if((isset($line_exp[2]) AND (($line_exp[0] == 'line') OR ($line_exp[1] == 'line')))) {
+
+                if ((isset($line_exp[2]) AND (($line_exp[0] == 'line') OR ($line_exp[1] == 'line')))) {
                     if ($line_exp[0] == 'line') {
-                        $line = explode("|", $line_exp[1]);                        
-                        $default = isset($line[1]) ? $line[1] : NULL;                        
-                        $line = $line[0];                        
-                        $key1 = $this->arraysearchrecursive($line, $this->settings['line'], 'line');                        
-                        $var = $line_exp[2];
-                    } elseif ($line_exp[1] == 'line') {                       
-                        $line = explode("|", $line_exp[2]);                        
-                        $default = isset($line[1]) ? $line[1] : NULL;                                                
+                        $line = explode("|", $line_exp[1]);
+                        $default = isset($line[1]) ? $line[1] : NULL;
                         $line = $line[0];
-                        $key1 = $this->arraysearchrecursive($line, $this->settings['line'], 'line');                        
+                        $key1 = $this->arraysearchrecursive($line, $this->settings['line'], 'line');
+                        $var = $line_exp[2];
+                    } elseif ($line_exp[1] == 'line') {
+                        $line = explode("|", $line_exp[2]);
+                        $default = isset($line[1]) ? $line[1] : NULL;
+                        $line = $line[0];
+                        $key1 = $this->arraysearchrecursive($line, $this->settings['line'], 'line');
                         $var = $line_exp[0];
-                        $this->settings['line'][$key1[0]]['ext'] = isset($this->settings['line'][$key1[0]]['username']) ? $this->settings['line'][$key1[0]]['username'] : NULL;
+                        //$this->settings['line'][$key1[0]]['ext'] = isset($this->settings['line'][$key1[0]]['username']) ? $this->settings['line'][$key1[0]]['username'] : NULL;
                     }
-                    
+
                     $data['number'] = $line;
                     $data['count'] = $line;
-                    
+
                     $line_settings = $this->parse_lines_hook($this->settings['line'][$key1[0]], $this->max_lines);
-                    
+
                     $stored = isset($line_settings[$var]) ? $line_settings[$var] : '';
                     $contents = str_replace('{' . $original_variable . '}', $stored, $contents);
                 }
-                                
-
             }
         }
         return($contents);
@@ -611,7 +622,7 @@ abstract class endpoint_base {
             $this->max_lines = isset($this->model_data['lines']) ? $this->model_data['lines'] : 1;
 
             $this->template_data = $this->merge_files();
-            
+
             $this->setup_timezone();
 
             if (empty($this->engine_location)) {
@@ -633,7 +644,7 @@ abstract class endpoint_base {
             } else {
                 $this->server_type = $this->settings['provision']['type'];
             }
-            
+
             if (!in_array($this->settings['provision']['protocol'], $this->provisioning_type_list)) {
                 $this->provisioning_type = $this->default_provisioning_type;
             } else {
@@ -648,8 +659,8 @@ abstract class endpoint_base {
                 $this->settings['network']['vlan']['qos'] = 5;
             }
 
-            if(empty($this->mac)) {
-                    throw new Exception("mac can not be blank!");
+            if (empty($this->mac)) {
+                throw new Exception("mac can not be blank!");
             }
 
             $this->initialized = TRUE;
