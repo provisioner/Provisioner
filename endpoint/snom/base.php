@@ -15,6 +15,7 @@ class endpoint_snom_base extends endpoint_base {
     function prepare_for_generateconfig() {
         parent::prepare_for_generateconfig();
         $this->mac = strtoupper($this->mac);
+        
         if (isset($this->DateTimeZone)) {
             $transitions = $this->DateTimeZone->getTransitions();
             // Find the last 2 transitions before (1 year from now).
@@ -40,7 +41,7 @@ class endpoint_snom_base extends endpoint_base {
             // happens; the instant we get there, the clocks have moved.
             $summerstart = gmdate("d.m H:i:s", $transitions[$summer]['ts'] + $this->timezone['gmtoffset'] - $dst);
             $summerend = gmdate("d.m H:i:s", $transitions[$winter]['ts'] + $this->timezone['gmtoffset']);
-            $this->options['dstrule'] = "$dst $summerstart $summerend";
+            $this->settings['dstrule'] = "$dst $summerstart $summerend";
         }
     }
 
