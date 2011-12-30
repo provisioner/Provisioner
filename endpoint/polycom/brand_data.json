@@ -5,8 +5,8 @@
       "directory": "polycom",
       "brand_id": "4",
       "package": "polycom.tgz",
-      "md5sum": "2a45625c4935daff03fdea17c6da808a",
-      "last_modified": 1325200226,
+      "md5sum": "67ba0a863a832cba9bdbce1686ca32a4",
+      "last_modified": 1325203650,
       "family_list": [
         {
           "id": "4",
@@ -61,7 +61,7 @@
         "0004F2",
         "00907A"
       ],
-      "changelog": "PACKAGER: Update endpoint\/polycom\/spom\/$mac.cfg"
+      "changelog": "PACKAGER: PACKAGER: Update endpoint\/polycom\/spom\/.cfg"
     }
   }
 }
