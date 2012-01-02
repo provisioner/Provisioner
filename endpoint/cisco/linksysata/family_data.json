@@ -7,7 +7,7 @@
         "firmware_pkg": "NULL",
         "firmware_md5sum": "",
         "description": "New Device",
-        "configuration_files": "$mac.cfg,global.cfg",
+        "configuration_files": "$model.cfg,spa$mac.xml",
         "changelog": "",
         "model_list": [
             {
@@ -95,6 +95,15 @@
                 "model": "WRTP54G2",
                 "lines": "2",
                 "id": "10",
+                "template_data": [
+                    "template_data.json",
+                    "keys.json"
+                ]
+            },
+            {
+                "model": "SPA112",
+                "lines": "2",
+                "id": "11",
                 "template_data": [
                     "template_data.json",
                     "keys.json"
