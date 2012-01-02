@@ -27,11 +27,11 @@ global $force;
 $force = isset($_REQUEST['force']) ? TRUE : FALSE;
 
 set_time_limit(0);
-define("MODULES_DIR", "/var/www/html/beta/endpoint");
+define("MODULES_DIR", "/var/www/repo/endpoint");
 define("RELEASE_DIR", "/var/www/html/release/v3");
-define("ROOT_DIR", "/var/www/html/beta");
+define("ROOT_DIR", "/var/www/repo");
 define("FIRMWARE_DIR", "/var/www/html/repo_firmwares_beta");
-define("BRANCH", "develop");
+define("BRANCH", "master");
 
 file_put_contents(RELEASE_DIR.'/update_status', '1');
 
