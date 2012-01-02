@@ -5,9 +5,9 @@
       "brand_id": "1",
       "directory": "aastra",
       "package": "aastra.tgz",
-      "md5sum": "d28a7af0d81261a98ffcbf6dab589c83",
-      "last_modified": 1324487650,
-      "changelog": "PACKAGER: I knew I did this. Dang it",
+      "md5sum": "0bfd5bc192ca6697026c91391b5fe538",
+      "last_modified": 1325536391,
+      "changelog": "PACKAGER: some changes and fixes",
       "family_list": [
         {
           "id": "1",
