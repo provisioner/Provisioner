@@ -8,8 +8,8 @@
 	 <Networking_Service ua="rw">Bridge</Networking_Service>
 	 <Enable_DHCP_Server ua="rw">No</Enable_DHCP_Server>
 
-        <!-- Time -->
-         <Primary_NTP_Server ua="na">{$server.ip.1}</Primary_NTP_Server>
+     <!-- Time -->
+     <Primary_NTP_Server ua="na">{$network_time_server}</Primary_NTP_Server>
 	 <Time_Zone  ua="na">{$timezone}</Time_Zone>
          <Daylight_Saving_Time_Rule ua="na">start=3/8/7/02:0:0;end=11/1/7/02:0:0;save=1</Daylight_Saving_Time_Rule>
          <Daylight_Saving_Time_Enable group="Regional/Miscellaneous">Yes</Daylight_Saving_Time_Enable>
@@ -27,15 +27,15 @@
         {line_loop}
 
         <!-- Line Registration Information -->
-        <Display_Name_{$line}_ ua="na">{$displaynameline}</Display_Name_{$line}_>
-        <User_ID_{$line}_ ua="na">{$ext}</User_ID_{$line}_>
-        <Password_{$line}_ ua="na">{$pass}</Password_{$line}_>
+        <Display_Name_{$line}_ ua="na">{$displayname}</Display_Name_{$line}_>
+        <User_ID_{$line}_ ua="na">{$username}</User_ID_{$line}_>
+        <Password_{$line}_ ua="na">{$secret}</Password_{$line}_>
         <Dial_Plan_{$line}_ ua="na">{$dial_plan}</Dial_Plan_{$line}_>
 
         <!-- Proxy and Registration -->
-         <Proxy_{$line}_ ua="na">{$server.ip.1}</Proxy_{$line}_>
+         <Proxy_{$line}_ ua="na">{$server_host}</Proxy_{$line}_>
          <Use_Outbound_Proxy_{$line}_ ua="na">No</Use_Outbound_Proxy_{$line}_>
-         <Outbound_Proxy_{$line}_ ua="na">{$server.ip.1}</Outbound_Proxy_{$line}_>
+         <Outbound_Proxy_{$line}_ ua="na">{$outbound_host}</Outbound_Proxy_{$line}_>
          <Register_Expires_{$line}_ ua="ro">3600</Register_Expires_{$line}_>
          <Ans_Call_Without_Reg_{$line}_ ua="na">No</Ans_Call_Without_Reg_{$line}_>
          <Use_DNS_SRV_{$line}_ ua="rw">No</Use_DNS_SRV_{$line}_>
