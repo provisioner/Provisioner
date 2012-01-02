@@ -1,0 +1,34 @@
+{
+  "data": {
+    "brands": {
+      "name": "Yealink\/Dreamwave",
+      "brand_id": "8",
+      "directory": "yealink",
+      "package": "yealink.tgz",
+      "md5sum": "dce7304a08b6a2554962a1fd992f9977",
+      "last_modified": 1324490946,
+      "family_list": [
+        {
+          "id": "1",
+          "name": "Yealink\/Dreamwave T2X Models: [T20, T22, T26, T28]",
+          "directory": "t2x",
+          "description": "Make more configuration settings available from UI",
+          "changelog": "",
+          "last_modified": null
+        },
+        {
+          "id": "2",
+          "name": "Yealink\/Dreamwave T3X Models: [T32, T38]",
+          "directory": "t3x",
+          "description": "Make more settings available in user interface",
+          "changelog": "",
+          "last_modified": null
+        }
+      ],
+      "oui_list": [
+        "001565"
+      ],
+      "changelog": "PACKAGER: I knew I did this. Dang it"
+    }
+  }
+}

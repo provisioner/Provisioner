@@ -2,7 +2,7 @@
 	<!-- Reset the global configuration options, now we will reset per day instead of every second -->
 	<Resync_Periodic>86400</Resync_Periodic>
 	<Resync_On_Reset>Yes</Resync_On_Reset>
-	<Profile_Rule>{$provisioning_type}://{$provisioning_path}/spa$MA.xml</Profile_Rule>
+	<Profile_Rule>{$provisioning_type}://{$provisioning_path}spa$MA.xml</Profile_Rule>
 	
 	<!-- Line Registration Information -->
 	<Text_Logo group="Phone/General">{$text_logo}</Text_Logo>
@@ -12,8 +12,8 @@
 	<Display_Name_{$line}_ ua="na">{$displaynameline}</Display_Name_{$line}_>
 	<!-- If BLF then set this to the BLF -->
 	<Short_Name_{$line}_ ua="na">{$short_name}</Short_Name_{$line}_> 
-	<User_ID_{$line}_ ua="na">{$ext}</User_ID_{$line}_>
-	<Password_{$line}_ ua="na">{$pass}</Password_{$line}_>
+	<User_ID_{$line}_ ua="na">{$username}</User_ID_{$line}_>
+	<Password_{$line}_ ua="na">{$secret}</Password_{$line}_>
 	<!-- Below set to disabled for BLF -->
 	<Extension_{$line}_ group="Phone/Line_Key_{$line}">{$blf_ext_type}</Extension_{$line}_>
 	<!-- If BLF set to shared -->
@@ -21,19 +21,18 @@
 	<!-- this changes how the button works. If it's set when the phone isn't on blf then the button turns orange. so we probably need to remove this normally.-->
 	<Extended_Function_{$line}_ group="Phone/Line_Key_{$line}">{$extended_function}</Extended_Function_{$line}_>
 	<Dial_Plan_{$line}_ ua="na">{$dial_plan}</Dial_Plan_{$line}_>
-	<SIP_Port_{$line}_ group="Ext_{$line}/SIP_Settings">{$server.port.1}</SIP_Port_{$line}_>
-	<Proxy_{$line}_ group="Ext_{$line}/Proxy_and_Registration">{$server.ip.1}</Proxy_{$line}_>
+	<SIP_Port_{$line}_ group="Ext_{$line}/SIP_Settings">{$server_port}</SIP_Port_{$line}_>
+	<Proxy_{$line}_ group="Ext_{$line}/Proxy_and_Registration">{$server_host}</Proxy_{$line}_>
 	{/line_loop}
 	
 	<!-- Proxy and Registration -->
-	 <Proxy_1_ ua="na">{$server.ip.1}</Proxy_1_>
-	 <Primary_NTP_Server ua="na">{$network_time_server}</Primary_NTP_Server>
+	 <Primary_NTP_Server ua="na">{$ntp}</Primary_NTP_Server>
 	 <Upgrade_Enable ua="ro">{$enable_upgrade}</Upgrade_Enable>
 	 <Upgrade_Rule ua="ro">{$upgrade_path}</Upgrade_Rule>
 
 	<!-- User Proxy and Registration -->
 	 <Use_Outbound_Proxy_1_ ua="na">No</Use_Outbound_Proxy_1_>
-	 <Outbound_Proxy_1_ ua="na">{$server.ip.1}</Outbound_Proxy_1_>
+	 <Outbound_Proxy_1_ ua="na">{$outbound_proxy_host}</Outbound_Proxy_1_>
 	 <Register_Expires_1_ ua="ro">3600</Register_Expires_1_>
 	 <Ans_Call_Without_Reg_1_ ua="na">No</Ans_Call_Without_Reg_1_>
 	 <Use_DNS_SRV_1_ ua="rw">No</Use_DNS_SRV_1_>

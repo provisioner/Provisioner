@@ -2,6 +2,8 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+if(!isset($_REQUEST['model_demo'])) { die('must select model!'); }
+
 $brand = $_REQUEST['brand'];
 $product_model = explode('+',$_REQUEST['model_demo']);
 $mac = isset($_REQUEST['mac']) ? $_REQUEST['mac'] : '';
@@ -12,10 +14,8 @@ $proxyserver = isset($_REQUEST['proxyserver']) ? $_REQUEST['proxyserver'] : '';
 $product = $product_model[0];
 $model = $product_model[1];
 
-$json_data = json_decode(file_get_contents('http://www.provisioner.net/repo/xml2json.php?request=data&brand='.$brand.'&product='.$product.'&model='.urlencode($model)),true);
+$json_data = json_decode(file_get_contents('http://www.provisioner.net/beta/merge_data.php?request=data&brand='.$brand.'&product='.$product.'&model='.urlencode($model)),true);
 $html_array = generate_gui_html($json_data,$_REQUEST['regs']);
-
-
 ?>
 <form name="form1" method="post" action="process.php">
 <?php
@@ -24,7 +24,9 @@ foreach($html_array as $sections) {
 	foreach($sections['data'] as $html_els) {
 		switch($html_els['type']) {
 			case 'input':
-				echo $html_els['description'].': <input type="text" name="'.$html_els['key'].'" value="'.fix_single_array_keys($html_els['value'],TRUE).'"/><br />';
+				$html_els['value'] = ($html_els['key'] == 'option|mac') ? $mac : $html_els['value'];
+				echo $html_els['description'].': <input type="text" name="'.$html_els['key'].'" value="'.$html_els['value'].'"/><br />';
+				if($html_els['key'] == 'option|mac') { echo "<br />"; };
 				break;
 			case 'break':
 				echo '<br/>';
@@ -46,7 +48,8 @@ foreach($html_array as $sections) {
 				echo '<br />';
 				break;
 			case 'checkbox':
-				echo $html_els['description'].': <input type="checkbox" name="'.$html_els['key'].'" value="'.$html_els['key'].'"/><br />';
+				$checked = $html_els['value'] ? 'checked' : '';
+				echo $html_els['description'].': <input type="checkbox" name="'.$html_els['key'].'" '.$checked.'/><br />';
 				break;	
 			default:
 				break;
@@ -58,41 +61,10 @@ foreach($html_array as $sections) {
 <input type="hidden" id="product" name="product" value="<?php echo $product;?>" />
 <input type="hidden" id="model" name="model" value="<?php echo $model;?>" />
 <input type="hidden" id="mac" name="mac" value="<?php echo $mac;?>" />
-<input type="hidden" id="server" name="server" value="<?php echo $server;?>" />
 <input type="hidden" id="timezone" name="timezone" value="<?php echo $timezone;?>" />
-<input type="hidden" id="proxyserver" name="proxyserver" value="<?echo $proxyserver;?>">
 <input type="submit" value="Submit" />
 </form>
 <?php
-//echo generate_gui_html();
-
-/**
- * Function xml2array has a bad habit of returning blank xml values as empty arrays.
- * Also if the xml children only loops once then the array is put into a normal array (array[variable]).
- * However if it loops more than once then it is put into a counted array (array[0][variable])
- * We fix that issue here by returning blank values on empty arrays or always returning array[0]
- * @param array $array
- * @return mixed
- * @author Karl Anderson
- */
-function fix_single_array_keys($array,$variable=FALSE) {
-	if(is_array($array) && $variable) {
-		return $array[0];
-	}
-	
-    if (!is_array($array) && !$variable) {
-		$array_n[0] = $array;
-        return $array_n;
-    }
-
-    if((empty($array[0])) AND (!empty($array))) {
-        $array_n[0] = $array;
-        return($array_n);
-    }
-
-    return empty($array) ? '' : $array;
-}
-
 /**
  * Generates the Visual Display for the end user
  * @param <type> $cfg_data
@@ -101,45 +73,18 @@ function fix_single_array_keys($array,$variable=FALSE) {
  * @param <type> $user_cfg_data
  * @return <type>
  */
-function generate_gui_html($cfg_data,$max_lines=3) {
+function generate_gui_html($cfg_data,$max_lines=1) {
     //take the data out of the database and turn it back into an array for use
-
-	
 
     $template_variables_array = array();
     $group_count = 0;
     $variables_count = 0;
 
+	$globals = $cfg_data['data']['globals'];
+	//unset($cfg_data['data']['globals']);
 	for($a=1;$a <= $max_lines; $a++) {
 	    $template_variables_array[$group_count]['title'] = "Line Information for Line ".$a;
-
-		//Username (Auth Name)
-		$key = "line_static|".$a."|ext";
-		$items = array("variable" => "ext","default_value" => "", "description" => "Username/Auth [STATIC]", "type" => "input");
-	    $template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$items,$key);
-	    $template_variables_array[$group_count]['data'][$variables_count]['looping'] = TRUE;
-		$variables_count++;
-		//Secret
-		$key = "line_static|".$a."|secret";
-		$items = array("variable" => "secret","default_value" => "", "description" => "Secret/Password [STATIC]", "type" => "input");		
-	    $template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$items,$key);
-	    $template_variables_array[$group_count]['data'][$variables_count]['looping'] = TRUE;
-		$variables_count++;
-		//Display Name
-		$key = "line_static|".$a."|displayname";
-		$items = array("variable" => "displayname","default_value" => "", "description" => "Display Name [STATIC]", "type" => "input");
-	    $template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$items,$key);
-	    $template_variables_array[$group_count]['data'][$variables_count]['looping'] = TRUE;
-		$variables_count++;
-	
-		$key = "";
-		$items = array("type" => "break");
-	    $template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$items,$key);
-	    $template_variables_array[$group_count]['data'][$variables_count]['looping'] = TRUE;
-		$variables_count++;
-		$group_count++;
 	}
-
 	$line_count = 1;
     foreach($cfg_data['data'] as $key => $data) {
 		$template_variables_array[$group_count]['title'] = $key;
@@ -160,19 +105,24 @@ function generate_gui_html($cfg_data,$max_lines=3) {
 						break;
 					case "lineloop":
 						if($line_count <= $max_lines) {
-							$variables_count = 0;
 							foreach($data3 as $items) {
-								$a = $items['line_loop'];
+								$a = $items['line_count'];
 								if(isset($items['description'])) {
 									$items['description'] = str_replace('{$count}',$a,$items['description']);
 									$key = $type."|".$a."|".str_replace('$','',$items['variable']);
 								}
 								$items[$variables_count] = $items;
+								
+								if($items['variable'] == '$line_enabled') {
+									$items['default_value'] = TRUE;
+								}
 								$template_variables_array[$group_count]['data'][$variables_count] = generate_form_data($variables_count,$items,$key);
 								$template_variables_array[$group_count]['data'][$variables_count]['looping'] = TRUE;
 								$variables_count++;
 							}
 						}
+						$template_variables_array[$group_count]['data'][$variables_count]['type'] = 'break';
+						$variables_count++;
 						$line_count++;
 						break;
 					case "loop":
@@ -256,12 +206,6 @@ function generate_form_data ($i,$cfg_data,$key=NULL) {
             $template_variables_array['description'] = $cfg_data['description'];
             $template_variables_array['value'] = isset($cfg_data['default_value']) && !empty($cfg_data['default_value']) ? $cfg_data['default_value'] : '';
             $z = 0;
-            while($z < count($cfg_data['data'])) {
-                $template_variables_array['data'][$z]['key'] = $key;
-                $template_variables_array['data'][$z]['value'] = $cfg_data['data'][$z]['value'];
-                $template_variables_array['data'][$z]['description'] = $cfg_data['data'][$z]['text'];
-                $z++;
-            }
             break;
         case "file";
             $template_variables_array['type'] = "file";
@@ -322,11 +266,11 @@ function save_template($id, $custom, $variables) {
     $custom_cfg_data_ari = array();
 
     foreach($cfg_data as $data) {
-        $data = fix_single_array_keys($data['category']);
+        $data = $data['category'];
         foreach($data as $cats) {
-            $cats = fix_single_array_keys($cats['subcategory']);
+            $cats = $cats['subcategory'];
             foreach($cats as $subcats) {
-                $items = fix_single_array_keys($subcats['item']);
+                $items = $subcats['item'];
                 foreach($items as $config_options) {
                     if(array_key_exists('variable',$config_options)) {
                         $temping = str_replace('$','',$config_options['variable']);
@@ -448,128 +392,9 @@ function save_template($id, $custom, $variables) {
 
 }
 
-/**
- * xml2array() will convert the given XML text to an array in the XML structure.
- * @author http://www.php.net/manual/en/function.xml-parse.php#87920
- * @param sting $url the XML url (usually a local file)
- * @param boolean $get_attributes 1 or 0. If this is 1 the function will get the attributes as well as the tag values - this results in a different array structure in the return value.
- * @param string $priority Can be 'tag' or 'attribute'. This will change the way the resulting array sturcture. For 'tag', the tags are given more importance.
- * @return array The parsed XML in an array form.
- */
-function xml2array($url, $get_attributes = 1, $priority = 'tag') {
-    $contents = "";
-    if (!function_exists('xml_parser_create')) {
-        return array ();
-    }
-    $parser = xml_parser_create('');
-    if(!($fp = @ fopen($url, 'rb'))) {
-        return array ();
-    }
-    while(!feof($fp)) {
-        $contents .= fread($fp, 8192);
-    }
-    fclose($fp);
-    xml_parser_set_option($parser, XML_OPTION_TARGET_ENCODING, "UTF-8");
-    xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, 0);
-    xml_parser_set_option($parser, XML_OPTION_SKIP_WHITE, 1);
-    xml_parse_into_struct($parser, trim($contents), $xml_values);
-    xml_parser_free($parser);
-    if(!$xml_values) {
-        return; //Hmm...
-    }
-    $xml_array = array ();
-    $parents = array ();
-    $opened_tags = array ();
-    $arr = array ();
-    $current = & $xml_array;
-    $repeated_tag_index = array ();
-    foreach ($xml_values as $data) {
-        unset ($attributes, $value);
-        extract($data);
-        $result = array ();
-        $attributes_data = array ();
-        if (isset ($value)) {
-            if($priority == 'tag') {
-                $result = $value;
-            }
-            else {
-                $result['value'] = $value;
-            }
-        }
-        if(isset($attributes) and $get_attributes) {
-            foreach($attributes as $attr => $val) {
-                if($priority == 'tag') {
-                    $attributes_data[$attr] = $val;
-                }
-                else {
-                    $result['attr'][$attr] = $val; //Set all the attributes in a array called 'attr'
-                }
-            }
-        }
-        if ($type == "open") {
-            $parent[$level -1] = & $current;
-            if(!is_array($current) or (!in_array($tag, array_keys($current)))) {
-                $current[$tag] = $result;
-                if($attributes_data) {
-                    $current[$tag . '_attr'] = $attributes_data;
-                }
-                $repeated_tag_index[$tag . '_' . $level] = 1;
-                $current = & $current[$tag];
-            }
-            else {
-                if (isset ($current[$tag][0])) {
-                    $current[$tag][$repeated_tag_index[$tag . '_' . $level]] = $result;
-                    $repeated_tag_index[$tag . '_' . $level]++;
-                }
-                else {
-                    $current[$tag] = array($current[$tag],$result);
-                    $repeated_tag_index[$tag . '_' . $level] = 2;
-                    if(isset($current[$tag . '_attr'])) {
-                        $current[$tag]['0_attr'] = $current[$tag . '_attr'];
-                        unset ($current[$tag . '_attr']);
-                    }
-                }
-                $last_item_index = $repeated_tag_index[$tag . '_' . $level] - 1;
-                $current = & $current[$tag][$last_item_index];
-            }
-        }
-        else if($type == "complete") {
-            if(!isset ($current[$tag])) {
-                $current[$tag] = $result;
-                $repeated_tag_index[$tag . '_' . $level] = 1;
-                if($priority == 'tag' and $attributes_data) {
-                    $current[$tag . '_attr'] = $attributes_data;
-                }
-            }
-            else {
-                if (isset ($current[$tag][0]) and is_array($current[$tag])) {
-                    $current[$tag][$repeated_tag_index[$tag . '_' . $level]] = $result;
-                    if ($priority == 'tag' and $get_attributes and $attributes_data) {
-                        $current[$tag][$repeated_tag_index[$tag . '_' . $level] . '_attr'] = $attributes_data;
-                    }
-                    $repeated_tag_index[$tag . '_' . $level]++;
-                }
-                else {
-                    $current[$tag] = array($current[$tag],$result);
-                    $repeated_tag_index[$tag . '_' . $level] = 1;
-                    if ($priority == 'tag' and $get_attributes) {
-                        if (isset ($current[$tag . '_attr'])) {
-                            $current[$tag]['0_attr'] = $current[$tag . '_attr'];
-                            unset ($current[$tag . '_attr']);
-                        }
-                        if ($attributes_data) {
-                            $current[$tag][$repeated_tag_index[$tag . '_' . $level] . '_attr'] = $attributes_data;
-                        }
-                    }
-                    $repeated_tag_index[$tag . '_' . $level]++; //0 and 1 index is already taken
-                }
-            }
-        }
-        else if($type == 'close') {
-            $current = & $parent[$level -1];
-        }
-    }
-    return ($xml_array);
+function file2json($file) {
+    $data = file_get_contents($file);
+    return(json_decode($data, TRUE));
 }
 
 /**

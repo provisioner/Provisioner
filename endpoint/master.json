@@ -1,0 +1,41 @@
+{
+  "data": {
+    "last_modified": 1325200226,
+    "package": "provisioner_net.tgz",
+    "brands": [
+      {
+        "name": "Aastra",
+        "directory": "aastra"
+      },
+      {
+        "name": "Cisco\/Linksys",
+        "directory": "cisco"
+      },
+      {
+        "name": "CloudTC",
+        "directory": "cloudtc"
+      },
+      {
+        "name": "Grandstream",
+        "directory": "grandstream"
+      },
+      {
+        "name": "Mitel",
+        "directory": "mitel"
+      },
+      {
+        "name": "Polycom",
+        "directory": "polycom"
+      },
+      {
+        "name": "Snom",
+        "directory": "snom"
+      },
+      {
+        "name": "Yealink\/Dreamwave",
+        "directory": "yealink"
+      }
+    ],
+    "version": "3"
+  }
+}

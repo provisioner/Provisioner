@@ -1,0 +1,34 @@
+{
+  "data": {
+    "brands": {
+      "name": "Snom",
+      "directory": "snom",
+      "brand_id": "6",
+      "package": "snom.tgz",
+      "md5sum": "96bac9ed75da3c68d0e613147f3c80e5",
+      "last_modified": 1325200226,
+      "family_list": [
+        {
+          "id": "1",
+          "name": "Snom Models [300, 320, 360, 370, 820, M3]",
+          "directory": "3xx820m3",
+          "description": "Server + Password Settings, htm File Fixes",
+          "changelog": "",
+          "last_modified": null
+        },
+        {
+          "id": "2",
+          "name": "Snom Models [870]",
+          "directory": "8xx",
+          "description": "Server + Password Settings, htm File Fixes",
+          "changelog": "",
+          "last_modified": null
+        }
+      ],
+      "oui_list": [
+        "000413"
+      ],
+      "changelog": "PACKAGER: Update endpoint\/polycom\/spom\/$mac.cfg"
+    }
+  }
+}

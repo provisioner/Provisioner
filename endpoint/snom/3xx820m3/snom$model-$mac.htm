@@ -3,12 +3,12 @@
 	<phone-settings>
 		{line_loop}
 		<user_active idx="{$line}" perm="">on</user_active>
-		<user_host idx="{$line}" perm="">{$user_host}</user_host>
-		<user_outbound idx="{$line}" perm="">{$user_outbound}</user_outbound>	
-		<user_realname idx="{$line}" perm="">{$realname}</user_realname>
-		<user_name idx="{$line}" perm="">{$ext}</user_name>
-		<user_pname idx="{$line}" perm="">{$ext}</user_pname>
-		<user_mailbox idx="{$line}" perm="">{$ext}</user_mailbox>
+		<user_host idx="{$line}" perm="">{$server_host}</user_host>
+		<user_outbound idx="{$line}" perm="">{$outbound_host}</user_outbound>	
+		<user_realname idx="{$line}" perm="">{$displayname}</user_realname>
+		<user_name idx="{$line}" perm="">{$username}</user_name>
+		<user_pname idx="{$line}" perm="">{$username}</user_pname>
+		<user_mailbox idx="{$line}" perm="">{$username}</user_mailbox>
 		<user_pass idx="{$line}" perm="">{$secret}</user_pass>
 		<user_idle_text idx="{$line}" perm="">{$idle_text}</user_idle_text>
 		<user_dtmf_info idx="{$line}" perm="">{$dtmf}</user_dtmf_info>
@@ -27,7 +27,7 @@
 		<firmware_status perm="R">{$provisioning_type}://{$provisioning_path}/{$mac}_firmware.xml</firmware_status>
 		<update_policy perm="">auto_update</update_policy>
 		<timezone perm="R"></timezone>
-		<utc_offset perm="R">{$gmtoff}</utc_offset>
+		<utc_offset perm="R">{$timezone_gmtoffset}</utc_offset>
 		<dst perm="R">{$dstrule}</dst>
 		<tone_scheme perm="R">{$tone_scheme}</tone_scheme>
 		<date_us_format>{$date_us_format}</date_us_format>
