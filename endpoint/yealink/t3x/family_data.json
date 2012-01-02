@@ -1,0 +1,44 @@
+{
+  "data":{
+    "name":"Yealink\/Dreamwave T3X Models: [T32, T38]",
+    "id":"2",
+    "directory":"t3x",
+    "firmware_ver":"",
+    "firmware_pkg":"NULL",
+    "firmware_md5sum":"",
+    "description":"Make more settings available in user interface",
+    "configuration_files":"y0000000000$suffix.cfg,$mac.cfg",
+    "changelog":"",
+    "model_list":[
+      {
+        "model":"T32",
+        "lines":"2",
+        "id":"1",
+        "template_data":[
+          "line_options_22.json",
+          "template_data.json",
+          "line_keys_22.json",
+          "soft_keys_22.json",
+          "hard_keys_22.json",
+          "dialnow_22.json",
+          "ext38.json"
+        ]
+      },
+      {
+        "model":"T38",
+        "lines":"6",
+        "id":"2",
+        "template_data":[
+          "line_options_22.json",
+          "template_data.json",
+          "line_keys_28.json",
+          "soft_keys_22.json",
+          "hard_keys_22.json",
+          "memory_keys_22.json",
+          "dialnow_22.json",
+          "ext38.json"
+        ]
+      }
+    ]
+  }
+}

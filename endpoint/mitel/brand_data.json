@@ -1,0 +1,26 @@
+{
+  "data": {
+    "brands": {
+      "name": "Mitel",
+      "brand_id": "9",
+      "directory": "mitel",
+      "package": "mitel.tgz",
+      "md5sum": "6a73b8b72a4388ab51b6cf2e598570d5",
+      "last_modified": 1324487650,
+      "family_list": [
+        {
+          "id": "1",
+          "name": "Mitel 5xxx Models: [5304, 5312, 5320, 5324, 5330, 5340, 5360]",
+          "directory": "53xx",
+          "description": "Variables Issues Solved (Not writing accounts + passwords in files)",
+          "changelog": "",
+          "last_modified": null
+        }
+      ],
+      "oui_list": [
+        "08000F"
+      ],
+      "changelog": "PACKAGER: I knew I did this. Dang it"
+    }
+  }
+}

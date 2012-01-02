@@ -1,0 +1,33 @@
+{
+  "data":{
+    "name":"HandyTone [HT486 REV.2, HT286 REV.3]",
+    "id":"3",
+    "directory":"htx86",
+    "firmware_ver":"",
+    "firmware_pkg":[
+      
+    ],
+    "description":"",
+    "configuration_files":"$mac.cfg",
+    "changelog":"",
+    "model_list":[
+      {
+        "model":"HT486",
+        "lines":"1",
+        "id":"1",
+        "template_data":[
+          "template_data.json"
+        ]
+      },
+      {
+        "model":"HT286",
+        "lines":"2",
+        "id":"2",
+        "template_data":[
+          "template_data.json"
+        ]
+      }
+    ],
+    "firmware_md5sum":""
+  }
+}
