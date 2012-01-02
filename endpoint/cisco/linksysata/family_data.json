@@ -99,6 +99,15 @@
                     "template_data.json",
                     "keys.json"
                 ]
+            },
+            {
+                "model": "SPA112",
+                "lines": "2",
+                "id": "11",
+                "template_data": [
+                    "template_data.json",
+                    "keys.json"
+                ]
             }
         ]
     }
