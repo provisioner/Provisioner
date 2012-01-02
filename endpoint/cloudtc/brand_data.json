@@ -5,8 +5,8 @@
       "brand_id": "10",
       "directory": "cloudtc",
       "package": "cloudtc.tgz",
-      "md5sum": "496dfef52bedad253831f74b95747984",
-      "last_modified": 1324506768,
+      "md5sum": "24f39c3b9ffd6aefe6e9a5c1fc176ab3",
+      "last_modified": 1325536289,
       "family_list": [
         {
           "id": "1",
@@ -20,7 +20,7 @@
       "oui_list": [
         "000000"
       ],
-      "changelog": "PACKAGER: I knew I did this. Dang it"
+      "changelog": "PACKAGER: some changes and fixes"
     }
   }
 }
