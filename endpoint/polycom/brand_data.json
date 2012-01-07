@@ -5,8 +5,8 @@
       "directory": "polycom",
       "brand_id": "4",
       "package": "polycom.tgz",
-      "md5sum": "8e57284c13ecc3798aeeb8d474517aa2",
-      "last_modified": 1325536391,
+      "md5sum": "d96764a8ca3abff09809a0ebc53a9309",
+      "last_modified": 1325964260,
       "family_list": [
         {
           "id": "4",
@@ -61,7 +61,7 @@
         "0004F2",
         "00907A"
       ],
-      "changelog": "PACKAGER: some changes and fixes"
+      "changelog": "PACKAGER: Removing useless lines in Polycoms. These lines are only needed in the 0000000.cfg file."
     }
   }
 }
