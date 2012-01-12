@@ -6,213 +6,61 @@
  * @author Darren Schreiber & Andrew Nagy & Jort Bloem
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
+ *
  */
 abstract class endpoint_base {
 
     public static $modules_path = "endpoint/";
-
-    public $brand_name = "undefined";
-    public $family_line = "undefined";
-
-    public $config_files_override;
-
-    public $mac;            // Device mac address
-    public $model;			// Model of phone, must match the model name inside of the famil_data.xml file in each family folder.
-    public $timezone;       // Global timezone var
+    public static $root_dir = "";  //need to define the root directory for the location of the library (/var/www/html/)
+    
+    public $brand_name = "undefined";   //Brand Name
+    public $family_line = "undefined";  //Family Line
+    public $model = "undefined";        // Model of phone, must match the model name inside of the famil_data.json file in each family folder.
+    public $config_files_override;  //Array list of config files to override, data being the contents, key being the name of said file
+    public $settings = array();
+    public $debug = FALSE;  //Enable or disable debug
+    public $debug_return = array(); //Debug fill. I question if this is needed, or perhaps remove above line, seems redudant to have both 
+    public $mac;    // Device mac address, should this be in settings?
+    public $timezone = array();       // Global timezone array
     public $DateTimeZone;   // timezone, as a DateTimezone object, much more flexible than just an offset and name.
-    public $server;         // Contains an array of valid server IPs & ports, in case phones support backups
-    public $proxy=array();	// Contains an array of valid proxy IPs & ports
-    public $ntp;            //network time protocol server
-    public $daylight_savings = FALSE;	//Daylight savings time on or off.
-    public $lines;          // Individual line settings
-    public $options;        // Misc. options for phones
-    public $root_dir = "";		//need to define the root directory for the location of the library (/var/www/html/)
-    public $engine;			//Can be asterisk or freeswitch. This is for the reboot commands.
-    public $engine_location = "";	//Location of the executable for said engine above
-    public $system;			//unix or windows or bsd. etc
-    public $directory_structure = array();	//Directory structure to create as an array
-    public $protected_files = array();	//array list of file to NOT over-write on every config file build. They are protected.
-    public $copy_files = array();		//array of files or directories to copy. Directories will be recursive
-    public $en_htmlspecialchars = TRUE;	//Enable or Disable PHP's htmlspecialchars() function for variables
-    public $server_type = 'file';		//Can be file or dynamic
-    public $provisioning_type = 'tftp';		//can be tftp,http,ftp ??
-    public $enable_encryption = FALSE;		//Enable file encryption
-    public $provisioning_path;                  //Path to provisioner, used in http/https/ftp/tftp
-    public $dynamic_mapping;		// e.g. ARRAY('thisfile.htm'=>'# Intentionally left blank','thatfile$mac.htm'=>array('thisfile.htm','thatfile$mac.htm'));
-									// files not in this array are passed through untouched. Strings are returned as is. For arrays, generate_file is called for each entry, and they are combined.
-    public $config_file_replacements=array();
-
-    // Note: these can be override by descendant classes.
-    private $server_type_list=array('file','dynamic');  // acceptable values for $server_type
-    private $default_server_type='file';		// if server_type is invalid
-    private $provisioning_type_list=array('tftp','http','ftp'); //acceptable values for $provisioning_type
-    private $default_provisioning_type='tftp';	// if provisioning_type is invalid
-
+    public $engine;   //Can be asterisk or freeswitch. This is for the reboot commands.
+    public $engine_location = ""; //Location of the executable for said engine above
+    public $system;   //unix or windows or bsd. etc
+    public $directory_structure = array(); //Directory structure to create as an array
+    public $protected_files = array(); //array list of file to NOT over-write on every config file build. They are protected.
+    public $copy_files = array();  //array of files or directories to copy. Directories will be recursive
+    
+    protected $en_htmlspecialchars = TRUE; //Enable or Disable PHP's htmlspecialchars() function for variables
+    protected $server_type = 'file';  //Can be file or dynamic
+    protected $provisioning_type = 'tftp';  //can be tftp,http,ftp ??
+    protected $enable_encryption = FALSE;  //Enable file encryption
+    protected $provisioning_path;                  //Path to provisioner, used in http/https/ftp/tftp
+    protected $dynamic_mapping;  // e.g. ARRAY('thisfile.htm'=>'# Intentionally left blank','thatfile$mac.htm'=>array('thisfile.htm','thatfile$mac.htm'));
+    // files not in this array are passed through untouched. Strings are returned as is. For arrays, generate_file is called for each entry, and they are combined.
+    protected $config_file_replacements = array();
+    protected $config_files = array();
+    protected $brand_data;    //Brand Data file in array form
+    protected $family_data;   //family data file in array form
+    protected $model_data;    //model data from family data in array form
+    protected $template_data; //Merged template files for specified model in array form
+    protected $max_lines = array();   //Max lines from said model.
+    
+    private $server_type_list = array('file', 'dynamic');  // acceptable values for $server_type
+    private $default_server_type = 'file';  // if server_type is invalid
+    private $provisioning_type_list = array('tftp', 'http', 'ftp'); //acceptable values for $provisioning_type
+    private $default_provisioning_type = 'tftp'; // if provisioning_type is invalid
+    
+    private $initialized = FALSE;   //Initialized data or not.
 
     function __construct() {
-		$this->root_dir=dirname(dirname(__FILE__))."/";
+        self::$root_dir = dirname(dirname(__FILE__)) . "/";
+        $this->root_dir = dirname(dirname(__FILE__)) . "/";
     }
 
-    public static function get_modules_path() {
-        return self::$modules_path;
-    }
-
-    public static function set_modules_path($path) {
-        self::$modules_path = $path;
-    }
-
-    //Initialize all child functions
-    function reboot() {
-
-    }
+    /*     * *PUBLIC FUNCTIONS** */
+    /* These can be called from outside the class */
 
     /**
-     * This is hooked into the middle of the line loop function to allow parsing of variables without having to create a sub foreach or for statement
-     * @param String $line The Line number.
-     */
-    function parse_lines_hook($line,$line_total) {
-
-    }
-
-    //Set all default values here and fix errors before they hit us in the ass later on.
-    function data_integrity() {
-	if (!in_array($this->server_type,$this->server_type_list)) {
-		$this->server_type=$this->default_server_type;
-	}
-	if (!in_array($this->provisioning_type,$this->provisioning_type_list)) {
-		$this->provisioning_type=$this->default_provisioning_type;
-	}
-    }
-
-    function generate_info($file_contents, $brand_ts, $family_ts) {
-        if($this->server_type == "file") {
-            $file_contents = str_replace('{$provisioner_generated_timestamp}', date('l jS \of F Y h:i:s A'), $file_contents);
-        } else {
-            $file_contents = str_replace('{$provisioner_generated_timestamp}', 'N/A (Prevents reboot loops if set to static value)', $file_contents);
-        }
-        $file_contents = str_replace('{$provisioner_processor_info}', $this->processor_info, $file_contents);
-        $file_contents = str_replace('{$provisioner_timestamp}', $this->processor_info, $file_contents);
-        $file_contents = str_replace('{$provisioner_brand_timestamp}', $brand_ts ." (".date('l jS \of F Y h:i:s A', $brand_ts).")", $file_contents);
-        $file_contents = str_replace('{$provisioner_family_timestamp}', $family_ts." (".date('l jS \of F Y h:i:s A', $family_ts).")", $file_contents);
-        return($file_contents);
-    }
-
-    function setup_ntp() {
-        if(!isset($this->ntp)) {
-            $this->ntp = $this->server[1]['ip'];
-        }
-    }
-
-    /**
-     * NOTE: Wherever possible, try $this->DateTimeZone->getOffset(new DateTime) FIRST, which takes Daylight savings into account, too.
-     * Turns a string like PST-7 or UTC+1 into a GMT offset in seconds
-     * @param Send this a timezone like PST-7
-     * @return Offset from GMT, in seconds (eg. -25200, =3600*-7)
-	 * @author Jort Bloem
-     */
-    function get_gmtoffset($timezone) {
-		# Divide the timezone up into it's 3 interesting parts; the sign (+/-), hours, and if they exist, minutes.
-		# note that matches[0] is the entire matched string, so these 3 parts are $matches[1], [2] and [3].
-		preg_match('/([\-\+])([\d]+):?(\d*)/',$timezone,$matches);
-		# $matches is now an array; $matches[1] is the sign (+ or -); $matches[2] is number of hours, $matches[3] is minutes (or empty)
-		return intval($matches[1]."1")*($matches[2]*3600+$matches[3]*60);
-    }
-
-    /**
-     * Turns an integer like -3600 (seconds) into a GMT offset like GMT-1
-     * @param Time offset in seconds, like 3600 or -25200 or -27000
-     * @return timezone (eg. GMT+1 or GMT-7 or GMT-7:30)
-	 * @author Jort Bloem
-     */
-    function get_timezone($offset) {
-		if ($offset<0) {
-			$result="GMT-";
-			$offset=abs($offset);
-		} else {
-			$result="GMT+";
-		}
-		$result.=(int)($offset/3600);
-		if ($result%3600>0) {
-			$result.=":".(($offset%3600)/60);
-		}
-		return $result;
-    }
-
-    /**
-     * Setup and fill in timezone data
-	 * @author Jort Bloem
-     */
-    function setup_tz() {
-		if (isset($this->DateTimeZone)) {
-			$this->timezone=array(
-				'gmtoffset'=>$this->DateTimeZone->getOffset(new DateTime),
-				'timezone' =>$this->get_timezone($this->DateTimeZone->getOffset(new DateTime))
-			);
-		} elseif(is_array($this->timezone)) {
-			#Do nothing
-		} elseif (is_numeric($this->timezone)) {
-			$this->timezone=array(
-				'gmtoffset'=>$this->timezone,
-				'timezone'=>$this->get_timezone($this->timezone),
-			);
-	        } else {
-			$this->timezone=array(
-				'gmtoffset'=>$this->get_gmtoffset($this->timezone),
-				'timezone'=>$this->timezone,
-			);
-	    }
-    }
-
-    /**
-     * Override this to do any configuration testing/sorting/preparing
-     * Dont forget to call parent::prepare_for_generateconfig if you
-     * do override it.
-	 * @author Jort Bloem
-    **/
-    function prepare_for_generateconfig() {
-        $this->setup_tz();
-        $this->setup_ntp();
-    	$this->data_integrity();
-	if (!isset($this->provisioning_path)) {
-		$this->provisioning_path = $this->server[1]['ip'];
-	}
-	if (!isset($this->vlan_id)) {
-		$this->vlan_id=0;
-	}
-	if (!isset($this->vlan_qos)) {
-		$this->vlan_qos=5;
-	}
-
-	if (!in_array('$mac',$this->config_file_replacements)) {
-		$this->config_file_replacements['$mac']=$this->mac;
-	}
-	if (!in_array('$model',$this->config_file_replacements)) {
-		$this->config_file_replacements['$model']=$this->model;
-	}
-    }
-
-    /**
-     * This generates a list of config files, and the files on which they
-     * are based.
-	 * @author Jort Bloem
-     * @return array ($outputfilename=>$sourcefilename,...)
-     *		both filenames are strings, sourcefilename may occur more 
-     *          than once.
-     * override this, if you feel so inclined - you probably want to call
-     *    $result=parent::config_files() first, then modify $result as you like.
-     *
-     * You should call prepare_for_generateconfig() before calling this.
-    **/
-    function config_files() {
-        $family_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml",1,'tag',array('model_list'));
-	foreach (explode(",",$family_data['data']['configuration_files']) AS $configfile) {
-		$outputfile=str_replace(array_keys($this->config_file_replacements),array_values($this->config_file_replacements),$configfile);
-		$result[$outputfile]=$configfile;
-	}
-	return $result;
-    }
-
-    /** 
      * Generate one config file. Most settings are taken from $this.
      * This is a good thing to overide.
      * if you do, you can do a first cut by calling 
@@ -223,53 +71,105 @@ abstract class endpoint_base {
      *    FINAL output file, not the piece that we're generating. In general,
      *    $filename is probably unlikely to be used.
      *
-     * You should call prepare_for_generateconfig() before calling this.
-	 * @author Jort Bloem
+     * @author Jort Bloem
      */
-    function generate_file($filename,$extradata,$ignoredynamicmapping=FALSE) {
-	# Note: server_type='dynamic' is ignored if ignoredynamicmapping, if there is no $this->dynamic_mapping, or that is not an array.
-	if (($ignoredynamicmapping) || ($this->server_type!='dynamic') || (!is_array($this->dynamic_mapping)) || (!array_key_exists($extradata,$this->dynamic_mapping))) {
-		$data=$this->open_config_file($extradata);
-		return $this->parse_config_file($data);
-	} elseif (!is_array($this->dynamic_mapping[$extradata])) {
-		return $this->dynamic_mapping[$extradata];
-	} else {
-		$data="";
-		foreach ($this->dynamic_mapping[$extradata] AS $recurseextradata) {
-			$data.=$this->generate_file($filename,$recurseextradata,TRUE);
-		}
-		return $data;
-	}
+    public function generate_file($filename, $extradata, $ignoredynamicmapping=FALSE, $prepare=FALSE) {
+        if ($prepare) {
+            $this->prepare_for_generateconfig();
+        }
+        # Note: server_type='dynamic' is ignored if ignoredynamicmapping, if there is no $this->dynamic_mapping, or that is not an array.
+        if (($ignoredynamicmapping) || ($this->server_type != 'dynamic') || (!is_array($this->dynamic_mapping)) || (!array_key_exists($extradata, $this->dynamic_mapping))) {
+            $data = $this->open_config_file($extradata);
+            return $this->parse_config_file($data);
+        } elseif (!is_array($this->dynamic_mapping[$extradata])) {
+            return $this->dynamic_mapping[$extradata];
+        } else {
+            $data = "";
+            foreach ($this->dynamic_mapping[$extradata] AS $recurseextradata) {
+                $data.=$this->generate_file($filename, $recurseextradata, TRUE);
+            }
+            return $data;
+        }
     }
 
     /**
      * generate_config() - this shouldn't need to be overridden.
-	 * @author Jort Bloem
+     * @author Jort Bloem
      */
-    function generate_config() {
-	$this->prepare_for_generateconfig();
-	$output=array();
-	foreach ($this->config_files() AS $filename=>$sourcefile) {
-		$output[$filename]=$this->generate_file($filename,$sourcefile);
-	}
-	return $output;
+    public function generate_all_files() {
+        $this->prepare_for_generateconfig();
+        $output = array();
+        foreach ($this->config_files() AS $filename => $sourcefile) {
+            $output[$filename] = $this->generate_file($filename, $sourcefile, FALSE, FALSE);
+        }
+        return $output;
     }
 
     /**
-     * $type is either gmt or tz
-	 * @author Jort Bloem
+     * 
      */
-    function setup_timezone($timezone,$type) {
-        if($type == 'GMT') {
-            return $this->timezone['gmtoffset'];
-        } elseif($type == 'TZ') {
-            return $this->timezone['timezone'];
-        } else {
-            return FALSE;
+    public function reboot() {
+        
+    }
+
+    public function __toString() {
+        
+    }
+
+    public function __invoke($x) {
+        
+    }
+
+    /*     * *INTERNAL FUNCTIONS** */
+    /* These can only be called from within the parent or child classes */
+
+    /*     * *ALL HOOKS BELOW** */
+
+    /**
+     * This is hooked into the middle of the line loop function to allow parsing of variables without having to create a sub foreach or for statement
+     * @param String $line The Line number.
+     */
+    protected function parse_lines_hook($line_data, $line_total) {
+        return($line_data);
+    }
+
+    /**
+     * This generates a list of config files, and the files on which they
+     * are based.
+     * @author Jort Bloem
+     * @return array ($outputfilename=>$sourcefilename,...)
+     * 		both filenames are strings, sourcefilename may occur more 
+     *          than once.
+     * override this, if you feel so inclined - you probably want to call
+     *    $result=parent::config_files() first, then modify $result as you like.
+     *
+     * You should call prepare_for_generateconfig() before calling this.
+     * */
+    protected function config_files() {
+        foreach (explode(",", $this->family_data['data']['configuration_files']) AS $configfile) {
+            $outputfile = str_replace(array_keys($this->config_file_replacements), array_values($this->config_file_replacements), $configfile);
+            $result[$outputfile] = $configfile;
+        }
+        return $result;
+    }
+
+    /**
+     * Override this to do any configuration testing/sorting/preparing
+     * Dont forget to call parent::prepare_for_generateconfig if you
+     * do override it.
+     * @author Jort Bloem
+     * */
+    protected function prepare_for_generateconfig() {
+        $this->initialize();
+        if (!in_array('$mac', $this->config_file_replacements)) {
+            $this->config_file_replacements['$mac'] = $this->mac;
+        }
+        if (!in_array('$model', $this->config_file_replacements)) {
+            $this->config_file_replacements['$model'] = $this->model;
         }
     }
 
-    function setup_languages() {
+    private function setup_languages() {
         return $languages;
     }
 
@@ -283,11 +183,10 @@ abstract class endpoint_base {
      * </code>
      * @author Andrew Nagy
      */
-    function open_config_file($filename) {
-        $this->data_integrity();
+    private function open_config_file($filename) {
         //if there is no configuration file over ridding the default then load up $contents with the file's information, where $key is the name of the default configuration file
         if (!isset($this->config_files_override[$filename])) {
-            return file_get_contents($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $filename);
+            return file_get_contents(self::$root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $filename);
         } else {
             return($this->config_files_override[$filename]);
         }
@@ -303,52 +202,15 @@ abstract class endpoint_base {
      * @return string Full Contents of the configuration file (After Parsing)
      * @author Andrew Nagy
      */
-    function parse_config_file($file_contents, $keep_unknown=FALSE, $lines=NULL, $specific_line='ALL') {
-        $family_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml",1,'tag',array('model_list'));
-        $brand_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/brand_data.xml");
-
-        //Get number of lines for this model from the family_data.xml file
-        if (is_array($family_data['data']['model_list'])) {
-            $key = $this->arraysearchrecursive($this->model, $family_data, "model");
-            $line_total = $family_data['data']['model_list'][$key[2]]['lines'];
-        } else {
-            $line_total = $family_data['data']['model_list']['lines'];
-        }
-
-
-        if (($line_total <= 0) AND (!isset($lines))) {
-            //There is no max number of lines for this phone. We default to 1 to be safe
-            $line_total = 1;
-        } elseif ((isset($lines)) AND ($lines > 0)) {
-            $line_total = $lines;
-        }
-
-        $this->setup_tz();
-        $this->setup_ntp();
-
-        if(empty($this->engine_location)) {
-			if($this->engine == 'asterisk') {
-				$this->engine_location = 'asterisk';
-			} elseif($this->engine == 'freeswitch') {
-				$this->engine_location = 'freeswitch';
-			}
-        }
-
-        $this->timezone['gmtoffset'] = $this->setup_timezone($this->timezone['gmtoffset'], 'GMT');
-        $this->timezone['timezone'] = $this->setup_timezone($this->timezone['timezone'], 'TZ');
-
-        if (array_key_exists('0', $brand_data['data']['brands']['family_list']['family'])) {
-            $key = $this->arraysearchrecursive($family_data['data']['directory'], $brand_data['data']['brands']['family_list'], "directory");
-            $brand_mod = $brand_data['data']['brands']['family_list']['family'][$key[1]]['last_modified'];
-        } else {
-            $brand_mod = $brand_data['data']['brands']['family_list']['family']['last_modified'];
-        }
-
-        $file_contents = $this->generate_info($file_contents, $brand_data['data']['brands']['last_modified'], $brand_mod);
+    private function parse_config_file($file_contents) {
+        $file_contents = $this->generate_info($file_contents);
 
         $file_contents = $this->parse_conditional_model($file_contents);
-        $file_contents = $this->parse_lines($line_total, $file_contents, $keep_unknown, $specific_line);
-        $file_contents = $this->parse_loops($line_total,$file_contents, $keep_unknown, $specific_line);
+
+        $file_contents = $this->parse_lines($file_contents, FALSE);
+        $file_contents = $this->parse_loops($file_contents, FALSE);
+
+        $file_contents = $this->replace_static_variables($file_contents);
         $file_contents = $this->parse_config_values($file_contents);
 
         return $file_contents;
@@ -361,12 +223,12 @@ abstract class endpoint_base {
      * @example {if model="6757*"}{/if}
      * @author Andrew Nagy
      */
-    function parse_conditional_model($file_contents) {
+    private function parse_conditional_model($file_contents) {
         $pattern = "/{if model=\"(.*?)\"}(.*?){\/if}/si";
         while (preg_match($pattern, $file_contents, $matches)) {
             //This is exactly like the fnmatch function except it will work on POSIX compliant systems
             //http://php.net/manual/en/function.fnmatch.php
-            if(preg_match("#^".strtr(preg_quote($matches[1], '#'), array('\*' => '.*', '\?' => '.', '\[' => '[', '\]' => ']'))."$#i", $this->model)) {
+            if (preg_match("#^" . strtr(preg_quote($matches[1], '#'), array('\*' => '.*', '\?' => '.', '\[' => '[', '\]' => ']')) . "$#i", $this->model)) {
                 $file_contents = preg_replace($pattern, $matches[2], $file_contents, 1);
             } else {
                 $file_contents = preg_replace($pattern, "", $file_contents, 1);
@@ -385,26 +247,41 @@ abstract class endpoint_base {
      * @example {loop_keys}{/loop_keys}
      * @author Andrew Nagy
      */
-    function parse_loops($line_total, $file_contents, $keep_unknown=FALSE, $specific_line='ALL') {
+    private function parse_loops($file_contents, $keep_unknown=FALSE) {
         //Find line looping data betwen {line_loop}{/line_loop}
         $pattern = "/{loop_(.*?)}(.*?){\/loop_(.*?)}/si";
         while (preg_match($pattern, $file_contents, $matches)) {
-            if(isset($this->options[$matches[3]])) {
-                $count = count($this->options[$matches[3]]);
+            $loop_name = $matches[3];
+            $loop_contents = $matches[2];
+            //TODO: This should be $this->settings['loop'][$loop_name]
+            if (isset($this->settings['loops'][$loop_name])) {
+                $count = count($this->settings['loops'][$loop_name]);
+                $this->debug("Replacing loop '" . $loop_name . "' " . $count . " times");
                 $parsed = "";
-                if($count) {
-                    foreach($this->options[$matches[3]] as $number => $data) {
+                if ($count) {
+                    foreach ($this->settings['loops'][$loop_name] as $number => $data) {
                         $data['number'] = $number;
-						$data['count'] = $number;
-                        $parsed .= $this->parse_config_values($matches[2], FALSE, "GLOBAL", $data);
+                        $data['count'] = $number;
+                        $parsed .= $this->parse_config_values($this->replace_static_variables($loop_contents), $data, FALSE);
                     }
                 }
                 $file_contents = preg_replace($pattern, $parsed, $file_contents, 1);
             } else {
                 $file_contents = preg_replace($pattern, "", $file_contents, 1);
+                $this->debug("Blanking loop '" . $loop_name . "'");
             }
         }
         return($file_contents);
+    }
+
+    private function find_model($family_data) {
+        if (is_array($family_data['data']['model_list'])) {
+            $key = $this->arraysearchrecursive($this->model, $family_data, "model");
+            if ($key !== FALSE) {
+                return($family_data['data']['model_list'][$key[2]]);
+            }
+        }
+        throw new Exception('Could Not find model');
     }
 
     /**
@@ -412,132 +289,89 @@ abstract class endpoint_base {
      * @param string $line_total Total Number of Lines on the specific Phone
      * @param string $file_contents Full Contents of the configuration file
      * @param boolean $keep_unknown Keep Unknown variables as {$variable} instead of erasing them (blanking the space), can be used to parse these variables later
-     * @param integer $specific_line The specific line number to manipulate. If no line number set then assume All Lines
      * @return string Full Contents of the configuration file (After Parsing)
      * @author Andrew Nagy
      */
-    function parse_lines($line_total, $file_contents, $keep_unknown=FALSE, $specific_line='ALL') {
+    private function parse_lines($file_contents, $keep_unknown=FALSE) {
         //Find line looping data betwen {line_loop}{/line_loop}
         $pattern = "/{line_loop}(.*?){\/line_loop}/si";
         while (preg_match($pattern, $file_contents, $matches)) {
-            $i = 1;
+            $loop_contents = $matches[1];
             $parsed = "";
-            //If specific line is set to ALL then loop through all lines
-            if ($specific_line == "ALL") {
-                while ($i <= $line_total) {
-                    $this->parse_lines_hook($i,$line_total);
-                    if (isset($this->lines[$i]['secret'])) {
-                        $parsed_2 = $this->replace_static_variables($matches[1], $i, TRUE);
-                        $parsed .= $this->parse_config_values($parsed_2, FALSE, $i);
-                        //echo $parsed;
-                    }
-                    $i++;
-                }
-                //If Specific Line is set to a number greater than 0 then only process the loop for that line
-            } else {
-                $this->parse_lines_hook($specific_line,$line_total);
-                $parsed_2 = $this->replace_static_variables($matches[1], $specific_line, TRUE);
-                $parsed = $this->parse_config_values($parsed_2, TRUE, $specific_line);
+            foreach ($this->settings['line'] as $key => $data) {
+                $line = $data['line'];
+                $data['number'] = $line;
+                $data['count'] = $line;
+                $line_settings = $this->parse_lines_hook($data, $this->max_lines);
+                $parsed .= $this->parse_config_values($this->replace_static_variables($loop_contents, $line_settings), $line_settings, $keep_unknown);
             }
             $file_contents = preg_replace($pattern, $parsed, $file_contents, 1);
         }
-
-
-        //If secret is set for said line then assume it's active and pull it's data but only if said line can be used on the phone
-        //This will replace {$variable.line.num}
-        $i = 1;
-        while ($i <= $line_total) {
-            if (isset($this->lines[$i]['secret'])) {
-                $file_contents = $this->replace_static_variables($file_contents, $i, FALSE);
-            }
-            $i++;
-        }
-
-        $file_contents = $this->replace_static_variables($file_contents, "GLOBAL");
-
         return($file_contents);
     }
 
-    /**
-     * This function will replace variables, eg {$variable}
-     * @param string $file_contents Full Contents of the configuration file
-     * @param boolean $keep_unknown Keep Unknown variables as {$variable} instead of erasing them (blanking the space), can be used to parse these variables later
-     * @param string $specific_line_master The specific line number to manipulate. If no line number set then assume GLOBAL variable. This will reset back to whatever it was sent for every variable
-     * @param string $options
-     * @return string
-     * @author Andrew Nagy
-     */
-    function parse_config_values($file_contents, $keep_unknown=FALSE, $specific_line_master="GLOBAL", $options=NULL) {
-        if(!isset($options)) {
-            $options=$this->options;
-        }
-        $family_data = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.xml",1,'tag',array('model_list'));
-
-        if (is_array($family_data['data']['model_list'])) {
-            $key = $this->arraysearchrecursive($this->model, $family_data, "model");
-            if ($key === FALSE) {
-                die("You need to specify a valid model. Or change how this function works (line 110 of base.php)");
-            } else {
-                $template_data_list = $family_data['data']['model_list'][$key[2]]['template_data'];
-            }
-        } else {
-            $template_data_list = $family_data['data']['model_list']['template_data'];
-        }
+    private function merge_files() {
+        $template_data_list = $this->model_data['template_data'];
 
         $template_data = array();
         $template_data_multi = "";
-        if (is_array($template_data_list['files'])) {
-            foreach ($template_data_list['files'] as $files) {
-                if (file_exists($this->root_dir.self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $files)) {
-                    $template_data_multi = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $files);
-                    $template_data_multi = $this->fix_single_array_keys($template_data_multi['template_data']['category']);
-                    foreach($template_data_multi as $categories) {
-                        $subcats = $this->fix_single_array_keys($categories['subcategory']);
-                        foreach($subcats as $subs) {
-                            $items = $this->fix_single_array_keys($subs['item']);
-                            $template_data = array_merge($template_data, $items);
-                        }
-                    }
-                }
+
+        //Setup defaults from global file
+        $template_data_multi = $this->file2json(self::$root_dir . self::$modules_path . '/global_template_data.json');
+        $template_data_multi = $template_data_multi['template_data']['category'];
+        foreach ($template_data_multi as $categories) {
+            $subcats = $categories['subcategory'];
+            foreach ($subcats as $subs) {
+                $items = $subs['item'];
+                $template_data = array_merge($template_data, $items);
             }
-        } else {
-            if (file_exists($this->root_dir.self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $template_data_list['files'])) {
-                $template_data_multi = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $template_data_list['files']);
-                $template_data_multi = $this->fix_single_array_keys($template_data_multi['template_data']['category']);
-                foreach($template_data_multi as $categories) {
-                    $subcats = $this->fix_single_array_keys($categories['subcategory']);
-                    foreach($subcats as $subs) {
-                        $items = $this->fix_single_array_keys($subs['item']);
+        }
+
+        //Setup defaults from each template file
+        foreach ($template_data_list as $files) {
+            if (file_exists(self::$root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $files)) {
+                $template_data_multi = $this->file2json(self::$root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $files);
+                $template_data_multi = $template_data_multi['template_data']['category'];
+                foreach ($template_data_multi as $categories) {
+                    $subcats = $categories['subcategory'];
+                    foreach ($subcats as $subs) {
+                        $items = $subs['item'];
                         $template_data = array_merge($template_data, $items);
                     }
                 }
+            } else {
+                throw new Exception("Template File: " . $files . " doesnt exist!");
             }
         }
 
-        if (file_exists($this->root_dir.self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_custom.xml")) {
-            $template_data_multi = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_custom.xml");
-            $template_data_multi = $this->fix_single_array_keys($template_data_multi['template_data']['category']);
-            foreach($template_data_multi as $categories) {
-                $subcats = $this->fix_single_array_keys($categories['subcategory']);
-                foreach($subcats as $subs) {
-                    $items = $this->fix_single_array_keys($subs['item']);
+
+        if (file_exists(self::$root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_custom.json")) {
+            $template_data_multi = $this->file2json(self::$root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_custom.json");
+            $template_data_multi = $template_data_multi['template_data']['category'];
+            foreach ($template_data_multi as $categories) {
+                $subcats = $categories['subcategory'];
+                foreach ($subcats as $subs) {
+                    $items = $subs['item'];
                     $template_data = array_merge($template_data, $items);
                 }
             }
         }
 
-        if (file_exists($this->root_dir.self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_" . $this->model . "_custom.xml")) {
-            $template_data_multi = $this->xml2array($this->root_dir. self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_" . $this->model . "_custom.xml");
-            $template_data_multi = $this->fix_single_array_keys($template_data_multi['template_data']['category']);
-            foreach($template_data_multi as $categories) {
-                $subcats = $this->fix_single_array_keys($categories['subcategory']);
-                foreach($subcats as $subs) {
-                    $items = $this->fix_single_array_keys($subs['item']);
+        if (file_exists(self::$root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_" . $this->model . "_custom.json")) {
+            $template_data_multi = $this->file2json(self::$root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_" . $this->model . "_custom.json");
+            $template_data_multi = $template_data_multi['template_data']['category'];
+            foreach ($template_data_multi as $categories) {
+                $subcats = $categories['subcategory'];
+                foreach ($subcats as $subs) {
+                    $items = $subs['item'];
                     $template_data = array_merge($template_data, $items);
                 }
             }
         }
+        return($template_data);
+    }
 
+    private function parse_config_values($file_contents, $data=NULL, $keep_unknown=FALSE) {
         //Find all matched variables in the text file between "{$" and "}"
         preg_match_all('/[{\$](.*?)[}]/i', $file_contents, $match);
         //Result without brackets (but with the $ variable identifier)
@@ -545,93 +379,67 @@ abstract class endpoint_base {
         //Result with brackets
         $brackets = array_values(array_unique($match[0]));
 
-
-        //loop though each variable found in the text file
         foreach ($no_brackets as $variables) {
+            $original_variable = $variables;
             $variables = str_replace("$", "", $variables);
-            $specific_line = $specific_line_master;
-            //Users can set defaults within template files with pipes, they will over-ride whatever is in the XML file.
-            if (strstr($variables, "|")) {
-                $original_variable = $variables;
-                $variables = explode("|", $variables,2);
-                $default = $variables[1];
-                $variables = $variables[0];
-                if (strstr($variables, ".")) {
-                    $original_variable = $variables;
-                    $variables = explode(".", $variables);
-                    $specific_line = $variables[2];
-                    $variables = $variables[0];
-                } else {
-                    $original_variable = $variables;
+            $default_exp = preg_split("/\|/i", $variables);
+            $default = isset($default_exp[1]) ? $default_exp[1] : null;
+
+            if (is_array($data)) {
+                if (isset($data[$variables])) {
+                    $data[$variables] = $this->replace_static_variables($data[$variables]);
+                    $this->debug("Replacing '{" . $original_variable . "}' with " . $data[$variables]);
+                    $file_contents = str_replace('{' . $original_variable . '}', $data[$variables], $file_contents);
                 }
             } else {
-                unset($default);
-                $original_variable = $variables;
-                if (strstr($variables, ".")) {
-                    $original_variable = $variables;
-                    $variables = explode(".", $variables);
-                    $specific_line = $variables[2];
-                    $variables = $variables[0];
+                if (isset($this->settings[$variables])) {
+                    $this->settings[$variables] = $this->replace_static_variables($this->settings[$variables]);
+                    $file_contents = str_replace('{' . $original_variable . '}', $this->settings[$variables], $file_contents);
                 }
             }
 
-            //If the variable we found in the text file exists in the variables array then replace the variable in the text file with the value under our key
-            if (($specific_line == "GLOBAL") AND (isset($options[$variables]))) {
-                if($this->en_htmlspecialchars) {
-                    $options[$variables] = htmlspecialchars($options[$variables]);
-                } else {
-                    $options[$variables] = $options[$variables];
-                }
-                $options[$variables] = $this->replace_static_variables($options[$variables]);
-                if (isset($default)) {
-                    $file_contents = str_replace('{$' . $original_variable . '|' . $default . '}', $options[$variables], $file_contents);
-                } else {
-                    $file_contents = str_replace('{$' . $original_variable . '}', $options[$variables], $file_contents);
-                }
-            } elseif (($specific_line != "GLOBAL") AND (isset($this->lines[$specific_line]['options'][$variables]))) {
-                if($this->en_htmlspecialchars) {
-                    $this->lines[$specific_line]['options'][$variables] = htmlspecialchars($this->lines[$specific_line]['options'][$variables]);
-                } else {
-                    $this->lines[$specific_line]['options'][$variables] = $this->lines[$specific_line]['options'][$variables];
-                }
+            if (!$keep_unknown) {
+                //read default template values here, blank unknowns or arrays (which are blanks anyways)
+                $key1 = $this->arraysearchrecursive('$' . $variables, $this->template_data, 'variable');
 
-                $this->lines[$specific_line]['options'][$variables] = $this->replace_static_variables($this->lines[$specific_line]['options'][$variables]);
-                if (isset($default)) {
-                    $file_contents = str_replace('{$' . $original_variable . '|' . $default . '}', $this->lines[$specific_line]['options'][$variables], $file_contents);
-                } else {
-                    $file_contents = str_replace('{$' . $original_variable . '}', $this->lines[$specific_line]['options'][$variables], $file_contents);
-                }
-            } else {
-                if (!$keep_unknown) {
-                    //read default template values here, blank unknowns or arrays (which are blanks anyways)
-                    $key1 = $this->arraysearchrecursive('$' . $variables, $template_data, 'variable');
-                    $default_hard_value = NULL;
+                $default_hard_value = NULL;
 
-                    //Check for looping statements. They are all setup logically the same. Ergo if the first multi-dimensional array has a variable key its not a loop.
-                    if($key1['1'] == 'variable') {
-                        $default_hard_value = $this->replace_static_variables($this->fix_single_array_keys($template_data[$key1[0]]['default_value']));
-                    } elseif($key1['4'] == 'variable') {
-
-                        //replace count variable with line number
-                        $template_data[$key1[0]][$key1[1]][$key1[2]][$key1[3]]['default_value'] = str_replace('{$count}', $specific_line, $template_data[$key1[0]][$key1[1]][$key1[2]][$key1[3]]['default_value']);
-                        $template_data[$key1[0]][$key1[1]][$key1[2]][$key1[3]]['default_value'] = str_replace('{$number}', $specific_line, $template_data[$key1[0]][$key1[1]][$key1[2]][$key1[3]]['default_value']);
-
-                        $default_hard_value = $this->replace_static_variables($this->fix_single_array_keys($template_data[$key1[0]][$key1[1]][$key1[2]][$key1[3]]['default_value']));
-                    }
-
-                    if (isset($default)) {
-                        $file_contents = str_replace('{$' . $original_variable . '|' . $default . '}', $default, $file_contents);
-                    } elseif (isset($default_hard_value)) {
-                        $file_contents = str_replace('{$' . $original_variable . '}', $default_hard_value, $file_contents);
+                //Check for looping statements. They are all setup logically the same. Ergo if the first multi-dimensional array has a variable key its not a loop.
+                if ($key1['1'] == 'variable') {
+                    if (is_array($data)) {
+                        $dhv = str_replace('{$count}', $data['line'], $this->template_data[$key1[0]]['default_value']);
+                        $dhv = str_replace('{$number}', $data['line'], $dhv);
                     } else {
-                        $file_contents = str_replace('{$' . $original_variable . '}', "", $file_contents);
+                        $dhv = $this->template_data[$key1[0]]['default_value'];
                     }
+                    $default_hard_value = $this->replace_static_variables($dhv);
+                } elseif ($key1['4'] == 'variable') {
+                    if (is_array($data)) {
+                        $dhv = str_replace('{$count}', $data['line'], $this->template_data[$key1[0]][$key1[1]][$key1[2]][$key1[3]]['default_value']);
+                        $dhv = str_replace('{$number}', $data['line'], $dhv);
+                    } else {
+                        $dhv = $this->template_data[$key1[0]][$key1[1]][$key1[2]][$key1[3]]['default_value'];
+                    }
+                    $default_hard_value = $this->replace_static_variables($dhv);
+                }
+
+                if (isset($default)) {
+                    $default = $this->replace_static_variables($default);
+                    $file_contents = str_replace('{' . $original_variable . '}', $default, $file_contents);
+                    $this->debug('Replacing {' . $original_variable . '} with default piped value of:' . $default);
+                } elseif (isset($default_hard_value)) {
+                    $default_hard_value = $this->replace_static_variables($default_hard_value);
+                    $file_contents = str_replace('{' . $original_variable . '}', $default_hard_value, $file_contents);
+                    $this->debug("Replacing {" . $original_variable . "} with default json value of: " . $default_hard_value);
+                } else {
+                    //do one last replace statice here.
+                    $file_contents = str_replace('{' . $original_variable . '}', "", $file_contents);
+                    $this->debug("Blanking {" . $original_variable . "}");
                 }
             }
         }
 
-
-        return $file_contents;
+        return($file_contents);
     }
 
     /**
@@ -642,54 +450,34 @@ abstract class endpoint_base {
      * @param boolean $looping
      * @return string
      */
-    function replace_static_variables($contents, $specific_line="GLOBAL", $looping=TRUE) {
-	$replace=array(
-		# These first ones have an identical field name in the object and the template.
-		# This is a good thing, and should be done wherever possible.
-		'{$mac}'=>$this->mac,
-		'{$model}'=>$this->model,
-		'{$provisioning_type}'=>$this->provisioning_type,
-		'{$provisioning_path}'=>$this->provisioning_path,
-		'{$vlan_id}'=>$this->vlan_id,
-		'{$vlan_qos}'=>$this->vlan_qos,
+    private function replace_static_variables($contents, $data=NULL) {
+        //bad
+        $this->settings['network']['local_port'] = isset($this->settings['network']['local_port']) ? $this->settings['network']['local_port'] : '5060';
+        $replace = array(
+            # These first ones have an identical field name in the object and the template.
+            # This is a good thing, and should be done wherever possible.
+            '{$mac}' => $this->mac,
+            '{$model}' => $this->model,
+            '{$provisioning_type}' => $this->settings['provision']['protocol'],
+            '{$provisioning_path}' => $this->settings['provision']['path'],
+            '{$vlan_id}' => $this->settings['network']['vlan']['id'],
+            '{$vlan_qos}' => $this->settings['network']['vlan']['qos'],
+            # These are not the same.
+            '{$timezone_gmtoffset}' => $this->timezone['gmtoffset'],
+            '{$timezone_timezone}' => $this->timezone['timezone'],
+            '{$timezone}' => $this->timezone['timezone'], # Should this be depricated??
+            '{$network_time_server}' => $this->settings['ntp'],
+            '{$local_port}' => $this->settings['network']['local_port'],
+            #old
+            '{$srvip}' => $this->settings['line'][0]['server_host'],
+            '{$server.ip.1}' => $this->settings['line'][0]['server_host'],
+            '{$server.port.1}' => $this->settings['line'][0]['server_port']
+        );
+        $contents = str_replace(array_keys($replace), array_values($replace), $contents);
 
-		# These are not the same.
-		'{$timezone_gmtoffset}'=>$this->timezone['gmtoffset'],
-		'{$timezone_timezone}'=>$this->timezone['timezone'],
-		'{$timezone}'=>$this->timezone['timezone'], # Should this be depricated??
-		'{$network_time_server}'=>$this->ntp,
-
-		# The rest of these are depricated:
-		'{$gmtoff}'=>$this->timezone['gmtoffset'],
-		'{$gmthr}'=>$this->timezone['gmtoffset'],
-	);
-
-	# These are the loops
-	foreach($this->proxy as $key => $proxies) {
-		$replace['{$proxy.ip.'.$key.'}']=$proxies['ip'];
-		$replace['{$proxy.port.'.$key.'}']=$proxies['port'];
-	}
-
-        foreach($this->server as $key => $servers) {
-		$replace['{$server.ip.'.$key.'}']=$servers['ip'];
-		$replace['{$server.port.'.$key.'}']=$servers['port'];
-        }
-
-	$contents = str_replace(array_keys($replace),array_values($replace),$contents);
-
-        if (($specific_line != "GLOBAL") AND ($looping == TRUE)) {
-            $contents = str_replace('{$line}', $specific_line, $contents);
-            $contents = str_replace('{$ext}', $this->lines[$specific_line]['ext'], $contents);
-            $contents = str_replace('{$displayname}', $this->lines[$specific_line]['displayname'], $contents);
-            $contents = str_replace('{$secret}', $this->lines[$specific_line]['secret'], $contents);
-            $contents = str_replace('{$pass}', $this->lines[$specific_line]['secret'], $contents);
-        } elseif (($specific_line != "GLOBAL") AND ($looping == FALSE)) {
-            $contents = str_replace('{$line.line.' . $specific_line . '}', $specific_line, $contents);
-            $contents = str_replace('{$ext.line.' . $specific_line . '}', $this->lines[$specific_line]['ext'], $contents);
-            $contents = str_replace('{$displayname.line.' . $specific_line . '}', $this->lines[$specific_line]['displayname'], $contents);
-            $contents = str_replace('{$secret.line.' . $specific_line . '}', $this->lines[$specific_line]['secret'], $contents);
-            $contents = str_replace('{$pass.line.' . $specific_line . '}', $this->lines[$specific_line]['secret'], $contents);
-        } elseif ($specific_line == 'GLOBAL') {
+        if (is_array($data)) {
+            //not needed I dont think
+        } else {
             //Find all matched variables in the text file between "{$" and "}"
             preg_match_all('/[{\$](.*?)[}]/i', $contents, $match);
             //Result without brackets (but with the $ variable identifier)
@@ -698,47 +486,185 @@ abstract class endpoint_base {
             $brackets = array_values(array_unique($match[0]));
             //loop though each variable found in the text file
             foreach ($no_brackets as $variables) {
-                $variables = str_replace("$", "", $variables);
                 $original_variable = $variables;
-                if (strstr($variables, ".")) {
-                    $original_variable = $variables;
-                    $variables = explode(".", $variables);
-                    $specific_line = $variables[2];
-                    $variables = $variables[0];
-                    switch ($variables) {
-                        case "ext":
-                            if(isset($this->lines[$specific_line]['ext'])) {
-                                $contents = str_replace('{$ext.line.' . $specific_line . '}', $this->lines[$specific_line]['ext'], $contents);
-                            } else {
-                                $contents = str_replace('{$ext.line.' . $specific_line . '}', '', $contents);
-                            }
-                            break;
-                        case "displayname":
-                            if(isset($this->lines[$specific_line]['displayname'])) {
-                                $contents = str_replace('{$displayname.line.' . $specific_line . '}', $this->lines[$specific_line]['displayname'], $contents);
-                            } else {
-                                $contents = str_replace('{$displayname.line.' . $specific_line . '}', '', $contents);
-                            }
-                            break;
-                        case "secret":
-                            if(isset($this->lines[$specific_line]['secret'])) {
-                                $contents = str_replace('{$secret.line.' . $specific_line . '}', $this->lines[$specific_line]['secret'], $contents);
-                            } else {
-                                $contents = str_replace('{$secret.line.' . $specific_line . '}', '', $contents);
-                            }
-                            break;
-                        case "pass":
-                            if(isset($this->lines[$specific_line]['secret'])) {
-                                $contents = str_replace('{$pass.line.' . $specific_line . '}', $this->lines[$specific_line]['secret'], $contents);
-                            } else {
-                                $contents = str_replace('{$pass.line.' . $specific_line . '}', '', $contents);
-                            }
-                            break;
+                $variables = str_replace("$", "", $variables);
+
+                $line_exp = preg_split("/\./i", $variables);
+
+                if ((isset($line_exp[2]) AND (($line_exp[0] == 'line') OR ($line_exp[1] == 'line')))) {
+                    if ($line_exp[0] == 'line') {
+                        $line = explode("|", $line_exp[1]);
+                        $default = isset($line[1]) ? $line[1] : NULL;
+                        $line = $line[0];
+                        $key1 = $this->arraysearchrecursive($line, $this->settings['line'], 'line');
+                        $var = $line_exp[2];
+                    } elseif ($line_exp[1] == 'line') {
+                        $line = explode("|", $line_exp[2]);
+                        $default = isset($line[1]) ? $line[1] : NULL;
+                        $line = $line[0];
+                        $key1 = $this->arraysearchrecursive($line, $this->settings['line'], 'line');
+                        $var = $line_exp[0];
+                        //$this->settings['line'][$key1[0]]['ext'] = isset($this->settings['line'][$key1[0]]['username']) ? $this->settings['line'][$key1[0]]['username'] : NULL;
                     }
+
+                    $data['number'] = $line;
+                    $data['count'] = $line;
+
+                    $line_settings = $this->parse_lines_hook($this->settings['line'][$key1[0]], $this->max_lines);
+
+                    $stored = isset($line_settings[$var]) ? $line_settings[$var] : '';
+                    $contents = str_replace('{' . $original_variable . '}', $stored, $contents);
                 }
             }
         }
         return($contents);
+    }
+
+    /**
+     * NOTE: Wherever possible, try $this->DateTimeZone->getOffset(new DateTime) FIRST, which takes Daylight savings into account, too.
+     * Turns a string like PST-7 or UTC+1 into a GMT offset in seconds
+     * @param Send this a timezone like PST-7
+     * @return Offset from GMT, in seconds (eg. -25200, =3600*-7)
+     * @author Jort Bloem
+     */
+    private function get_gmtoffset($timezone) {
+        # Divide the timezone up into it's 3 interesting parts; the sign (+/-), hours, and if they exist, minutes.
+        # note that matches[0] is the entire matched string, so these 3 parts are $matches[1], [2] and [3].
+        preg_match('/([\-\+])([\d]+):?(\d*)/', $timezone, $matches);
+        # $matches is now an array; $matches[1] is the sign (+ or -); $matches[2] is number of hours, $matches[3] is minutes (or empty)
+        return intval($matches[1] . "1") * ($matches[2] * 3600 + $matches[3] * 60);
+    }
+
+    /**
+     * Turns an integer like -3600 (seconds) into a GMT offset like GMT-1
+     * @param Time offset in seconds, like 3600 or -25200 or -27000
+     * @return timezone (eg. GMT+1 or GMT-7 or GMT-7:30)
+     * @author Jort Bloem
+     */
+    private function get_timezone($offset) {
+        if ($offset < 0) {
+            $result = "GMT-";
+            $offset = abs($offset);
+        } else {
+            $result = "GMT+";
+        }
+        $result.=(int) ($offset / 3600);
+        if ($result % 3600 > 0) {
+            $result.=":" . (($offset % 3600) / 60);
+        } else {
+            $result.=":00";
+        }
+        return $result;
+    }
+
+    /**
+     * Setup and fill in timezone data
+     * @author Jort Bloem
+     */
+    protected function setup_timezone() {
+        if (isset($this->DateTimeZone)) {
+            $this->timezone = array(
+                'gmtoffset' => $this->DateTimeZone->getOffset(new DateTime),
+                'timezone' => $this->get_timezone($this->DateTimeZone->getOffset(new DateTime))
+            );
+        } elseif (is_array($this->timezone)) {
+            #Do nothing
+        } elseif (is_numeric($this->timezone)) {
+            $this->timezone = array(
+                'gmtoffset' => $this->timezone,
+                'timezone' => $this->get_timezone($this->timezone),
+            );
+        } else {
+            $this->timezone = array(
+                'gmtoffset' => $this->get_gmtoffset($this->timezone),
+                'timezone' => $this->timezone,
+            );
+        }
+    }
+
+    function debug($message) {
+        if ($this->debug) {
+            $this->debug_return[] = $message;
+        }
+    }
+
+    function file2json($file) {
+        if (file_exists($file)) {
+            $json = file_get_contents($file);
+            $data = json_decode($json, TRUE);
+            return($data);
+        } else {
+            throw new Exception("Could not load: " . $file);
+        }
+    }
+
+    private function generate_info($file_contents) {
+        if ($this->server_type == "file") {
+            $file_contents = str_replace('{$provisioner_generated_timestamp}', date('l jS \of F Y h:i:s A'), $file_contents);
+        } else {
+            $file_contents = str_replace('{$provisioner_generated_timestamp}', 'N/A (Prevents reboot loops if set to static value)', $file_contents);
+        }
+        $file_contents = str_replace('{$provisioner_processor_info}', $this->processor_info, $file_contents);
+        $file_contents = str_replace('{$provisioner_timestamp}', $this->processor_info, $file_contents);
+        $file_contents = str_replace('{$provisioner_brand_timestamp}', $this->brand_data['data']['brands']['last_modified'] . " (" . date('l jS \of F Y h:i:s A', $this->brand_data['data']['brands']['last_modified']) . ")", $file_contents);
+        $file_contents = str_replace('{$provisioner_family_timestamp}', $this->brand_data['data']['brands']['last_modified'] . " (" . date('l jS \of F Y h:i:s A', $this->brand_data['data']['brands']['last_modified']) . ")", $file_contents);
+        return($file_contents);
+    }
+
+    private function initialize() {
+        if (!$this->initialized) {
+
+            //Load files for quicker processing
+            $this->family_data = $this->file2json(self::$root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.json");
+            $this->brand_data = $this->file2json(self::$root_dir . self::$modules_path . $this->brand_name . "/brand_data.json");
+
+            $this->model_data = $this->find_model($this->family_data);
+            $this->max_lines = isset($this->model_data['lines']) ? $this->model_data['lines'] : 1;
+
+            $this->template_data = $this->merge_files();
+
+            $this->setup_timezone();
+
+            if (empty($this->engine_location)) {
+                if ($this->engine == 'asterisk') {
+                    $this->engine_location = 'asterisk';
+                } elseif ($this->engine == 'freeswitch') {
+                    $this->engine_location = 'freeswitch';
+                }
+            }
+
+            //TODO: fix NTP
+            if (!isset($this->settings['ntp'])) {
+                $this->settings['ntp'] = $this->settings['line'][0]['server_host'];
+            }
+
+            //TODO: Shorten
+            if (!in_array($this->settings['provision']['type'], $this->server_type_list)) {
+                $this->server_type = $this->default_server_type;
+            } else {
+                $this->server_type = $this->settings['provision']['type'];
+            }
+
+            if (!in_array($this->settings['provision']['protocol'], $this->provisioning_type_list)) {
+                $this->provisioning_type = $this->default_provisioning_type;
+            } else {
+                $this->provisioning_type = $this->settings['provision']['protocol'];
+            }
+
+            //TODO:fix
+            if (!isset($this->settings['network']['vlan']['id'])) {
+                $this->settings['network']['vlan']['id'] = 0;
+            }
+            if (!isset($this->settings['network']['vlan']['qos'])) {
+                $this->settings['network']['vlan']['qos'] = 5;
+            }
+
+            if (empty($this->mac)) {
+                throw new Exception("mac can not be blank!");
+            }
+
+            $this->initialized = TRUE;
+        }
     }
 
     /**
@@ -754,44 +680,6 @@ abstract class endpoint_base {
         } else {
             return($array_new);
         }
-    }
-
-    /**
-     * Function xml2array has a bad habit of returning blank xml values as empty arrays.
-     * Also if the xml children only loops once then the array is put into a normal array (array[variable]).
-     * However if it loops more than once then it is put into a counted array (array[0][variable])
-     * We fix that issue here by returning blank values on empty arrays or always returning array[0]
-     * @param array $array
-     * @return mixed
-     * @author Karl Anderson
-     */
-    function fix_single_array_keys($array) {
-        if (!is_array($array)) {
-            return $array;
-        }
-
-        if((empty($array[0])) AND (!empty($array))) {
-            $array_n[0] = $array;
-
-            return($array_n);
-        }
-
-        return empty($array) ? '' : $array;
-
-        /*
-        if((empty($array[0])) AND (!empty($array))) {
-            $array_n[0] = $array;
-            return($array_n);
-        } elseif(!empty($array)) {
-            return($array);
-        //This is so stupid?! PHP gets confused.
-        } elseif($array == '0') {
-            return($array);
-        } else {
-            return("");
-        }
-         * *
-        */
     }
 
     /**
@@ -812,9 +700,9 @@ abstract class endpoint_base {
                 $Path = array_merge($Path, Array($Key), $SubPath);
                 return $Path;
             } elseif ((!$Strict && $Val == $Needle &&
-                            $Key == (strlen($NeedleKey) > 0 ? $NeedleKey : $Key)) ||
+                    $Key == (strlen($NeedleKey) > 0 ? $NeedleKey : $Key)) ||
                     ($Strict && $Val === $Needle &&
-                            $Key == (strlen($NeedleKey) > 0 ? $NeedleKey : $Key))) {
+                    $Key == (strlen($NeedleKey) > 0 ? $NeedleKey : $Key))) {
                 $Path[] = $Key;
                 return $Path;
             }
@@ -822,142 +710,68 @@ abstract class endpoint_base {
         return false;
     }
 
-    /**
-     * xml2array() will convert the given XML text to an array in the XML structure.
-     * @author http://www.bin-co.com/php/scripts/xml2array/
-     * @param <type> $url The XML file
-     * @param <type> $get_attributes 1 or 0. If this is 1 the function will get the attributes as well as the tag values - this results in a different array structure in the return value.
-     * @param <type> $priority Can be 'tag' or 'attribute'. This will change the way the resulting array structure. For 'tag', the tags are given more importance.
-     * @param <type> $array_tags - any tag names listed here will allways be returned as an array, even if there is only one of them.
-     * @return <type> The parsed XML in an array form. Use print_r() to see the resulting array structure.
-     */
-    function xml2array($url, $get_attributes = 1, $priority = 'tag', $array_tags=array()) {
-        $contents = "";
-        if (!function_exists('xml_parser_create')) {
-            return array();
-        }
-        $parser = xml_parser_create('');
-        if (!($fp = @ fopen($url, 'rb'))) {
-            return array();
-        }
-        while (!feof($fp)) {
-            $contents .= fread($fp, 8192);
-        }
-        fclose($fp);
-        xml_parser_set_option($parser, XML_OPTION_TARGET_ENCODING, "UTF-8");
-        xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, 0);
-        xml_parser_set_option($parser, XML_OPTION_SKIP_WHITE, 1);
-        xml_parse_into_struct($parser, trim($contents), $xml_values);
-        xml_parser_free($parser);
-        if (!$xml_values) {
-            return; //Hmm...
-        }
-        $xml_array = array();
-        $parents = array();
-        $opened_tags = array();
-        $arr = array();
-        $current = & $xml_array;
-        $repeated_tag_index = array();
-        foreach ($xml_values as $data) {
-            unset($attributes, $value);
-            extract($data);
-            $result = array();
-            $attributes_data = array();
-            if (isset($value)) {
-                if ($priority == 'tag') {
-                    $result = $value;
-                } else {
-                    $result['value'] = $value;
-                }
-            }
-            if (isset($attributes) and $get_attributes) {
-                foreach ($attributes as $attr => $val) {
-                    if ($priority == 'tag') {
-                        $attributes_data[$attr] = $val;
-                    } else {
-                        $result['attr'][$attr] = $val; //Set all the attributes in a array called 'attr'
-                    }
-                }
-            }
-            if ($type == "open") {
-                $parent[$level - 1] = & $current;
-		if (!is_array($current) or (!in_array($tag, array_keys($current)))) {
-		    if (in_array($tag,$array_tags)) {
-                        $current[$tag][0] = $result;
-                        $repeated_tag_index[$tag . '_' . $level]=1;
-                    	$current = & $current[$tag][0];
-		    } else {
-			$current[$tag] = $result;
-			if ($attributes_data) {
-				$current[$tag . '_attr'] = $attributes_data;
-			}
-			$repeated_tag_index[$tag . '_' . $level] = 1;
-			$current = & $current[$tag];
-		   }
-                } else {
-                    if (isset($current[$tag][0])) {
-                        $current[$tag][$repeated_tag_index[$tag . '_' . $level]] = $result;
-                        $repeated_tag_index[$tag . '_' . $level]++;
-                    } else {
-                        $current[$tag] = array($current[$tag], $result);
-                        $repeated_tag_index[$tag . '_' . $level] = 2;
-                        if (isset($current[$tag . '_attr'])) {
-                            $current[$tag]['0_attr'] = $current[$tag . '_attr'];
-                            unset($current[$tag . '_attr']);
-                        }
-                    }
-                    $last_item_index = $repeated_tag_index[$tag . '_' . $level] - 1;
-                    $current = & $current[$tag][$last_item_index];
-                }
-            } else if ($type == "complete") {
-                if (!isset($current[$tag])) {
-                    $current[$tag] = $result;
-                    $repeated_tag_index[$tag . '_' . $level] = 1;
-                    if ($priority == 'tag' and $attributes_data) {
-                        $current[$tag . '_attr'] = $attributes_data;
-                    }
-                } else {
-                    if (isset($current[$tag][0]) and is_array($current[$tag])) {
-                        $current[$tag][$repeated_tag_index[$tag . '_' . $level]] = $result;
-                        if ($priority == 'tag' and $get_attributes and $attributes_data) {
-                            $current[$tag][$repeated_tag_index[$tag . '_' . $level] . '_attr'] = $attributes_data;
-                        }
-                        $repeated_tag_index[$tag . '_' . $level]++;
-                    } else {
-                        $current[$tag] = array($current[$tag], $result);
-                        $repeated_tag_index[$tag . '_' . $level] = 1;
-                        if ($priority == 'tag' and $get_attributes) {
-                            if (isset($current[$tag . '_attr'])) {
-                                $current[$tag]['0_attr'] = $current[$tag . '_attr'];
-                                unset($current[$tag . '_attr']);
-                            }
-                            if ($attributes_data) {
-                                $current[$tag][$repeated_tag_index[$tag . '_' . $level] . '_attr'] = $attributes_data;
-                            }
-                        }
-                        $repeated_tag_index[$tag . '_' . $level]++; //0 and 1 index is already taken
-                    }
-                }
-            } else if ($type == 'close') {
-                $current = & $parent[$level - 1];
-            }
-        }
-        return ($xml_array);
-    }
 }
 
+//This Class is for checking for global files, which in the case of a provisioner shouldn't really need to exist, but some phones need these so we generate blanks
+
 class Provisioner_Globals {
-	/**
-	* List all global files as reg statements here.
-	* This should be called statically eg: $data=Provisioner_Globals:dynamic_global_files($filename);
-	* Return data for global if valid
-	* else just return false (eg file does not exist)
-	* @param String $filename Name of the file: eg aastra.cfg
-	* @return String, data of that file: eg # This file intentionally left blank!
-	*/
-	function dynamic_global_files($filename) {
-		if($filename == 'aastra.cfg') {
-			return '# intentionally left blank';
-		} 
-	}
+
+    /**
+     * List all global files as reg statements here.
+     * This should be called statically eg: $data=Provisioner_Globals:dynamic_global_files($filename);
+     * Return data for global if valid
+     * else just return false (eg file does not exist)
+     * @param String $filename Name of the file: eg aastra.cfg
+     * @return String, data of that file: eg # This file intentionally left blank!
+     */
+    function dynamic_global_files($file, $provisioner_path='/tmp/', $web_path='/') {
+        if (preg_match("/y[0]{11}[1-7].cfg/i", $file)) {
+            $file = 'y000000000000.cfg';
+        }
+        if (preg_match("/spa.*.cfg/i", $file)) {
+            $file = 'spa.cfg';
+        }
+        switch ($file) {
+            //spa-cisco-linksys
+            case 'spa.cfg':
+                return("<flat-profile>
+                    <!-- The Phone will load up this file first -->
+                    <!-- Don't put anything else into this file except the two lines below!! It will never be referenced again! -->
+                    <!-- Trick the Phone into loading a specific file for JUST that phone -->
+                    <!-- Set the resync to 3 second2 so it reboots automatically, we set this to 86400 seconds in the other file -->
+                    <Resync_Periodic>3</Resync_Periodic>
+                    <Profile_Rule>" . $web_path . "spa\$MA.json</Profile_Rule>
+                    <Text_Logo group=\"Phone/General\">~PLEASE WAIT~</Text_Logo>
+                    <Select_Background_Picture ua=\"ro\">Text Logo</Select_Background_Picture>
+                </flat-profile>");
+                break;
+            //yealink
+            case 'y000000000000.cfg':
+                return("#left blank");
+                break;
+            //aastra
+            case "aastra.cfg":
+                return("#left blank");
+                break;
+            default:
+                if (file_exists($provisioner_path . $file)) {
+                    header('Content-Description: File Transfer');
+                    header('Content-Type: application/octet-stream');
+                    header('Content-Disposition: attachment; filename=' . basename($provisioner_path . $file));
+                    header('Content-Transfer-Encoding: binary');
+                    header('Expires: 0');
+                    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+                    header('Pragma: public');
+                    header('Content-Length: ' . filesize($provisioner_path . $file));
+                    ob_clean();
+                    flush();
+                    readfile($provisioner_path . $file);
+                    return('empty');
+                } else {
+                    return(FALSE);
+                }
+                break;
+        }
+    }
+
 }

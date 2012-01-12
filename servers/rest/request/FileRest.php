@@ -43,30 +43,19 @@ class FileRest {
     public function post($url, $data) {
         // Simulate a POST from a file and return a response on success
         $filename = $this->filename($url);
-
-		if(file_exists($filename)) {
-        	$fp = fopen($filename, 'w');
-        	fputs($fp, $data);
-        	fclose($fp);
-			return TRUE;
-		} else {
-			$this->last_error = 'Account Does Not Exist. Use PUT instead';
-        	return FALSE;	
-		}
+       	$fp = fopen($filename, 'w');
+       	fputs($fp, $data);
+       	fclose($fp);
+		return TRUE;
     }
 
     public function put($url, $data) {
         // Simulate a PUT from a file & decode
         $filename = $this->filename($url);
-		if(!file_exists($filename)) {
-        	$fp = fopen($filename, 'w');
-        	fputs($fp, $data);
-        	fclose($fp);
-			return TRUE;
-		} else {
-			$this->last_error = 'Account Already Exists. Use POST instead';
-        	return FALSE;	
-		}
+       	$fp = fopen($filename, 'w');
+       	fputs($fp, $data);
+       	fclose($fp);
+		return TRUE;
     }
 
     public function delete($url) {

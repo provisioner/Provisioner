@@ -215,7 +215,7 @@ P207 =
 P208 = 0
 
 # NTP Server
-P30 = {$server.ip.1}
+P30 = {$network_time_server}
 
 # Allow DHCP Option 42 to override NTP server. 0 - No, 1 - Yes. Default is No.
 # When set to Yes(1), it will override the configured NTP server.
@@ -340,7 +340,7 @@ P399 =
 P271 = {$line_active.line.1|1}
 
 # Account Name
-P270 = {$ext.line.1}
+P270 = {$username.line.1}
 
 # SIP Server
 P47 = {$server.ip.1}
@@ -349,13 +349,13 @@ P47 = {$server.ip.1}
 P48 = {$server.ip.1}
 
 # SIP User ID
-P35 = {$ext.line.1}
+P35 = {$username.line.1}
 
 # Authenticate ID
-P36 = {$ext.line.1}
+P36 = {$authname.line.1}
 
 # Authenticate password
-P34 = {$pass.line.1}
+P34 = {$secret.line.1}
 
 # Display Name (John Doe)
 P3 = {$displayname.line.1}
@@ -392,8 +392,8 @@ P209 = 100
 # 200 - 2 sec, 400 - 4 sec, 800 - 8 sec. Default 400.
 P250 = 400
 
-# SIP Transport. 1 - UDP, 2 - TCP.
-P130 = 1
+# SIP Transport. 0 - UDP, 1 - TCP, 2 - TLS/TCP
+P130 = 0
 
 # Use RFC3581 Symmetric Routing. 0 - no, 1 - yes
 P131 = 0
@@ -551,7 +551,7 @@ P198 = 100
 P401 = {$line_active.line.2|0}
 
 #Account Name
-P417 = {$ext.line.2}
+P417 = {$username.line.2}
 
 # SIP Server
 P402 = {$server.ip.1}
@@ -560,13 +560,13 @@ P402 = {$server.ip.1}
 P403 = {$server.ip.1}
 
 # Account 2 SIP User ID
-P404 = {$ext.line.2}
+P404 = {$username.line.2}
 
 # Authenticate ID
-P405 = {$ext.line.2}
+P405 = {$authname.line.2}
 
 # Authenticate Password
-P406 = {$pass.line.2}
+P406 = {$secret.line.2}
 
 # Display Name (John Doe)
 P407 = {$displayname.line.2}
@@ -603,8 +603,8 @@ P440 = 100
 # 200 - 2 sec, 400 - 4 sec, 800 - 8 sec. Default 400.
 P441 = 400
 
-# SIP Transport. 1 - UDP, 2 - TCP.
-P448 = 1
+# SIP Transport. 0 - UDP, 1 - TCP, 2 - TLS/TCP
+P448 = 0
 
 # Use RFC3581 Symmetric Routing. 0 - no, 1 - yes
 P447 = 0
@@ -762,7 +762,7 @@ P424 = 100
 P501 = {$line_active.line.3|0}
 
 # Account Name
-P517 = {$ext.line.3}
+P517 = {$username.line.3}
 
 # SIP Server
 P502 = {$server.ip.1}
@@ -771,13 +771,13 @@ P502 = {$server.ip.1}
 P503 = {$server.ip.1}
 
 # SIP User ID
-P504 = {$ext.line.3}
+P504 = {$username.line.3}
 
 # Authenticate ID
-P505 = {$ext.line.3}
+P505 = {$authname.line.3}
 
 # Authenticate Password
-P506 = {$pass.line.3}
+P506 = {$secret.line.3}
 
 # Display Name (John Doe)
 P507 = {$displayname.line.3}
@@ -814,8 +814,8 @@ P540 = 100
 # 200 - 2 sec, 400 - 4 sec, 800 - 8 sec. Default 400.
 P541 = 400
 
-# SIP Transport. 1 - UDP, 2 - TCP.
-P548 = 1
+# SIP Transport. 0 - UDP, 1 - TCP, 2 - TLS/TCP
+P548 = 0
 
 # Use RFC3581 Symmetric Routing. 0 - no, 1 - yes
 P547 = 0
@@ -973,7 +973,7 @@ P524 = 100
 P601 = {$line_active.line.4|0}
 
 #Account Name
-P617 = {$ext.line.4}
+P617 = {$username.line.4}
 
 # SIP Server
 P602 = {$server.ip.1}
@@ -982,13 +982,13 @@ P602 = {$server.ip.1}
 P603 = {$server.ip.1}
 
 # Account 4 SIP User ID
-P604 = {$ext.line.4}
+P604 = {$authname.line.4}
 
 # Authenticate ID
-P605 = {$ext.line.4}
+P605 = {$username.line.4}
 
 # Authenticate Password
-P606 = {$pass.line.4}
+P606 = {$secret.line.4}
 
 # Display Name (John Doe)
 P607 = {$displayname.line.4}
@@ -1025,8 +1025,8 @@ P640 = 100
 # 200 - 2 sec, 400 - 4 sec, 800 - 8 sec. Default 400.
 P641 = 400
 
-# SIP Transport. 1 - UDP, 2 - TCP.
-P648 = 1
+# SIP Transport. 0 - UDP, 1 - TCP, 2 - TLS/TCP
+P648 = 0
 
 # Use RFC3581 Symmetric Routing. 0 - no, 1 - yes
 P647 = 0
@@ -1186,7 +1186,7 @@ P624 = 100
 P1701 = {$line_active.line.5|0}
 
 #Account Name
-P1717 = {$ext.line.5}
+P1717 = {$username.line.5}
 
 # SIP Server
 P1702 = {$server.ip.1}
@@ -1195,13 +1195,13 @@ P1702 = {$server.ip.1}
 P1703 = {$server.ip.1}
 
 # Account 2 SIP User ID
-P1704 = {$ext.line.5}
+P1704 = {$username.line.5}
 
 # Authenticate ID
-P1705 = {$ext.line.5}
+P1705 = {$authname.line.5}
 
 # Authenticate Password
-P1706 = {$pass.line.5}
+P1706 = {$secret.line.5}
 
 # Display Name (John Doe)
 P1707 = {$displayname.line.5}
@@ -1238,8 +1238,8 @@ P1740 = 100
 # 200 - 2 sec, 400 - 4 sec, 800 - 8 sec. Default 400.
 P1741 = 400
 
-# SIP Transport. 1 - UDP, 2 - TCP.
-P1748 = 1
+# SIP Transport. 0 - UDP, 1 - TCP, 2 - TLS/TCP
+P1748 = 0
 
 # Use RFC3581 Symmetric Routing. 0 - no, 1 - yes
 P1747 = 0
@@ -1397,7 +1397,7 @@ P1724 = 100
 P1801 = {$line_active.line.6|0}
 
 #Account Name
-P1817 = {$ext.line.6}
+P1817 = {$username.line.6}
 
 # SIP Server
 P1802 = {$server.ip.1}
@@ -1406,13 +1406,13 @@ P1802 = {$server.ip.1}
 P1803 = {$server.ip.1}
 
 # Account 2 SIP User ID
-P1804 = {$ext.line.6}
+P1804 = {$username.line.6}
 
 # Authenticate ID
-P1805 = {$ext.line.6}
+P1805 = {$authname.line.6}
 
 # Authenticate Password
-P1806 = {$pass.line.6}
+P1806 = {$secret.line.6}
 
 # Display Name (John Doe)
 P1807 = {$displayname.line.6}
@@ -1449,8 +1449,8 @@ P1840 = 100
 # 200 - 2 sec, 400 - 4 sec, 800 - 8 sec. Default 400.
 P1841 = 400
 
-# SIP Transport. 1 - UDP, 2 - TCP.
-P1848 = 1
+# SIP Transport. 0 - UDP, 1 - TCP, 2 - TLS/TCP
+P1848 = 0
 
 # Use RFC3581 Symmetric Routing. 0 - no, 1 - yes
 P1847 = 0
@@ -1942,7 +1942,7 @@ P396 = {$speed_dial_18}
 #-----------------------------
 
 # Time Zone. Offset in minutes to GMT
-P64 = {$timezone}
+P64 = {$gs_timezone}
 
 # Allow DHCP Option 2 to override Time Zone setting. 0 - No, 1 - Yes.
 # When set to Yes(1), it will override the configured Time Zone setting if available. 
@@ -2000,1577 +2000,41 @@ P1348 = 0
 # Extension Board 1 Settings. For GXP2000/GXP2010/GXP2020
 ##########################################################################################
 
-# EXT Key 1
+{loop_ext1}
+# EXT Key {$number}
 # -----------------------------
 # Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6001 = 
+P60{$pnum} = {$mode}
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6201 =
+P62{$pnum} = {$account}
 
 # Name
-P6401 =
+P64{$pnum} = {$name}
 
 # UserID
-P6601 =
-
-# EXT Key 2
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6002 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6202 =
-
-# Name
-P6402 =
-
-# UserID
-P6602 =
-
-# EXT Key 3
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6003 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6203 =
-
-# Name
-P6403 =
-
-# UserID
-P6603 =
-
-# EXT Key 4
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6004 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6204 =
-
-# Name
-P6404 =
-
-# UserID
-P6604 =
-
-# EXT Key 5
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6005 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6205 =
-
-# Name
-P6405 =
-
-# UserID
-P6605 =
-
-# EXT Key 6
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6006 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6206 =
-
-# Name
-P6406 =
-
-# UserID
-P6606 =
-
-# EXT Key 7
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6007 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6207 =
-
-# Name
-P6407 =
-
-# UserID
-P6607 =
-
-# EXT Key 8
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6008 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6208 =
-
-# Name
-P6408 =
-
-# UserID
-P6608 =
-
-# EXT Key 9
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6009 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6209 =
-
-# Name
-P6409 =
-
-# UserID
-P6609 =
-
-# EXT Key 10
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6010 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6210 =
-
-# Name
-P6410 =
-
-# UserID
-P6610 =
-
-# EXT Key 11
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6011 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6211 =
-
-# Name
-P6411 =
-
-# UserID
-P6611 =
-
-# EXT Key 12
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6012 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6212 =
-
-# Name
-P6412 =
-
-# UserID
-P6612 =
-
-# EXT Key 13
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6013 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6213 =
-
-# Name
-P6413 =
-
-# UserID
-P6613 =
-
-# EXT Key 14
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6014 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6214 =
-
-# Name
-P6414 =
-
-# UserID
-P6614 =
-
-# EXT Key 15
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6015 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6215 =
-
-# Name
-P6415 =
-
-# UserID
-P6615 =
-
-# EXT Key 16
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6016 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6216 =
-
-# Name
-P6416 =
-
-# UserID
-P6616 =
-
-# EXT Key 17
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6017 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6217 =
-
-# Name
-P6417 =
-
-# UserID
-P6617 =
-
-# EXT Key 18
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6018 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6218 =
-
-# Name
-P6418 =
-
-# UserID
-P6618 =
-
-# EXT Key 19
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6019 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6219 =
-
-# Name
-P6419 =
-
-# UserID
-P6619 =
-
-# EXT Key 20
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6020 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6220 =
-
-# Name
-P6420 =
-
-# UserID
-P6620 =
-
-# EXT Key 21
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6021 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6221 =
-
-# Name
-P6421 =
-
-# UserID
-P6621 =
-
-# EXT Key 22
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6022 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6222 =
-
-# Name
-P6422 =
-
-# UserID
-P6622 =
-
-# EXT Key 23
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6023 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6223 =
-
-# Name
-P6423 =
-
-# UserID
-P6623 =
-
-# EXT Key 24
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6024 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6224 =
-
-# Name
-P6424 =
-
-# UserID
-P6624 =
-
-# EXT Key 25
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6025 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6225 =
-
-# Name
-P6425 =
-
-# UserID
-P6625 =
-
-# EXT Key 26
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6026 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6226 =
-
-# Name
-P6426 =
-
-# UserID
-P6626 =
-
-# EXT Key 27
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6027 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6227 =
-
-# Name
-P6427 =
-
-# UserID
-P6627 =
-
-# EXT Key 28
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6028 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6228 =
-
-# Name
-P6428 =
-
-# UserID
-P6628 =
-
-# EXT Key 29
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6029 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6229 =
-
-# Name
-P6429 =
-
-# UserID
-P6629 =
-
-# EXT Key 30
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6030 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6230 =
-
-# Name
-P6430 =
-
-# UserID
-P6630 =
-
-# EXT Key 31
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6031 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6231 =
-
-# Name
-P6431 =
-
-# UserID
-P6631 =
-
-# EXT Key 32
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6032 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6232 =
-
-# Name
-P6432 =
-
-# UserID
-P6632 =
-
-# EXT Key 33
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6033 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6233 =
-
-# Name
-P6433 =
-
-# UserID
-P6633 =
-
-# EXT Key 34
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6034 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6234 =
-
-# Name
-P6434 =
-
-# UserID
-P6634 =
-
-# EXT Key 35
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6035 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6235 =
-
-# Name
-P6435 =
-
-# UserID
-P6635 =
-
-# EXT Key 36
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6036 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6236 =
-
-# Name
-P6436 =
-
-# UserID
-P6636 =
-
-# EXT Key 37
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6037 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6237 =
-
-# Name
-P6437 =
-
-# UserID
-P6637 =
-
-# EXT Key 38
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6038 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6238 =
-
-# Name
-P6438 =
-
-# UserID
-P6638 =
-
-# EXT Key 39
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6039 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6239 =
-
-# Name
-P6439 =
-
-# UserID
-P6639 =
-
-# EXT Key 40
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6040 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6240 =
-
-# Name
-P6440 =
-
-# UserID
-P6640 =
-
-# EXT Key 41
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6041 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6241 =
-
-# Name
-P6441 =
-
-# UserID
-P6641 =
-
-# EXT Key 42
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6042 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6242 =
-
-# Name
-P6442 =
-
-# UserID
-P6642 =
-
-# EXT Key 43
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6043 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6243 =
-
-# Name
-P6443 =
-
-# UserID
-P6643 =
-
-# EXT Key 44
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6044 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6244 =
-
-# Name
-P6444 =
-
-# UserID
-P6644 =
-
-# EXT Key 45
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6045 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6245 =
-
-# Name
-P6445 =
-
-# UserID
-P6645 =
-
-# EXT Key 46
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6046 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6246 =
-
-# Name
-P6446 =
-
-# UserID
-P6646 =
-
-# EXT Key 47
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6047 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6247 =
-
-# Name
-P6447 =
-
-# UserID
-P6647 =
-
-# EXT Key 48
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6048 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6248 =
-
-# Name
-P6448 =
-
-# UserID
-P6648 =
-
-# EXT Key 49
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6049 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6249 =
-
-# Name
-P6449 =
-
-# UserID
-P6649 =
-
-# EXT Key 50
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6050 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6250 =
-
-# Name
-P6450 =
-
-# UserID
-P6650 =
-
-# EXT Key 51
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6051 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6251 =
-
-# Name
-P6451 =
-
-# UserID
-P6651 =
-
-# EXT Key 52
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6052 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6252 =
-
-# Name
-P6452 =
-
-# UserID
-P6652 =
-
-# EXT Key 53
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6053 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6253 =
-
-# Name
-P6453 =
-
-# UserID
-P6653 =
-
-# EXT Key 54
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6054 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6254 =
-
-# Name
-P6454 =
-
-# UserID
-P6654 =
-
-# EXT Key 55
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6055 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6255 =
-
-# Name
-P6455 =
-
-# UserID
-P6655 =
-
-# EXT Key 56
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6056 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6256 =
-
-# Name
-P6456 =
-
-# UserID
-P6656 =
+P66{$pnum} = {$uid}
+{/loop_ext1}
 
 #########################################################################################
 # Extension Board 2 Settings.
 #########################################################################################
 
-# EXT Key 57
+{loop_ext2}
+# EXT Key {$number}
 # -----------------------------
 # Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6057 = 
+P60{$pnum} = {$mode}
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6257 =
+P62{$pnum} = {$account}
 
 # Name
-P6457 =
+P64{$pnum} = {$name}
 
 # UserID
-P6657 =
-
-# EXT Key 58
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6058 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6258 =
-
-# Name
-P6458 =
-
-# UserID
-P6658 =
-
-# EXT Key 59
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6059 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6259 =
-
-# Name
-P6459 =
-
-# UserID
-P6659 =
-
-# EXT Key 60
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6060 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6260 =
-
-# Name
-P6460 =
-
-# UserID
-P6660 =
-
-# EXT Key 61
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6061 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6261 =
-
-# Name
-P6461 =
-
-# UserID
-P6661 =
-
-# EXT Key 62
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6062 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6262 =
-
-# Name
-P6462 =
-
-# UserID
-P6662 =
-
-# EXT Key 63
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6063 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6263 =
-
-# Name
-P6463 =
-
-# UserID
-P6663 =
-
-# EXT Key 64
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6064 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6264 =
-
-# Name
-P6464 =
-
-# UserID
-P6664 =
-
-# EXT Key 65
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6065 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6265 =
-
-# Name
-P6465 =
-
-# UserID
-P6665 =
-
-# EXT Key 66
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6066 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6266 =
-
-# Name
-P6466 =
-
-# UserID
-P6666 =
-
-# EXT Key 67
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6067 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6267 =
-
-# Name
-P6467 =
-
-# UserID
-P6667 =
-
-# EXT Key 68
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6068 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6268 =
-
-# Name
-P6468 =
-
-# UserID
-P6668 =
-
-# EXT Key 69
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6069 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6269 =
-
-# Name
-P6469 =
-
-# UserID
-P6669 =
-
-# EXT Key 70
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6070 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6270 =
-
-# Name
-P6470 =
-
-# UserID
-P6670 =
-
-# EXT Key 71
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6071 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6271 =
-
-# Name
-P6471 =
-
-# UserID
-P6671 =
-
-# EXT Key 72
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6072 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6272 =
-
-# Name
-P6472 =
-
-# UserID
-P6672 =
-
-# EXT Key 73
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6073 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6273 =
-
-# Name
-P6473 =
-
-# UserID
-P6673 =
-
-# EXT Key 74
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6074 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6274 =
-
-# Name
-P6474 =
-
-# UserID
-P6674 =
-
-# EXT Key 75
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6075 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6275 =
-
-# Name
-P6475 =
-
-# UserID
-P6675 =
-
-# EXT Key 76
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6076 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6276 =
-
-# Name
-P6476 =
-
-# UserID
-P6676 =
-
-# EXT Key 77
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6077 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6277 =
-
-# Name
-P6477 =
-
-# UserID
-P6677 =
-
-# EXT Key 78
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6078 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6278 =
-
-# Name
-P6478 =
-
-# UserID
-P6678 =
-
-# EXT Key 79
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6079 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6279 =
-
-# Name
-P6479 =
-
-# UserID
-P6679 =
-
-# EXT Key 80
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6080 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6280 =
-
-# Name
-P6480 =
-
-# UserID
-P6680 =
-
-# EXT Key 81
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6081 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6281 =
-
-# Name
-P6481 =
-
-# UserID
-P6681 =
-
-# EXT Key 82
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6082 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6282 =
-
-# Name
-P6482 =
-
-# UserID
-P6682 =
-
-# EXT Key 83
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6083 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6283 =
-
-# Name
-P6483 =
-
-# UserID
-P6683 =
-
-# EXT Key 84
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6084 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6284 =
-
-# Name
-P6484 =
-
-# UserID
-P6684 =
-
-# EXT Key 85
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6085 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6285 =
-
-# Name
-P6485 =
-
-# UserID
-P6685 =
-
-# EXT Key 86
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6086 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6286 =
-
-# Name
-P6486 =
-
-# UserID
-P6686 =
-
-# EXT Key 87
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6087 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6287 =
-
-# Name
-P6487 =
-
-# UserID
-P6687 =
-
-# EXT Key 88
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6088 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6288 =
-
-# Name
-P6488 =
-
-# UserID
-P6688 =
-
-# EXT Key 89
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6089 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6289 =
-
-# Name
-P6489 =
-
-# UserID
-P6689 =
-
-# EXT Key 90
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6090 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6290 =
-
-# Name
-P6490 =
-
-# UserID
-P6690 =
-
-# EXT Key 91
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6091 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6291 =
-
-# Name
-P6491 =
-
-# UserID
-P6691 =
-
-# EXT Key 92
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6092 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6292 =
-
-# Name
-P6492 =
-
-# UserID
-P6692 =
-
-# EXT Key 93
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6093 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6293 =
-
-# Name
-P6493 =
-
-# UserID
-P6693 =
-
-# EXT Key 94
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6094 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6294 =
-
-# Name
-P6494 =
-
-# UserID
-P6694 =
-
-# EXT Key 95
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6095 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6295 =
-
-# Name
-P6495 =
-
-# UserID
-P6695 =
-
-# EXT Key 96
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6096 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6296 =
-
-# Name
-P6496 =
-
-# UserID
-P6696 =
-
-# EXT Key 97
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6097 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6297 =
-
-# Name
-P6497 =
-
-# UserID
-P6697 =
-
-# EXT Key 98
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6098 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6298 =
-
-# Name
-P6498 =
-
-# UserID
-P6698 =
-
-# EXT Key 99
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6099 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6299 =
-
-# Name
-P6499 =
-
-# UserID
-P6699 =
-
-# EXT Key 100
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6100 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6300 =
-
-# Name
-P6500 =
-
-# UserID
-P6700 =
-
-# EXT Key 101
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6101 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6301 =
-
-# Name
-P6501 =
-
-# UserID
-P6701 =
-
-# EXT Key 102
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6102 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6302 =
-
-# Name
-P6502 =
-
-# UserID
-P6702 =
-
-# EXT Key 103
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6103 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6303 =
-
-# Name
-P6503 =
-
-# UserID
-P6703 =
-
-# EXT Key 104
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6104 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6304 =
-
-# Name
-P6504 =
-
-# UserID
-P6704 =
-
-# EXT Key 105
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6105 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6305 =
-
-# Name
-P6505 =
-
-# UserID
-P6705 =
-
-# EXT Key 106
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6106 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6306 =
-
-# Name
-P6506 =
-
-# UserID
-P6706 =
-
-# EXT Key 107
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6107 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6307 =
-
-# Name
-P6507 =
-
-# UserID
-P6707 =
-
-# EXT Key 108
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6108 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6308 =
-
-# Name
-P6508 =
-
-# UserID
-P6708 =
-
-# EXT Key 109
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6109 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6309 =
-
-# Name
-P6509 =
-
-# UserID
-P6709 =
-
-# EXT Key 110
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6110 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6310 =
-
-# Name
-P6510 =
-
-# UserID
-P6710 =
-
-# EXT Key 111
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6111 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6311 =
-
-# Name
-P6511 =
-
-# UserID
-P6711 =
-
-# EXT Key 112
-# -----------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
-P6112 = 
-
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
-P6312 =
-
-# Name
-P6512 =
-
-# UserID
-P6712 =
+P66{$pnum} = {$uid}
+{/loop_ext2}
 
 ##########################################################################################
 #
