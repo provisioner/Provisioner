@@ -1,0 +1,31 @@
+{
+  "data":{
+    "name":"Aastra Models: 91xxi [9112i, 9133i]",
+    "id":"1",
+    "directory":"aap91xxi",
+    "firmware_ver":"",
+    "firmware_pkg":"NULL",
+    "firmware_md5sum":"",
+    "description":"Initial Files",
+    "configuration_files":"$mac.cfg,aastra.cfg",
+    "changelog":"",
+    "model_list":[
+      {
+        "model":"9112i",
+        "lines":"1",
+        "id":"1",
+        "template_data":[
+          "template_data.json"
+        ]
+      },
+      {
+        "model":"9133i",
+        "lines":"1",
+        "id":"2",
+        "template_data":[
+          "template_data.json"
+        ]
+      }
+    ]
+  }
+}

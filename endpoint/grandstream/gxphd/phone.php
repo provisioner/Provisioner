@@ -44,11 +44,6 @@ class endpoint_grandstream_gxphd_phone extends endpoint_grandstream_base {
 
 	function prepare_for_generateconfig() {
 		parent::prepare_for_generateconfig();
-		if($this->model == 'GXP2110') {
-		    $this->options['comment_out'] = '#';
-		} else {
-		    $this->options['comment_out'] = '';
-		} 
                 // Grandstreams support lines 2-6, so let's add them if they're set
                 for ($i = 1; $i < 6; $i++) {
                     $this->lines[$i]['line_active'] = (isset($this->lines[$i]['secret']) ? '1' : '0');

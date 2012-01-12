@@ -84,6 +84,12 @@ DIFFERENCES:
 		only lists one of these.
 */
 
+if (!class_exists("DateTime")) {
+	class DateTime {
+            
+        }
+}
+
 if (!class_exists("DateTimeZone")) {
 	class DateTimeZone {
 		private $ZDump;
@@ -158,4 +164,3 @@ if (!class_exists("DateTimeZone")) {
 		}
 	}
 }
-

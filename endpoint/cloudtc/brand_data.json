@@ -1,0 +1,26 @@
+{
+  "data": {
+    "brands": {
+      "name": "CloudTC",
+      "brand_id": "10",
+      "directory": "cloudtc",
+      "package": "cloudtc.tgz",
+      "md5sum": "24f39c3b9ffd6aefe6e9a5c1fc176ab3",
+      "last_modified": 1325536289,
+      "family_list": [
+        {
+          "id": "1",
+          "name": "CloudTC Glass Models",
+          "directory": "glass",
+          "description": "Make more configuration settings available from UI",
+          "changelog": "",
+          "last_modified": null
+        }
+      ],
+      "oui_list": [
+        "000000"
+      ],
+      "changelog": "PACKAGER: some changes and fixes"
+    }
+  }
+}

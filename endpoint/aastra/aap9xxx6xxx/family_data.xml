@@ -5,7 +5,7 @@
 	<directory>aap9xxx6xxx</directory>
 	<package>aap9_6-0_7.tgz</package>
 	<firmware_ver>1304379137</firmware_ver>
-	<firmware_md5sum>e1c490802e9c811afdbabbcbb559cb2e</firmware_md5sum>
+	<firmware_md5sum>73ebb97898fe45cb0065d204c13dfa4f</firmware_md5sum>
 	<firmware_pkg>aap9xxx6xxx_firmware.tgz</firmware_pkg>
 	<description>Initial Files</description>
 	<configuration_files>$mac.cfg,aastra.cfg</configuration_files>
@@ -109,7 +109,7 @@
 	</model_list>
 	<model_list>
 		<model>6757i</model>
-		<lines>4</lines>
+		<lines>9</lines>
 		<id>10</id>
 		<template_data>
 			<files>template_data.xml</files>
@@ -122,7 +122,7 @@
 	</model_list>
 	<model_list>
 		<model>6757i CT</model>
-		<lines>4</lines>
+		<lines>9</lines>
 		<id>11</id>
 		<template_data>
 			<files>template_data.xml</files>

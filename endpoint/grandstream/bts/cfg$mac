@@ -145,7 +145,7 @@ P207 =
 P208 = 0
 
 # NTP Server
-P30 = {$srvip}
+P30 = {$network_time_server}
 
 # Allow DHCP Option 42 to override NTP server. 0 - No, 1 - Yes. Default is No.
 # When set to Yes(1), it will override the configured NTP server.
@@ -469,7 +469,7 @@ P148 = Grandstream BT200
 #-----------------------------------------------------------------------------
 
 # Time Zone. Offset in minutes to GMT
-P64 = {$timezone}
+P64 = {$gs_timezone}
 
 # Allow DHCP Option 2 to override Time Zone setting. 0 - No, 1 - Yes.
 # When set to Yes(1), it will override the configured Time Zone setting if available. 

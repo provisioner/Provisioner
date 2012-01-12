@@ -1,0 +1,144 @@
+{
+  "template_data":{
+    "category":[
+      {
+        "name":"keys",
+        "subcategory":[
+          {
+            "name":"Programmable Keys (9143i\/6753i\/6755i)",
+            "item":[
+              {
+                "description":"Programmable Keys (9143i\/6753i\/6755i)",
+                "type":"loop",
+                "loop_start":"1",
+                "loop_end":"8",
+                "data":{
+                  "item":[
+                    {
+                      "variable":"$prgkey_type",
+                      "default_value":"empty",
+                      "category":"keys",
+                      "description":"Programmable key {$count} Type",
+                      "type":"list",
+                      "data":[
+                        {
+                          "text":"Empty",
+                          "value":"empty"
+                        },
+                        {
+                          "text":"Callers List",
+                          "value":"callers"
+                        },
+                        {
+                          "text":"Intercom",
+                          "value":"icom"
+                        },
+                        {
+                          "text":"Services",
+                          "value":"services"
+                        },
+                        {
+                          "text":"Speed Dial",
+                          "value":"speeddial"
+                        },
+                        {
+                          "text":"Line",
+                          "value":"line"
+                        },
+                        {
+                          "text":"BLF",
+                          "value":"blf"
+                        },
+                        {
+                          "text":"List",
+                          "value":"list"
+                        },
+                        {
+                          "text":"Do Not Disturb",
+                          "value":"dnd"
+                        },
+                        {
+                          "text":"XML URL",
+                          "value":"xml"
+                        },
+                        {
+                          "text":"Park",
+                          "value":"park"
+                        },
+                        {
+                          "text":"Directory",
+                          "value":"directory"
+                        },
+                        {
+                          "text":"Auto Call Distribution [Sylantro Server]",
+                          "value":"acd"
+                        },
+                        {
+                          "text":"Directed Call Pickup [Sylantro Server]",
+                          "value":"dcp"
+                        },
+                        {
+                          "text":"Flash",
+                          "value":"flash"
+                        },
+                        {
+                          "text":"Server Specific Services [sprecode]",
+                          "value":"spre"
+                        },
+                        {
+                          "text":"Last Call Return",
+                          "value":"lcr"
+                        },
+                        {
+                          "text":"Call Forward",
+                          "value":"callforward"
+                        },
+                        {
+                          "text":"BLF Transfer",
+                          "value":"blfxfer"
+                        },
+                        {
+                          "text":"Speed Dial Transfer",
+                          "value":"speeddialxfer"
+                        },
+                        {
+                          "text":"Speed Dial Conference",
+                          "value":"speeddialconf"
+                        },
+                        {
+                          "text":"BLF Transfer",
+                          "value":"blfxfer"
+                        },
+                        {
+                          "text":"Conference",
+                          "value":"conf"
+                        },
+                        {
+                          "text":"Phone Lock",
+                          "value":"phonelock"
+                        },
+                        {
+                          "text":"Paging",
+                          "value":"paging"
+                        }
+                      ]
+                    },
+                    {
+                      "variable":"$prgkey_value",
+                      "default_value":"",
+                      "description":"Programmable Key {$count} Value",
+                      "type":"input"
+                    },
+                    {
+                      "type":"break"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
