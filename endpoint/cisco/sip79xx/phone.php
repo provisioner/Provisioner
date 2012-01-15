@@ -13,7 +13,7 @@ class endpoint_cisco_sip79xx_phone extends endpoint_cisco_base {
 		parent::prepare_for_generateconfig();
 		$this->config_file_replacements['$mac']=strtoupper($this->mac);
 		foreach ($this->lines AS &$line) {
-			if (strlen($line['displayname']) > 12) {
+			if (array_key_exists('displayname',$line) && (strlen($line['displayname']) > 12)) {
 				$name = explode(" ", $line['displayname']);
 				$line['displayname'] = substr($name[0],0,12);
 			}
