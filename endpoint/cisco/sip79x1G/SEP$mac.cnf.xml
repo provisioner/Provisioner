@@ -18,7 +18,7 @@
 
   <devicePool>
         <dateTimeSetting>
-                <dateTemplate>M/D/Ya</dateTemplate>
+                <dateTemplate>{$date_template}</dateTemplate>
                 <timeZone>Central Standard/Daylight Time</timeZone>
                 <ntps>
                         <ntp>

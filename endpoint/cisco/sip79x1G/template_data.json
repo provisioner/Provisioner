@@ -30,6 +30,22 @@
                 "default_value":"P0S3-8-12-00",
                 "description":"Firmware Image Name",
                 "type":"input"
+              },
+              {
+                "variable":"$date_template",
+                "default_value":"M/D/YA",
+                "description":"Date Format",
+                "type":"list",
+                "data":[
+                  {
+                    "text":"American",
+                    "value":"M/D/YA"
+                  },
+                  {
+                    "text":"European",
+                    "value":"D-M-Ya"
+                  }
+                ]
               }
             ]
           }
