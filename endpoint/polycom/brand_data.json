@@ -5,8 +5,8 @@
       "directory": "polycom",
       "brand_id": "4",
       "package": "polycom.tgz",
-      "md5sum": "39c8a9b174a787db58119cad20942215",
-      "last_modified": 1326746558,
+      "md5sum": "daf058ca81bd2f3f6e5ed04401fe816a",
+      "last_modified": 1326748313,
       "family_list": [
         {
           "id": "4",
@@ -61,7 +61,7 @@
         "0004F2",
         "00907A"
       ],
-      "changelog": "PACKAGER: Removing references to combined files. These aren't needed in the newest bootroms"
+      "changelog": "PACKAGER: PACKAGER: Removing references to combined files. These aren't needed in the newest bootroms"
     }
   }
 }
