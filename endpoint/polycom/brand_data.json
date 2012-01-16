@@ -5,8 +5,8 @@
       "directory": "polycom",
       "brand_id": "4",
       "package": "polycom.tgz",
-      "md5sum": "d96764a8ca3abff09809a0ebc53a9309",
-      "last_modified": 1325964260,
+      "md5sum": "39c8a9b174a787db58119cad20942215",
+      "last_modified": 1326746558,
       "family_list": [
         {
           "id": "4",
@@ -61,7 +61,7 @@
         "0004F2",
         "00907A"
       ],
-      "changelog": "PACKAGER: Removing useless lines in Polycoms. These lines are only needed in the 0000000.cfg file."
+      "changelog": "PACKAGER: Removing references to combined files. These aren't needed in the newest bootroms"
     }
   }
 }
