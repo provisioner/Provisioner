@@ -32,6 +32,26 @@
                 "type":"input"
               },
               {
+                "variable":"$preferredcodec",
+                "default_value":"g711alaw",
+                "description":"Preferred Audio Codec",
+                "type":"list",
+                "data":[
+                  {
+                    "text":"G.711 A-law",
+                    "value":"g711alaw"
+                  },
+                  {
+                    "text":"G.711 u-law",
+                    "value":"g711ulaw"
+                  },
+                  {
+                    "text":"G.729",
+                    "value":"g729a"
+                  }
+                ]
+              },
+              {
                 "variable":"$date_template",
                 "default_value":"M/D/YA",
                 "description":"Date Format",
