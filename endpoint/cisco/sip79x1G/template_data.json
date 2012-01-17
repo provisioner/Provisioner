@@ -38,11 +38,11 @@
                 "type":"list",
                 "data":[
                   {
-                    "text":"G.711 A-law",
+                    "text":"G.711 A-law (Everyone except US)",
                     "value":"g711alaw"
                   },
                   {
-                    "text":"G.711 u-law",
+                    "text":"G.711 u-law (US)",
                     "value":"g711ulaw"
                   },
                   {
