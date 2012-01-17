@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
 <device>
-	<authenticationURL>http://talk2.btg.co.nz/static/auth.txt</authenticationURL>
 	<deviceProtocol>SIP</deviceProtocol>
 	<sshUserId>root</sshUserId>
 	<sshPassword>cisco</sshPassword>
@@ -56,6 +55,4 @@
 		<name>New_Zealand</name>
 		<version>5.0(2)a</version>
 	</networkLocaleInfo>
-	<directoryURL>http://talk2.btg.co.nz/cisco/directory</directoryURL>
-	<servicesURL>http://talk2.btg.co.nz/cisco/directory</servicesURL>
 </device>
