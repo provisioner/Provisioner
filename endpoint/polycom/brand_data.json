@@ -5,8 +5,8 @@
       "directory": "polycom",
       "brand_id": "4",
       "package": "polycom.tgz",
-      "md5sum": "755bf2228607f13f1541cce94f72a745",
-      "last_modified": 1326752196,
+      "md5sum": "41b2c72ff7f3dfd7f1411322dd8ead0f",
+      "last_modified": 1326827795,
       "family_list": [
         {
           "id": "4",
@@ -61,7 +61,7 @@
         "0004F2",
         "00907A"
       ],
-      "changelog": "PACKAGER: That didnt work as expected..."
+      "changelog": "PACKAGER: PACKAGER: That didnt work as expected..."
     }
   }
 }
