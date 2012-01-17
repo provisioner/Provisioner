@@ -592,7 +592,26 @@ abstract class endpoint_base {
         if (file_exists($file)) {
             $json = file_get_contents($file);
             $data = json_decode($json, TRUE);
-            return($data);
+	    $error = json_last_error();
+	    if ($error===JSON_ERROR_NONE) {
+		return($data);
+	    } else {
+		$errors=array( // Taken from http://www.php.net/manual/en/function.json-last-error.php
+			JSON_ERROR_NONE=>'No error has occurred',
+			JSON_ERROR_DEPTH=>'The maximum stack depth has been exceeded',
+			JSON_ERROR_STATE_MISMATCH=>'Invalid or malformed JSON',
+			JSON_ERROR_CTRL_CHAR=>'Control character error, possibly incorrectly encoded',
+			JSON_ERROR_SYNTAX=>'Syntax error',
+		# This is php 5.3.3 or better. May have value of 5.
+		#	JSON_ERROR_UTF8=>'Malformed UTF-8 characters, possibly incorrectly encoded'
+		);
+		if (array_key_exists($error,$errors)) {
+			$error=$errors[$error];
+		} else {
+			$error="Unknown error $error";
+		}
+            	throw new Exception("Could not decode $file: $error");
+	    }
         } else {
             throw new Exception("Could not load: " . $file);
         }
