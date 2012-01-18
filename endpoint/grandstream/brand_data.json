@@ -5,8 +5,8 @@
       "directory": "grandstream",
       "brand_id": "2",
       "package": "grandstream.tgz",
-      "md5sum": "a02479d00e1271ade36d9ec8400042fe",
-      "last_modified": 1326826658,
+      "md5sum": "37bf33484ca7f2906332544cf76fd32f",
+      "last_modified": 1325536387,
       "family_list": [
         {
           "id": "2",
@@ -44,7 +44,7 @@
       "oui_list": [
         "000B82"
       ],
-      "changelog": "PACKAGER: PACKAGER: That didnt work as expected..."
+      "changelog": "PACKAGER: Ok. Fixes Cisco 79xx. Shouldn't affect Jaybee I dont think"
     }
   }
 }
