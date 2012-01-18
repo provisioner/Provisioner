@@ -1,6 +1,6 @@
 proxy1_address: "{$server.ip.1}" 
 {line_loop}
-line{$line}_name: "{$shortname}"
+line{$line}_name: "{$authname}"
 line{$line}_shortname: "{$shortname}"
 line{$line}_displayname: "{$shortname}"
 line{$line}_authname: "{$authname}"
