@@ -1,9 +1,9 @@
 proxy1_address: "{$server.ip.1}" 
 {line_loop}
-line{$line}_name: "{$ext}"
-line{$line}_shortname: "{$ext}"
-line{$line}_displayname: "{$displayname}"
-line{$line}_authname: "{$ext}"
+line{$line}_name: "{$shortname}"
+line{$line}_shortname: "{$shortname}"
+line{$line}_displayname: "{$shortname}"
+line{$line}_authname: "{$authname}"
 line{$line}_password: "{$secret}"
 {/line_loop}
 proxy_emergency: "" 
