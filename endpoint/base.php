@@ -8,6 +8,16 @@
  * @package Provisioner
  *
  */
+foreach (explode(" ","NONE DEPTH STATE_MISMATCH CTRL_CHAR SYNTAX UTF8") AS $key=>$value) {
+	$value='JSON_ERROR_$value'; 
+	if (!defined($value)) 
+		define($value,$key);
+}
+if(!function_exists('json_last_error')) { 
+	function json_last_error() { return JSON_ERROR_NONE; } 
+}
+
+
 abstract class endpoint_base {
 
     public static $modules_path = "endpoint/";
@@ -622,8 +632,7 @@ abstract class endpoint_base {
 			JSON_ERROR_STATE_MISMATCH=>'Invalid or malformed JSON',
 			JSON_ERROR_CTRL_CHAR=>'Control character error, possibly incorrectly encoded',
 			JSON_ERROR_SYNTAX=>'Syntax error',
-		# This is php 5.3.3 or better. May have value of 5.
-		#	JSON_ERROR_UTF8=>'Malformed UTF-8 characters, possibly incorrectly encoded'
+			JSON_ERROR_UTF8=>'Malformed UTF-8 characters, possibly incorrectly encoded'
 		);
 		if (array_key_exists($error,$errors)) {
 			$error=$errors[$error];
