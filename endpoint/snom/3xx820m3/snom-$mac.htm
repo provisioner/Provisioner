@@ -8,7 +8,7 @@
 		<user_realname idx="{$line}" perm="">{$displayname}</user_realname>
 		<user_name idx="{$line}" perm="">{$username}</user_name>
 		<user_pname idx="{$line}" perm="">{$username}</user_pname>
-		<user_mailbox idx="{$line}" perm="">{$username}</user_mailbox>
+		<user_mailbox idx="{$line}">{$voicemail_extension}</user_mailbox>
 		<user_pass idx="{$line}" perm="">{$secret}</user_pass>
 		<user_idle_text idx="{$line}" perm="">{$idle_text}</user_idle_text>
 		<user_dtmf_info idx="{$line}" perm="">{$dtmf}</user_dtmf_info>
@@ -27,10 +27,10 @@
 		<utc_offset perm="R">{$timezone_gmtoffset}</utc_offset>
 		<dst perm="R">{$dstrule}</dst>
 		<tone_scheme perm="R">{$tone_scheme}</tone_scheme>
-		<date_us_format>{$date_us_format}</date_us_format>
+		<date_us_format>{$dateformat}</date_us_format>
 		<time_24_format>{$time_24_format}</time_24_format>
 		<vlan>{$vlan_id} {$vlan_qos}</vlan>
-		<vlan_id>{$vlan_id}</vlan>
+		<vlan_id>{$vlan_id}</vlan_id>
 		<vlan_qos>{$vlan_qos}</vlan_qos>
 		<ntp_server>{$network_time_server}</ntp_server>
 

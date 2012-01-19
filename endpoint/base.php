@@ -52,6 +52,18 @@ abstract class endpoint_base {
     
     private $initialized = FALSE;   //Initialized data or not.
 
+    /* $mapfields is an array of "setting"=>array(
+	"possibility1"=>"result1",
+	"posibility2"=>"result2",
+	"default"=>"defaultresult");
+	in prepare_for_generateconfig, all of the keys in this array are gone 
+	through. If $this->setting (in the above example) is set,
+	$this->setting is set to $mapfields["setting"][$this->setting], or if 
+	it doesn't exist, it is set to $mapfields["setting"]["default"]
+    */
+		
+    public $mapfields=array(); // override in children.
+
     function __construct() {
         self::$root_dir = dirname(dirname(__FILE__)) . "/";
         $this->root_dir = dirname(dirname(__FILE__)) . "/";
@@ -167,6 +179,14 @@ abstract class endpoint_base {
         if (!in_array('$model', $this->config_file_replacements)) {
             $this->config_file_replacements['$model'] = $this->model;
         }
+	foreach ($this->mapfields as $fieldname=>$map) {
+		if (isset($this->settings[$fieldname]) AND (array_key_exists($this->settings[$fieldname],$map))) {
+			$this->settings[$fieldname]=$map[$this->settings[$fieldname]];
+		} else {
+			$this->settings[$fieldname]=$map['default'];
+		}
+	}
+	$this->mapfields=array(); // ensure it only happens once.
     }
 
     private function setup_languages() {
@@ -207,8 +227,8 @@ abstract class endpoint_base {
 
         $file_contents = $this->parse_conditional_model($file_contents);
 
-        $file_contents = $this->parse_lines($file_contents, FALSE);
-        $file_contents = $this->parse_loops($file_contents, FALSE);
+        $file_contents = $this->parse_lines($file_contents, TRUE);
+        $file_contents = $this->parse_loops($file_contents, TRUE);
 
         $file_contents = $this->replace_static_variables($file_contents);
         $file_contents = $this->parse_config_values($file_contents);
@@ -298,7 +318,7 @@ abstract class endpoint_base {
         while (preg_match($pattern, $file_contents, $matches)) {
             $loop_contents = $matches[1];
             $parsed = "";
-            foreach ($this->settings['line'] as $key => $data) {
+            foreach ($this->settings['line'] as $data) {
                 $line = $data['line'];
                 $data['number'] = $line;
                 $data['count'] = $line;
@@ -592,7 +612,26 @@ abstract class endpoint_base {
         if (file_exists($file)) {
             $json = file_get_contents($file);
             $data = json_decode($json, TRUE);
-            return($data);
+	    $error = json_last_error();
+	    if ($error===JSON_ERROR_NONE) {
+		return($data);
+	    } else {
+		$errors=array( // Taken from http://www.php.net/manual/en/function.json-last-error.php
+			JSON_ERROR_NONE=>'No error has occurred',
+			JSON_ERROR_DEPTH=>'The maximum stack depth has been exceeded',
+			JSON_ERROR_STATE_MISMATCH=>'Invalid or malformed JSON',
+			JSON_ERROR_CTRL_CHAR=>'Control character error, possibly incorrectly encoded',
+			JSON_ERROR_SYNTAX=>'Syntax error',
+		# This is php 5.3.3 or better. May have value of 5.
+		#	JSON_ERROR_UTF8=>'Malformed UTF-8 characters, possibly incorrectly encoded'
+		);
+		if (array_key_exists($error,$errors)) {
+			$error=$errors[$error];
+		} else {
+			$error="Unknown error $error";
+		}
+            	throw new Exception("Could not decode $file: $error");
+	    }
         } else {
             throw new Exception("Could not load: " . $file);
         }
