@@ -6,7 +6,7 @@
 	<!-- Line Registration Information -->
 	<Text_Logo group="Phone/General">{$text_logo}</Text_Logo>
 	<Station_Name group="Phone/General">{$station_name}</Station_Name>
-	<Voice_Mail_Number group="Phone/General" ua="na">{$vmail|*97}</Voice_Mail_Number>
+	<Voice_Mail_Number group="Phone/General" ua="na">{$voicemail_extension}</Voice_Mail_Number>
 	{line_loop}
 	<Display_Name_{$line}_ ua="na">{$displaynameline}</Display_Name_{$line}_>
 	<!-- If BLF then set this to the BLF -->
