@@ -5,7 +5,7 @@
       "brand_id": "8",
       "directory": "yealink",
       "package": "yealink.tgz",
-      "md5sum": "b9f9d34dc2be97eee4f9c200b69e8440",
+      "md5sum": "3fafd85af1c14027706b21bb97b82412",
       "last_modified": 1325536289,
       "family_list": [
         {
@@ -28,7 +28,7 @@
       "oui_list": [
         "001565"
       ],
-      "changelog": "PACKAGER: some changes and fixes"
+      "changelog": "PACKAGER: Ok. Fixes Cisco 79xx. Shouldn't affect Jaybee I dont think"
     }
   }
 }

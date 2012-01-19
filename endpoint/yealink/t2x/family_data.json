@@ -1,20 +1,20 @@
 {
-  "data":{
-    "name":"Yealink\/Dreamwave T2X Models: [T20, T22, T26, T28]",
-    "id":"1",
-    "directory":"t2x",
-    "firmware_ver":"",
-    "firmware_pkg":"NULL",
-    "firmware_md5sum":"",
-    "description":"Make more configuration settings available from UI",
-    "configuration_files":"y0000000000$suffix.cfg,$mac.cfg",
-    "changelog":"",
-    "model_list":[
+  "data": {
+    "name": "Yealink\/Dreamwave T2X Models: [T20, T22, T26, T28]",
+    "id": "1",
+    "directory": "t2x",
+    "firmware_ver": 1326828070,
+    "firmware_pkg": "t2x_firmware.tgz",
+    "firmware_md5sum": "8c15008a113e9e6954424f3ac485ad70",
+    "description": "Make more configuration settings available from UI",
+    "configuration_files": "y0000000000$suffix.cfg,$mac.cfg",
+    "changelog": "",
+    "model_list": [
       {
-        "model":"T20",
-        "lines":"2",
-        "id":"1",
-        "template_data":[
+        "model": "T20",
+        "lines": "2",
+        "id": "1",
+        "template_data": [
           "line_options_22.json",
           "template_data.json",
           "memory_keys_22.json",
@@ -23,10 +23,10 @@
         ]
       },
       {
-        "model":"T22",
-        "lines":"3",
-        "id":"2",
-        "template_data":[
+        "model": "T22",
+        "lines": "3",
+        "id": "2",
+        "template_data": [
           "line_options_22.json",
           "template_data.json",
           "line_keys_22.json",
@@ -37,10 +37,10 @@
         ]
       },
       {
-        "model":"T26",
-        "lines":"3",
-        "id":"3",
-        "template_data":[
+        "model": "T26",
+        "lines": "3",
+        "id": "3",
+        "template_data": [
           "line_options_22.json",
           "template_data.json",
           "line_keys_22.json",
@@ -52,10 +52,10 @@
         ]
       },
       {
-        "model":"T28",
-        "lines":"6",
-        "id":"4",
-        "template_data":[
+        "model": "T28",
+        "lines": "6",
+        "id": "4",
+        "template_data": [
           "line_options_22.json",
           "template_data.json",
           "line_keys_28.json",
