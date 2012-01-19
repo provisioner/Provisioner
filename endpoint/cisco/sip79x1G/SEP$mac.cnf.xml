@@ -6,7 +6,7 @@
 	<devicePool>
 		<dateTimeSetting>
 			<dateTemplate>{$date_template}</dateTemplate>
-			<timeZone>New Zealand Standard/Daylight Time</timeZone>
+			<timeZone>{$ciscotz}</timeZone>
 			<ntps>
 				<ntp>
 					<name>{$network_time_server}</name>
@@ -50,9 +50,6 @@
 		</sipLines>
 		<dialTemplate>dialplan.xml</dialTemplate>
 	</sipProfile>
-	<networkLocale>New_Zealand</networkLocale>
-	<networkLocaleInfo>
-		<name>New_Zealand</name>
-		<version>5.0(2)a</version>
-	</networkLocaleInfo>
+	{$image_name}
+	{$tonescheme}
 </device>
