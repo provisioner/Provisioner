@@ -16,13 +16,15 @@ class endpoint_cisco_base extends endpoint_base {
     function prepare_for_generateconfig() {
         //spa likes lower case letters in its mac address
         $this->mac = strtoupper($this->mac);
+	if (($this->settings['image_name']!='') && (strpos("loadInformation",$this->settings['image_name'])===FALSE))
+		$this->settings['image_name']='<loadInformation>'.$this->settings['image_name'].'</loadInformation>';
         parent::prepare_for_generateconfig();
         $this->config_file_replacements['$mac'] = strtolower($this->mac);
         $this->config_file_replacements['$model'] = str_replace('SPA', 'spa', strtoupper($this->model));
     }
 
     function reboot() {
-        if (($this->engine == "asterisk") AND ($this->system == "unix")) {
+        if (($this->engine == "asterisk") && ($this->system == "unix")) {
             if ($this->family_line == "sip79xx") {
                 exec($this->engine_location . " -rx 'sip notify cisco-check-cfg " . $this->settings['line'][0]['username'] . "'");
             } elseif ($this->family_line == "ata18x") {

@@ -27,16 +27,20 @@
               },
               {
                 "variable":"$image_name",
-                "default_value":"P0S3-8-12-00",
+                "default_value":"",
                 "description":"Firmware Image Name",
                 "type":"input"
               },
               {
                 "variable":"$preferredcodec",
-                "default_value":"g711alaw",
+                "default_value":"none",
                 "description":"Preferred Audio Codec",
                 "type":"list",
                 "data":[
+                  {
+                    "text":"None",
+                    "value":"none"
+                  },
                   {
                     "text":"G.711 A-law (Everyone except US)",
                     "value":"g711alaw"

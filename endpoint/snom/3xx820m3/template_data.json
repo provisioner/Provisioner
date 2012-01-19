@@ -106,22 +106,6 @@
                 "type":"input"
               },
               {
-                "variable":"$date_us_format",
-                "default_value":"on",
-                "description":"Date Format",
-                "type":"list",
-                "data":[
-                  {
-                    "text":"American",
-                    "value":"on"
-                  },
-                  {
-                    "text":"European",
-                    "value":"off"
-                  }
-                ]
-              },
-              {
                 "variable":"$time_24_format",
                 "default_value":"off",
                 "description":"Time Format",
