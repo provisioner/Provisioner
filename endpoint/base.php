@@ -9,7 +9,7 @@
  *
  */
 foreach (explode(" ","NONE DEPTH STATE_MISMATCH CTRL_CHAR SYNTAX UTF8") AS $key=>$value) {
-	$value='JSON_ERROR_$value'; 
+	$value="JSON_ERROR_$value"; 
 	if (!defined($value)) 
 		define($value,$key);
 }
