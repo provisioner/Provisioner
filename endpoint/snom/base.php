@@ -11,6 +11,9 @@ class endpoint_snom_base extends endpoint_base {
 
     public $brand_name = 'snom';
     public $protected_files = 'general_custom.xml';
+    public $mapfields=array(
+	'dateformat'=>array('middle-endian'=>'on','big-endian'=>'off','default'=>'off'),
+    );
 
     function prepare_for_generateconfig() {
         parent::prepare_for_generateconfig();
