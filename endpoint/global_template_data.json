@@ -237,6 +237,67 @@
                     "type": "break"
                 },
                 {
+                "variable":"$voicemail_extension",
+                "default_value":"*97",
+                "description":"Voicemail Extension",
+                "type":"input"
+                },
+                {
+                "variable":"$dateformat",
+                "default_value":"middle-endian",
+                "description":"Date format",
+                "type":"list",
+                "data":[
+                  {
+                    "text":"Month/Day/Year (US)",
+                    "value":"middle-endian"
+                  },
+                  {
+                    "text":"Day-Month-Year (European)",
+                    "value":"little-endian"
+                  },
+                  {
+                    "text":"Year.Month.Day (China, Japan, ISO8601)",
+                    "value":"big-endian"
+                  }
+                ]
+                },
+                {
+                "variable":"$timeformat",
+                "default_value":"12hour",
+                "description":"Time format",
+                "type":"list",
+                "data":[
+                  {
+                    "text":"AM\/PM",
+                    "value":"12hour"
+                  },
+                  {
+                    "text":"24 hour",
+                    "value":"24hour"
+                  }
+                ]
+                },
+                {
+                    "type": "break"
+                },
+                {
+                    "variable": "$tonescheme",
+                    "default_value": "US",
+                    "description": "Tone Scheme (e.g. Dialtone)",
+                    "type": "list",
+                    "data": [
+                    {
+                        "text": "USA",
+                        "value": "US"
+                    },
+                    {
+                        "text": "New Zealand",
+                        "value": "NZ"
+                    }
+                    ]
+                },
+                {
                     "variable": "$provision_protocol",
                     "default_value": "http",
                     "description": "Provision Protocol",
