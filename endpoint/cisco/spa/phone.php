@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Cisco SPA Phone File
  *
@@ -7,45 +8,63 @@
  * @package Provisioner
  */
 class endpoint_cisco_spa_phone extends endpoint_cisco_base {
-	
-	public $family_line = 'spa';
-	
-	function parse_lines_hook($line) {
-		$short_name = substr($this->lines[$line]['displayname'], 0, 8) . "...";
-		if((isset($this->lines[$line]['secret'])) && ($this->lines[$line]['secret'] != "")) {
-			$this->lines[$line]['options']['dial_plan'] = $this->options['dial_plan'];
-		} else {
-			$this->lines[$line]['options']['dial_plan'] = "";
-		}
-		if(isset($this->options['lineops'])) {
-			$this->lines[$line]['options']['displaynameline'] = $this->options['lineops'][$line]['displaynameline'];
-			$this->lines[$line]['options']['short_name'] = $this->options['lineops'][$line]['displaynameline'];
-			if(($this->options['lineops'][$line]['keytype'] == "blf") AND ($this->options['lineops'][$line]['blfext'] != "")) {
-				$this->lines[$line]['ext'] = $this->options['lineops'][$line]['blfext'];
-				$this->lines[$line]['secret'] = 'n/a';
-				$this->lines[$line]['options']['blf_ext_type'] = "Disabled";
-				$this->lines[$line]['options']['share_call_appearance'] = "shared";
-				$this->lines[$line]['options']['extended_function'] = "fnc=blf+sd+cp;sub=".$this->options['lineops'][$line]['blfext']."@".$this->server[1]['ip'];
-			} else {
-				if(!isset($this->lines[$line]['secret'])) {
-					$this->lines[$line]['ext'] = '';
-					$this->lines[$line]['secret'] = '';
-					$this->lines[$line]['options']['blf_ext_type'] = "1";
-					$this->lines[$line]['options']['share_call_appearance'] = "private";
-					$this->lines[$line]['options']['extended_function'] = "";
-				} else {
-					$this->lines[$line]['options']['blf_ext_type'] = $line;
-					$this->lines[$line]['options']['share_call_appearance'] = "private";
-					$this->lines[$line]['options']['extended_function'] = "";
-				}
-			}
-		} else {
-			$this->lines[$line]['options']['displaynameline'] = $this->lines[$line]['displayname'];
-			$this->lines[$line]['options']['short_name'] = $short_name;
-			$this->lines[$line]['options']['blf_ext_type'] = "1";
-			$this->lines[$line]['options']['share_call_appearance'] = "private";
-			$this->lines[$line]['options']['extended_function'] = "";
-		}
-	}
-	
+
+    public $family_line = 'spa';
+
+    function parse_lines_hook($line_data) {
+        $line = $line_data['line'];
+        if (strlen($line_data['displayname']) > 12) {
+            $short_name = substr($line_data['displayname'], 0, 8) . "...";
+        } else {
+            $short_name = $line_data['displayname'];
+        }
+        if ((isset($line_data['secret'])) && ($line_data['secret'] != "")) {
+            $line_data['dial_plan'] = $this->settings['dial_plan'];
+        } else {
+            $line_data['dial_plan'] = "";
+        }
+        if (isset($this->settings['loops']['lineops'][$line])) {
+
+            $line_data['displaynameline'] = str_replace('{$count}', $line_data['count'], $this->settings['loops']['lineops'][$line]['displaynameline']);
+            $line_data['short_name'] = str_replace('{$count}', $line_data['count'], $short_name);
+
+            if (($this->settings['loops']['lineops'][$line]['keytype'] == "blf") AND ($this->settings['loops']['lineops'][$line]['blfext'] != "")) {
+                $line_data['username'] = $this->settings['loops']['lineops'][$line]['blfext'];
+                $line_data['secret'] = 'n/a';
+                $line_data['blf_ext_type'] = "Disabled";
+                $line_data['share_call_appearance'] = "shared";
+                $line_data['extended_function'] = "fnc=blf+sd+cp;sub=" . $this->settings['loops']['lineops'][$line]['blfext'] . "@" . $this->settings['line'][0]['server_host'];
+            } elseif (($this->settings['loops']['lineops'][$line]['keytype'] == "sd") AND ($this->settings['loops']['lineops'][$line]['blfext'] != "")) {
+                $line_data['username'] = $this->settings['loops']['lineops'][$line]['blfext'];
+                $line_data['secret'] = 'n/a';
+                $line_data['blf_ext_type'] = "Disabled";
+                $line_data['share_call_appearance'] = "shared";
+                $line_data['extended_function'] = "fnc=sd;sub=" . $this->settings['loops']['lineops'][$line]['blfext'] . "@" . $this->settings['line'][0]['server_host'];
+            } elseif ($this->settings['loops']['lineops'][$line]['keytype'] == "disabled") {
+                $line_data['blf_ext_type'] = "Disabled";
+            } else {
+                if (!isset($line_data['secret'])) {
+                    $line_data['displaynameline'] = $this->lines[1]['options']['displaynameline'];
+                    $line_data['short_name'] = $this->lines[1]['options']['short_name'];
+                    $line_data['username'] = '';
+                    $line_data['secret'] = '';
+                    $line_data['blf_ext_type'] = "1";
+                    $line_data['share_call_appearance'] = "private";
+                    $line_data['extended_function'] = "";
+                } else {
+                    $line_data['blf_ext_type'] = $line;
+                    $line_data['share_call_appearance'] = "private";
+                    $line_data['extended_function'] = "";
+                }
+            }
+        } else {
+            $line_data['displaynameline'] = $line_data['displayname'];
+            $line_data['short_name'] = $short_name;
+            $line_data['blf_ext_type'] = "1";
+            $line_data['share_call_appearance'] = "private";
+            $line_data['extended_function'] = "";
+        }
+        return($line_data);
+    }
+
 }
