@@ -5,8 +5,8 @@
       "brand_id": "7",
       "directory": "cisco",
       "package": "cisco.tgz",
-      "md5sum": "ba57b9fd0406fd7e8656a0fc7d0029fc",
-      "last_modified": 1326912533,
+      "md5sum": "011fc2bd999419e44a2f80fbb738245a",
+      "last_modified": 1327948632,
       "family_list": [
         {
           "id": "5",
@@ -72,8 +72,8 @@
         "0013C4",
         "0016C8",
         "001818",
-	"00175A",
-	"001795",
+        "00175A",
+        "001795",
         "001A2F",
         "001C58",
         "001DA2",
@@ -82,7 +82,7 @@
         "000E38",
         "00070E",
         "001BD4",
-	"001930",
+        "001930",
         "0019AA",
         "001D45",
         "001EF7",
@@ -90,7 +90,7 @@
         "1CDF0F",
         "E05FB9"
       ],
-      "changelog": "PACKAGER: Fix for auth and reg for ciscos"
+      "changelog": "PACKAGER: Add break here"
     }
   }
 }
