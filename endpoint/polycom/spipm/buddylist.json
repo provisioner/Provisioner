@@ -24,6 +24,9 @@
                     ]
                 },
                 {
+                	"type":"break"
+                },
+                {
                     "description":"Buddy List Options",
                     "type":"loop",
                     "loop_start":"1",
