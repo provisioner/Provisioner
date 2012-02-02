@@ -22,14 +22,6 @@
           "speed_dials.json",
           "idle_touch_keys.json"
         ]
-      },
-      {
-        "model":"N\/A",
-        "lines":"1",
-        "id":"2",
-        "template_data":[
-          "template_data.json"
-        ]
       }
     ]
   }
