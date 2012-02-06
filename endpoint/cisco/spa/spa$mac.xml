@@ -6,7 +6,7 @@
 	<!-- Line Registration Information -->
 	<Text_Logo group="Phone/General">{$text_logo}</Text_Logo>
 	<Station_Name group="Phone/General">{$station_name}</Station_Name>
-	<Voice_Mail_Number group="Phone/General">{$vmail|*97}</Voice_Mail_Number>
+	<Voice_Mail_Number group="Phone/General" ua="na">{$voicemail_extension}</Voice_Mail_Number>
 	{line_loop}
 	<Display_Name_{$line}_ ua="na">{$displaynameline}</Display_Name_{$line}_>
 	<!-- If BLF then set this to the BLF -->
@@ -36,7 +36,6 @@
 	 <Use_DNS_SRV_1_ ua="rw">No</Use_DNS_SRV_1_>
 	 <Proxy_Fallback_Intvl_1_ ua="ro">3600</Proxy_Fallback_Intvl_1_>
 	 <Proxy_Redundancy_Method_1_ ua="ro">Normal</Proxy_Redundancy_Method_1_>
-	 <Voice_Mail_Number  ua="na">{$vmail|*97}</Voice_Mail_Number>
 	 <Time_Zone  ua="na">{$timezone}</Time_Zone>
 
 	<!-- Admin -->
