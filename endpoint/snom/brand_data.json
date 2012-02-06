@@ -5,8 +5,8 @@
       "directory": "snom",
       "brand_id": "6",
       "package": "snom.tgz",
-      "md5sum": "b98910f8ae096825c09abe79d3b0ceec",
-      "last_modified": 1325536387,
+      "md5sum": "df38b28697aee0f193a1abb069c7a830",
+      "last_modified": 1327948632,
       "family_list": [
         {
           "id": "1",
@@ -28,7 +28,7 @@
       "oui_list": [
         "000413"
       ],
-      "changelog": "PACKAGER: some changes and fixes"
+      "changelog": "PACKAGER: Add break here"
     }
   }
 }
