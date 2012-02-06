@@ -15,9 +15,12 @@ class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
     public $copy_files = array("SoundPointIPLocalization", "SoundPointIPWelcome.wav", "LoudRing.wav");
     
     function parse_lines_hook($line_data, $line_total) {
-        $line_data['lineKeys'] = $line_total;
         $line_data['digitmap'] = (isset($this->settings['digitmap']) ? $this->settings['digitmap'] : NULL);
         $line_data['digitmaptimeout'] = (isset($this->settings['digitmaptimeout']) ? $this->settings['digitmaptimeout'] : NULL);
+        
+        $line = $line_data['line'];
+        $line_data['lineKeys'] = isset($this->settings['loops']['lineops'][$line]) ? $this->settings['loops']['lineops'][$line]['linekeys'] : '1';
+        
         return($line_data);
     }
 
@@ -48,7 +51,23 @@ class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
             }
         }
         
+        //This is for the regular $mac.cfg file.
         $this->settings['createdFiles'] = implode(', ', array_values($this->configfiles));
+        
+        //This is for the old school buddylist file
+        if($this->settings['enablebl'] == 1) {
+            $result['contacts/'.$this->mac.'-directory.xml'] = 'contacts/$mac-directory.xml';
+            $this->settings['presence'] = 1;
+            foreach($this->settings['loops']['bl'] as $key => $data) {
+                if(!empty($data['fname']) && !empty($data['bext'])) {
+                    $this->settings['loops']['bl'][$key]['type'] = isset($this->settings['loops']['bl'][$key]['type']) ? $this->settings['loops']['bl'][$key]['type'] : '0';
+                } else {
+                    unset($this->settings['loops']['bl'][$key]);
+                }
+            }
+        } else {
+            $this->settings['presence'] = 0;
+        }
         
         return $result;
     }
@@ -56,10 +75,10 @@ class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
     function prepare_for_generateconfig() {
         parent::prepare_for_generateconfig();
 
-        if (isset($this->settings['attendant'])) {
-            foreach ($this->settings['attendant'] as $key => $data) {
-                if ($this->settings['attendant'][$key]['ext'] == '') {
-                    unset($this->settings['attendant'][$key]);
+        if (isset($this->settings['loops']['attendant'])) {
+            foreach ($this->settings['loops']['attendant'] as $key => $data) {
+                if ($this->settings['loops']['attendant'][$key]['ext'] == '') {
+                    unset($this->settings['loops']['attendant'][$key]);
                 }
             }
         }

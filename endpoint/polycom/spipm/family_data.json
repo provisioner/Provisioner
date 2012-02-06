@@ -1,6 +1,6 @@
 {
   "data": {
-    "name": "SoundPoint\/Station\/VVX In-Production Models [320,330,321,331,335,450,550,560,650,670,5000,6000,7000,1500]",
+    "name": "SoundPoint\/Station\/VVX In-Production Models [330,321,331,335,450,550,560,650,670,5000,6000,7000,1500]",
     "id": "3",
     "directory": "spipm",
     "firmware_ver": 1326827795,
@@ -15,7 +15,9 @@
         "lines": "2",
         "id": "1",
         "template_data": [
-          "template_data.json"
+          "linekeys.json",
+          "template_data.json",
+          "buddylist.json"
         ]
       },
       {
@@ -23,7 +25,9 @@
         "lines": "2",
         "id": "2",
         "template_data": [
-          "template_data.json"
+          "linekeys.json",
+          "template_data.json",
+          "buddylist.json"
         ]
       },
       {
@@ -31,7 +35,9 @@
         "lines": "2",
         "id": "3",
         "template_data": [
-          "template_data.json"
+          "linekeys.json",
+          "template_data.json",
+          "buddylist.json"
         ]
       },
       {
@@ -39,7 +45,10 @@
         "lines": "3",
         "id": "5",
         "template_data": [
-          "template_data.json"
+          "linekeys.json",
+          "template_data.json",
+          "attendant_keys.json",
+          "buddylist.json"
         ]
       },
       {
@@ -47,8 +56,10 @@
         "lines": "4",
         "id": "6",
         "template_data": [
+          "linekeys.json",
           "template_data.json",
-          "attendant_keys.json"
+          "attendant_keys.json",
+          "buddylist.json"
         ]
       },
       {
@@ -56,7 +67,10 @@
         "lines": "4",
         "id": "7",
         "template_data": [
-          "template_data.json"
+          "linekeys.json",
+          "template_data.json",
+          "attendant_keys.json",
+          "buddylist.json"
         ]
       },
       {
@@ -64,7 +78,10 @@
         "lines": "6",
         "id": "8",
         "template_data": [
-          "template_data.json"
+          "linekeys.json",
+          "template_data.json",
+          "attendant_keys.json",
+          "buddylist.json"
         ]
       },
       {
@@ -72,7 +89,10 @@
         "lines": "6",
         "id": "9",
         "template_data": [
-          "template_data.json"
+          "linekeys.json",
+          "template_data.json",
+          "attendant_keys.json",
+          "buddylist.json"
         ]
       },
       {
@@ -80,7 +100,9 @@
         "id": "10",
         "lines": "3",
         "template_data": [
-          "template_data.json"
+          "linekeys.json",
+          "template_data.json",
+          "buddylist.json"
         ]
       },
       {
@@ -88,7 +110,9 @@
         "id": "11",
         "lines": "3",
         "template_data": [
-          "template_data.json"
+          "linekeys.json",
+          "template_data.json",
+          "buddylist.json"
         ]
       },
       {
@@ -96,7 +120,9 @@
         "id": "12",
         "lines": "3",
         "template_data": [
-          "template_data.json"
+          "linekeys.json",
+          "template_data.json",
+          "buddylist.json"
         ]
       },
       {
@@ -104,7 +130,9 @@
         "id": "15",
         "lines": "2",
         "template_data": [
-          "template_data.json"
+          "linekeys.json",
+          "template_data.json",
+          "buddylist.json"
         ]
       }
     ]

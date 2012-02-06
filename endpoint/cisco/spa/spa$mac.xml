@@ -11,8 +11,8 @@
 	<Display_Name_{$line}_ ua="na">{$displaynameline}</Display_Name_{$line}_>
 	<!-- If BLF then set this to the BLF -->
 	<Short_Name_{$line}_ ua="na">{$short_name}</Short_Name_{$line}_> 
-	<User_ID_{$line}_ ua="na">{$ext}</User_ID_{$line}_>
-	<Password_{$line}_ ua="na">{$pass}</Password_{$line}_>
+	<User_ID_{$line}_ ua="na">{$username}</User_ID_{$line}_>
+	<Password_{$line}_ ua="na">{$secret}</Password_{$line}_>
 	<!-- Below set to disabled for BLF -->
 	<Extension_{$line}_ group="Phone/Line_Key_{$line}">{$blf_ext_type}</Extension_{$line}_>
 	<!-- If BLF set to shared -->
