@@ -76,9 +76,9 @@
                 "type":"input"
               },
               {
-                "variable":"$firmware_url",
+                "variable":"$firmware",
                 "default_value":"",
-                "description":"Firmware URL",
+                "description":"Firmware",
                 "type":"input"
               },
               {

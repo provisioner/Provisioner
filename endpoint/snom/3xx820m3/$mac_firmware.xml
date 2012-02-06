@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <firmware-settings> 
-	<firmware perm="">{$firmware_url}</firmware>
+	<firmware perm="">{$provisioning_type}://{$server.ip.1}{$provisioning_path}/{$firmware}</firmware>
 </firmware-settings>
