@@ -5,8 +5,8 @@
       "directory": "snom",
       "brand_id": "6",
       "package": "snom.tgz",
-      "md5sum": "df38b28697aee0f193a1abb069c7a830",
-      "last_modified": 1327948632,
+      "md5sum": "e9f174c8171105b614f93aaec2fa4d57",
+      "last_modified": 1328645302,
       "family_list": [
         {
           "id": "1",
@@ -28,7 +28,7 @@
       "oui_list": [
         "000413"
       ],
-      "changelog": "PACKAGER: Add break here"
+      "changelog": "PACKAGER: Remove duplicate \"'\" on packager for releases page"
     }
   }
 }
