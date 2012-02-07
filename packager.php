@@ -328,13 +328,13 @@ function create_brand_pkg($rawname,$version,$brand_name,$old_brand_timestamp,$c_
 	
 		$brands_html .= "==== ".$rawname." (Last Modified: ".date('m/d/Y',$brand_max)." at ".date("G:i",$brand_max).") ====\n";
 		$brands_html .= "XML File: [http://www.provisioner.net/release/v3/".$rawname."/".$rawname.".json ".$rawname.".json]\n\n";
-		$brands_html .= "Package File: [http://www.provisioner.net/release/v3/".$rawname."/".$pkg_name.".tgz' ".$pkg_name.".tgz]\n";
+		$brands_html .= "Package File: [http://www.provisioner.net/release/v3/".$rawname."/".$pkg_name.".tgz ".$pkg_name.".tgz]\n";
 		
 		echo "\tComplete..Continuing..\n";
 	} else {
 		$brands_html .= "==== ".$rawname." (Last Modified: ".date('m/d/Y',$brand_max)." at ".date("G:i",$brand_max).") ====\n";
-		$brands_html .= "XML File: [http://www.provisioner.net/release/v3/".$rawname."/".$rawname.".json' ".$rawname.".json]\n\n";
-		$brands_html .= "Package File: [http://www.provisioner.net/release/v3/".$rawname."/".$pkg_name.".tgz' ".$pkg_name.".tgz]\n";
+		$brands_html .= "XML File: [http://www.provisioner.net/release/v3/".$rawname."/".$rawname.".json ".$rawname.".json]\n\n";
+		$brands_html .= "Package File: [http://www.provisioner.net/release/v3/".$rawname."/".$pkg_name.".tgz ".$pkg_name.".tgz]\n";
 		echo "\tNothing changed! Aborting Package Creation!\n";
 	}
 }
