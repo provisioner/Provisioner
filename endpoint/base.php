@@ -788,7 +788,7 @@ class Provisioner_Globals {
                     <!-- Trick the Phone into loading a specific file for JUST that phone -->
                     <!-- Set the resync to 3 second2 so it reboots automatically, we set this to 86400 seconds in the other file -->
                     <Resync_Periodic>3</Resync_Periodic>
-                    <Profile_Rule>" . $web_path . "spa\$MA.json</Profile_Rule>
+                    <Profile_Rule>" . $web_path . "spa\$MA.xml</Profile_Rule>
                     <Text_Logo group=\"Phone/General\">~PLEASE WAIT~</Text_Logo>
                     <Select_Background_Picture ua=\"ro\">Text Logo</Select_Background_Picture>
                 </flat-profile>");
