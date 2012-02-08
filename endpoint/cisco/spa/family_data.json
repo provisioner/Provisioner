@@ -41,6 +41,7 @@
         "model":"SPA941",
         "lines":"4",
         "id":"4",
+	"firmware":"spa941-*.bin",
         "template_data":[
           "template_data.json",
           "keys.json"
@@ -50,6 +51,7 @@
         "model":"SPA942",
         "lines":"4",
         "id":"5",
+	"firmware":"spa942-*.bin",
         "template_data":[
           "template_data.json",
           "keys.json"
