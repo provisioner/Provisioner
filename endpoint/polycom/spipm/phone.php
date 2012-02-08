@@ -55,7 +55,7 @@ class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
         $this->settings['createdFiles'] = implode(', ', array_values($this->configfiles));
         
         //This is for the old school buddylist file
-        if($this->settings['enablebl'] == 1) {
+        if(isset($this->settings['enablebl']) && ($this->settings['enablebl'] == 1)) {
             $result['contacts/'.$this->mac.'-directory.xml'] = 'contacts/$mac-directory.xml';
             $this->settings['presence'] = 1;
             foreach($this->settings['loops']['bl'] as $key => $data) {
