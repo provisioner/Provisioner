@@ -5,8 +5,8 @@
       "directory": "polycom",
       "brand_id": "4",
       "package": "polycom.tgz",
-      "md5sum": "d89c76a3a3391e2917d1d359be0d66ef",
-      "last_modified": 1327948632,
+      "md5sum": "c72c6e9ea82f1099d0b2124afcd2873e",
+      "last_modified": 1328948793,
       "family_list": [
         {
           "id": "4",
@@ -34,7 +34,7 @@
         },
         {
           "id": "3",
-          "name": "SoundPoint\/Station\/VVX In-Production Models [320,330,321,331,335,450,550,560,650,670,5000,6000,7000,1500]",
+          "name": "SoundPoint\/Station\/VVX In-Production Models [330,321,331,335,450,550,560,650,670,5000,6000,7000,1500]",
           "directory": "spipm",
           "description": "Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality",
           "changelog": "",
@@ -61,7 +61,7 @@
         "0004F2",
         "00907A"
       ],
-      "changelog": "PACKAGER: Add break here"
+      "changelog": "PACKAGER: Didnt add lineKeys variable back from local dev"
     }
   }
 }
