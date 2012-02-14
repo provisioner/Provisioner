@@ -18,15 +18,17 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
         } else {
             $short_name = $line_data['displayname'];
         }
+
         if ((isset($line_data['secret'])) && ($line_data['secret'] != "")) {
             $line_data['dial_plan'] = $this->settings['dial_plan'];
         } else {
             $line_data['dial_plan'] = "";
         }
+
         if (isset($this->settings['loops']['lineops'][$line])) {
-            
-            $line_data['displaynameline'] = str_replace('{$count}', $line_data['count'], $this->settings['loops']['lineops'][$line]['displaynameline']);
-            $line_data['short_name'] = str_replace('{$count}', $line_data['count'], $short_name);
+            $line_data['displaynameline'] = str_replace('{$count}', $line, $this->settings['loops']['lineops'][$line]['displaynameline']);
+
+            $line_data['short_name'] = $line_data['displaynameline'];
             
             if (($this->settings['loops']['lineops'][$line]['keytype'] == "blf") AND ($this->settings['loops']['lineops'][$line]['blfext'] != "")) {
                 $line_data['username'] = $this->settings['loops']['lineops'][$line]['blfext'];
@@ -70,10 +72,12 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
     function prepare_for_generateconfig() {
         parent::prepare_for_generateconfig();
         
-        for($i = 0; $i <= $this->max_lines-1; $i++) {
-            if(!isset($this->settings['line'][$i]['line'])) {
-                $this->settings['line'][$i]['line'] = $i+1;
-            }
+        for($i = 1; $i <= $this->max_lines; $i++) {
+			if((isset($this->settings['loops']['lineops'])) && ($this->settings['loops']['lineops'][$i]['keytype'] != 'line')) {
+	            if(!isset($this->settings['line'][$i]['line'])) {
+	                $this->settings['line'][$i]['line'] = $i;
+	            }
+			}
         }
 
         if (isset($this->settings['loops']['unit1'])) {
