@@ -18,7 +18,6 @@ class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
     function parse_lines_hook($line_data, $line_total) {
         $line_data['line_active'] = 1;
         $line_data['line_m1'] = $line_data['line'] - 1;
-        $line_data['voicemail_number'] = '*97';
         return($line_data);
     }
 
@@ -28,6 +27,11 @@ class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
         //Yealink likes lower case letters in its mac address
         $this->mac = strtolower($this->mac);
         $this->config_file_replacements['$suffix'] = $model_suffixes[$this->model];
+	if (isset($this->settings['network']['vlan']['id']) && ($this->settings['network']['vlan']['id']!='')) {
+		$this->settings['vlan_enabled']=1;
+	} else {
+		$this->settings['vlan_enabled']=0;
+	}
         parent::prepare_for_generateconfig();
 
         if (isset($this->options['softkey'])) {
