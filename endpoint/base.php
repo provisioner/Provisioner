@@ -237,8 +237,8 @@ abstract class endpoint_base {
 
         $file_contents = $this->parse_conditional_model($file_contents);
 
-        $file_contents = $this->parse_lines($file_contents, FALSE);
-        $file_contents = $this->parse_loops($file_contents, FALSE);
+        $file_contents = $this->parse_lines($file_contents, TRUE);
+        $file_contents = $this->parse_loops($file_contents, TRUE);
 
         $file_contents = $this->replace_static_variables($file_contents);
         $file_contents = $this->parse_config_values($file_contents);
