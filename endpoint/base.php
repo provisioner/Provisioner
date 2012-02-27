@@ -237,8 +237,8 @@ abstract class endpoint_base {
 
         $file_contents = $this->parse_conditional_model($file_contents);
 
-        $file_contents = $this->parse_lines($file_contents, FALSE);
-        $file_contents = $this->parse_loops($file_contents, FALSE);
+        $file_contents = $this->parse_lines($file_contents, TRUE);
+        $file_contents = $this->parse_loops($file_contents, TRUE);
 
         $file_contents = $this->replace_static_variables($file_contents);
         $file_contents = $this->parse_config_values($file_contents);
@@ -509,7 +509,7 @@ abstract class endpoint_base {
             //not needed I dont think
         } else {
             //Find all matched variables in the text file between "{$" and "}"
-            preg_match_all('/[{\$](.*?)[}]/i', $contents, $match);
+            preg_match_all('/{($[^{]+?)[}]/i', $contents, $match);
             //Result without brackets (but with the $ variable identifier)
             $no_brackets = array_values(array_unique($match[1]));
             //Result with brackets
