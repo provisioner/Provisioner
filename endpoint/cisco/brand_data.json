@@ -5,8 +5,8 @@
       "brand_id": "7",
       "directory": "cisco",
       "package": "cisco.tgz",
-      "md5sum": "809fbb060203421c6580794b7578ad01",
-      "last_modified": 1328645302,
+      "md5sum": "d7ce75d694fc2de07da596a08cbde8ee",
+      "last_modified": 1330377567,
       "family_list": [
         {
           "id": "5",
@@ -90,7 +90,7 @@
         "1CDF0F",
         "E05FB9"
       ],
-      "changelog": "PACKAGER: Remove duplicate \"'\" on packager for releases page"
+      "changelog": "PACKAGER: Updates to Cisco"
     }
   }
 }
