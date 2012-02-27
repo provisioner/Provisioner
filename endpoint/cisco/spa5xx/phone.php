@@ -24,11 +24,12 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
         } else {
             $line_data['dial_plan'] = "";
         }
-
         if (isset($this->settings['loops']['lineops'][$line])) {
-            $line_data['displaynameline'] = str_replace('{$count}', $line, $this->settings['loops']['lineops'][$line]['displaynameline']);
-
-            $line_data['short_name'] = $line_data['displaynameline'];
+            
+            $line_data['displaynameline'] = str_replace('{$count}', $line_data['count'], $this->settings['loops']['lineops'][$line]['displaynameline']);
+            $short_name = $line_data['displaynameline'];
+            
+            $line_data['short_name'] = str_replace('{$count}', $line_data['count'], $short_name);
             
             if (($this->settings['loops']['lineops'][$line]['keytype'] == "blf") AND ($this->settings['loops']['lineops'][$line]['blfext'] != "")) {
                 $line_data['username'] = $this->settings['loops']['lineops'][$line]['blfext'];
@@ -44,6 +45,8 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
                 $line_data['extended_function'] = "fnc=sd;sub=" . $this->settings['loops']['lineops'][$line]['blfext'] . "@" . $this->settings['line'][0]['server_host'];
             } elseif($this->settings['loops']['lineops'][$line]['keytype'] == "disabled") {
                 $line_data['blf_ext_type'] = "Disabled";
+            } elseif($this->settings['loops']['lineops'][$line]['keytype'] == "clone") {
+                $line_data['blf_ext_type'] = $this->settings['loops']['lineops'][$line]['clonedline'];
             } else {
                 if (!isset($line_data['secret'])) {
                     $line_data['displaynameline'] = $this->lines[1]['options']['displaynameline'];
