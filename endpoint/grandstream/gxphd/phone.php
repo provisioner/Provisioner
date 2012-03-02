@@ -10,6 +10,11 @@ class endpoint_grandstream_gxphd_phone extends endpoint_grandstream_base {
 
 	public $family_line = 'gxphd';
 
+	function parse_lines_hook($line_data, $line_total) {
+        $line_data['line_active'] = (isset($line_data['secret']) ? '1' : '0');
+        return($line_data);
+    }
+
 	function get_gmtoffset($timezone) {
 		$timezone = str_replace(":", ".", $timezone);
                 $timezone = str_replace("30", "5", $timezone);
@@ -40,14 +45,5 @@ class endpoint_grandstream_gxphd_phone extends endpoint_grandstream_base {
                                 exec("curl -b cookies.txt http://".$ip."/cgi-bin/rs");
                         }
                 }
-        }
-
-	function prepare_for_generateconfig() {
-		parent::prepare_for_generateconfig();
-                // Grandstreams support lines 2-6, so let's add them if they're set
-                for ($i = 1; $i < 6; $i++) {
-                    $this->lines[$i]['line_active'] = (isset($this->lines[$i]['secret']) ? '1' : '0');
-                }
-	}
-		
+        }	
 }
