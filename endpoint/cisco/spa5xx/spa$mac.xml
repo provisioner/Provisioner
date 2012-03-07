@@ -2,7 +2,7 @@
 	<!-- Reset Never -->
 	<Resync_Periodic>0</Resync_Periodic>
 	<Resync_On_Reset>Yes</Resync_On_Reset>
-	<Profile_Rule>{$provisioning_type}://{$provisioning_path}spa$MA.xml</Profile_Rule>
+	<Profile_Rule>{$provisioning_type}://{$provisioning_path}/spa$MA.xml</Profile_Rule>
 	
 	<!-- Phone Information -->
 	<Text_Logo group="Phone/General">{$text_logo}</Text_Logo>
