@@ -5,8 +5,8 @@
       "brand_id": "7",
       "directory": "cisco",
       "package": "cisco.tgz",
-      "md5sum": "8da57eb9b11f54f7d891ec367d04a370",
-      "last_modified": 1331140096,
+      "md5sum": "90156a038bd9076eda238a84275fb67b",
+      "last_modified": 1331140823,
       "family_list": [
         {
           "id": "5",
@@ -90,7 +90,7 @@
         "1CDF0F",
         "E05FB9"
       ],
-      "changelog": "PACKAGER: Cisco 5xx Profile Rule error"
+      "changelog": "PACKAGER: Adding Line Settings for 508g"
     }
   }
 }
