@@ -5,8 +5,8 @@
       "brand_id": "7",
       "directory": "cisco",
       "package": "cisco.tgz",
-      "md5sum": "d7ce75d694fc2de07da596a08cbde8ee",
-      "last_modified": 1330377567,
+      "md5sum": "8da57eb9b11f54f7d891ec367d04a370",
+      "last_modified": 1331140096,
       "family_list": [
         {
           "id": "5",
@@ -90,7 +90,7 @@
         "1CDF0F",
         "E05FB9"
       ],
-      "changelog": "PACKAGER: Updates to Cisco"
+      "changelog": "PACKAGER: Cisco 5xx Profile Rule error"
     }
   }
 }
