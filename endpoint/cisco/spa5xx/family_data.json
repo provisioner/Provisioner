@@ -47,8 +47,11 @@
         "lines":"8",
         "id":"4",
         "template_data":[
+          "8_lines.json",
           "template_data.json",
-          "keys.json"
+          "keys.json",
+          "a_unit1.json",
+          "a_unit2.json"
         ]
       },
       {
