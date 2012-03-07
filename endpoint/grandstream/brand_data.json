@@ -5,8 +5,8 @@
       "directory": "grandstream",
       "brand_id": "2",
       "package": "grandstream.tgz",
-      "md5sum": "b983ceee797684337391104087122c9f",
-      "last_modified": 1331062336,
+      "md5sum": "f69669d33b40f8381139478a6c654926",
+      "last_modified": 1331141802,
       "family_list": [
         {
           "id": "2",
@@ -44,7 +44,7 @@
       "oui_list": [
         "000B82"
       ],
-      "changelog": "PACKAGER: Fixes #39"
+      "changelog": "PACKAGER: Grandstream BTS fixes"
     }
   }
 }
