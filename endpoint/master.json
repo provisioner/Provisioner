@@ -32,6 +32,10 @@
         "directory": "snom"
       },
       {
+        "name": "Thomson",
+        "directory": "thomson"
+      },
+      {
         "name": "Yealink\/Dreamwave",
         "directory": "yealink"
       }
