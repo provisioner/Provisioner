@@ -1,0 +1,464 @@
+{
+    "template_data":{
+        "category":[
+            {
+                "name":"Phone Keys",
+                "subcategory":[
+                    {
+                        "name":"phonekeys",
+                        "item":[
+                            {
+                                "variable":"$FeatureKeyFunc01",
+                                "default_value":"L",
+                                "description":"Key 1 Function",
+                                "type":"list",
+                                "data":[
+                                    {"value":"L","text":"Line"},
+                                    {"value":"S","text":"Supervision"}
+                                ]
+                            },
+                            {
+                                "variable":"$FeatureKeyExt01",
+                                "default_value":"",
+                                "description":"Key 1 Extension",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyExt02",
+                                "default_value":"L/<sip:>",
+                                "description":"FeatureKeyExt02",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyExt03",
+                                "default_value":"L/<sip:>",
+                                "description":"FeatureKeyExt03",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyExt04",
+                                "default_value":"L/<sip:>",
+                                "description":"FeatureKeyExt04",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyExt05",
+                                "default_value":"L/<sip:>",
+                                "description":"FeatureKeyExt05",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyExt06",
+                                "default_value":"L/<sip:>",
+                                "description":"FeatureKeyExt06",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyExt07",
+                                "default_value":"L/<sip:>",
+                                "description":"FeatureKeyExt07",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyExt08",
+                                "default_value":"L/<sip:>",
+                                "description":"FeatureKeyExt08",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyExt09",
+                                "default_value":"L/<sip:>",
+                                "description":"FeatureKeyExt09",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyExt10",
+                                "default_value":"L/<sip:>",
+                                "description":"FeatureKeyExt10",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$FKExt01_sec",
+                                "default_value":"0",
+                                "description":"FKExt01_sec",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$FKExt02_sec",
+                                "default_value":"0",
+                                "description":"FKExt02_sec",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$FKExt03_sec",
+                                "default_value":"0",
+                                "description":"FKExt03_sec",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$FKExt04_sec",
+                                "default_value":"0",
+                                "description":"FKExt04_sec",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$FKExt05_sec",
+                                "default_value":"0",
+                                "description":"FKExt05_sec",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$FKExt06_sec",
+                                "default_value":"0",
+                                "description":"FKExt06_sec",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$FKExt07_sec",
+                                "default_value":"0",
+                                "description":"FKExt07_sec",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$FKExt08_sec",
+                                "default_value":"0",
+                                "description":"FKExt08_sec",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$FKExt09_sec",
+                                "default_value":"0",
+                                "description":"FKExt09_sec",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$FKExt10_sec",
+                                "default_value":"0",
+                                "description":"FKExt10_sec",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyOpt01",
+                                "default_value":"dialog(1)regDND(0)ua-profile(0:cfu(0)dnd(0)sf(0)hg(0))",
+                                "description":"FeatureKeyOpt01",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyOpt02",
+                                "default_value":"dialog(1)regDND(0)ua-profile(0:cfu(0)dnd(0)sf(0)hg(0))",
+                                "description":"FeatureKeyOpt02",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyOpt03",
+                                "default_value":"dialog(1)regDND(0)ua-profile(0:cfu(0)dnd(0)sf(0)hg(0))",
+                                "description":"FeatureKeyOpt03",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyOpt04",
+                                "default_value":"dialog(1)regDND(0)ua-profile(0:cfu(0)dnd(0)sf(0)hg(0))",
+                                "description":"FeatureKeyOpt04",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyOpt05",
+                                "default_value":"dialog(1)regDND(0)ua-profile(0:cfu(0)dnd(0)sf(0)hg(0))",
+                                "description":"FeatureKeyOpt05",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyOpt06",
+                                "default_value":"dialog(1)regDND(0)ua-profile(0:cfu(0)dnd(0)sf(0)hg(0))",
+                                "description":"FeatureKeyOpt06",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyOpt07",
+                                "default_value":"dialog(1)regDND(0)ua-profile(0:cfu(0)dnd(0)sf(0)hg(0))",
+                                "description":"FeatureKeyOpt07",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyOpt08",
+                                "default_value":"dialog(1)regDND(0)ua-profile(0:cfu(0)dnd(0)sf(0)hg(0))",
+                                "description":"FeatureKeyOpt08",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyOpt09",
+                                "default_value":"dialog(1)regDND(0)ua-profile(0:cfu(0)dnd(0)sf(0)hg(0))",
+                                "description":"FeatureKeyOpt09",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyOpt10",
+                                "default_value":"dialog(1)regDND(0)ua-profile(0:cfu(0)dnd(0)sf(0)hg(0))",
+                                "description":"FeatureKeyOpt10",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyLock",
+                                "default_value":"",
+                                "description":"FeatureKeyLock",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$softkey01",
+                                "default_value":"TrVoiceMail",
+                                "description":"softkey01",
+                                "type":"list",
+                                "data":[
+                                    {"value":"","text":"Unused"},
+                                    {"value":"TrVoiceMail","text":"Transfer to VoiceMail"},
+                                    {"value":"CallLog","text":"Call Log"},
+                                    {"value":"Pickup","text":"Pickup"},
+                                    {"value":"LockPhone","text":"Phone Lock"},
+                                    {"value":"VoiceMail","text":"Call Voicemail"},
+                                    {"value":"RetrievePark","text":"Retrieve Parked Call"},
+                                    {"value":"DNDstate","text":"Do Not Disturb"},
+                                    {"value":"ShortCut1","text":"Shortcut 1"},
+                                    {"value":"ShortCut2","text":"Shortcut 2"},
+                                    {"value":"ACDCheckIn","text":"ACD Checkin"},
+                                    {"value":"ACDAvailable","text":"ACD Available"},
+                                    {"value":"Login","text":"Login"}
+                                ]
+                            },
+                            {
+                                "variable":"$softkey02",
+                                "default_value":"CallLog",
+                                "description":"softkey02",
+                                "type":"list",
+                                "data":[
+                                    {"value":"","text":"Unused"},
+                                    {"value":"TrVoiceMail","text":"Transfer to VoiceMail"},
+                                    {"value":"CallLog","text":"Call Log"},
+                                    {"value":"Pickup","text":"Pickup"},
+                                    {"value":"LockPhone","text":"Phone Lock"},
+                                    {"value":"VoiceMail","text":"Call Voicemail"},
+                                    {"value":"RetrievePark","text":"Retrieve Parked Call"},
+                                    {"value":"DNDstate","text":"Do Not Disturb"},
+                                    {"value":"ShortCut1","text":"Shortcut 1"},
+                                    {"value":"ShortCut2","text":"Shortcut 2"},
+                                    {"value":"ACDCheckIn","text":"ACD Checkin"},
+                                    {"value":"ACDAvailable","text":"ACD Available"},
+                                    {"value":"Login","text":"Login"}
+                                ]
+                            },
+                            {
+                                "variable":"$softkey03",
+                                "default_value":"PickUp",
+                                "description":"softkey03",
+                                "type":"list",
+                                "data":[
+                                    {"value":"","text":"Unused"},
+                                    {"value":"TrVoiceMail","text":"Transfer to VoiceMail"},
+                                    {"value":"CallLog","text":"Call Log"},
+                                    {"value":"Pickup","text":"Pickup"},
+                                    {"value":"LockPhone","text":"Phone Lock"},
+                                    {"value":"VoiceMail","text":"Call Voicemail"},
+                                    {"value":"RetrievePark","text":"Retrieve Parked Call"},
+                                    {"value":"DNDstate","text":"Do Not Disturb"},
+                                    {"value":"ShortCut1","text":"Shortcut 1"},
+                                    {"value":"ShortCut2","text":"Shortcut 2"},
+                                    {"value":"ACDCheckIn","text":"ACD Checkin"},
+                                    {"value":"ACDAvailable","text":"ACD Available"},
+                                    {"value":"Login","text":"Login"}
+                                ]
+                            },
+                            {
+                                "variable":"$softkey04",
+                                "default_value":"LockPhone",
+                                "description":"softkey04",
+                                "type":"list",
+                                "data":[
+                                    {"value":"","text":"Unused"},
+                                    {"value":"TrVoiceMail","text":"Transfer to VoiceMail"},
+                                    {"value":"CallLog","text":"Call Log"},
+                                    {"value":"Pickup","text":"Pickup"},
+                                    {"value":"LockPhone","text":"Phone Lock"},
+                                    {"value":"VoiceMail","text":"Call Voicemail"},
+                                    {"value":"RetrievePark","text":"Retrieve Parked Call"},
+                                    {"value":"DNDstate","text":"Do Not Disturb"},
+                                    {"value":"ShortCut1","text":"Shortcut 1"},
+                                    {"value":"ShortCut2","text":"Shortcut 2"},
+                                    {"value":"ACDCheckIn","text":"ACD Checkin"},
+                                    {"value":"ACDAvailable","text":"ACD Available"},
+                                    {"value":"Login","text":"Login"}
+                                ]
+                            },
+                            {
+                                "variable":"$softkey05",
+                                "default_value":"VoiceMail",
+                                "description":"softkey05",
+                                "type":"list",
+                                "data":[
+                                    {"value":"","text":"Unused"},
+                                    {"value":"TrVoiceMail","text":"Transfer to VoiceMail"},
+                                    {"value":"CallLog","text":"Call Log"},
+                                    {"value":"Pickup","text":"Pickup"},
+                                    {"value":"LockPhone","text":"Phone Lock"},
+                                    {"value":"VoiceMail","text":"Call Voicemail"},
+                                    {"value":"RetrievePark","text":"Retrieve Parked Call"},
+                                    {"value":"DNDstate","text":"Do Not Disturb"},
+                                    {"value":"ShortCut1","text":"Shortcut 1"},
+                                    {"value":"ShortCut2","text":"Shortcut 2"},
+                                    {"value":"ACDCheckIn","text":"ACD Checkin"},
+                                    {"value":"ACDAvailable","text":"ACD Available"},
+                                    {"value":"Login","text":"Login"}
+                                ]
+                            },
+                            {
+                                "variable":"$softkey06",
+                                "default_value":"RetrievePark",
+                                "description":"softkey06",
+                                "type":"list",
+                                "data":[
+                                    {"value":"","text":"Unused"},
+                                    {"value":"TrVoiceMail","text":"Transfer to VoiceMail"},
+                                    {"value":"CallLog","text":"Call Log"},
+                                    {"value":"Pickup","text":"Pickup"},
+                                    {"value":"LockPhone","text":"Phone Lock"},
+                                    {"value":"VoiceMail","text":"Call Voicemail"},
+                                    {"value":"RetrievePark","text":"Retrieve Parked Call"},
+                                    {"value":"DNDstate","text":"Do Not Disturb"},
+                                    {"value":"ShortCut1","text":"Shortcut 1"},
+                                    {"value":"ShortCut2","text":"Shortcut 2"},
+                                    {"value":"ACDCheckIn","text":"ACD Checkin"},
+                                    {"value":"ACDAvailable","text":"ACD Available"},
+                                    {"value":"Login","text":"Login"}
+                                ]
+                            },
+                            {
+                                "variable":"$softkey07",
+                                "default_value":"DNDstate",
+                                "description":"softkey07",
+                                "type":"list",
+                                "data":[
+                                    {"value":"","text":"Unused"},
+                                    {"value":"TrVoiceMail","text":"Transfer to VoiceMail"},
+                                    {"value":"CallLog","text":"Call Log"},
+                                    {"value":"Pickup","text":"Pickup"},
+                                    {"value":"LockPhone","text":"Phone Lock"},
+                                    {"value":"VoiceMail","text":"Call Voicemail"},
+                                    {"value":"RetrievePark","text":"Retrieve Parked Call"},
+                                    {"value":"DNDstate","text":"Do Not Disturb"},
+                                    {"value":"ShortCut1","text":"Shortcut 1"},
+                                    {"value":"ShortCut2","text":"Shortcut 2"},
+                                    {"value":"ACDCheckIn","text":"ACD Checkin"},
+                                    {"value":"ACDAvailable","text":"ACD Available"},
+                                    {"value":"Login","text":"Login"}
+                                ]
+                            },
+                            {
+                                "variable":"$softkey08",
+                                "default_value":"ShortCut1",
+                                "description":"softkey08",
+                                "type":"list",
+                                "data":[
+                                    {"value":"","text":"Unused"},
+                                    {"value":"TrVoiceMail","text":"Transfer to VoiceMail"},
+                                    {"value":"CallLog","text":"Call Log"},
+                                    {"value":"Pickup","text":"Pickup"},
+                                    {"value":"LockPhone","text":"Phone Lock"},
+                                    {"value":"VoiceMail","text":"Call Voicemail"},
+                                    {"value":"RetrievePark","text":"Retrieve Parked Call"},
+                                    {"value":"DNDstate","text":"Do Not Disturb"},
+                                    {"value":"ShortCut1","text":"Shortcut 1"},
+                                    {"value":"ShortCut2","text":"Shortcut 2"},
+                                    {"value":"ACDCheckIn","text":"ACD Checkin"},
+                                    {"value":"ACDAvailable","text":"ACD Available"},
+                                    {"value":"Login","text":"Login"}
+                                ]
+                            },
+                            {
+                                "variable":"$softkey09",
+                                "default_value":"ShortCut2",
+                                "description":"softkey09",
+                                "type":"list",
+                                "data":[
+                                    {"value":"","text":"Unused"},
+                                    {"value":"TrVoiceMail","text":"Transfer to VoiceMail"},
+                                    {"value":"CallLog","text":"Call Log"},
+                                    {"value":"Pickup","text":"Pickup"},
+                                    {"value":"LockPhone","text":"Phone Lock"},
+                                    {"value":"VoiceMail","text":"Call Voicemail"},
+                                    {"value":"RetrievePark","text":"Retrieve Parked Call"},
+                                    {"value":"DNDstate","text":"Do Not Disturb"},
+                                    {"value":"ShortCut1","text":"Shortcut 1"},
+                                    {"value":"ShortCut2","text":"Shortcut 2"},
+                                    {"value":"ACDCheckIn","text":"ACD Checkin"},
+                                    {"value":"ACDAvailable","text":"ACD Available"},
+                                    {"value":"Login","text":"Login"}
+                                ]
+                            },
+                            {
+                                "variable":"$softkey10",
+                                "default_value":"ACDCheckIn",
+                                "description":"softkey10",
+                                "type":"list",
+                                "data":[
+                                    {"value":"","text":"Unused"},
+                                    {"value":"TrVoiceMail","text":"Transfer to VoiceMail"},
+                                    {"value":"CallLog","text":"Call Log"},
+                                    {"value":"Pickup","text":"Pickup"},
+                                    {"value":"LockPhone","text":"Phone Lock"},
+                                    {"value":"VoiceMail","text":"Call Voicemail"},
+                                    {"value":"RetrievePark","text":"Retrieve Parked Call"},
+                                    {"value":"DNDstate","text":"Do Not Disturb"},
+                                    {"value":"ShortCut1","text":"Shortcut 1"},
+                                    {"value":"ShortCut2","text":"Shortcut 2"},
+                                    {"value":"ACDCheckIn","text":"ACD Checkin"},
+                                    {"value":"ACDAvailable","text":"ACD Available"},
+                                    {"value":"Login","text":"Login"}
+                                ]
+                            },
+                            {
+                                "variable":"$softkey11",
+                                "default_value":"ACDAvailable",
+                                "description":"softkey11",
+                                "type":"list",
+                                "data":[
+                                    {"value":"","text":"Unused"},
+                                    {"value":"TrVoiceMail","text":"Transfer to VoiceMail"},
+                                    {"value":"CallLog","text":"Call Log"},
+                                    {"value":"Pickup","text":"Pickup"},
+                                    {"value":"LockPhone","text":"Phone Lock"},
+                                    {"value":"VoiceMail","text":"Call Voicemail"},
+                                    {"value":"RetrievePark","text":"Retrieve Parked Call"},
+                                    {"value":"DNDstate","text":"Do Not Disturb"},
+                                    {"value":"ShortCut1","text":"Shortcut 1"},
+                                    {"value":"ShortCut2","text":"Shortcut 2"},
+                                    {"value":"ACDCheckIn","text":"ACD Checkin"},
+                                    {"value":"ACDAvailable","text":"ACD Available"},
+                                    {"value":"Login","text":"Login"}
+                                ]
+                            },
+                            {
+                                "variable":"$softkey12",
+                                "default_value":"Login",
+                                "description":"softkey12",
+                                "type":"list",
+                                "data":[
+                                    {"value":"","text":"Unused"},
+                                    {"value":"TrVoiceMail","text":"Transfer to VoiceMail"},
+                                    {"value":"CallLog","text":"Call Log"},
+                                    {"value":"Pickup","text":"Pickup"},
+                                    {"value":"LockPhone","text":"Phone Lock"},
+                                    {"value":"VoiceMail","text":"Call Voicemail"},
+                                    {"value":"RetrievePark","text":"Retrieve Parked Call"},
+                                    {"value":"DNDstate","text":"Do Not Disturb"},
+                                    {"value":"ShortCut1","text":"Shortcut 1"},
+                                    {"value":"ShortCut2","text":"Shortcut 2"},
+                                    {"value":"ACDCheckIn","text":"ACD Checkin"},
+                                    {"value":"ACDAvailable","text":"ACD Available"},
+                                    {"value":"Login","text":"Login"}
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

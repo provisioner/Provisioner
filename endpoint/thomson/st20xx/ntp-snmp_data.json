@@ -1,0 +1,263 @@
+{
+    "template_data":{
+        "category":[
+            {
+                "name":"NTP and SNMP",
+                "subcategory":[
+                    {
+                        "name":"ntp_snmp",
+                        "item":[
+                            {
+                                "variable":"$NtpDaylight",
+                                "default_value":"1",
+                                "description":"Daylight saving time",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"Off"},
+                                    {"value":"1","text":"On"}
+                                ]
+                            },
+                            {
+                                "variable":"$NTPFlag",
+                                "default_value":"1",
+                                "description":"NTP sync",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"Off"},
+                                    {"value":"1","text":"On"}
+                                ]
+                            },
+                            {
+                                "variable":"$NtpIP",
+                                "default_value":"",
+                                "description":"NtpIP",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$NtpZoneNum",
+                                "default_value":"23",
+                                "description":"NTP Timezone",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"(GMT-12)Einwetok, Kwajalein"},
+                                    {"value":"1","text":"(GMT-11)Midland Island, Samoa"},
+                                    {"value":"2","text":"(GMT-10) Hawaii"},
+                                    {"value":"3","text":"(GMT-9) Alaska"},
+                                    {"value":"4","text":"(GMT-8) Pacific Time (US and Canada), Tijuana"},
+                                    {"value":"5","text":"(GMT-7) Arizona"},
+                                    {"value":"6","text":"(GMT-7) Mountain Time"},
+                                    {"value":"7","text":"(GMT-6) Central Time"},
+                                    {"value":"8","text":"(GMT-6) Mexico City, Tegucigalpa"},
+                                    {"value":"9","text":"(GMT-6) Central America, Mexico City, Saskatchewan"},
+                                    {"value":"10","text":"(GMT-5) Bogota, Lima, Quito"},
+                                    {"value":"11","text":"(GMT-5) Eastern Time"},
+                                    {"value":"12","text":"(GMT-5) Indiana (East)"},
+                                    {"value":"13","text":"(GMT-4) Atlantic"},
+                                    {"value":"14","text":"(GMT-4) Caracas, La Paz"},
+                                    {"value":"15","text":"(GMT-3:30) Newfoundland"},
+                                    {"value":"16","text":"(GMT-3) Brasilia"},
+                                    {"value":"17","text":"(GMT-3) Buenos Aires, Georgetown"},
+                                    {"value":"18","text":"(GMT-2)"},
+                                    {"value":"19","text":"(GMT-1)"},
+                                    {"value":"20","text":"(GMT)"},
+                                    {"value":"21","text":"(GMT) Greenwich Mean Time: Dublin, Edinburgh, Lisbon, London"},
+                                    {"value":"22","text":"(GMT+1) Amsterdam, Copenhagen, Madrid, Paris, Vilnius"},
+                                    {"value":"23","text":"(GMT+1) CET"},
+                                    {"value":"24","text":"(GMT+1)"},
+                                    {"value":"25","text":"(GMT+1)"},
+                                    {"value":"26","text":"(GMT+2) Athens, Istanbul, Minsk"},
+                                    {"value":"27","text":"(GMT+2)"},
+                                    {"value":"28","text":"(GMT+2) Cairo"},
+                                    {"value":"29","text":"(GMT+2)"},
+                                    {"value":"30","text":"(GMT+2) Helsinki, Riga, Tallinn"},
+                                    {"value":"31","text":"(GMT+2)"},
+                                    {"value":"32","text":"(GMT+3) Baghdad, Kueait, Riyadh"},
+                                    {"value":"33","text":"(GMT+3)"},
+                                    {"value":"34","text":"(GMT+3)"},
+                                    {"value":"35","text":"(GMT+3:30)"},
+                                    {"value":"36","text":"(GMT+4)"},
+                                    {"value":"37","text":"(GMT+4)"},
+                                    {"value":"38","text":"(GMT+4:30)"},
+                                    {"value":"39","text":"(GMT+5)"},
+                                    {"value":"40","text":"(GMT+5)"},
+                                    {"value":"41","text":"(GMT+5:30)"},
+                                    {"value":"42","text":"(GMT+5:45)"},
+                                    {"value":"43","text":"(GMT+6)"},
+                                    {"value":"44","text":"(GMT+6)"},
+                                    {"value":"45","text":"(GMT+6:30)"},
+                                    {"value":"46","text":"(GMT+7)"},
+                                    {"value":"47","text":"(GMT+8)"},
+                                    {"value":"48","text":"(GMT+8)"},
+                                    {"value":"49","text":"(GMT+8)"},
+                                    {"value":"50","text":"(GMT+9)"},
+                                    {"value":"51","text":"(GMT+9)"},
+                                    {"value":"52","text":"(GMT+9)"},
+                                    {"value":"53","text":"(GMT+9:30)"},
+                                    {"value":"54","text":"(GMT+9:30)"},
+                                    {"value":"55","text":"(GMT+10)"},
+                                    {"value":"56","text":"(GMT+10)"},
+                                    {"value":"57","text":"(GMT+10)"},
+                                    {"value":"58","text":"(GMT+10)"},
+                                    {"value":"59","text":"(GMT+10)"},
+                                    {"value":"60","text":"(GMT+11)"},
+                                    {"value":"61","text":"(GMT+12)"},
+                                    {"value":"62","text":"(GMT+12)"},
+                                    {"value":"63","text":"(GMT+13)"}
+                                ]
+                            },
+                            {
+                                "variable":"$NtpMode",
+                                "default_value":"0",
+                                "description":"NtpMode",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$NtpSyncTime",
+                                "default_value":"1",
+                                "description":"NtpSyncTime",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$NtpDLT",
+                                "default_value":"",
+                                "description":"NTP daylite saving time timezone",
+                                "type":"input"
+                            },
+							{"type":"break"},
+                            {
+                                "variable":"$sysName",
+                                "default_value":"ST2030 SIP",
+                                "description":"SNMP System Name",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$sysDescr",
+                                "default_value":"Thomson",
+                                "description":"SNMP System Description",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$sysLocation",
+                                "default_value":"Office",
+                                "description":"SNMP System Location",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$sysContact",
+                                "default_value":"Thomson",
+                                "description":"SNMP System Contact",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$sysCommName1",
+                                "default_value":"public",
+                                "description":"SNMP community name 1",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$sysCommName2",
+                                "default_value":"",
+                                "description":"SNMP community name 2",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$sysCommName3",
+                                "default_value":"",
+                                "description":"SNMP community name 3",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$flag",
+                                "default_value":"1",
+                                "description":"SNMP flag",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"Disable"},
+                                    {"value":"1","text":"Enable"}
+                                ]
+                            },
+                            {
+                                "variable":"$commRW1",
+                                "default_value":"0",
+                                "description":"SNMP community authority 1",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$commRW2",
+                                "default_value":"0",
+                                "description":"SNMP community authority 2",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$commRW3",
+                                "default_value":"0",
+                                "description":"SNMP community authority 3",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$filter",
+                                "default_value":"0",
+                                "description":"SNMP Manager filter",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"Filter all"},
+                                    {"value":"1","text":"Allow all"},
+                                    {"value":"2","text":"Limited"}
+                                ]
+                            },
+                            {
+                                "variable":"$snmpManager1",
+                                "default_value":"0.0.0.0",
+                                "description":"SNMP Manager 1",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$snmpManager2",
+                                "default_value":"0.0.0.0",
+                                "description":"SNMP Manager 2",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$snmpManager3",
+                                "default_value":"0.0.0.0",
+                                "description":"SNMP Manager 3",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$snmpManager4",
+                                "default_value":"0.0.0.0",
+                                "description":"SNMP Manager 4",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$snmpManager5",
+                                "default_value":"0.0.0.0",
+                                "description":"SNMP Manager 5",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$sysTrapSrv",
+                                "default_value":"0.0.0.0",
+                                "description":"SNMP Trap receiver",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$TrapLevel",
+                                "default_value":"0",
+                                "description":"TrapLevel",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"Enable ALL SNMP traps"},
+                                    {"value":"1","text":"Enable Critical/Major/Minor SNMP traps"},
+                                    {"value":"2","text":"Enable Critical/Major SNMP traps"},
+                                    {"value":"3","text":"Enable Critical SNMP traps"},
+                                    {"value":"4","text":"Disable all SNMP traps"}
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
