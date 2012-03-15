@@ -5,8 +5,8 @@
       "directory": "polycom",
       "brand_id": "4",
       "package": "polycom.tgz",
-      "md5sum": "c72c6e9ea82f1099d0b2124afcd2873e",
-      "last_modified": 1328948793,
+      "md5sum": "01561dac1fa7bbdeee692264fb3a86b1",
+      "last_modified": 1331775700,
       "family_list": [
         {
           "id": "4",
@@ -61,7 +61,7 @@
         "0004F2",
         "00907A"
       ],
-      "changelog": "PACKAGER: Didnt add lineKeys variable back from local dev"
+      "changelog": "PACKAGER: Fixes to Polycom Extremely Old Series (EOS)"
     }
   }
 }
