@@ -1,0 +1,27 @@
+{
+  "data": {
+    "brands": {
+      "name": "Thomson",
+      "directory": "thomson",
+      "brand_id": "14",
+      "package": "thomson.tgz",
+      "md5sum": "",
+      "last_modified":1331649071,
+      "family_list": [
+        {
+          "id": "1",
+          "name": "Thomson Model [ST2030S]",
+          "directory": "st20xx",
+          "description": "Alfa",
+          "last_modified":1331649071,
+          "changelog": "None"
+        }
+      ],
+      "oui_list": [
+        "001F9F",
+        "00147F"
+      ],
+      "changelog": "Beta"
+    }
+  }
+}
