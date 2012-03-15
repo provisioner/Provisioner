@@ -190,6 +190,7 @@
 
 	<!-- Regional configuration. Dialtone, MWI tone -->
 	<Dial_Tone group="Regional/Call_Progress_Tones">{$dial_tone|350@-19,440@-19;10(*/0/1+2)}</Dial_Tone> 
-	<MWI_Dial_Tone group="Regional/Call_Progress_Tones">{$mwi_tone|350@-19,440@-19;2(.1/.1/1+2);10(*/0/1+2)}</MWI_Dial_Tone> 
+	<MWI_Dial_Tone group="Regional/Call_Progress_Tones">{$mwi_tone|350@-19,440@-19;2(.1/.1/1+2);10(*/0/1+2)}</MWI_Dial_Tone>
+       <Back_Light_Timer group="User/LCD">{$backlight_time}</Back_Light_Timer> 
 
 </flat-profile>

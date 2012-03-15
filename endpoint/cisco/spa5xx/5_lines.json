@@ -37,6 +37,10 @@
                           "value":"blf"
                         },
                         {
+                          "text":"XML",
+                          "value":"xml"
+                        },
+                        {
                           "text":"Speed Dial",
                           "value":"sd"
                         }

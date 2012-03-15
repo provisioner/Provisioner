@@ -37,6 +37,12 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
                 $line_data['blf_ext_type'] = "Disabled";
                 $line_data['share_call_appearance'] = "shared";
                 $line_data['extended_function'] = "fnc=blf+sd+cp;sub=" . $this->settings['loops']['lineops'][$line]['blfext'] . "@" . $this->settings['line'][0]['server_host'];
+            } elseif (($this->settings['loops']['lineops'][$line]['keytype'] == "xml") AND ($this->settings['loops']['lineops'][$line]['blfext'] != "")) {
+                $line_data['username'] = $this->settings['loops']['lineops'][$line]['blfext'];
+                $line_data['secret'] = 'n/a';
+                $line_data['blf_ext_type'] = "Disabled";
+                $line_data['share_call_appearance'] = "shared";
+                $line_data['extended_function'] = "fnc=xml;url=" . $this->settings['loops']['lineops'][$line]['blfext'];
             } elseif (($this->settings['loops']['lineops'][$line]['keytype'] == "sd") AND ($this->settings['loops']['lineops'][$line]['blfext'] != "")) {
                 $line_data['username'] = $this->settings['loops']['lineops'][$line]['blfext'];
                 $line_data['secret'] = 'n/a';
@@ -90,7 +96,15 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
                 }
                 if (($this->settings['loops']['unit1'][$key]['data'] != '') && ($this->settings['loops']['unit1'][$key]['keytype'] == 'blf')) {
                     $temp_ext = $this->settings['loops']['unit1'][$key]['data'];
-                    $this->settings['loops']['unit1'][$key]['data'] = "fnc=blf+sd+cp;sub=" . $temp_ext . "@" . $this->server[1]['ip'];
+                    $this->settings['loops']['unit1'][$key]['data'] = "fnc=blf+sd+cp;sub=" . $temp_ext . "@" . $this->settings['line'][0]['server_host'];
+                }
+                if (($this->settings['loops']['unit1'][$key]['data'] != '') && ($this->settings['loops']['unit1'][$key]['keytype'] == 'speed')) {
+                    $temp_ext = $this->settings['loops']['unit1'][$key]['data'];
+                    $this->settings['loops']['unit1'][$key]['data'] = "fnc=sd;sub=" . $temp_ext . "@" . $this->settings['line'][0]['server_host'];
+                }
+                if (($this->settings['loops']['unit1'][$key]['data'] != '') && ($this->settings['loops']['unit1'][$key]['keytype'] == 'xml')) {
+                    $temp_ext = $this->settings['loops']['unit1'][$key]['data'];
+                    $this->settings['loops']['unit1'][$key]['data'] = "fnc=xml;url=" . $temp_ext;
                 }
             }
         }
@@ -102,7 +116,15 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
                 }
                 if (($this->settings['loops']['unit2'][$key]['data'] != '') && ($this->settings['loops']['unit2'][$key]['keytype'] == 'blf')) {
                     $temp_ext = $this->settings['loops']['unit2'][$key]['data'];
-                    $this->settings['loops']['unit2'][$key]['data'] = "fnc=blf+sd+cp;sub=" . $temp_ext . "@" . $this->server[1]['ip'];
+                    $this->settings['loops']['unit2'][$key]['data'] = "fnc=blf+sd+cp;sub=" . $temp_ext . "@" . $this->settings['line'][0]['server_host'];
+                }
+                if (($this->settings['loops']['unit2'][$key]['data'] != '') && ($this->settings['loops']['unit2'][$key]['keytype'] == 'speed')) {
+                    $temp_ext = $this->settings['loops']['unit2'][$key]['data'];
+                    $this->settings['loops']['unit2'][$key]['data'] = "fnc=sd;sub=" . $temp_ext . "@" . $this->settings['line'][0]['server_host'];
+                }
+                if (($this->settings['loops']['unit2'][$key]['data'] != '') && ($this->settings['loops']['unit2'][$key]['keytype'] == 'xml')) {
+                    $temp_ext = $this->settings['loops']['unit2'][$key]['data'];
+                    $this->settings['loops']['unit2'][$key]['data'] = "fnc=xml;url=" . $temp_ext;
                 }
             }
         }

@@ -59,8 +59,11 @@
         "lines":"12",
         "id":"5",
         "template_data":[
+          "12_lines.json",
           "template_data.json",
-          "keys.json"
+          "keys.json",
+          "a_unit1.json",
+          "a_unit2.json"
         ]
       },
       {
@@ -82,7 +85,9 @@
         "template_data":[
           "5_lines.json",
           "template_data.json",
-          "keys.json"
+          "keys.json",
+          "a_unit1.json",
+          "a_unit2.json"
         ]
       },
       {
@@ -90,6 +95,7 @@
         "lines":"3",
         "id":"8",
         "template_data":[
+          "3_lines.json",
           "template_data.json",
           "keys.json"
         ]
