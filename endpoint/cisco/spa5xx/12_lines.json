@@ -11,7 +11,7 @@
                 "description":"Line Keys",
                 "type":"loop",
                 "loop_start":"1",
-                "loop_end":"8",
+                "loop_end":"12",
                 "data":{
                   "item":[
                     {
@@ -95,6 +95,22 @@
                         {
                           "text":"8",
                           "value":"8"
+                        },
+                        {
+                          "text":"9",
+                          "value":"9"
+                        },
+                        {
+                          "text":"10",
+                          "value":"10"
+                        },
+                        {
+                          "text":"11",
+                          "value":"11"
+                        },
+                        {
+                          "text":"12",
+                          "value":"12"
                         }
                       ]
                     },

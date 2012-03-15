@@ -2,7 +2,7 @@
   "template_data":{
     "category":[
       {
-        "name":"expansion",
+        "name":"Expansion",
         "subcategory":[
           {
             "name":"Unit #1",
@@ -27,13 +27,17 @@
                         {
                           "text":"BLF",
                           "value":"blf"
+                        },
+                        {
+                          "text":"XML",
+                          "value":"xml"
                         }
                       ]
                     },
                     {
                       "variable":"$unit1_data",
                       "default_value":"",
-                      "description":"BLF\/Speed Dial {$count} Extension",
+                      "description":"BLF\/Speed Dial\/XML {$count} Extension",
                       "type":"input"
                     },
                     {
