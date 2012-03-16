@@ -5,8 +5,8 @@
       "directory": "polycom",
       "brand_id": "4",
       "package": "polycom.tgz",
-      "md5sum": "a8a9ca5ff5a2b5df7d4aff2a0949ce66",
-      "last_modified": 1331926128,
+      "md5sum": "bf286f6ba81f9911d50d0fb40cbdf399",
+      "last_modified": 1331926765,
       "family_list": [
         {
           "id": "4",
@@ -61,7 +61,7 @@
         "0004F2",
         "00907A"
       ],
-      "changelog": "PACKAGER: Removed settings from Polycom that I never set or that I was setting twice."
+      "changelog": "PACKAGER: Polycom additions and cleanup"
     }
   }
 }
