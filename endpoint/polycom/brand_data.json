@@ -5,8 +5,8 @@
       "directory": "polycom",
       "brand_id": "4",
       "package": "polycom.tgz",
-      "md5sum": "01561dac1fa7bbdeee692264fb3a86b1",
-      "last_modified": 1331775700,
+      "md5sum": "930f32cf24e8170754a205146adae703",
+      "last_modified": 1331832441,
       "family_list": [
         {
           "id": "4",
@@ -34,7 +34,7 @@
         },
         {
           "id": "3",
-          "name": "SoundPoint\/Station\/VVX In-Production Models [330,321,331,335,450,550,560,650,670,5000,6000,7000,1500]",
+          "name": "SoundPoint\/Station\/VVX In-Production Models [321,331,335,450,550,560,650,670,5000,6000,7000,1500]",
           "directory": "spipm",
           "description": "Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality",
           "changelog": "",
@@ -61,7 +61,7 @@
         "0004F2",
         "00907A"
       ],
-      "changelog": "PACKAGER: Fixes to Polycom Extremely Old Series (EOS)"
+      "changelog": "PACKAGER: Adding Support for Thomson phones\n-Thanks to Thord Matre"
     }
   }
 }
