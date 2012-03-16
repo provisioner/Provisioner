@@ -11,8 +11,29 @@ class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
 
     public $family_line = 'spipm';
     private $configfiles = array();
-    public $directory_structure = array("logs", "overrides", "contacts", "licenses", "SoundPointIPLocalization");
-    public $copy_files = array("SoundPointIPLocalization", "SoundPointIPWelcome.wav", "LoudRing.wav");
+    public $directory_structure = array("logs", "overrides", "contacts", "licenses", "SoundPointIPLocalization", "languages");
+    public $copy_files = array(
+	"SoundPointIPWelcome.wav", 
+	"LoudRing.wav", 
+	"Beach.jpg", 
+	"BeachEM.jpg", 
+	"Beach256x116.jpg", 
+	"Jellyfish.jpg", 
+	"Jellyfish256x116.jpg", 
+	"JellyfishEM.jpg", 
+	"Leaf.jpg", 
+	"Leaf256x116.jpg", 
+	"LeafEM.jpg",
+	"Mountain.jpg", 
+	"Mountain256x116.jpg", 
+	"MountainEM.jpg",
+	"Palm.jpg", 
+	"Palm256x116.jpg", 
+	"PalmEM.jpg",
+	"Sailboat.jpg", 
+	"Sailboat256x116.jpg", 
+	"SailboatEM.jpg"
+	);
     
     function parse_lines_hook($line_data, $line_total) {
         $line_data['digitmap'] = (isset($this->settings['digitmap']) ? $this->settings['digitmap'] : NULL);
