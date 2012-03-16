@@ -5,8 +5,8 @@
       "brand_id": "8",
       "directory": "yealink",
       "package": "yealink.tgz",
-      "md5sum": "02d5ff6f8e08c73fabeca4186c18df7c",
-      "last_modified": 1328381840,
+      "md5sum": "2a6e98d248dda5f72666713a85d0959e",
+      "last_modified": 1331923729,
       "family_list": [
         {
           "id": "1",
@@ -28,7 +28,7 @@
       "oui_list": [
         "001565"
       ],
-      "changelog": "PACKAGER: Remove 320 from this line"
+      "changelog": "PACKAGER: Yealink provisioner settings"
     }
   }
 }
