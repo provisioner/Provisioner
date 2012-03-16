@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Yealink Modules Phone File
  *
@@ -18,6 +17,8 @@ class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
     function parse_lines_hook($line_data, $line_total) {
         $line_data['line_active'] = 1;
         $line_data['line_m1'] = $line_data['line'] - 1;
+		$line_data['enable_outbound_proxy_server'] = ($line_data['use_outbound_proxy']) ? 1 : 0;
+		$line_data['enable_stun'] = 0;
         $line_data['voicemail_number'] = '*97';
         return($line_data);
     }
