@@ -5,8 +5,8 @@
       "directory": "snom",
       "brand_id": "6",
       "package": "snom.tgz",
-      "md5sum": "e9f174c8171105b614f93aaec2fa4d57",
-      "last_modified": 1328645302,
+      "md5sum": "fd5d159d592e68b94eaf5c86eb735d41",
+      "last_modified": 1332324534,
       "family_list": [
         {
           "id": "1",
@@ -28,7 +28,7 @@
       "oui_list": [
         "000413"
       ],
-      "changelog": "PACKAGER: Remove duplicate \"'\" on packager for releases page"
+      "changelog": "PACKAGER: Using Jaybee regexp match WITH escaped $"
     }
   }
 }
