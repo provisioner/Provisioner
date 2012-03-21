@@ -403,7 +403,7 @@ abstract class endpoint_base {
 
     private function parse_config_values($file_contents, $data=NULL, $keep_unknown=FALSE) {
         //Find all matched variables in the text file between "{$" and "}"
-        preg_match_all('/[{\$](.*?)[}]/i', $file_contents, $match);
+		preg_match_all('/{(\$[^{]+?)[}]/i', $file_contents, $match);
         //Result without brackets (but with the $ variable identifier)
         $no_brackets = array_values(array_unique($match[1]));
         //Result with brackets
@@ -509,7 +509,7 @@ abstract class endpoint_base {
             //not needed I dont think
         } else {
             //Find all matched variables in the text file between "{$" and "}"
-            preg_match_all('/[{\$](.*?)[}]/i', $contents, $match);
+            preg_match_all('/{(\$[^{]+?)[}]/i', $contents, $match);
             //Result without brackets (but with the $ variable identifier)
             $no_brackets = array_values(array_unique($match[1]));
             //Result with brackets
@@ -543,6 +543,7 @@ abstract class endpoint_base {
                     $line_settings = $this->parse_lines_hook($this->settings['line'][$key1[0]], $this->max_lines);
 
                     $stored = isset($line_settings[$var]) ? $line_settings[$var] : '';
+                    $this->debug('Replacing {' . $original_variable . '} with ' . $stored);
                     $contents = str_replace('{' . $original_variable . '}', $stored, $contents);
                 }
             }
