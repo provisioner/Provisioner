@@ -5,8 +5,8 @@
       "brand_id": "7",
       "directory": "cisco",
       "package": "cisco.tgz",
-      "md5sum": "7157a50ca9f733d8e249c03439f99a2d",
-      "last_modified": 1331832441,
+      "md5sum": "de4442f07c86c1d73440fc6642eeecd1",
+      "last_modified": 1332456150,
       "family_list": [
         {
           "id": "5",
@@ -90,7 +90,7 @@
         "1CDF0F",
         "E05FB9"
       ],
-      "changelog": "PACKAGER: Adding Support for Thomson phones\n-Thanks to Thord Matre"
+      "changelog": "PACKAGER: Added a phpunit test\n-cleaned up errors discovered by phpunit test\n-attempted to fix yealink t3x blindly (probably didnt fix it)"
     }
   }
 }

@@ -5,9 +5,9 @@
       "brand_id": "1",
       "directory": "aastra",
       "package": "aastra.tgz",
-      "md5sum": "0bfd5bc192ca6697026c91391b5fe538",
-      "last_modified": 1325536391,
-      "changelog": "PACKAGER: some changes and fixes",
+      "md5sum": "012021e4e9c5bceef6fdfe06115f2109",
+      "last_modified": 1332439750,
+      "changelog": "PACKAGER: Added a phpunit test\n-cleaned up errors discovered by phpunit test\n-attempted to fix yealink t3x blindly (probably didnt fix it)",
       "family_list": [
         {
           "id": "1",
