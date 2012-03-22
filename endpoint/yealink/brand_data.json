@@ -5,8 +5,8 @@
       "brand_id": "8",
       "directory": "yealink",
       "package": "yealink.tgz",
-      "md5sum": "2a6e98d248dda5f72666713a85d0959e",
-      "last_modified": 1331923729,
+      "md5sum": "0eb3d07fe56f68e8b4e2bbbf82816ec7",
+      "last_modified": 1332456919,
       "family_list": [
         {
           "id": "1",
@@ -28,7 +28,7 @@
       "oui_list": [
         "001565"
       ],
-      "changelog": "PACKAGER: Yealink provisioner settings"
+      "changelog": "PACKAGER: Added a phpunit test\n-cleaned up errors discovered by phpunit test\n-attempted to fix yealink t3x blindly (probably didnt fix it)"
     }
   }
 }
