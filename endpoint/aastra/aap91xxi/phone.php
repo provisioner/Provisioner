@@ -25,14 +25,6 @@ class endpoint_aastra_aap91xxi_phone extends endpoint_aastra_base {
     function prepare_for_generateconfig() {
         parent::prepare_for_generateconfig();
 
-        if (!isset($this->settings['provisioning_server'])) {
-            $this->settings['provisioning_server'] = $this->server[1]['ip'];
-        }
-
-        if (!isset($this->settings['provisioning_path'])) {
-            $this->settings['provisioning_path'] = '';
-        }
-
         switch ($this->provisioning_type) {
             case "tftp":
                 $this->settings['provisioning_protocol'] = 'TFTP';

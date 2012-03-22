@@ -92,14 +92,6 @@ class endpoint_aastra_aap9xxx6xxx_phone extends endpoint_aastra_base {
             }
         }
 
-        if (!isset($this->settings['provisioning_server'])) {
-            $this->settings['provisioning_server'] = $this->server[1]['ip'];
-        }
-
-        if (!isset($this->settings['provisioning_path'])) {
-            $this->settings['provisioning_path'] = '';
-        }
-
         switch ($this->provisioning_type) {
             case "tftp":
                 $this->settings['provisioning_protocol'] = 'TFTP';
