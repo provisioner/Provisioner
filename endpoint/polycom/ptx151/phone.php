@@ -13,7 +13,7 @@ class endpoint_polycom_ptx151_phone extends endpoint_polycom_base {
 	
 	function config_files() {
 		$result=parent::config_files();
-		$ext = $this->lines[1]['ext'];
+		$ext = $this->settings['line'][0]['username'];
 		$result['sip_'.$ext.'.cfg'] = 'sip_$ext.cfg';
 		unset($result['sip_$ext.cfg']);    
 		return $result;

@@ -10,8 +10,8 @@
               {
                 "description":"Line Keys (1-6)",
                 "type":"loop",
-                "loop_start":"1",
-                "loop_end":"6",
+                "loop_start":"11",
+                "loop_end":"16",
                 "data":{
                   "item":[
                     {

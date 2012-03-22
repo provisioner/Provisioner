@@ -30,6 +30,7 @@ abstract class endpoint_base {
     public $settings = array();
     public $debug = FALSE;  //Enable or disable debug
     public $debug_return = array(); //Debug fill. I question if this is needed, or perhaps remove above line, seems redudant to have both 
+	public $replacement_array = array(); //Used for phpunit testing, key is {$var} value is the replacement.
     public $mac;    // Device mac address, should this be in settings?
     public $timezone = array();       // Global timezone array
     public $DateTimeZone;   // timezone, as a DateTimezone object, much more flexible than just an offset and name.
@@ -44,7 +45,7 @@ abstract class endpoint_base {
     protected $server_type = 'file';  //Can be file or dynamic
     protected $provisioning_type = 'tftp';  //can be tftp,http,ftp ??
     protected $enable_encryption = FALSE;  //Enable file encryption
-    protected $provisioning_path;                  //Path to provisioner, used in http/https/ftp/tftp
+    protected $provisioning_path = "";                  //Path to provisioner, used in http/https/ftp/tftp
     protected $dynamic_mapping;  // e.g. ARRAY('thisfile.htm'=>'# Intentionally left blank','thatfile$mac.htm'=>array('thisfile.htm','thatfile$mac.htm'));
     // files not in this array are passed through untouched. Strings are returned as is. For arrays, generate_file is called for each entry, and they are combined.
     protected $config_file_replacements = array();
@@ -419,12 +420,17 @@ abstract class endpoint_base {
                 if (isset($data[$variables])) {
                     $data[$variables] = $this->replace_static_variables($data[$variables]);
                     $this->debug("Replacing '{" . $original_variable . "}' with " . $data[$variables]);
+					$l = $data['line'];
+					$this->replacement_array['lines'][$l][$original_variable] = $data[$variables];
                     $file_contents = str_replace('{' . $original_variable . '}', $data[$variables], $file_contents);
+					continue;
                 }
             } else {
                 if (isset($this->settings[$variables])) {
                     $this->settings[$variables] = $this->replace_static_variables($this->settings[$variables]);
+					$this->replacement_array['other'][$original_variable] = $this->settings[$variables];
                     $file_contents = str_replace('{' . $original_variable . '}', $this->settings[$variables], $file_contents);
+					continue;
                 }
             }
 
@@ -456,14 +462,17 @@ abstract class endpoint_base {
                 if (isset($default)) {
                     $default = $this->replace_static_variables($default);
                     $file_contents = str_replace('{' . $original_variable . '}', $default, $file_contents);
+					$this->replacement_array['pipes'][$original_variable] = $default;
                     $this->debug('Replacing {' . $original_variable . '} with default piped value of:' . $default);
                 } elseif (isset($default_hard_value)) {
                     $default_hard_value = $this->replace_static_variables($default_hard_value);
                     $file_contents = str_replace('{' . $original_variable . '}', $default_hard_value, $file_contents);
+					$this->replacement_array['json'][$original_variable] = $default_hard_value;
                     $this->debug("Replacing {" . $original_variable . "} with default json value of: " . $default_hard_value);
                 } else {
                     //do one last replace statice here.
                     $file_contents = str_replace('{' . $original_variable . '}', "", $file_contents);
+					$this->replacement_array['blanks'][$original_variable] = "";
                     $this->debug("Blanking {" . $original_variable . "}");
                 }
             }
@@ -488,8 +497,8 @@ abstract class endpoint_base {
             # This is a good thing, and should be done wherever possible.
             '{$mac}' => $this->mac,
             '{$model}' => $this->model,
-            '{$provisioning_type}' => $this->settings['provision']['protocol'],
-            '{$provisioning_path}' => $this->settings['provision']['path'],
+            '{$provisioning_type}' => $this->server_type,
+            '{$provisioning_path}' => $this->provisioning_path,
             '{$vlan_id}' => $this->settings['network']['vlan']['id'],
             '{$vlan_qos}' => $this->settings['network']['vlan']['qos'],
             # These are not the same.
@@ -537,14 +546,23 @@ abstract class endpoint_base {
                         //$this->settings['line'][$key1[0]]['ext'] = isset($this->settings['line'][$key1[0]]['username']) ? $this->settings['line'][$key1[0]]['username'] : NULL;
                     }
 
-                    $data['number'] = $line;
-                    $data['count'] = $line;
+					//If value (that line) wasn't found then ignore the next
+					if($key1 !== FALSE) {
+	                    $data['number'] = $line;
+	                    $data['count'] = $line;
 
-                    $line_settings = $this->parse_lines_hook($this->settings['line'][$key1[0]], $this->max_lines);
+	                    $line_settings = $this->parse_lines_hook($this->settings['line'][$key1[0]], $this->max_lines);
 
-                    $stored = isset($line_settings[$var]) ? $line_settings[$var] : '';
-                    $this->debug('Replacing {' . $original_variable . '} with ' . $stored);
-                    $contents = str_replace('{' . $original_variable . '}', $stored, $contents);
+	                    $stored = isset($line_settings[$var]) ? $line_settings[$var] : '';
+	                    $this->debug('Replacing {' . $original_variable . '} with ' . $stored);
+						$this->replacement_array['lines'][$line]['$'.$var] = $stored;
+	                    $contents = str_replace('{' . $original_variable . '}', $stored, $contents);
+					} else {
+						//Blank it?
+	                    $contents = str_replace('{' . $original_variable . '}', "", $contents);
+						$this->replacement_array['blanks'][$original_variable] = "";
+	                    $this->debug("Blanking {" . $original_variable . "}");
+					}
                 }
             }
         }
@@ -593,24 +611,14 @@ abstract class endpoint_base {
      * @author Jort Bloem
      */
     protected function setup_timezone() {
-        if (isset($this->DateTimeZone)) {
+        if (isset($this->DateTimeZone) && is_object($this->DateTimeZone)) {
             $this->timezone = array(
                 'gmtoffset' => $this->DateTimeZone->getOffset(new DateTime),
                 'timezone' => $this->get_timezone($this->DateTimeZone->getOffset(new DateTime))
             );
-        } elseif (is_array($this->timezone)) {
-            #Do nothing
-        } elseif (is_numeric($this->timezone)) {
-            $this->timezone = array(
-                'gmtoffset' => $this->timezone,
-                'timezone' => $this->get_timezone($this->timezone),
-            );
         } else {
-            $this->timezone = array(
-                'gmtoffset' => $this->get_gmtoffset($this->timezone),
-                'timezone' => $this->timezone,
-            );
-        }
+			throw new Exception('You Must define a valid DateTimeZone object');
+		}
     }
 
     function debug($message) {
@@ -623,25 +631,25 @@ abstract class endpoint_base {
         if (file_exists($file)) {
             $json = file_get_contents($file);
             $data = json_decode($json, TRUE);
-	    $error = json_last_error();
-	    if ($error===JSON_ERROR_NONE) {
-		return($data);
-	    } else {
-		$errors=array( // Taken from http://www.php.net/manual/en/function.json-last-error.php
-			JSON_ERROR_NONE=>'No error has occurred',
-			JSON_ERROR_DEPTH=>'The maximum stack depth has been exceeded',
-			JSON_ERROR_STATE_MISMATCH=>'Invalid or malformed JSON',
-			JSON_ERROR_CTRL_CHAR=>'Control character error, possibly incorrectly encoded',
-			JSON_ERROR_SYNTAX=>'Syntax error',
-			JSON_ERROR_UTF8=>'Malformed UTF-8 characters, possibly incorrectly encoded'
-		);
-		if (array_key_exists($error,$errors)) {
-			$error=$errors[$error];
-		} else {
-			$error="Unknown error $error";
-		}
+	    	$error = json_last_error();
+	    	if ($error===JSON_ERROR_NONE) {
+				return($data);
+	    	} else {
+				$errors=array( // Taken from http://www.php.net/manual/en/function.json-last-error.php
+					JSON_ERROR_NONE=>'No error has occurred',
+					JSON_ERROR_DEPTH=>'The maximum stack depth has been exceeded',
+					JSON_ERROR_STATE_MISMATCH=>'Invalid or malformed JSON',
+					JSON_ERROR_CTRL_CHAR=>'Control character error, possibly incorrectly encoded',
+					JSON_ERROR_SYNTAX=>'Syntax error',
+					JSON_ERROR_UTF8=>'Malformed UTF-8 characters, possibly incorrectly encoded'
+				);
+				if (array_key_exists($error,$errors)) {
+					$error=$errors[$error];
+				} else {
+					$error="Unknown error $error";
+				}
             	throw new Exception("Could not decode $file: $error");
-	    }
+	    	}
         } else {
             throw new Exception("Could not load: " . $file);
         }
@@ -662,7 +670,25 @@ abstract class endpoint_base {
 
     private function initialize() {
         if (!$this->initialized) {
+			//Check Mac address
+	        if (empty($this->mac)) {
+                throw new Exception("Mac Can Not Be Blank!");
+            }
 
+			//First check to see if line data is filled for at least the first line
+			if(!isset($this->settings['line'][0])) {
+				throw new Exception('No Line Data Defined!');
+			} else {
+				foreach($this->settings['line'] as $linedata) {
+					if(!isset($linedata['line'])) {
+						throw new Exception('Line not defined!');
+					}
+				}
+			}
+			
+			if(!isset($this->processor_info)) {
+				throw new Exception('Undefined Processor, please set your processor_info');
+			}
             //Load files for quicker processing
             $this->family_data = $this->file2json(self::$root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.json");
             $this->brand_data = $this->file2json(self::$root_dir . self::$modules_path . $this->brand_name . "/brand_data.json");
@@ -687,18 +713,8 @@ abstract class endpoint_base {
                 $this->settings['ntp'] = $this->settings['line'][0]['server_host'];
             }
 
-            //TODO: Shorten
-            if (!in_array($this->settings['provision']['type'], $this->server_type_list)) {
-                $this->server_type = $this->default_server_type;
-            } else {
-                $this->server_type = $this->settings['provision']['type'];
-            }
-
-            if (!in_array($this->settings['provision']['protocol'], $this->provisioning_type_list)) {
-                $this->provisioning_type = $this->default_provisioning_type;
-            } else {
-                $this->provisioning_type = $this->settings['provision']['protocol'];
-            }
+			$this->server_type = (isset($this->settings['provision']['type']) && in_array($this->settings['provision']['type'], $this->server_type_list)) ? $this->settings['provision']['type'] : $this->default_server_type;
+			$this->provisioning_type = (isset($this->settings['provision']['protocol']) && in_array($this->settings['provision']['protocol'], $this->provisioning_type_list)) ? $this->settings['provision']['type'] : $this->default_provisioning_type;
 
             //TODO:fix
             if (!isset($this->settings['network']['vlan']['id'])) {
@@ -706,10 +722,6 @@ abstract class endpoint_base {
             }
             if (!isset($this->settings['network']['vlan']['qos'])) {
                 $this->settings['network']['vlan']['qos'] = 5;
-            }
-
-            if (empty($this->mac)) {
-                throw new Exception("mac can not be blank!");
             }
 
             $this->initialized = TRUE;
@@ -824,3 +836,8 @@ class Provisioner_Globals {
     }
 
 }
+
+if(!class_exists('InvalidArgumentException')) {
+	class InvalidArgumentException extends Exception { }
+}
+class InvalidObjectException extends Exception { }
