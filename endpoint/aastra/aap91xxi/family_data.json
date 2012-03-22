@@ -12,7 +12,7 @@
     "model_list":[
       {
         "model":"9112i",
-        "lines":"1",
+        "lines":"9",
         "id":"1",
         "template_data":[
           "template_data.json"
@@ -20,7 +20,7 @@
       },
       {
         "model":"9133i",
-        "lines":"1",
+        "lines":"9",
         "id":"2",
         "template_data":[
           "template_data.json"
