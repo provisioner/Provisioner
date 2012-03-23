@@ -17,6 +17,11 @@ class endpoint_aastra_base extends endpoint_base {
         }
     }
 
+    function prepare_for_generateconfig() {
+        $this->mac = strtoupper($this->mac);
+        parent::prepare_for_generateconfig();
+    }
+
     function enable_encryption() {
         if (is_executable($this->root_dir . self::$modules_path . $this->brand_name . "/anacrypt")) {
             if (!file_exists($this->root_dir . self::$modules_path . $this->brand_name . "/security.tuz")) {
