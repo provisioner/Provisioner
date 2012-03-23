@@ -5,23 +5,23 @@
       "directory": "thomson",
       "brand_id": "14",
       "package": "thomson.tgz",
-      "md5sum": "78b884361b6c3b4eae34fbfe3a5a7663",
-      "last_modified": 1331832441,
+      "md5sum": "",
+      "last_modified":1332319454,
       "family_list": [
         {
           "id": "1",
           "name": "Thomson Model [ST2030S]",
           "directory": "st20xx",
-          "description": "",
-          "changelog": "2012.03.08: Firmware 11.1 Included. Verified on ST2030S.",
-          "last_modified": null
+          "description": "Alfa",
+          "last_modified":1332319454,
+          "changelog": "None"
         }
       ],
       "oui_list": [
         "001F9F",
         "00147F"
       ],
-      "changelog": "PACKAGER: Adding Support for Thomson phones\n-Thanks to Thord Matre"
+      "changelog": "Beta"
     }
   }
 }
