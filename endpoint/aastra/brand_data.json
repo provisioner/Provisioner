@@ -5,9 +5,9 @@
       "brand_id": "1",
       "directory": "aastra",
       "package": "aastra.tgz",
-      "md5sum": "a837b705553ff3bbe73d67f78564a4ec",
-      "last_modified": 1332457707,
-      "changelog": "PACKAGER: Fixes to Aastra line count and removing some old fields.",
+      "md5sum": "aca2e40b76d43fd45a1bfeeb2afe9422",
+      "last_modified": 1332469709,
+      "changelog": "PACKAGER: All aastra mac addresses need to be uppercased",
       "family_list": [
         {
           "id": "1",
