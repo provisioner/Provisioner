@@ -1,0 +1,24 @@
+{
+    "data":{
+        "name":"Traphone Model",
+        "id":"1",
+        "directory":"traphone",
+        "firmware_ver":"1329055200",
+        "firmware_pkg":"traphone_firmware.tgz",
+        "firmware_md5sum":"4331f91960238a7175226f2eb095e926",
+        "configuration_files":"$mac.cfg,snmpd.conf",
+        "changelog":"",
+        "description":"Norphonic Traphone",
+        "model_list":[
+            {
+                "model":"Version 8",
+                "lines":"1",
+                "id":"1",
+                "template_data":[
+                    "sip_data.json",
+                    "network_data.json"
+                ]
+            }
+        ]
+    }
+}
