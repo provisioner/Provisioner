@@ -77,7 +77,9 @@ abstract class endpoint_base {
 
     function __construct() {
         self::$root_dir = dirname(dirname(__FILE__)) . "/";
-        $this->root_dir = dirname(dirname(__FILE__)) . "/";
+        
+        $this->root_dir = self::$root_dir;
+        $this->modules_path = self::$modules_path;
     }
 
     /*     * *PUBLIC FUNCTIONS** */
