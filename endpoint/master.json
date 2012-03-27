@@ -24,6 +24,10 @@
         "directory": "mitel"
       },
       {
+        "name": "Norphonic",
+        "directory": "norphonic"
+      },
+      {
         "name": "Polycom",
         "directory": "polycom"
       },
