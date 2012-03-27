@@ -1,0 +1,50 @@
+<template_data>
+<category>
+    <name>General</name>
+    <subcategory>
+        <name>General Settings</name>
+        <item>
+            <variable>$keypad</variable>
+            <default_value>0</default_value>
+            <description>Keypad or hotline version</description>
+            <type>list</type>
+            <data>
+                <text>Hotline</text>
+                <value>0</value>
+            </data>
+            <data>
+                <text>Keypad</text>
+                <value>1</value>
+            </data>
+        </item>
+        <item>
+            <variable>$hotline</variable>
+            <default_value></default_value>
+            <description>Hotline destination number</description>
+            <type>input</type>
+        </item>
+        <item>
+            <!-- Dial Schema -->
+            <variable>$dialschema</variable>
+            <default_value>1:3;5:7;</default_value>
+            <description>Dialplan String</description>
+            <type>input</type>
+        </item>
+        <item>
+            <type>break</type>
+        </item>
+        <item>
+            <variable>$intervalregister</variable>
+            <default_value>1800</default_value>
+            <description>Reregister interval (seconds)</description>
+            <type>input</type>
+        </item>
+        <item>
+            <variable>$intervalselftest</variable>
+            <default_value>3600</default_value>
+            <description>Selftest interval (seconds)</description>
+            <type>input</type>
+        </item>
+    </subcategory>
+</category>
+</template_data>
