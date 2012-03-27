@@ -379,7 +379,7 @@ P29 = 0
 P66 = 
 
 # Dial Plan
-P290 = { x+ | *x+ | *xx*x+ }
+P290 = {$dialplan}
 
 # BLF Call-pickup Prefix:
 P1347 = **
