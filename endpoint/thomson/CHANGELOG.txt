@@ -1,5 +1,5 @@
 2012-03-13 by Thord Matre, tm@norphonic.com
-  Phone restart functionality bu way of sip event cisco-check-cfg
+  Phone restart functionality by way of sip event cisco-check-cfg
 
 2012-03-12 by Thord Matre, tm@norphonic.com
   Reduse number of tabs in Phone configuration view
