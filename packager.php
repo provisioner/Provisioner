@@ -46,19 +46,29 @@ echo "======RUNNING PHPUNIT TESTS======\n";
 exec('phpunit --log-json tests.json samples/phpunittests');
 if(file_exists('tests.json')) {
 	$tests = preg_split("/}{/i", file_get_contents('tests.json'));
+	$test_suite = '';
+	$testsc = 0;
 	foreach($tests as $data) {
 		$data = str_replace("}", "", str_replace("{", "", $data));
 		$data = json_decode("{".$data."}",TRUE);
+		$total_tests = isset($data['tests']) ? $data['tests'] : $total_tests;
 		if($data['event'] == 'test') {
 			if($data['status'] == 'pass') {
 				echo "\tPassed Test '".$data['test']."'\n";
+				$testsc++;
 			} else {
 				die("\tFailed Test '".$data['test']."'");
 			}
 		}
+		$test_suite = isset($data['test']) ? $data['test'] : $test_suite;
+		
 	}
 	unlink('tests.json');
-	echo "Passed all Tests!\n\n";
+	if($testsc != $total_tests) {
+		die("Failed ".$test_suite." test!");
+	} else {
+		echo "Passed all Tests!\n\n";
+	}
 } else {
 	echo "PHPUNIT Tests Inconclusive\n\n";
 }

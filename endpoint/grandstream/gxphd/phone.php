@@ -33,8 +33,10 @@ class endpoint_grandstream_gxphd_phone extends endpoint_grandstream_base {
     
     function prepare_for_generateconfig() {
         parent::prepare_for_generateconfig();
-        $this->settings['dialplan'] = str_replace("+", "%2B", $this->settings['dialplan']);        
-    }
+        	if(isset($this->settings['dialplan'])) {
+			$this->settings['dialplan'] = str_replace("+", "%2B", $this->settings['dialplan']);        
+    		}
+	}
 
     function reboot() {
         if (($this->engine == "asterisk") AND ($this->system == "unix")) {
