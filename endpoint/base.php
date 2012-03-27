@@ -716,7 +716,8 @@ abstract class endpoint_base {
             }
 
 			$this->server_type = (isset($this->settings['provision']['type']) && in_array($this->settings['provision']['type'], $this->server_type_list)) ? $this->settings['provision']['type'] : $this->default_server_type;
-			$this->provisioning_type = (isset($this->settings['provision']['protocol']) && in_array($this->settings['provision']['protocol'], $this->provisioning_type_list)) ? $this->settings['provision']['type'] : $this->default_provisioning_type;
+			$this->server_type = (isset($this->settings['provision']['protocol']) && in_array($this->settings['provision']['protocol'], $this->provisioning_type_list)) ? $this->settings['provision']['protocol'] : $this->default_provisioning_type;
+			$this->provisioning_path = isset($this->settings['provision']['path']) ? $this->settings['provision']['path'] : $this->provisioning_path;
 
             //TODO:fix
             if (!isset($this->settings['network']['vlan']['id'])) {
