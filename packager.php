@@ -42,6 +42,27 @@ $master_xml = array();
 
 echo "<pre>";
 
+echo "======RUNNING PHPUNIT TESTS======\n";
+exec('phpunit --log-json tests.json samples/phpunittests');
+if(file_exists('tests.json')) {
+	$tests = preg_split("/}{/i", file_get_contents('tests.json'));
+	foreach($tests as $data) {
+		$data = str_replace("}", "", str_replace("{", "", $data));
+		$data = json_decode("{".$data."}",TRUE);
+		if($data['event'] == 'test') {
+			if($data['status'] == 'pass') {
+				echo "\tPassed Test '".$data['test']."'\n";
+			} else {
+				die("\tFailed Test '".$data['test']."'");
+			}
+		}
+	}
+	unlink('tests.json');
+	echo "Passed all Tests!\n\n";
+} else {
+	echo "PHPUNIT Tests Inconclusive\n\n";
+}
+
 if(isset($_REQUEST['commit_message'])) {
 	$c_message = $_REQUEST['commit_message'];
 } else {
