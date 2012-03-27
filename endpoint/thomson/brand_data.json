@@ -5,23 +5,23 @@
       "directory": "thomson",
       "brand_id": "14",
       "package": "thomson.tgz",
-      "md5sum": "",
-      "last_modified":1332319454,
+      "md5sum": "4c80d627fa0586f99beb94da2ef0977d",
+      "last_modified": 1332874399,
       "family_list": [
         {
           "id": "1",
           "name": "Thomson Model [ST2030S]",
           "directory": "st20xx",
-          "description": "Alfa",
-          "last_modified":1332319454,
-          "changelog": "None"
+          "description": "",
+          "changelog": "2012.03.08: Firmware 11.1 Included. Verified on ST2030S.",
+          "last_modified": null
         }
       ],
       "oui_list": [
         "001F9F",
         "00147F"
       ],
-      "changelog": "Beta"
+      "changelog": "PACKAGER: Globing the Polycom directory so we can include all needed directories and files"
     }
   }
 }

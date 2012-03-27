@@ -5,8 +5,8 @@
       "directory": "polycom",
       "brand_id": "4",
       "package": "polycom.tgz",
-      "md5sum": "05e0cd39b5499d074459fd85a57ecb0c",
-      "last_modified": 1332456228,
+      "md5sum": "b06d8e2ea72f10cd37fcb38862507a80",
+      "last_modified": 1332874399,
       "family_list": [
         {
           "id": "4",
@@ -61,7 +61,7 @@
         "0004F2",
         "00907A"
       ],
-      "changelog": "PACKAGER: Added a phpunit test\n-cleaned up errors discovered by phpunit test\n-attempted to fix yealink t3x blindly (probably didnt fix it)"
+      "changelog": "PACKAGER: Globing the Polycom directory so we can include all needed directories and files"
     }
   }
 }

@@ -1,39 +1,38 @@
 {
-    "data":{
-        "brands":{
-            "name": "Norphonic",
-            "brand_id": "15",
-            "directory": "norphonic",
-            "package": "norphonic.tgz",
-            "md5sum": "",
-            "last_modified":1332328235,
-            "family_list":[
-				{
-                    "id": "1",
-                    "name": "Norphonic Traphone",
-                    "directory": "traphone",
-                    "version": "1.0",
-                    "description": "Norphonic Emergency Rugged Telephone",
-                    "last_modified": null,
-                    "changelog": ""
-                }
-            ],
-            "oui_list":[
-                "1045BE",
-                "0050C24924",
-                "0050C24925",
-                "0050C24926",
-                "0050C24927",
-                "0050C24928",
-                "0050C24929",
-                "0050C2492A",
-                "0050C2492B",
-                "0050C2492C",
-                "0050C2492D",
-                "0050C2492E",
-                "0050C2492F"
-            ],
-            "changelog": "Version 1.0"
+  "data": {
+    "brands": {
+      "name": "Norphonic",
+      "brand_id": "15",
+      "directory": "norphonic",
+      "package": "norphonic.tgz",
+      "md5sum": "5d5f808175785cd228d2506f08dad9f8",
+      "last_modified": 1332874399,
+      "family_list": [
+        {
+          "id": "1",
+          "name": "Traphone Model",
+          "directory": "traphone",
+          "description": "Norphonic Traphone",
+          "changelog": "",
+          "last_modified": null
         }
+      ],
+      "oui_list": [
+        "1045BE",
+        "0050C24924",
+        "0050C24925",
+        "0050C24926",
+        "0050C24927",
+        "0050C24928",
+        "0050C24929",
+        "0050C2492A",
+        "0050C2492B",
+        "0050C2492C",
+        "0050C2492D",
+        "0050C2492E",
+        "0050C2492F"
+      ],
+      "changelog": "PACKAGER: Globing the Polycom directory so we can include all needed directories and files"
     }
+  }
 }
