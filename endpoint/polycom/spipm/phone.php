@@ -34,6 +34,23 @@ class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
 	"Sailboat256x116.jpg", 
 	"SailboatEM.jpg"
 	);
+	
+	function __construct() {
+        parent::__construct();
+		$dir = $this->root_dir.$this->modules_path.$this->brand_name.'/'.$this->family_line.'/languages/';
+		foreach (glob($dir."*.xml") as $filename) {
+			$file = str_replace($dir,'',$filename);
+		    $this->copy_files[] = 'languages/'.$file;
+		}
+		
+		$dir = $this->root_dir.$this->modules_path.$this->brand_name.'/'.$this->family_line.'/SoundPointIPLocalization/';
+		foreach (glob($dir."*",GLOB_ONLYDIR) as $directory) {
+			foreach (glob($directory."/*.xml") as $filename) {
+				$file = str_replace($dir,'',$filename);
+				$this->copy_files[] = 'SoundPointIPLocalization/'.$file;
+			}
+		}
+	}
     
     function parse_lines_hook($line_data, $line_total) {
         $line_data['digitmap'] = (isset($this->settings['digitmap']) ? $this->settings['digitmap'] : NULL);
