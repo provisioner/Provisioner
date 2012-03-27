@@ -5,8 +5,8 @@
       "directory": "grandstream",
       "brand_id": "2",
       "package": "grandstream.tgz",
-      "md5sum": "4cdd092adeaf3d82e3e3d5eca7e832df",
-      "last_modified": 1332882017,
+      "md5sum": "f5645530a7469cffe3a4309c0f7aac86",
+      "last_modified": 1332883880,
       "family_list": [
         {
           "id": "2",
@@ -44,7 +44,7 @@
       "oui_list": [
         "000B82"
       ],
-      "changelog": "PACKAGER: Fixes issue #33\n-Doing a simple str_replace as htmlentities didnt work"
+      "changelog": "PACKAGER: PACKAGER: Fix for Cisco SPA5xx Dial Plans\n-It didnt get pushed.."
     }
   }
 }
