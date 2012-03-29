@@ -1,4 +1,12 @@
 <?php
+/**
+ * JSON Merge/Retrieve Script
+ *
+ * @author Andrew Nagy
+ * @license MPL / GPLv2 / LGPL
+ * @package Provisioner
+ *
+ */
 require('samples/json.php');
 define("PROVISIONER_PATH", "");
 $request = isset($_REQUEST['request']) ? $_REQUEST['request'] : '';

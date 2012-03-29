@@ -14,7 +14,7 @@ $proxyserver = isset($_REQUEST['proxyserver']) ? $_REQUEST['proxyserver'] : '';
 $product = $product_model[0];
 $model = $product_model[1];
 
-$json_data = json_decode(file_get_contents('http://www.provisioner.net/beta/merge_data.php?request=data&brand='.$brand.'&product='.$product.'&model='.urlencode($model)),true);
+$json_data = json_decode(file_get_contents('http://repo.provisioner.net/merge_data.php?request=data&brand='.$brand.'&product='.$product.'&model='.urlencode($model)),true);
 $html_array = generate_gui_html($json_data,$_REQUEST['regs']);
 ?>
 <form name="form1" method="post" action="process.php">

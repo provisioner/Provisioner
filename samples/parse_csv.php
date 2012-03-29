@@ -29,6 +29,7 @@ foreach($line_contents as $data) {
 //Parse Each Phone
 foreach($phone_data as $info_new) {
 	require_once('../autoload.php');
+	require_once('../includes/json.php');
 
 	$brand = $info_new['brand'];
 	$family = $info_new['product'];
@@ -50,7 +51,7 @@ foreach($phone_data as $info_new) {
 	$endpoint->processor_info = "Web Provisioner 2.0";
 
 	//Timezone
-	if (!class_exists("DateTimeZone")) { require('tz.php'); }
+	if (!class_exists("DateTimeZone")) { require_once('../includes/timezone.php'); }
 	$endpoint->DateTimeZone = new DateTimeZone('US/Pacific');;
 
 	//Provide alternate Configuration file instead of the one from the hard drive

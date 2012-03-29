@@ -1,6 +1,6 @@
 <?php
 /**
- * Auto-loader
+ * SPL Auto-loader
  *
  * @author Darren Schreiber
  * @license MPL / GPLv2 / LGPL
