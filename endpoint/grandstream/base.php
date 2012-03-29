@@ -17,9 +17,31 @@ class endpoint_grandstream_base extends endpoint_base {
             if (preg_match("/\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/", $output[1], $matches)) {
                 $ip = $matches[0];
                 $pass = (isset($this->settings['admin_pass']) ? $this->settings['admin_pass'] : 'admin');
-                //This is lame. I need to do this in php not over the command line. etc, I AM THE LAME.
-                exec('curl -c cookies.txt -d"P2=' . $pass . '&Login=Login&gnkey=0b82" http://' . $ip . '/dologin.htm');
-                exec("curl -b cookies.txt http://" . $ip . "/rs.htm");
+
+				if(function_exists('curl_init')) {
+					$ckfile = tempnam ("/tmp", "GSCURLCOOKIE");
+					$ch = curl_init ('http://' . $ip . '/dologin.htm');
+					curl_setopt ($ch, CURLOPT_COOKIEJAR, $ckfile); 
+					curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
+					curl_setopt($ch, CURLOPT_POST, true);
+
+					$data = array(
+						'P2' => $pass,
+					    'Login' => 'Login',
+					    'gnkey' => '0b82'
+					);
+
+					curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+					$output = curl_exec($ch);
+					$info = curl_getinfo($ch);
+					curl_close($ch);
+
+					$ch = curl_init ("http://" . $ip . "/rs.htm");
+					curl_setopt ($ch, CURLOPT_COOKIEFILE, $ckfile); 
+					curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
+					$output = curl_exec ($ch);
+					curl_close($ch);
+				}
             }
         }
     }
