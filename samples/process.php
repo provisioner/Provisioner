@@ -67,7 +67,8 @@ $line_options['line'] = array_values($temp);
 
 $final_ops = array_merge($line_options,$final_ops2);
 
-include('../autoload.php');
+require('../autoload.php');
+require('../includes/json.php');
 
 $brand = $_REQUEST['brand'];
 $family = $_REQUEST['product'];
@@ -92,7 +93,7 @@ $endpoint->model = $model; //Phone Model (Please reference family_data.xml in th
 $endpoint->processor_info = "Web Provisioner 2.0";
 
 //Timezone
-if (!class_exists("DateTimeZone")) { require('tz.php'); }
+if (!class_exists("DateTimeZone")) { require('../includes/timezone.php'); }
 $endpoint->DateTimeZone = new DateTimeZone($_REQUEST['timezone']);;
 
 //Provide alternate Configuration file instead of the one from the hard drive
