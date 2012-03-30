@@ -21,6 +21,7 @@
             <variable>$netport</variable>
             <default_value>5060</default_value>
             <description>Sip port</description>
+            <max_chars>5</max_chars>
             <type>input</type>
         </item>
     </subcategory>

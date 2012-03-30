@@ -27,6 +27,7 @@
                                 "variable":"$netport",
                                 "default_value":"5060",
                                 "description":"Sip port",
+								"max_chars":"5",
                                 "type":"input"
 							}
                         ]

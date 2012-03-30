@@ -5,9 +5,9 @@
 		<brand_id>14</brand_id>
 		<version>1.0</version>
 		<directory>norphonic</directory>
-		<package>norphonic.tgz</package>
+		<package></package>
 		<md5sum></md5sum>
-		<last_modified>1332328235</last_modified>
+		<last_modified>1332855164</last_modified>
 		<family_list>
 			<family>
 				<name>Norphonic Traphone</name>
@@ -16,7 +16,7 @@
 				<description>Norphonic Emergency Rugged Telephone</description>
 				<changelog>Release</changelog>
 				<id>1</id>
-				<last_modified>1332328235</last_modified>
+				<last_modified>1332855164</last_modified>
 			</family>
 		</family_list>
 		<oui_list>

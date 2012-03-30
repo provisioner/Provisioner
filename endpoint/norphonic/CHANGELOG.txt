@@ -1,9 +1,9 @@
+2012-03-30 by Thord Matre, thord.mmatre@norphonic.com
+    Minor modifications to template.
+	Fix Authentication.
+	
 2012-03-12 by Thord Matre, thord.mmatre@norphonic.com
     Implementation of phone restart functionality.
-
-2012-03-08 by Thord Matre, thord.mmatre@norphonic.com
-    Traphone firmware 1202241500 included.
-	*** This _requires_ Endpoint manager version 2.10.3.7 or later ***
 
 2012-03-05 by Thord Matre, thord.mmatre@norphonic.com
 	First stable release.

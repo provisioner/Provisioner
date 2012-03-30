@@ -4,8 +4,8 @@
 	<version>1.0</version>
 	<directory>traphone</directory>
 	<firmware_ver>1329055200</firmware_ver>
-	<firmware_pkg>traphone_firmware.tgz</firmware_pkg>
-	<firmware_md5sum>4331f91960238a7175226f2eb095e926</firmware_md5sum>
+	<firmware_pkg></firmware_pkg>
+	<firmware_md5sum></firmware_md5sum>
 	<description>Norphonic Traphone</description>
 	<configuration_files>$mac.cfg,snmpd.conf</configuration_files>
 	<changelog>Release version</changelog>

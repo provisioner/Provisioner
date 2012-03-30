@@ -26,7 +26,7 @@
         <item>
             <!-- Dial Schema -->
             <variable>$dialschema</variable>
-            <default_value>1:3;5:7;</default_value>
+            <default_value>:4;</default_value>
             <description>Dialplan String</description>
             <type>input</type>
         </item>
