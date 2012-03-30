@@ -55,10 +55,11 @@
 	 with static ip adresses.
   
 4. RELEASE NOTES
-    Also check CHANGELOG.txt for important changes.
+    Be sure to read CHANGELOG.txt for important changes.
   a) Rapid spanning tree configuration can not be modified from Endpoint Manager
-  b) Password protection is not yet supported.
-  c) Verified on Traphone Firmware 1202241500.
+  b) Verified on Traphone Firmware 1202241500.
+  c) Online version not including firmware. Package with firmware is provided
+     on request at sales@norphonic.com
   d) Firmware is not correctly copied to tftpboot area as of Endpoint Manager
      release 2.10.3.6
  
