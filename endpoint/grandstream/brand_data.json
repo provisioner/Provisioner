@@ -5,8 +5,8 @@
       "directory": "grandstream",
       "brand_id": "2",
       "package": "grandstream.tgz",
-      "md5sum": "f5645530a7469cffe3a4309c0f7aac86",
-      "last_modified": 1332883880,
+      "md5sum": "e90cd9b4f16b88c0752e49e86b450a00",
+      "last_modified": 1333244191,
       "family_list": [
         {
           "id": "2",
@@ -44,7 +44,7 @@
       "oui_list": [
         "000B82"
       ],
-      "changelog": "PACKAGER: PACKAGER: Fix for Cisco SPA5xx Dial Plans\n-It didnt get pushed.."
+      "changelog": "PACKAGER: Grandstream\n-Server.ip.1 to server_host.line.1 changes"
     }
   }
 }
