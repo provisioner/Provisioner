@@ -5,7 +5,7 @@
         "name":"expansion",
         "subcategory":[
           {
-            "name":"Internet Port (WAN)",
+            "name":"expansion",
             "item":[
               {
                 "description":"Sidecar Keys (EXT38 1-38, EXT39 1-40)",
