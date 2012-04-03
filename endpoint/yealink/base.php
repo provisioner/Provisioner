@@ -10,6 +10,7 @@
 abstract class endpoint_yealink_base extends endpoint_base {
 
     public $brand_name = 'yealink';
+	protected $use_system_dst = FALSE;
 
     function reboot() {
         if (($this->engine == "asterisk") AND ($this->system == "unix")) {
