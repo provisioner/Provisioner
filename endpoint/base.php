@@ -41,6 +41,7 @@ abstract class endpoint_base {
     public $protected_files = array(); //array list of file to NOT over-write on every config file build. They are protected.
     public $copy_files = array();  //array of files or directories to copy. Directories will be recursive
     
+	protected $use_system_dst = TRUE; //Use System DST correction if detected
     protected $en_htmlspecialchars = TRUE; //Enable or Disable PHP's htmlspecialchars() function for variables
     protected $server_type = 'file';  //Can be file or dynamic
     protected $provisioning_type = 'tftp';  //can be tftp,http,ftp ??
@@ -614,10 +615,12 @@ abstract class endpoint_base {
      */
     protected function setup_timezone() {
         if (isset($this->DateTimeZone) && is_object($this->DateTimeZone)) {
+			//We set this to allow phones to use Automatic DST
+			$gmt_dst_fix = !$this->use_system_dst && date('I') ? 3600 : 0;
             $this->timezone = array(
-                'gmtoffset' => $this->DateTimeZone->getOffset(new DateTime),
-                'timezone' => $this->get_timezone($this->DateTimeZone->getOffset(new DateTime))
-            );
+                'gmtoffset' => $this->DateTimeZone->getOffset(new DateTime) - $gmt_dst_fix,
+                'timezone' => $this->get_timezone($this->DateTimeZone->getOffset(new DateTime) - $gmt_dst_fix)
+            );			
         } else {
 			throw new Exception('You Must define a valid DateTimeZone object');
 		}
