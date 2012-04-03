@@ -17,8 +17,8 @@ class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
     function parse_lines_hook($line_data, $line_total) {
         $line_data['line_active'] = 1;
         $line_data['line_m1'] = $line_data['line'] - 1;
-	$line_data['enable_outbound_proxy_server'] = (isset($line_data['use_outbound_proxy']) && $line_data['use_outbound_proxy']) ? 1 : 0;
-	$line_data['enable_stun'] = 0;
+		$line_data['enable_outbound_proxy_server'] = (isset($line_data['use_outbound_proxy']) && $line_data['use_outbound_proxy']) ? 1 : 0;
+		$line_data['enable_stun'] = 0;
         $line_data['voicemail_number'] = '*97';
         return($line_data);
     }
@@ -31,55 +31,72 @@ class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
         $this->config_file_replacements['$suffix'] = $model_suffixes[$this->model];
         parent::prepare_for_generateconfig();
 
-        if (isset($this->options['softkey'])) {
-            foreach ($this->options['softkey'] as $key => $data) {
+		//Set softkeys or defaults
+        if (isset($this->settings['loops']['softkey'])) {
+            foreach ($this->settings['loops']['softkey'] as $key => $data) {
 				//HIstory, Dir, DND, and Menu
-               	if ($this->options['softkey'][$key]['type'] == '0') {
-                    unset($this->options['softkey'][$key]);
+               	if ($this->settings['loops']['softkey'][$key]['type'] == '0') {
+                    unset($this->settings['loops']['softkey'][$key]);
+                }
+            }
+        } else {
+			$this->settings['loops']['softkey'][1]['type'] = 28;
+			$this->settings['loops']['softkey'][2]['type'] = 29;
+			$this->settings['loops']['softkey'][3]['type'] = 5;
+			$this->settings['loops']['softkey'][4]['type'] = 30;
+		}
+
+        if (isset($this->settings['loops']['remotephonebook'])) {
+            foreach ($this->settings['loops']['remotephonebook'] as $key => $data) {
+                if ($this->settings['loops']['remotephonebook'][$key]['url'] == '') {
+                    unset($this->settings['loops']['remotephonebook'][$key]);
                 }
             }
         }
 
-        if (isset($this->options['remotephonebook'])) {
-            foreach ($this->options['remotephonebook'] as $key => $data) {
-                if ($this->options['remotephonebook'][$key]['url'] == '') {
-                    unset($this->options['remotephonebook'][$key]);
-                }
-            }
-        }
+		//Set line key defaults
+		$s = $this->max_lines + 10;
+		for($i=11;$i<=$s;$i++) {
+			if(!isset($this->settings['loops']['linekey'][$i])) {
+				$this->settings['loops']['linekey'][$i] = array(
+					"mode" => "blf",
+					"type" => 15
+				);
+			}
+		}
 
-        if (isset($this->options['sdext38'])) {
-            foreach ($this->options['sdext38'] as $key => $data) {
-                if ($this->options['sdext38'][$key]['type'] == '16') {
-                    $this->options['sdext38'][$key]['pickup_value'] = $this->options['call_pickup'] . $this->options['sdext38'][$key]['value'];
-                } elseif ($this->options['sdext38'][$key]['type'] == '0') {
-                    unset($this->options['sdext38'][$key]);
+        if (isset($this->settings['loops']['sdext38'])) {
+            foreach ($this->settings['loops']['sdext38'] as $key => $data) {
+                if ($this->settings['loops']['sdext38'][$key]['type'] == '16') {
+                    $this->settings['loops']['sdext38'][$key]['pickup_value'] = $this->settings['call_pickup'] . $this->settings['loops']['sdext38'][$key]['value'];
+                } elseif ($this->settings['loops']['sdext38'][$key]['type'] == '0') {
+                    unset($this->settings['loops']['sdext38'][$key]);
                 } else {
-                    $this->options['sdext38'][$key]['pickup_value'] = '*8';
+                    $this->settings['loops']['sdext38'][$key]['pickup_value'] = '*8';
                 }
             }
         }
 
-        if (isset($this->options['memkey'])) {
-            foreach ($this->options['memkey'] as $key => $data) {
-                if ($this->options['memkey'][$key]['type'] == '16') {
-                    $this->options['memkey'][$key]['pickup_value'] = $this->options['call_pickup'] . $this->options['memkey'][$key]['value'];
-                } elseif ($this->options['memkey'][$key]['type'] == '0') {
-                    unset($this->options['memkey'][$key]);
+        if (isset($this->settings['loops']['memkey'])) {
+            foreach ($this->settings['loops']['memkey'] as $key => $data) {
+                if ($this->settings['loops']['memkey'][$key]['type'] == '16') {
+                    $this->settings['loops']['memkey'][$key]['pickup_value'] = $this->settings['call_pickup'] . $this->settings['loops']['memkey'][$key]['value'];
+                } elseif ($this->settings['loops']['memkey'][$key]['type'] == '0') {
+                    unset($this->settings['loops']['memkey'][$key]);
                 } else {
-                    $this->options['memkey'][$key]['pickup_value'] = '*8';
+                    $this->settings['loops']['memkey'][$key]['pickup_value'] = '*8';
                 }
             }
         }
 
-        if (isset($this->options['memkey2'])) {
-            foreach ($this->options['memkey2'] as $key => $data) {
-                if ($this->options['memkey2'][$key]['type'] == '16') {
-                    $this->options['memkey2'][$key]['pickup_value'] = $this->options['call_pickup'] . $this->options['memkey2'][$key]['value'];
-                } elseif ($this->options['memkey2'][$key]['type'] == '0') {
-                    unset($this->options['memkey2'][$key]);
+        if (isset($this->settings['loops']['memkey2'])) {
+            foreach ($this->settings['loops']['memkey2'] as $key => $data) {
+                if ($this->settings['loops']['memkey2'][$key]['type'] == '16') {
+                    $this->settings['loops']['memkey2'][$key]['pickup_value'] = $this->settings['call_pickup'] . $this->settings['loops']['memkey2'][$key]['value'];
+                } elseif ($this->settings['loops']['memkey2'][$key]['type'] == '0') {
+                    unset($this->settings['loops']['memkey2'][$key]);
                 } else {
-                    $this->options['memkey2'][$key]['pickup_value'] = '*8';
+                    $this->settings['loops']['memkey2'][$key]['pickup_value'] = '*8';
                 }
             }
         }
