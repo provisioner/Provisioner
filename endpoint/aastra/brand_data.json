@@ -5,9 +5,9 @@
       "brand_id": "1",
       "directory": "aastra",
       "package": "aastra.tgz",
-      "md5sum": "b58df7c581d14eea4a4d20752dc391fd",
-      "last_modified": 1333244191,
-      "changelog": "PACKAGER: Grandstream\n-Server.ip.1 to server_host.line.1 changes",
+      "md5sum": "0f24727951727f3f096e85a24dc8bc1e",
+      "last_modified": 1333427655,
+      "changelog": "PACKAGER: Yealink\n-Set deaults for line keys to lines instead of nothing\n-Fix all loops",
       "family_list": [
         {
           "id": "1",
