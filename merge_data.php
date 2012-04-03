@@ -7,7 +7,7 @@
  * @package Provisioner
  *
  */
-require('samples/json.php');
+require('includes/json.php');
 define("PROVISIONER_PATH", "");
 $request = isset($_REQUEST['request']) ? $_REQUEST['request'] : '';
 $brand = isset($_REQUEST['brand']) ? $_REQUEST['brand'] : '';
