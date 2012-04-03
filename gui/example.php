@@ -1,7 +1,7 @@
 <?
 include('provisioner_gui.php');
 
-$out = new provisioner_gui('/var/www/repo/endpoint');
+$out = new provisioner_gui('../endpoint');
 
 /* You can hide elements if you know their names.
 $hide = array(
