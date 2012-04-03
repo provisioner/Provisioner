@@ -423,8 +423,10 @@ abstract class endpoint_base {
                 if (isset($data[$variables])) {
                     $data[$variables] = $this->replace_static_variables($data[$variables]);
                     $this->debug("Replacing '{" . $original_variable . "}' with " . $data[$variables]);
-					$l = $data['line'];
-					$this->replacement_array['lines'][$l][$original_variable] = $data[$variables];
+					if(isset($data['line'])) {
+						$l = $data['line'];
+						$this->replacement_array['lines'][$l][$original_variable] = $data[$variables];
+					}
                     $file_contents = str_replace('{' . $original_variable . '}', $data[$variables], $file_contents);
 					continue;
                 }
