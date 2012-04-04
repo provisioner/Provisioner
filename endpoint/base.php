@@ -239,6 +239,7 @@ abstract class endpoint_base {
     private function parse_config_file($file_contents) {
         $file_contents = $this->generate_info($file_contents);
 
+        $file_contents = $this->parse_conditionals($file_contents);
         $file_contents = $this->parse_conditional_model($file_contents);
 
         $file_contents = $this->parse_lines($file_contents, FALSE);
@@ -248,6 +249,14 @@ abstract class endpoint_base {
         $file_contents = $this->parse_config_values($file_contents);
 
         return $file_contents;
+    }
+
+    private function parse_conditionals($file_contents) {
+        $pattern = "/{if condition=\"(.*?)\"}(.*?){\/if}/si";
+        while (preg_match($pattern, $file_contents, $matches)) {
+			
+        }
+        return($file_contents);
     }
 
     /**
@@ -495,9 +504,8 @@ abstract class endpoint_base {
      * @return string
      */
     private function replace_static_variables($contents, $data=NULL) {
-        //bad
+        //bad		
         $this->settings['network']['local_port'] = isset($this->settings['network']['local_port']) ? $this->settings['network']['local_port'] : '5060';
-        $this->settings['network']['syslog_server'] = isset($this->settings['network']['syslog_server']) ? $this->settings['network']['syslog_server'] : '';
         $replace = array(
             # These first ones have an identical field name in the object and the template.
             # This is a good thing, and should be done wherever possible.
@@ -725,6 +733,14 @@ abstract class endpoint_base {
 			$this->server_type = (isset($this->settings['provision']['type']) && in_array($this->settings['provision']['type'], $this->server_type_list)) ? $this->settings['provision']['type'] : $this->default_server_type;
 			$this->server_type = (isset($this->settings['provision']['protocol']) && in_array($this->settings['provision']['protocol'], $this->provisioning_type_list)) ? $this->settings['provision']['protocol'] : $this->default_provisioning_type;
 			$this->provisioning_path = isset($this->settings['provision']['path']) ? $this->settings['provision']['path'] : $this->provisioning_path;
+
+			$this->settings['network']['dhcp'] = isset($this->settings['network']['dhcp']) ? $this->settings['network']['dhcp'] : TRUE;
+			$this->settings['network']['ipv4'] = isset($this->settings['network']['ipv4']) ? $this->settings['network']['ipv4'] : '';
+			$this->settings['network']['ipv6'] = isset($this->settings['network']['ipv6']) ? $this->settings['network']['ipv6'] : '';
+			$this->settings['network']['subnet'] = isset($this->settings['network']['subnet']) ? $this->settings['network']['subnet'] : '';
+			$this->settings['network']['gateway'] = isset($this->settings['network']['gateway']) ? $this->settings['network']['gateway'] : '';
+			$this->settings['network']['primary_dns'] = isset($this->settings['network']['primary_dns']) ? $this->settings['network']['primary_dns'] : '';
+			$this->settings['network']['syslog_server'] = isset($this->settings['network']['syslog_server']) ? $this->settings['network']['syslog_server'] : '';
 
             //TODO:fix
             if (!isset($this->settings['network']['vlan']['id'])) {

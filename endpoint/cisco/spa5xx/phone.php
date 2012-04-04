@@ -80,7 +80,17 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
 
     function prepare_for_generateconfig() {
         parent::prepare_for_generateconfig();
-        
+
+		if(!isset($this->settings['network']['dhcp']) OR !$this->settings['network']['dhcp']) {
+        	$this->settings['current_ip'] = $this->settings['network']['ipv4'];
+        	$this->settings['current_netmask'] = $this->settings['network']['subnet'];
+        	$this->settings['current_gateway'] = $this->settings['network']['gateway'];
+			$this->settings['primary_dns'] = $this->settings['network']['primary_dns'];
+			$this->settings['connection_type'] = 'Static IP';
+		} else {
+			$this->settings['connection_type'] = 'DHCP';
+		}
+		
         for($i = 1; $i <= $this->max_lines; $i++) {
 			if((isset($this->settings['loops']['lineops'])) && ($this->settings['loops']['lineops'][$i]['keytype'] != 'line')) {
 	            if(!isset($this->settings['line'][$i]['line'])) {

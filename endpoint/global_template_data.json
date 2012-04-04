@@ -347,6 +347,12 @@
                     "type": "input"
                 },
                 {
+                    "variable": "$primary_dns",
+                    "default_value": "",
+                    "description": "Primary DNS",
+                    "type": "input"
+                },
+                {
                     "type": "break"
                 },
                 {

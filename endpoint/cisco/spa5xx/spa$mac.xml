@@ -182,6 +182,13 @@
 	<Ring8 group="Phone/Ring_Tone">{$ring8|n=Simple-4;w=2;c=4}</Ring8>
 	<Ring9 group="Phone/Ring_Tone">{$ring9|n=Simple-5;w=2;c=5}</Ring9>
 	<Ring10 group="Phone/Ring_Tone">{$ring10|n=Office;w=4;c=1}</Ring10>
+	
+	<!-- IP information -->
+	<Current_IP group="Info/System_Information">{$current_ip}</Current_IP>
+	<Connection_Type group="Info/System_Information">{$connection_type}</Connection_Type>
+	<Current_Netmask group="Info/System_Information">{$current_netmask}</Current_Netmask>
+	<Current_Gateway group="Info/System_Information">{$current_gateway}</Current_Gateway>
+	<Primary__DNS group="Info/System_Information">{$primary_dns}</Primary__DNS>
 
 	<!-- LDAP Settings for Directory -->
 	<LDAP_Dir_Enable group="Phone/LDAP_Corporate_Directory_Search">{$ldap_enabled|No}</LDAP_Dir_Enable>
