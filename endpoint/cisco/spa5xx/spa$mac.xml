@@ -32,11 +32,16 @@
 	<Register_Expires_{$line}_ group="Ext_{$line}/Proxy_and_Registration">{$server_expires|3600}</Register_Expires_{$line}_>
 	<Ans_Call_Without_Reg_{$line}_ ua="na">{$answer_call_without_reg|No}</Ans_Call_Without_Reg_{$line}_>
 	
+	<!-- Codec Information -->
+	<Preferred_Codec_{$line}_ group="Ext_{$line}/Audio_Configuration">{$first_audio_codec}</Preferred_Codec_{$line}_>
+	<Use_Pref_Codec_Only_{$line}_ group="Ext_{$line}/Audio_Configuration">No</Use_Pref_Codec_Only_{$line}_>
+	<Second_Preferred_Codec_{$line}_ group="Ext_{$line}/Audio_Configuration">{$second_audio_codec}</Second_Preferred_Codec_{$line}_>
+	<Third_Preferred_Codec_{$line}_ group="Ext_{$line}/Audio_Configuration">{$third_audio_codec}</Third_Preferred_Codec_{$line}_>
+	
 	<!-- Proxy Information -->
 	<Proxy_{$line}_ group="Ext_{$line}/Proxy_and_Registration">{$server_host}</Proxy_{$line}_>
 	<Use_Outbound_Proxy_{$line}_ ua="na">{$use_outbound_p|No}</Use_Outbound_Proxy_{$line}_>
 	<Outbound_Proxy_{$line}_ ua="na">{$outbound_proxy_host}</Outbound_Proxy_{$line}_>
-	<Proxy_Redundancy_Method_{$line}_ group="Ext_{$line}/Proxy_and_Registration">{$proxy_redundancy_method|Based on SRV Port}</Proxy_Redundancy_Method_{$line}_>
 	<Proxy_Fallback_Intvl_{$line}_ ua="ro">{$proxy_fallback_intvl|3600}</Proxy_Fallback_Intvl_{$line}_>
 	<Proxy_Redundancy_Method_{$line}_ ua="ro">{$proxy_redundancy_method|Normal}</Proxy_Redundancy_Method_{$line}_>
 	
@@ -59,8 +64,15 @@
 	<RTP_Packet_Size group="SIP/RTP_Parameters">0.020</RTP_Packet_Size>
 
 	<!-- Codec Names -->
+	<G711u_Codec_Name group="SIP/SDP_Payload_Types">PCMU</G711u_Codec_Name>
+	<G711a_Codec_Name group="SIP/SDP_Payload_Types">PCMA</G711a_Codec_Name>
+	<G726r16_Codec_Name group="SIP/SDP_Payload_Types">G726-16</G726r16_Codec_Name>
+	<G726r24_Codec_Name group="SIP/SDP_Payload_Types">G726-24</G726r24_Codec_Name>
+	<G726r32_Codec_Name group="SIP/SDP_Payload_Types">G726-32</G726r32_Codec_Name>
+	<G726r40_Codec_Name group="SIP/SDP_Payload_Types">G726-40</G726r40_Codec_Name>
 	<G729a_Codec_Name group="SIP/SDP_Payload_Types">G729</G729a_Codec_Name>
 	<G729b_Codec_Name group="SIP/SDP_Payload_Types">G729</G729b_Codec_Name>
+	<G722_Codec_Name group="SIP/SDP_Payload_Types">G722</G722_Codec_Name>
 	
 	 <!-- Firmware -->
 	 <Upgrade_Enable ua="ro">{$enable_upgrade}</Upgrade_Enable>
@@ -117,9 +129,9 @@
 	 <Referral_Services_Codes> </Referral_Services_Codes>
 
 	<!-- Debug Information -->
-	<Syslog_Server group="System/Optional_Network_Configuration">{$server.ip.1}</Syslog_Server>
+	<Syslog_Server group="System/Optional_Network_Configuration">{$syslog_server}</Syslog_Server>
 	<Debug_Level group="System/Optional_Network_Configuration">3</Debug_Level>
-	<Debug_Server group="System/Optional_Network_Configuration">{$server.ip.1}</Debug_Server>
+	<Debug_Server group="System/Optional_Network_Configuration">{$syslog_server}</Debug_Server>
 
 	<!-- Speed Dials -->
 	<Speed_Dial_2 ua="rw">{$speed_dial_2}</Speed_Dial_2>
@@ -134,9 +146,10 @@
 	<Subscribe_Expires group="Attendant_Console/General">1800</Subscribe_Expires>
 	<Subscribe_Retry_Interval group="Attendant_Console/General">30</Subscribe_Retry_Interval>
 	<Subscribe_Delay group="Attendant_Console/General">1</Subscribe_Delay>
-	<Server_Type group="Attendant_Console/General">Asterisk</Server_Type>
+	<Server_Type group="Attendant_Console/General">{$ac_server_type}</Server_Type>
+	<Programmable_Softkey_Enable group="Phone/Programmable_Softkeys">Yes</Programmable_Softkey_Enable>
 	<Test_Mode_Enable group="Attendant_Console/General">No</Test_Mode_Enable>
-	<Attendant_Console_Call_Pickup_Code group="Attendant_Console/General">**#</Attendant_Console_Call_Pickup_Code>
+	<Attendant_Console_Call_Pickup_Code group="Attendant_Console/General">{$ac_call_pickup}</Attendant_Console_Call_Pickup_Code>
 	<BLF_List_URI group="Attendant_Console/General"/>
 	<Application_LED group="Attendant_Console/Attendant_Key_LED_Pattern"/>
 	<Serv_Subscribe_Failed_LED group="Attendant_Console/Attendant_Key_LED_Pattern"/>
