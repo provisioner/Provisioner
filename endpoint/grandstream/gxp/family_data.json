@@ -20,7 +20,7 @@
       },
       {
         "model": "GXP1200",
-        "lines": "3",
+        "lines": "2",
         "id": "2",
         "template_data": [
           "template_data.json"
