@@ -415,8 +415,8 @@ abstract class endpoint_base {
 
         foreach ($no_brackets as $variables) {
             $original_variable = $variables;
-            $variables = str_replace("$", "", $variables);
-            $default_exp = preg_split("/\|/i", $variables);
+            $default_exp = preg_split("/\|/i", str_replace("$", "", $variables));
+			$variables = $default_exp[0];
             $default = isset($default_exp[1]) ? $default_exp[1] : null;
 
             if (is_array($data)) {
