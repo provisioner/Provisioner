@@ -5,9 +5,9 @@
       "brand_id": "1",
       "directory": "aastra",
       "package": "aastra.tgz",
-      "md5sum": "aca2e40b76d43fd45a1bfeeb2afe9422",
-      "last_modified": 1332469709,
-      "changelog": "PACKAGER: All aastra mac addresses need to be uppercased",
+      "md5sum": "0f24727951727f3f096e85a24dc8bc1e",
+      "last_modified": 1333427655,
+      "changelog": "PACKAGER: Yealink\n-Set deaults for line keys to lines instead of nothing\n-Fix all loops",
       "family_list": [
         {
           "id": "1",

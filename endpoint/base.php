@@ -41,6 +41,7 @@ abstract class endpoint_base {
     public $protected_files = array(); //array list of file to NOT over-write on every config file build. They are protected.
     public $copy_files = array();  //array of files or directories to copy. Directories will be recursive
     
+	protected $use_system_dst = TRUE; //Use System DST correction if detected
     protected $en_htmlspecialchars = TRUE; //Enable or Disable PHP's htmlspecialchars() function for variables
     protected $server_type = 'file';  //Can be file or dynamic
     protected $provisioning_type = 'tftp';  //can be tftp,http,ftp ??
@@ -414,16 +415,18 @@ abstract class endpoint_base {
 
         foreach ($no_brackets as $variables) {
             $original_variable = $variables;
-            $variables = str_replace("$", "", $variables);
-            $default_exp = preg_split("/\|/i", $variables);
+            $default_exp = preg_split("/\|/i", str_replace("$", "", $variables));
+			$variables = $default_exp[0];
             $default = isset($default_exp[1]) ? $default_exp[1] : null;
 
             if (is_array($data)) {
                 if (isset($data[$variables])) {
                     $data[$variables] = $this->replace_static_variables($data[$variables]);
                     $this->debug("Replacing '{" . $original_variable . "}' with " . $data[$variables]);
-					$l = $data['line'];
-					$this->replacement_array['lines'][$l][$original_variable] = $data[$variables];
+					if(isset($data['line'])) {
+						$l = $data['line'];
+						$this->replacement_array['lines'][$l][$original_variable] = $data[$variables];
+					}
                     $file_contents = str_replace('{' . $original_variable . '}', $data[$variables], $file_contents);
 					continue;
                 }
@@ -494,6 +497,7 @@ abstract class endpoint_base {
     private function replace_static_variables($contents, $data=NULL) {
         //bad
         $this->settings['network']['local_port'] = isset($this->settings['network']['local_port']) ? $this->settings['network']['local_port'] : '5060';
+        $this->settings['network']['syslog_server'] = isset($this->settings['network']['syslog_server']) ? $this->settings['network']['syslog_server'] : '';
         $replace = array(
             # These first ones have an identical field name in the object and the template.
             # This is a good thing, and should be done wherever possible.
@@ -509,6 +513,7 @@ abstract class endpoint_base {
             '{$timezone}' => $this->timezone['timezone'], # Should this be depricated??
             '{$network_time_server}' => $this->settings['ntp'],
             '{$local_port}' => $this->settings['network']['local_port'],
+			'{$syslog_server}' => $this->settings['network']['syslog_server'],
             #old
             '{$srvip}' => $this->settings['line'][0]['server_host'],
             '{$server.ip.1}' => $this->settings['line'][0]['server_host'],
@@ -614,10 +619,12 @@ abstract class endpoint_base {
      */
     protected function setup_timezone() {
         if (isset($this->DateTimeZone) && is_object($this->DateTimeZone)) {
+			//We set this to allow phones to use Automatic DST
+			$gmt_dst_fix = !$this->use_system_dst && date('I') ? 3600 : 0;
             $this->timezone = array(
-                'gmtoffset' => $this->DateTimeZone->getOffset(new DateTime),
-                'timezone' => $this->get_timezone($this->DateTimeZone->getOffset(new DateTime))
-            );
+                'gmtoffset' => $this->DateTimeZone->getOffset(new DateTime) - $gmt_dst_fix,
+                'timezone' => $this->get_timezone($this->DateTimeZone->getOffset(new DateTime) - $gmt_dst_fix)
+            );			
         } else {
 			throw new Exception('You Must define a valid DateTimeZone object');
 		}

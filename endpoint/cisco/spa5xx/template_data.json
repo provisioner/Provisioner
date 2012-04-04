@@ -26,6 +26,31 @@
                 "type":"break"
               },
               {
+                "variable":"$ac_call_pickup",
+                "default_value":"**#",
+                "description":"Attendant Console Call Pickup",
+                "type":"input"
+              },
+              {
+                "variable":"$ac_server_type",
+                "default_value":"Asterisk",
+                "description":"Attendant Console Server Type",
+                "type":"radio",
+                "data":[
+                  {
+                    "text":"Asterisk",
+                    "value":"Asterisk"
+                  },
+                  {
+                    "text":"Broadsoft",
+                    "value":"Broadsoft"
+                  }
+                ]
+              },
+              {
+                "type":"break"
+              },
+              {
                 "variable":"$enable_webserver",
                 "default_value":"No",
                 "description":"Enable Webserver",
