@@ -5,8 +5,8 @@
       "brand_id": "8",
       "directory": "yealink",
       "package": "yealink.tgz",
-      "md5sum": "0eb3d07fe56f68e8b4e2bbbf82816ec7",
-      "last_modified": 1332456919,
+      "md5sum": "bdc7a2b259ea188dac1ffcc8c025003d",
+      "last_modified": 1333428494,
       "family_list": [
         {
           "id": "1",
@@ -28,7 +28,7 @@
       "oui_list": [
         "001565"
       ],
-      "changelog": "PACKAGER: Added a phpunit test\n-cleaned up errors discovered by phpunit test\n-attempted to fix yealink t3x blindly (probably didnt fix it)"
+      "changelog": "PACKAGER: Yealink\n-Set deaults for line keys to lines instead of nothing\n-Fix all loops"
     }
   }
 }

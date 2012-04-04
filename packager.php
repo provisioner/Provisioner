@@ -42,8 +42,26 @@ $master_xml = array();
 
 echo "<pre>";
 
+if(isset($_REQUEST['commit_message'])) {
+	$c_message = $_REQUEST['commit_message'];
+} else {
+	$c_message = "PACKAGER: ".file_get_contents('/var/www/html/c_message.txt');
+}
+if(!isset($_REQUEST['dont_push'])) {
+	echo "===GIT Information===\n";
+	echo "COMMIT MESSAGE: ".$c_message."\n";
+	echo "Pulling GIT Master Repo......\n";
+	exec("git pull origin ".BRANCH, $output);
+	echo "GIT REPORTED: \n";
+	foreach($output as $data) {
+		echo "\t".$data . "\n";
+	}
+	echo "Revision information is as follows: " . file_get_contents(ROOT_DIR . "/.git/FETCH_HEAD");
+	echo "=====================\n\n";
+}
+
 echo "======RUNNING PHPUNIT TESTS======\n";
-exec('phpunit --log-json tests.json samples/phpunittests');
+exec('phpunit --log-json tests.json tests/phpunittests');
 if(file_exists('tests.json')) {
 	$tests = preg_split("/}{/i", file_get_contents('tests.json'));
 	$test_suite = '';
@@ -71,24 +89,6 @@ if(file_exists('tests.json')) {
 	}
 } else {
 	echo "PHPUNIT Tests Inconclusive\n\n";
-}
-
-if(isset($_REQUEST['commit_message'])) {
-	$c_message = $_REQUEST['commit_message'];
-} else {
-	$c_message = "PACKAGER: ".file_get_contents('/var/www/html/c_message.txt');
-}
-if(!isset($_REQUEST['dont_push'])) {
-	echo "===GIT Information===\n";
-	echo "COMMIT MESSAGE: ".$c_message."\n";
-	echo "Pulling GIT Master Repo......\n";
-	exec("git pull origin ".BRANCH, $output);
-	echo "GIT REPORTED: \n";
-	foreach($output as $data) {
-		echo "\t".$data . "\n";
-	}
-	echo "Revision information is as follows: " . file_get_contents(ROOT_DIR . "/.git/FETCH_HEAD");
-	echo "=====================\n\n";
 }
 
 echo "Starting Processing of Directories\n";
