@@ -8,194 +8,157 @@
                         "name":"phonekeys",
                         "item":[
                             {
-                                "variable":"$FeatureKeyFunc01",
-                                "default_value":"L",
-                                "description":"Key 1 Function",
+                                "variable":"$BLFType",
+                                "default_value":"0",
+                                "description":"Type of BLF",
                                 "type":"list",
                                 "data":[
-                                    {"value":"L","text":"Line"},
-                                    {"value":"S","text":"Supervision"}
+                                    {"value":"0","text":"User-oriented BLF"},
+                                    {"value":"1","text":"List-oriented BLF"},
+                                    {"value":"2","text":"Presence BLF"}
+                                ]
+                            },
+                            {
+                                "variable":"$StartSpareFK",
+                                "default_value":"0",
+                                "description":"Start key for List-oriented BLF",
+								"max_chars":"2",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$BLFListSipUri",
+                                "default_value":"L/<sip:>",
+                                "description":"List-oriented BLF URI",
+                                "max_chars":"90",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$ServiceSupervisionFK",
+                                "default_value":"1",
+                                "description":"Start key for User-oriented BLF",
+								"max_chars":"2",
+                                "type":"input"
+                            },
+                            {"type":"break"},
+                            {
+                                "variable":"$FeatureKeyFunc01",
+                                "description":"Key &nbsp;&nbsp;1 Function",
+                                "type":"list","default_value":"L","data":[
+                                    {"value":"L","text":"Programmed (Speed Dial)"},{"value":"S","text":"Supervision"}
                                 ]
                             },
                             {
                                 "variable":"$FeatureKeyExt01",
-                                "default_value":"",
-                                "description":"Key 1 Extension",
-                                "type":"input"
+                                "description":"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extension",
+                                "default_value":"","type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyFunc02",
+                                "description":"Key &nbsp;&nbsp;2 Function",
+                                "type":"list","default_value":"L","data":[
+                                    {"value":"L","text":"Programmed (Speed Dial)"},{"value":"S","text":"Supervision"}
+                                ]
                             },
                             {
                                 "variable":"$FeatureKeyExt02",
-                                "default_value":"L/<sip:>",
-                                "description":"FeatureKeyExt02",
-                                "type":"input"
+                                "description":"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extension",
+                                "default_value":"","type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyFunc03",
+                                "description":"Key &nbsp;&nbsp;3 Function",
+                                "type":"list","default_value":"L","data":[
+                                    {"value":"L","text":"Programmed (Speed Dial)"},{"value":"S","text":"Supervision"}
+                                ]
                             },
                             {
                                 "variable":"$FeatureKeyExt03",
-                                "default_value":"L/<sip:>",
-                                "description":"FeatureKeyExt03",
-                                "type":"input"
+                                "description":"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extension",
+                                "default_value":"","type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyFunc04",
+                                "description":"Key &nbsp;&nbsp;4 Function",
+                                "type":"list","default_value":"L","data":[
+                                    {"value":"L","text":"Programmed (Speed Dial)"},{"value":"S","text":"Supervision"}
+                                ]
                             },
                             {
                                 "variable":"$FeatureKeyExt04",
-                                "default_value":"L/<sip:>",
-                                "description":"FeatureKeyExt04",
-                                "type":"input"
+                                "description":"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extension",
+                                "default_value":"","type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyFunc05",
+                                "description":"Key &nbsp;&nbsp;5 Function",
+                                "type":"list","default_value":"L","data":[
+                                    {"value":"L","text":"Programmed (Speed Dial)"},{"value":"S","text":"Supervision"}
+                                ]
                             },
                             {
                                 "variable":"$FeatureKeyExt05",
-                                "default_value":"L/<sip:>",
-                                "description":"FeatureKeyExt05",
-                                "type":"input"
+                                "description":"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extension",
+                                "default_value":"","type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyFunc06",
+                                "description":"Key &nbsp;&nbsp;6 Function",
+                                "type":"list","default_value":"L","data":[
+                                    {"value":"L","text":"Programmed (Speed Dial)"},{"value":"S","text":"Supervision"}
+                                ]
                             },
                             {
                                 "variable":"$FeatureKeyExt06",
-                                "default_value":"L/<sip:>",
-                                "description":"FeatureKeyExt06",
-                                "type":"input"
+                                "description":"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extension",
+                                "default_value":"","type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyFunc07",
+                                "description":"Key &nbsp;&nbsp;7 Function",
+                                "type":"list","default_value":"L","data":[
+                                    {"value":"L","text":"Programmed (Speed Dial)"},{"value":"S","text":"Supervision"}
+                                ]
                             },
                             {
                                 "variable":"$FeatureKeyExt07",
-                                "default_value":"L/<sip:>",
-                                "description":"FeatureKeyExt07",
-                                "type":"input"
+                                "description":"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extension",
+                                "default_value":"","type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyFunc08",
+                                "description":"Key &nbsp;&nbsp;8 Function",
+                                "type":"list","default_value":"L","data":[
+                                    {"value":"L","text":"Programmed (Speed Dial)"},{"value":"S","text":"Supervision"}
+                                ]
                             },
                             {
                                 "variable":"$FeatureKeyExt08",
-                                "default_value":"L/<sip:>",
-                                "description":"FeatureKeyExt08",
-                                "type":"input"
+                                "description":"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extension",
+                                "default_value":"","type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyFunc09",
+                                "description":"Key &nbsp;&nbsp;9 Function",
+                                "type":"list","default_value":"L","data":[
+                                    {"value":"L","text":"Programmed (Speed Dial)"},{"value":"S","text":"Supervision"}
+                                ]
                             },
                             {
                                 "variable":"$FeatureKeyExt09",
-                                "default_value":"L/<sip:>",
-                                "description":"FeatureKeyExt09",
-                                "type":"input"
+                                "description":"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extension",
+                                "default_value":"","type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyFunc10",
+                                "description":"Key 10 Function",
+                                "type":"list","default_value":"L","data":[
+                                    {"value":"L","text":"Programmed (Speed Dial)"},{"value":"S","text":"Supervision"}
+                                ]
                             },
                             {
                                 "variable":"$FeatureKeyExt10",
-                                "default_value":"L/<sip:>",
-                                "description":"FeatureKeyExt10",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$FKExt01_sec",
-                                "default_value":"0",
-                                "description":"FKExt01_sec",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$FKExt02_sec",
-                                "default_value":"0",
-                                "description":"FKExt02_sec",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$FKExt03_sec",
-                                "default_value":"0",
-                                "description":"FKExt03_sec",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$FKExt04_sec",
-                                "default_value":"0",
-                                "description":"FKExt04_sec",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$FKExt05_sec",
-                                "default_value":"0",
-                                "description":"FKExt05_sec",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$FKExt06_sec",
-                                "default_value":"0",
-                                "description":"FKExt06_sec",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$FKExt07_sec",
-                                "default_value":"0",
-                                "description":"FKExt07_sec",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$FKExt08_sec",
-                                "default_value":"0",
-                                "description":"FKExt08_sec",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$FKExt09_sec",
-                                "default_value":"0",
-                                "description":"FKExt09_sec",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$FKExt10_sec",
-                                "default_value":"0",
-                                "description":"FKExt10_sec",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$FeatureKeyOpt01",
-                                "default_value":"dialog(1)regDND(0)ua-profile(0:cfu(0)dnd(0)sf(0)hg(0))",
-                                "description":"FeatureKeyOpt01",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$FeatureKeyOpt02",
-                                "default_value":"dialog(1)regDND(0)ua-profile(0:cfu(0)dnd(0)sf(0)hg(0))",
-                                "description":"FeatureKeyOpt02",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$FeatureKeyOpt03",
-                                "default_value":"dialog(1)regDND(0)ua-profile(0:cfu(0)dnd(0)sf(0)hg(0))",
-                                "description":"FeatureKeyOpt03",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$FeatureKeyOpt04",
-                                "default_value":"dialog(1)regDND(0)ua-profile(0:cfu(0)dnd(0)sf(0)hg(0))",
-                                "description":"FeatureKeyOpt04",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$FeatureKeyOpt05",
-                                "default_value":"dialog(1)regDND(0)ua-profile(0:cfu(0)dnd(0)sf(0)hg(0))",
-                                "description":"FeatureKeyOpt05",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$FeatureKeyOpt06",
-                                "default_value":"dialog(1)regDND(0)ua-profile(0:cfu(0)dnd(0)sf(0)hg(0))",
-                                "description":"FeatureKeyOpt06",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$FeatureKeyOpt07",
-                                "default_value":"dialog(1)regDND(0)ua-profile(0:cfu(0)dnd(0)sf(0)hg(0))",
-                                "description":"FeatureKeyOpt07",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$FeatureKeyOpt08",
-                                "default_value":"dialog(1)regDND(0)ua-profile(0:cfu(0)dnd(0)sf(0)hg(0))",
-                                "description":"FeatureKeyOpt08",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$FeatureKeyOpt09",
-                                "default_value":"dialog(1)regDND(0)ua-profile(0:cfu(0)dnd(0)sf(0)hg(0))",
-                                "description":"FeatureKeyOpt09",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$FeatureKeyOpt10",
-                                "default_value":"dialog(1)regDND(0)ua-profile(0:cfu(0)dnd(0)sf(0)hg(0))",
-                                "description":"FeatureKeyOpt10",
-                                "type":"input"
+                                "description":"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extension",
+                                "default_value":"","type":"input"
                             },
                             {
                                 "variable":"$FeatureKeyLock",
@@ -203,6 +166,25 @@
                                 "description":"FeatureKeyLock",
                                 "type":"input"
                             },
+                            {
+                                "variable":"$Current_Max_Multiline",
+                                "default_value":"10",
+                                "description":"Number of Multilines to support",
+                                "type":"list",
+                                "data":[
+                                    {"value":"1","text":"1"},
+                                    {"value":"2","text":"2"},
+                                    {"value":"3","text":"3"},
+                                    {"value":"4","text":"4"},
+                                    {"value":"5","text":"5"},
+                                    {"value":"6","text":"6"},
+                                    {"value":"7","text":"7"},
+                                    {"value":"8","text":"8"},
+                                    {"value":"9","text":"9"},
+                                    {"value":"10","text":"10"}
+                                ]
+                            },
+                            {"type":"break"},
                             {
                                 "variable":"$softkey01",
                                 "default_value":"TrVoiceMail",
