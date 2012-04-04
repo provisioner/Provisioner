@@ -5,8 +5,8 @@
       "directory": "thomson",
       "brand_id": "14",
       "package": "thomson.tgz",
-      "md5sum": "4c80d627fa0586f99beb94da2ef0977d",
-      "last_modified":1333537674,
+      "md5sum": "82047260968731bd7625eb5d95c234bb",
+      "last_modified": 1333558889,
       "family_list": [
         {
           "id": "1",
@@ -21,7 +21,7 @@
         "001F9F",
         "00147F"
       ],
-      "changelog": "PACKAGER: Globing the Polycom directory so we can include all needed directories and files"
+      "changelog": "PACKAGER: Adding Static IP address settings for cisco"
     }
   }
 }

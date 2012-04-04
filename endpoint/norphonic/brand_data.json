@@ -1,39 +1,38 @@
 {
-    "data":{
-        "brands":{
-            "name": "Norphonic",
-            "brand_id": "15",
-            "directory": "norphonic",
-            "package": "",
-            "md5sum": "",
-            "last_modified":1333109347,
-            "family_list":[
-				{
-                    "id": "1",
-                    "name": "Norphonic Traphone",
-                    "directory": "traphone",
-                    "version": "1.0",
-                    "description": "Norphonic Emergency Rugged Telephone",
-                    "last_modified": null,
-                    "changelog": ""
-                }
-            ],
-            "oui_list":[
-                "1045BE",
-                "0050C24924",
-                "0050C24925",
-                "0050C24926",
-                "0050C24927",
-                "0050C24928",
-                "0050C24929",
-                "0050C2492A",
-                "0050C2492B",
-                "0050C2492C",
-                "0050C2492D",
-                "0050C2492E",
-                "0050C2492F"
-            ],
-            "changelog": "PACKAGER: Grandstream\n-Server.ip.1 to server_host.line.1 changes"
+  "data": {
+    "brands": {
+      "name": "Norphonic",
+      "brand_id": "15",
+      "directory": "norphonic",
+      "package": "norphonic.tgz",
+      "md5sum": "44fc818b95b904521c9a691f3ee0f828",
+      "last_modified": 1333558889,
+      "family_list": [
+        {
+          "id": "1",
+          "name": "Traphone Model",
+          "directory": "traphone",
+          "description": "Norphonic Traphone",
+          "changelog": "",
+          "last_modified": null
         }
+      ],
+      "oui_list": [
+        "1045BE",
+        "0050C24924",
+        "0050C24925",
+        "0050C24926",
+        "0050C24927",
+        "0050C24928",
+        "0050C24929",
+        "0050C2492A",
+        "0050C2492B",
+        "0050C2492C",
+        "0050C2492D",
+        "0050C2492E",
+        "0050C2492F"
+      ],
+      "changelog": "PACKAGER: Adding Static IP address settings for cisco"
     }
+  }
 }
