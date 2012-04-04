@@ -497,6 +497,7 @@ abstract class endpoint_base {
     private function replace_static_variables($contents, $data=NULL) {
         //bad
         $this->settings['network']['local_port'] = isset($this->settings['network']['local_port']) ? $this->settings['network']['local_port'] : '5060';
+        $this->settings['network']['syslog_server'] = isset($this->settings['network']['syslog_server']) ? $this->settings['network']['syslog_server'] : '';
         $replace = array(
             # These first ones have an identical field name in the object and the template.
             # This is a good thing, and should be done wherever possible.
@@ -512,6 +513,7 @@ abstract class endpoint_base {
             '{$timezone}' => $this->timezone['timezone'], # Should this be depricated??
             '{$network_time_server}' => $this->settings['ntp'],
             '{$local_port}' => $this->settings['network']['local_port'],
+			'{$syslog_server}' => $this->settings['network']['syslog_server'],
             #old
             '{$srvip}' => $this->settings['line'][0]['server_host'],
             '{$server.ip.1}' => $this->settings['line'][0]['server_host'],
