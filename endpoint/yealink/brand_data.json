@@ -5,8 +5,8 @@
       "brand_id": "8",
       "directory": "yealink",
       "package": "yealink.tgz",
-      "md5sum": "bdc7a2b259ea188dac1ffcc8c025003d",
-      "last_modified": 1333428494,
+      "md5sum": "f424258e70810d655e1489ea53872054",
+      "last_modified": 1333443665,
       "family_list": [
         {
           "id": "1",
@@ -28,7 +28,7 @@
       "oui_list": [
         "001565"
       ],
-      "changelog": "PACKAGER: Yealink\n-Set deaults for line keys to lines instead of nothing\n-Fix all loops"
+      "changelog": "PACKAGER: Adding Static IP address settings for cisco"
     }
   }
 }
