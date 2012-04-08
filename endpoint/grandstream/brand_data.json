@@ -5,8 +5,8 @@
       "directory": "grandstream",
       "brand_id": "2",
       "package": "grandstream.tgz",
-      "md5sum": "e90cd9b4f16b88c0752e49e86b450a00",
-      "last_modified": 1333244191,
+      "md5sum": "5639effb639f88da839fe6b77da6be34",
+      "last_modified": 1333878933,
       "family_list": [
         {
           "id": "2",
@@ -44,7 +44,7 @@
       "oui_list": [
         "000B82"
       ],
-      "changelog": "PACKAGER: Grandstream\n-Server.ip.1 to server_host.line.1 changes"
+      "changelog": "PACKAGER: Many Many changes to Cisco and some correction to grandstream"
     }
   }
 }
