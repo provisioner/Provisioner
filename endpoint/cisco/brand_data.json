@@ -5,8 +5,8 @@
       "brand_id": "7",
       "directory": "cisco",
       "package": "cisco.tgz",
-      "md5sum": "d35b9db864c667ab596280fb70019f7b",
-      "last_modified": 1333523109,
+      "md5sum": "7e153be0912dc7fc22c6e0b4c22c8239",
+      "last_modified": 1333879050,
       "family_list": [
         {
           "id": "5",
@@ -90,7 +90,7 @@
         "1CDF0F",
         "E05FB9"
       ],
-      "changelog": "PACKAGER: Adding Static IP address settings for cisco"
+      "changelog": "PACKAGER: Many Many changes to Cisco and some correction to grandstream"
     }
   }
 }
