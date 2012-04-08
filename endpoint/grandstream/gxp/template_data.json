@@ -8,10 +8,6 @@
             "name":"General Settings",
             "item":[
               {
-                "description":"General Settings",
-                "type":"group"
-              },
-              {
                 "variable":"$admin_pass",
                 "default_value":"admin",
                 "description":"Administration Password",
