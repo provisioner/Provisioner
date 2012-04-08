@@ -1,6 +1,6 @@
 <flat-profile>
 	<!-- Reset Never -->
-	<Resync_Periodic>0</Resync_Periodic>
+	<Resync_Periodic>{$profile_resync}</Resync_Periodic>
 	<Resync_On_Reset>Yes</Resync_On_Reset>
 	<Profile_Rule>{$provisioning_type}://{$provisioning_path}/spa$MA.xml</Profile_Rule>
 	
@@ -184,12 +184,12 @@
 	<Ring10 group="Phone/Ring_Tone">{$ring10|n=Office;w=4;c=1}</Ring10>
 	
 	<!-- IP information -->
-	<Current_IP group="Info/System_Information">{$current_ip}</Current_IP>
-	<Connection_Type group="Info/System_Information">{$connection_type}</Connection_Type>
-	<Current_Netmask group="Info/System_Information">{$current_netmask}</Current_Netmask>
-	<Current_Gateway group="Info/System_Information">{$current_gateway}</Current_Gateway>
-	<Primary__DNS group="Info/System_Information">{$primary_dns}</Primary__DNS>
-
+	<Connection_Type group="System/Internet_Connection_Type_">{$connection_type}</Connection_Type>
+	<Static_IP group="System/_Static_IP_Settings">{$current_ip}</Static_IP>
+	<NetMask group="System/_Static_IP_Settings">{$current_netmask}</NetMask>
+	<Gateway group="System/_Static_IP_Settings">{$current_gateway}</Gateway>
+	<Primary_DNS group="System/Optional_Network_Configuration">{$primary_dns}</Primary_DNS>
+	
 	<!-- LDAP Settings for Directory -->
 	<LDAP_Dir_Enable group="Phone/LDAP_Corporate_Directory_Search">{$ldap_enabled|No}</LDAP_Dir_Enable>
 	<LDAP_Corp_Dir_Name group="Phone/LDAP_Corporate_Directory_Search">{$ldap_name}</LDAP_Corp_Dir_Name>

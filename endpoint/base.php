@@ -734,12 +734,14 @@ abstract class endpoint_base {
 			$this->server_type = (isset($this->settings['provision']['protocol']) && in_array($this->settings['provision']['protocol'], $this->provisioning_type_list)) ? $this->settings['provision']['protocol'] : $this->default_provisioning_type;
 			$this->provisioning_path = isset($this->settings['provision']['path']) ? $this->settings['provision']['path'] : $this->provisioning_path;
 
-			$this->settings['network']['dhcp'] = isset($this->settings['network']['dhcp']) ? $this->settings['network']['dhcp'] : TRUE;
+			$this->settings['network']['connection_type'] = isset($this->settings['network']['connection_type']) ? $this->settings['network']['connection_type'] : 'DHCP';
 			$this->settings['network']['ipv4'] = isset($this->settings['network']['ipv4']) ? $this->settings['network']['ipv4'] : '';
 			$this->settings['network']['ipv6'] = isset($this->settings['network']['ipv6']) ? $this->settings['network']['ipv6'] : '';
 			$this->settings['network']['subnet'] = isset($this->settings['network']['subnet']) ? $this->settings['network']['subnet'] : '';
 			$this->settings['network']['gateway'] = isset($this->settings['network']['gateway']) ? $this->settings['network']['gateway'] : '';
 			$this->settings['network']['primary_dns'] = isset($this->settings['network']['primary_dns']) ? $this->settings['network']['primary_dns'] : '';
+			$this->settings['network']['ppoe_username'] = isset($this->settings['network']['ppoe_username']) ? $this->settings['network']['ppoe_username'] : '';
+			$this->settings['network']['ppoe_password'] = isset($this->settings['network']['ppoe_password']) ? $this->settings['network']['ppoe_password'] : '';
 			$this->settings['network']['syslog_server'] = isset($this->settings['network']['syslog_server']) ? $this->settings['network']['syslog_server'] : '';
 
             //TODO:fix

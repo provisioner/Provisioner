@@ -316,12 +316,30 @@
                     "description": "SIP Local Port",
                     "type": "input"
                 },
-                {
-                    "variable": "$use_dhcp",
-                    "default_value": true,
-                    "description": "Use DHCP",
-                    "type": "checkbox"
-                },
+				{
+	                "variable":"$connection_type",
+	                "default_value":"DHCP",
+	                "description":"Connection Type",
+	                "type":"list",
+	                "data":[
+	                {
+	                    "text":"DHCP",
+	                    "value":"DHCP"
+	                },
+	                {
+	                    "text":"Static IP",
+	                    "value":"STATIC"
+	                },
+	                {
+	                    "text":"PPOE",
+	                    "value":"PPOE"
+	                },
+	                {
+	                    "text":"BOOTP",
+	                    "value":"BOOTP"
+	                }
+					]
+				},
                 {
                     "variable": "$ip4_address",
                     "default_value": "",
@@ -350,6 +368,21 @@
                     "variable": "$primary_dns",
                     "default_value": "",
                     "description": "Primary DNS",
+                    "type": "input"
+                },
+                {
+                    "type": "break"
+                },
+                {
+                    "variable": "$ppoe_username",
+                    "default_value": "",
+                    "description": "PPOE Username",
+                    "type": "input"
+                },
+                {
+                    "variable": "$ppoe_password",
+                    "default_value": "",
+                    "description": "PPOE Password",
                     "type": "input"
                 },
                 {
