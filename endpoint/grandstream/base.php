@@ -47,20 +47,22 @@ class endpoint_grandstream_base extends endpoint_base {
     }
 
     function create_encrypted_file($list) {
+		$temporary_directory_location = function_exists('sys_get_temp_dir') ? sys_get_temp_dir() : '/tmp';
+		
         foreach ($list as $key => $data) {
-            file_put_contents($this->root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $key, $data);
+            file_put_contents($temporary_directory_location . "/" . $key, $data);
 
             if (file_exists("/usr/src/GS_CFG_GEN/bin/encode.sh")) {
-                exec("/usr/src/GS_CFG_GEN/bin/encode.sh " . $this->mac . " " . $this->root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $this->mac . ".cfg " . $this->root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/cfg" . $this->mac);
-                $contents = file_get_contents($this->root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/cfg" . $this->mac);
-                unlink($this->root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/cfg" . $this->mac);
+                exec("/usr/src/GS_CFG_GEN/bin/encode.sh " . $this->mac . " " . $temporary_directory_location . "/" . $this->mac.".cfg " . $temporary_directory_location . "/cfg" . $this->mac);
+                $contents = file_get_contents($temporary_directory_location."/cfg" . $this->mac);
+                unlink($temporary_directory_location . "/cfg" . $this->mac);
             } else {
-                $params = $this->parse_gs_config($this->root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $key);
+                $params = $this->parse_gs_config($temporary_directory_location . "/" . $key);
                 $contents = $this->gs_config_out($this->mac, $params);
             }
 
             $files["cfg" . $this->mac] = $contents;
-            unlink($this->root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $key);
+            unlink($temporary_directory_location . "/" . $key);
         }
         return($files);
     }

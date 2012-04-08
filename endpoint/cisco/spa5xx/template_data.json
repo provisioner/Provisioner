@@ -26,6 +26,15 @@
                 "type":"break"
               },
               {
+                "variable":"$profile_resync",
+                "default_value":"0",
+                "description":"Profile Resync",
+                "type":"input"
+              },
+              {
+                "type":"break"
+              },
+              {
                 "variable":"$ac_call_pickup",
                 "default_value":"**#",
                 "description":"Attendant Console Call Pickup",
