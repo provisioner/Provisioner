@@ -5,8 +5,8 @@
       "brand_id": "7",
       "directory": "cisco",
       "package": "cisco.tgz",
-      "md5sum": "7e153be0912dc7fc22c6e0b4c22c8239",
-      "last_modified": 1333879050,
+      "md5sum": "ba5121e510d6d285c6625eb6dab57dce",
+      "last_modified": 1333995865,
       "family_list": [
         {
           "id": "5",
@@ -90,7 +90,7 @@
         "1CDF0F",
         "E05FB9"
       ],
-      "changelog": "PACKAGER: Many Many changes to Cisco and some correction to grandstream"
+      "changelog": "PACKAGER: Cisco\n-Fixes to unset values on unit keys on the 5xx series\n-copy most of the settings from the 5xx series to the ata series"
     }
   }
 }
