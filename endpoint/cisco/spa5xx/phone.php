@@ -119,8 +119,6 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
 	                    $temp_ext = $this->settings['loops']['unit1'][$key]['data'];
 	                    $this->settings['loops']['unit1'][$key]['data'] = "fnc=xml;url=" . $temp_ext;
 	                }
-				} else {
-					unset($this->settings['loops']['unit1'][$key]);
 				}
             }
         }
@@ -142,8 +140,6 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
 	                    $temp_ext = $this->settings['loops']['unit2'][$key]['data'];
 	                    $this->settings['loops']['unit2'][$key]['data'] = "fnc=xml;url=" . $temp_ext;
 	                }
-				} else {
-					unset($this->settings['loops']['unit2'][$key]);
 				}
             }
         }
