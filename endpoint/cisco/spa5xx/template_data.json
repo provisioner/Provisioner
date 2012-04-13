@@ -139,7 +139,7 @@
               },
               {
                 "variable":"$dial_plan",
-                "default_value":"(*xx.|7xxxS0|[3469]11S0|[2-9]xxxxxxxxxS0|1[2-9]xxxxxxxxxS0|011x.S2)",
+                "default_value":"( [23456789]11 | *xxx. | <:1352>[2-9]xxxxxx | <:1>[2-9]xx[2-9]xxxxxxS0 | 1[2-9]xx[2-9]xxxxxxS0 | 011xxxxxxx. | [#*x][*x][*x]. )",
                 "description":"Dial Plan",
                 "type":"input"
               },
