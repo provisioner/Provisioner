@@ -5,11 +5,11 @@
       "brand_id": "8",
       "directory": "yealink",
       "package": "yealink.tgz",
-      "md5sum": "4ffda0cd13c1928b009806cbe539f06c",
-      "last_modified": 1334603027,
+      "md5sum": "c0808f503626622b0ba03df896b8daa1",
+      "last_modified": 1334603238,
       "family_list": [
         {
-          "id": "1",
+          "id": "3",
           "name": "Yealink\/Dreamwave T1X Models: [T18]",
           "directory": "t1x",
           "description": "Make more configuration settings available from UI",
@@ -36,7 +36,7 @@
       "oui_list": [
         "001565"
       ],
-      "changelog": "PACKAGER: Yealink\n-Adding Missed File"
+      "changelog": "PACKAGER: Force system update"
     }
   }
 }
