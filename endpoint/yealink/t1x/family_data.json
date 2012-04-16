@@ -1,7 +1,7 @@
 {
   "data": {
     "name": "Yealink\/Dreamwave T1X Models: [T18]",
-    "id": "1",
+    "id": "3",
     "directory": "t1x",
     "firmware_ver": 1326828070,
     "firmware_pkg": "t1x_firmware.tgz",
