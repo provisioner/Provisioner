@@ -5,8 +5,8 @@
       "brand_id": "7",
       "directory": "cisco",
       "package": "cisco.tgz",
-      "md5sum": "ba5121e510d6d285c6625eb6dab57dce",
-      "last_modified": 1333995865,
+      "md5sum": "307dc1091f1b3ea96530a88bb2d7b45d",
+      "last_modified": 1334603027,
       "family_list": [
         {
           "id": "5",
@@ -90,7 +90,7 @@
         "1CDF0F",
         "E05FB9"
       ],
-      "changelog": "PACKAGER: Cisco\n-Fixes to unset values on unit keys on the 5xx series\n-copy most of the settings from the 5xx series to the ata series"
+      "changelog": "PACKAGER: Yealink\n-Adding Missed File"
     }
   }
 }

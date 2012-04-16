@@ -5,9 +5,17 @@
       "brand_id": "8",
       "directory": "yealink",
       "package": "yealink.tgz",
-      "md5sum": "f424258e70810d655e1489ea53872054",
-      "last_modified": 1333443665,
+      "md5sum": "4ffda0cd13c1928b009806cbe539f06c",
+      "last_modified": 1334603027,
       "family_list": [
+        {
+          "id": "1",
+          "name": "Yealink\/Dreamwave T1X Models: [T18]",
+          "directory": "t1x",
+          "description": "Make more configuration settings available from UI",
+          "changelog": "",
+          "last_modified": null
+        },
         {
           "id": "1",
           "name": "Yealink\/Dreamwave T2X Models: [T20, T22, T26, T28]",
@@ -23,20 +31,12 @@
           "description": "Make more settings available in user interface",
           "changelog": "",
           "last_modified": null
-        },
-        {
-          "id": "3",
-          "name": "Yealink\/Dreamwave T1X Models: [T18]",
-          "directory": "t1x",
-          "description": "Make more settings available in user interface",
-          "changelog": "",
-          "last_modified": null
         }
       ],
       "oui_list": [
         "001565"
       ],
-      "changelog": "PACKAGER: Adding Static IP address settings for cisco"
+      "changelog": "PACKAGER: Yealink\n-Adding Missed File"
     }
   }
 }
