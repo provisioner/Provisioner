@@ -23,6 +23,14 @@
           "description": "Make more settings available in user interface",
           "changelog": "",
           "last_modified": null
+        },
+        {
+          "id": "3",
+          "name": "Yealink\/Dreamwave T1X Models: [T18]",
+          "directory": "t1x",
+          "description": "Make more settings available in user interface",
+          "changelog": "",
+          "last_modified": null
         }
       ],
       "oui_list": [
