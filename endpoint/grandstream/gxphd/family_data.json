@@ -36,6 +36,60 @@
           "template_data.json",
           "keys.json"
         ]
+      },
+      {
+        "model": "GXP1100",
+        "lines": "1",
+        "id": "4",
+        "template_data": [
+          "template_data.json",
+          "keys.json"
+        ]
+      },
+      {
+        "model": "GXP1105",
+        "lines": "1",
+        "id": "5",
+        "template_data": [
+          "template_data.json",
+          "keys.json"
+        ]
+      },
+      {
+        "model": "GXP1400",
+        "lines": "2",
+        "id": "6",
+        "template_data": [
+          "template_data.json",
+          "keys.json"
+        ]
+      },
+      {
+        "model": "GXP1405",
+        "lines": "2",
+        "id": "7",
+        "template_data": [
+          "template_data.json",
+          "keys.json"
+        ]
+      },
+      {
+        "model": "GXP1450",
+        "lines": "2",
+        "id": "8",
+        "template_data": [
+          "template_data.json",
+          "keys.json"
+        ]
+      },
+      {
+        "model": "GXP2124",
+        "lines": "4",
+        "id": "9",
+        "template_data": [
+          "template_data.json",
+          "keys.json"
+        ]
       }
     ]
   }
