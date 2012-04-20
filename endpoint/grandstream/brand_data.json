@@ -5,8 +5,8 @@
       "directory": "grandstream",
       "brand_id": "2",
       "package": "grandstream.tgz",
-      "md5sum": "3fec33f5d463aab6e46f81c57978d456",
-      "last_modified": 1334824599,
+      "md5sum": "66774bb47500d63ffef90a28ca8ab178",
+      "last_modified": 1334881593,
       "family_list": [
         {
           "id": "2",
@@ -44,7 +44,7 @@
       "oui_list": [
         "000B82"
       ],
-      "changelog": "PACKAGER: Mitel\n-Fix lineloop options"
+      "changelog": "PACKAGER: Grandstream\n-Fixes #49, #47"
     }
   }
 }
