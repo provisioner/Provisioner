@@ -56,9 +56,9 @@
         ]
       },
       {
-        "model": "GXP1450",
-        "lines": "2",
-        "id": "6",
+        "model": "GXP285",
+        "lines": "1",
+        "id": "7",
         "template_data": [
           "template_data.json"
         ]
