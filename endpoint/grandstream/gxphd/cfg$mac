@@ -1,10 +1,13 @@
 ################################################################################################
-# Configuration template for GXP21xx firmware version 1.0.1.26
+## Configuration template for GXP21xx/GXP1450 firmware version 1.0.1.110
 ################################################################################################
 
 ##############################################################################
 ##  Advanced/System-wide Options
 ##############################################################################
+
+# Enable Provider Lock. 0 - No, 1 - Yes.
+P9999 = 0
 
 # Admin password for web interface
 P2 = {$admin_pass}
@@ -31,17 +34,19 @@ P84 = {$keep_alive_int|20}
 P101 =
 
 # STUN server
-P76 = 
+P76 =
 
 #-------------------------------------------------------------
 # Firmware Upgrade
 #-------------------------------------------------------------
-# Firmware Upgrade and Provisioning. 0 - Always Check For New Firmware, 
-# 1 - Check New Firmware only when F/W pre/suffix changes, 2 - Always Skip the Firmware Check
+# Firmware Upgrade and Provisioning
+# 0 - Always Check For New Firmware
+# 1 - Check New Firmware only when F/W pre/suffix changes
+# 2 - Always Skip the Firmware Check
 P238 = 0
 
 # XML Config File Password
-P1359 = 
+P1359 =
 
 # HTTP/HTTPS User Name
 P1360 =
@@ -49,7 +54,7 @@ P1360 =
 # HTTP/HTTPS Password
 P1361 =
 
-# Firmware Upgrade. 0 - TFTP Upgrade,  1 - HTTP Upgrade, 2 - HTTPS Upgrade
+# Firmware Upgrade Via. 0 - TFTP Upgrade,  1 - HTTP Upgrade, 2 - HTTPS Upgrade
 P212 = 1
 
 # Firmware Server Path
@@ -75,7 +80,7 @@ P235 =
 P145 = 1
 
 # Automatic Upgrade. 0 - No, 1 - Yes. Default is No.
-P194 = {$auto_up}
+P194 = {$auto_up|0}
 
 # Check for new firmware every () minutes, unit is in minute, minimnu 60 minutes, default is 7 days.
 P193 = 10080
@@ -83,14 +88,35 @@ P193 = 10080
 # Authenticate Conf File. 0 - No, 1 - Yes. Default is No.
 P240 = 0
 
-#TR-069 Username
-P4504 =
-
-#TR-069 Password
-P4505 = 
+# Enable TR069. 0 - No, 1 - Yes. Default is No.
+# P1409 = 0
 
 # ACS URL
-P4503 = 
+#P4503 =
+
+# TR-069 Username
+P4504 =
+
+# TR-069 Password
+P4505 =
+
+# Periodic Inform Enable. 0 - No, 1 - Yes.	
+P4506 = 0
+
+# Periodic Inform Interval.
+P4507 =
+
+# Connection Request Username	
+P4511 =
+
+# Connection Request Password	
+P4512 =
+
+# Authentication Method. 0 - No Authentication, 1 - Basic, 2 - Digest 
+P4519 = 2
+
+# Connection Request Port
+P4518 =
 
 #----------------------------------------
 # XML Phonebook
@@ -99,6 +125,7 @@ P4503 =
 # 0 = No
 # 1 = YES, HTTP
 # 2 = YES, TFTP
+# Default is No.
 P330 = {$enable_xml_phonebook}
 
 # Phonebook XML Server Path
@@ -113,8 +140,10 @@ P332 = 0
 
 # Remove Manually-edited entries on Download
 # 0 - No, 1 - Yes, other values ignored
+# Default is Yes
 P333 = 1
 
+# LDAP Directory
 # LDAP Script Server Path
 P1304 = 
 
@@ -125,7 +154,8 @@ P1304 =
 # 0 = No
 # 1 = YES, HTTP
 # 2 = YES, TFTP
-P340 = {$enable_idle_screen}
+# Default is No
+P340 = {$enable_idle_screen|0}
 
 # Download Screen XML At Boot-up. 0 - no, 1 - yes 
 P1349 = 0
@@ -158,6 +188,9 @@ P207 =
 # 0 - NONE, 1 - DEBUG, 2 - INFO, 3 - WARNING, 4 - ERROR
 P208 = 0
 
+# Send SIP Log. 0 - Do not send SIP log in Syslog, 1 - Send SIP log in Syslog if configured and set to DEBUG level
+P1387 = 0
+
 # NTP Server
 P30 = {$network_time_server}
 
@@ -166,13 +199,13 @@ P30 = {$network_time_server}
 P144 = 1
 
 # SSL Certificate
-{$comment_out|#} P280 =
+#P280 =
 
 # SSL Private Key
-{$comment_out|#} P279 =
+#P279 =
 
 # SSL Private Key Password
-{$comment_out|#} P281 = 
+#P281 = 
 
 #---------------------------------------
 # Disctinctive Ring Tone
@@ -187,7 +220,6 @@ P106 =
 P107 =
 
 # System Ring Tone
-
 P345 = f1=440,f2=480,c=200/400;
 
 ### Call Progress Tones ###
@@ -214,45 +246,53 @@ P349 = f1=480,f2=620,c=25/25;
 # Intercom User ID. (Account 1)
 P1303 =
 
-# Disable Call Waiting. 0 - no, 1 - yes
+# Disable Call Waiting. 0 - No, 1 - Yes
 P91 = 0
 
-# Disable Call-Waiting Tone. 0 - no, 1 - yes
+# Disable Call-Waiting Tone. 0 - No, 1 - Yes
 P186 = 0
 
-# Disable Direct IP Call. 0 - no, 1 - yes
+# Disable Direct IP Call. 0 - No, 1 - Yes
 P1310 = 0
 
-# Use Quick IP-call mode. 0 - no, 1 - yes
+# Use Quick IP-call mode. 0 - No, 1 - Yes
 P184 = 0
 
-# Disable Conference. 0 - no, 1 - yes
+# Disable Conference. 0 - No, 1 - Yes
 P1311 = 0
 
-# Enable Muliti-Purpose-Key sending DTMF, 0 - no, 1 - yes
+# Enable Muliti-Purpose-Key sending DTMF, 0 - No, 1 - Yes
 P1339 = 0
 
-# Disable DND Button. 0 - no, 1 - yes
+# Disable DND Button. 0 - No, 1 - Yes
 P1340 = 0
 
-# Disable Transfer. 0 - no, 1 - yes
+# Disable Transfer. 0 - No, 1 - Yes
 P1341 = 0
+
+# Enable Auto-attended Transfer, 0 - No, 1 -Yes. Default is 0
+P1376 = 0
 
 # Configuration Via Keypad Menu. 0 - Unrestricted, 1 - Basic settings only, 2 - Constraint mode
 P1357 = 0
 
-# Enable STAR key Keypad locking. 0 - no, 1 - yes
-P1382 = 0
+# Enable STAR key Keypad locking. 0 - No, 1 - Yes. Default is 1
+P1382 = 1
 
 # Password to lock/unlock.  (0-9 only)
 P1383 =
 
+# Do not escape "#" as 23% in SIP URL. 0 - No, 1 - Yes. Default is 0
+P1406 = 0
+
 # Display Language. 
-# de - Deutsh, en - English, es - Espa�ol, 
-# fr - Francais, hr - Hrvatski, it - Italiano, 
-# ja - japan, ko - korean, pt - Portugu�s
-# ru -???????, zh-tw - traditional chinese, zh - simplified chinese, 
-# auto - Automatic, 
+# ar - Arabic, de - Deutsh
+# en - English, es - Spanish, fr - Francais
+# he - Hebrew, hr - Hrvatski, hu - Magyar 
+# it - Italiano, ja - japanese, ko - korean
+# nl - Dutch, pl - Polski, pt - Portugue
+# ru - Russian, sl - Slovenian, zh-tw - traditional chinese
+# zh - simplified chinese, auto - Automatic, 
 # gxp - Downloaded Language
 P1362 = auto
 
@@ -266,7 +306,7 @@ P399 =
 # Primary Account (Account 1) Settings
 ####################################################################
 
-# Account Active (In Use). 0 - no, 1 - yes
+# Account Active (In Use). 0 - No, 1 - Yes
 P271 = {$line_active.line.1|1}
 
 # Account Name
@@ -297,10 +337,10 @@ P3 = {$displayname.line.1}
 P103 = 0
 
 # Primary IP. Maximum 15 characters
-P2308 = 
+P2308 =
 
 # Backup IP 1
-P2309 = 
+P2309 =
 
 # Backup IP 2
 P2310 = 
@@ -308,14 +348,17 @@ P2310 =
 # TEL URI. 0 - Disabled, 1 - User=Phone, 2 - Enabled
 P63 = 0
 
-# SIP Registration. 0 - no, 1 - yes
+# SIP Registration. 0 - No, 1 - Yes
 P31 = 1
 
-# Unregister On Reboot. 0 - no, 1 - yes
+# Unregister On Reboot. 0 - No, 1 - Yes
 P81 = 0
 
 # Register Expiration (in minutes. default 1 hour, max 45 days)
 P32 = 60
+
+# Reregister before Expiration (in seconds, default 0 second)
+P2330 = 0
 
 # Local SIP port (default 5060)
 P40 = 5060
@@ -334,6 +377,12 @@ P250 = 400
 # SIP Transport. 0 - UDP, 1 - TCP, 2 - TLS/TCP
 P130 = 0
 
+# SIP URI Scheme when using TLS. 0 - sip, 1 - sips. Default is 1
+P2329 = 1
+
+# Use Actual Ephemeral Port in Contact with TCP/TLS. 0 - No, 1- Yes. Default is 0
+P2331 = 0
+
 # Check Domain Certificates. 0 - No, 1 - Yes. When set to Yes/Enabled, we will check the domain certificate as defined in RFC5922
 P2311 = 0
 
@@ -346,13 +395,19 @@ P2306 = 0
 # Support SIP Instace ID. 0 - No, 1 - Yes
 P288 = 1
 
-# NAT Traversal. 0 - no, 1 - STUN, 2 - keep alive, 3 - UPnP, 4 - Auto, 5 - VPN
+# NAT Traversal. 0 - No, 1 - STUN, 2 - keep alive, 3 - UPnP, 4 - Auto, 5 - VPN
 P52 = 0
 
 # SUBSCRIBE for MWI. (Whether or not send SUBSCRIBE for Message Waiting Indication) 0 - No, 1 - Yes.
 P99 = 0
 
-# PUBLISH for Presence. 0 - no, 1 - yes
+# SUBSCRIBE for Registration. 0 - No, 1 - Yes. Default is 0.
+P2319 = 0
+
+# Feature Key Synchronization. 0 - Disabled, 1 - Enabled. Default is 0.
+P2325 = 0
+
+# PUBLISH for Presence. 0 - No, 1 - Yes
 P188 = 0
 
 # Proxy-Require (A SIP extension to enable firewall penetration). Max length is 64 characters
@@ -361,7 +416,7 @@ P197 =
 # Voice Mail UserID (User ID/extension for 3rd party voice mail system)
 P33 =
 
-# Send DTMF. 0 - on, 1 - off
+# Send DTMF. 0 - No, 1 - Yes
 # in-audio
 P2301 = 0
 # Via RTP (RFC2833)
@@ -372,11 +427,11 @@ P2303 = 0
 # DTMF Payload Type
 P79 = 101
 
-# Early Dial (use "Yes" only if proxy supports 484 response). 0 - no, 1 - yes
+# Early Dial (use "Yes" only if proxy supports 484 response). 0 - No, 1 - Yes
 P29 = 0
 
 # Dial Plan Prefix (dial plan prefix string).
-P66 = 
+P66 =
 
 # Dial Plan
 P290 = {$dialplan}
@@ -399,13 +454,13 @@ P260 = 180
 # Minimum SE (in seconds. default 90 seconds, must be lower than or equal to P260)
 P261 = 90
 
-# Caller Request Timer (Request for timer when calling) 0 - no, 1 - yes
+# Caller Request Timer (Request for timer when calling) 0 - No, 1 - Yes
 P262 = 0
 
-# Callee Request Timer (Request for timer when called. i.e. if remote party supports timer but did not request for one) 0 - no, 1 - yes
+# Callee Request Timer (Request for timer when called. i.e. if remote party supports timer but did not request for one) 0 - No, 1 - Yes
 P263 = 0
 
-# Force Timer (Still use timer when remote party does not support timer) 0 - no, 1 - yes
+# Force Timer (Still use timer when remote party does not support timer) 0 - No, 1 - Yes
 P264 = 0
 
 # UAC Specify Refresher. 0 - omit, 1 - UAC, 2 - UAS
@@ -414,10 +469,10 @@ P266 = 0
 # UAS Specify Refresher. 1 - UAC, 2 - UAS
 P267 = 1
 
-# Force INVITE (Always refresh with INVITE instead of UPDATE even when remote party supports UPDATE) 0 - no, 1 - yes
+# Force INVITE (Always refresh with INVITE instead of UPDATE even when remote party supports UPDATE) 0 - No, 1 - Yes
 P265 = 0
 
-# Enable 100rel. 0 - no, 1 - yes
+# Enable 100rel. 0 - No, 1 - Yes
 P272 = 0
 
 # Account Ring Tone. 0 - system ring tone, 1 - custom ring tone 1, 2 - custom ring tone 2
@@ -427,23 +482,29 @@ P104 = 0
 # Ring Timeout.  (in seconds. Between 30-3600, default is 60)
 P1328 = 60
 
-# Send Anonymous (caller ID will be blocked if set to Yes). 0 - no, 1 - yes
+# Line-Seize Timeout. (In seconds. Between 15-60, default is 15)
+P2313 = 15
+
+# Send Anonymous (caller ID will be blocked if set to Yes). 0 - No, 1 - Yes
 P65 = 0
 
-# Anonymous Call Rejection. 0 - no, 1 - yes
+# Anonymous Call Rejection. 0 - No, 1 - Yes
 P129 = 0
 
-# Auto Answer. 0 - no, 1 - yes
+# Auto Answer. 0 - No, 1 - Yes
 P90 = 0
 
-# Allow Auto Answer by Call-Info. 0 - no, 1 - yes
+# Allow Auto Answer by Call-Info. 0 - No, 1 - Yes
 P298 = 0
 
-# Refer-To Use Target Contact. 0 - no, 1 - yes
+# Refer-To Use Target Contact. 0 - No, 1 - Yes
 P135 = 0
 
-# Transfer on conference Hang-Up. 0 - no, 1 - yes
+# Transfer on conference Hang-Up. 0 - No, 1 - Yes
 P2304 = 0
+
+# Check SIP User ID for incoming INVITE. 0 - No, 1 - Yes
+P258 = 0
 
 # Preferred Vocoder
 # 0 - PCMU, 2 - G.726-32, 4 - G.723.1, 8 - PCMA, 
@@ -476,10 +537,10 @@ P46 = 2
 # 3 = Optional
 P183 = 0
 
-# Symmetric RTP. 0 - No, 1 - yes
+# Symmetric RTP. 0 - No, 1 - Yes
 P291 = 0
 
-# Silence Suppression 0 - no, 1 - yes
+# Silence Suppression 0 - No, 1 - Yes
 P50 = 0
 
 # Voice Frames per TX (up to 10/20/32/64 frames for G711/G726/G723/other codecs respectively)
@@ -494,26 +555,39 @@ P72 = {$pound_as_dial|1}
 # G723 rate. 0 - 6.3kbps encoding rate, 1 - 5.3kbps encoding rate
 P49 = {$g723_rate|1}
 
+# G.726-32 Packing Mode. 0 = ITU, 1 = IETF, default is 0
+P2323 = 0
+
 # iLBC Frame Size. 0 - 20ms, 1 - 30ms(default).
 P97 = {$ilbc_frame_size|0}
 
 # iLBC payload type. Between 96 and 127, default is 97.
 P96 = {$ilbc_payload|97}
 
-# eventlist BLF URI
-P134 = 
+# Jitter Buffer Type. 0 - Fixed, 1 - Adaptive. Default is Adaptive
+P133 = 1
 
-a Special Feature. 100 - Standard, 101 - Nortel MCS, 102- Broadsoft, 108 - CBCOM, 109 - RNK
+# Jitter Buffer Length. 0 - 100ms, 1 - 200ms, 2 - 300ms
+# 3 - 400ms, 4 - 500ms, 5 - 600ms, 6 - 700ms, 7 - 800ms
+# Default is 2 (300ms)
+P132 = 2
+
+# eventlist BLF URI
+P134 =
+
+# Conference URI
+P2318 =
+
+# Special Feature. 100 - Standard, 101 - Nortel MCS, 102- Broadsoft, 108 - CBCOM, 109 - RNK
 # 110 - Sylantro, 117 - Huawei IMS
 P198 = 100
-
 
 
 ####################################################################
 # Account 2
 ####################################################################
 
-# Account Active (In Use). 0 - no, 1 - yes
+# Account Active (In Use). 0 - No, 1 - Yes
 P401 = {$line_active.line.2|0}
 
 # Account Name
@@ -555,14 +629,17 @@ P2410 =
 # TEL URI. 0 - Disabled, 1 - User=Phone, 2 - Enabled
 P409 = 0
 
-# SIP Registration. 0 - no, 1 - yes
+# SIP Registration. 0 - No, 1 - Yes
 P410 = 1
 
-# Unregister On Reboot. 0 - no, 1 - yes
+# Unregister On Reboot. 0 - No, 1 - Yes
 P411 = 0
 
 # Register Expiration (in minutes. default 1 hour, max 45 days)
 P412 = 60
+
+# Reregister before Expiration (in seconds, default 0 second)
+P2430 = 0
 
 # Local SIP port (default 5062)
 P413 = 5062
@@ -581,6 +658,12 @@ P441 = 400
 # SIP Transport. 0 - UDP, 1 - TCP, 2 - TCP/TLS
 P448 = 0
 
+# SIP URI Scheme when using TLS. 0 - sip, 1 - sips. Default is 1
+P2429 = 1
+
+# Use Actual Ephemeral Port in Contact with TCP/TLS. 0 - No, 1- Yes. Default is 0
+P2431 = 0
+
 # Check Domain Certificates. 0 - No, 1 - Yes. When set to Yes/Enabled, we will check the domain certificate as defined in RFC5922
 P2411 = 0
 
@@ -593,23 +676,28 @@ P2406 = 0
 # Support SIP Instace ID. 0 - No, 1 - Yes
 P489 = 1
 
-# NAT Traversal. 0 - no, 1 - STUN, 2 - keep alive, 3 - UPnP, 4 - Auto, 5 - VPN
+# NAT Traversal. 0 - No, 1 - STUN, 2 - keep alive, 3 - UPnP, 4 - Auto, 5 - VPN
 P414 = 0
 
 # SUBSCRIBE for MWI. (Whether or not send SUBSCRIBE for Message Waiting Indication) 0 - No, 1 - Yes.
 P415 = 0
 
-# PUBLISH for Presence. 0 - no, 1 - yes
+# SUBSCRIBE for Registration. 0 - No, 1 - Yes. Default is 0
+P2419 = 0
+
+# Feature Key Synchronization. 0 - Disabled, 1 - Enabled. Default is 0.
+P2425 = 0
+
+# PUBLISH for Presence. 0 - No, 1 - Yes
 P488 = 0
 
 # Proxy-Require (A SIP extension to enable firewall penetration). Max length is 64 characters
 P418 =
 
-
 # Voice Mail UserID (User ID/extension for 3rd party voice mail system)
 P426 =
 
-# Send DTMF. 0 - on, 1 - off
+# Send DTMF. 0 - No, 1 - Yes
 # in-audio
 P2401 = 0
 # Via RTP (RFC2833)
@@ -620,7 +708,7 @@ P2403 = 0
 # DTMF Payload Type
 P496 = 101
 
-# Early Dial (use "Yes" only if proxy supports 484 response). 0 - no, 1 - yes
+# Early Dial (use "Yes" only if proxy supports 484 response). 0 - No, 1 - Yes
 P422 = 0
 
 # Dial Plan Prefix (dial plan prefix string).
@@ -635,7 +723,7 @@ P481 = **
 # Delayed Call Forward Wait Time
 P470 = 20
 
-# Enable Call Features.  0 - no, 1 - yes
+# Enable Call Features.  0 - No, 1 - Yes
 P420 = 1
 
 # Call Log. 0 - Log All, 1 - Log Incoming/Outgoing only (Missed calls NOT recorded), 2 - Disable Call Log
@@ -647,13 +735,13 @@ P434 = 180
 # Minimum SE (in seconds. default 90 seconds, must be lower than or equal to P260)
 P427 = 90
 
-# Caller Request Timer (Request for timer when calling) 0 - no, 1 - yes
+# Caller Request Timer (Request for timer when calling) 0 - No, 1 - Yes
 P428 = 0
 
-# Callee Request Timer (Request for timer when called. i.e. if remote party supports timer but did not request for one) 0 - no, 1 - yes
+# Callee Request Timer (Request for timer when called. i.e. if remote party supports timer but did not request for one) 0 - No, 1 - Yes
 P429 = 0
 
-# Force Timer (Still use timer when remote party does not support timer) 0 - no, 1 - yes
+# Force Timer (Still use timer when remote party does not support timer) 0 - No, 1 - Yes
 P430 = 0	
 
 # UAC Specify Refresher. 0 - omit, 1 - UAC, 2 - UAS
@@ -662,10 +750,10 @@ P432 = 0
 # UAS Specify Refresher. 1 - UAC, 2 - UAS
 P433 = 1
 
-# Force INVITE (Always refresh with INVITE instead of UPDATE even when remote party supports UPDATE) 0 - no, 1 - yes
+# Force INVITE (Always refresh with INVITE instead of UPDATE even when remote party supports UPDATE) 0 - No, 1 - Yes
 P431 = 0
 
-# Enable 100rel. 0 - no, 1 - yes
+# Enable 100rel. 0 - No, 1 - Yes
 P435 = 0
 
 # Account Ring Tone. 0 - system ring tone, 1 - custom ring tone 1, 2 - custom ring tone 2
@@ -675,23 +763,29 @@ P423 = 0
 # Ring Timeout.  (in seconds. Between 30-3600, default is 60)
 P476 = 60
 
-# Send Anonymous (caller ID will be blocked if set to Yes). 0 - no, 1 - yes
+# Line-Seize Timeout. (In seconds. Between 15-60, default is 15)
+P2413 = 15
+
+# Send Anonymous (caller ID will be blocked if set to Yes). 0 - No, 1 - Yes
 P421 = 0
 
-# Anonymous Call Rejection. 0 - no, 1 - yes
+# Anonymous Call Rejection. 0 - No, 1 - Yes
 P446 = 0
 
-# Auto Answer. 0 - no, 1 - yes
+# Auto Answer. 0 - No, 1 - Yes
 P425 = 0
 
-# Allow Auto Answer by Call-Info. 0 - no, 1 - yes
+# Allow Auto Answer by Call-Info. 0 - No, 1 - Yes
 P438 = 0
 
-# Refer-To Use Target Contact. 0 - no, 1 - yes
+# Refer-To Use Target Contact. 0 - No, 1 - Yes
 P469 = 0
 
-# Transfer on conference Hang-Up. 0 - no, 1 - yes
+# Transfer on conference Hang-Up. 0 - No, 1 - Yes
 P2404 = 0
+
+# Check SIP User ID for incoming INVITE. 0 - No, 1 - Yes
+P449 = 0
 
 # Preferred Vocoder
 # 0 - PCMU, 2 - G.726-32, 4 - G.723.1, 8 - PCMA, 
@@ -724,10 +818,10 @@ P457 = 2
 # 3 = Optional
 P443 = 0
 
-# Symmetric RTP. 0 - No, 1 - yes
+# Symmetric RTP. 0 - No, 1 - Yes
 P460 = 0
 
-# Silence Suppression 0 - no, 1 - yes
+# Silence Suppression 0 - No, 1 - Yes
 P485 = 0
 
 # Voice Frames per TX (up to 10/20/32/64 frames for G711/G726/G723/other codecs respectively)
@@ -742,14 +836,28 @@ P492 = {$pound_as_dial|1}
 # G723 rate. 0 - 6.3kbps encoding rate, 1 - 5.3kbps encoding rate
 P493 = {$g723_rate|0}
 
+# G.726-32 Packing Mode. 0 = ITU, 1 = IETF, default is 0
+P2423 = 0
+
 # iLBC Frame Size. 0 - 20ms, 1 - 30ms(default).
 P495 = {$ilbc_frame_size|0}
 
 # iLBC payload type. Between 96 and 127, default is 97.
 P494 = {$ilbc_payload|97}
 
+# Jitter Buffer Type. 0 - Fixed, 1 - Adaptive. Default is Adaptive
+P498 = 1
+
+# Jitter Buffer Length. 0 - 100ms, 1 - 200ms, 2 - 300ms
+# 3 - 400ms, 4 - 500ms, 5 - 600ms, 6 - 700ms, 7 - 800ms
+# Default is 2 (300ms)
+P497 = 2
+
 # eventlist BLF URI
 P444 = 
+
+# Conference URI
+P2418 =
 
 # Special Feature.100 - Standard, 101 - Nortel MCS, 102- Broadsoft, 108 - CBCOM, 109 - RNK
 # 110 - Sylantro, 117 - Huawei IMS
@@ -760,7 +868,7 @@ P424 = 100
 # Account 3
 ####################################################################
 
-# Account Active (In Use). 0 - no, 1 - yes
+# Account Active (In Use). 0 - No, 1 - Yes
 P501 = {$line_active.line.3|0}
 
 # Account Name
@@ -802,14 +910,17 @@ P2510 =
 # TEL URI. 0 - Disabled, 1 - User=Phone, 2 - Enabled
 P509 = 0
 
-# SIP Registration. 0 - no, 1 - yes
+# SIP Registration. 0 - No, 1 - Yes
 P510 = 1
 
-# Unregister On Reboot. 0 - no, 1 - yes
+# Unregister On Reboot. 0 - No, 1 - Yes
 P511 = 0
 
 # Register Expiration (in minutes. default 1 hour, max 45 days)
 P512 = 60
+
+# Reregister before Expiration (in seconds, default 0 second)
+P2530 = 0
 
 # Local SIP port (default 5064)
 P513 = 5064
@@ -828,6 +939,12 @@ P541 = 400
 # SIP Transport. 0 - UDP, 1 - TCP. 2- TCP/TLS
 P548 = 0
 
+# SIP URI Scheme when using TLS. 0 - sip, 1 - sips. Default is 1
+P2529 = 1
+
+# Use Actual Ephemeral Port in Contact with TCP/TLS. 0 - No, 1- Yes. Default is 0
+P2531 = 0
+
 # Check Domain Certificates. 0 - No, 1 - Yes. When set to Yes/Enabled, we will check the domain certificate as defined in RFC5922
 P2511 = 0
 
@@ -840,23 +957,28 @@ P2506 = 0
 # Support SIP Instace ID. 0 - No, 1 - Yes
 P589 = 1
 
-# NAT Traversal. 0 - no, 1 - STUN, 2 - keep alive, 3 - UPnP, 4 - Auto, 5 - VPN
+# NAT Traversal. 0 - No, 1 - STUN, 2 - keep alive, 3 - UPnP, 4 - Auto, 5 - VPN
 P514 = 0
 
 # SUBSCRIBE for MWI. (Whether or not send SUBSCRIBE for Message Waiting Indication) 0 - No, 1 - Yes.
 P515 = 0
 
-# PUBLISH for Presence. 0 - no, 1 - yes
+# SUBSCRIBE for Registration. 0 - No, 1 - Yes. Default is 0
+P2519 = 0
+
+# Feature Key Synchronization. 0 - Disabled, 1 - Enabled. Default is 0
+P2525 = 0
+
+# PUBLISH for Presence. 0 - No, 1 - Yes
 P588 = 0
 
 # Proxy-Require (A SIP extension to enable firewall penetration). Max length is 64 characters
 P518 =
 
-
 # Voice Mail UserID (User ID/extension for 3rd party voice mail system)
 P526 =
 
-# Send DTMF. 0 - on, 1 - off
+# Send DTMF. 0 - No, 1 - Yes
 # in-audio
 P2501 = 0
 # Via RTP (RFC2833)
@@ -867,7 +989,7 @@ P2503 = 0
 # DTMF Payload Type
 P596 = 101
 
-# Early Dial (use "Yes" only if proxy supports 484 response). 0 - no, 1 - yes
+# Early Dial (use "Yes" only if proxy supports 484 response). 0 - No, 1 - Yes
 P522 = 0
 
 # Dial Plan Prefix (dial plan prefix string).
@@ -882,7 +1004,7 @@ P581 = **
 # Delayed Call Forward Wait Time
 P570 = 20
 
-# Enable Call Features.  0 - no, 1 - yes
+# Enable Call Features.  0 - No, 1 - Yes
 P520 = 1
 
 # Call Log. 0 - Log All, 1 - Log Incoming/Outgoing only (Missed calls NOT recorded), 2 - Disable Call Log
@@ -894,13 +1016,13 @@ P534 = 180
 # Minimum SE (in seconds. default 90 seconds, must be lower than or equal to P260)
 P527 = 90
 
-# Caller Request Timer (Request for timer when calling) 0 - no, 1 - yes
+# Caller Request Timer (Request for timer when calling) 0 - No, 1 - Yes
 P528 = 0
 
-# Callee Request Timer (Request for timer when called. i.e. if remote party supports timer but did not request for one) 0 - no, 1 - yes
+# Callee Request Timer (Request for timer when called. i.e. if remote party supports timer but did not request for one) 0 - No, 1 - Yes
 P529 = 0
 
-# Force Timer (Still use timer when remote party does not support timer) 0 - no, 1 - yes
+# Force Timer (Still use timer when remote party does not support timer) 0 - No, 1 - Yes
 P530 = 0
 
 # UAC Specify Refresher. 0 - omit, 1 - UAC, 2 - UAS
@@ -909,10 +1031,10 @@ P532 = 0
 # UAS Specify Refresher. 1 - UAC, 2 - UAS
 P533 = 1
 
-# Force INVITE (Always refresh with INVITE instead of UPDATE even when remote party supports UPDATE) 0 - no, 1 - yes
+# Force INVITE (Always refresh with INVITE instead of UPDATE even when remote party supports UPDATE) 0 - No, 1 - Yes
 P531 = 0
 
-# Enable 100rel. 0 - no, 1 - yes
+# Enable 100rel. 0 - No, 1 - Yes
 P535 = 0
 
 # Account Ring Tone. 0 - system ring tone, 1 - custom ring tone 1, 2 - custom ring tone 2
@@ -922,23 +1044,29 @@ P523 = 0
 # Ring Timeout.  (in seconds. Between 30-3600, default is 60)
 P576 = 60
 
-# Send Anonymous (caller ID will be blocked if set to Yes). 0 - no, 1 - yes
+# Line-Seize Timeout. (In seconds. Between 15-60, default is 15)
+P2513 = 15
+
+# Send Anonymous (caller ID will be blocked if set to Yes). 0 - No, 1 - Yes
 P521 = 0
 
-# Anonymous Call Rejection. 0 - no, 1 - yes
+# Anonymous Call Rejection. 0 - No, 1 - Yes
 P546 = 0
 
-# Auto Answer. 0 - no, 1 - yes
+# Auto Answer. 0 - No, 1 - Yes
 P525 = 0
 
-# Allow Auto Answer by Call-Info. 0 - no, 1 - yes
+# Allow Auto Answer by Call-Info. 0 - No, 1 - Yes
 P538 = 0
 
-# Refer-To Use Target Contact. 0 - no, 1 - yes
+# Refer-To Use Target Contact. 0 - No, 1 - Yes
 P569 = 0
 
-# Transfer on conference Hang-Up. 0 - no, 1 - yes
+# Transfer on conference Hang-Up. 0 - No, 1 - Yes
 P2504 = 0
+
+# Check SIP User ID for incoming INVITE. 0 - No, 1 - Yes
+P549 = 0
 
 # Preferred Vocoder
 # 0 - PCMU, 2 - G.726-32, 4 - G.723.1, 8 - PCMA, 
@@ -971,10 +1099,10 @@ P557 = 2
 # 3 = Optional
 P543 = 0
 
-# Symmetric RTP. 0 - No, 1 - yes
+# Symmetric RTP. 0 - No, 1 - Yes
 P560 = 0
 
-# Silence Suppression 0 - no, 1 - yes
+# Silence Suppression 0 - No, 1 - Yes
 P585 = 0
 
 # Voice Frames per TX (up to 10/20/32/64 frames for G711/G726/G723/other codecs respectively)
@@ -989,14 +1117,28 @@ P592 = {$pound_as_dial|1}
 # G723 rate. 0 - 6.3kbps encoding rate, 1 - 5.3kbps encoding rate
 P593 = {$g723_rate|0}
 
+# G.726-32 Packing Mode. 0 = ITU, 1 = IETF, default is 0
+P2523 = 0
+
 # iLBC Frame Size. 0 - 20ms, 1 - 30ms(default).
 P595 = {$ilbc_frame_size|1}
 
 # iLBC payload type. Between 96 and 127, default is 97.
 P594 = {$ilbc_payload|97}
 
+# Jitter Buffer Type. 0 - Fixed, 1 - Adaptive. Default is Adaptive
+P598 = 1
+
+# Jitter Buffer Length. 0 - 100ms, 1 - 200ms, 2 - 300ms
+# 3 - 400ms, 4 - 500ms, 5 - 600ms, 6 - 700ms, 7 - 800ms
+# Default is 2 (300ms)
+P597 = 2
+
 # eventlist BLF URI
 P544 = 
+
+# Conference URI
+P2518 =
 
 # Special Feature.100 - Standard, 101 - Nortel MCS, 102- Broadsoft, 108 - CBCOM, 109 - RNK
 # 110 - Sylantro, 117 - Huawei IMS
@@ -1007,7 +1149,7 @@ P524 = 100
 # Account 4
 ####################################################################
 
-# Account Active (In Use). 0 - no, 1 - yes
+# Account Active (In Use). 0 - No, 1 - Yes
 P601 = {$line_active.line.4|0}
 
 # Account Name
@@ -1049,14 +1191,17 @@ P2610 =
 # TEL URI. 0 - Disabled, 1 - User=Phone, 2 - Enabled
 P609 = 0
 
-# SIP Registration. 0 - no, 1 - yes
+# SIP Registration. 0 - No, 1 - Yes
 P610 = 1
 
-# Unregister On Reboot. 0 - no, 1 - yes
+# Unregister On Reboot. 0 - No, 1 - Yes
 P611 = 0
 
 # Register Expiration (in minutes. default 1 hour, max 45 days)
 P612 = 60
+
+# Reregister before Expiration (in seconds, default 0 second)
+P2630 = 0
 
 # Local SIP port (default 5066)
 P613 = 5066
@@ -1075,6 +1220,12 @@ P641 = 400
 # SIP Transport. 0 - UDP, 1 - TCP. 2 - TCP/TLS
 P648 = 0
 
+# SIP URI Scheme when using TLS. 0 - sip, 1 - sips. Default is 1
+P2629 = 1
+
+# Use Actual Ephemeral Port in Contact with TCP/TLS. 0 - No, 1- Yes. Default is 0
+P2631 = 0
+
 # Check Domain Certificates. 0 - No, 1 - Yes. When set to Yes/Enabled, we will check the domain certificate as defined in RFC5922
 P2611 = 0
 
@@ -1087,18 +1238,23 @@ P2606 = 0
 # Support SIP Instace ID. 0 - No, 1 - Yes
 P689 = 1
 
-# NAT Traversal. 0 - no, 1 - STUN, 2 - keep alive, 3 - UPnP, 4 - Auto, 5 - VPN
+# NAT Traversal. 0 - No, 1 - STUN, 2 - keep alive, 3 - UPnP, 4 - Auto, 5 - VPN
 P614 = 0
 
 # SUBSCRIBE for MWI. (Whether or not send SUBSCRIBE for Message Waiting Indication) 0 - No, 1 - Yes.
 P615 = 0
 
-# PUBLISH for Presence. 0 - no, 1 - yes
+# SUBSCRIBE for Registration. 0 - No, 1 - Yes. Default is 0
+P2619 = 0
+
+# Feature Key Synchronization. 0 - Disabled, 1 - Enabled. Default is 0
+P2625 = 0
+
+# PUBLISH for Presence. 0 - No, 1 - Yes
 P688 = 0
 
 # Proxy-Require (A SIP extension to enable firewall penetration). Max length is 64 characters
 P618 =
-
 
 # Voice Mail UserID (User ID/extension for 3rd party voice mail system)
 P626 =
@@ -1114,7 +1270,7 @@ P2603 = 0
 # DTMF Payload Type
 P696 = 101
 
-# Early Dial (use "Yes" only if proxy supports 484 response). 0 - no, 1 - yes
+# Early Dial (use "Yes" only if proxy supports 484 response). 0 - No, 1 - Yes
 P622 = 0
 
 # Dial Plan Prefix (dial plan prefix string).
@@ -1129,7 +1285,7 @@ P681 = **
 # Delayed Call Forward Wait Time
 P670 = 20
 
-# Enable Call Features.  0 - no, 1 - yes
+# Enable Call Features.  0 - No, 1 - Yes
 P620 = 1
 
 # Call Log. 0 - Log All, 1 - Log Incoming/Outgoing only (Missed calls NOT recorded), 2 - Disable Call Log
@@ -1141,13 +1297,13 @@ P634 = 180
 # Minimum SE (in seconds. default 90 seconds, must be lower than or equal to P260)
 P627 = 90
 
-# Caller Request Timer (Request for timer when calling) 0 - no, 1 - yes
+# Caller Request Timer (Request for timer when calling) 0 - No, 1 - Yes
 P628 = 0
 
-# Callee Request Timer (Request for timer when called. i.e. if remote party supports timer but did not request for one) 0 - no, 1 - yes
+# Callee Request Timer (Request for timer when called. i.e. if remote party supports timer but did not request for one) 0 - No, 1 - Yes
 P629 = 0
 
-# Force Timer (Still use timer when remote party does not support timer) 0 - no, 1 - yes
+# Force Timer (Still use timer when remote party does not support timer) 0 - No, 1 - Yes
 P630 = 0
 
 # UAC Specify Refresher. 0 - omit, 1 - UAC, 2 - UAS
@@ -1156,10 +1312,10 @@ P632 = 0
 # UAS Specify Refresher. 1 - UAC, 2 - UAS
 P633 = 1
 
-# Force INVITE (Always refresh with INVITE instead of UPDATE even when remote party supports UPDATE) 0 - no, 1 - yes
+# Force INVITE (Always refresh with INVITE instead of UPDATE even when remote party supports UPDATE) 0 - No, 1 - Yes
 P631 = 0
 
-# Enable 100rel. 0 - no, 1 - yes
+# Enable 100rel. 0 - No, 1 - Yes
 P635 = 0
 
 # Account Ring Tone. 0 - system ring tone, 1 - custom ring tone 1, 2 - custom ring tone 2
@@ -1169,23 +1325,29 @@ P623 = 0
 # Ring Timeout.  (in seconds. Between 30-3600, default is 60)
 P676 = 60
 
-# Send Anonymous (caller ID will be blocked if set to Yes). 0 - no, 1 - yes
+# Line-Seize Timeout. (In seconds. Between 15-60, default is 15)
+P2613 = 15
+
+# Send Anonymous (caller ID will be blocked if set to Yes). 0 - No, 1 - Yes
 P621 = 0
 
-# Anonymous Call Rejection. 0 - no, 1 - yes
+# Anonymous Call Rejection. 0 - No, 1 - Yes
 P646 = 0
 
-# Auto Answer. 0 - no, 1 - yes
+# Auto Answer. 0 - No, 1 - Yes
 P625 = 0
 
-# Allow Auto Answer by Call-Info. 0 - no, 1 - yes
+# Allow Auto Answer by Call-Info. 0 - No, 1 - Yes
 P638 = 0
 
-# Refer-To Use Target Contact. 0 - no, 1 - yes
+# Refer-To Use Target Contact. 0 - No, 1 - Yes
 P669 = 0
 
-# Transfer on conference Hang-Up. 0 - no, 1 - yes
+# Transfer on conference Hang-Up. 0 - No, 1 - Yes
 P2604 = 0
+
+# Check SIP User ID for incoming INVITE. 0 - No, 1 - Yes
+P649 = 0
 
 # Preferred Vocoder
 # 0 - PCMU, 2 - G.726-32, 4 - G.723.1, 8 - PCMA, 
@@ -1218,10 +1380,10 @@ P657 = 2
 # 3 = Optional
 P643 = 0
 
-# Symmetric RTP. 0 - No, 1 - yes
+# Symmetric RTP. 0 - No, 1 - Yes
 P660 = 0
 
-# Silence Suppression 0 - no, 1 - yes
+# Silence Suppression 0 - No, 1 - Yes
 P685 = 0
 
 # Voice Frames per TX (up to 10/20/32/64 frames for G711/G726/G723/other codecs respectively)
@@ -1236,14 +1398,28 @@ P692 = {$pound_as_dial|1}
 # G723 rate. 0 - 6.3kbps encoding rate, 1 - 5.3kbps encoding rate
 P693 = {$g723_rate|0}
 
+# G.726-32 Packing Mode. 0 = ITU, 1 = IETF, default is 0
+P2623 = 0
+
 # iLBC Frame Size. 0 - 20ms, 1 - 30ms(default).
 P695 = {$ilbc_frame_size|1}
 
 # iLBC payload type. Between 96 and 127, default is 97.
 P694 = {$ilbc_payload|97}
 
+# Jitter Buffer Type. 0 - Fixed, 1 - Adaptive. Default is Adaptive
+P698 = 1
+
+# Jitter Buffer Length. 0 - 100ms, 1 - 200ms, 2 - 300ms
+# 3 - 400ms, 4 - 500ms, 5 - 600ms, 6 - 700ms, 7 - 800ms
+# Default is 2 (300ms)
+P697 = 2
+
 # eventlist BLF URI
 P644 = 
+
+# Conference URI
+P2618 =
 
 # Special Feature.100 - Standard, 101 - Nortel MCS, 102- Broadsoft, 108 - CBCOM, 109 - RNK
 # 110 - Sylantro, 117 - Huawei IMS
@@ -1257,7 +1433,7 @@ P624 = 100
 # Account 5
 ####################################################################
 
-# Account Active (In Use). 0 - no, 1 - yes
+# Account Active (In Use). 0 - No, 1 - Yes
 P1701 = {$line_active.line.5|0}
 
 # Account Name
@@ -1299,14 +1475,17 @@ P2710 =
 # TEL URI. 0 - Disabled, 1 - User=Phone, 2 - Enabled
 P1709 = 0
 
-# SIP Registration. 0 - no, 1 - yes
+# SIP Registration. 0 - No, 1 - Yes
 P1710 = 1
 
-# Unregister On Reboot. 0 - no, 1 - yes
+# Unregister On Reboot. 0 - No, 1 - Yes
 P1711 = 0
 
 # Register Expiration (in minutes. default 1 hour, max 45 days)
 P1712 = 60
+
+# Reregister before Expiration (in seconds, default 0 second)
+P2730 = 0
 
 # Local SIP port (default 5068)
 P1713 = 5068
@@ -1325,6 +1504,12 @@ P1741 = 400
 # SIP Transport. 0 - UDP, 1 - TCP. 2 - TCP/TLS
 P1748 = 0
 
+# SIP URI Scheme when using TLS. 0 - sip, 1 - sips. Default is 1
+P2729 = 1
+
+# Use Actual Ephemeral Port in Contact with TCP/TLS. 0 - No, 1- Yes. Default is 0
+P2731 = 0
+
 # Check Domain Certificates. 0 - No, 1 - Yes. When set to Yes/Enabled, we will check the domain certificate as defined in RFC5922
 P2711 = 0
 
@@ -1337,18 +1522,23 @@ P2706 = 0
 # Support SIP Instace ID. 0 - No, 1 - Yes
 P1789 = 1
 
-# NAT Traversal. 0 - no, 1 - STUN, 2 - keep alive, 3 - UPnP, 4 - Auto, 5 - VPN
+# NAT Traversal. 0 - No, 1 - STUN, 2 - keep alive, 3 - UPnP, 4 - Auto, 5 - VPN
 P1714 = 0
 
 # SUBSCRIBE for MWI. (Whether or not send SUBSCRIBE for Message Waiting Indication) 0 - No, 1 - Yes.
 P1715 = 0
 
-# PUBLISH for Presence. 0 - no, 1 - yes
+# SUBSCRIBE for Registration. 0 - No, 1 - Yes. Default is 0
+P2719 = 0
+
+# Feature Key Synchronization. 0 - Disabled, 1 - Enabled. Default is 0.
+P2725 = 0
+
+# PUBLISH for Presence. 0 - No, 1 - Yes
 P1788 = 0
 
 # Proxy-Require (A SIP extension to enable firewall penetration). Max length is 64 characters
 P1718 =
-
 
 # Voice Mail UserID (User ID/extension for 3rd party voice mail system)
 P1726 =
@@ -1364,7 +1554,7 @@ P2703 = 0
 # DTMF Payload Type
 P1796 = 101
 
-# Early Dial (use "Yes" only if proxy supports 484 response). 0 - no, 1 - yes
+# Early Dial (use "Yes" only if proxy supports 484 response). 0 - No, 1 - Yes
 P1722 = 0
 
 # Dial Plan Prefix (dial plan prefix string).
@@ -1379,7 +1569,7 @@ P1781 = **
 # Delayed Call Forward Wait Time
 P1770 = 20
 
-# Enable Call Features.  0 - no, 1 - yes
+# Enable Call Features.  0 - No, 1 - Yes
 P1720 = 1
 
 # Call Log. 0 - Log All, 1 - Log Incoming/Outgoing only (Missed calls NOT recorded), 2 - Disable Call Log
@@ -1391,13 +1581,13 @@ P1734 = 180
 # Minimum SE (in seconds. default 90 seconds, must be lower than or equal to P260)
 P1727 = 90
 
-# Caller Request Timer (Request for timer when calling) 0 - no, 1 - yes
+# Caller Request Timer (Request for timer when calling) 0 - No, 1 - Yes
 P1728 = 0
 
-# Callee Request Timer (Request for timer when called. i.e. if remote party supports timer but did not request for one) 0 - no, 1 - yes
+# Callee Request Timer (Request for timer when called. i.e. if remote party supports timer but did not request for one) 0 - No, 1 - Yes
 P1729 = 0
 
-# Force Timer (Still use timer when remote party does not support timer) 0 - no, 1 - yes
+# Force Timer (Still use timer when remote party does not support timer) 0 - No, 1 - Yes
 P1730 = 0
 
 # UAC Specify Refresher. 0 - omit, 1 - UAC, 2 - UAS
@@ -1406,10 +1596,10 @@ P1732 = 0
 # UAS Specify Refresher. 1 - UAC, 2 - UAS
 P1733 = 1
 
-# Force INVITE (Always refresh with INVITE instead of UPDATE even when remote party supports UPDATE) 0 - no, 1 - yes
+# Force INVITE (Always refresh with INVITE instead of UPDATE even when remote party supports UPDATE) 0 - No, 1 - Yes
 P1731 = 0
 
-# Enable 100rel. 0 - no, 1 - yes
+# Enable 100rel. 0 - No, 1 - Yes
 P1735 = 0
 
 # Account Ring Tone. 0 - system ring tone, 1 - custom ring tone 1, 2 - custom ring tone 2
@@ -1419,23 +1609,29 @@ P1723 = 0
 # Ring Timeout.  (in seconds. Between 30-3600, default is 60)
 P1776 = 60
 
-# Send Anonymous (caller ID will be blocked if set to Yes). 0 - no, 1 - yes
+# Line-Seize Timeout. (In seconds. Between 15-60, default is 15)
+P2713 = 15
+
+# Send Anonymous (caller ID will be blocked if set to Yes). 0 - No, 1 - Yes
 P1721 = 0
 
-# Anonymous Call Rejection. 0 - no, 1 - yes
+# Anonymous Call Rejection. 0 - No, 1 - Yes
 P1746 = 0
 
-# Auto Answer. 0 - no, 1 - yes
+# Auto Answer. 0 - No, 1 - Yes
 P1725 = 0
 
-# Allow Auto Answer by Call-Info. 0 - no, 1 - yes
+# Allow Auto Answer by Call-Info. 0 - No, 1 - Yes
 P1738 = 0
 
-# Refer-To Use Target Contact. 0 - no, 1 - yes
+# Refer-To Use Target Contact. 0 - No, 1 - Yes
 P1769 = 0
 
-# Transfer on conference Hang-Up. 0 - no, 1 - yes
+# Transfer on conference Hang-Up. 0 - No, 1 - Yes
 P2704 = 0
+
+# Check SIP User ID for incoming INVITE. 0 - No, 1 - Yes
+P1749 = 0
 
 # Preferred Vocoder
 # 0 - PCMU, 2 - G.726-32, 4 - G.723.1, 8 - PCMA, 
@@ -1468,10 +1664,10 @@ P1757 = 2
 # 3 = Optional
 P1743 = 0
 
-# Symmetric RTP. 0 - No, 1 - yes
+# Symmetric RTP. 0 - No, 1 - Yes
 P1760 = 0
 
-# Silence Suppression 0 - no, 1 - yes
+# Silence Suppression 0 - No, 1 - Yes
 P1785 = 0
 
 # Voice Frames per TX (up to 10/20/32/64 frames for G711/G726/G723/other codecs respectively)
@@ -1486,24 +1682,39 @@ P1792 = {$pound_as_dial|1}
 # G723 rate. 0 - 6.3kbps encoding rate, 1 - 5.3kbps encoding rate
 P1793 = {$g723_rate|0}
 
+# G.726-32 Packing Mode. 0 = ITU, 1 = IETF, default is 0
+P2723 = 0
+
 # iLBC Frame Size. 0 - 20ms, 1 - 30ms(default).
 P1795 = {$ilbc_frame_size|1}
 
 # iLBC payload type. Between 96 and 127, default is 97.
 P1794 = {$ilbc_payload|97}
 
+# Jitter Buffer Type. 0 - Fixed, 1 - Adaptive. Default is Adaptive
+P1798 = 1
+
+# Jitter Buffer Length. 0 - 100ms, 1 - 200ms, 2 - 300ms
+# 3 - 400ms, 4 - 500ms, 5 - 600ms, 6 - 700ms, 7 - 800ms
+# Default is 2 (300ms)
+P1797 = 2
+
 # eventlist BLF URI
 P1744 = 
+
+# Conference URI
+P2718 =
 
 # Special Feature.100 - Standard, 101 - Nortel MCS, 102- Broadsoft, 108 - CBCOM, 109 - RNK
 # 110 - Sylantro, 117 - Huawei IMS
 P1724 = 100
 
+
 ####################################################################
 # Account 6
 ####################################################################
 
-# Account Active (In Use). 0 - no, 1 - yes
+# Account Active (In Use). 0 - No, 1 - Yes
 P1801 = {$line_active.line.6|0}
 
 # Account Name
@@ -1545,14 +1756,17 @@ P2810 =
 # TEL URI. 0 - Disabled, 1 - User=Phone, 2 - Enabled
 P1809 = 0
 
-# SIP Registration. 0 - no, 1 - yes
+# SIP Registration. 0 - No, 1 - Yes
 P1810 = 1
 
-# Unregister On Reboot. 0 - no, 1 - yes
+# Unregister On Reboot. 0 - No, 1 - Yes
 P1811 = 0
 
 # Register Expiration (in minutes. default 1 hour, max 45 days)
 P1812 = 60
+
+# Reregister before Expiration (in seconds, default 0 second)
+P2830 = 0
 
 # Local SIP port (default 5070)
 P1813 = 5070
@@ -1571,6 +1785,12 @@ P1841 = 400
 # SIP Transport. 0 - UDP, 1 - TCP, 2 - TCP/TLS
 P1848 = 0
 
+# SIP URI Scheme when using TLS. 0 - sip, 1 - sips. Default is 1
+P2829 = 1
+
+# Use Actual Ephemeral Port in Contact with TCP/TLS. 0 - No, 1- Yes. Default is 0
+P2831 = 0
+
 # Check Domain Certificates. 0 - No, 1 - Yes. When set to Yes/Enabled, we will check the domain certificate as defined in RFC5922
 P2811 = 0
 
@@ -1583,13 +1803,19 @@ P2806 = 0
 # Support SIP Instace ID. 0 - No, 1 - Yes
 P1889 = 1
 
-# NAT Traversal. 0 - no, 1 - STUN, 2 - keep alive, 3 - UPnP, 4 - Auto, 5 - VPN
+# NAT Traversal. 0 - No, 1 - STUN, 2 - keep alive, 3 - UPnP, 4 - Auto, 5 - VPN
 P1814 = 0
 
 # SUBSCRIBE for MWI. (Whether or not send SUBSCRIBE for Message Waiting Indication) 0 - No, 1 - Yes.
 P1815 = 0
 
-# PUBLISH for Presence. 0 - no, 1 - yes
+# SUBSCRIBE for Registration. 0 - No, 1 - Yes. Default is 0
+P2819 = 0
+
+# Feature Key Synchronization. 0 - Disabled, 1 - Enabled. Default is 0.
+P2825 = 0
+
+# PUBLISH for Presence. 0 - No, 1 - Yes
 P1888 = 0
 
 # Proxy-Require (A SIP extension to enable firewall penetration). Max length is 64 characters
@@ -1609,7 +1835,7 @@ P2803 = 0
 # DTMF Payload Type
 P1896 = 101
 
-# Early Dial (use "Yes" only if proxy supports 484 response). 0 - no, 1 - yes
+# Early Dial (use "Yes" only if proxy supports 484 response). 0 - No, 1 - Yes
 P1822 = 0
 
 # Dial Plan Prefix (dial plan prefix string).
@@ -1624,7 +1850,7 @@ P1881 = **
 # Delayed Call Forward Wait Time
 P1870 = 20
 
-# Enable Call Features.  0 - no, 1 - yes
+# Enable Call Features.  0 - No, 1 - Yes
 P1820 = 1
 
 # Call Log. 0 - Log All, 1 - Log Incoming/Outgoing only (Missed calls NOT recorded), 2 - Disable Call Log
@@ -1636,13 +1862,13 @@ P1834 = 180
 # Minimum SE (in seconds. default 90 seconds, must be lower than or equal to P260)
 P1827 = 90
 
-# Caller Request Timer (Request for timer when calling) 0 - no, 1 - yes
+# Caller Request Timer (Request for timer when calling) 0 - No, 1 - Yes
 P1828 = 0
 
-# Callee Request Timer (Request for timer when called. i.e. if remote party supports timer but did not request for one) 0 - no, 1 - yes
+# Callee Request Timer (Request for timer when called. i.e. if remote party supports timer but did not request for one) 0 - No, 1 - Yes
 P1829 = 0
 
-# Force Timer (Still use timer when remote party does not support timer) 0 - no, 1 - yes
+# Force Timer (Still use timer when remote party does not support timer) 0 - No, 1 - Yes
 P1830 = 0
 
 # UAC Specify Refresher. 0 - omit, 1 - UAC, 2 - UAS
@@ -1651,10 +1877,10 @@ P1832 = 0
 # UAS Specify Refresher. 1 - UAC, 2 - UAS
 P1833 = 1
 
-# Force INVITE (Always refresh with INVITE instead of UPDATE even when remote party supports UPDATE) 0 - no, 1 - yes
+# Force INVITE (Always refresh with INVITE instead of UPDATE even when remote party supports UPDATE) 0 - No, 1 - Yes
 P1831 = 0
 
-# Enable 100rel. 0 - no, 1 - yes
+# Enable 100rel. 0 - No, 1 - Yes
 P1835 = 0
 
 # Account Ring Tone. 0 - system ring tone, 1 - custom ring tone 1, 2 - custom ring tone 2
@@ -1664,23 +1890,29 @@ P1823 = 0
 # Ring Timeout.  (in seconds. Between 30-3600, default is 60)
 P1876 = 60
 
-# Send Anonymous (caller ID will be blocked if set to Yes). 0 - no, 1 - yes
+# Line-Seize Timeout. (In seconds. Between 15-60, default is 15)
+P2813 = 15
+
+# Send Anonymous (caller ID will be blocked if set to Yes). 0 - No, 1 - Yes
 P1821 = 0
 
-# Anonymous Call Rejection. 0 - no, 1 - yes
+# Anonymous Call Rejection. 0 - No, 1 - Yes
 P1846 = 0
 
-# Auto Answer. 0 - no, 1 - yes
+# Auto Answer. 0 - No, 1 - Yes
 P1825 = 0
 
-# Allow Auto Answer by Call-Info. 0 - no, 1 - yes
+# Allow Auto Answer by Call-Info. 0 - No, 1 - Yes
 P1838 = 0
 
-# Refer-To Use Target Contact. 0 - no, 1 - yes
+# Refer-To Use Target Contact. 0 - No, 1 - Yes
 P1869 = 0
 
-# Transfer on conference Hang-Up. 0 - no, 1 - yes
+# Transfer on conference Hang-Up. 0 - No, 1 - Yes
 P2804 = 0
+
+# Check SIP User ID for incoming INVITE. 0 - No, 1 - Yes
+P1849 = 0
 
 # Preferred Vocoder
 # 0 - PCMU, 2 - G.726-32, 4 - G.723.1, 8 - PCMA, 
@@ -1713,10 +1945,10 @@ P1857 = 2
 # 3 = Optional
 P1843 = 0
 
-# Symmetric RTP. 0 - No, 1 - yes
+# Symmetric RTP. 0 - No, 1 - Yes
 P1860 = 0
 
-# Silence Suppression 0 - no, 1 - yes
+# Silence Suppression 0 - No, 1 - Yes
 P1885 = 0
 
 # Voice Frames per TX (up to 10/20/32/64 frames for G711/G726/G723/other codecs respectively)
@@ -1731,14 +1963,28 @@ P1892 = {$pound_as_dial|1}
 # G723 rate. 0 - 6.3kbps encoding rate, 1 - 5.3kbps encoding rate
 P1893 = {$g723_rate|0}
 
+# G.726-32 Packing Mode. 0 = ITU, 1 = IETF, default is 0
+P2823 = 0
+
 # iLBC Frame Size. 0 - 20ms, 1 - 30ms(default).
 P1895 = {$ilbc_frame_size|1}
 
 # iLBC payload type. Between 96 and 127, default is 97.
 P1894 = {$ilbc_payload|97}
 
+# Jitter Buffer Type. 0 - Fixed, 1 - Adaptive. Default is Adaptive
+P1898 = 1
+
+# Jitter Buffer Length. 0 - 100ms, 1 - 200ms, 2 - 300ms
+# 3 - 400ms, 4 - 500ms, 5 - 600ms, 6 - 700ms, 7 - 800ms
+# Default is 2 (300ms)
+P1897 = 2
+
 # eventlist BLF URI
 P1844 = 
+
+# Conference URI
+P2818 =
 
 # Special Feature.100 - Standard, 101 - Nortel MCS, 102- Broadsoft, 108 - CBCOM, 109 - RNK
 # 110 - Sylantro, 117 - Huawei IMS
@@ -1752,7 +1998,7 @@ P1824 = 100
 ##############################################################################
 
 # End User Password
-P196 = 
+P196 =
 
 # IP Address Mode. 0 - DHCP, 1 - Static IP, 2 - PPPoE
 #P8 = 0
@@ -1766,8 +2012,12 @@ P146 =
 # Domain name, DHCP option 15. Max length allowed is 64 characters.
 P147 =
 
-# Vendor Class ID, DHCP option 60. Max length allowed is 64 characters.
-P148 =  GXP
+# Vendor Class ID, DHCP option 60. Max length allowed is 64 characters. 
+# Default value for GXP2110 - Grandstream GXP2110
+# Default value for GXP2120 - Grandstream GXP2120
+# Default value for GXP2100 - Grandstream GXP2100
+# Default value for GXP1450 - Grandstream GXP1450
+P148 =  Grandstream GXP
 
 #--------------------------------------
 # PPPoE
@@ -1898,277 +2148,388 @@ P1374 = 5
 
 # Multipupose Key 1
 # ------------------------------------------------------------------------------------- 
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P323 = {$key_mode_01}
+# Key Mode. 
+# 0 - Speed Dial
+# 1 - BLF
+# 2 - Presence Watcher
+# 3 - eventlist BLF 
+# 4 - Speed Dial via active account
+# 5 - DialDTMF
+# 7 - CallReturn
+P323 =0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4, 4 - Account 5, 5 - Account 6
 P301 = 0
 
 # Name. Max length allowed is 32 characters.
-P302 = {$key_name_01}
+P302 = 
 
 # User ID.  Max length allowed is 64 characters.
-P303 = {$speed_dial_01}
+P303 = 
 
 # Multipupose Key 2
 # ------------------------------------------------------------------------------------- 
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P324 = {$key_mode_02}
+# Key Mode. 
+# 0 - Speed Dial
+# 1 - BLF
+# 2 - Presence Watcher
+# 3 - eventlist BLF 
+# 4 - Speed Dial via active account
+# 5 - DialDTMF
+# 7 - CallReturn
+P324 =0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4, 4 - Account 5, 5 - Account 6
 P304 = 0
 
 # Name. Max length allowed is 32 characters.
-P305 = {$key_name_02}
+P305 = 
 
 # User ID. Max length allowed is 64 characters.
-P306 = {$speed_dial_02}
+P306 = 
 
 # Multipupose Key 3
 # ------------------------------------------------------------------------------------- 
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P325 = {$key_mode_03}
+# Key Mode. 
+# 0 - Speed Dial
+# 1 - BLF
+# 2 - Presence Watcher
+# 3 - eventlist BLF 
+# 4 - Speed Dial via active account
+# 5 - DialDTMF
+# 7 - CallReturn
+P325 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4, 4 - Account 5, 5 - Account 6
 P307 = 0
 
 # Name. Max length allowed is 32 characters.
-P308 = {$key_name_03}
+P308 = 
 
 # User ID. Max length allowed is 64 characters.
-P309 = {$speed_dial_03}
+P309 = 
 
 # Multipupose Key 4
 # ------------------------------------------------------------------------------------- 
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher,
-# 3 - eventlist BLF, 4 - Speed Dial via active account
-P326 = {$key_mode_04}
+# Key Mode. 
+# 0 - Speed Dial
+# 1 - BLF
+# 2 - Presence Watcher
+# 3 - eventlist BLF 
+# 4 - Speed Dial via active account
+# 5 - DialDTMF
+# 7 - CallReturn
+P326 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 
 # 3 - Account 4, 4 - Account 5, 5 - Account 6
 P310 = 0
 
 # Name. Max length allowed is 32 characters.
-P311 = {$key_name_04}
+P311 = 
 
 # User ID. Max length allowed is 64 characters.
-P312 = {$speed_dial_04}
+P312 = 
 
 # Multipupose Key 5
 # ------------------------------------------------------------------------------------- 
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher,
-# 3 - eventlist BLF, 4 - Speed Dial via active account
-P327 = {$key_mode_05}
+# Key Mode. 
+# 0 - Speed Dial
+# 1 - BLF
+# 2 - Presence Watcher
+# 3 - eventlist BLF 
+# 4 - Speed Dial via active account
+# 5 - DialDTMF
+# 7 - CallReturn
+P327 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 
 # 3 - Account 4, 4 - Account 5, 5 - Account 6
 P313 = 0
 
 # Name. Max length allowed is 32 characters.
-P314 = {$key_name_05}
+P314 = 
 
 # User ID. Max length allowed is 64 character
-P315 = {$speed_dial_05}
+P315 = 
 
 # Multipupose Key 6
 # ------------------------------------------------------------------------------------- 
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher,
-# 3 - eventlist BLF, 4 - Speed Dial via active account
-P328 = {$key_mode_06}
+# Key Mode. 
+# 0 - Speed Dial
+# 1 - BLF
+# 2 - Presence Watcher
+# 3 - eventlist BLF 
+# 4 - Speed Dial via active account
+# 5 - DialDTMF
+# 7 - CallReturn
+P328 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3,
 # 3 - Account 4, 4 - Account 5, 5 - Account 6
 P316 = 0
 
 # Name. Max length allowed is 32 characters.
-P317 = {$key_name_06}
+P317 = 
 
 # User ID. Max length allowed is 64 character
-P318 = {$speed_dial_06}
+P318 = 
 
 # Multipupose Key 7
 # ------------------------------------------------------------------------------------- 
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher,
-# 3 - eventlist BLF, 4 - Speed Dial via active account
-P329 = {$key_mode_07}
+# Key Mode. 
+# 0 - Speed Dial
+# 1 - BLF
+# 2 - Presence Watcher
+# 3 - eventlist BLF 
+# 4 - Speed Dial via active account
+# 5 - DialDTMF
+# 7 - CallReturn
+P329 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3,
 # 3 - Account 4, 4 - Account 5, 5 - Account 6
 P319 = 0
 
 #Name. Max length allowed is 32 characters.
-P320 = {$key_name_07}
+P320 = 
 
 #User ID. Max length allowed is 64 character
-P321 = {$speed_dial_07}
+P321 = 
 
 #--------------------------------------------------------------------------------------
 # Mutlipurpose Key 8 - 18 FOR GXP2110 ONLY
 #--------------------------------------------------------------------------------------
 # Multipupose Key 8
 # ------------------------------------------------------------------------------------- 
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher,
-# 3 - eventlist BLF, 4 - Speed Dial via active account
-P353 = {$key_mode_08}
+# Key Mode. 
+# 0 - Speed Dial
+# 1 - BLF
+# 2 - Presence Watcher
+# 3 - eventlist BLF 
+# 4 - Speed Dial via active account
+# 5 - DialDTMF
+# 7 - CallReturn
+P353 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3,
 # 3 - Account 4, 4 - Account 5, 5 - Account 6
 P354 = 0
 
 #Name. Max length allowed is 32 characters.
-P355 = {$key_name_08}
+P355 = 
 
 #User ID. Max length allowed is 64 character
-P356 = {$speed_dial_08}
+P356 = 
 
 # Multipupose Key 9
 # ------------------------------------------------------------------------------------- 
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher,
-# 3 - eventlist BLF, 4 - Speed Dial via active account
-P357 = {$key_mode_09}
+# Key Mode. 
+# 0 - Speed Dial
+# 1 - BLF
+# 2 - Presence Watcher
+# 3 - eventlist BLF 
+# 4 - Speed Dial via active account
+# 5 - DialDTMF
+# 7 - CallReturn
+P357 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3,
 # 3 - Account 4, 4 - Account 5, 5 - Account 6
 P358 = 0
 
 #Name. Max length allowed is 32 characters.
-P359 = {$key_name_09}
+P359 = 
 
 #User ID. Max length allowed is 64 character
-P360 = {$speed_dial_09}
+P360 =
 
 # Multipupose Key 10
 # ------------------------------------------------------------------------------------- 
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher,
-# 3 - eventlist BLF, 4 - Speed Dial via active account
-P361 = {$key_mode_10}
+# Key Mode. 
+# 0 - Speed Dial
+# 1 - BLF
+# 2 - Presence Watcher
+# 3 - eventlist BLF 
+# 4 - Speed Dial via active account
+# 5 - DialDTMF
+# 7 - CallReturn
+P361 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3,
 # 3 - Account 4, 4 - Account 5, 5 - Account 6
 P362 = 0
 
 #Name. Max length allowed is 32 characters.
-P363 = {$key_name_10}
+P363 = 
 
 #User ID. Max length allowed is 64 character
-P364 = {$speed_dial_10}
+P364 =
 
 # Multipupose Key 11
 # ------------------------------------------------------------------------------------- 
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher,
-# 3 - eventlist BLF, 4 - Speed Dial via active account
-P365 = {$key_mode_11}
+# Key Mode. 
+# 0 - Speed Dial
+# 1 - BLF
+# 2 - Presence Watcher
+# 3 - eventlist BLF 
+# 4 - Speed Dial via active account
+# 5 - DialDTMF
+# 7 - CallReturn
+P365 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3,
 # 3 - Account 4, 4 - Account 5, 5 - Account 6
 P366 = 0
 
 #Name. Max length allowed is 32 characters.
-P367 = {$key_name_11}
+P367 = 
 
 #User ID. Max length allowed is 64 character
-P368 = {$speed_dial_11}
+P368 =
 
 # Multipupose Key 12
 # ------------------------------------------------------------------------------------- 
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher,
-# 3 - eventlist BLF, 4 - Speed Dial via active account
-P369 = {$key_mode_12}
+# Key Mode. 
+# 0 - Speed Dial
+# 1 - BLF
+# 2 - Presence Watcher
+# 3 - eventlist BLF 
+# 4 - Speed Dial via active account
+# 5 - DialDTMF
+# 7 - CallReturn
+P369 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3,
 # 3 - Account 4, 4 - Account 5, 5 - Account 6
 P370 = 0
 
 #Name. Max length allowed is 32 characters.
-P371 = {$key_name_12}
+P371 = 
 
 #User ID. Max length allowed is 64 character
-P372 = {$speed_dial_12}
+P372 =
 
 # Multipupose Key 13
 # ------------------------------------------------------------------------------------- 
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher,
-# 3 - eventlist BLF, 4 - Speed Dial via active account
-P373 = {$key_mode_13}
+# Key Mode. 
+# 0 - Speed Dial
+# 1 - BLF
+# 2 - Presence Watcher
+# 3 - eventlist BLF 
+# 4 - Speed Dial via active account
+# 5 - DialDTMF
+# 7 - CallReturn
+P373 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3,
 # 3 - Account 4, 4 - Account 5, 5 - Account 6
 P374 = 0
 
 #Name. Max length allowed is 32 characters.
-P375 = {$key_name_13}
+P375 = 
 
 #User ID. Max length allowed is 64 character
-P376 = {$speed_dial_13}
+P376 =
 
 # Multipupose Key 14
 # ------------------------------------------------------------------------------------- 
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher,
-# 3 - eventlist BLF, 4 - Speed Dial via active account
-P377 = {$key_mode_14}
+# Key Mode. 
+# 0 - Speed Dial
+# 1 - BLF
+# 2 - Presence Watcher
+# 3 - eventlist BLF 
+# 4 - Speed Dial via active account
+# 5 - DialDTMF
+# 7 - CallReturn
+P377 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3,
 # 3 - Account 4, 4 - Account 5, 5 - Account 6
 P378 = 0
 
 #Name. Max length allowed is 32 characters.
-P379 = {$key_name_14}
+P379 = 
 
 #User ID. Max length allowed is 64 character
-P380 = {$speed_dial_14}
+P380 =
 
 # Multipupose Key 15
 # ------------------------------------------------------------------------------------- 
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher,
-# 3 - eventlist BLF, 4 - Speed Dial via active account
-P381 = {$key_mode_15}
+# Key Mode. 
+# 0 - Speed Dial
+# 1 - BLF
+# 2 - Presence Watcher
+# 3 - eventlist BLF 
+# 4 - Speed Dial via active account
+# 5 - DialDTMF
+# 7 - CallReturn
+P381 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3,
 # 3 - Account 4, 4 - Account 5, 5 - Account 6
 P382 = 0
 
 #Name. Max length allowed is 32 characters.
-P383 = {$key_name_15}
+P383 = 
 
 #User ID. Max length allowed is 64 character
-P384 = {$speed_dial_15}
+P384 =
 
 # Multipupose Key 16
 # ------------------------------------------------------------------------------------- 
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher,
-# 3 - eventlist BLF, 4 - Speed Dial via active account
-P385 = {$key_mode_16}
+# Key Mode. 
+# 0 - Speed Dial
+# 1 - BLF
+# 2 - Presence Watcher
+# 3 - eventlist BLF 
+# 4 - Speed Dial via active account
+# 5 - DialDTMF
+# 7 - CallReturn
+P385 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3,
 # 3 - Account 4, 4 - Account 5, 5 - Account 6
 P386 = 0
 
 #Name. Max length allowed is 32 characters.
-P387 = {$key_name_16}
+P387 = 
 
 #User ID. Max length allowed is 64 character
-P388 = {$speed_dial_16}
+P388 =
 
 # Multipupose Key 17
 # ------------------------------------------------------------------------------------- 
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher,
-# 3 - eventlist BLF, 4 - Speed Dial via active account
-P389 = {$key_mode_17}
+# Key Mode. 
+# 0 - Speed Dial
+# 1 - BLF
+# 2 - Presence Watcher
+# 3 - eventlist BLF 
+# 4 - Speed Dial via active account
+# 5 - DialDTMF
+# 7 - CallReturn
+P389 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3,
 # 3 - Account 4, 4 - Account 5, 5 - Account 6
 P390 = 0
 
 #Name. Max length allowed is 32 characters.
-P391 = {$key_name_17}
+P391 = 
 
 #User ID. Max length allowed is 64 character
-P392 = {$speed_dial_17}
+P392 =
 
 # Multipupose Key 18
 # ------------------------------------------------------------------------------------- 
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher,
-# 3 - eventlist BLF, 4 - Speed Dial via active account
+# Key Mode. 
+# 0 - Speed Dial
+# 1 - BLF
+# 2 - Presence Watcher
+# 3 - eventlist BLF 
+# 4 - Speed Dial via active account
+# 5 - DialDTMF
+# 7 - CallReturn
 P393 = {$key_mode_18}
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3,
@@ -2187,6 +2548,7 @@ P396 = {$speed_dial_18}
 #--------------------------------------------------------------------------------------
 
 # Time Zone.
+# auto - Automatic
 # TZA+12 - GMT-12:00 (International Date Line West)
 # TZB+11 - GMT-11:00 (Midway Island, Samoa) 
 # HAW10 - GMT-10:00 (US Hawaiian Time) 
@@ -2243,36 +2605,48 @@ P396 = {$speed_dial_18}
 # TZd-12 - GMT+12:00 (Fiji) 
 # TZe-13 - GMT+13:00 (Nuku'alofa) 
 # customize - Self-Defined Time Zone
-P64 = PST8PDT
+P64 = auto
 
 # Allow DHCP Option 2 to override Time Zone setting. 0 - No, 1 - Yes.
 # When set to Yes(1), it will override the configured Time Zone setting if available. 
 P143 = 1
 
-# Daylight Savings Time. 0 - no, 1 - yes
-#P145 = 0
-
 # Self Defined Time zone. Max length allowed is 64 characters.
 P246 = MTZ+6MDT+5,M4.1.0,M11.1.0
 
 # Weather Update
+# Enable weather update. 0 - No, 1 - Yes. Default is 1
+P1402 = 1
+
 # City Code
+# 0 - Use Self-Defined City Code, 1 - Automatic. Default is 1
+P1405 = 1
+
+# Self-Defined City Code
 P1377 =
 
 # Update Interval. (in minutes, between 1-360, default is 5)
 P1378 = 5
 
-# Degree Unit.  0 - Fahrenheit, 1 - Celsius
-P1379 =  0
+# Degree Unit.  auto - Automatic, f - Fahrenheit, c - Celsius
+P1379 = auto
 
 # Stock Update
-P1380 =  MSFT;YHOO;AOL;BIDU;AAPL;ORCL;NOK;EBAY;ADBE;IBM
+# Enable stocke update. 0 - No, 1 - Yes. Default is 1
+P1403 = 1
+
+# Stock Code
+P1380 = DJI;.IXIC;INX;.FTSE;.STOXX50E;.FCHI;.N225;.BSESN;.HSI;.TWII
 
 # Currency Update
-P1381 =  EUR/USD;GBP/USD;CAD/USD;AUD/USD;CNY/USD;JPY/USD
+# Enable Currency update. 0 - No, 1 - Yes. Default is 1
+P1404 = 1
+
+# Currency Code
+P1381 = EUR/USD;GBP/USD;CAD/USD;AUD/USD;CNY/USD;JPY/USD
 
 # LCD Backlight Brightness. (0-8, where 0 is off and 8 is brightest)
-#Active
+# Active
 P334 = 6
 
 # Idle
@@ -2281,20 +2655,29 @@ P335 = 2
 # LCD Contrast (0-20)
 P1329 = 10
 
+# Date Display Format.
+# 0: yyyy-mm-dd      eg. 2011-10-31
+# 1: mm-dd-yyyy      eg. 10-31-2011
+# 2: dd-mm-yyyy      eg. 31-10-2011
+# 3: dddd, MMMM dd   eg. Monday, October 31
+# 4: MMMM dd, dddd   eg. October 31, Monday
+#(some options might not fit for the screen layout)
+P102 = 0
+
 # Time Display Format. 0 - 12 Hour, 1 - 24 Hour
 P122 = 0
 
-# Disable in-call DTMF display. 0 - no, 1 - yes
+# Disable in-call DTMF display. 0 - No, 1 - Yes
 P338 = 0
 
-# Disable Missed Call Backlight. 0 - no, 1 - yes
+# Disable Missed Call Backlight. 0 - No, 1 - Yes
 P351 = 0
+
+# Always ring speaker. 0 - No, 1 - Yes
+P1439 = 0
 
 # Headset Key Mode. 0 = Default Mode, 1 = Toggle Headset/Speaker 
 P1312 = 0
-
-# Headset Port Type. 0 - 2.5mm, 1 - RJ22
-P1300 = 
 
 # Headset TX gain(db). 1 - -6, 0 - 0, 2 - +6
 P1301 = 0
@@ -2302,8 +2685,11 @@ P1301 = 0
 # Headset RX gain(db). 1 - -6, 0 - 0, 2 - +6
 P1302 = 0
 
+# Handset TX gain(db). 1 - -6, 0 - 0, 2 - +6
+P1464 = 0
+
 ################################################################################
-# Extension Boards FOR GXP 2110 and GXP 2120 ONLY
+# Extension Boards FOR GXP2110 and GXP2120 ONLY
 ################################################################################
 ################################################################################
 # Extension Board 1 Settings.   
@@ -2312,7 +2698,7 @@ P1302 = 0
 #--------------------------------------------------------------------------------------
 # EXT Key 1
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
 P6001 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
@@ -2327,11 +2713,11 @@ P6601 =
 #--------------------------------------------------------------------------------------
 # EXT Key 2
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
 P6002 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6202 =0
+P6202 = 0
 
 # Name
 P6402 =
@@ -2342,11 +2728,11 @@ P6602 =
 #--------------------------------------------------------------------------------------
 # EXT Key 3
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
 P6003 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6203 =0
+P6203 = 0
 
 # Name
 P6403 =
@@ -2358,11 +2744,11 @@ P6603 =
 #--------------------------------------------------------------------------------------
 # EXT Key 4
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
 P6004 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6204 =0
+P6204 = 0
 
 # Name
 P6404 =
@@ -2373,11 +2759,11 @@ P6604 =
 #--------------------------------------------------------------------------------------
 # EXT Key 5
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
 P6005 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6205 =0
+P6205 = 0
 
 # Name
 P6405 =
@@ -2388,11 +2774,11 @@ P6605 =
 #--------------------------------------------------------------------------------------
 # EXT Key 6
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
 P6006 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6206 =0
+P6206 = 0
 
 # Name
 P6406 =
@@ -2403,11 +2789,11 @@ P6606 =
 #--------------------------------------------------------------------------------------
 # EXT Key 7
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
 P6007 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6207 =0
+P6207 = 0
 
 # Name
 P6407 =
@@ -2418,11 +2804,11 @@ P6607 =
 #--------------------------------------------------------------------------------------
 # EXT Key 8
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6008 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6008 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6208 =
+P6208 = 0
 
 # Name
 P6408 =
@@ -2433,11 +2819,11 @@ P6608 =
 #--------------------------------------------------------------------------------------
 # EXT Key 9
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6009 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6009 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6209 =
+P6209 = 0
 
 # Name
 P6409 =
@@ -2449,11 +2835,11 @@ P6609 =
 #--------------------------------------------------------------------------------------
 # EXT Key 10
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
 P6010 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6210 =0
+P6210 = 0
 
 # Name
 P6410 =
@@ -2464,11 +2850,11 @@ P6610 =
 #--------------------------------------------------------------------------------------
 # EXT Key 11
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
 P6011 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6211 =0
+P6211 = 0
 
 # Name
 P6411 =
@@ -2479,11 +2865,11 @@ P6611 =
 #--------------------------------------------------------------------------------------
 # EXT Key 12
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6012 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6012 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6212 =
+P6212 = 0
 
 # Name
 P6412 =
@@ -2494,11 +2880,11 @@ P6612 =
 #--------------------------------------------------------------------------------------
 # EXT Key 13
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6013 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6013 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6213 =
+P6213 = 0
 
 # Name
 P6413 =
@@ -2509,11 +2895,11 @@ P6613 =
 #--------------------------------------------------------------------------------------
 # EXT Key 14
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6014 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6014 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6214 =
+P6214 = 0
 
 # Name
 P6414 =
@@ -2524,11 +2910,11 @@ P6614 =
 #--------------------------------------------------------------------------------------
 # EXT Key 15
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6015 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6015 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6215 =
+P6215 = 0
 
 # Name
 P6415 =
@@ -2539,11 +2925,11 @@ P6615 =
 #--------------------------------------------------------------------------------------
 # EXT Key 16
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6016 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6016 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6216 =
+P6216 = 0
 
 # Name
 P6416 =
@@ -2554,11 +2940,11 @@ P6616 =
 #--------------------------------------------------------------------------------------
 # EXT Key 17
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6017 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6017 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6217 =
+P6217 = 0
 
 # Name
 P6417 =
@@ -2569,11 +2955,11 @@ P6617 =
 #--------------------------------------------------------------------------------------
 # EXT Key 18
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6018 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6018 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6218 =
+P6218 = 0
 
 # Name
 P6418 =
@@ -2584,11 +2970,11 @@ P6618 =
 #--------------------------------------------------------------------------------------
 # EXT Key 19
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6019 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6019 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6219 =
+P6219 = 0
 
 # Name
 P6419 =
@@ -2599,11 +2985,11 @@ P6619 =
 #--------------------------------------------------------------------------------------
 # EXT Key 20
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6020 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6020 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6220 =
+P6220 = 0
 
 # Name
 P6420 =
@@ -2614,11 +3000,11 @@ P6620 =
 #--------------------------------------------------------------------------------------
 # EXT Key 21
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6021 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6021 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6221 =
+P6221 = 0
 
 # Name
 P6421 =
@@ -2630,11 +3016,11 @@ P6621 =
 #--------------------------------------------------------------------------------------
 # EXT Key 22
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6022 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6022 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6222 =
+P6222 = 0
 
 # Name
 P6422 =
@@ -2645,11 +3031,11 @@ P6622 =
 #--------------------------------------------------------------------------------------
 # EXT Key 23
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6023 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6023 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6223 =
+P6223 = 0
 
 # Name
 P6423 =
@@ -2660,11 +3046,11 @@ P6623 =
 #--------------------------------------------------------------------------------------
 # EXT Key 24
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6024 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6024 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6224 =
+P6224 = 0
 
 # Name
 P6424 =
@@ -2676,11 +3062,11 @@ P6624 =
 #--------------------------------------------------------------------------------------
 # EXT Key 25
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6025 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6025 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6225 =
+P6225 = 0
 
 # Name
 P6425 =
@@ -2691,11 +3077,11 @@ P6625 =
 #--------------------------------------------------------------------------------------
 # EXT Key 26
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6026 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6026 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6226 =
+P6226 = 0
 
 # Name
 P6426 =
@@ -2706,11 +3092,11 @@ P6626 =
 #--------------------------------------------------------------------------------------
 # EXT Key 27
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6027 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6027 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6227 =
+P6227 = 0
 
 # Name
 P6427 =
@@ -2721,11 +3107,11 @@ P6627 =
 #--------------------------------------------------------------------------------------
 # EXT Key 28
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6028 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6028 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6228 =
+P6228 = 0
 
 # Name
 P6428 =
@@ -2736,11 +3122,11 @@ P6628 =
 #--------------------------------------------------------------------------------------
 # EXT Key 29
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6029 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6029 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6229 =
+P6229 = 0
 
 # Name
 P6429 =
@@ -2751,11 +3137,11 @@ P6629 =
 #--------------------------------------------------------------------------------------
 # EXT Key 30
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6030 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6030 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6230 =
+P6230 = 0
 
 # Name
 P6430 =
@@ -2766,11 +3152,11 @@ P6630 =
 #--------------------------------------------------------------------------------------
 # EXT Key 31
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6031 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6031 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6231 =
+P6231 = 0
 
 # Name
 P6431 =
@@ -2781,11 +3167,11 @@ P6631 =
 #--------------------------------------------------------------------------------------
 # EXT Key 32
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6032 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6032 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6232 =
+P6232 = 0
 
 # Name
 P6432 =
@@ -2797,11 +3183,11 @@ P6632 =
 #--------------------------------------------------------------------------------------
 # EXT Key 33
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6033 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6033 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6233 =
+P6233 = 0
 
 # Name
 P6433 =
@@ -2812,11 +3198,11 @@ P6633 =
 #--------------------------------------------------------------------------------------
 # EXT Key 34
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6034 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6034 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6234 =
+P6234 = 0
 
 # Name
 P6434 =
@@ -2827,11 +3213,11 @@ P6634 =
 #--------------------------------------------------------------------------------------
 # EXT Key 35
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6035 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6035 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6235 =
+P6235 = 0
 
 # Name
 P6435 =
@@ -2842,11 +3228,11 @@ P6635 =
 #--------------------------------------------------------------------------------------
 # EXT Key 36
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6036 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6036 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6236 =
+P6236 = 0
 
 # Name
 P6436 =
@@ -2857,11 +3243,11 @@ P6636 =
 #--------------------------------------------------------------------------------------
 # EXT Key 37
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6037 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6037 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6237 =
+P6237 = 0
 
 # Name
 P6437 =
@@ -2872,11 +3258,11 @@ P6637 =
 #--------------------------------------------------------------------------------------
 # EXT Key 38
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6038 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6038 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6238 =
+P6238 = 0
 
 # Name
 P6438 =
@@ -2887,11 +3273,11 @@ P6638 =
 #--------------------------------------------------------------------------------------
 # EXT Key 39
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6039 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6039 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6239 =
+P6239 = 0
 
 # Name
 P6439 =
@@ -2902,11 +3288,11 @@ P6639 =
 #--------------------------------------------------------------------------------------
 # EXT Key 40
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6040 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6040 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6240 =
+P6240 = 0
 
 # Name
 P6440 =
@@ -2917,11 +3303,11 @@ P6640 =
 #--------------------------------------------------------------------------------------
 # EXT Key 41
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6041 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6041 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6241 =
+P6241 = 0
 
 # Name
 P6441 =
@@ -2932,11 +3318,11 @@ P6641 =
 #--------------------------------------------------------------------------------------
 # EXT Key 42
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6042 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6042 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6242 =
+P6242 = 0
 
 # Name
 P6442 =
@@ -2947,11 +3333,11 @@ P6642 =
 #--------------------------------------------------------------------------------------
 # EXT Key 43
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6043 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6043 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6243 =
+P6243 = 0
 
 # Name
 P6443 =
@@ -2962,11 +3348,11 @@ P6643 =
 #--------------------------------------------------------------------------------------
 # EXT Key 44
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6044 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6044 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6244 =
+P6244 = 0
 
 # Name
 P6444 =
@@ -2977,11 +3363,11 @@ P6644 =
 #--------------------------------------------------------------------------------------
 # EXT Key 45
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6045 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6045 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6245 =
+P6245 = 0
 
 # Name
 P6445 =
@@ -2992,11 +3378,11 @@ P6645 =
 #--------------------------------------------------------------------------------------
 # EXT Key 46
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6046 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6046 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6246 =
+P6246 = 0
 
 # Name
 P6446 =
@@ -3007,11 +3393,11 @@ P6646 =
 #--------------------------------------------------------------------------------------
 # EXT Key 47
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6047 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6047 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6247 =
+P6247 = 0
 
 # Name
 P6447 =
@@ -3022,11 +3408,11 @@ P6647 =
 #--------------------------------------------------------------------------------------
 # EXT Key 48
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6048 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6048 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6248 =
+P6248 = 0
 
 # Name
 P6448 =
@@ -3037,11 +3423,11 @@ P6648 =
 #--------------------------------------------------------------------------------------
 # EXT Key 49
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6049 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6049 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6249 =
+P6249 = 0
 
 # Name
 P6449 =
@@ -3052,11 +3438,11 @@ P6649 =
 #--------------------------------------------------------------------------------------
 # EXT Key 50
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6050 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6050 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6250 =
+P6250 = 0
 
 # Name
 P6450 =
@@ -3068,11 +3454,11 @@ P6650 =
 #--------------------------------------------------------------------------------------
 # EXT Key 51
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6051 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6051 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6251 =
+P6251 = 0
 
 # Name
 P6451 =
@@ -3084,11 +3470,11 @@ P6651 =
 #--------------------------------------------------------------------------------------
 # EXT Key 52
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6052 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6052 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6252 =
+P6252 = 0
 
 # Name
 P6452 =
@@ -3100,11 +3486,11 @@ P6652 =
 #--------------------------------------------------------------------------------------
 # EXT Key 53
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6053 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6053 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6253 =
+P6253 = 0
 
 # Name
 P6453 =
@@ -3116,11 +3502,11 @@ P6653 =
 #--------------------------------------------------------------------------------------
 # EXT Key 54
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6054 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6054 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6254 =
+P6254 = 0
 
 # Name
 P6454 =
@@ -3131,11 +3517,11 @@ P6654 =
 #--------------------------------------------------------------------------------------
 # EXT Key 55
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6055 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6055 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6255 =
+P6255 = 0
 
 # Name
 P6455 =
@@ -3147,11 +3533,11 @@ P6655 =
 #--------------------------------------------------------------------------------------
 # EXT Key 56
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6056 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6056 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6256 =
+P6256 = 0
 
 # Name
 P6456 =
@@ -3167,11 +3553,11 @@ P6656 =
 #--------------------------------------------------------------------------------------
 # EXT Key 57
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6057 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6057 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6257 =
+P6257 = 0
 
 # Name
 P6457 =
@@ -3182,11 +3568,11 @@ P6657 =
 #--------------------------------------------------------------------------------------
 # EXT Key 58
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6058 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6058 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6258 =
+P6258 = 0
 
 # Name
 P6458 =
@@ -3197,11 +3583,11 @@ P6658 =
 #--------------------------------------------------------------------------------------
 # EXT Key 59
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6059 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6059 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6259 =
+P6259 = 0
 
 # Name
 P6459 =
@@ -3212,11 +3598,11 @@ P6659 =
 #--------------------------------------------------------------------------------------
 # EXT Key 60
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6060 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6060 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6260 =
+P6260 = 0
 
 # Name
 P6460 =
@@ -3227,11 +3613,11 @@ P6660 =
 #--------------------------------------------------------------------------------------
 # EXT Key 61
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6061 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6061 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6261 =
+P6261 = 0
 
 # Name
 P6461 =
@@ -3242,11 +3628,11 @@ P6661 =
 #--------------------------------------------------------------------------------------
 # EXT Key 62
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6062 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6062 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6262 =
+P6262 = 0
 
 # Name
 P6462 =
@@ -3257,11 +3643,11 @@ P6662 =
 #--------------------------------------------------------------------------------------
 # EXT Key 63
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6063 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6063 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6263 =
+P6263 = 0
 
 # Name
 P6463 =
@@ -3273,11 +3659,11 @@ P6663 =
 #--------------------------------------------------------------------------------------
 # EXT Key 64
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6064 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6064 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6264 =
+P6264 = 0
 
 # Name
 P6464 =
@@ -3289,11 +3675,11 @@ P6664 =
 #--------------------------------------------------------------------------------------
 # EXT Key 65
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6065 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6065 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6265 =
+P6265 = 0
 
 # Name
 P6465 =
@@ -3304,11 +3690,11 @@ P6665 =
 #--------------------------------------------------------------------------------------
 # EXT Key 66
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6066 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6066 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6266 =
+P6266 = 0
 
 # Name
 P6466 =
@@ -3319,11 +3705,11 @@ P6666 =
 #--------------------------------------------------------------------------------------
 # EXT Key 67
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6067 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6067 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6267 =
+P6267 = 0
 
 # Name
 P6467 =
@@ -3334,11 +3720,11 @@ P6667 =
 #--------------------------------------------------------------------------------------
 # EXT Key 68
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6068 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6068 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6268 =
+P6268 = 0
 
 # Name
 P6468 =
@@ -3349,11 +3735,11 @@ P6668 =
 #--------------------------------------------------------------------------------------
 # EXT Key 69
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6069 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6069 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6269 =
+P6269 = 0
 
 # Name
 P6469 =
@@ -3364,11 +3750,11 @@ P6669 =
 #--------------------------------------------------------------------------------------
 # EXT Key 70
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6070 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6070 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6270 =
+P6270 = 0
 
 # Name
 P6470 =
@@ -3379,11 +3765,11 @@ P6670 =
 #--------------------------------------------------------------------------------------
 # EXT Key 71
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6071 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6071 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6271 =
+P6271 = 0
 
 # Name
 P6471 =
@@ -3394,11 +3780,11 @@ P6671 =
 #--------------------------------------------------------------------------------------
 # EXT Key 72
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6072 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6072 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6272 =
+P6272 = 0
 
 # Name
 P6472 =
@@ -3409,11 +3795,11 @@ P6672 =
 #--------------------------------------------------------------------------------------
 # EXT Key 73
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6073 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6073 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6273 =
+P6273 = 0
 
 # Name
 P6473 =
@@ -3424,11 +3810,11 @@ P6673 =
 #--------------------------------------------------------------------------------------
 # EXT Key 74
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6074 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6074 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6274 =
+P6274 = 0
 
 # Name
 P6474 =
@@ -3439,11 +3825,11 @@ P6674 =
 #--------------------------------------------------------------------------------------
 # EXT Key 75
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6075 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6075 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6275 =
+P6275 = 0
 
 # Name
 P6475 =
@@ -3454,11 +3840,11 @@ P6675 =
 #--------------------------------------------------------------------------------------
 # EXT Key 76
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6076 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6076 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6276 =
+P6276 = 0
 
 # Name
 P6476 =
@@ -3469,11 +3855,11 @@ P6676 =
 #--------------------------------------------------------------------------------------
 # EXT Key 77
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6077 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6077 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6277 =
+P6277 = 0
 
 # Name
 P6477 =
@@ -3484,11 +3870,11 @@ P6677 =
 #--------------------------------------------------------------------------------------
 # EXT Key 78
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6078 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6078 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6278 =
+P6278 = 0
 
 # Name
 P6478 =
@@ -3499,11 +3885,11 @@ P6678 =
 #--------------------------------------------------------------------------------------
 # EXT Key 79
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6079 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6079 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6279 =
+P6279 = 0
 
 # Name
 P6479 =
@@ -3514,11 +3900,11 @@ P6679 =
 #--------------------------------------------------------------------------------------
 # EXT Key 80
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6080 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6080 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6280 =
+P6280 = 0
 
 # Name
 P6480 =
@@ -3529,11 +3915,11 @@ P6680 =
 #--------------------------------------------------------------------------------------
 # EXT Key 81
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6081 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6081 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6281 =
+P6281 = 0
 
 # Name
 P6481 =
@@ -3544,11 +3930,11 @@ P6681 =
 #--------------------------------------------------------------------------------------
 # EXT Key 82
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6082 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6082 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6282 =
+P6282 = 0
 
 # Name
 P6482 =
@@ -3560,11 +3946,11 @@ P6682 =
 #--------------------------------------------------------------------------------------
 # EXT Key 83
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6083 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6083 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6283 =
+P6283 = 0
 
 # Name
 P6483 =
@@ -3575,11 +3961,11 @@ P6683 =
 #--------------------------------------------------------------------------------------
 # EXT Key 84
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6084 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6084 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6284 =
+P6284 = 0
 
 # Name
 P6484 =
@@ -3591,11 +3977,11 @@ P6684 =
 #--------------------------------------------------------------------------------------
 # EXT Key 85
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6085 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6085 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6285 =
+P6285 = 0
 
 # Name
 P6485 =
@@ -3607,11 +3993,11 @@ P6685 =
 #--------------------------------------------------------------------------------------
 # EXT Key 86
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6086 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6086 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6286 =
+P6286 = 0
 
 # Name
 P6486 =
@@ -3623,11 +4009,11 @@ P6686 =
 #--------------------------------------------------------------------------------------
 # EXT Key 87
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6087 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6087 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6287 =
+P6287 = 0
 
 # Name
 P6487 =
@@ -3638,11 +4024,11 @@ P6687 =
 #--------------------------------------------------------------------------------------
 # EXT Key 88
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6088 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6088 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6288 =
+P6288 = 0
 
 # Name
 P6488 =
@@ -3653,11 +4039,11 @@ P6688 =
 #--------------------------------------------------------------------------------------
 # EXT Key 89
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6089 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6089 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6289 =
+P6289 = 0
 
 # Name
 P6489 =
@@ -3668,11 +4054,11 @@ P6689 =
 #--------------------------------------------------------------------------------------
 # EXT Key 90
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6090 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6090 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6290 =
+P6290 = 0
 
 # Name
 P6490 =
@@ -3683,11 +4069,11 @@ P6690 =
 #--------------------------------------------------------------------------------------
 # EXT Key 91
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6091 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6091 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6291 =
+P6291 = 0
 
 # Name
 P6491 =
@@ -3698,11 +4084,11 @@ P6691 =
 #--------------------------------------------------------------------------------------
 # EXT Key 92
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6092 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6092 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6292 =
+P6292 = 0
 
 # Name
 P6492 =
@@ -3714,11 +4100,11 @@ P6692 =
 #--------------------------------------------------------------------------------------
 # EXT Key 93
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6093 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6093 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6293 =
+P6293 = 0
 
 # Name
 P6493 =
@@ -3729,11 +4115,11 @@ P6693 =
 #--------------------------------------------------------------------------------------
 # EXT Key 94
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6094 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6094 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6294 =
+P6294 = 0
 
 # Name
 P6494 =
@@ -3744,11 +4130,11 @@ P6694 =
 #--------------------------------------------------------------------------------------
 # EXT Key 95
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6095 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6095 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6295 =
+P6295 = 0
 
 # Name
 P6495 =
@@ -3760,11 +4146,11 @@ P6695 =
 #--------------------------------------------------------------------------------------
 # EXT Key 96
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6096 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6096 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6296 =
+P6296 = 0
 
 # Name
 P6496 =
@@ -3775,11 +4161,11 @@ P6696 =
 #--------------------------------------------------------------------------------------
 # EXT Key 97
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6097 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6097 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6297 =
+P6297 = 0
 
 # Name
 P6497 =
@@ -3790,11 +4176,11 @@ P6697 =
 #--------------------------------------------------------------------------------------
 # EXT Key 98
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6098 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6098 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6298 =
+P6298 = 0
 
 # Name
 P6498 =
@@ -3805,11 +4191,11 @@ P6698 =
 #--------------------------------------------------------------------------------------
 # EXT Key 99
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6099 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6099 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6299 =
+P6299 = 0
 
 # Name
 P6499 =
@@ -3820,11 +4206,11 @@ P6699 =
 #--------------------------------------------------------------------------------------
 # EXT Key 100
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6100 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6100 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6300 =
+P6300 = 0
 
 # Name
 P6500 =
@@ -3835,11 +4221,11 @@ P6700 =
 #--------------------------------------------------------------------------------------
 # EXT Key 101
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6101 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6101 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6301 =
+P6301 = 0
 
 # Name
 P6501 =
@@ -3850,11 +4236,11 @@ P6701 =
 #--------------------------------------------------------------------------------------
 # EXT Key 102
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6102 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6102 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6302 =
+P6302 = 0
 
 # Name
 P6502 =
@@ -3865,11 +4251,11 @@ P6702 =
 #--------------------------------------------------------------------------------------
 # EXT Key 103
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6103 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6103 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6303 =
+P6303 = 0
 
 # Name
 P6503 =
@@ -3880,11 +4266,11 @@ P6703 =
 #--------------------------------------------------------------------------------------
 # EXT Key 104
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6104 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6104 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6304 =
+P6304 = 0
 
 # Name
 P6504 =
@@ -3895,11 +4281,11 @@ P6704 =
 #--------------------------------------------------------------------------------------
 # EXT Key 105
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6105 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6105 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6305 =
+P6305 = 0
 
 # Name
 P6505 =
@@ -3910,11 +4296,11 @@ P6705 =
 #--------------------------------------------------------------------------------------
 # EXT Key 106
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6106 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6106 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6306 =
+P6306 = 0
 
 # Name
 P6506 =
@@ -3925,11 +4311,11 @@ P6706 =
 #--------------------------------------------------------------------------------------
 # EXT Key 107
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6107 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6107 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6307 =
+P6307 = 0
 
 # Name
 P6507 =
@@ -3940,11 +4326,11 @@ P6707 =
 #--------------------------------------------------------------------------------------
 # EXT Key 108
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6108 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6108 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6308 =
+P6308 = 0
 
 # Name
 P6508 =
@@ -3955,11 +4341,11 @@ P6708 =
 #--------------------------------------------------------------------------------------
 # EXT Key 109
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6109 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6109 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6309 =
+P6309 = 0
 
 # Name
 P6509 =
@@ -3970,11 +4356,11 @@ P6709 =
 #--------------------------------------------------------------------------------------
 # EXT Key 110
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6110 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6110 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6310 =
+P6310 = 0
 
 # Name
 P6510 =
@@ -3985,11 +4371,11 @@ P6710 =
 #--------------------------------------------------------------------------------------
 # EXT Key 111
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6111 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6111 = 0
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6311 =
+P6311 = 0
 
 # Name
 P6511 =
@@ -4000,11 +4386,11 @@ P6711 =
 #--------------------------------------------------------------------------------------
 # EXT Key 112
 #--------------------------------------------------------------------------------------
-# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account
-P6112 = 
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF, 4 - Speed Dial via active account, 5 - Dial DTMF, 7 - CallReturn
+P6112 = 0 
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 , 4 - Account 5, 5 - Account 6
-P6312 =
+P6312 = 0
 
 # Name
 P6512 =
