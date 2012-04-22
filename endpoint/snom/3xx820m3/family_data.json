@@ -20,6 +20,7 @@
           "template_data.json",
           "action_urls.json",
           "keys.json",
+          "functionkeys-300.json",
           "speed_dials.json"
         ]
       },
@@ -33,6 +34,7 @@
           "template_data.json",
           "action_urls.json",
           "keys.json",
+          "functionkeys.json",
           "speed_dials.json"
         ]
       },
@@ -46,6 +48,7 @@
           "template_data.json",
           "action_urls.json",
           "keys.json",
+          "functionkeys.json",
           "speed_dials.json"
         ]
       },
@@ -59,6 +62,7 @@
           "template_data.json",
           "action_urls.json",
           "keys.json",
+          "functionkeys.json",
           "speed_dials.json"
         ]
       },
@@ -72,6 +76,7 @@
           "template_data.json",
           "action_urls.json",
           "keys.json",
+          "functionkeys.json",
           "speed_dials.json"
         ]
       },
@@ -84,6 +89,7 @@
           "template_data.json",
           "action_urls.json",
           "keys.json",
+          "functionkeys.json",
           "speed_dials.json"
         ]
       },
@@ -96,6 +102,7 @@
           "template_data.json",
           "action_urls.json",
           "keys.json",
+          "functionkeys.json",
           "speed_dials.json"
         ]
       }
