@@ -8,10 +8,10 @@
             "name":"keys",
             "item":[
               {
-                "description":"Function Keys (0-1)",
+                "description":"Function Keys (0-5)",
                 "type":"loop",
                 "loop_start":"0",
-                "loop_end":"1",
+                "loop_end":"5",
                 "data":{
                   "item":[
                     {
