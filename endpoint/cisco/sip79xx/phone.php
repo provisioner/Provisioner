@@ -25,5 +25,6 @@ class endpoint_cisco_sip79xx_phone extends endpoint_cisco_base {
 		$this->config_file_replacements['$mac']=strtoupper($this->mac);
 		//Cisco time offset is in minutes, our global variable is in seconds
 		//$this->timezone = $global_cfg['gmtoff']/60;
+		$this->protected_files = array("RINGLIST.DAT","ringlist.xml");
 	}
 }
