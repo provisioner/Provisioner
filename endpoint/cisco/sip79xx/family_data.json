@@ -7,7 +7,7 @@
     "firmware_pkg":"NULL",
     "firmware_md5sum":"",
     "description":"",
-    "configuration_files":"SIP$mac.cnf,SIPDefault.cnf,XMLDefault.cnf.xml,SEP$mac.cnf.xml,RINGLIST.DAT,ringlist.xml,OS79XX.TXT",
+    "configuration_files":"SIP$mac.cnf,SIPDefault.cnf,XMLDefault.cnf.xml,SEP$mac.cnf.xml,RINGLIST.DAT,ringlist.xml",
     "changelog":"",
     "model_list":[
       {
