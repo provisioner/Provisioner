@@ -6,7 +6,7 @@
       "brand_id": "2",
       "package": "grandstream.tgz",
       "md5sum": "66774bb47500d63ffef90a28ca8ab178",
-      "last_modified": 1334882029,
+      "last_modified": 1334881593,
       "family_list": [
         {
           "id": "2",
@@ -44,7 +44,7 @@
       "oui_list": [
         "000B82"
       ],
-      "changelog": "PACKAGER: Cisco\n-Fixed and Cleaned up files\n-Removed OS79XX as thats a firmware specific file\n\nCloudTC\n-Fixed server value when not using an outbound host"
+      "changelog": "PACKAGER: PACKAGER: Cisco\n-Fixed and Cleaned up files\n-Removed OS79XX as thats a firmware specific file\n\nCloudTC\n-Fixed server value when not using an outbound host"
     }
   }
 }
