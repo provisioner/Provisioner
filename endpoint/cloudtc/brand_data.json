@@ -6,7 +6,7 @@
       "directory": "cloudtc",
       "package": "cloudtc.tgz",
       "md5sum": "24f39c3b9ffd6aefe6e9a5c1fc176ab3",
-      "last_modified": 1325536289,
+      "last_modified": 1335237712,
       "family_list": [
         {
           "id": "1",
@@ -20,7 +20,7 @@
       "oui_list": [
         "000000"
       ],
-      "changelog": "PACKAGER: some changes and fixes"
+      "changelog": "PACKAGER: Cisco\n-Fixed and Cleaned up files\n-Removed OS79XX as thats a firmware specific file\n\nCloudTC\n-Fixed server value when not using an outbound host"
     }
   }
 }

@@ -3,7 +3,7 @@
     "name": "GXP Enterprise HD series [2100,2110,2120]",
     "id": "4",
     "directory": "gxphd",
-    "firmware_ver": 1326826582,
+    "firmware_ver": 1334882029,
     "firmware_md5sum": "8f655bde3163e5a24c743a8253a2ae47",
     "firmware_pkg": "gxphd_firmware.tgz",
     "description": "Use Grandstream Encrypted Compiler By Default",
