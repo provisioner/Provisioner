@@ -6,7 +6,7 @@
       "directory": "cisco",
       "package": "cisco.tgz",
       "md5sum": "307dc1091f1b3ea96530a88bb2d7b45d",
-      "last_modified": 1334603027,
+      "last_modified": 1335287627,
       "family_list": [
         {
           "id": "5",
@@ -90,7 +90,7 @@
         "1CDF0F",
         "E05FB9"
       ],
-      "changelog": "PACKAGER: Yealink\n-Adding Missed File"
+      "changelog": "PACKAGER: Cisco\n-Fixed and Cleaned up files\n-Removed OS79XX as thats a firmware specific file\n\nCloudTC\n-Fixed server value when not using an outbound host"
     }
   }
 }

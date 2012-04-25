@@ -6,7 +6,7 @@
       "brand_id": "6",
       "package": "snom.tgz",
       "md5sum": "fd5d159d592e68b94eaf5c86eb735d41",
-      "last_modified": 1332324534,
+      "last_modified": 1335288965,
       "family_list": [
         {
           "id": "1",
@@ -28,7 +28,7 @@
       "oui_list": [
         "000413"
       ],
-      "changelog": "PACKAGER: Using Jaybee regexp match WITH escaped $"
+      "changelog": "PACKAGER: Cisco\n-Fixed and Cleaned up files\n-Removed OS79XX as thats a firmware specific file\n\nCloudTC\n-Fixed server value when not using an outbound host"
     }
   }
 }
