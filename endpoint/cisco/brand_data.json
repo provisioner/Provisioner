@@ -5,8 +5,8 @@
       "brand_id": "7",
       "directory": "cisco",
       "package": "cisco.tgz",
-      "md5sum": "2c646c4e989eba78368b9b076920163d",
-      "last_modified": 1335392855,
+      "md5sum": "d02fc8e7c280eedb7efcf9fd237cdeb0",
+      "last_modified": 1335722665,
       "family_list": [
         {
           "id": "5",
@@ -90,7 +90,7 @@
         "1CDF0F",
         "E05FB9"
       ],
-      "changelog": "PACKAGER: PACKAGER: PACKAGER: Cisco\n-Fixed and Cleaned up files\n-Removed OS79XX as thats a firmware specific file\n\nCloudTC\n-Fixed server value when not using an outbound host"
+      "changelog": "PACKAGER: Cisco\n-Fixes #52"
     }
   }
 }
