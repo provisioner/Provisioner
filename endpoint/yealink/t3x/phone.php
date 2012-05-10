@@ -15,9 +15,32 @@ class endpoint_yealink_t3x_phone extends endpoint_yealink_base {
         $line_data['line_active'] = 1;
         $line_data['line_m1'] = $line_data['line'] - 1;
         $line_data['voicemail_number'] = '*97';
+
+        if (isset($line_data['transport'])) {
+            switch ($line_data['transport']) {
+                case "UDP":
+                    $line_data['transport'] = 0;
+                    break;
+                case "TCP":
+                    $line_data['transport'] = 1;
+                    break;
+                case "TLS":
+                    $line_data['transport'] = 2;
+                    break;
+                case "DNSSRV":
+                    $line_data['transport'] = 3;
+                    break;
+                default:
+                    $line_data['transport'] = 0;
+                    break;
+            }
+        } else {
+            $line_data['transport'] = 0;
+        }
+
         return($line_data);
     }
-    
+
     function prepare_for_generateconfig() {
         # This contains the last 2 digits of y0000000000xx.cfg, for each model.
         $model_suffixes = array('T38' => '38', 'T32' => '32');
@@ -86,5 +109,4 @@ class endpoint_yealink_t3x_phone extends endpoint_yealink_base {
             }
         }
     }
-
 }

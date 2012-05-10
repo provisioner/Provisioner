@@ -142,19 +142,19 @@
                             "data":[
                             {
                                 "text":"UDP",
-                                "value":"0"
+                                "value":"UDP"
                             },
                             {
                                 "text":"TCP",
-                                "value":"1"
+                                "value":"TCP"
                             },
                             {
                                 "text":"TLS",
-                                "value":"2"
+                                "value":"TLS"
                             },
                             {
                                 "text":"DNS-SRV",
-                                "value":"3"
+                                "value":"DNSSRV"
                             }
                             ]
                         },

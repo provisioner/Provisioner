@@ -14,7 +14,7 @@ class endpoint_cisco_linksysata_phone extends endpoint_cisco_base {
     function parse_lines_hook($line_data) {
         $line_data['dial_plan'] = ((isset($line_data['secret'])) && ($line_data['secret'] != "") && (isset($this->settings['dial_plan']))) ? htmlentities($this->settings['dial_plan']) : "";
 
-        $line_data['use_dns_srv'] = (isset($line_data['transport']) && ($line_data['transport'] == 3)) ? 'Yes' : 'No';
+        $line_data['use_dns_srv'] = (isset($line_data['transport']) && ($line_data['transport'] == "DNSSRV")) ? 'Yes' : 'No';
         return($line_data);
     }
 

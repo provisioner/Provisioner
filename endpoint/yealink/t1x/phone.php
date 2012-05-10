@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Yealink Modules Phone File
  *
@@ -17,9 +18,32 @@ class endpoint_yealink_t1x_phone extends endpoint_yealink_base {
     function parse_lines_hook($line_data, $line_total) {
         $line_data['line_active'] = 1;
         $line_data['line_m1'] = $line_data['line'] - 1;
-		$line_data['enable_outbound_proxy_server'] = (isset($line_data['use_outbound_proxy']) && $line_data['use_outbound_proxy']) ? 1 : 0;
-		$line_data['enable_stun'] = 0;
+        $line_data['enable_outbound_proxy_server'] = (isset($line_data['use_outbound_proxy']) && $line_data['use_outbound_proxy']) ? 1 : 0;
+        $line_data['enable_stun'] = 0;
         $line_data['voicemail_number'] = '*97';
+
+        if (isset($line_data['transport'])) {
+            switch ($line_data['transport']) {
+                case "UDP":
+                    $line_data['transport'] = 0;
+                    break;
+                case "TCP":
+                    $line_data['transport'] = 1;
+                    break;
+                case "TLS":
+                    $line_data['transport'] = 2;
+                    break;
+                case "DNSSRV":
+                    $line_data['transport'] = 3;
+                    break;
+                default:
+                    $line_data['transport'] = 0;
+                    break;
+            }
+        } else {
+            $line_data['transport'] = 0;
+        }
+
         return($line_data);
     }
 
@@ -39,7 +63,6 @@ class endpoint_yealink_t1x_phone extends endpoint_yealink_base {
                 }
             }
         }
-
     }
 
 }
