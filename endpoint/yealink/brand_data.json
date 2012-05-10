@@ -5,8 +5,8 @@
       "brand_id": "8",
       "directory": "yealink",
       "package": "yealink.tgz",
-      "md5sum": "da190a9fe4b60f97536a7ee4446ed0cf",
-      "last_modified": 1336632941,
+      "md5sum": "eb813a32ef49d394732987b7314dd549",
+      "last_modified": 1336635810,
       "family_list": [
         {
           "id": "3",
@@ -36,7 +36,7 @@
       "oui_list": [
         "001565"
       ],
-      "changelog": "PACKAGER: Cisco\n-Don't set loadInformation if its not a sip79x1G"
+      "changelog": "PACKAGER: Global DNS-SRV\n-After further review of this protocol is should be under transport, not a separate option! urg"
     }
   }
 }
