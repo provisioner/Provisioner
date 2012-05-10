@@ -18,8 +18,8 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
 
         $short_name = (strlen($line_data['displayname']) > 12) ? substr($line_data['displayname'], 0, 8) . "..." : $line_data['displayname'];
 
-        $line_data['use_dns_srv'] = isset($line_data['use_dns_srv']) ? 'Yes' : 'No';
-
+        $line_data['use_dns_srv'] = (isset($line_data['transport']) && ($line_data['transport'] == 3)) ? 'Yes' : 'No';
+        
         $line_data['dial_plan'] = ((isset($line_data['secret'])) && ($line_data['secret'] != "") && (isset($this->settings['dial_plan']))) ? htmlentities($this->settings['dial_plan']) : "";
 
         if (isset($this->settings['loops']['lineops'][$line])) {

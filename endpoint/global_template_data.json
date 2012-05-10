@@ -151,6 +151,10 @@
                             {
                                 "text":"TLS",
                                 "value":"2"
+                            },
+                            {
+                                "text":"DNS-SRV",
+                                "value":"3"
                             }
                             ]
                         },
@@ -169,12 +173,6 @@
                                 "value":"1"
                             }
                             ]
-                        },
-                        {
-                            "variable": "$use_dns_srv",
-                            "default_value": false,
-                            "description": "Use DNS SRV",
-                            "type": "checkbox"
                         },
                         {
                             "variable":"$first_audio_codec",
