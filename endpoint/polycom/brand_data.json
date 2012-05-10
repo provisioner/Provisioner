@@ -5,8 +5,8 @@
       "directory": "polycom",
       "brand_id": "4",
       "package": "polycom.tgz",
-      "md5sum": "b06d8e2ea72f10cd37fcb38862507a80",
-      "last_modified": 1332874399,
+      "md5sum": "42e7ec6a0b5291ce90f6802bd8f748c0",
+      "last_modified": 1336632941,
       "family_list": [
         {
           "id": "4",
@@ -61,7 +61,7 @@
         "0004F2",
         "00907A"
       ],
-      "changelog": "PACKAGER: Globing the Polycom directory so we can include all needed directories and files"
+      "changelog": "PACKAGER: Cisco\n-Don't set loadInformation if its not a sip79x1G"
     }
   }
 }

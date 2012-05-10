@@ -5,9 +5,9 @@
       "brand_id": "1",
       "directory": "aastra",
       "package": "aastra.tgz",
-      "md5sum": "0f24727951727f3f096e85a24dc8bc1e",
-      "last_modified": 1333427655,
-      "changelog": "PACKAGER: Yealink\n-Set deaults for line keys to lines instead of nothing\n-Fix all loops",
+      "md5sum": "c30927102ce140ed7f0c61ec2300fef9",
+      "last_modified": 1336632941,
+      "changelog": "PACKAGER: Cisco\n-Don't set loadInformation if its not a sip79x1G",
       "family_list": [
         {
           "id": "1",
