@@ -19,6 +19,12 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
         } else {
             $short_name = $line_data['displayname'];
         }
+        
+        if(isset($line_data['use_dns_srv'])) {
+            $line_data['use_dns_srv'] = 'Yes';
+        } else {
+            $line_data['use_dns_srv'] = 'No';
+        }
 
         if ((isset($line_data['secret'])) && ($line_data['secret'] != "") && (isset($this->settings['dial_plan']))) {
             $line_data['dial_plan'] = htmlentities($this->settings['dial_plan']);
