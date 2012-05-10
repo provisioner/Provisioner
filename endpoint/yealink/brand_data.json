@@ -5,8 +5,8 @@
       "brand_id": "8",
       "directory": "yealink",
       "package": "yealink.tgz",
-      "md5sum": "c0808f503626622b0ba03df896b8daa1",
-      "last_modified": 1334603238,
+      "md5sum": "da190a9fe4b60f97536a7ee4446ed0cf",
+      "last_modified": 1336632941,
       "family_list": [
         {
           "id": "3",
@@ -36,7 +36,7 @@
       "oui_list": [
         "001565"
       ],
-      "changelog": "PACKAGER: Force system update"
+      "changelog": "PACKAGER: Cisco\n-Don't set loadInformation if its not a sip79x1G"
     }
   }
 }
