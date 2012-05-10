@@ -12,7 +12,7 @@ class endpoint_cisco_linksysata_phone extends endpoint_cisco_base {
 	
 	function parse_lines_hook($line_data) {
         if ((isset($line_data['secret'])) && ($line_data['secret'] != "") && (isset($this->settings['dial_plan']))) {
-            $line_data['dial_plan'] = $this->settings['dial_plan'];
+            $line_data['dial_plan'] = htmlentities($this->settings['dial_plan']);
         } else {
             $line_data['dial_plan'] = "";
         }
