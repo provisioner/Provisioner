@@ -5,8 +5,8 @@
       "brand_id": "7",
       "directory": "cisco",
       "package": "cisco.tgz",
-      "md5sum": "69845f4faaeec5feba203993611ba8c5",
-      "last_modified": 1336632941,
+      "md5sum": "7af8abd5f6b5a0d5ada9b94620329b52",
+      "last_modified": 1336633658,
       "family_list": [
         {
           "id": "5",
@@ -90,7 +90,7 @@
         "1CDF0F",
         "E05FB9"
       ],
-      "changelog": "PACKAGER: Cisco\n-Don't set loadInformation if its not a sip79x1G"
+      "changelog": "PACKAGER: htmlentities"
     }
   }
 }
