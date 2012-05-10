@@ -171,6 +171,12 @@
                             ]
                         },
                         {
+                            "variable": "$use_dns_srv",
+                            "default_value": false,
+                            "description": "Use DNS SRV",
+                            "type": "checkbox"
+                        },
+                        {
                             "variable":"$first_audio_codec",
                             "default_value":"G711u",
                             "description":"First Preferred Audio Codec",

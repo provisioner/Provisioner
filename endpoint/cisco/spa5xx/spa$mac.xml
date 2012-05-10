@@ -46,7 +46,7 @@
 	<Proxy_Redundancy_Method_{$line}_ ua="ro">{$proxy_redundancy_method|Normal}</Proxy_Redundancy_Method_{$line}_>
 	
 	<!-- DNS SRV Information -->
-	<Use_DNS_SRV_{$line}_ ua="rw">No</Use_DNS_SRV_{$line}_>
+	<Use_DNS_SRV_{$line}_ ua="rw">{$use_dns_srv|No}</Use_DNS_SRV_{$line}_>
 	<DNS_SRV_Auto_Prefix_{$line}_ group="Ext_{$line}/Proxy_and_Registration">{$dns_srv_prefix|Yes}</DNS_SRV_Auto_Prefix_{$line}_>
 
 	<!-- NAT -->
