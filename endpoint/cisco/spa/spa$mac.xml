@@ -1,5 +1,6 @@
 <flat-profile>
         <!-- Reset the global configuration options, now we will reset per day instead of every second -->
+        <!-- Reset the global configuration options, now we will reset per day instead of every second -->
         <Resync_Periodic>86400</Resync_Periodic>
         <Resync_On_Reset>Yes</Resync_On_Reset>
 
