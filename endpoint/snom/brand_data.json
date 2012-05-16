@@ -5,8 +5,8 @@
       "directory": "snom",
       "brand_id": "6",
       "package": "snom.tgz",
-      "md5sum": "fd5d159d592e68b94eaf5c86eb735d41",
-      "last_modified": 1335288965,
+      "md5sum": "2b489977c3c18878c4a79f301d8fa06c",
+      "last_modified": 1336632941,
       "family_list": [
         {
           "id": "1",
@@ -28,7 +28,7 @@
       "oui_list": [
         "000413"
       ],
-      "changelog": "PACKAGER: Cisco\n-Fixed and Cleaned up files\n-Removed OS79XX as thats a firmware specific file\n\nCloudTC\n-Fixed server value when not using an outbound host"
+      "changelog": "PACKAGER: Cisco\n-Don't set loadInformation if its not a sip79x1G"
     }
   }
 }

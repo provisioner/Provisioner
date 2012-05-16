@@ -5,8 +5,8 @@
       "brand_id": "7",
       "directory": "cisco",
       "package": "cisco.tgz",
-      "md5sum": "d02fc8e7c280eedb7efcf9fd237cdeb0",
-      "last_modified": 1335722665,
+      "md5sum": "09e7ed3bee708bc192762346fc7577f3",
+      "last_modified": 1336635810,
       "family_list": [
         {
           "id": "5",
@@ -90,7 +90,7 @@
         "1CDF0F",
         "E05FB9"
       ],
-      "changelog": "PACKAGER: Cisco\n-Fixes #52"
+      "changelog": "PACKAGER: Global DNS-SRV\n-After further review of this protocol is should be under transport, not a separate option! urg"
     }
   }
 }
