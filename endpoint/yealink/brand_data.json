@@ -5,8 +5,8 @@
       "brand_id": "8",
       "directory": "yealink",
       "package": "yealink.tgz",
-      "md5sum": "c0808f503626622b0ba03df896b8daa1",
-      "last_modified": 1334603238,
+      "md5sum": "eb813a32ef49d394732987b7314dd549",
+      "last_modified": 1336635810,
       "family_list": [
         {
           "id": "3",
@@ -36,7 +36,7 @@
       "oui_list": [
         "001565"
       ],
-      "changelog": "PACKAGER: Force system update"
+      "changelog": "PACKAGER: Global DNS-SRV\n-After further review of this protocol is should be under transport, not a separate option! urg"
     }
   }
 }

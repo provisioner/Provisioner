@@ -4,9 +4,9 @@
       "name": "Norphonic",
       "brand_id": "15",
       "directory": "norphonic",
-      "package": "NULL",
-      "md5sum": "",
-      "last_modified": 1333558889,
+      "package": "norphonic.tgz",
+      "md5sum": "21b5ad9e0a42061c98b9b005c7968415",
+      "last_modified": 1336632941,
       "family_list": [
         {
           "id": "1",
@@ -21,7 +21,7 @@
         "1045BE",
         "0050C2"
       ],
-      "changelog": "PACKAGER: Adding Static IP address settings for cisco"
+      "changelog": "PACKAGER: Cisco\n-Don't set loadInformation if its not a sip79x1G"
     }
   }
 }
