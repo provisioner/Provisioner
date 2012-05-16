@@ -5,8 +5,8 @@
       "brand_id": "8",
       "directory": "yealink",
       "package": "yealink.tgz",
-      "md5sum": "eb813a32ef49d394732987b7314dd549",
-      "last_modified": 1336635810,
+      "md5sum": "17453665ce5fcdb03a6d2644ae183fa5",
+      "last_modified": 1337145775,
       "family_list": [
         {
           "id": "3",
@@ -36,7 +36,7 @@
       "oui_list": [
         "001565"
       ],
-      "changelog": "PACKAGER: Global DNS-SRV\n-After further review of this protocol is should be under transport, not a separate option! urg"
+      "changelog": "PACKAGER: Yealink\n-Fixes to displayname\n-fixes to voicemail\n-fixes to daylight saving time"
     }
   }
 }
