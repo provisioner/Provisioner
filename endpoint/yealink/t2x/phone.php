@@ -85,7 +85,8 @@ class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
             if (!isset($this->settings['loops']['linekey'][$i])) {
                 $this->settings['loops']['linekey'][$i] = array(
                     "mode" => "blf",
-                    "type" => 15
+                    "type" => 15,
+                    "line" => 0
                 );
             }
         }
