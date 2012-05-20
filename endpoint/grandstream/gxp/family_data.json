@@ -62,6 +62,22 @@
         "template_data": [
           "template_data.json"
         ]
+      },
+      {
+        "model": "GXP1400",
+        "lines": "2",
+        "id": "8",
+        "template_data": [
+          "template_data.json"
+        ]
+      },
+      {
+        "model": "GXP1405",
+        "lines": "2",
+        "id": "9",
+        "template_data": [
+          "template_data.json"
+        ]
       }
     ]
   }
