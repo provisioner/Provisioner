@@ -8,10 +8,10 @@
             "name":"basic",
             "item":[
               {
-                "description":"Line Keys (1-3)",
+                "description":"Line Keys (11-16)",
                 "type":"loop",
-                "loop_start":"1",
-                "loop_end":"3",
+                "loop_start":"11",
+                "loop_end":"16",
                 "data":{
                   "item":[
                     {
@@ -46,7 +46,7 @@
                         },
                         {
                           "text":"BLF",
-                          "value":"14",
+                          "value":"16",
                           "disable":"$linekey_mode_{$count}",
                           "enable":"$linekey_line_{$count},$linekey_extension_{$count},$linekey_pickup_{$count}"
                         },
@@ -190,6 +190,12 @@
                       "variable":"$linekey_pickup",
                       "default_value":"",
                       "description":"Line Key {$count} Pickup Number",
+                      "type":"input"
+                    },
+                    {
+                      "variable":"$linekey_label",
+                      "default_value":"",
+                      "description":"Line Key {$count} Label",
                       "type":"input"
                     },
                     {
