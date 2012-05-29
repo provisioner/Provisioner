@@ -49,20 +49,37 @@ class endpoint_yealink_t3x_phone extends endpoint_yealink_base {
         $this->config_file_replacements['$suffix'] = $model_suffixes[$this->model];
         parent::prepare_for_generateconfig();
 
+        
         if (isset($this->settings['loops']['linekey'])) {
             foreach ($this->settings['loops']['linekey'] as $key => $data) {
                 if (($key >= 1) && ($key <= 6)) {
-                    $this->settings['loops']['linekey'][$key + 10] = $this->settings['loops']['linekey'][$key];
+                    $this->settings['loops']['linekey'][$key] = $this->settings['loops']['linekey'][$key];
                 }
             }
         }
 
+        //Set line key defaults
+        $s = $this->max_lines + 10;
+        for ($i = 11; $i <= $s; $i++) {
+            if (!isset($this->settings['loops']['linekey'][$i])) {
+                $this->settings['loops']['linekey'][$i] = array(
+                    "mode" => "blf",
+                    "type" => 15
+                );
+            }
+        }
+        
         if (isset($this->settings['loops']['softkey'])) {
             foreach ($this->settings['loops']['softkey'] as $key => $data) {
                 if ($this->settings['loops']['softkey'][$key]['type'] == '0') {
                     unset($this->settings['loops']['softkey'][$key]);
                 }
             }
+        } else {
+            $this->settings['loops']['softkey'][1]['type'] = 28;
+            $this->settings['loops']['softkey'][2]['type'] = 29;
+            $this->settings['loops']['softkey'][3]['type'] = 5;
+            $this->settings['loops']['softkey'][4]['type'] = 30;
         }
 
         if (isset($this->settings['loops']['remotephonebook'])) {
@@ -84,7 +101,8 @@ class endpoint_yealink_t3x_phone extends endpoint_yealink_base {
                 }
             }
         }
-
+        
+        
         if (isset($this->settings['loops']['memkey'])) {
             foreach ($this->settings['loops']['memkey'] as $key => $data) {
                 if ($this->settings['loops']['memkey'][$key]['type'] == '16') {
