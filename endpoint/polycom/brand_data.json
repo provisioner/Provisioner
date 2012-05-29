@@ -5,8 +5,8 @@
       "directory": "polycom",
       "brand_id": "4",
       "package": "polycom.tgz",
-      "md5sum": "42e7ec6a0b5291ce90f6802bd8f748c0",
-      "last_modified": 1336632941,
+      "md5sum": "069052593624d13381a7c023ec281670",
+      "last_modified": 1338308743,
       "family_list": [
         {
           "id": "4",
@@ -61,7 +61,7 @@
         "0004F2",
         "00907A"
       ],
-      "changelog": "PACKAGER: Cisco\n-Don't set loadInformation if its not a sip79x1G"
+      "changelog": "PACKAGER: Yealink t3x\n-Massive fixes and changes to yealink t3x\n-Timezone related issues\n-BLF and Line Key Issues\n-Default Value issues\n-Still cant get the screen saver to stop"
     }
   }
 }
