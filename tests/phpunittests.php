@@ -1,6 +1,6 @@
 <?php
-define("MODULES_DIR", "/var/www/repo/endpoint");
-define("PROVISIONER_BASE", "/var/www/repo/");
+define("MODULES_DIR", "../endpoint");
+define("PROVISIONER_BASE", "../");
 require_once(PROVISIONER_BASE.'autoload.php');
 
 class StackTest extends PHPUnit_Framework_TestCase

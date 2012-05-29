@@ -16,10 +16,10 @@
         "id":"1",
         "template_data":[
           "template_data.json",
-          "line_keys_22.json",
-          "soft_keys_22.json",
-          "hard_keys_22.json",
-          "dialnow_22.json",
+          "line_keys_32.json",
+          "soft_keys.json",
+          "hard_keys.json",
+          "dialnow.json",
           "ext38.json"
         ]
       },
@@ -29,11 +29,11 @@
         "id":"2",
         "template_data":[
           "template_data.json",
-          "line_keys_28.json",
-          "soft_keys_22.json",
-          "hard_keys_22.json",
-          "memory_keys_22.json",
-          "dialnow_22.json",
+          "line_keys_38.json",
+          "soft_keys.json",
+          "hard_keys.json",
+          "memory_keys.json",
+          "dialnow.json",
           "ext38.json"
         ]
       }
