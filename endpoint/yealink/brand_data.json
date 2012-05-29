@@ -5,8 +5,8 @@
       "brand_id": "8",
       "directory": "yealink",
       "package": "yealink.tgz",
-      "md5sum": "17453665ce5fcdb03a6d2644ae183fa5",
-      "last_modified": 1337145775,
+      "md5sum": "49927b3ded585eae556fe5c3b347f9ea",
+      "last_modified": 1338308743,
       "family_list": [
         {
           "id": "3",
@@ -36,7 +36,7 @@
       "oui_list": [
         "001565"
       ],
-      "changelog": "PACKAGER: Yealink\n-Fixes to displayname\n-fixes to voicemail\n-fixes to daylight saving time"
+      "changelog": "PACKAGER: Yealink t3x\n-Massive fixes and changes to yealink t3x\n-Timezone related issues\n-BLF and Line Key Issues\n-Default Value issues\n-Still cant get the screen saver to stop"
     }
   }
 }
