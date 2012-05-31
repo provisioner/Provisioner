@@ -8,21 +8,23 @@
  * @package Provisioner
  *
  */
-foreach (explode(" ","NONE DEPTH STATE_MISMATCH CTRL_CHAR SYNTAX UTF8") AS $key=>$value) {
-	$value="JSON_ERROR_$value"; 
-	if (!defined($value)) 
-		define($value,$key);
+foreach (explode(" ", "NONE DEPTH STATE_MISMATCH CTRL_CHAR SYNTAX UTF8") AS $key => $value) {
+    $value = "JSON_ERROR_$value";
+    if (!defined($value))
+        define($value, $key);
 }
-if(!function_exists('json_last_error')) { 
-	function json_last_error() { return JSON_ERROR_NONE; } 
-}
+if (!function_exists('json_last_error')) {
 
+    function json_last_error() {
+        return JSON_ERROR_NONE;
+    }
+
+}
 
 abstract class endpoint_base {
 
     public static $modules_path = "endpoint/";
     public static $root_dir = "";  //need to define the root directory for the location of the library (/var/www/html/)
-    
     public $brand_name = "undefined";   //Brand Name
     public $family_line = "undefined";  //Family Line
     public $model = "undefined";        // Model of phone, must match the model name inside of the famil_data.json file in each family folder.
@@ -30,7 +32,7 @@ abstract class endpoint_base {
     public $settings = array();
     public $debug = FALSE;  //Enable or disable debug
     public $debug_return = array(); //Debug fill. I question if this is needed, or perhaps remove above line, seems redudant to have both 
-	public $replacement_array = array(); //Used for phpunit testing, key is {$var} value is the replacement.
+    public $replacement_array = array(); //Used for phpunit testing, key is {$var} value is the replacement.
     public $mac;    // Device mac address, should this be in settings?
     public $timezone = array();       // Global timezone array
     public $DateTimeZone;   // timezone, as a DateTimezone object, much more flexible than just an offset and name.
@@ -40,8 +42,7 @@ abstract class endpoint_base {
     public $directory_structure = array(); //Directory structure to create as an array
     public $protected_files = array(); //array list of file to NOT over-write on every config file build. They are protected.
     public $copy_files = array();  //array of files or directories to copy. Directories will be recursive
-    
-	protected $use_system_dst = TRUE; //Use System DST correction if detected
+    protected $use_system_dst = TRUE; //Use System DST correction if detected
     protected $en_htmlspecialchars = TRUE; //Enable or Disable PHP's htmlspecialchars() function for variables
     protected $server_type = 'file';  //Can be file or dynamic
     protected $provisioning_type = 'tftp';  //can be tftp,http,ftp ??
@@ -56,29 +57,26 @@ abstract class endpoint_base {
     protected $model_data;    //model data from family data in array form
     protected $template_data; //Merged template files for specified model in array form
     protected $max_lines = array();   //Max lines from said model.
-    
     private $server_type_list = array('file', 'dynamic');  // acceptable values for $server_type
     private $default_server_type = 'file';  // if server_type is invalid
     private $provisioning_type_list = array('tftp', 'http', 'ftp'); //acceptable values for $provisioning_type
     private $default_provisioning_type = 'tftp'; // if provisioning_type is invalid
-    
     private $initialized = FALSE;   //Initialized data or not.
 
     /* $mapfields is an array of "setting"=>array(
-	"possibility1"=>"result1",
-	"posibility2"=>"result2",
-	"default"=>"defaultresult");
-	in prepare_for_generateconfig, all of the keys in this array are gone 
-	through. If $this->setting (in the above example) is set,
-	$this->setting is set to $mapfields["setting"][$this->setting], or if 
-	it doesn't exist, it is set to $mapfields["setting"]["default"]
-    */
-		
-    public $mapfields=array(); // override in children.
+      "possibility1"=>"result1",
+      "posibility2"=>"result2",
+      "default"=>"defaultresult");
+      in prepare_for_generateconfig, all of the keys in this array are gone
+      through. If $this->setting (in the above example) is set,
+      $this->setting is set to $mapfields["setting"][$this->setting], or if
+      it doesn't exist, it is set to $mapfields["setting"]["default"]
+     */
+    public $mapfields = array(); // override in children.
 
     function __construct() {
         self::$root_dir = dirname(dirname(__FILE__)) . "/";
-        
+
         $this->root_dir = self::$root_dir;
         $this->modules_path = self::$modules_path;
     }
@@ -193,14 +191,14 @@ abstract class endpoint_base {
         if (!in_array('$model', $this->config_file_replacements)) {
             $this->config_file_replacements['$model'] = $this->model;
         }
-	foreach ($this->mapfields as $fieldname=>$map) {
-		if (isset($this->settings[$fieldname]) AND (array_key_exists($this->settings[$fieldname],$map))) {
-			$this->settings[$fieldname]=$map[$this->settings[$fieldname]];
-		} else {
-			$this->settings[$fieldname]=$map['default'];
-		}
-	}
-	$this->mapfields=array(); // ensure it only happens once.
+        foreach ($this->mapfields as $fieldname => $map) {
+            if (isset($this->settings[$fieldname]) AND (array_key_exists($this->settings[$fieldname], $map))) {
+                $this->settings[$fieldname] = $map[$this->settings[$fieldname]];
+            } else {
+                $this->settings[$fieldname] = $map['default'];
+            }
+        }
+        $this->mapfields = array(); // ensure it only happens once.
     }
 
     private function setup_languages() {
@@ -254,7 +252,7 @@ abstract class endpoint_base {
     private function parse_conditionals($file_contents) {
         $pattern = "/{if condition=\"(.*?)\"}(.*?){\/if}/si";
         while (preg_match($pattern, $file_contents, $matches)) {
-			
+            
         }
         return($file_contents);
     }
@@ -416,7 +414,7 @@ abstract class endpoint_base {
 
     private function parse_config_values($file_contents, $data=NULL, $keep_unknown=FALSE) {
         //Find all matched variables in the text file between "{$" and "}"
-		preg_match_all('/{(\$[^{]+?)[}]/i', $file_contents, $match);
+        preg_match_all('/{(\$[^{]+?)[}]/i', $file_contents, $match);
         //Result without brackets (but with the $ variable identifier)
         $no_brackets = array_values(array_unique($match[1]));
         //Result with brackets
@@ -425,26 +423,26 @@ abstract class endpoint_base {
         foreach ($no_brackets as $variables) {
             $original_variable = $variables;
             $default_exp = preg_split("/\|/i", str_replace("$", "", $variables));
-			$variables = $default_exp[0];
+            $variables = $default_exp[0];
             $default = isset($default_exp[1]) ? $default_exp[1] : null;
 
             if (is_array($data)) {
                 if (isset($data[$variables])) {
                     $data[$variables] = $this->replace_static_variables($data[$variables]);
                     $this->debug("Replacing '{" . $original_variable . "}' with " . $data[$variables]);
-					if(isset($data['line'])) {
-						$l = $data['line'];
-						$this->replacement_array['lines'][$l][$original_variable] = $data[$variables];
-					}
+                    if (isset($data['line'])) {
+                        $l = $data['line'];
+                        $this->replacement_array['lines'][$l][$original_variable] = $data[$variables];
+                    }
                     $file_contents = str_replace('{' . $original_variable . '}', $data[$variables], $file_contents);
-					continue;
+                    continue;
                 }
             } else {
                 if (isset($this->settings[$variables])) {
                     $this->settings[$variables] = $this->replace_static_variables($this->settings[$variables]);
-					$this->replacement_array['other'][$original_variable] = $this->settings[$variables];
+                    $this->replacement_array['other'][$original_variable] = $this->settings[$variables];
                     $file_contents = str_replace('{' . $original_variable . '}', $this->settings[$variables], $file_contents);
-					continue;
+                    continue;
                 }
             }
 
@@ -476,17 +474,17 @@ abstract class endpoint_base {
                 if (isset($default)) {
                     $default = $this->replace_static_variables($default);
                     $file_contents = str_replace('{' . $original_variable . '}', $default, $file_contents);
-					$this->replacement_array['pipes'][$original_variable] = $default;
+                    $this->replacement_array['pipes'][$original_variable] = $default;
                     $this->debug('Replacing {' . $original_variable . '} with default piped value of:' . $default);
                 } elseif (isset($default_hard_value)) {
                     $default_hard_value = $this->replace_static_variables($default_hard_value);
                     $file_contents = str_replace('{' . $original_variable . '}', $default_hard_value, $file_contents);
-					$this->replacement_array['json'][$original_variable] = $default_hard_value;
+                    $this->replacement_array['json'][$original_variable] = $default_hard_value;
                     $this->debug("Replacing {" . $original_variable . "} with default json value of: " . $default_hard_value);
                 } else {
                     //do one last replace statice here.
                     $file_contents = str_replace('{' . $original_variable . '}', "", $file_contents);
-					$this->replacement_array['blanks'][$original_variable] = "";
+                    $this->replacement_array['blanks'][$original_variable] = "";
                     $this->debug("Blanking {" . $original_variable . "}");
                 }
             }
@@ -521,7 +519,7 @@ abstract class endpoint_base {
             '{$timezone}' => $this->timezone['timezone'], # Should this be depricated??
             '{$network_time_server}' => $this->settings['ntp'],
             '{$local_port}' => $this->settings['network']['local_port'],
-			'{$syslog_server}' => $this->settings['network']['syslog_server'],
+            '{$syslog_server}' => $this->settings['network']['syslog_server'],
             #old
             '{$srvip}' => $this->settings['line'][0]['server_host'],
             '{$server.ip.1}' => $this->settings['line'][0]['server_host'],
@@ -561,23 +559,23 @@ abstract class endpoint_base {
                         //$this->settings['line'][$key1[0]]['ext'] = isset($this->settings['line'][$key1[0]]['username']) ? $this->settings['line'][$key1[0]]['username'] : NULL;
                     }
 
-					//If value (that line) wasn't found then ignore the next
-					if($key1 !== FALSE) {
-	                    $data['number'] = $line;
-	                    $data['count'] = $line;
+                    //If value (that line) wasn't found then ignore the next
+                    if ($key1 !== FALSE) {
+                        $data['number'] = $line;
+                        $data['count'] = $line;
 
-	                    $line_settings = $this->parse_lines_hook($this->settings['line'][$key1[0]], $this->max_lines);
+                        $line_settings = $this->parse_lines_hook($this->settings['line'][$key1[0]], $this->max_lines);
 
-	                    $stored = isset($line_settings[$var]) ? $line_settings[$var] : '';
-	                    $this->debug('Replacing {' . $original_variable . '} with ' . $stored);
-						$this->replacement_array['lines'][$line]['$'.$var] = $stored;
-	                    $contents = str_replace('{' . $original_variable . '}', $stored, $contents);
-					} else {
-						//Blank it?
-	                    $contents = str_replace('{' . $original_variable . '}', "", $contents);
-						$this->replacement_array['blanks'][$original_variable] = "";
-	                    $this->debug("Blanking {" . $original_variable . "}");
-					}
+                        $stored = isset($line_settings[$var]) ? $line_settings[$var] : '';
+                        $this->debug('Replacing {' . $original_variable . '} with ' . $stored);
+                        $this->replacement_array['lines'][$line]['$' . $var] = $stored;
+                        $contents = str_replace('{' . $original_variable . '}', $stored, $contents);
+                    } else {
+                        //Blank it?
+                        $contents = str_replace('{' . $original_variable . '}', "", $contents);
+                        $this->replacement_array['blanks'][$original_variable] = "";
+                        $this->debug("Blanking {" . $original_variable . "}");
+                    }
                 }
             }
         }
@@ -627,15 +625,15 @@ abstract class endpoint_base {
      */
     protected function setup_timezone() {
         if (isset($this->DateTimeZone) && is_object($this->DateTimeZone)) {
-			//We set this to allow phones to use Automatic DST
-			$gmt_dst_fix = !$this->use_system_dst && date('I') ? 3600 : 0;
+            //We set this to allow phones to use Automatic DST
+            $gmt_dst_fix = !$this->use_system_dst && date('I') ? 3600 : 0;
             $this->timezone = array(
                 'gmtoffset' => $this->DateTimeZone->getOffset(new DateTime) - $gmt_dst_fix,
                 'timezone' => $this->get_timezone($this->DateTimeZone->getOffset(new DateTime) - $gmt_dst_fix)
-            );			
+            );
         } else {
-			throw new Exception('You Must define a valid DateTimeZone object');
-		}
+            throw new Exception('You Must define a valid DateTimeZone object');
+        }
     }
 
     function debug($message) {
@@ -648,25 +646,25 @@ abstract class endpoint_base {
         if (file_exists($file)) {
             $json = file_get_contents($file);
             $data = json_decode($json, TRUE);
-	    	$error = json_last_error();
-	    	if ($error===JSON_ERROR_NONE) {
-				return($data);
-	    	} else {
-				$errors=array( // Taken from http://www.php.net/manual/en/function.json-last-error.php
-					JSON_ERROR_NONE=>'No error has occurred',
-					JSON_ERROR_DEPTH=>'The maximum stack depth has been exceeded',
-					JSON_ERROR_STATE_MISMATCH=>'Invalid or malformed JSON',
-					JSON_ERROR_CTRL_CHAR=>'Control character error, possibly incorrectly encoded',
-					JSON_ERROR_SYNTAX=>'Syntax error',
-					JSON_ERROR_UTF8=>'Malformed UTF-8 characters, possibly incorrectly encoded'
-				);
-				if (array_key_exists($error,$errors)) {
-					$error=$errors[$error];
-				} else {
-					$error="Unknown error $error";
-				}
-            	throw new Exception("Could not decode $file: $error");
-	    	}
+            $error = json_last_error();
+            if ($error === JSON_ERROR_NONE) {
+                return($data);
+            } else {
+                $errors = array(// Taken from http://www.php.net/manual/en/function.json-last-error.php
+                    JSON_ERROR_NONE => 'No error has occurred',
+                    JSON_ERROR_DEPTH => 'The maximum stack depth has been exceeded',
+                    JSON_ERROR_STATE_MISMATCH => 'Invalid or malformed JSON',
+                    JSON_ERROR_CTRL_CHAR => 'Control character error, possibly incorrectly encoded',
+                    JSON_ERROR_SYNTAX => 'Syntax error',
+                    JSON_ERROR_UTF8 => 'Malformed UTF-8 characters, possibly incorrectly encoded'
+                );
+                if (array_key_exists($error, $errors)) {
+                    $error = $errors[$error];
+                } else {
+                    $error = "Unknown error $error";
+                }
+                throw new Exception("Could not decode $file: $error");
+            }
         } else {
             throw new Exception("Could not load: " . $file);
         }
@@ -687,25 +685,25 @@ abstract class endpoint_base {
 
     private function initialize() {
         if (!$this->initialized) {
-			//Check Mac address
-	        if (empty($this->mac)) {
+            //Check Mac address
+            if (empty($this->mac)) {
                 throw new Exception("Mac Can Not Be Blank!");
             }
 
-			//First check to see if line data is filled for at least the first line
-			if(!isset($this->settings['line'][0])) {
-				throw new Exception('No Line Data Defined!');
-			} else {
-				foreach($this->settings['line'] as $linedata) {
-					if(!isset($linedata['line'])) {
-						throw new Exception('Line not defined!');
-					}
-				}
-			}
-			
-			if(!isset($this->processor_info)) {
-				throw new Exception('Undefined Processor, please set your processor_info');
-			}
+            //First check to see if line data is filled for at least the first line
+            if (!isset($this->settings['line'][0])) {
+                throw new Exception('No Line Data Defined!');
+            } else {
+                foreach ($this->settings['line'] as $linedata) {
+                    if (!isset($linedata['line'])) {
+                        throw new Exception('Line not defined!');
+                    }
+                }
+            }
+
+            if (!isset($this->processor_info)) {
+                throw new Exception('Undefined Processor, please set your processor_info');
+            }
             //Load files for quicker processing
             $this->family_data = $this->file2json(self::$root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.json");
             $this->brand_data = $this->file2json(self::$root_dir . self::$modules_path . $this->brand_name . "/brand_data.json");
@@ -730,19 +728,19 @@ abstract class endpoint_base {
                 $this->settings['ntp'] = $this->settings['line'][0]['server_host'];
             }
 
-			$this->server_type = (isset($this->settings['provision']['type']) && in_array($this->settings['provision']['type'], $this->server_type_list)) ? $this->settings['provision']['type'] : $this->default_server_type;
-			$this->server_type = (isset($this->settings['provision']['protocol']) && in_array($this->settings['provision']['protocol'], $this->provisioning_type_list)) ? $this->settings['provision']['protocol'] : $this->default_provisioning_type;
-			$this->provisioning_path = isset($this->settings['provision']['path']) ? $this->settings['provision']['path'] : $this->provisioning_path;
+            $this->server_type = (isset($this->settings['provision']['type']) && in_array($this->settings['provision']['type'], $this->server_type_list)) ? $this->settings['provision']['type'] : $this->default_server_type;
+            $this->server_type = (isset($this->settings['provision']['protocol']) && in_array($this->settings['provision']['protocol'], $this->provisioning_type_list)) ? $this->settings['provision']['protocol'] : $this->default_provisioning_type;
+            $this->provisioning_path = isset($this->settings['provision']['path']) ? $this->settings['provision']['path'] : $this->provisioning_path;
 
-			$this->settings['network']['connection_type'] = isset($this->settings['network']['connection_type']) ? $this->settings['network']['connection_type'] : 'DHCP';
-			$this->settings['network']['ipv4'] = isset($this->settings['network']['ipv4']) ? $this->settings['network']['ipv4'] : '';
-			$this->settings['network']['ipv6'] = isset($this->settings['network']['ipv6']) ? $this->settings['network']['ipv6'] : '';
-			$this->settings['network']['subnet'] = isset($this->settings['network']['subnet']) ? $this->settings['network']['subnet'] : '';
-			$this->settings['network']['gateway'] = isset($this->settings['network']['gateway']) ? $this->settings['network']['gateway'] : '';
-			$this->settings['network']['primary_dns'] = isset($this->settings['network']['primary_dns']) ? $this->settings['network']['primary_dns'] : '';
-			$this->settings['network']['ppoe_username'] = isset($this->settings['network']['ppoe_username']) ? $this->settings['network']['ppoe_username'] : '';
-			$this->settings['network']['ppoe_password'] = isset($this->settings['network']['ppoe_password']) ? $this->settings['network']['ppoe_password'] : '';
-			$this->settings['network']['syslog_server'] = isset($this->settings['network']['syslog_server']) ? $this->settings['network']['syslog_server'] : '';
+            $this->settings['network']['connection_type'] = isset($this->settings['network']['connection_type']) ? $this->settings['network']['connection_type'] : 'DHCP';
+            $this->settings['network']['ipv4'] = isset($this->settings['network']['ipv4']) ? $this->settings['network']['ipv4'] : '';
+            $this->settings['network']['ipv6'] = isset($this->settings['network']['ipv6']) ? $this->settings['network']['ipv6'] : '';
+            $this->settings['network']['subnet'] = isset($this->settings['network']['subnet']) ? $this->settings['network']['subnet'] : '';
+            $this->settings['network']['gateway'] = isset($this->settings['network']['gateway']) ? $this->settings['network']['gateway'] : '';
+            $this->settings['network']['primary_dns'] = isset($this->settings['network']['primary_dns']) ? $this->settings['network']['primary_dns'] : '';
+            $this->settings['network']['ppoe_username'] = isset($this->settings['network']['ppoe_username']) ? $this->settings['network']['ppoe_username'] : '';
+            $this->settings['network']['ppoe_password'] = isset($this->settings['network']['ppoe_password']) ? $this->settings['network']['ppoe_password'] : '';
+            $this->settings['network']['syslog_server'] = isset($this->settings['network']['syslog_server']) ? $this->settings['network']['syslog_server'] : '';
 
             //TODO:fix
             if (!isset($this->settings['network']['vlan']['id'])) {
@@ -865,7 +863,14 @@ class Provisioner_Globals {
 
 }
 
-if(!class_exists('InvalidArgumentException')) {
-	class InvalidArgumentException extends Exception { }
+if (!class_exists('InvalidArgumentException')) {
+
+    class InvalidArgumentException extends Exception {
+        
+    }
+
 }
-class InvalidObjectException extends Exception { }
+
+class InvalidObjectException extends Exception {
+    
+}
