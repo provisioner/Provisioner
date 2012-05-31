@@ -5,10 +5,9 @@
         "name":"general",
         "subcategory":[
           {
-            "name":"Internet Port (WAN)",
+            "name":"general",
             "item":[
               {
-                "category":"general",
                 "variable":"$contact_list_address",
                 "default_value":"",
                 "description":"Contact List URL",
@@ -18,7 +17,6 @@
                 "type":"break"
               },
               {
-                "category":"handset",
                 "variable":"$ringtone_url",
                 "default_value":"",
                 "description":"Ringtone URL",
@@ -28,16 +26,14 @@
                 "type":"break"
               },
               {
-                "category":"display",
                 "variable":"$logo_url",
                 "default_value":"",
                 "description":"Logo URL",
                 "type":"input"
               },
               {
-                "category":"display",
                 "variable":"$uselogo",
-                "default_value":"Config:IMG_3156.jpg",
+                "default_value":"Resource:pictures (01).png",
                 "description":"Logo to Display",
                 "type":"list",
                 "data":[
@@ -91,7 +87,6 @@
                 "type":"break"
               },
               {
-                "category":"system",
                 "variable":"$firmware_name",
                 "default_value":"",
                 "description":"Firmware URL",
@@ -101,7 +96,6 @@
                 "type":"break"
               },
               {
-                "category":"system",
                 "variable":"$call_pickup",
                 "default_value":"**",
                 "description":"Call Pickup Value (For BLF)",
@@ -111,24 +105,21 @@
                 "type":"break"
               },
               {
-                "category":"system",
                 "variable":"$adminpw",
                 "default_value":"",
                 "description":"Web administration password",
                 "type":"input"
               },
               {
-                "category":"system",
                 "variable":"$tones_country",
                 "default_value":"United States",
                 "description":"Tones Country",
                 "type":"input"
               },
               {
-                "category":"system",
                 "variable":"$screensaverdelay",
                 "description":"Screen Saver Delay",
-                "default_value":"1",
+                "default_value":"0",
                 "type":"list",
                 "data":[
                   {
@@ -154,6 +145,25 @@
                   {
                     "text":"30 minutes",
                     "value":"1800"
+                  }
+                ]
+                },
+                {
+                    "type":"break"
+                },
+                {
+                "variable":"$missed_call_log",
+                "description":"Missed Call Log",
+                "default_value":"0",
+                "type":"list",
+                "data":[
+                  {
+                    "text":"Disable",
+                    "value":"0"
+                  },
+                  {
+                    "text":"Enable",
+                    "value":"1"
                   }
                 ]
               },
