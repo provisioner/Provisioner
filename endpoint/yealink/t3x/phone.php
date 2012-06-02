@@ -68,6 +68,8 @@ class endpoint_yealink_t3x_phone extends endpoint_yealink_base {
                     "mode" => "blf",
                     "type" => 15
                 );
+            } elseif($this->settings['loops']['linekey'][$i]['type'] == '16') {
+                $this->settings['loops']['linekey'][$i]['line'] = $this->settings['loops']['linekey'][$i]['line'] != '0' ? $this->settings['loops']['linekey'][$i]['line'] - 1 : $this->settings['loops']['linekey'][$i]['line'];
             }
         }
         
