@@ -33,7 +33,7 @@ class endpoint_cisco_spa_phone extends endpoint_cisco_base {
                 $line_data['secret'] = 'n/a';
                 $line_data['blf_ext_type'] = "Disabled";
                 $line_data['share_call_appearance'] = "shared";
-                $line_data['extended_function'] = "fnc=blf+sd+cp;sub=" . $this->settings['loops']['lineops'][$line]['blfext'] . "@" . $this->settings['line'][0]['server_host'];
+                $line_data['extended_function'] = "fnc=blf+sd;sub=" . $this->settings['loops']['lineops'][$line]['blfext'] . "@" . $this->settings['line'][0]['server_host'];
             } elseif (($this->settings['loops']['lineops'][$line]['keytype'] == "sd") AND ($this->settings['loops']['lineops'][$line]['blfext'] != "")) {
                 $line_data['username'] = $this->settings['loops']['lineops'][$line]['blfext'];
                 $line_data['secret'] = 'n/a';
