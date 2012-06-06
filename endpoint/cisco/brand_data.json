@@ -5,8 +5,8 @@
       "brand_id": "7",
       "directory": "cisco",
       "package": "cisco.tgz",
-      "md5sum": "9cd37328ceb9bde25433baaaad060a2f",
-      "last_modified": 1337145775,
+      "md5sum": "0266369d6e670a600428b8b0951ccf9d",
+      "last_modified": 1339006602,
       "family_list": [
         {
           "id": "5",
@@ -90,7 +90,7 @@
         "1CDF0F",
         "E05FB9"
       ],
-      "changelog": "PACKAGER: Yealink\n-Fixes to displayname\n-fixes to voicemail\n-fixes to daylight saving time"
+      "changelog": "PACKAGER: CIsco\n-Remove un-needed '+cp'"
     }
   }
 }
