@@ -138,6 +138,21 @@
                 "type":"break"
               },
               {
+                "variable":"$xml_directory_service_name",
+                "default_value":"",
+                "description":"XML Directory Service Name",
+                "type":"input"
+              },
+              {
+                "variable":"$xml_directory_service_url",
+                "default_value":"",
+                "description":"XML Directory Service URL",
+                "type":"input"
+              },
+              {
+                "type":"break"
+              },
+              {
                 "variable":"$dial_plan",
                 "default_value":"( [23456789]11 | *xxx. | <:1352>[2-9]xxxxxx | <:1>[2-9]xx[2-9]xxxxxxS0 | 1[2-9]xx[2-9]xxxxxxS0 | 011xxxxxxx. | [#*x][*x][*x]. )",
                 "description":"Dial Plan",
