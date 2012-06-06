@@ -189,6 +189,13 @@
 	<NetMask group="System/_Static_IP_Settings">{$current_netmask}</NetMask>
 	<Gateway group="System/_Static_IP_Settings">{$current_gateway}</Gateway>
 	<Primary_DNS group="System/Optional_Network_Configuration">{$primary_dns}</Primary_DNS>
+
+	<XML_Directory_Service_Name group="Phone/XML_Service">{$xml_directory_service_name}</XML_Directory_Service_Name>
+	<XML_Directory_Service_URL group="Phone/XML_Service">{$xml_directory_service_url}</XML_Directory_Service_URL>
+	<XML_Application_Service_Name group="Phone/XML_Service"/>
+	<XML_Application_Service_URL group="Phone/XML_Service"/>
+	<XML_User_Name group="Phone/XML_Service"/>
+	<XML_Password group="Phone/XML_Service"/>
 	
 	<!-- LDAP Settings for Directory -->
 	<LDAP_Dir_Enable group="Phone/LDAP_Corporate_Directory_Search">{$ldap_enabled|No}</LDAP_Dir_Enable>
