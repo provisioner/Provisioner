@@ -9,6 +9,10 @@
     "description":"Make more settings available in user interface",
     "configuration_files":"y0000000000$suffix.cfg,$mac.cfg",
     "changelog":"",
+            "provisioning_types": [
+            "tftp",
+            "http"
+        ],
     "model_list":[
       {
         "model":"T32",

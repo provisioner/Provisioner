@@ -9,6 +9,10 @@
     "description": "Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality",
     "configuration_files": "$mac.cfg,$mac_reg.cfg,sip.cfg,contacts\/000000000000-directory.xml,logs\/$mac-app.log,logs\/$mac-boot.log,overrides\/$mac-phone.cfg",
     "changelog": "",
+    "provisioning_types": [
+            "tftp",
+            "http"
+    ],
     "model_list": [
       {
         "model": "SoundPoint IP 321",

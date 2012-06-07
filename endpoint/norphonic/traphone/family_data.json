@@ -9,6 +9,9 @@
         "configuration_files":"$mac.cfg,snmpd.conf",
         "changelog":"",
         "description":"Norphonic Traphone",
+        "provisioning_types": [
+            "tftp"
+        ],
         "model_list":[
             {
                 "model":"Version 8",
