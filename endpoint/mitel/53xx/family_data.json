@@ -9,6 +9,10 @@
     "description":"Variables Issues Solved (Not writing accounts + passwords in files)",
     "configuration_files":"MN_Generic.cfg,MN_$mac.cfg",
     "changelog":"",
+            "provisioning_types": [
+            "tftp",
+            "http"
+        ],
     "model_list":[
       {
         "model":"5304",

@@ -9,6 +9,9 @@
     "description": "Fixed Digit Map Problems with three digit extensions in the 1xx range",
     "configuration_files": "logs\/$mac-app.log,logs\/$mac-boot.log,contacts\/000000000000-directory.xml,$mac.cfg,server_213.cfg,phone1_213.cfg,$mac_reg.cfg,sip_213.cfg",
     "changelog": "",
+            "provisioning_types": [
+            "tftp"
+        ],
     "model_list": [
       {
         "model": "SoundPoint IP 300",
