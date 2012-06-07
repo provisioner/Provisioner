@@ -205,7 +205,7 @@
               {
                 "variable":"$backlight_time",
                 "default_value":"30 s",
-                "description":"Backlight Timer...",
+                "description":"Backlight Timer",
                 "type":"radio",
                 "data":[
                   {
