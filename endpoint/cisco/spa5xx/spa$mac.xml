@@ -12,7 +12,7 @@
 	<Select_Background_Picture ua="ro">{$background_type}</Select_Background_Picture>
 	<BMP_Picture_Download_URL ua="ro">{$picture_url}</BMP_Picture_Download_URL>
 	<Station_Name group="Phone/General">{$station_name}</Station_Name>
-	<Voice_Mail_Number group="Phone/General">{$vmail|*97}</Voice_Mail_Number>
+	<Voice_Mail_Number group="Phone/General">{$voicemail_extension}</Voice_Mail_Number>
 
 	<!-- Line Registration Information -->
 	{line_loop}
