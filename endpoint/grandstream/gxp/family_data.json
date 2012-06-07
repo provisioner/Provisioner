@@ -9,6 +9,10 @@
     "description": "Use Grandstream Encrypted Compiler By Default",
     "configuration_files": "cfg$mac",
     "changelog": "",
+            "provisioning_types": [
+            "tftp",
+            "http"
+        ],
     "model_list": [
       {
         "model": "GXP280",

@@ -9,6 +9,10 @@
     "description": "Initial Files",
     "configuration_files": "$mac.cfg,aastra.cfg",
     "changelog": "",
+        "provisioning_types": [
+        "tftp",
+        "http"
+      ],
     "model_list": [
       {
         "model": "9480i",

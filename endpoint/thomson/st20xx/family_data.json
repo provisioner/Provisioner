@@ -9,6 +9,10 @@
         "description":"",
         "configuration_files":"$model_$mac.txt",
         "changelog":"2012.03.08: Firmware 11.1 Included. Verified on ST2030S.",
+                "provisioning_types": [
+            "tftp",
+            "http"
+        ],
         "model_list":[
             {
                 "model":"ST2030S",

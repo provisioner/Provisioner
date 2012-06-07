@@ -9,12 +9,16 @@
         "description": "New Device",
         "configuration_files": "$model.cfg,spa$mac.xml",
         "changelog": "",
+        "provisioning_types": [
+            "tftp",
+            "http"
+        ],
         "model_list": [
             {
                 "model": "SPA2102",
                 "lines": "2",
                 "id": "1",
-		"firmware":"spa2100-*.bin",
+                "firmware": "spa2100-*.bin",
                 "template_data": [
                     "template_data.json",
                     "keys.json"
