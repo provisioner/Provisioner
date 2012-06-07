@@ -6,9 +6,13 @@
         "firmware_ver": 1326745469,
         "firmware_md5sum": "7ef0e6a237e750d48a3574da3eeea86d",
         "firmware_pkg": "firmware325_firmware.tgz",
-        "description": "Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality",
+        "description": "",
         "configuration_files": "logs\/$mac-boot.log,logs\/$mac-app.log,$mac-phone.cfg,$mac.cfg,server_325.cfg,phone1_325.cfg,$mac_reg.cfg,sip_325.cfg",
         "changelog": "",
+                "provisioning_types": [
+            "tftp",
+            "http"
+        ],
         "model_list": [
         {
             "model": "SoundPoint IP 430",
