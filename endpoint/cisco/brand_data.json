@@ -5,8 +5,8 @@
       "brand_id": "7",
       "directory": "cisco",
       "package": "cisco.tgz",
-      "md5sum": "0266369d6e670a600428b8b0951ccf9d",
-      "last_modified": 1339006602,
+      "md5sum": "3921b0fdfefffc5a3e0a23d8117f9df1",
+      "last_modified": 1339434726,
       "family_list": [
         {
           "id": "5",
@@ -90,7 +90,7 @@
         "1CDF0F",
         "E05FB9"
       ],
-      "changelog": "PACKAGER: CIsco\n-Remove un-needed '+cp'"
+      "changelog": "PACKAGER: New Family_Data Option\n-Define supported provisioning types"
     }
   }
 }
