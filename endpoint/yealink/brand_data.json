@@ -5,8 +5,8 @@
       "brand_id": "8",
       "directory": "yealink",
       "package": "yealink.tgz",
-      "md5sum": "8c476ea549a8ed63801634ad07fe11c6",
-      "last_modified": 1338625278,
+      "md5sum": "85f0ffc08fdc86e168f5723a6dade689",
+      "last_modified": 1339434726,
       "family_list": [
         {
           "id": "3",
@@ -36,7 +36,7 @@
       "oui_list": [
         "001565"
       ],
-      "changelog": "PACKAGER: Yealink T3x\n-Massive fixes to confusing titles and messages\n-Fixed all Modes and types along with incorrect dtypes"
+      "changelog": "PACKAGER: New Family_Data Option\n-Define supported provisioning types"
     }
   }
 }
