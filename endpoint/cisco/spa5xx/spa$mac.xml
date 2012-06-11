@@ -12,7 +12,7 @@
 	<Select_Background_Picture ua="ro">{$background_type}</Select_Background_Picture>
 	<BMP_Picture_Download_URL ua="ro">{$picture_url}</BMP_Picture_Download_URL>
 	<Station_Name group="Phone/General">{$station_name}</Station_Name>
-	<Voice_Mail_Number group="Phone/General">{$vmail|*97}</Voice_Mail_Number>
+	<Voice_Mail_Number group="Phone/General">{$voicemail_extension}</Voice_Mail_Number>
 
 	<!-- Line Registration Information -->
 	{line_loop}
@@ -90,8 +90,9 @@
 	 <Primary_NTP_Server ua="na">{$ntp}</Primary_NTP_Server>
 	 <Time_Zone  ua="na">{$timezone}</Time_Zone>
 	 <Daylight_Saving_Time_Rule ua="na">start=3/8/7/02:0:0;end=11/1/7/02:0:0;save=1</Daylight_Saving_Time_Rule>
-	 <Daylight_Saving_Time_Enable group="Regional/Miscellaneous">No</Daylight_Saving_Time_Enable>
-	 <Date_Format >{$date_format|month/day}</Date_Format>
+	 <Daylight_Saving_Time_Enable group="Regional/Miscellaneous">Yes</Daylight_Saving_Time_Enable>
+	 <Date_Format>{$dateformat}</Date_Format>
+	 <Time_Format>{$timeformat}</Time_Format>
 
 	 <!-- KeyCodes -->
 	 <Call_Return_Code ua="na"> </Call_Return_Code>

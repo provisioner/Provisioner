@@ -90,6 +90,26 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
         } else {
             $this->settings['connection_type'] = 'DHCP';
         }
+        
+        if(isset($this->settings['timeformat'])) {
+            $this->settings['timeformat'] = $this->settings['timeformat'] == '12hour' ? '12hr' : '24hr';
+        } else {
+            $this->settings['timeformat'] = '12hr';
+        }
+        
+        if(isset($this->settings['dateformat'])) {
+            switch($this->settings['dateformat']) {
+                case "little-endian":
+                    $this->settings['dateformat'] = 'month/day';
+                    break;
+                default;
+                    $this->settings['dateformat'] = 'day/month';
+                    break;
+            }
+        } else {
+            $this->settings['dateformat'] = 'day/month';
+        }
+        
 
         for ($i = 1; $i <= $this->max_lines; $i++) {
             if ((isset($this->settings['loops']['lineops'])) && ($this->settings['loops']['lineops'][$i]['keytype'] != 'line')) {
