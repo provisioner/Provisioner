@@ -8,6 +8,10 @@
     "description": "",
     "configuration_files": "$mac.cfg",
     "changelog": "",
+            "provisioning_types": [
+            "tftp",
+            "http"
+        ],
     "model_list": [
       {
         "model": "HT486",
