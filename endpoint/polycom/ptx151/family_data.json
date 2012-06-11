@@ -6,7 +6,11 @@
     "firmware_ver":"",
     "firmware_pkg":"NULL",
     "configuration_files":"sip_$ext.cfg,slnk_cfg.cfg,sip_allusers.cfg",
-    "changelog":"",
+    "changelog":"",'
+    "provisioning_types": [
+            "tftp",
+            "http"
+    ],
     "model_list":[
       {
         "model":"Polycom PTX151",
