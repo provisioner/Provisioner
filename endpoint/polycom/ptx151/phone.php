@@ -5,7 +5,7 @@
  * @author Andrew Nagy
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
- */
+ **/
 class endpoint_polycom_ptx151_phone extends endpoint_polycom_base {
 
 	public $family_line = 'ptx151';	
