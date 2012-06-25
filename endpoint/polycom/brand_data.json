@@ -5,14 +5,14 @@
       "directory": "polycom",
       "brand_id": "4",
       "package": "polycom.tgz",
-      "md5sum": "069052593624d13381a7c023ec281670",
-      "last_modified": 1338308743,
+      "md5sum": "946f9e7660fba72c115790f2d269ec4a",
+      "last_modified": 1340662126,
       "family_list": [
         {
           "id": "4",
           "name": "SoundPoint IP 430 [430]",
           "directory": "firmware325",
-          "description": "Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality",
+          "description": "",
           "changelog": "",
           "last_modified": null
         },
@@ -20,16 +20,16 @@
           "id": "6",
           "name": "SoundPoint IP 3xx [320,330]",
           "directory": "firmware3333",
-          "description": "Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality",
+          "description": "",
           "changelog": "",
           "last_modified": null
         },
         {
-          "id": "5",
-          "name": "Polycom PTX151",
-          "directory": "ptx151",
-          "description": "",
-          "changelog": "",
+          "id": null,
+          "name": null,
+          "directory": null,
+          "description": null,
+          "changelog": null,
           "last_modified": null
         },
         {
@@ -61,7 +61,7 @@
         "0004F2",
         "00907A"
       ],
-      "changelog": "PACKAGER: Yealink t3x\n-Massive fixes and changes to yealink t3x\n-Timezone related issues\n-BLF and Line Key Issues\n-Default Value issues\n-Still cant get the screen saver to stop"
+      "changelog": "PACKAGER: Cisco 79xx\n-Remove duplicate timezone"
     }
   }
 }
