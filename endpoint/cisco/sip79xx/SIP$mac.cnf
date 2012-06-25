@@ -44,7 +44,6 @@ tftp_cfg_dir: "./"
 time_zone: {$sip_7940_7960_time_zone}
 sntp_mode: "directedbroadcast"
 sntp_server: "{$network_time_server}"
-time_zone: "PST"
 time_format_24hr: "1"
 dst_offset: "1"
 dst_start_month: "March"
