@@ -5,8 +5,8 @@
       "brand_id": "7",
       "directory": "cisco",
       "package": "cisco.tgz",
-      "md5sum": "3921b0fdfefffc5a3e0a23d8117f9df1",
-      "last_modified": 1339434726,
+      "md5sum": "aed4031a1208ead5bca52d1d4470e132",
+      "last_modified": 1340662126,
       "family_list": [
         {
           "id": "5",
@@ -90,7 +90,7 @@
         "1CDF0F",
         "E05FB9"
       ],
-      "changelog": "PACKAGER: New Family_Data Option\n-Define supported provisioning types"
+      "changelog": "PACKAGER: Cisco 79xx\n-Remove duplicate timezone"
     }
   }
 }
