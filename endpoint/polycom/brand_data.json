@@ -5,8 +5,8 @@
       "directory": "polycom",
       "brand_id": "4",
       "package": "polycom.tgz",
-      "md5sum": "289c8f59b443fa10be9a038bb244a60c",
-      "last_modified": 1340662410,
+      "md5sum": "578a34aa84250c0c880c38d72f4e3562",
+      "last_modified": 1340671701,
       "family_list": [
         {
           "id": "4",
@@ -61,7 +61,7 @@
         "0004F2",
         "00907A"
       ],
-      "changelog": "PACKAGER: Fix json error"
+      "changelog": "PACKAGER: Minor web fix"
     }
   }
 }
