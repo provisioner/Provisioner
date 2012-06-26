@@ -509,7 +509,7 @@ abstract class endpoint_base {
             # This is a good thing, and should be done wherever possible.
             '{$mac}' => $this->mac,
             '{$model}' => $this->model,
-            '{$provisioning_type}' => $this->server_type,
+            '{$provisioning_type}' => $this->provisioning_type,
             '{$provisioning_path}' => $this->provisioning_path,
             '{$vlan_id}' => $this->settings['network']['vlan']['id'],
             '{$vlan_qos}' => $this->settings['network']['vlan']['qos'],

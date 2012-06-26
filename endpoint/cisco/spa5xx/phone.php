@@ -78,6 +78,14 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
         return($line_data);
     }
 
+	function generate_file($filename, $extradata, $ignoredynamicmapping=FALSE, $prepare=FALSE) {
+		$data = parent::generate_file($filename, $extradata, $ignoredynamicmapping, $prepare);
+		if((isset($this->settings['compress_config'])) && ($extradata == 'spa$mac.xml')) {
+			$data = gzencode($data);
+		}
+		return($data);
+	}
+
     function prepare_for_generateconfig() {
         parent::prepare_for_generateconfig();
 
