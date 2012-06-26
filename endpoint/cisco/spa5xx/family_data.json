@@ -20,7 +20,8 @@
                 "id": "1",
                 "template_data": [
                     "template_data.json",
-                    "keys.json"
+                    "keys.json",
+					"provisioning.json"
                 ]
             },
             {
@@ -30,6 +31,7 @@
                 "template_data": [
                     "template_data.json",
                     "keys.json",
+					"provisioning.json",
                     "a_unit1.json",
                     "a_unit2.json"
                 ]
@@ -42,6 +44,7 @@
                     "4_lines.json",
                     "template_data.json",
                     "keys.json",
+					"provisioning.json",
                     "a_unit1.json",
                     "a_unit2.json"
                 ]
@@ -54,6 +57,7 @@
                     "8_lines.json",
                     "template_data.json",
                     "keys.json",
+					"provisioning.json",
                     "a_unit1.json",
                     "a_unit2.json"
                 ]
@@ -66,6 +70,7 @@
                     "12_lines.json",
                     "template_data.json",
                     "keys.json",
+					"provisioning.json",
                     "a_unit1.json",
                     "a_unit2.json"
                 ]
@@ -78,6 +83,7 @@
                     "5_lines.json",
                     "template_data.json",
                     "keys.json",
+					"provisioning.json",
                     "a_unit1.json",
                     "a_unit2.json"
                 ]
@@ -90,6 +96,7 @@
                     "5_lines.json",
                     "template_data.json",
                     "keys.json",
+					"provisioning.json",
                     "a_unit1.json",
                     "a_unit2.json"
                 ]
@@ -101,7 +108,8 @@
                 "template_data": [
                     "3_lines.json",
                     "template_data.json",
-                    "keys.json"
+                    "keys.json",
+					"provisioning.json"
                 ]
             }
         ]
