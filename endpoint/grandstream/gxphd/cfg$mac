@@ -2156,16 +2156,16 @@ P1374 = 5
 # 4 - Speed Dial via active account
 # 5 - DialDTMF
 # 7 - CallReturn
-P323 =0
+P323 = {$key_mode_01}
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4, 4 - Account 5, 5 - Account 6
 P301 = 0
 
 # Name. Max length allowed is 32 characters.
-P302 = 
+P302 = {$key_name_01}
 
 # User ID.  Max length allowed is 64 characters.
-P303 = 
+P303 = {$speed_dial_01}
 
 # Multipupose Key 2
 # ------------------------------------------------------------------------------------- 
@@ -2177,16 +2177,16 @@ P303 =
 # 4 - Speed Dial via active account
 # 5 - DialDTMF
 # 7 - CallReturn
-P324 =0
+P324 = {$key_mode_02}
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4, 4 - Account 5, 5 - Account 6
 P304 = 0
 
 # Name. Max length allowed is 32 characters.
-P305 = 
+P305 = {$key_name_02}
 
 # User ID. Max length allowed is 64 characters.
-P306 = 
+P306 = {$speed_dial_02}
 
 # Multipupose Key 3
 # ------------------------------------------------------------------------------------- 
@@ -2198,16 +2198,16 @@ P306 =
 # 4 - Speed Dial via active account
 # 5 - DialDTMF
 # 7 - CallReturn
-P325 = 0
+P325 = {$key_mode_03}
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4, 4 - Account 5, 5 - Account 6
 P307 = 0
 
 # Name. Max length allowed is 32 characters.
-P308 = 
+P308 = {$key_name_03}
 
 # User ID. Max length allowed is 64 characters.
-P309 = 
+P309 = {$speed_dial_03}
 
 # Multipupose Key 4
 # ------------------------------------------------------------------------------------- 
@@ -2219,17 +2219,17 @@ P309 =
 # 4 - Speed Dial via active account
 # 5 - DialDTMF
 # 7 - CallReturn
-P326 = 0
+P326 = {$key_mode_04}
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 
 # 3 - Account 4, 4 - Account 5, 5 - Account 6
 P310 = 0
 
 # Name. Max length allowed is 32 characters.
-P311 = 
+P311 = {$key_name_04}
 
 # User ID. Max length allowed is 64 characters.
-P312 = 
+P312 = {$speed_dial_04}
 
 # Multipupose Key 5
 # ------------------------------------------------------------------------------------- 
@@ -2241,17 +2241,17 @@ P312 =
 # 4 - Speed Dial via active account
 # 5 - DialDTMF
 # 7 - CallReturn
-P327 = 0
+P327 = {$key_mode_05}
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 
 # 3 - Account 4, 4 - Account 5, 5 - Account 6
 P313 = 0
 
 # Name. Max length allowed is 32 characters.
-P314 = 
+P314 = {$key_name_05}
 
 # User ID. Max length allowed is 64 character
-P315 = 
+P315 = {$speed_dial_05}
 
 # Multipupose Key 6
 # ------------------------------------------------------------------------------------- 
@@ -2263,17 +2263,17 @@ P315 =
 # 4 - Speed Dial via active account
 # 5 - DialDTMF
 # 7 - CallReturn
-P328 = 0
+P328 = {$key_mode_06}
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3,
 # 3 - Account 4, 4 - Account 5, 5 - Account 6
 P316 = 0
 
 # Name. Max length allowed is 32 characters.
-P317 = 
+P317 = {$key_name_06}
 
 # User ID. Max length allowed is 64 character
-P318 = 
+P318 = {$speed_dial_06}
 
 # Multipupose Key 7
 # ------------------------------------------------------------------------------------- 
@@ -2285,18 +2285,17 @@ P318 =
 # 4 - Speed Dial via active account
 # 5 - DialDTMF
 # 7 - CallReturn
-P329 = 0
+P329 = {$key_mode_07}
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3,
 # 3 - Account 4, 4 - Account 5, 5 - Account 6
 P319 = 0
 
 #Name. Max length allowed is 32 characters.
-P320 = 
+P320 = {$key_name_07}
 
 #User ID. Max length allowed is 64 character
-P321 = 
-
+P321 = {$speed_dial_07}
 #--------------------------------------------------------------------------------------
 # Mutlipurpose Key 8 - 18 FOR GXP2110 ONLY
 #--------------------------------------------------------------------------------------
@@ -2310,17 +2309,17 @@ P321 =
 # 4 - Speed Dial via active account
 # 5 - DialDTMF
 # 7 - CallReturn
-P353 = 0
+P353 = {$key_mode_08}
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3,
 # 3 - Account 4, 4 - Account 5, 5 - Account 6
 P354 = 0
 
 #Name. Max length allowed is 32 characters.
-P355 = 
+P355 = {$key_name_08}
 
 #User ID. Max length allowed is 64 character
-P356 = 
+P356 = {$speed_dial_08}
 
 # Multipupose Key 9
 # ------------------------------------------------------------------------------------- 
@@ -2332,17 +2331,17 @@ P356 =
 # 4 - Speed Dial via active account
 # 5 - DialDTMF
 # 7 - CallReturn
-P357 = 0
+P357 = {$key_mode_09}
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3,
 # 3 - Account 4, 4 - Account 5, 5 - Account 6
 P358 = 0
 
 #Name. Max length allowed is 32 characters.
-P359 = 
+P359 = {$key_name_09}
 
 #User ID. Max length allowed is 64 character
-P360 =
+P360 = {$speed_dial_09}
 
 # Multipupose Key 10
 # ------------------------------------------------------------------------------------- 
@@ -2354,17 +2353,17 @@ P360 =
 # 4 - Speed Dial via active account
 # 5 - DialDTMF
 # 7 - CallReturn
-P361 = 0
+P361 = {$key_mode_10}
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3,
 # 3 - Account 4, 4 - Account 5, 5 - Account 6
 P362 = 0
 
 #Name. Max length allowed is 32 characters.
-P363 = 
+P363 = {$key_name_10}
 
 #User ID. Max length allowed is 64 character
-P364 =
+P364 = {$speed_dial_10}
 
 # Multipupose Key 11
 # ------------------------------------------------------------------------------------- 
@@ -2376,17 +2375,17 @@ P364 =
 # 4 - Speed Dial via active account
 # 5 - DialDTMF
 # 7 - CallReturn
-P365 = 0
+P365 = {$key_mode_11}
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3,
 # 3 - Account 4, 4 - Account 5, 5 - Account 6
 P366 = 0
 
 #Name. Max length allowed is 32 characters.
-P367 = 
+P367 = {$key_name_11}
 
 #User ID. Max length allowed is 64 character
-P368 =
+P368 = {$speed_dial_11}
 
 # Multipupose Key 12
 # ------------------------------------------------------------------------------------- 
@@ -2398,17 +2397,17 @@ P368 =
 # 4 - Speed Dial via active account
 # 5 - DialDTMF
 # 7 - CallReturn
-P369 = 0
+P369 = {$key_mode_12}
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3,
 # 3 - Account 4, 4 - Account 5, 5 - Account 6
 P370 = 0
 
 #Name. Max length allowed is 32 characters.
-P371 = 
+P371 = {$key_name_12}
 
 #User ID. Max length allowed is 64 character
-P372 =
+P372 = {$speed_dial_12}
 
 # Multipupose Key 13
 # ------------------------------------------------------------------------------------- 
@@ -2420,17 +2419,17 @@ P372 =
 # 4 - Speed Dial via active account
 # 5 - DialDTMF
 # 7 - CallReturn
-P373 = 0
+P373 = {$key_mode_13}
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3,
 # 3 - Account 4, 4 - Account 5, 5 - Account 6
 P374 = 0
 
 #Name. Max length allowed is 32 characters.
-P375 = 
+P375 = {$key_name_13}
 
 #User ID. Max length allowed is 64 character
-P376 =
+P376 = {$speed_dial_13}
 
 # Multipupose Key 14
 # ------------------------------------------------------------------------------------- 
@@ -2442,17 +2441,17 @@ P376 =
 # 4 - Speed Dial via active account
 # 5 - DialDTMF
 # 7 - CallReturn
-P377 = 0
+P377 = {$key_mode_14}
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3,
 # 3 - Account 4, 4 - Account 5, 5 - Account 6
 P378 = 0
 
 #Name. Max length allowed is 32 characters.
-P379 = 
+P379 = {$key_name_14}
 
 #User ID. Max length allowed is 64 character
-P380 =
+P380 = {$speed_dial_14}
 
 # Multipupose Key 15
 # ------------------------------------------------------------------------------------- 
@@ -2464,17 +2463,17 @@ P380 =
 # 4 - Speed Dial via active account
 # 5 - DialDTMF
 # 7 - CallReturn
-P381 = 0
+P381 = {$key_mode_15}
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3,
 # 3 - Account 4, 4 - Account 5, 5 - Account 6
 P382 = 0
 
 #Name. Max length allowed is 32 characters.
-P383 = 
+P383 = {$key_name_15}
 
 #User ID. Max length allowed is 64 character
-P384 =
+P384 = {$speed_dial_15}
 
 # Multipupose Key 16
 # ------------------------------------------------------------------------------------- 
@@ -2486,17 +2485,17 @@ P384 =
 # 4 - Speed Dial via active account
 # 5 - DialDTMF
 # 7 - CallReturn
-P385 = 0
+P385 = {$key_mode_16}
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3,
 # 3 - Account 4, 4 - Account 5, 5 - Account 6
 P386 = 0
 
 #Name. Max length allowed is 32 characters.
-P387 = 
+P387 = {$key_name_16}
 
 #User ID. Max length allowed is 64 character
-P388 =
+P388 = {$speed_dial_16}
 
 # Multipupose Key 17
 # ------------------------------------------------------------------------------------- 
@@ -2508,17 +2507,17 @@ P388 =
 # 4 - Speed Dial via active account
 # 5 - DialDTMF
 # 7 - CallReturn
-P389 = 0
+P389 = {$key_mode_17}
 
 # Account. 0 - Account 1, 1 - Account 2, 2 - Account 3,
 # 3 - Account 4, 4 - Account 5, 5 - Account 6
 P390 = 0
 
 #Name. Max length allowed is 32 characters.
-P391 = 
+P391 = {$key_name_17}
 
 #User ID. Max length allowed is 64 character
-P392 =
+P392 = {$speed_dial_17}
 
 # Multipupose Key 18
 # ------------------------------------------------------------------------------------- 
@@ -2542,6 +2541,7 @@ P395 = {$key_name_18}
 #User ID. Max length allowed is 64 character
 P396 = {$speed_dial_18}
 # -------------------------------------------------------------------------------------
+
 
 #--------------------------------------------------------------------------------------
 # End User Time settings
@@ -4397,3 +4397,4 @@ P6512 =
 
 # UserID
 P6712 =
+
