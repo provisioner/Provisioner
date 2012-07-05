@@ -5,8 +5,8 @@
       "directory": "polycom",
       "brand_id": "4",
       "package": "polycom.tgz",
-      "md5sum": "34d046385ec4685c178d25783034c06d",
-      "last_modified": 1340683234,
+      "md5sum": "fc12dc0314512c561c009bd5d4e453a1",
+      "last_modified": 1341510310,
       "family_list": [
         {
           "id": "4",
@@ -61,7 +61,7 @@
         "0004F2",
         "00907A"
       ],
-      "changelog": "PACKAGER: Updated Firmware Directory"
+      "changelog": "PACKAGER: Fixes to unit tester\n-Also fixes to polycom from unit tester\n-Fixed firmware issue in relation to thompson phones"
     }
   }
 }
