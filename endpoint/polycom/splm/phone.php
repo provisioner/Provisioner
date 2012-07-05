@@ -27,6 +27,7 @@ class endpoint_polycom_splm_phone extends endpoint_polycom_base {
     }
 
     function parse_lines_hook($line_data, $line_total) {
+		$line = $line_data['line'];
         $line_data['lineKeys'] = isset($this->settings['loops']['lineops'][$line]) ? $this->settings['loops']['lineops'][$line]['linekeys'] : '1';
         $line_data['digitmap'] = (isset($this->settings['digitmap']) ? $this->settings['digitmap'] : NULL);
         $line_data['digitmaptimeout'] = (isset($this->settings['digitmaptimeout']) ? $this->settings['digitmaptimeout'] : NULL);
