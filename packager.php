@@ -30,7 +30,7 @@ set_time_limit(0);
 define("MODULES_DIR", "/var/www/repo/endpoint");
 define("RELEASE_DIR", "/var/www/html/release/v3");
 define("ROOT_DIR", "/var/www/repo");
-define("FIRMWARE_DIR", "/var/www/html/firmware");
+define("FIRMWARE_DIR", "/var/www/firmware");
 define("BRANCH", "master");
 
 file_put_contents(RELEASE_DIR.'/update_status', '1');
@@ -253,7 +253,7 @@ function create_brand_pkg($rawname,$version,$brand_name,$old_brand_timestamp,$c_
 			$family_max = max($files_array);
 			$family_max_array[$z] = $family_max;
 			echo "\t\t\tTotal Family Timestamp: ". $family_max ."\n";
-			
+						
 			if(file_exists(FIRMWARE_DIR."/".$rawname."/".$family_xml['data']['directory']."/firmware")) {		
 				echo "\t\tFound Firmware Folder in ".$family_xml['data']['directory']."\n";
 				$firmware_files_array = array(); //Clear firmware array
