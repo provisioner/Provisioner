@@ -5,8 +5,8 @@
       "directory": "grandstream",
       "brand_id": "2",
       "package": "grandstream.tgz",
-      "md5sum": "175da40152d2ca2340be8c5176cf8c37",
-      "last_modified": 1336632941,
+      "md5sum": "2fc1a6b0a319b20253c1c85163c8b308",
+      "last_modified": 1341509336,
       "family_list": [
         {
           "id": "2",
@@ -44,7 +44,7 @@
       "oui_list": [
         "000B82"
       ],
-      "changelog": "PACKAGER: Cisco\n-Don't set loadInformation if its not a sip79x1G"
+      "changelog": "PACKAGER: Updated Firmware Directory"
     }
   }
 }

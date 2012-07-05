@@ -5,8 +5,8 @@
       "directory": "polycom",
       "brand_id": "4",
       "package": "polycom.tgz",
-      "md5sum": "578a34aa84250c0c880c38d72f4e3562",
-      "last_modified": 1340671701,
+      "md5sum": "34d046385ec4685c178d25783034c06d",
+      "last_modified": 1340683234,
       "family_list": [
         {
           "id": "4",
@@ -61,7 +61,7 @@
         "0004F2",
         "00907A"
       ],
-      "changelog": "PACKAGER: Minor web fix"
+      "changelog": "PACKAGER: Updated Firmware Directory"
     }
   }
 }
