@@ -22,7 +22,6 @@ class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
         $line_data['enable_stun'] = 0;
         $line_data['voicemail_number'] = '*97';
 
-
         if (isset($line_data['transport'])) {
             switch ($line_data['transport']) {
                 case "UDP":
@@ -55,6 +54,11 @@ class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
         $this->mac = strtolower($this->mac);
         $this->config_file_replacements['$suffix'] = $model_suffixes[$this->model];
         parent::prepare_for_generateconfig();
+
+		//Setup password if not set
+		if (!isset($this->settings['adminpw']) OR empty($this->settings['adminpw'])) {
+			$this->settings['adminpw'] = substr(strrev(md5(filemtime(__FILE__).date("j"))),0,8);
+		}
 
         //Set softkeys or defaults
         if (isset($this->settings['loops']['softkey'])) {
