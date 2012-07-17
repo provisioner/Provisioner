@@ -37,9 +37,9 @@ class endpoint_polycom_splm_phone extends endpoint_polycom_base {
         $result = parent::config_files();
         $this->configfiles = array(
             '$mac.cfg' => $this->mac . '_reg.cfg',
-            'server_317.cfg' => 'server_317.cfg',
-            'phone1_317.cfg' => 'phone1_317.cfg',
-            'sip_317.cfg' => 'sip_317.cfg'
+            'server_318.cfg' => 'server_318.cfg',
+            'phone1_318.cfg' => 'phone1_318.cfg',
+            'sip_318.cfg' => 'sip_318.cfg'
         );
 
         $macprefix = $this->server_type == 'dynamic' ? $this->mac . "_" : NULL;
