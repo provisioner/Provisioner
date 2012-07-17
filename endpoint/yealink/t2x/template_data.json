@@ -28,37 +28,6 @@
                 "type":"break"
               },
               {
-                "category":"display",
-                "variable":"$logo_url",
-                "default_value":"",
-                "description":"Logo URL",
-                "type":"input"
-              },
-              {
-                "category":"display",
-                "variable":"$lcdlogo",
-                "default_value":"1",
-                "description":"Logo to Display",
-                "type":"list",
-                "data":[
-                  {
-                    "text":"None",
-                    "value":"0"
-                  },
-                  {
-                    "text":"Default Logo",
-                    "value":"1"
-                  },
-                  {
-                    "text":"Custom Logo",
-                    "value":"2"
-                  }
-                ]
-              },
-              {
-                "type":"break"
-              },
-              {
                 "category":"system",
                 "variable":"$rfc2543_hold",
                 "default_value":"0",

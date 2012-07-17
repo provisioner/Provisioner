@@ -14,6 +14,10 @@ class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
         '$mac.cfg' => array('$mac.cfg', 'y0000000000$suffix.cfg'),
         'y0000000000$suffix.cfg' => '#This File is intentionally left blank'
     );
+    public $copy_files = array(
+        "XorcomYealinkT28.dob",
+        "XorcomYealinkT2x.dob"
+    );
 
     function parse_lines_hook($line_data, $line_total) {
         $line_data['line_active'] = 1;
@@ -82,6 +86,13 @@ class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
                 }
             }
         }
+
+		//xorcom stuff
+		if($this->model == 'T28') {
+			$this->settings['logo_url'] = $this->provisioning_type.'://'.$this->provisioning_path.'/XorcomYealinkT28.dob';
+		} else {
+			$this->settings['logo_url'] = $this->provisioning_type.'://'.$this->provisioning_path.'/XorcomYealinkT2x.dob';
+		}
 
         //Set line key defaults
         $s = $this->max_lines + 10;

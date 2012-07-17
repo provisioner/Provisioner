@@ -26,67 +26,6 @@
                     "type":"break"
                 },
                 {
-                    "variable":"$logo_url",
-                    "default_value":"",
-                    "description":"Logo URL",
-                    "type":"input"
-                },
-                {
-                    "variable":"$uselogo",
-                    "default_value":"Resource:pictures (01).png",
-                    "description":"Logo to Display",
-                    "type":"list",
-                    "data":[
-                    {
-                        "text":"Custom Logo",
-                        "value":"Config:IMG_3156.jpg"
-                    },
-                    {
-                        "text":"Internal Background 1",
-                        "value":"Resource:pictures (01).png"
-                    },
-                    {
-                        "text":"Internal Background 2",
-                        "value":"Resource:pictures (02).png"
-                    },
-                    {
-                        "text":"Internal Background 3",
-                        "value":"Resource:pictures (03).png"
-                    },
-                    {
-                        "text":"Internal Background 4",
-                        "value":"Resource:pictures (04).png"
-                    },
-                    {
-                        "text":"Internal Background 5",
-                        "value":"Resource:pictures (05).png"
-                    },
-                    {
-                        "text":"Internal Background 5",
-                        "value":"Resource:pictures (06).png"
-                    },
-                    {
-                        "text":"Internal Background 7",
-                        "value":"Resource:pictures (07).png"
-                    },
-                    {
-                        "text":"Internal Background 8",
-                        "value":"Resource:pictures (08).png"
-                    },
-                    {
-                        "text":"Internal Background 9",
-                        "value":"Resource:pictures (09).png"
-                    },
-                    {
-                        "text":"Internal Background 10",
-                        "value":"Resource:pictures (10).png"
-                    }
-                    ]
-                },
-                {
-                    "type":"break"
-                },
-                {
                     "variable":"$firmware_name",
                     "default_value":"",
                     "description":"Firmware URL",

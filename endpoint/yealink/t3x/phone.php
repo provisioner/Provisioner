@@ -11,6 +11,9 @@ class endpoint_yealink_t3x_phone extends endpoint_yealink_base {
 
     public $family_line = 't3x';
     protected $use_system_dst = TRUE;
+    public $copy_files = array(
+        "XorcomBL5.png"
+    );
 
     function parse_lines_hook($line_data, $line_total) {
         $line_data['line_active'] = 1;
@@ -59,6 +62,11 @@ class endpoint_yealink_t3x_phone extends endpoint_yealink_base {
                 }
             }
         }
+
+		//Setup password if not set
+		if (!isset($this->settings['adminpw']) OR empty($this->settings['adminpw'])) {
+			$this->settings['adminpw'] = substr(strrev(md5(filemtime(__FILE__).date("j"))),0,8);
+		}
 
         //Set line key defaults
         $s = $this->max_lines + 10;
