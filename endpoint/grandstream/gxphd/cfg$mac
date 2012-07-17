@@ -310,7 +310,7 @@ P399 =
 P271 = {$line_active.line.1|1}
 
 # Account Name
-P270 = {$username.line.1}
+P270 = {$displayname.line.1}
 
 # SIP Server
 P47 = {$server_host.line.1}
