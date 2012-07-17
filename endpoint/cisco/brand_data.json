@@ -88,7 +88,9 @@
         "001EF7",
         "000E08",
         "1CDF0F",
-        "E05FB9"
+        "E05FB9",
+        "5475D0",
+        "C46413"
       ],
       "changelog": "PACKAGER: Yealink\n-Fixes to displayname\n-fixes to voicemail\n-fixes to daylight saving time"
     }
