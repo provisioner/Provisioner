@@ -78,7 +78,7 @@ class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
                 }
             }
         }
-
+        
         //Set line key defaults
         $s = $this->max_lines + 10;
         for ($i = 11; $i <= $s; $i++) {
@@ -88,6 +88,8 @@ class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
                     "type" => 15,
                     "line" => 0
                 );
+            } elseif($this->settings['loops']['linekey'][$i]['type'] == '16') {
+                $this->settings['loops']['linekey'][$i]['line'] = $this->settings['loops']['linekey'][$i]['line'] != '0' ? $this->settings['loops']['linekey'][$i]['line'] - 1 : $this->settings['loops']['linekey'][$i]['line'];
             }
         }
 
