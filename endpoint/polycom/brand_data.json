@@ -5,8 +5,8 @@
       "directory": "polycom",
       "brand_id": "4",
       "package": "polycom.tgz",
-      "md5sum": "fc12dc0314512c561c009bd5d4e453a1",
-      "last_modified": 1341510310,
+      "md5sum": "e831c87cf493cbc1b2611ffae9d4050d",
+      "last_modified": 1342552362,
       "family_list": [
         {
           "id": "4",
@@ -61,7 +61,7 @@
         "0004F2",
         "00907A"
       ],
-      "changelog": "PACKAGER: Fixes to unit tester\n-Also fixes to polycom from unit tester\n-Fixed firmware issue in relation to thompson phones"
+      "changelog": "PACKAGER: Minor Fixes to Polycom Legacy Models"
     }
   }
 }
