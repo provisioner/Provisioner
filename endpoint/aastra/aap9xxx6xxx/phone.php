@@ -22,7 +22,7 @@ class endpoint_aastra_aap9xxx6xxx_phone extends endpoint_aastra_base {
         return($line_data);
     }
 
-    function generate_file($file, $extradata, $ignoredynamicmapping=FALSE) {
+    function generate_file($file, $extradata, $ignoredynamicmapping=FALSE, $prepare=FALSE) {
         $config = parent::generate_file($file, $extradata, $ignoredynamicmapping);
         if (($extradata == '$mac.cfg') && ($ignoredynamicmapping === FALSE) && ($this->enable_encryption)) {
             $this->enable_encryption();
