@@ -1,9 +1,9 @@
 <?PHP
 
 /**
- * Grandstream Base File
+ * Snom Base File
  *
- * @author Andrew Nagy
+ * @author Jort
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
  */
