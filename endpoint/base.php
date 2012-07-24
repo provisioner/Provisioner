@@ -23,8 +23,8 @@ if (!function_exists('json_last_error')) {
 
 abstract class endpoint_base {
 
-    public static $modules_path = "endpoint/";
-    public static $root_dir = "";  //need to define the root directory for the location of the library (/var/www/html/)
+    public $modules_path = "endpoint/";
+    public $root_dir = "";  //need to define the root directory for the location of the library (/var/www/html/)
     public $brand_name = "undefined";   //Brand Name
     public $family_line = "undefined";  //Family Line
     public $model = "undefined";        // Model of phone, must match the model name inside of the famil_data.json file in each family folder.
@@ -75,10 +75,7 @@ abstract class endpoint_base {
     public $mapfields = array(); // override in children.
 
     function __construct() {
-        self::$root_dir = dirname(dirname(__FILE__)) . "/";
-
-        $this->root_dir = self::$root_dir;
-        $this->modules_path = self::$modules_path;
+        $this->root_dir = empty($this->root_dir) ? dirname(dirname(__FILE__)) . "/" : $this->root_dir;
     }
 
     /*     * *PUBLIC FUNCTIONS** */
@@ -218,7 +215,7 @@ abstract class endpoint_base {
     private function open_config_file($filename) {
         //if there is no configuration file over ridding the default then load up $contents with the file's information, where $key is the name of the default configuration file
         if (!isset($this->config_files_override[$filename])) {
-            return file_get_contents(self::$root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $filename);
+            return file_get_contents($this->root_dir . $this->modules_path . $this->brand_name . "/" . $this->family_line . "/" . $filename);
         } else {
             return($this->config_files_override[$filename]);
         }
@@ -358,7 +355,7 @@ abstract class endpoint_base {
         $template_data_multi = "";
 
         //Setup defaults from global file
-        $template_data_multi = $this->file2json(self::$root_dir . self::$modules_path . '/global_template_data.json');
+        $template_data_multi = $this->file2json($this->root_dir . $this->modules_path . '/global_template_data.json');
         $template_data_multi = $template_data_multi['template_data']['category'];
         foreach ($template_data_multi as $categories) {
             $subcats = $categories['subcategory'];
@@ -370,8 +367,8 @@ abstract class endpoint_base {
 
         //Setup defaults from each template file
         foreach ($template_data_list as $files) {
-            if (file_exists(self::$root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $files)) {
-                $template_data_multi = $this->file2json(self::$root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $files);
+            if (file_exists($this->root_dir . $this->modules_path . $this->brand_name . "/" . $this->family_line . "/" . $files)) {
+                $template_data_multi = $this->file2json($this->root_dir . $this->modules_path . $this->brand_name . "/" . $this->family_line . "/" . $files);
                 $template_data_multi = $template_data_multi['template_data']['category'];
                 foreach ($template_data_multi as $categories) {
                     $subcats = $categories['subcategory'];
@@ -386,8 +383,8 @@ abstract class endpoint_base {
         }
 
 
-        if (file_exists(self::$root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_custom.json")) {
-            $template_data_multi = $this->file2json(self::$root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_custom.json");
+        if (file_exists($this->root_dir . $this->modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_custom.json")) {
+            $template_data_multi = $this->file2json($this->root_dir . $this->modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_custom.json");
             $template_data_multi = $template_data_multi['template_data']['category'];
             foreach ($template_data_multi as $categories) {
                 $subcats = $categories['subcategory'];
@@ -398,8 +395,8 @@ abstract class endpoint_base {
             }
         }
 
-        if (file_exists(self::$root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_" . $this->model . "_custom.json")) {
-            $template_data_multi = $this->file2json(self::$root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_" . $this->model . "_custom.json");
+        if (file_exists($this->root_dir . $this->modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_" . $this->model . "_custom.json")) {
+            $template_data_multi = $this->file2json($this->root_dir . $this->modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_" . $this->model . "_custom.json");
             $template_data_multi = $template_data_multi['template_data']['category'];
             foreach ($template_data_multi as $categories) {
                 $subcats = $categories['subcategory'];
@@ -705,8 +702,8 @@ abstract class endpoint_base {
                 throw new Exception('Undefined Processor, please set your processor_info');
             }
             //Load files for quicker processing
-            $this->family_data = $this->file2json(self::$root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.json");
-            $this->brand_data = $this->file2json(self::$root_dir . self::$modules_path . $this->brand_name . "/brand_data.json");
+            $this->family_data = $this->file2json($this->root_dir . $this->modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.json");
+            $this->brand_data = $this->file2json($this->root_dir . $this->modules_path . $this->brand_name . "/brand_data.json");
 
             $this->model_data = $this->find_model($this->family_data);
             $this->max_lines = isset($this->model_data['lines']) ? $this->model_data['lines'] : 1;
