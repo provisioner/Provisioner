@@ -95,7 +95,7 @@ class endpoint_grandstream_base extends endpoint_base {
         $this->options['gs_timezone'] = 720 + $this->timezone['gmtoffset'] / 60;
     }
 
-    function generate_file($file, $extradata, $ignoredynamicmapping=FALSE) {
+    function generate_file($file, $extradata, $ignoredynamicmapping=FALSE, $prepare=FALSE) {
         $data = parent::generate_file($file, $extradata, $ignoredynamicmapping);
         if ($ignoredynamicmapping == FALSE) {
             $data = array_values($this->create_encrypted_file(array($this->mac . ".cfg" => $data)));
