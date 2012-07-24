@@ -15,4 +15,3 @@ class endpoint_mitel_53xx_phone extends endpoint_mitel_base {
     );
 
 }
-?>
