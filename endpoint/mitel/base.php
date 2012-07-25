@@ -17,4 +17,3 @@ abstract class endpoint_mitel_base extends endpoint_base {
 	parent::prepare_for_generateconfig();
     }
 }
-?>

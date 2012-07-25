@@ -5,8 +5,8 @@
       "brand_id": "8",
       "directory": "yealink",
       "package": "yealink.tgz",
-      "md5sum": "85f0ffc08fdc86e168f5723a6dade689",
-      "last_modified": 1339434726,
+      "md5sum": "a06ddccffd5ddd84d262bed9040dd73a",
+      "last_modified": 1343081326,
       "family_list": [
         {
           "id": "3",
@@ -36,7 +36,7 @@
       "oui_list": [
         "001565"
       ],
-      "changelog": "PACKAGER: New Family_Data Option\n-Define supported provisioning types"
+      "changelog": "PACKAGER: Yealink\r\n-Fix issue with selecting auto\/line1\/line2\/line3 when in BLF mode being off by 1."
     }
   }
 }

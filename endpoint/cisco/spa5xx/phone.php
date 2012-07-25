@@ -11,7 +11,7 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
 
     public $family_line = 'spa5xx';
 
-    function parse_lines_hook($line_data) {
+    function parse_lines_hook($line_data,$line_total) {
         $line = $line_data['line'];
 
         $line_data['displayname'] = isset($line_data['displayname']) ? $line_data['displayname'] : '';

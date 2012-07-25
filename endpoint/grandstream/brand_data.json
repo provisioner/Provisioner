@@ -5,8 +5,8 @@
       "directory": "grandstream",
       "brand_id": "2",
       "package": "grandstream.tgz",
-      "md5sum": "2fc1a6b0a319b20253c1c85163c8b308",
-      "last_modified": 1341509336,
+      "md5sum": "4897117555abfe7dbd95c78b3a16b742",
+      "last_modified": 1342516120,
       "family_list": [
         {
           "id": "2",
@@ -44,7 +44,7 @@
       "oui_list": [
         "000B82"
       ],
-      "changelog": "PACKAGER: Updated Firmware Directory"
+      "changelog": "PACKAGER: Minor Fixes to Polycom Legacy Models"
     }
   }
 }
