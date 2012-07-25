@@ -95,7 +95,9 @@ class StackTest extends PHPUnit_Framework_TestCase
 			$this->assertSame($linedata, $endpoint->replacement_array['lines'][1]['$'.$key], 'Error with '.$key.' replacement');
 		}		
 	}
-	
+	/**
+	* @group large
+	*/	
 	public function testreplacementall() 
 	{
 		$brand = 'polycom';

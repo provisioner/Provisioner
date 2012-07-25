@@ -10,7 +10,7 @@ class endpoint_cisco_sip79xx_phone extends endpoint_cisco_base {
 	
 	public $family_line = 'sip79xx';
 	
-    function parse_lines_hook($line_data) {
+    function parse_lines_hook($line_data,$line_total) {
 		if(strlen($line_data['displayname']) > 12) {
 			$name = explode(" ", $line_data['displayname']);
 			$line_data['shortname'] = substr($name[0],0,12);
