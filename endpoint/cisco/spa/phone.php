@@ -11,14 +11,14 @@ class endpoint_cisco_spa_phone extends endpoint_cisco_base {
 
     public $family_line = 'spa';
 
-    function parse_lines_hook($line_data) {
+    function parse_lines_hook($line_data,$line_total) {
         $line = $line_data['line'];
         if (strlen($line_data['displayname']) > 12) {
             $short_name = substr($line_data['displayname'], 0, 8) . "...";
         } else {
             $short_name = $line_data['displayname'];
         }
-        if ((isset($line_data['secret'])) && ($line_data['secret'] != "") && (isset($line_data['dial_plan']))) {
+        if ((isset($line_data['secret'])) && ($line_data['secret'] != "") && (isset($this->settings['dial_plan']))) {
             $line_data['dial_plan'] = htmlentities($this->settings['dial_plan']);
         } else {
             $line_data['dial_plan'] = "";

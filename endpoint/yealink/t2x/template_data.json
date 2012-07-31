@@ -60,6 +60,26 @@
               },
               {
                 "category":"system",
+                "variable":"$rfc2543_hold",
+                "default_value":"0",
+                "description":"Enable RFC2543 Hold",
+                "type":"list",
+                "data":[
+                  {
+                    "text":"Disabled",
+                    "value":"0"
+                  },
+                  {
+                    "text":"Enabled",
+                    "value":"1"
+                  }
+                ]
+              },
+              {
+                "type":"break"
+              },
+              {
+                "category":"system",
                 "variable":"$firmware_server",
                 "default_value":"{$server.ip.1}",
                 "description":"Firmware Server IP",

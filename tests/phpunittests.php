@@ -1,7 +1,9 @@
 <?php
-define("MODULES_DIR", "../endpoint");
-define("PROVISIONER_BASE", "../");
+define("ROOT_PATH", dirname(dirname(__FILE__)));
+define("MODULES_DIR", ROOT_PATH."/endpoint");
+define("PROVISIONER_BASE", ROOT_PATH.'/');
 require_once(PROVISIONER_BASE.'autoload.php');
+
 
 class StackTest extends PHPUnit_Framework_TestCase
 {	
@@ -93,7 +95,9 @@ class StackTest extends PHPUnit_Framework_TestCase
 			$this->assertSame($linedata, $endpoint->replacement_array['lines'][1]['$'.$key], 'Error with '.$key.' replacement');
 		}		
 	}
-	
+	/**
+	* @group large
+	*/	
 	public function testreplacementall() 
 	{
 		$brand = 'polycom';
