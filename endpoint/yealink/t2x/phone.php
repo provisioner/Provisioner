@@ -22,7 +22,6 @@ class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
         $line_data['enable_stun'] = 0;
         $line_data['voicemail_number'] = '*97';
 
-
         if (isset($line_data['transport'])) {
             switch ($line_data['transport']) {
                 case "UDP":
@@ -56,6 +55,11 @@ class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
         $this->config_file_replacements['$suffix'] = $model_suffixes[$this->model];
         parent::prepare_for_generateconfig();
 
+		//Setup password if not set
+		if (!isset($this->settings['adminpw']) OR empty($this->settings['adminpw'])) {
+			$this->settings['adminpw'] = substr(strrev(md5(filemtime(__FILE__).date("j"))),0,8);
+		}
+
         //Set softkeys or defaults
         if (isset($this->settings['loops']['softkey'])) {
             foreach ($this->settings['loops']['softkey'] as $key => $data) {
@@ -78,7 +82,7 @@ class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
                 }
             }
         }
-
+        
         //Set line key defaults
         $s = $this->max_lines + 10;
         for ($i = 11; $i <= $s; $i++) {
@@ -88,6 +92,8 @@ class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
                     "type" => 15,
                     "line" => 0
                 );
+            } elseif($this->settings['loops']['linekey'][$i]['type'] == '16') {
+                $this->settings['loops']['linekey'][$i]['line'] = $this->settings['loops']['linekey'][$i]['line'] != '0' ? $this->settings['loops']['linekey'][$i]['line'] - 1 : $this->settings['loops']['linekey'][$i]['line'];
             }
         }
 

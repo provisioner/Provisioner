@@ -61,7 +61,7 @@ P212 = 1
 P192 = {$firmware_srv_path}
 
 # Config Server Path
-P237 = {$server.ip.1}
+P237 = {$provisioning_path}
 
 # Firmware File Prefix
 P232 =
@@ -310,7 +310,7 @@ P399 =
 P271 = {$line_active.line.1|1}
 
 # Account Name
-P270 = {$username.line.1}
+P270 = {$displayname.line.1}
 
 # SIP Server
 P47 = {$server_host.line.1}

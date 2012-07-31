@@ -27,6 +27,7 @@ class endpoint_polycom_splm_phone extends endpoint_polycom_base {
     }
 
     function parse_lines_hook($line_data, $line_total) {
+		$line = $line_data['line'];
         $line_data['lineKeys'] = isset($this->settings['loops']['lineops'][$line]) ? $this->settings['loops']['lineops'][$line]['linekeys'] : '1';
         $line_data['digitmap'] = (isset($this->settings['digitmap']) ? $this->settings['digitmap'] : NULL);
         $line_data['digitmaptimeout'] = (isset($this->settings['digitmaptimeout']) ? $this->settings['digitmaptimeout'] : NULL);
@@ -37,9 +38,9 @@ class endpoint_polycom_splm_phone extends endpoint_polycom_base {
         $result = parent::config_files();
         $this->configfiles = array(
             '$mac.cfg' => $this->mac . '_reg.cfg',
-            'server_317.cfg' => 'server_317.cfg',
-            'phone1_317.cfg' => 'phone1_317.cfg',
-            'sip_317.cfg' => 'sip_317.cfg'
+            'server_318.cfg' => 'server_318.cfg',
+            'phone1_318.cfg' => 'phone1_318.cfg',
+            'sip_318.cfg' => 'sip_318.cfg'
         );
 
         $macprefix = $this->server_type == 'dynamic' ? $this->mac . "_" : NULL;
