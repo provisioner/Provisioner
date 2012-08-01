@@ -28,6 +28,14 @@
         "template_data": [
           "template_data.json"
         ]
+      },
+      {
+        "model": "HT502",
+        "lines": "2",
+        "id": "3",
+        "template_data": [
+          "template_data.json"
+        ]
       }
     ],
     "firmware_md5sum": "e1e670a1af3f62a697dae3a8f3723a25"

@@ -17,6 +17,25 @@
                 "type":"break"
               },
               {
+                "variable":"$use_rand_port",
+                "default_value":"1",
+                "description":"Use random SIP port",
+                "type":"radio",
+                "data":[
+                  {
+                    "text":"Yes",
+                    "value":"1"
+                  },
+                  {
+                    "text":"No",
+                    "value":"0"
+                  }
+                ]
+              },
+              {
+                "type":"break"
+              },
+              {
                 "variable":"$firmware_srv_path",
                 "default_value":"",
                 "description":"Firmware Server Path",
