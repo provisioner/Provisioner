@@ -2,8 +2,8 @@
         <!-- Reset the global configuration options, now we will reset per day instead of every second -->
         <Resync_Periodic>86400</Resync_Periodic>
         <Resync_On_Reset>Yes</Resync_On_Reset>
-        <Profile_Rule>{$provisioning_type}://{$server.ip.1}/spa$PSN.cfg</Profile_Rule>
-        <Profile_Rule_B ua="na">{$provisioning_type}://{$server.ip.1}/spa$MA.xml</Profile_Rule_B>
+        <Profile_Rule>{$provisioning_type}://{$provisioning_path}/spa$PSN.cfg</Profile_Rule>
+        <Profile_Rule_B ua="na">{$provisioning_type}://{$provisioning_path}/spa$MA.xml</Profile_Rule_B>
 
         <!-- Line Registration Information -->
         <Text_Logo group="Phone/General">{$text_logo}</Text_Logo>
