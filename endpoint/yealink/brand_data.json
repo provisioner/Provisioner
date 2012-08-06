@@ -5,8 +5,8 @@
       "brand_id": "8",
       "directory": "yealink",
       "package": "yealink.tgz",
-      "md5sum": "a06ddccffd5ddd84d262bed9040dd73a",
-      "last_modified": 1343081326,
+      "md5sum": "37f6dc80f94dd4a64c95ca00c8aa907e",
+      "last_modified": 1344236964,
       "family_list": [
         {
           "id": "3",
@@ -36,7 +36,7 @@
       "oui_list": [
         "001565"
       ],
-      "changelog": "PACKAGER: Yealink\r\n-Fix issue with selecting auto\/line1\/line2\/line3 when in BLF mode being off by 1."
+      "changelog": "PACKAGER: GXP HD Updates"
     }
   }
 }
