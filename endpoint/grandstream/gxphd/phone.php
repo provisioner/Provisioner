@@ -6,6 +6,7 @@
  * @author Andrew Nagy
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
+ * 
  */
 class endpoint_grandstream_gxphd_phone extends endpoint_grandstream_base {
 
