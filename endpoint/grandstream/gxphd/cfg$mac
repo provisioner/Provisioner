@@ -563,7 +563,7 @@ P81 = 0
 # Register Expiration (in minutes. default 1 hour, max 45 days)
 # Number: 1-64800
 # Mandatory
-P32 = 60
+P32 = {$server_expires|2}
 
 # Reregister before Expiration (in seconds, default 0 second)
 # Number: 0-64800
