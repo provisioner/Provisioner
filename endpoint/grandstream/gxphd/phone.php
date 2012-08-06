@@ -30,13 +30,38 @@ class endpoint_grandstream_gxphd_phone extends endpoint_grandstream_base {
         }
         return($offset);
     }
-    
+
     function prepare_for_generateconfig() {
         parent::prepare_for_generateconfig();
-       	if(isset($this->settings['dialplan'])) {
-			$this->settings['dialplan'] = str_replace("+", "%2B", $this->settings['dialplan']);        
-   		}
-	}
+
+        if (isset($this->settings['dialplan'])) {
+            $this->settings['dialplan'] = str_replace("+", "%2B", $this->settings['dialplan']);
+        }
+
+        if (isset($this->settings['loops']['ext1'])) {
+            foreach ($this->settings['loops']['ext1'] as $key => $data) {
+                if ($this->settings['loops']['ext1'][$key]['mode'] == '999') {
+                    $this->settings['loops']['ext1'][$key]['account'] = '';
+                    $this->settings['loops']['ext1'][$key]['name'] = '';
+                    $this->settings['loops']['ext1'][$key]['uid'] = '';
+                    $this->settings['loops']['ext1'][$key]['mode'] = '';
+                }
+                $this->settings['loops']['ext1'][$key]['pnum'] = (strlen($key) == '1') ? '0' . $key : $key;
+            }
+        }
+
+        if (isset($this->settings['loops']['ext2'])) {
+            foreach ($this->settings['loops']['ext2'] as $key => $data) {
+                if ($this->settings['loops']['ext2'][$key]['mode'] == '999') {
+                    $this->settings['loops']['ext2'][$key]['account'] = '';
+                    $this->settings['loops']['ext2'][$key]['name'] = '';
+                    $this->settings['loops']['ext2'][$key]['uid'] = '';
+                    $this->settings['loops']['ext2'][$key]['mode'] = '';
+                }
+                $this->settings['loops']['ext2'][$key]['pnum'] = (strlen($key) == '1') ? '0' . $key : $key;
+            }
+        }
+    }
 
     function reboot() {
         if (($this->engine == "asterisk") AND ($this->system == "unix")) {
@@ -45,30 +70,30 @@ class endpoint_grandstream_gxphd_phone extends endpoint_grandstream_base {
                 $ip = $matches[0];
                 $pass = (isset($this->options['admin_pass']) ? $this->options['admin_pass'] : 'admin');
 
-				if(function_exists('curl_init')) {
-					$ckfile = tempnam ("/tmp", "GSCURLCOOKIE");
-					$ch = curl_init ('http://' . $ip . '/cgi-bin/dologin');
-					curl_setopt ($ch, CURLOPT_COOKIEJAR, $ckfile); 
-					curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
-					curl_setopt($ch, CURLOPT_POST, true);
+                if (function_exists('curl_init')) {
+                    $ckfile = tempnam($this->sys_get_temp_dir(), "GSCURLCOOKIE");
+                    $ch = curl_init('http://' . $ip . '/cgi-bin/dologin');
+                    curl_setopt($ch, CURLOPT_COOKIEJAR, $ckfile);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($ch, CURLOPT_POST, true);
 
-					$data = array(
-						'P2' => $pass,
-					    'Login' => 'Login',
-					    'gnkey' => '0b82'
-					);
+                    $data = array(
+                        'P2' => $pass,
+                        'Login' => 'Login',
+                        'gnkey' => '0b82'
+                    );
 
-					curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-					$output = curl_exec($ch);
-					$info = curl_getinfo($ch);
-					curl_close($ch);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+                    $output = curl_exec($ch);
+                    $info = curl_getinfo($ch);
+                    curl_close($ch);
 
-					$ch = curl_init ("http://" . $ip . "/cgi-bin/rs");
-					curl_setopt ($ch, CURLOPT_COOKIEFILE, $ckfile); 
-					curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
-					$output = curl_exec ($ch);
-					curl_close($ch);
-				}
+                    $ch = curl_init("http://" . $ip . "/cgi-bin/rs");
+                    curl_setopt($ch, CURLOPT_COOKIEFILE, $ckfile);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    $output = curl_exec($ch);
+                    curl_close($ch);
+                }
             }
         }
     }
