@@ -238,7 +238,7 @@ P8027 = 3
 # String
 P8028 =
 
-# LDAP Number Attributes. This setting specifies the “number” attributes of each record which are returned in the LDAP search result.
+# LDAP Number Attributes. This setting specifies the ï¿½numberï¿½ attributes of each record which are returned in the LDAP search result.
 # The setting allows the users to configure multiple space separated number attributes.
 # String
 P8029 =
@@ -3338,3 +3338,45 @@ P1302 = 0
 # Number: 0-2
 # Mandatory
 P1464 = 0
+
+{if model="GXP21*"}
+################################################################################
+# Extension Boards FOR GXP2110 and GXP2120 ONLY
+################################################################################
+
+{loop_ext1}
+# EXT Key {$number}
+# -----------------------------
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
+P60{$pnum} = {$mode}
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
+P62{$pnum} = {$account}
+
+# Name
+P64{$pnum} = {$name}
+
+# UserID
+P66{$pnum} = {$uid}
+{/loop_ext1}
+
+#########################################################################################
+# Extension Board 2 Settings.
+#########################################################################################
+
+{loop_ext2}
+# EXT Key {$number}
+# -----------------------------
+# Key Mode. 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF
+P60{$pnum} = {$mode}
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4 
+P62{$pnum} = {$account}
+
+# Name
+P64{$pnum} = {$name}
+
+# UserID
+P66{$pnum} = {$uid}
+{/loop_ext2}
+{/if}
