@@ -26,9 +26,9 @@ class endpoint_polycom_firmware325_phone extends endpoint_polycom_base {
         
         $this->configfiles = array(
             '$mac.cfg' => $this->mac . '_reg.cfg',
-            'server_325.cfg' => 'server_325.cfg',
-            'phone1_325.cfg' => 'phone1_325.cfg',
-            'sip_325.cfg' => 'sip_325.cfg'
+            'server_327.cfg' => 'server_327.cfg',
+            'phone1_327.cfg' => 'phone1_327.cfg',
+            'sip_327.cfg' => 'sip_327.cfg'
         );
         
         $macprefix = $this->server_type == 'dynamic' ? $this->mac . "_" : NULL;        
