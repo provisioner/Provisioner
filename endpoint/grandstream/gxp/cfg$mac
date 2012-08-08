@@ -379,7 +379,7 @@ P288 = 0
 P32 = 60
 
 # Local SIP port (default 5060)
-P40 = {$server.port.1}
+P40 = {$server_port.line.1}
 
 # SIP Registration Failure Retry Wait Time. In seconds. Between 1-3600, default is 20.
 P138 = 20
