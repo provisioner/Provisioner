@@ -508,13 +508,13 @@ P271 = {$line_active.line.1|1}
 P270 = {$displayname.line.1}
 
 # SIP Server
-P47 = {$server_host.line.1}
+P47 = {$server_host.line.1}:{$server_port.line.1|5060}
 
 # Secondary SIP Server
 P2312 = 
 
 # Outbound Proxy
-P48 = {$server_host.line.1}
+P48 = {$server_host.line.1}:{$server_port.line.1|5060}
 
 # SIP User ID
 P35 = {$username.line.1}
@@ -573,7 +573,7 @@ P2330 = 0
 # Local SIP port (default 5060)
 # Number
 # Mandatory
-P40 = {$server_port.line.1}
+P40 = 5060
 
 # SIP Registration Failure Retry Wait Time. In seconds. Between 1-3600, default is 20.
 # Number: 1-3600
