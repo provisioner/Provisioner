@@ -18,43 +18,43 @@ class endpoint_grandstream_base extends endpoint_base {
                 $ip = $matches[0];
                 $pass = (isset($this->settings['admin_pass']) ? $this->settings['admin_pass'] : 'admin');
 
-				if(function_exists('curl_init')) {
-					$ckfile = tempnam ("/tmp", "GSCURLCOOKIE");
-					$ch = curl_init ('http://' . $ip . '/dologin.htm');
-					curl_setopt ($ch, CURLOPT_COOKIEJAR, $ckfile); 
-					curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
-					curl_setopt($ch, CURLOPT_POST, true);
+                if (function_exists('curl_init')) {
+                    $ckfile = tempnam($this->sys_get_temp_dir(), "GSCURLCOOKIE");
+                    $ch = curl_init('http://' . $ip . '/dologin.htm');
+                    curl_setopt($ch, CURLOPT_COOKIEJAR, $ckfile);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($ch, CURLOPT_POST, true);
 
-					$data = array(
-						'P2' => $pass,
-					    'Login' => 'Login',
-					    'gnkey' => '0b82'
-					);
+                    $data = array(
+                        'P2' => $pass,
+                        'Login' => 'Login',
+                        'gnkey' => '0b82'
+                    );
 
-					curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-					$output = curl_exec($ch);
-					$info = curl_getinfo($ch);
-					curl_close($ch);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+                    $output = curl_exec($ch);
+                    $info = curl_getinfo($ch);
+                    curl_close($ch);
 
-					$ch = curl_init ("http://" . $ip . "/rs.htm");
-					curl_setopt ($ch, CURLOPT_COOKIEFILE, $ckfile); 
-					curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
-					$output = curl_exec ($ch);
-					curl_close($ch);
-				}
+                    $ch = curl_init("http://" . $ip . "/rs.htm");
+                    curl_setopt($ch, CURLOPT_COOKIEFILE, $ckfile);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    $output = curl_exec($ch);
+                    curl_close($ch);
+                }
             }
         }
     }
 
     function create_encrypted_file($list) {
-		$temporary_directory_location = function_exists('sys_get_temp_dir') ? sys_get_temp_dir() : '/tmp';
-		
+        $temporary_directory_location = function_exists('sys_get_temp_dir') ? sys_get_temp_dir() : '/tmp';
+
         foreach ($list as $key => $data) {
             file_put_contents($temporary_directory_location . "/" . $key, $data);
 
             if (file_exists("/usr/src/GS_CFG_GEN/bin/encode.sh")) {
-                exec("/usr/src/GS_CFG_GEN/bin/encode.sh " . $this->mac . " " . $temporary_directory_location . "/" . $this->mac.".cfg " . $temporary_directory_location . "/cfg" . $this->mac);
-                $contents = file_get_contents($temporary_directory_location."/cfg" . $this->mac);
+                exec("/usr/src/GS_CFG_GEN/bin/encode.sh " . $this->mac . " " . $temporary_directory_location . "/" . $this->mac . ".cfg " . $temporary_directory_location . "/cfg" . $this->mac);
+                $contents = file_get_contents($temporary_directory_location . "/cfg" . $this->mac);
                 unlink($temporary_directory_location . "/cfg" . $this->mac);
             } else {
                 $params = $this->parse_gs_config($temporary_directory_location . "/" . $key);
