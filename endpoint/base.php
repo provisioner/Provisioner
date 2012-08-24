@@ -246,10 +246,32 @@ abstract class endpoint_base {
         return $file_contents;
     }
 
+    /**
+     * Simple isset/==/!= statetment
+     * @param string $file_contents Full Contents of the configuration file
+     * @return string Full Contents of the configuration file (After Parsing)
+     * @example {if condition="$local_port == '5060'"}{/if}
+     * @author Andrew Nagy
+     */
     private function parse_conditionals($file_contents) {
         $pattern = "/{if condition=\"(.*?)\"}(.*?){\/if}/si";
         while (preg_match($pattern, $file_contents, $matches)) {
-            
+    		$function = $matches[1];
+			$contents = $matches[2];
+			if(preg_match('/isset\(\$(\w*)\)/i',$function,$fmatches)) {
+				if(isset($this->settings[$fmatches[1]])) {
+					$file_contents = preg_replace($pattern, $contents, $file_contents, 1);
+				}
+			} elseif(preg_match('/\$(.*) == \'(.*)\'/i',$function,$fmatches)) {
+				if(isset($this->settings[$fmatches[1]]) AND ($this->settings[$fmatches[1]] == $fmatches[2])){
+					$file_contents = preg_replace($pattern, $contents, $file_contents, 1);
+				}
+			} elseif(preg_match('/\$(.*) != \'(.*)\'/i',$function,$fmatches)) {
+				if(isset($this->settings[$fmatches[1]]) AND ($this->settings[$fmatches[1]] != $fmatches[2])){
+					$file_contents = preg_replace($pattern, $contents, $file_contents, 1);
+				}
+			}
+			$file_contents = preg_replace($pattern, "", $file_contents, 1);	
         }
         return($file_contents);
     }
