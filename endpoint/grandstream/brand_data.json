@@ -5,8 +5,8 @@
       "directory": "grandstream",
       "brand_id": "2",
       "package": "grandstream.tgz",
-      "md5sum": "4897117555abfe7dbd95c78b3a16b742",
-      "last_modified": 1342516120,
+      "md5sum": "d2dd61a93239a7a77a8264f55fa6f485",
+      "last_modified": 1344237429,
       "family_list": [
         {
           "id": "2",
@@ -44,7 +44,7 @@
       "oui_list": [
         "000B82"
       ],
-      "changelog": "PACKAGER: Minor Fixes to Polycom Legacy Models"
+      "changelog": "PACKAGER: Force GXP HD update package"
     }
   }
 }
