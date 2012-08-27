@@ -31,10 +31,19 @@
           "description": "Make more settings available in user interface",
           "changelog": "",
           "last_modified": null
+        },        
+        {
+          "id": "4",
+          "name": "Xorcom IP Phones Models: [XP0100, XP0120]",
+          "directory": "xpxxxx",
+          "description": "Make more configuration settings available from UI",
+          "changelog": "",
+          "last_modified": null
         }
       ],
       "oui_list": [
-        "001565"
+        "001565",
+        "642400"
       ],
       "changelog": "PACKAGER: Yealink\r\n-Fix issue with selecting auto\/line1\/line2\/line3 when in BLF mode being off by 1."
     }
