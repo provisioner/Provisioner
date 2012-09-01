@@ -21,6 +21,7 @@
         "template_data": [
           "template_data.json",
           "memory_keys_22.json",
+          "remote_phone_book.json",
           "dialnow_22.json",
           "ext38.json"
         ]
@@ -34,6 +35,7 @@
           "line_keys_22.json",
           "soft_keys_22.json",
           "hard_keys_22.json",
+          "remote_phone_book.json",
           "dialnow_22.json",
           "ext38.json"
         ]
@@ -48,6 +50,7 @@
           "soft_keys_22.json",
           "hard_keys_22.json",
           "memory_keys_22.json",
+          "remote_phone_book.json",
           "dialnow_22.json",
           "ext38.json"
         ]
@@ -62,6 +65,7 @@
           "soft_keys_22.json",
           "hard_keys_22.json",
           "memory_keys_22.json",
+          "remote_phone_book.json",
           "dialnow_22.json",
           "ext38.json"
         ]
