@@ -1,6 +1,6 @@
 {
     "data": {
-        "name": "Linksys\/Cisco\/Sipura SPA Phone Models 5xx, 3xx [303,501G,502G,504G,525G,525G2]",
+        "name": "Linksys/Cisco/Sipura SPA Phone Models 5xx, 3xx [303,501G,502G,504G,525G,525G2]",
         "id": "3",
         "directory": "spa5xx",
         "firmware_ver": "",
@@ -21,7 +21,7 @@
                 "template_data": [
                     "template_data.json",
                     "keys.json",
-					"provisioning.json"
+                    "provisioning.json"
                 ]
             },
             {
@@ -31,7 +31,7 @@
                 "template_data": [
                     "template_data.json",
                     "keys.json",
-					"provisioning.json",
+                    "provisioning.json",
                     "a_unit1.json",
                     "a_unit2.json"
                 ]
@@ -44,7 +44,7 @@
                     "4_lines.json",
                     "template_data.json",
                     "keys.json",
-					"provisioning.json",
+                    "provisioning.json",
                     "a_unit1.json",
                     "a_unit2.json"
                 ]
@@ -57,7 +57,7 @@
                     "8_lines.json",
                     "template_data.json",
                     "keys.json",
-					"provisioning.json",
+                    "provisioning.json",
                     "a_unit1.json",
                     "a_unit2.json"
                 ]
@@ -70,7 +70,7 @@
                     "12_lines.json",
                     "template_data.json",
                     "keys.json",
-					"provisioning.json",
+                    "provisioning.json",
                     "a_unit1.json",
                     "a_unit2.json"
                 ]
@@ -83,7 +83,7 @@
                     "5_lines.json",
                     "template_data.json",
                     "keys.json",
-					"provisioning.json",
+                    "provisioning.json",
                     "a_unit1.json",
                     "a_unit2.json"
                 ]
@@ -96,7 +96,7 @@
                     "5_lines.json",
                     "template_data.json",
                     "keys.json",
-					"provisioning.json",
+                    "provisioning.json",
                     "a_unit1.json",
                     "a_unit2.json"
                 ]
@@ -109,7 +109,7 @@
                     "3_lines.json",
                     "template_data.json",
                     "keys.json",
-					"provisioning.json"
+                    "provisioning.json"
                 ]
             },
             {
@@ -119,7 +119,7 @@
                 "template_data": [
                     "template_data.json",
                     "keys.json",
-					"provisioning.json"
+                    "provisioning.json"
                 ]
             },
             {
@@ -127,10 +127,10 @@
                 "lines": "4",
                 "id": "10",
                 "template_data": [
-                	"4_lines.json",
+                    "4_lines.json",
                     "template_data.json",
                     "keys.json",
-					"provisioning.json"
+                    "provisioning.json"
                 ]
             },
             {
@@ -140,9 +140,9 @@
                 "template_data": [
                     "template_data.json",
                     "keys.json",
-					"provisioning.json"
+                    "provisioning.json"
                 ]
-            },
+            }
         ]
     }
 }
