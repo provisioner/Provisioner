@@ -70,9 +70,13 @@ class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
             }
         } else {
             $this->settings['loops']['softkey'][1]['type'] = 28;
+            $this->settings['loops']['softkey'][1]['label'] = "History";
             $this->settings['loops']['softkey'][2]['type'] = 29;
+            $this->settings['loops']['softkey'][2]['label'] = "Dir";
             $this->settings['loops']['softkey'][3]['type'] = 5;
+            $this->settings['loops']['softkey'][3]['label'] = "DND";
             $this->settings['loops']['softkey'][4]['type'] = 30;
+            $this->settings['loops']['softkey'][4]['label'] = "Menu";
         }
 
         if (isset($this->settings['loops']['remotephonebook'])) {
