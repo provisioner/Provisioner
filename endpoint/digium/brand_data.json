@@ -1,0 +1,26 @@
+{
+  "data": {
+    "brands": {
+      "name": "Digium",
+      "brand_id": "16",
+      "directory": "digium",
+      "package": "",
+      "md5sum": "",
+      "last_modified": 1343081326,
+      "family_list": [
+        {
+          "id": "1",
+          "name": "Digium Dxx Series",
+          "directory": "dxx",
+          "description": "",
+          "changelog": "",
+          "last_modified": null
+        }
+      ],
+      "oui_list": [
+        "000FD3"
+      ],
+      "changelog": ""
+    }
+  }
+}

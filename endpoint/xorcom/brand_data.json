@@ -1,0 +1,27 @@
+{
+  "data": {
+    "brands": {
+      "name": "Xorcom",
+      "brand_id": "17",
+      "directory": "xorcom",
+      "package": "",
+      "md5sum": "",
+      "last_modified": 1344236964,
+      "family_list": [      
+        {
+          "id": "1",
+          "name": "Xorcom IP Phones Models: [XP0100, XP0120]",
+          "directory": "xpxxxx",
+          "description": "Make more configuration settings available from UI",
+          "changelog": "",
+          "last_modified": null
+        }
+      ],
+      "oui_list": [
+        "001565",
+        "642400"
+      ],
+      "changelog": "PACKAGER: GXP HD Updates"
+    }
+  }
+}
