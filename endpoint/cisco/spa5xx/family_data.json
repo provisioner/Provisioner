@@ -1,6 +1,6 @@
 {
     "data": {
-        "name": "Linksys\/Cisco\/Sipura SPA Phone Models 5xx, 3xx [303,501G,502G,504G,525G,525G2]",
+        "name": "Linksys/Cisco/Sipura SPA Phone Models 5xx, 3xx [303,501G,502G,504G,525G,525G2]",
         "id": "3",
         "directory": "spa5xx",
         "firmware_ver": "",
@@ -107,6 +107,37 @@
             "id": "8",
             "template_data": [
             "3_lines.json",
+            "template_data.json",
+            "keys.json",
+            "provisioning.json"
+            ]
+        },
+        {
+            "model": "SPA512G",
+            "lines": "1",
+            "id": "9",
+            "template_data": [
+            "template_data.json",
+            "keys.json",
+            "provisioning.json"
+            ]
+        },
+        {
+            "model": "SPA514G",
+            "lines": "4",
+            "id": "10",
+            "template_data": [
+            "4_lines.json",
+            "template_data.json",
+            "keys.json",
+            "provisioning.json"
+            ]
+        },
+        {
+            "model": "SPA301",
+            "lines": "1",
+            "id": "8",
+            "template_data": [
             "template_data.json",
             "keys.json",
             "provisioning.json"
