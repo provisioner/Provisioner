@@ -4,12 +4,12 @@
       "name": "Xorcom",
       "brand_id": "17",
       "directory": "xorcom",
-      "package": "",
-      "md5sum": "",
-      "last_modified": 1344236964,
-      "family_list": [      
+      "package": "xorcom.tgz",
+      "md5sum": "136a4d90d254fbe70fdb11d1dcfcabc2",
+      "last_modified": 1346467976,
+      "family_list": [
         {
-          "id": "1",
+          "id": "4",
           "name": "Xorcom IP Phones Models: [XP0100, XP0120]",
           "directory": "xpxxxx",
           "description": "Make more configuration settings available from UI",
@@ -18,10 +18,9 @@
         }
       ],
       "oui_list": [
-        "001565",
         "642400"
       ],
-      "changelog": "PACKAGER: GXP HD Updates"
+      "changelog": "PACKAGER: Aastra\n-Add More phones (480i)\nCisco\n-Add More Phones\nDigium\n-Add Digium Line"
     }
   }
 }

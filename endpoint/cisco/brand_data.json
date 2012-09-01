@@ -5,8 +5,8 @@
       "brand_id": "7",
       "directory": "cisco",
       "package": "cisco.tgz",
-      "md5sum": "7561503af671f5bb6adc3b724ec6cdf2",
-      "last_modified": 1343254136,
+      "md5sum": "4159021aa5f4537d187a755ac2c2acc4",
+      "last_modified": 1346468403,
       "family_list": [
         {
           "id": "5",
@@ -92,7 +92,7 @@
         "5475D0",
         "C46413"
       ],
-      "changelog": "PACKAGER: GXP HD Updates"
+      "changelog": "PACKAGER: Aastra & Cisco\n-Force Update of Both (gotta fix this)"
     }
   }
 }

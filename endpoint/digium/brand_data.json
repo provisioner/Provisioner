@@ -4,13 +4,13 @@
       "name": "Digium",
       "brand_id": "16",
       "directory": "digium",
-      "package": "",
-      "md5sum": "",
-      "last_modified": 1343081326,
+      "package": "digium.tgz",
+      "md5sum": "3e8305c37b166bb9a24d29b0383480a2",
+      "last_modified": 1346467975,
       "family_list": [
         {
           "id": "1",
-          "name": "Digium Dxx Series",
+          "name": "Digium Dxx Series: [D40, D50, D70]",
           "directory": "dxx",
           "description": "",
           "changelog": "",
@@ -20,7 +20,7 @@
       "oui_list": [
         "000FD3"
       ],
-      "changelog": ""
+      "changelog": "PACKAGER: Aastra\n-Add More phones (480i)\nCisco\n-Add More Phones\nDigium\n-Add Digium Line"
     }
   }
 }
