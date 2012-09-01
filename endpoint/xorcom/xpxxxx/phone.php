@@ -7,7 +7,7 @@
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
  */
-class endpoint_yealink_xpxxxx_phone extends endpoint_yealink_base {
+class endpoint_xorcom_xpxxxx_phone extends endpoint_xorcom_base {
 
     public $family_line = 'xpxxxx';
     public $dynamic_mapping = array(
