@@ -46,6 +46,10 @@
       {
         "name": "Digium",
         "directory": "digium"
+      },
+      {
+        "name": "Xorcom",
+        "directory": "xorcom"
       }
     ],
     "version": "3"
