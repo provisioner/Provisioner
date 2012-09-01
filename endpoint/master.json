@@ -16,6 +16,10 @@
         "directory": "cloudtc"
       },
       {
+        "name": "Digium",
+        "directory": "digium"
+      },
+      {
         "name": "Grandstream",
         "directory": "grandstream"
       },
@@ -40,16 +44,12 @@
         "directory": "thomson"
       },
       {
-        "name": "Yealink\/Dreamwave",
-        "directory": "yealink"
-      },
-      {
-        "name": "Digium",
-        "directory": "digium"
-      },
-      {
         "name": "Xorcom",
         "directory": "xorcom"
+      },
+      {
+        "name": "Yealink\/Dreamwave",
+        "directory": "yealink"
       }
     ],
     "version": "3"
