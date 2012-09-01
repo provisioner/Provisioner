@@ -21,12 +21,6 @@
                             "type":"input"
                         },
                         {
-                            "variable":"$remotephonebook_label",
-                            "default_value":"",
-                            "description":"Remote Phone Book {$count} Label",
-                            "type":"input"
-                        },
-                        {
                             "variable":"$remotephonebook_url",
                             "default_value":"",
                             "description":"Remote Phone Book {$count} URL",
