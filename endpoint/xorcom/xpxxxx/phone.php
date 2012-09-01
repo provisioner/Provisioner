@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Yealink Modules Phone File
+ * Xorcom Modules Phone File
  *
  * @author Andrew Nagy
  * @license MPL / GPLv2 / LGPL
