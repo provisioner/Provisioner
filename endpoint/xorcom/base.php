@@ -1,7 +1,7 @@
 <?PHP
 
 /**
- * Yealink Base File
+ * Xorcom Base File
  *
  * @author Andrew Nagy
  * @license MPL / GPLv2 / LGPL
@@ -10,7 +10,6 @@
 abstract class endpoint_xorcom_base extends endpoint_base {
 
     public $brand_name = 'xorcom';
-    protected $use_system_dst = FALSE;
 
     function reboot() {
         if (($this->engine == "asterisk") AND ($this->system == "unix")) {
