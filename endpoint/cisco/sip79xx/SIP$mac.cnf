@@ -10,15 +10,15 @@ line{$line}_password: "{$secret}"
 
 messages_uri: "{$vmail|*97}"
 
-proxy1_address: "{$server.ip.1}" 
-proxy1_port:"5060"
+proxy1_address: "{$server_host.line.1}" 
+proxy1_port:"{$server_port.line.1}"
 
 proxy_emergency: "" 
 proxy_emergency_port: "5060" 
-proxy_backup: "" 
-proxy_backup_port: "5060" 
-outbound_proxy: "" 
-outbound_proxy_port: "5060" 
+proxy_backup: "{$backup_server_host.line.1}" 
+proxy_backup_port: "{$backup_server_port.line.1}" 
+outbound_proxy: "{$outbound_server_host.line.1}" 
+outbound_proxy_port: "{$outbound_server_port.line.1} 
 
 proxy_register: "1"
 timer_register_expires: "120"
