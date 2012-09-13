@@ -49,7 +49,7 @@ class endpoint_xorcom_xpxxxx_phone extends endpoint_xorcom_base {
 
     function prepare_for_generateconfig() {
         # This contains the last 2 digits of y0000000000xx.cfg, for each model.
-        $model_suffixes = array('XP0100' => '11', 'XP0120' => '12');
+        $model_suffixes = array('XP0100' => '11', 'XP0120' => '10');
         //Yealink likes lower case letters in its mac address
         $this->mac = strtolower($this->mac);
         $this->config_file_replacements['$suffix'] = $model_suffixes[$this->model];
