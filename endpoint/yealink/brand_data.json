@@ -5,8 +5,8 @@
       "brand_id": "8",
       "directory": "yealink",
       "package": "yealink.tgz",
-      "md5sum": "37f6dc80f94dd4a64c95ca00c8aa907e",
-      "last_modified": 1344236964,
+      "md5sum": "90dca91bf07c19088cb0a90c21a990a9",
+      "last_modified": 1347559296,
       "family_list": [
         {
           "id": "3",
@@ -36,7 +36,7 @@
       "oui_list": [
         "001565"
       ],
-      "changelog": "PACKAGER: GXP HD Updates"
+      "changelog": "PACKAGER: Cisco\n\n-Error in Family_data.json"
     }
   }
 }
