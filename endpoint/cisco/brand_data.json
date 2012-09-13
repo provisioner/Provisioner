@@ -5,8 +5,8 @@
       "brand_id": "7",
       "directory": "cisco",
       "package": "cisco.tgz",
-      "md5sum": "4159021aa5f4537d187a755ac2c2acc4",
-      "last_modified": 1346468403,
+      "md5sum": "a5ec93ee2637ee975787edd1e5be96b8",
+      "last_modified": 1347559495,
       "family_list": [
         {
           "id": "5",
@@ -92,7 +92,7 @@
         "5475D0",
         "C46413"
       ],
-      "changelog": "PACKAGER: Aastra & Cisco\n-Force Update of Both (gotta fix this)"
+      "changelog": "PACKAGER: PACKAGER: Cisco\n\n-Error in Family_data.json"
     }
   }
 }
