@@ -5,8 +5,8 @@
       "brand_id": "17",
       "directory": "xorcom",
       "package": "xorcom.tgz",
-      "md5sum": "136a4d90d254fbe70fdb11d1dcfcabc2",
-      "last_modified": 1346467976,
+      "md5sum": "59f49acdea6235e3f2805739a231926b",
+      "last_modified": 1347559296,
       "family_list": [
         {
           "id": "4",
@@ -20,7 +20,7 @@
       "oui_list": [
         "642400"
       ],
-      "changelog": "PACKAGER: Aastra\n-Add More phones (480i)\nCisco\n-Add More Phones\nDigium\n-Add Digium Line"
+      "changelog": "PACKAGER: Cisco\n\n-Error in Family_data.json"
     }
   }
 }
