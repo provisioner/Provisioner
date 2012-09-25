@@ -5,8 +5,8 @@
       "brand_id": "7",
       "directory": "cisco",
       "package": "cisco.tgz",
-      "md5sum": "a5ec93ee2637ee975787edd1e5be96b8",
-      "last_modified": 1347559495,
+      "md5sum": "2d63bce373219c59621ca3218d4890aa",
+      "last_modified": 1347579530,
       "family_list": [
         {
           "id": "5",
@@ -92,7 +92,7 @@
         "5475D0",
         "C46413"
       ],
-      "changelog": "PACKAGER: PACKAGER: Cisco\n\n-Error in Family_data.json"
+      "changelog": "PACKAGER: Update the 79xx by demand\n\n-Popular demand I say! POPULAR!"
     }
   }
 }
