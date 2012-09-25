@@ -5,8 +5,8 @@
       "directory": "snom",
       "brand_id": "6",
       "package": "snom.tgz",
-      "md5sum": "be6931da3702496b430c3e11c011eb1e",
-      "last_modified": 1343188696,
+      "md5sum": "377017a373bca3c398d5eb0db08149ab",
+      "last_modified": 1348606310,
       "family_list": [
         {
           "id": "1",
@@ -28,7 +28,7 @@
       "oui_list": [
         "000413"
       ],
-      "changelog": "PACKAGER: GXP HD Updates"
+      "changelog": "PACKAGER: PACKAGER: Update the 79xx by demand\n\n-Popular demand I say! POPULAR!"
     }
   }
 }
