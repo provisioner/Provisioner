@@ -5,13 +5,13 @@
       "brand_id": "1",
       "directory": "aastra",
       "package": "aastra.tgz",
-      "md5sum": "fc934853f45e833beffa96b4e370f8f1",
-      "last_modified": 1342516120,
-      "changelog": "PACKAGER: Minor Fixes to Polycom Legacy Models",
+      "md5sum": "0f7f5dfe0a39c06a750429b724800fda",
+      "last_modified": 1346468403,
+      "changelog": "PACKAGER: Aastra & Cisco\n-Force Update of Both (gotta fix this)",
       "family_list": [
         {
           "id": "1",
-          "name": "Aastra Models: 91xxi [9112i, 9133i]",
+          "name": "Aastra Models: 480i, 91xxi [480i, 480i CT, 9112i, 9133i]",
           "directory": "aap91xxi",
           "description": "Initial Files",
           "changelog": "",

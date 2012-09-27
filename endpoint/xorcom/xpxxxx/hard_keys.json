@@ -104,9 +104,9 @@
                 ]
               },
               {
-                "variable":"$hardkey_up_extension",
+                "variable":"$hardkey_up_value",
                 "default_value":"",
-                "description":"Up Button Extension",
+                "description":"Up Button Value",
                 "type":"input"
               },
               {
@@ -209,9 +209,9 @@
                 ]
               },
               {
-                "variable":"$hardkey_down_extension",
+                "variable":"$hardkey_down_value",
                 "default_value":"",
-                "description":"Down Button Extension",
+                "description":"Down Button Value",
                 "type":"input"
               },
               {
@@ -314,9 +314,9 @@
                 ]
               },
               {
-                "variable":"$hardkey_left_extension",
+                "variable":"$hardkey_left_value",
                 "default_value":"",
-                "description":"Left Button Extension",
+                "description":"Left Button Value",
                 "type":"input"
               },
               {
@@ -419,9 +419,9 @@
                 ]
               },
               {
-                "variable":"$hardkey_right_extension",
+                "variable":"$hardkey_right_value",
                 "default_value":"",
-                "description":"Right Button Extension",
+                "description":"Right Button Value",
                 "type":"input"
               },
               {
@@ -429,7 +429,7 @@
               },
               {
                 "variable":"$hardkey_ok_type",
-                "default_value":"",
+                "default_value":"33",
                 "description":"OK Button Type",
                 "type":"list",
                 "data":[
@@ -524,9 +524,9 @@
                 ]
               },
               {
-                "variable":"$hardkey_ok_extension",
+                "variable":"$hardkey_ok_value",
                 "default_value":"",
-                "description":"OK Button Extension",
+                "description":"OK Button Value",
                 "type":"input"
               },
               {
@@ -629,9 +629,9 @@
                 ]
               },
               {
-                "variable":"$hardkey_cancel_extension",
+                "variable":"$hardkey_cancel_value",
                 "default_value":"",
-                "description":"Cancel Button Extension",
+                "description":"Cancel Button Value",
                 "type":"input"
               },
               {
@@ -734,9 +734,9 @@
                 ]
               },
               {
-                "variable":"$hardkey_fwd_extension",
+                "variable":"$hardkey_fwd_value",
                 "default_value":"",
-                "description":"Transfer Button Extension",
+                "description":"Transfer Button Value",
                 "type":"input"
               },
               {

@@ -1,9 +1,6 @@
 <?PHP
-
 /**
  * Cisco Base File
- *
- *
  *
  * @author Andrew Nagy
  * @license MPL / GPLv2 / LGPL

@@ -1,6 +1,6 @@
 {
   "data": {
-    "last_modified": 1342032757,
+    "last_modified": 1347579866,
     "package": "provisioner_net.tgz",
     "brands": [
       {
@@ -14,6 +14,10 @@
       {
         "name": "CloudTC",
         "directory": "cloudtc"
+      },
+      {
+        "name": "Digium",
+        "directory": "digium"
       },
       {
         "name": "Grandstream",
@@ -38,6 +42,10 @@
       {
         "name": "Thomson",
         "directory": "thomson"
+      },
+      {
+        "name": "Xorcom",
+        "directory": "xorcom"
       },
       {
         "name": "Yealink\/Dreamwave",

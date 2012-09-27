@@ -38,7 +38,9 @@
         "id": "3",
         "template_data": [
           "template_data.json",
-          "keys.json"
+          "keys.json",
+          "ext_b_1.json",
+          "ext_b_2.json"
         ]
       },
       {

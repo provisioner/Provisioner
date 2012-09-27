@@ -429,7 +429,7 @@
               },
               {
                 "variable":"$hardkey_ok_type",
-                "default_value":"",
+                "default_value":"33",
                 "description":"OK Button Type",
                 "type":"list",
                 "data":[

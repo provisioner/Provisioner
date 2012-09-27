@@ -43,6 +43,22 @@
                 "default_value":"3|3|3|3|3|3|3",
                 "description":"Digit Map Timeouts",
                 "type":"input"
+              },
+              {
+                "variable": "$mwi_tone",
+                "default_value": "chord",
+                "description": "MWI Tone",
+                "type": "list",
+                "data": [
+                    {
+                        "text": "Enabled",
+                        "value": "chord"
+                    },
+                    {
+                        "text": "Disabled",
+                        "value": "silence"
+                    }
+                ]
               }
             ]
           }
