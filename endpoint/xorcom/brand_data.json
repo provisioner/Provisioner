@@ -1,0 +1,26 @@
+{
+  "data": {
+    "brands": {
+      "name": "Xorcom",
+      "brand_id": "17",
+      "directory": "xorcom",
+      "package": "xorcom.tgz",
+      "md5sum": "6b1e9810f7767d1e9dd04dcd809bb754",
+      "last_modified": 1347560497,
+      "family_list": [
+        {
+          "id": "4",
+          "name": "Xorcom IP Phones Models: [XP0100, XP0120]",
+          "directory": "xpxxxx",
+          "description": "Make more configuration settings available from UI",
+          "changelog": "",
+          "last_modified": null
+        }
+      ],
+      "oui_list": [
+        "642400"
+      ],
+      "changelog": "PACKAGER: Merge pull request #103 from tm1000\/master\n\nYealink & Xorcom Changes"
+    }
+  }
+}

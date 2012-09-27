@@ -5,8 +5,8 @@
       "brand_id": "9",
       "directory": "mitel",
       "package": "mitel.tgz",
-      "md5sum": "d4fc67fe17b48eab6e18373e2dcd18f5",
-      "last_modified": 1336632941,
+      "md5sum": "036ba0c196822266ed0e08c977a2ab31",
+      "last_modified": 1343188696,
       "family_list": [
         {
           "id": "1",
@@ -20,7 +20,7 @@
       "oui_list": [
         "08000F"
       ],
-      "changelog": "PACKAGER: Cisco\n-Don't set loadInformation if its not a sip79x1G"
+      "changelog": "PACKAGER: GXP HD Updates"
     }
   }
 }

@@ -121,8 +121,9 @@ switch ($request) {
                                                         $items_loop[$var_nam][$z]['default_value'] = str_replace('{$count}', $i, $items_loop[$var_nam][$z]['default_value']);
                                                         $items_loop[$var_nam][$z]['line_loop'] = TRUE;
                                                         $items_loop[$var_nam][$z]['line_count'] = $i;
+														
                                                     }
-                                                }
+												}
                                             }
                                             //unset($items[$key]);
                                             $items_fin = array_merge($items_fin, $items_loop);

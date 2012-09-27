@@ -3,15 +3,15 @@
     "name": "SoundPoint\/Station\/VVX In-Production Models [321,331,335,450,550,560,650,670,5000,6000,7000,1500]",
     "id": "3",
     "directory": "spipm",
-    "firmware_ver": 1326827795,
-    "firmware_md5sum": "553b6cc8b481a2cfd0be4916f21fc076",
+    "firmware_ver": 1345576660,
+    "firmware_md5sum": "1050eef73273cce083305a997088367b",
     "firmware_pkg": "spipm_firmware.tgz",
     "description": "Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality",
     "configuration_files": "$mac.cfg,$mac_reg.cfg,sip.cfg,contacts\/000000000000-directory.xml,logs\/$mac-app.log,logs\/$mac-boot.log,overrides\/$mac-phone.cfg",
     "changelog": "",
     "provisioning_types": [
-            "tftp",
-            "http"
+      "tftp",
+      "http"
     ],
     "model_list": [
       {
