@@ -497,6 +497,16 @@
                                 ]
                             },
                             {
+                                "variable":"$TimeFlag",
+                                "default_value":"0",
+                                "description":"Hour format",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"12H format"},
+                                    {"value":"1","text":"24H format"}
+                                ]
+                            },
+                            {
                                 "variable":"$DisableCWtone",
                                 "default_value":"0",
                                 "description":"Call Waiting tone",
