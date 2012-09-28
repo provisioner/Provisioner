@@ -4,7 +4,7 @@
         "id":"1",
         "directory":"traphone",
         "firmware_ver":"",
-        "firmware_pkg":NULL,
+        "firmware_pkg":"NULL",
         "firmware_md5sum":"",
         "configuration_files":"$mac.cfg,snmpd.conf",
         "changelog":"",
