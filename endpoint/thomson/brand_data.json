@@ -5,8 +5,8 @@
       "directory": "thomson",
       "brand_id": "14",
       "package": "thomson.tgz",
-      "md5sum": "33c02a2ec54769154d7ab20a3f009cfb",
-      "last_modified": 1336632941,
+      "md5sum": "4fa1e00c9b8ea3defed6bc7ba768acca",
+      "last_modified": 1348941671,
       "family_list": [
         {
           "id": "1",
@@ -21,7 +21,7 @@
         "001F9F",
         "00147F"
       ],
-      "changelog": "PACKAGER: Fixes to unit tester\n-Also fixes to polycom from unit tester\n-Fixed firmware issue in relation to thompson phones"
+      "changelog": "PACKAGER: Remove Firmware Install info. N\/A."
     }
   }
 }
