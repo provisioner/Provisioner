@@ -37,7 +37,7 @@
             "template_data.json",
             "action_urls.json",
             "keys.json",
-            "functionkeys.json",
+            "function_keys.json",
             "speed_dials.json"
             ]
         },
@@ -50,7 +50,7 @@
             "template_data.json",
             "action_urls.json",
             "keys.json",
-            "functionkeys.json",
+            "function_keys.json",
             "speed_dials.json"
             ]
         }
