@@ -1,8 +1,8 @@
 {
     "data":{
-        "name":"Snom Models [870]",
-        "id":"2",
-        "directory":"8xx",
+        "name":"Snom Models [710, 720, 760]",
+        "id":"3",
+        "directory":"7xx",
         "firmware_ver":"",
         "firmware_pkg":"NULL",
         "firmware_md5sum":"",
@@ -15,8 +15,8 @@
         ],
         "model_list":[
         {
-            "model":"870",
-            "lines":"12",
+            "model":"710",
+            "lines":"4",
             "id":"1",
             "template_data":[
             "line_options.json",
@@ -28,30 +28,29 @@
             ]
         },
         {
-            "model":"820",
+            "model":"720",
             "lines":"12",
-            "id":"5",
-            "firmware":"snom820?*.bin",
+            "id":"2",
             "template_data":[
             "line_options.json",
             "template_data.json",
             "action_urls.json",
-            "keys.json",
-            "functionkeys.json",
-            "speed_dials.json"
+            "function_keys.json",
+            "speed_dials.json",
+            "idle_touch_keys.json"
             ]
         },
         {
-            "model":"821",
+            "model":"760",
             "lines":"12",
-            "id":"7",
+            "id":"3",
             "template_data":[
             "line_options.json",
             "template_data.json",
             "action_urls.json",
-            "keys.json",
-            "functionkeys.json",
-            "speed_dials.json"
+            "function_keys.json",
+            "speed_dials.json",
+            "idle_touch_keys.json"
             ]
         }
         ]
