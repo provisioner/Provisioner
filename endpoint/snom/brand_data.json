@@ -10,7 +10,7 @@
       "family_list": [
         {
           "id": "1",
-          "name": "Snom Models [300, 320, 360, 370, 820, M3]",
+          "name": "Snom Models [300, 320, 360, 370]",
           "directory": "3xx820m3",
           "description": "Server + Password Settings, htm File Fixes",
           "changelog": "",
@@ -18,8 +18,16 @@
         },
         {
           "id": "2",
-          "name": "Snom Models [870]",
+          "name": "Snom Models [8xx]",
           "directory": "8xx",
+          "description": "Server + Password Settings, htm File Fixes",
+          "changelog": "",
+          "last_modified": null
+        },
+        {
+          "id": "3",
+          "name": "Snom Models [7xx]",
+          "directory": "7xx",
           "description": "Server + Password Settings, htm File Fixes",
           "changelog": "",
           "last_modified": null

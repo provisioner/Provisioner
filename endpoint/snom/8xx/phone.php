@@ -1,6 +1,6 @@
 <?php
 /**
- * Snom 8xx (except 820) Provisioning System
+ * Snom 8xx Provisioning System
  *
  * @author Andrew Nagy & Jort
  * @license MPL / GPLv2 / LGPL
