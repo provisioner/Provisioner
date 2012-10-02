@@ -5,13 +5,21 @@
       "directory": "snom",
       "brand_id": "6",
       "package": "snom.tgz",
-      "md5sum": "377017a373bca3c398d5eb0db08149ab",
-      "last_modified": 1348606310,
+      "md5sum": "ca18574b09cb9e449026adc0881435aa",
+      "last_modified": 1348941671,
       "family_list": [
         {
           "id": "1",
-          "name": "Snom Models [300, 320, 360, 370, 820, M3]",
+          "name": "Snom Models [300, 320, 360, 370]",
           "directory": "3xx820m3",
+          "description": "Server + Password Settings, htm File Fixes",
+          "changelog": "",
+          "last_modified": null
+        },
+        {
+          "id": "3",
+          "name": "Snom Models [710, 720, 760]",
+          "directory": "7xx",
           "description": "Server + Password Settings, htm File Fixes",
           "changelog": "",
           "last_modified": null
@@ -28,7 +36,7 @@
       "oui_list": [
         "000413"
       ],
-      "changelog": "PACKAGER: PACKAGER: Update the 79xx by demand\n\n-Popular demand I say! POPULAR!"
+      "changelog": "PACKAGER: Remove Firmware Install info. N\/A."
     }
   }
 }
