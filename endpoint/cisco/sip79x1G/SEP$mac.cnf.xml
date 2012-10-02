@@ -28,8 +28,14 @@
 		</callManagerGroup>
 	</devicePool>
 	<sipProfile>
+		<natEnabled></natEnabled>
+     		<natAddress></natAddress>
 		<sipProxies>
 			<registerWithProxy>true</registerWithProxy>
+			<outboundProxy>{$outbound_host.line.1}</outboundProxy>
+			<outboundProxyPort>{$outbound_port.line.1}</outboundProxyPort>
+			<backupProxy>{$server_host.line.1}</backupProxy>
+			<backupProxyPort>{$server_port.line.1}</backupProxyPort>
 		</sipProxies>
 		<preferredCodec>{$preferredcodec}</preferredCodec>
 		<phoneLabel>{$displayname.line.1}</phoneLabel>

@@ -5,8 +5,8 @@
       "brand_id": "17",
       "directory": "xorcom",
       "package": "xorcom.tgz",
-      "md5sum": "59f49acdea6235e3f2805739a231926b",
-      "last_modified": 1347559296,
+      "md5sum": "6b1e9810f7767d1e9dd04dcd809bb754",
+      "last_modified": 1347560497,
       "family_list": [
         {
           "id": "4",
@@ -20,7 +20,7 @@
       "oui_list": [
         "642400"
       ],
-      "changelog": "PACKAGER: Cisco\n\n-Error in Family_data.json"
+      "changelog": "PACKAGER: Merge pull request #103 from tm1000\/master\n\nYealink & Xorcom Changes"
     }
   }
 }
