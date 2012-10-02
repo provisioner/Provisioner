@@ -10,6 +10,7 @@
 class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
 
     public $family_line = 'spa5xx';
+	protected $use_system_dst = FALSE;
 
     function parse_lines_hook($line_data,$line_total) {
         $line = $line_data['line'];
@@ -108,16 +109,15 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
         if(isset($this->settings['dateformat'])) {
             switch($this->settings['dateformat']) {
                 case "little-endian":
-                    $this->settings['dateformat'] = 'month/day';
+                    $this->settings['dateformat'] = 'day/month';
                     break;
                 default;
-                    $this->settings['dateformat'] = 'day/month';
+                    $this->settings['dateformat'] = 'month/day';
                     break;
             }
         } else {
-            $this->settings['dateformat'] = 'day/month';
+            $this->settings['dateformat'] = 'month/day';
         }
-        
 
         for ($i = 1; $i <= $this->max_lines; $i++) {
             if ((isset($this->settings['loops']['lineops'])) && ($this->settings['loops']['lineops'][$i]['keytype'] != 'line')) {
