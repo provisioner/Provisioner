@@ -19,6 +19,7 @@ RingToneMP2={$RingToneMP2}
 RingToneMP3={$RingToneMP3}
 RingToneMP4={$RingToneMP4}
 Transfer_to_voice_mail={$Transfer_to_voice_mail}
+TimeFlag={$TimeFlag}
 
 [net]
 DNSSrv1={$DNSSrv1}

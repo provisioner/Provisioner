@@ -1,6 +1,6 @@
 <?php
 /**
- * Snom 300, 320, 360, 370, 820 & M3 Provisioning System
+ * Snom 300, 320, 360, 370 Provisioning System
  *
  * @author Andrew Nagy
  * @license MPL / GPLv2 / LGPL

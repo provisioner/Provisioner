@@ -5,13 +5,21 @@
       "directory": "snom",
       "brand_id": "6",
       "package": "snom.tgz",
-      "md5sum": "be6931da3702496b430c3e11c011eb1e",
-      "last_modified": 1343188696,
+      "md5sum": "ca18574b09cb9e449026adc0881435aa",
+      "last_modified": 1348941671,
       "family_list": [
         {
           "id": "1",
-          "name": "Snom Models [300, 320, 360, 370, 820, M3]",
+          "name": "Snom Models [300, 320, 360, 370]",
           "directory": "3xx820m3",
+          "description": "Server + Password Settings, htm File Fixes",
+          "changelog": "",
+          "last_modified": null
+        },
+        {
+          "id": "3",
+          "name": "Snom Models [710, 720, 760]",
+          "directory": "7xx",
           "description": "Server + Password Settings, htm File Fixes",
           "changelog": "",
           "last_modified": null
@@ -28,7 +36,7 @@
       "oui_list": [
         "000413"
       ],
-      "changelog": "PACKAGER: GXP HD Updates"
+      "changelog": "PACKAGER: Remove Firmware Install info. N\/A."
     }
   }
 }

@@ -851,6 +851,9 @@ class Provisioner_Globals {
         if (preg_match("/y[0]{11}[1-7].cfg/i", $file)) {
             $file = 'y000000000000.cfg';
         }
+	if (preg_match("/dialplan\.xml/i",$file)) {
+		return('<DIALTEMPLATE><TEMPLATE MATCH="*" Timeout="5"/></DIALTEMPLATE>');
+	}
         if (preg_match("/spa.*.cfg/i", $file)) {
             $file = 'spa.cfg';
         }
