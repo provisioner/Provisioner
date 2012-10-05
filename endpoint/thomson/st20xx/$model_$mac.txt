@@ -26,10 +26,10 @@ DNSSrv1={$DNSSrv1}
 DNSSrv2={$DNSSrv2}
 DSCPflag={$DSCPflag}
 ESWITCH_LAN={$ESWITCH_LAN}
+ESWITCH_PC={$ESWITCH_PC}
 Gateway={$Gateway}
 ipwan={$ipwan}
 MaskWan={$MaskWan}
-VLAN={$VLAN}
 WanModFlag={$WanModFlag}
 
 
@@ -129,12 +129,14 @@ VoiceMailPort={$VoiceMailPort}
 
 
 [sys]
-BLFType={$BLFType}
-BLFListSipUri={$BLFListSipUri}
-CountryCode={$CountryCode}
 config_sn={$config_sn}
-Current_Max_Multiline={$Current_Max_Multiline}
+BLFType=0
+CountryCode={$CountryCode}
+Current_Max_Multiline=1
+StartSpareFK=2
+ServiceSupervisionFK=2
 EmergencyDialPlan={$EmergencyDialPlan}
+
 FeatureKeyExt01={$FeatureKeyFunc01}/<sip:{$FeatureKeyExt01}>
 FeatureKeyExt02={$FeatureKeyFunc02}/<sip:{$FeatureKeyExt02}>
 FeatureKeyExt03={$FeatureKeyFunc03}/<sip:{$FeatureKeyExt03}>
@@ -201,7 +203,7 @@ FeatureKeyExt63={$FeatureKeyFunc63}/<sip:{$FeatureKeyExt63}>
 FeatureKeyExt64={$FeatureKeyFunc64}/<sip:{$FeatureKeyExt64}>
 FeatureKeyExt65={$FeatureKeyFunc65}/<sip:{$FeatureKeyExt65}>
 FeatureKeyExt66={$FeatureKeyFunc66}/<sip:{$FeatureKeyExt66}>
-NormalDigitFlag={$NormalDigitFlag}
+NormalDigitFlag=1
 Phonebook1_url={$Phonebook1_url}
 Phonebook2_url={$Phonebook2_url}
 Phonebook3_url={$Phonebook3_url}
@@ -218,48 +220,23 @@ Phonebook5_name={$Phonebook5_name}
 Phonebook6_name={$Phonebook6_name}
 Phonebook7_name={$Phonebook7_name}
 Phonebook8_name={$Phonebook8_name}
-StartSpareFK={$StartSpareFK}
 TelnetID={$TelnetID}
 TelnetPWD={$TelnetPWD}
 UserID={$UserID}
 UserPWD={$UserPWD}
 WebPWD={$WebPWD}
 
-[autoprovision]
-AutoprovisionFlag=1
-AutoprovisionHTTPServer={$AutoprovisionHTTPServer}
-AutoprovisionTFTPServer={$AutoprovisionTFTPServer}
-AutoprovisionTimeDays={$AutoprovisionTimeDays}
-Autoprovisionstarttime={$Autoprovisionstarttime}
-AutoprovisionTimeSpan={$AutoprovisionTimeSpan}
-
 [qos]
+TOS={$TOS}
 DSCP1={$DSCP1}
 DSCP2={$DSCP2}
 DSCP3={$DSCP3}
-TOS={$TOS}
-VLANid1={$VLANid1}
-VLANid2={$VLANid2}
-VLANTag1={$VLANTag1}
-VLANTagdata={$VLANTagdata}
 
 [ntp]
-NtpDaylight={$NtpDaylight}
 NTPFlag={$NTPFlag}
 NtpIP={$NtpIP}
-NtpSyncTime={$NtpSyncTime}
 NtpZoneNum={$NtpZoneNum}
-
-[pppoe]
-PPPoEID={$PPPoEID}
-PPPoEPWD={$PPPoEPWD}
-
-[stun]
-STUNSrv={$STUNSrv}
-STUNFlag={$STUNFlag}
-
-[upnp]
-UPnPFlag={$UPnPFlag}
+NtpDaylight={$NtpDaylight}
 
 [customer]
 sw_call_wait={$sw_call_wait}

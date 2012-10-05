@@ -23,7 +23,6 @@
           "keyonphone_data.json",
           "keymodule_data.json",
           "sip_data.json",
-          "ntp-snmp_data.json",
           "other_data.json"
         ]
       }
