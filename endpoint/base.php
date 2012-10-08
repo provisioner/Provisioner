@@ -23,19 +23,27 @@ if (!function_exists('json_last_error')) {
 
 abstract class endpoint_base {
 
+    // TODO: THESE SHOULD BE MOVED TO A GLOBAL CONFIG FILE, NOT INSTANTIATED IN EACH ENDPOINT BASE CLASS
     public $modules_path = "endpoint/";
     public $root_dir = "";  //need to define the root directory for the location of the library (/var/www/html/)
     public $brand_name = "undefined";   //Brand Name
     public $family_line = "undefined";  //Family Line
     public $model = "undefined";        // Model of phone, must match the model name inside of the famil_data.json file in each family folder.
     public $config_files_override;  //Array list of config files to override, data being the contents, key being the name of said file
-    public $settings = array();
-    public $debug = FALSE;  //Enable or disable debug
-    public $debug_return = array(); //Debug fill. I question if this is needed, or perhaps remove above line, seems redudant to have both 
-    public $replacement_array = array(); //Used for phpunit testing, key is {$var} value is the replacement.
+    
     public $mac;    // Device mac address, should this be in settings?
     public $timezone = array();       // Global timezone array
     public $DateTimeZone;   // timezone, as a DateTimezone object, much more flexible than just an offset and name.
+    public $settings;
+    
+    public $debug = FALSE;  //Enable or disable debug
+    public $debug_return = array(); //Debug fill. I question if this is needed, or perhaps remove above line, seems redudant to have both 
+    
+    
+    //public $replacement_array = array(); //Used for phpunit testing, key is {$var} value is the replacement.
+
+    // TODO: THESE SHOULD BE MOVED TO A GLOBAL CONFIG FILE, NOT INSTANTIATED IN EACH ENDPOINT BASE CLASS
+    // Internals that guide generating the actual files
     public $engine;   //Can be asterisk or freeswitch. This is for the reboot commands.
     public $engine_location = ""; //Location of the executable for said engine above
     public $system;   //unix or windows or bsd. etc
@@ -130,6 +138,15 @@ abstract class endpoint_base {
      * 
      */
     public function reboot() {
+        
+    }
+    
+    /*
+     * Request phone reload it's configuration (hopefully without a reboot). Not all models and phones
+     * support this request.
+     * 
+     */
+    public function reload_config() {
         
     }
 
