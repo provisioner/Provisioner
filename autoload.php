@@ -38,3 +38,5 @@ class ProvisionerConfig {
 }
 
 ProvisionerConfig::setup();
+require_once 'twig/lib/Twig/Autoloader.php';
+Twig_Autoloader::register();
