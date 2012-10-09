@@ -38,6 +38,13 @@ class Twig_Autoloader
         }
 
         if (is_file($file = dirname(__FILE__).'/../'.str_replace(array('_', "\0"), array('/', ''), $class).'.php')) {
+			/** Andrew
+			file_put_contents('log',$file."\n",FILE_APPEND);
+			copy($file, 'simple_twig/'.basename($file));
+			$contents = file_get_contents($file);
+			$contents = str_replace("<?php","",$contents);
+			file_put_contents('simple_twig.php',$contents."\n",FILE_APPEND);
+			**/
             require $file;
         }
     }
