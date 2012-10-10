@@ -20,6 +20,7 @@ class endpoint_cisco_sip79x1G_phone extends endpoint_cisco_base {
 		// Note that the keys are ISO 3166 codes, see Wiki. Defaults to US.
 		'tonescheme'=>array(
 			'default'=>'<networkLocale>United_States</networkLocale><networkLocaleInfo><name>United_States</name><uid>64</uid><version>1.0.0.0-1</version></networkLocaleInfo>',
+			'UK'=>'<networkLocale>United_Kingdom</networkLocale><networkLocaleInfo><name>United_Kingdom</name></networkLocaleInfo>',
 			'US'=>'<networkLocale>United_States</networkLocale><networkLocaleInfo><name>United_States</name><uid>64</uid><version>1.0.0.0-1</version></networkLocaleInfo>',
 			'NZ'=>'<networkLocaleInfo><name>New_Zealand</name><version>5.0(2)a</version></networkLocaleInfo>',
 		),
@@ -29,6 +30,7 @@ class endpoint_cisco_sip79x1G_phone extends endpoint_cisco_base {
 			// Then add it to the list, in alphabetical order, phptimezone=>ciscotimezone
 			'default'=>'Central Standard/Daylight Time', // somewhere has to be default.
 			'America/Los_Angeles'=>'Central Standard/Daylight Time',
+			'Europe/Dublin'=>'GMT Standard/Daylight Time',
 			'Pacific/Auckland'=>'New Zealand Standard/Daylight Time',
 		),
 	);
