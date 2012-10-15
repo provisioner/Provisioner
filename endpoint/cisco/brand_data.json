@@ -5,8 +5,8 @@
       "brand_id": "7",
       "directory": "cisco",
       "package": "cisco.tgz",
-      "md5sum": "6a9092b35e23738a5e7e70f1453b3a0e",
-      "last_modified": 1349162251,
+      "md5sum": "c5304b858c0c44f77b800421adef36fa",
+      "last_modified": 1350315423,
       "family_list": [
         {
           "id": "5",
@@ -96,9 +96,8 @@
         "C89C1D",
         "D0D0FD",
         "E05FB9"
-
       ],
-      "changelog": "PACKAGER: Remove Firmware Install info. N\/A."
+      "changelog": "PACKAGER: Add Cisco 79x1G UK Locale and Europe\/Dublin timezone."
     }
   }
 }
