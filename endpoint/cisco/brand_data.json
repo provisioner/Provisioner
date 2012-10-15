@@ -5,8 +5,8 @@
       "brand_id": "7",
       "directory": "cisco",
       "package": "cisco.tgz",
-      "md5sum": "c5304b858c0c44f77b800421adef36fa",
-      "last_modified": 1350315423,
+      "md5sum": "135e5c39eb68e12d3ecafc59205f18f5",
+      "last_modified": 1350316140,
       "family_list": [
         {
           "id": "5",
@@ -97,7 +97,7 @@
         "D0D0FD",
         "E05FB9"
       ],
-      "changelog": "PACKAGER: Add Cisco 79x1G UK Locale and Europe\/Dublin timezone."
+      "changelog": "PACKAGER: Match on @"
     }
   }
 }
