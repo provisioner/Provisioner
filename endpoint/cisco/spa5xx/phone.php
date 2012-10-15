@@ -36,7 +36,7 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
                 $line_data['blf_ext_type'] = "Disabled";
                 $line_data['share_call_appearance'] = "shared";
                 $line_data['extended_function'] = "fnc=blf+sd;sub=";
-                $line_data['extended_function'] .= preg_match('/;.*=.*@.*$/i', $this->settings['loops']['lineops'][$line]['blfext']) ? $this->settings['loops']['lineops'][$line]['blfext'] : $this->settings['loops']['lineops'][$line]['blfext'] . "@" . $this->settings['line'][0]['server_host'];
+                $line_data['extended_function'] .= preg_match('/@/i', $this->settings['loops']['lineops'][$line]['blfext']) ? $this->settings['loops']['lineops'][$line]['blfext'] : $this->settings['loops']['lineops'][$line]['blfext'] . "@" . $this->settings['line'][0]['server_host'];
             } elseif (($this->settings['loops']['lineops'][$line]['keytype'] == "xml") AND ($this->settings['loops']['lineops'][$line]['blfext'] != "")) {
                 $line_data['username'] = $this->settings['loops']['lineops'][$line]['blfext'];
                 $line_data['secret'] = 'n/a';
@@ -49,7 +49,7 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
                 $line_data['blf_ext_type'] = "Disabled";
                 $line_data['share_call_appearance'] = "shared";
                 $line_data['extended_function'] = "fnc=sd;sub=";
-                $line_data['extended_function'] .= preg_match('/;.*=.*@.*$/i', $this->settings['loops']['lineops'][$line]['blfext']) ? $this->settings['loops']['lineops'][$line]['blfext'] : $this->settings['loops']['lineops'][$line]['blfext'] . "@" . $this->settings['line'][0]['server_host'];
+                $line_data['extended_function'] .= preg_match('/@/i', $this->settings['loops']['lineops'][$line]['blfext']) ? $this->settings['loops']['lineops'][$line]['blfext'] : $this->settings['loops']['lineops'][$line]['blfext'] . "@" . $this->settings['line'][0]['server_host'];
             } elseif ($this->settings['loops']['lineops'][$line]['keytype'] == "disabled") {
                 $line_data['blf_ext_type'] = "Disabled";
             } elseif ($this->settings['loops']['lineops'][$line]['keytype'] == "clone") {
