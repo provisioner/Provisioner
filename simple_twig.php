@@ -10,6 +10,213 @@
  */
 
 /**
+ * Twig base exception.
+ *
+ * @package    twig
+ * @author     Fabien Potencier <fabien@symfony.com>
+ */
+class Twig_Error extends Exception
+{
+    protected $lineno;
+    protected $filename;
+    protected $rawMessage;
+    protected $previous;
+
+    /**
+     * Constructor.
+     *
+     * @param string    $message  The error message
+     * @param integer   $lineno   The template line where the error occurred
+     * @param string    $filename The template file name where the error occurred
+     * @param Exception $previous The previous exception
+     */
+    public function __construct($message, $lineno = -1, $filename = null, Exception $previous = null)
+    {
+        if (version_compare(PHP_VERSION, '5.3.0', '<')) {
+            $this->previous = $previous;
+            parent::__construct('');
+        } else {
+            parent::__construct('', 0, $previous);
+        }
+
+        $this->lineno = $lineno;
+        $this->filename = $filename;
+
+        if (-1 === $this->lineno || null === $this->filename) {
+            $this->guessTemplateInfo();
+        }
+
+        $this->rawMessage = $message;
+
+        $this->updateRepr();
+    }
+
+    /**
+     * Gets the raw message.
+     *
+     * @return string The raw message
+     */
+    public function getRawMessage()
+    {
+        return $this->rawMessage;
+    }
+
+    /**
+     * Gets the filename where the error occurred.
+     *
+     * @return string The filename
+     */
+    public function getTemplateFile()
+    {
+        return $this->filename;
+    }
+
+    /**
+     * Sets the filename where the error occurred.
+     *
+     * @param string $filename The filename
+     */
+    public function setTemplateFile($filename)
+    {
+        $this->filename = $filename;
+
+        $this->updateRepr();
+    }
+
+    /**
+     * Gets the template line where the error occurred.
+     *
+     * @return integer The template line
+     */
+    public function getTemplateLine()
+    {
+        return $this->lineno;
+    }
+
+    /**
+     * Sets the template line where the error occurred.
+     *
+     * @param integer $lineno The template line
+     */
+    public function setTemplateLine($lineno)
+    {
+        $this->lineno = $lineno;
+
+        $this->updateRepr();
+    }
+
+    /**
+     * For PHP < 5.3.0, provides access to the getPrevious() method.
+     *
+     * @param string $method    The method name
+     * @param array  $arguments The parameters to be passed to the method
+     *
+     * @return Exception The previous exception or null
+     */
+    public function __call($method, $arguments)
+    {
+        if ('getprevious' == strtolower($method)) {
+            return $this->previous;
+        }
+
+        throw new BadMethodCallException(sprintf('Method "Twig_Error::%s()" does not exist.', $method));
+    }
+
+    protected function updateRepr()
+    {
+        $this->message = $this->rawMessage;
+
+        $dot = false;
+        if ('.' === substr($this->message, -1)) {
+            $this->message = substr($this->message, 0, -1);
+            $dot = true;
+        }
+
+        if (null !== $this->filename) {
+            if (is_string($this->filename) || (is_object($this->filename) && method_exists($this->filename, '__toString'))) {
+                $filename = sprintf('"%s"', $this->filename);
+            } else {
+                $filename = json_encode($this->filename);
+            }
+            $this->message .= sprintf(' in %s', $filename);
+        }
+
+        if ($this->lineno >= 0) {
+            $this->message .= sprintf(' at line %d', $this->lineno);
+        }
+
+        if ($dot) {
+            $this->message .= '.';
+        }
+    }
+
+    protected function guessTemplateInfo()
+    {
+        $template = null;
+        foreach (debug_backtrace() as $trace) {
+            if (isset($trace['object']) && $trace['object'] instanceof Twig_Template && 'Twig_Template' !== get_class($trace['object'])) {
+                $template = $trace['object'];
+            }
+        }
+
+        // update template filename
+        if (null !== $template && null === $this->filename) {
+            $this->filename = $template->getTemplateName();
+        }
+
+        if (null === $template || $this->lineno > -1) {
+            return;
+        }
+
+        $r = new ReflectionObject($template);
+        $file = $r->getFileName();
+
+        $exceptions = array($e = $this);
+        while (($e instanceof self || method_exists($e, 'getPrevious')) && $e = $e->getPrevious()) {
+            $exceptions[] = $e;
+        }
+
+        while ($e = array_pop($exceptions)) {
+            $traces = $e->getTrace();
+            while ($trace = array_shift($traces)) {
+                if (!isset($trace['file']) || !isset($trace['line']) || $file != $trace['file']) {
+                    continue;
+                }
+
+                foreach ($template->getDebugInfo() as $codeLine => $templateLine) {
+                    if ($codeLine <= $trace['line']) {
+                        // update template line
+                        $this->lineno = $templateLine;
+
+                        return;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*
+ * This file is part of Twig.
+ *
+ * (c) 2010 Fabien Potencier
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+/**
+ * Exception thrown when an error occurs during template loading.
+ *
+ * @package    twig
+ * @author     Fabien Potencier <fabien@symfony.com>
+ */
+class Twig_Error_Loader extends Twig_Error
+{
+}
+
+
+/**
  * Loads template from the filesystem.
  *
  * @package    twig
@@ -3315,6 +3522,495 @@ interface Twig_LexerInterface
     function tokenize($code, $filename = null);
 }
 
+/*
+ * This file is part of Twig.
+ *
+ * (c) 2010 Fabien Potencier
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+/**
+ * Represents a node in the AST.
+ *
+ * @package    twig
+ * @author     Fabien Potencier <fabien@symfony.com>
+ */
+interface Twig_NodeInterface extends Countable, IteratorAggregate
+{
+    /**
+     * Compiles the node to PHP.
+     *
+     * @param Twig_Compiler A Twig_Compiler instance
+     */
+    function compile(Twig_Compiler $compiler);
+
+    function getLine();
+
+    function getNodeTag();
+}
+
+/*
+ * This file is part of Twig.
+ *
+ * (c) 2009 Fabien Potencier
+ * (c) 2009 Armin Ronacher
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+/**
+ * Represents a node in the AST.
+ *
+ * @package    twig
+ * @author     Fabien Potencier <fabien@symfony.com>
+ */
+class Twig_Node implements Twig_NodeInterface
+{
+    protected $nodes;
+    protected $attributes;
+    protected $lineno;
+    protected $tag;
+
+    /**
+     * Constructor.
+     *
+     * The nodes are automatically made available as properties ($this->node).
+     * The attributes are automatically made available as array items ($this['name']).
+     *
+     * @param array   $nodes      An array of named nodes
+     * @param array   $attributes An array of attributes (should not be nodes)
+     * @param integer $lineno     The line number
+     * @param string  $tag        The tag name associated with the Node
+     */
+    public function __construct(array $nodes = array(), array $attributes = array(), $lineno = 0, $tag = null)
+    {
+        $this->nodes = $nodes;
+        $this->attributes = $attributes;
+        $this->lineno = $lineno;
+        $this->tag = $tag;
+    }
+
+    public function __toString()
+    {
+        $attributes = array();
+        foreach ($this->attributes as $name => $value) {
+            $attributes[] = sprintf('%s: %s', $name, str_replace("\n", '', var_export($value, true)));
+        }
+
+        $repr = array(get_class($this).'('.implode(', ', $attributes));
+
+        if (count($this->nodes)) {
+            foreach ($this->nodes as $name => $node) {
+                $len = strlen($name) + 4;
+                $noderepr = array();
+                foreach (explode("\n", (string) $node) as $line) {
+                    $noderepr[] = str_repeat(' ', $len).$line;
+                }
+
+                $repr[] = sprintf('  %s: %s', $name, ltrim(implode("\n", $noderepr)));
+            }
+
+            $repr[] = ')';
+        } else {
+            $repr[0] .= ')';
+        }
+
+        return implode("\n", $repr);
+    }
+
+    public function toXml($asDom = false)
+    {
+        $dom = new DOMDocument('1.0', 'UTF-8');
+        $dom->formatOutput = true;
+        $dom->appendChild($xml = $dom->createElement('twig'));
+
+        $xml->appendChild($node = $dom->createElement('node'));
+        $node->setAttribute('class', get_class($this));
+
+        foreach ($this->attributes as $name => $value) {
+            $node->appendChild($attribute = $dom->createElement('attribute'));
+            $attribute->setAttribute('name', $name);
+            $attribute->appendChild($dom->createTextNode($value));
+        }
+
+        foreach ($this->nodes as $name => $n) {
+            if (null === $n) {
+                continue;
+            }
+
+            $child = $n->toXml(true)->getElementsByTagName('node')->item(0);
+            $child = $dom->importNode($child, true);
+            $child->setAttribute('name', $name);
+
+            $node->appendChild($child);
+        }
+
+        return $asDom ? $dom : $dom->saveXml();
+    }
+
+    public function compile(Twig_Compiler $compiler)
+    {
+        foreach ($this->nodes as $node) {
+            $node->compile($compiler);
+        }
+    }
+
+    public function getLine()
+    {
+        return $this->lineno;
+    }
+
+    public function getNodeTag()
+    {
+        return $this->tag;
+    }
+
+    /**
+     * Returns true if the attribute is defined.
+     *
+     * @param  string  The attribute name
+     *
+     * @return Boolean true if the attribute is defined, false otherwise
+     */
+    public function hasAttribute($name)
+    {
+        return array_key_exists($name, $this->attributes);
+    }
+
+    /**
+     * Gets an attribute.
+     *
+     * @param  string The attribute name
+     *
+     * @return mixed  The attribute value
+     */
+    public function getAttribute($name)
+    {
+        if (!array_key_exists($name, $this->attributes)) {
+            throw new Twig_Error_Runtime(sprintf('Attribute "%s" does not exist for Node "%s".', $name, get_class($this)));
+        }
+
+        return $this->attributes[$name];
+    }
+
+    /**
+     * Sets an attribute.
+     *
+     * @param string The attribute name
+     * @param mixed  The attribute value
+     */
+    public function setAttribute($name, $value)
+    {
+        $this->attributes[$name] = $value;
+    }
+
+    /**
+     * Removes an attribute.
+     *
+     * @param string The attribute name
+     */
+    public function removeAttribute($name)
+    {
+        unset($this->attributes[$name]);
+    }
+
+    /**
+     * Returns true if the node with the given identifier exists.
+     *
+     * @param  string  The node name
+     *
+     * @return Boolean true if the node with the given name exists, false otherwise
+     */
+    public function hasNode($name)
+    {
+        return array_key_exists($name, $this->nodes);
+    }
+
+    /**
+     * Gets a node by name.
+     *
+     * @param  string The node name
+     *
+     * @return Twig_Node A Twig_Node instance
+     */
+    public function getNode($name)
+    {
+        if (!array_key_exists($name, $this->nodes)) {
+            throw new Twig_Error_Runtime(sprintf('Node "%s" does not exist for Node "%s".', $name, get_class($this)));
+        }
+
+        return $this->nodes[$name];
+    }
+
+    /**
+     * Sets a node.
+     *
+     * @param string    The node name
+     * @param Twig_Node A Twig_Node instance
+     */
+    public function setNode($name, $node = null)
+    {
+        $this->nodes[$name] = $node;
+    }
+
+    /**
+     * Removes a node by name.
+     *
+     * @param string The node name
+     */
+    public function removeNode($name)
+    {
+        unset($this->nodes[$name]);
+    }
+
+    public function count()
+    {
+        return count($this->nodes);
+    }
+
+    public function getIterator()
+    {
+        return new ArrayIterator($this->nodes);
+    }
+}
+
+
+/*
+ * This file is part of Twig.
+ *
+ * (c) 2009 Fabien Potencier
+ * (c) 2009 Armin Ronacher
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+/**
+ * Abstract class for all nodes that represents an expression.
+ *
+ * @package    twig
+ * @author     Fabien Potencier <fabien@symfony.com>
+ */
+abstract class Twig_Node_Expression extends Twig_Node
+{
+}
+
+
+/*
+ * This file is part of Twig.
+ *
+ * (c) 2009 Fabien Potencier
+ * (c) 2009 Armin Ronacher
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+class Twig_Node_Expression_Filter extends Twig_Node_Expression
+{
+    public function __construct(Twig_NodeInterface $node, Twig_Node_Expression_Constant $filterName, Twig_NodeInterface $arguments, $lineno, $tag = null)
+    {
+        parent::__construct(array('node' => $node, 'filter' => $filterName, 'arguments' => $arguments), array(), $lineno, $tag);
+    }
+
+    public function compile(Twig_Compiler $compiler)
+    {
+        $name = $this->getNode('filter')->getAttribute('value');
+
+        if (false === $filter = $compiler->getEnvironment()->getFilter($name)) {
+            $message = sprintf('The filter "%s" does not exist', $name);
+            if ($alternatives = $compiler->getEnvironment()->computeAlternatives($name, array_keys($compiler->getEnvironment()->getFilters()))) {
+                $message = sprintf('%s. Did you mean "%s"', $message, implode('", "', $alternatives));
+            }
+
+            throw new Twig_Error_Syntax($message, $this->getLine());
+        }
+
+        $this->compileFilter($compiler, $filter);
+    }
+
+    protected function compileFilter(Twig_Compiler $compiler, Twig_FilterInterface $filter)
+    {
+        $compiler
+            ->raw($filter->compile().'(')
+            ->raw($filter->needsEnvironment() ? '$this->env, ' : '')
+            ->raw($filter->needsContext() ? '$context, ' : '')
+        ;
+
+        foreach ($filter->getArguments() as $argument) {
+            $compiler
+                ->string($argument)
+                ->raw(', ')
+            ;
+        }
+
+        $compiler->subcompile($this->getNode('node'));
+
+        foreach ($this->getNode('arguments') as $node) {
+            $compiler
+                ->raw(', ')
+                ->subcompile($node)
+            ;
+        }
+
+        $compiler->raw(')');
+    }
+}
+
+/*
+ * This file is part of Twig.
+ *
+ * (c) 2010 Fabien Potencier
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+class Twig_Node_Expression_Test extends Twig_Node_Expression
+{
+    public function __construct(Twig_NodeInterface $node, $name, Twig_NodeInterface $arguments = null, $lineno)
+    {
+        parent::__construct(array('node' => $node, 'arguments' => $arguments), array('name' => $name), $lineno);
+    }
+
+    public function compile(Twig_Compiler $compiler)
+    {
+        $name = $this->getAttribute('name');
+        $testMap = $compiler->getEnvironment()->getTests();
+        if (!isset($testMap[$name])) {
+            $message = sprintf('The test "%s" does not exist', $name);
+            if ($alternatives = $compiler->getEnvironment()->computeAlternatives($name, array_keys($compiler->getEnvironment()->getTests()))) {
+                $message = sprintf('%s. Did you mean "%s"', $message, implode('", "', $alternatives));
+            }
+
+            throw new Twig_Error_Syntax($message, $this->getLine());
+        }
+
+        $name = $this->getAttribute('name');
+        $node = $this->getNode('node');
+
+        $compiler
+            ->raw($testMap[$name]->compile().'(')
+            ->subcompile($node)
+        ;
+
+        if (null !== $this->getNode('arguments')) {
+            $compiler->raw(', ');
+
+            $max = count($this->getNode('arguments')) - 1;
+            foreach ($this->getNode('arguments') as $i => $arg) {
+                $compiler->subcompile($arg);
+
+                if ($i != $max) {
+                    $compiler->raw(', ');
+                }
+            }
+        }
+
+        $compiler->raw(')');
+    }
+}
+
+
+/*
+ * This file is part of Twig.
+ *
+ * (c) 2011 Fabien Potencier
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+/**
+ * Checks if a variable is defined in the current context.
+ *
+ * <pre>
+ * {# defined works with variable names and variable attributes #}
+ * {% if foo is defined %}
+ *     {# ... #}
+ * {% endif %}
+ * </pre>
+ *
+ * @package twig
+ * @author  Fabien Potencier <fabien@symfony.com>
+ */
+class Twig_Node_Expression_Test_Defined extends Twig_Node_Expression_Test
+{
+    public function __construct(Twig_NodeInterface $node, $name, Twig_NodeInterface $arguments = null, $lineno)
+    {
+        parent::__construct($node, $name, $arguments, $lineno);
+
+        if ($node instanceof Twig_Node_Expression_Name) {
+            $node->setAttribute('is_defined_test', true);
+        } elseif ($node instanceof Twig_Node_Expression_GetAttr) {
+            $node->setAttribute('is_defined_test', true);
+
+            $this->changeIgnoreStrictCheck($node);
+        } else {
+            throw new Twig_Error_Syntax('The "defined" test only works with simple variables', $this->getLine());
+        }
+    }
+
+    protected function changeIgnoreStrictCheck(Twig_Node_Expression_GetAttr $node)
+    {
+        $node->setAttribute('ignore_strict_check', true);
+
+        if ($node->getNode('node') instanceof Twig_Node_Expression_GetAttr) {
+            $this->changeIgnoreStrictCheck($node->getNode('node'));
+        }
+    }
+
+    public function compile(Twig_Compiler $compiler)
+    {
+        $compiler->subcompile($this->getNode('node'));
+    }
+}
+
+
+
+/*
+ * This file is part of Twig.
+ *
+ * (c) 2011 Fabien Potencier
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+/**
+ * Returns the value or the default value when it is undefined or empty.
+ *
+ * <pre>
+ *  {{ var.foo|default('foo item on var is not defined') }}
+ * </pre>
+ *
+ * @package twig
+ * @author  Fabien Potencier <fabien@symfony.com>
+ */
+class Twig_Node_Expression_Filter_Default extends Twig_Node_Expression_Filter
+{
+    public function __construct(Twig_NodeInterface $node, Twig_Node_Expression_Constant $filterName, Twig_NodeInterface $arguments, $lineno, $tag = null)
+    {
+        $default = new Twig_Node_Expression_Filter($node, new Twig_Node_Expression_Constant('_default', $node->getLine()), $arguments, $node->getLine());
+
+        if ('default' === $filterName->getAttribute('value') && ($node instanceof Twig_Node_Expression_Name || $node instanceof Twig_Node_Expression_GetAttr)) {
+            $test = new Twig_Node_Expression_Test_Defined(clone $node, 'defined', new Twig_Node(), $node->getLine());
+            $false = count($arguments) ? $arguments->getNode(0) : new Twig_Node_Expression_Constant('', $node->getLine());
+
+            $node = new Twig_Node_Expression_Conditional($test, $default, $false, $node->getLine());
+        } else {
+            $node = $default;
+        }
+
+        parent::__construct($node, $filterName, $arguments, $lineno, $tag);
+    }
+
+    public function compile(Twig_Compiler $compiler)
+    {
+        $compiler->subcompile($this->getNode('node'));
+    }
+}
 
 
 /*
@@ -6558,262 +7254,6 @@ class Twig_NodeVisitor_Optimizer implements Twig_NodeVisitorInterface
 /*
  * This file is part of Twig.
  *
- * (c) 2010 Fabien Potencier
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
-/**
- * Represents a node in the AST.
- *
- * @package    twig
- * @author     Fabien Potencier <fabien@symfony.com>
- */
-interface Twig_NodeInterface extends Countable, IteratorAggregate
-{
-    /**
-     * Compiles the node to PHP.
-     *
-     * @param Twig_Compiler A Twig_Compiler instance
-     */
-    function compile(Twig_Compiler $compiler);
-
-    function getLine();
-
-    function getNodeTag();
-}
-
-/*
- * This file is part of Twig.
- *
- * (c) 2009 Fabien Potencier
- * (c) 2009 Armin Ronacher
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
-/**
- * Represents a node in the AST.
- *
- * @package    twig
- * @author     Fabien Potencier <fabien@symfony.com>
- */
-class Twig_Node implements Twig_NodeInterface
-{
-    protected $nodes;
-    protected $attributes;
-    protected $lineno;
-    protected $tag;
-
-    /**
-     * Constructor.
-     *
-     * The nodes are automatically made available as properties ($this->node).
-     * The attributes are automatically made available as array items ($this['name']).
-     *
-     * @param array   $nodes      An array of named nodes
-     * @param array   $attributes An array of attributes (should not be nodes)
-     * @param integer $lineno     The line number
-     * @param string  $tag        The tag name associated with the Node
-     */
-    public function __construct(array $nodes = array(), array $attributes = array(), $lineno = 0, $tag = null)
-    {
-        $this->nodes = $nodes;
-        $this->attributes = $attributes;
-        $this->lineno = $lineno;
-        $this->tag = $tag;
-    }
-
-    public function __toString()
-    {
-        $attributes = array();
-        foreach ($this->attributes as $name => $value) {
-            $attributes[] = sprintf('%s: %s', $name, str_replace("\n", '', var_export($value, true)));
-        }
-
-        $repr = array(get_class($this).'('.implode(', ', $attributes));
-
-        if (count($this->nodes)) {
-            foreach ($this->nodes as $name => $node) {
-                $len = strlen($name) + 4;
-                $noderepr = array();
-                foreach (explode("\n", (string) $node) as $line) {
-                    $noderepr[] = str_repeat(' ', $len).$line;
-                }
-
-                $repr[] = sprintf('  %s: %s', $name, ltrim(implode("\n", $noderepr)));
-            }
-
-            $repr[] = ')';
-        } else {
-            $repr[0] .= ')';
-        }
-
-        return implode("\n", $repr);
-    }
-
-    public function toXml($asDom = false)
-    {
-        $dom = new DOMDocument('1.0', 'UTF-8');
-        $dom->formatOutput = true;
-        $dom->appendChild($xml = $dom->createElement('twig'));
-
-        $xml->appendChild($node = $dom->createElement('node'));
-        $node->setAttribute('class', get_class($this));
-
-        foreach ($this->attributes as $name => $value) {
-            $node->appendChild($attribute = $dom->createElement('attribute'));
-            $attribute->setAttribute('name', $name);
-            $attribute->appendChild($dom->createTextNode($value));
-        }
-
-        foreach ($this->nodes as $name => $n) {
-            if (null === $n) {
-                continue;
-            }
-
-            $child = $n->toXml(true)->getElementsByTagName('node')->item(0);
-            $child = $dom->importNode($child, true);
-            $child->setAttribute('name', $name);
-
-            $node->appendChild($child);
-        }
-
-        return $asDom ? $dom : $dom->saveXml();
-    }
-
-    public function compile(Twig_Compiler $compiler)
-    {
-        foreach ($this->nodes as $node) {
-            $node->compile($compiler);
-        }
-    }
-
-    public function getLine()
-    {
-        return $this->lineno;
-    }
-
-    public function getNodeTag()
-    {
-        return $this->tag;
-    }
-
-    /**
-     * Returns true if the attribute is defined.
-     *
-     * @param  string  The attribute name
-     *
-     * @return Boolean true if the attribute is defined, false otherwise
-     */
-    public function hasAttribute($name)
-    {
-        return array_key_exists($name, $this->attributes);
-    }
-
-    /**
-     * Gets an attribute.
-     *
-     * @param  string The attribute name
-     *
-     * @return mixed  The attribute value
-     */
-    public function getAttribute($name)
-    {
-        if (!array_key_exists($name, $this->attributes)) {
-            throw new Twig_Error_Runtime(sprintf('Attribute "%s" does not exist for Node "%s".', $name, get_class($this)));
-        }
-
-        return $this->attributes[$name];
-    }
-
-    /**
-     * Sets an attribute.
-     *
-     * @param string The attribute name
-     * @param mixed  The attribute value
-     */
-    public function setAttribute($name, $value)
-    {
-        $this->attributes[$name] = $value;
-    }
-
-    /**
-     * Removes an attribute.
-     *
-     * @param string The attribute name
-     */
-    public function removeAttribute($name)
-    {
-        unset($this->attributes[$name]);
-    }
-
-    /**
-     * Returns true if the node with the given identifier exists.
-     *
-     * @param  string  The node name
-     *
-     * @return Boolean true if the node with the given name exists, false otherwise
-     */
-    public function hasNode($name)
-    {
-        return array_key_exists($name, $this->nodes);
-    }
-
-    /**
-     * Gets a node by name.
-     *
-     * @param  string The node name
-     *
-     * @return Twig_Node A Twig_Node instance
-     */
-    public function getNode($name)
-    {
-        if (!array_key_exists($name, $this->nodes)) {
-            throw new Twig_Error_Runtime(sprintf('Node "%s" does not exist for Node "%s".', $name, get_class($this)));
-        }
-
-        return $this->nodes[$name];
-    }
-
-    /**
-     * Sets a node.
-     *
-     * @param string    The node name
-     * @param Twig_Node A Twig_Node instance
-     */
-    public function setNode($name, $node = null)
-    {
-        $this->nodes[$name] = $node;
-    }
-
-    /**
-     * Removes a node by name.
-     *
-     * @param string The node name
-     */
-    public function removeNode($name)
-    {
-        unset($this->nodes[$name]);
-    }
-
-    public function count()
-    {
-        return count($this->nodes);
-    }
-
-    public function getIterator()
-    {
-        return new ArrayIterator($this->nodes);
-    }
-}
-
-
-/*
- * This file is part of Twig.
- *
  * (c) 2009 Fabien Potencier
  * (c) 2009 Armin Ronacher
  *
@@ -6866,26 +7306,6 @@ class Twig_Node_Text extends Twig_Node implements Twig_NodeOutputInterface
  * @author     Fabien Potencier <fabien@symfony.com>
  */
 interface Twig_NodeOutputInterface
-{
-}
-
-/*
- * This file is part of Twig.
- *
- * (c) 2009 Fabien Potencier
- * (c) 2009 Armin Ronacher
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
-/**
- * Abstract class for all nodes that represents an expression.
- *
- * @package    twig
- * @author     Fabien Potencier <fabien@symfony.com>
- */
-abstract class Twig_Node_Expression extends Twig_Node
 {
 }
 
@@ -7932,70 +8352,6 @@ class Twig_NodeTraverser
     }
 }
 
-
-
-/*
- * This file is part of Twig.
- *
- * (c) 2009 Fabien Potencier
- * (c) 2009 Armin Ronacher
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-class Twig_Node_Expression_Filter extends Twig_Node_Expression
-{
-    public function __construct(Twig_NodeInterface $node, Twig_Node_Expression_Constant $filterName, Twig_NodeInterface $arguments, $lineno, $tag = null)
-    {
-        parent::__construct(array('node' => $node, 'filter' => $filterName, 'arguments' => $arguments), array(), $lineno, $tag);
-    }
-
-    public function compile(Twig_Compiler $compiler)
-    {
-        $name = $this->getNode('filter')->getAttribute('value');
-
-        if (false === $filter = $compiler->getEnvironment()->getFilter($name)) {
-            $message = sprintf('The filter "%s" does not exist', $name);
-            if ($alternatives = $compiler->getEnvironment()->computeAlternatives($name, array_keys($compiler->getEnvironment()->getFilters()))) {
-                $message = sprintf('%s. Did you mean "%s"', $message, implode('", "', $alternatives));
-            }
-
-            throw new Twig_Error_Syntax($message, $this->getLine());
-        }
-
-        $this->compileFilter($compiler, $filter);
-    }
-
-    protected function compileFilter(Twig_Compiler $compiler, Twig_FilterInterface $filter)
-    {
-        $compiler
-            ->raw($filter->compile().'(')
-            ->raw($filter->needsEnvironment() ? '$this->env, ' : '')
-            ->raw($filter->needsContext() ? '$context, ' : '')
-        ;
-
-        foreach ($filter->getArguments() as $argument) {
-            $compiler
-                ->string($argument)
-                ->raw(', ')
-            ;
-        }
-
-        $compiler->subcompile($this->getNode('node'));
-
-        foreach ($this->getNode('arguments') as $node) {
-            $compiler
-                ->raw(', ')
-                ->subcompile($node)
-            ;
-        }
-
-        $compiler->raw(')');
-    }
-}
-
-
-
 /*
  * This file is part of Twig.
  *
@@ -8914,4 +9270,3 @@ abstract class Twig_Template implements Twig_TemplateInterface
         self::$cache = array();
     }
 }
-

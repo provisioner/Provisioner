@@ -5,15 +5,15 @@ require_once('bootstrap.php');
 $account_id = "12983471298471294";
 
 // Define what you want to generate
-$brand = 'polycom';
-$family = 'spipm';
-$model = 'SoundPoint IP 550';
+$brand = 'yealink';
+$family = 't2x';
+$model = 'T26';
 
 // Create a class name based on the arguments provided
 $class = "endpoint_" . $brand . "_" . $family . '_phone';
 
 // Instantiate the class
-$endpoint = new $class();
+$endpoint = new $class('T26');
 
 /*
 $endpoint->brand_name = $brand;
@@ -38,18 +38,17 @@ var_dump($endpoint->generate_all_files());
  * 
  */
 
-$final_settings = array();
 // Import the global overall system default settings
-import_settings("defaults.json", $final_settings);
+$endpoint->import_settings("defaults.json");
 
 // Add/Overlay settings for a particular provider (2600hz, Packet8, whomever)
-import_settings("provider.json", $final_settings);
+$endpoint->import_settings("provider.json");
 
 // Add/Overlay settings for a particular group (a Customer Account, or a Group of Phones in General)
-import_settings("group.json", $final_settings);
+//$endpoint->import_settings("group.json");
 
 // Add/Overlay settings for a particular phone/MAC address
-import_settings("phone.json", $final_settings);
+$endpoint->import_settings("phone.json");
 
 
 // Note that the above is pretty flexible. For example, you could have done:
@@ -58,16 +57,7 @@ import_settings("phone.json", $final_settings);
 
 
 // View final settings
-var_dump($final_settings);
+//print_r($endpoint->settings);
 
 // Loop through all required files for this particular brand/model and produce them
-$files = array('$mac.cfg');
-foreach ($files as $file) {
-    $template = $twig->loadTemplate($file);
-
-    // Generate template using these settings
-    $result = $template->render($final_settings);
-    
-    // TODO: Actual output as a file or to the requestor somehow
-    echo $result;
-}
+print_r($endpoint->generate_all_files());

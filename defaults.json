@@ -1,6 +1,6 @@
 {
     "timezone" : "US/Pacific",
-    "ntp_server" : "time.apple.com",
+    "ntp" : "time.apple.com",
     "dst" : true,
     "ringer" : 1,
     "custom_ring" : null,
