@@ -6,7 +6,7 @@
     
     "lines" : {
         "0" : {
-            "display_name" : "New Kazoo Phone",
+            "displayname" : "New Kazoo Phone",
             "username" : "unknown",
             "auth_username" : "new_phone",
             "auth_password" : "new_phone1234",
