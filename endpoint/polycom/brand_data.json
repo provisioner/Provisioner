@@ -5,8 +5,8 @@
       "directory": "polycom",
       "brand_id": "4",
       "package": "polycom.tgz",
-      "md5sum": "d71df2d8412872049f128fe0d264ab1f",
-      "last_modified": 1346352724,
+      "md5sum": "4b74708404612a1c9e4a937be27b40e0",
+      "last_modified": 1352138705,
       "family_list": [
         {
           "id": "4",
@@ -61,7 +61,7 @@
         "0004F2",
         "00907A"
       ],
-      "changelog": "PACKAGER: Added MWI tone (enable\/disable) option for SPIPM polycoms"
+      "changelog": "PACKAGER: Update endpoint\/polycom\/spipm\/sip.cfg\n\nUpdate SNTP. Add ending tag"
     }
   }
 }
