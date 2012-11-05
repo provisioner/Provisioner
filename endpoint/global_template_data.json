@@ -179,7 +179,7 @@
                         "start": 1,
                         "type": "loop",
                         "loop_data": {
-                            "audio_codec": {
+                            "codec": {
                                 "default_value": {
                                     "1": "G711u",
                                     "2": "NA",
