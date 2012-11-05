@@ -5,6 +5,7 @@
         "name":"general",
         "subcategory":[
           {
+          	"name":"settings",
             "item":[
               {
                 "description":"General Settings",

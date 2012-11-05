@@ -40,7 +40,7 @@ abstract class endpoint_base {
 		$this->merge_template_files();
 		
 		// Load Twig
-		$loader = new Twig_Loader_Filesystem($this->root_dir . "/" . $this->brand_name."/".$this->family_line."/");
+		$loader = new Twig_Loader_Filesystem($this->root_dir . "/");
 		$this->twig = new Twig_Environment($loader);
     }
 
@@ -66,7 +66,7 @@ abstract class endpoint_base {
 		$this->initalize();
 		if(!file_exists($this->root_dir . "/" . $this->brand_name."/".$this->family_line."/".$filename)) { throw new Exception("Missing Configuration File: ".$file); }
 		//Load template into twig
-		$template = $this->twig->loadTemplate($filename);
+		$template = $this->twig->loadTemplate($this->brand_name."/".$this->family_line."/".$filename);
 
 	    // Generate template using these settings
 	    $result = $template->render($this->settings);
