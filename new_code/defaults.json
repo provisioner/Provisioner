@@ -1,0 +1,44 @@
+{
+    "timezone" : "US/Pacific",
+    "ntp" : "time.apple.com",
+    "dst" : true,
+    "ringer" : 1,
+    "custom_ring" : null,
+    "admin_password" : "admin",
+    "user_password" : false,
+    "logo" : "provisioner.png",
+    "dialplan" : "",
+    "language" : "en",
+    "directory_source" : "http://provisioner.net/phone_directory/",
+    
+    "network" : {
+        "use_dhcp" : false,
+        "static_ip" : {
+            "ip_address" : null,
+            "netmask" : null,
+            "gateway" : null
+        },
+        "dns_servers" : {},
+        "qos" : {},
+        "vlan" : {
+            "enabled" : false,
+            "voice" : 0,
+            "data" : 0
+        }
+    },
+    
+    "rtp" : {
+        "start_port" : 0,
+        "end_port" : 0,
+        "rport" : true
+    },
+    
+    "lines" : {
+        "0" : {
+            "line_active" : true,
+            "display_name" : "New Phone",
+            "codecs" : ["G729", "PCMU", "PCMA"],
+            "local_sip_port" : 5060
+        }
+    }
+}
