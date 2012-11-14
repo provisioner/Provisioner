@@ -90,12 +90,12 @@ class ConfigFile {
     }
 
     // This function will select the right template to fill
-    public function setConfigFile($file) {
+    public function set_config_file($file) {
         // macaddr.cfg - 000000000000.cfg
-        if (preg_match("/^([0-9a-f]{12})\.cfg$/i", $mac))
+        if (preg_match("/^([0-9a-f]{12})\.cfg$/i", $file))
             $this->_strConfigFile = "$mac.cfg";
         // y00000000000
-        elseif (preg_match("/^y00000000000([0-9a-f]{1})\.cfg$/i", $mac))
+        elseif (preg_match("/^y00000000000([0-9a-f]{1})\.cfg$/i", $file))
             $this->_strConfigFile = "y0000000000$suffix.cfg";
         else
             return false;
