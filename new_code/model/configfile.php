@@ -35,16 +35,19 @@ class ConfigFile {
     }
 
     // Setter
-    public function set_brand($brand) {
+    public function set_brand($brand, $regen = true) {
         $this->_strBrand = $brand;
+        $this->_set_template_dir();
     }
 
-    public function set_family($family) {
+    public function set_family($family, $regen = true) {
         $this->_strFamily = $family;
+        $this->_set_template_dir();
     }
 
-    public function set_model($model) {
+    public function set_model($model, $regen = true) {
         $this->_strModel = $model;
+        $this->_set_template_dir();
     }
 
     // This function will allow the user to set his own template directory
