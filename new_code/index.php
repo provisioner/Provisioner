@@ -1,18 +1,18 @@
 <?php
 
+require_once '../bootstrap.php' ;
+require_once 'model/configfile.php';
+
+$test = new ConfigFile('yealink', 't2x', 'T26');
+echo $test->get_brand() . '<br>';
+echo $test->get_family() . '<br>';
+echo $test->get_model() . '<br>';
+echo $test->get_template_dir() . '<br>';
+
 /*$str_ua = $_SERVER['HTTP_USER_AGENT'];
 $str_requested_file = $_GET['file'];
 
 echo $str_ua . ' |||||| ' . $str_requested_file; */
-
-$mac = "y000000000005.cfg";
-
-if (preg_match("/^([0-9a-f]{12})\.cfg$/i", $mac))
-    echo "Mac";
-elseif (preg_match("/^y00000000000([0-9a-f]{1})\.cfg$/i", $mac))
-    echo "y000000";
-else
-    echo "nothing";
 
 /*function mergeArray($arr1, $arr2)
 {
