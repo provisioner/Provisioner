@@ -47,6 +47,7 @@ class ConfigFile {
         $this->_strModel = $model;
     }
 
+    // This function will allow the user to set his own template directory
     public function set_template_dir($templateDir) {
         $this->_strTemplateDir = $templateDir;
     }
@@ -69,6 +70,11 @@ class ConfigFile {
             }
         }
         return $arr1;
+    }
+
+    // This function will determine the template directory
+    private function _set_template_dir() {
+        $this->_strTemplateDir = MODULES_DIR . DIRECTORY_SEPARATOR . $this->_strBrand . DIRECTORY_SEPARATOR . $this->_strFamily . DIRECTORY_SEPARATOR;
     }
 
     // This function will merge all the json 
@@ -109,7 +115,7 @@ class ConfigFile {
         // TODO: try to detect the family
         $this->_strFamily = $family;
 
-        $this->_strTemplateDir = MODULES_DIR . DIRECTORY_SEPARATOR . $this->_strBrand . DIRECTORY_SEPARATOR . $this->_strFamily . DIRECTORY_SEPARATOR;
+        $this->_strTemplateDir = $this->_set_template_dir();
 
         // init twig object
         $this->_twig_init();
