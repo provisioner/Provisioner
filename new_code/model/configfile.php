@@ -115,7 +115,7 @@ class ConfigFile {
         // TODO: try to detect the family
         $this->_strFamily = $family;
 
-        $this->_strTemplateDir = $this->_set_template_dir();
+        $this->_set_template_dir();
 
         // init twig object
         $this->_twig_init();
