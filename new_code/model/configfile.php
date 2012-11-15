@@ -1,9 +1,11 @@
 <?php
+// This represent the constant file
+define("CONSTANTS_FILE", ROOT_PATH."new_code/constants.json");
 
 class ConfigFile {
     private $_strBrand = '';
     private $_strFamily = '';
-    private $_strModel = '';
+    //private $_strModel = '';
     private $_strConfigFile = '';
     private $_strTemplateDir = '';
     private $_objTwig = null;
@@ -22,9 +24,9 @@ class ConfigFile {
         return $this->_strFamily;
     }
 
-    public function get_model() {
+    /*public function get_model() {
         return $this->_strModel;
-    }
+    }*/
 
     public function get_config_file() {
         return $this->_strConfigFile;
@@ -35,20 +37,20 @@ class ConfigFile {
     }
 
     // Setter
-    public function set_brand($brand, $regen = true) {
+    public function set_brand($brand) {
         $this->_strBrand = $brand;
         $this->_set_template_dir();
     }
 
-    public function set_family($family, $regen = true) {
+    public function set_family($family) {
         $this->_strFamily = $family;
         $this->_set_template_dir();
     }
 
-    public function set_model($model, $regen = true) {
+    /*public function set_model($model) {
         $this->_strModel = $model;
         $this->_set_template_dir();
-    }
+    }*/
 
     // This function will allow the user to set his own template directory
     public function set_template_dir($templateDir) {
@@ -73,6 +75,33 @@ class ConfigFile {
             }
         }
         return $arr1;
+    }
+
+    // This function will try to determine the brand from the mac address
+    // TODO: This should send an email with the data if nothing is returned
+    private function _get_brand_from_mac($mac) {
+        $constants_file = json_decode(file_get_contents(CONSTANTS_FILE), true);
+        $suffix = substr($mac, 0, 6);
+
+        try {
+            $brand = $constants_file['mac_lookup'][$suffix];
+            return $brand;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    // This funcrion will try to determine the family model from the ua and the brand
+    private function _get_family_from_ua($ua, $brand) {
+        switch ($brand) {
+            case 'yealink':
+                # code...
+                break;
+            
+            default:
+                # code....
+                break;
+        }
     }
 
     // This function will determine the template directory
@@ -112,11 +141,9 @@ class ConfigFile {
 
     // Following line used if trying to detect family
     //public function __construct($brand, $model, $family = "") {
-    public function __construct($brand, $family, $model) {
-        $this->_strBrand = $brand;
-        $this->_strModel = $model;
-        // TODO: try to detect the family
-        $this->_strFamily = $family;
+    public function __construct($mac, $ua) {
+        $this->_strBrand = $this->_get_brand_from_mac($mac);
+        $this->_strFamily = $this->_get_family_from_ua($ua, $this->_strBrand);
 
         $this->_set_template_dir();
 
@@ -135,6 +162,7 @@ class ConfigFile {
         array_push($this->_arrData, json_decode($obj, true));
     }
 
+    // This is the final step
     public function generate_config_file() {
         $arrConfig = $this->_merge_config_objects();
 
