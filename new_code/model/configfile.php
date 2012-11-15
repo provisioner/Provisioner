@@ -1,14 +1,14 @@
 <?php
 // This represent the constant file
-define("CONSTANTS_FILE", ROOT_PATH."new_code/constants.json");
+define("CONSTANTS_FILE", ROOT_PATH."/new_code/constants.json");
 
 class ConfigFile {
     private $_strBrand = '';
     private $_strFamily = '';
-    //private $_strModel = '';
     private $_strConfigFile = '';
     private $_strTemplateDir = '';
     private $_objTwig = null;
+    private $_arrConstantes = array();
     private $_arrData = array();
 
     /*
@@ -23,10 +23,6 @@ class ConfigFile {
     public function get_family() {
         return $this->_strFamily;
     }
-
-    /*public function get_model() {
-        return $this->_strModel;
-    }*/
 
     public function get_config_file() {
         return $this->_strConfigFile;
@@ -47,17 +43,25 @@ class ConfigFile {
         $this->_set_template_dir();
     }
 
-    /*public function set_model($model) {
-        $this->_strModel = $model;
-        $this->_set_template_dir();
-    }*/
-
     // This function will allow the user to set his own template directory
     public function set_template_dir($templateDir) {
         $this->_strTemplateDir = $templateDir;
     }
 
     // ===========================================
+
+    public function __construct($mac, $ua) {
+        // Load the constants
+        $this->_load_constants();
+
+        $this->_strBrand = $this->_get_brand_from_mac($mac);
+        $this->_strFamily = $this->_get_family_from_ua($ua, $this->_strBrand);
+
+        $this->_set_template_dir();
+
+        // init twig object
+        $this->_twig_init();
+    }
 
     /*
         This function will merge two array together to return only one.
@@ -77,14 +81,18 @@ class ConfigFile {
         return $arr1;
     }
 
+    // Load the constant file once and for all
+    private function _load_constants() {
+        $thid->_arrConstantes = json_decode(file_get_contents(CONSTANTS_FILE), true);
+    }
+
     // This function will try to determine the brand from the mac address
     // TODO: This should send an email with the data if nothing is returned
     private function _get_brand_from_mac($mac) {
-        $constants_file = json_decode(file_get_contents(CONSTANTS_FILE), true);
         $suffix = substr($mac, 0, 6);
 
         try {
-            $brand = $constants_file['mac_lookup'][$suffix];
+            $brand = $this->_arrConstantes['mac_lookup'][$suffix];
             return $brand;
         } catch (Exception $e) {
             return false;
@@ -138,18 +146,7 @@ class ConfigFile {
         else
             return false;
     }
-
-    // Following line used if trying to detect family
-    //public function __construct($brand, $model, $family = "") {
-    public function __construct($mac, $ua) {
-        $this->_strBrand = $this->_get_brand_from_mac($mac);
-        $this->_strFamily = $this->_get_family_from_ua($ua, $this->_strBrand);
-
-        $this->_set_template_dir();
-
-        // init twig object
-        $this->_twig_init();
-    }
+    
 
     /* 
         This function will add a json object to merge with the other ones
