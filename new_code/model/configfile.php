@@ -4,9 +4,11 @@ define("CONSTANTS_FILE", ROOT_PATH."/new_code/constants.json");
 
 class ConfigFile {
     private $_strBrand = '';
+    private $_strMac = '';
     private $_strFamily = '';
     private $_strConfigFile = '';
     private $_strTemplateDir = '';
+    private $_strFirmVers = '';
     private $_objTwig = null;
     private $_arrConstantes = array();
     private $_arrData = array();
@@ -24,6 +26,10 @@ class ConfigFile {
         return $this->_strFamily;
     }
 
+    public function get_firmware_version() {
+        return $this->_strFirmVers;
+    }
+
     public function get_config_file() {
         return $this->_strConfigFile;
     }
@@ -33,7 +39,7 @@ class ConfigFile {
     }
 
     // Setter
-    public function set_brand($brand) {
+    /*public function set_brand($brand) {
         $this->_strBrand = $brand;
         $this->_set_template_dir();
     }
@@ -41,7 +47,7 @@ class ConfigFile {
     public function set_family($family) {
         $this->_strFamily = $family;
         $this->_set_template_dir();
-    }
+    }*/
 
     // This function will allow the user to set his own template directory
     public function set_template_dir($templateDir) {
@@ -54,10 +60,18 @@ class ConfigFile {
         // Load the constants
         $this->_load_constants();
 
-        $this->_strBrand = $this->_get_brand_from_mac($mac);
-        $this->_strFamily = $this->_get_family_from_ua($ua, $this->_strBrand);
+        // Making sure that the mac is well formed: XXXXXXXXXXXX
+        $this->_strMac = preg_replace(':', '', $mac);
 
-        $this->_set_template_dir();
+        if ($this->_strMac) {
+            // Trying to detect the device informations
+            $this->_strBrand = $this->_get_brand_from_mac($mac);
+            $this->_strFamily = $this->_get_family_from_ua($ua, $this->_strBrand);
+        } else
+            exit("Unable to format the mac address");
+        
+        if ($this->_strBrand && $this->_strFamily)
+            $this->_set_template_dir();
 
         // init twig object
         $this->_twig_init();
@@ -103,12 +117,30 @@ class ConfigFile {
     private function _get_family_from_ua($ua, $brand) {
         switch ($brand) {
             case 'yealink':
-                # code...
-                break;
+                if (preg_match('#Yealink SIP-[a-z](\d\d)[a-z] (\d*\.\d*\.\d*\.\d*) ((?:[0-9a-fA-F]{2}[:;.]?){6})#i', $ua, $elements)) {
+                    // Setting the family
+                    if ($elements[1] < 20)
+                        $this->_strFamily = "t1x";
+                    elseif ($elements[1] < 30 && $elements[1] >= 20)
+                        $this->_strFamily = "t2x";
+                    elseif ($elements[1] >= 30)
+                        $this->_strFamily = "t3x";
+                    else
+                        return false;
+
+                    // Setting the firmware version
+                    $this->_strFirmVers = $elements[2];
+
+                    // Checking the mac address
+                    $elements[3] = preg_replace(':', '', $elements[3]);
+                    if ($this->_strMac != $elements[3])
+                        return false;
+
+                    return true;
+                }
             
             default:
-                # code....
-                break;
+                return false;
         }
     }
 
