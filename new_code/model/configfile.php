@@ -10,8 +10,8 @@ class ConfigFile {
     private $_strTemplateDir = '';
     private $_strFirmVers = '';
     private $_objTwig = null;
-    private $_arrConstantes = array();
-    private $_arrData = array();
+    private $_arrConstants = null;
+    private $_arrData = null;
 
     /*
         Accessors
@@ -58,32 +58,33 @@ class ConfigFile {
 
     public function __construct($mac, $ua) {
         // Load the constants
-        $this->_load_constants();
+        if ($this->_load_constants()) {
+            // Making sure that the mac is well formed: XXXXXXXXXXXX
+            $this->_strMac = preg_replace('/:/', '', $mac);
 
-        // Making sure that the mac is well formed: XXXXXXXXXXXX
-        $this->_strMac = preg_replace('/:/', '', $mac);
+            if ($this->_strMac) {
+                // Trying to detect the device informations
+                $this->_strBrand = $this->_get_brand_from_mac($mac);
 
-        if ($this->_strMac) {
-            // Trying to detect the device informations
-            $this->_strBrand = $this->_get_brand_from_mac($mac);
+                if ($this->_strBrand)
+                    $this->_get_family_from_ua($ua, $this->_strBrand);
+            } else
+                return false;
+            
+            if ($this->_strBrand && $this->_strFamily)
+                $this->_set_template_dir();
+            else
+                return false;
 
-            if ($this->_strBrand)
-                $this->_strFamily = $this->_get_family_from_ua($ua, $this->_strBrand);
-        } else
+            // init twig object
+            $this->_twig_init();
+        } else 
             return false;
-        
-        if ($this->_strBrand && $this->_strFamily)
-            $this->_set_template_dir();
-        else
-            return false;
-
-        // init twig object
-        $this->_twig_init();
     }
 
     // Load the constant file once and for all
     private function _load_constants() {
-        $thid->_arrConstantes = json_decode(file_get_contents(CONSTANTS_FILE), true);
+        return $this->_arrConstants = json_decode(file_get_contents(CONSTANTS_FILE), true);
     }
 
     /*
@@ -106,11 +107,11 @@ class ConfigFile {
 
     // This function will try to determine the brand from the mac address
     // TODO: This should send an email with the data if nothing is returned
-    private function _get_brand_from_mac($mac) {
-        $suffix = substr($mac, 0, 6);
+    private function _get_brand_from_mac() {
+        $suffix = substr($this->_strMac, 0, 6);
 
         try {
-            $brand = $this->_arrConstantes['mac_lookup'][$suffix];
+            $brand = $this->_arrConstants['mac_lookup'][$suffix];
             return $brand;
         } catch (Exception $e) {
             return false;
