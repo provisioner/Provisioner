@@ -3,11 +3,14 @@
 require_once '../bootstrap.php' ;
 require_once 'model/configfile.php';
 
-$test = new ConfigFile('yealink', 't2x', 'T26');
-echo $test->get_brand() . '<br>';
-echo $test->get_family() . '<br>';
-echo $test->get_model() . '<br>';
-echo $test->get_template_dir() . '<br>';
+$mac = "00:15:65:00:00:00";
+$ua = "yealink SIP-T22P 7.40.1.2 00:15:65:00:00:00";
+
+$test = new ConfigFile($mac, $ua);
+
+echo '<pre>';
+var_dump($test);
+echo '</pre>';
 
 /*$str_ua = $_SERVER['HTTP_USER_AGENT'];
 $str_requested_file = $_GET['file'];

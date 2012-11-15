@@ -61,20 +61,29 @@ class ConfigFile {
         $this->_load_constants();
 
         // Making sure that the mac is well formed: XXXXXXXXXXXX
-        $this->_strMac = preg_replace(':', '', $mac);
+        $this->_strMac = preg_replace('/:/', '', $mac);
 
         if ($this->_strMac) {
             // Trying to detect the device informations
             $this->_strBrand = $this->_get_brand_from_mac($mac);
-            $this->_strFamily = $this->_get_family_from_ua($ua, $this->_strBrand);
+
+            if ($this->_strBrand)
+                $this->_strFamily = $this->_get_family_from_ua($ua, $this->_strBrand);
         } else
-            exit("Unable to format the mac address");
+            return false;
         
         if ($this->_strBrand && $this->_strFamily)
             $this->_set_template_dir();
+        else
+            return false;
 
         // init twig object
         $this->_twig_init();
+    }
+
+    // Load the constant file once and for all
+    private function _load_constants() {
+        $thid->_arrConstantes = json_decode(file_get_contents(CONSTANTS_FILE), true);
     }
 
     /*
@@ -93,11 +102,6 @@ class ConfigFile {
             }
         }
         return $arr1;
-    }
-
-    // Load the constant file once and for all
-    private function _load_constants() {
-        $thid->_arrConstantes = json_decode(file_get_contents(CONSTANTS_FILE), true);
     }
 
     // This function will try to determine the brand from the mac address
@@ -132,7 +136,7 @@ class ConfigFile {
                     $this->_strFirmVers = $elements[2];
 
                     // Checking the mac address
-                    $elements[3] = preg_replace(':', '', $elements[3]);
+                    $elements[3] = preg_replace('/:/', '', $elements[3]);
                     if ($this->_strMac != $elements[3])
                         return false;
 
@@ -149,6 +153,12 @@ class ConfigFile {
         $this->_strTemplateDir = MODULES_DIR . DIRECTORY_SEPARATOR . $this->_strBrand . DIRECTORY_SEPARATOR . $this->_strFamily . DIRECTORY_SEPARATOR;
     }
 
+    // Initialize Twig
+    private function _twig_init() {
+        $loader = new Twig_Loader_Filesystem($this->_strTemplateDir);
+        $this->_objTwig = new Twig_Environment($loader);
+    }
+
     // This function will merge all the json 
     private function _merge_config_objects() {
         $arrConfig = array();
@@ -159,12 +169,6 @@ class ConfigFile {
         }
 
         return $arrConfig;
-    }
-
-    // Initialize Twig
-    private function _twig_init() {
-        $loader = new Twig_Loader_Filesystem($this->_strTemplateDir);
-        $this->_objTwig = new Twig_Environment($loader);
     }
 
     // This function will select the right template to fill
