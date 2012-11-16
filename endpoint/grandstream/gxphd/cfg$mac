@@ -2726,7 +2726,7 @@ P1484 =
 #-------------------------------------------------------------------------------------
 # End User Multi Purpose Keys 
 #------------------------------------------------------------------------------------- 
-# Multipupose Key 1
+# Multi Purpose Key 1
 # ------------------------------------------------------------------------------------- 
 # Key Mode.
 # 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
@@ -2747,7 +2747,7 @@ P302 = {$key_name_01}
 # User ID.  Max length allowed is 64 characters.
 P303 = {$speed_dial_01}
 
-# Multipupose Key 2
+# Multi Purpose Key 2
 # ------------------------------------------------------------------------------------- 
 # Key Mode.
 # 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
@@ -2768,7 +2768,7 @@ P305 = {$key_name_02}
 # User ID. Max length allowed is 64 characters.
 P306 = {$speed_dial_02}
 
-# Multipupose Key 3
+# Multi Purpose Key 3
 # ------------------------------------------------------------------------------------- 
 # Key Mode.
 # 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
@@ -2789,7 +2789,7 @@ P308 = {$key_name_03}
 # User ID. Max length allowed is 64 characters.
 P309 = {$speed_dial_03}
 
-# Multipupose Key 4
+# Multi Purpose Key 4
 # ------------------------------------------------------------------------------------- 
 # Key Mode.
 # 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
@@ -2810,7 +2810,7 @@ P311 = {$key_name_04}
 # User ID. Max length allowed is 64 characters.
 P312 = {$speed_dial_04}
 
-# Multipupose Key 5
+# Multi Purpose Key 5
 # ------------------------------------------------------------------------------------- 
 # Key Mode.
 # 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
@@ -2831,7 +2831,7 @@ P314 = {$key_name_05}
 # User ID. Max length allowed is 64 character
 P315 = {$speed_dial_05}
 
-# Multipupose Key 6
+# Multi Purpose Key 6
 # ------------------------------------------------------------------------------------- 
 # Key Mode.
 # 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
@@ -2852,7 +2852,7 @@ P317 = {$key_name_06}
 # User ID. Max length allowed is 64 character
 P318 = {$speed_dial_06}
 
-# Multipupose Key 7
+# Multi Purpose Key 7
 # ------------------------------------------------------------------------------------- 
 # Key Mode.
 # 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
@@ -2869,12 +2869,12 @@ P319 = 0
 
 # Name. Max length allowed is 128 characters.
 # String
-P320 =
-
-# User ID. Max length allowed is 64 character
 P320 = {$key_name_07}
 
-# Multipupose Key 8
+# User ID. Max length allowed is 64 character
+P321 = {$speed_dial_07}
+
+# Multi Purpose Key 8
 # ------------------------------------------------------------------------------------- 
 # Key Mode.
 # 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
@@ -2895,7 +2895,7 @@ P355 = {$key_name_08}
 # User ID. Max length allowed is 64 character
 P356 = {$speed_dial_08}
 
-# Multipupose Key 9
+# Multi Purpose Key 9
 # ------------------------------------------------------------------------------------- 
 # Key Mode.
 # 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
@@ -2916,7 +2916,7 @@ P359 = {$key_name_09}
 # User ID. Max length allowed is 64 character
 P360 = {$speed_dial_09}
 
-# Multipupose Key 10
+# Multi Purpose Key 10
 # ------------------------------------------------------------------------------------- 
 # Key Mode.
 # 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
@@ -2937,7 +2937,7 @@ P363 = {$key_name_10}
 # User ID. Max length allowed is 64 character
 P364 = {$speed_dial_10}
 
-# Multipupose Key 11
+# Multi Purpose Key 11
 # ------------------------------------------------------------------------------------- 
 # Key Mode.
 # 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
@@ -2958,7 +2958,7 @@ P367 = {$key_name_11}
 # User ID. Max length allowed is 64 character
 P368 = {$speed_dial_11}
 
-# Multipupose Key 12
+# Multi Purpose Key 12
 # ------------------------------------------------------------------------------------- 
 # Key Mode.
 # 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
@@ -2979,7 +2979,7 @@ P371 = {$key_name_12}
 # User ID. Max length allowed is 64 character
 P372 = {$speed_dial_12}
 
-# Multipupose Key 13
+# Multi Purpose Key 13
 # ------------------------------------------------------------------------------------- 
 # Key Mode.
 # 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
@@ -3000,7 +3000,7 @@ P375 = {$key_name_13}
 # User ID. Max length allowed is 64 character
 P376 = {$speed_dial_13}
 
-# Multipupose Key 14
+# Multi Purpose Key 14
 # ------------------------------------------------------------------------------------- 
 # Key Mode.
 # 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
@@ -3021,7 +3021,7 @@ P379 = {$key_name_14}
 # User ID. Max length allowed is 64 character
 P380 = {$speed_dial_14}
 
-# Multipupose Key 15
+# Multi Purpose Key 15
 # ------------------------------------------------------------------------------------- 
 # Key Mode.
 # 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
@@ -3042,7 +3042,7 @@ P383 = {$key_name_15}
 # User ID. Max length allowed is 64 character
 P384 = {$speed_dial_15}
 
-# Multipupose Key 16
+# Multi Purpose Key 16
 # ------------------------------------------------------------------------------------- 
 # Key Mode.
 # 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
@@ -3063,7 +3063,7 @@ P387 = {$key_name_16}
 # User ID. Max length allowed is 64 character
 P388 = {$speed_dial_16}
 
-# Multipupose Key 17
+# Multi Purpose Key 17
 # ------------------------------------------------------------------------------------- 
 # Key Mode.
 # 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
@@ -3084,7 +3084,7 @@ P391 = {$key_name_17}
 # User ID. Max length allowed is 64 character
 P392 = {$speed_dial_17}
 
-# Multipupose Key 18
+# Multi Purpose Key 18
 # ------------------------------------------------------------------------------------- 
 # Key Mode.
 # 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
@@ -3102,12 +3102,13 @@ P394 = 0
 # Name. Max length allowed is 128 characters.
 P395 = {$key_name_18}
 
-# Name. Max length allowed is 128 characters.
+# User ID. Max length allowed is 128 characters.
 # String
-P1458 =
+P396 = {$speed_dial_18}
 
 # User ID. Max length allowed is 64 character
-P396 = {$speed_dial_18}
+P397 = {$speed_dial_18}
+
 # ------------------------------------------------------------------------------------- 
 # Key Mode.
 # 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
