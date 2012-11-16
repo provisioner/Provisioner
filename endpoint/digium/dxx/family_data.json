@@ -7,8 +7,9 @@
     "configuration_files": "$mac.cfg",
     "changelog": "",
             "provisioning_types": [
-            "tftp",
-            "http"
+            "ftp",
+            "http",
+		"https"
         ],
     "model_list": [
       {
