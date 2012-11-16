@@ -3106,9 +3106,6 @@ P395 = {$key_name_18}
 # String
 P396 = {$speed_dial_18}
 
-# User ID. Max length allowed is 64 character
-P397 = {$speed_dial_18}
-
 # ------------------------------------------------------------------------------------- 
 # Key Mode.
 # 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
