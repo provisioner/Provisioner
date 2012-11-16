@@ -57,7 +57,7 @@ class ConfigFile {
     // ===========================================
 
     public function __construct($mac = null, $ua = null) {
-        // This is the case when we are in the case of a HTTP request
+        // This is the case of a HTTP request
         if ($mac && $ua) {
             // Load the constants
             if ($this->_load_constants()) {
