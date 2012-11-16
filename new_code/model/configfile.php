@@ -3,12 +3,12 @@
 define("CONSTANTS_FILE", ROOT_PATH."/new_code/constants.json");
 
 class ConfigFile {
-    private $_strBrand = '';
-    private $_strMac = '';
-    private $_strFamily = '';
-    private $_strConfigFile = '';
-    private $_strTemplateDir = '';
-    private $_strFirmVers = '';
+    private $_strBrand = null;
+    private $_strMac = null;
+    private $_strFamily = null;
+    private $_strConfigFile = null;
+    private $_strTemplateDir = null;
+    private $_strFirmVers = null;
     private $_objTwig = null;
     private $_arrConstants = null;
     private $_arrData = null;
@@ -56,30 +56,33 @@ class ConfigFile {
 
     // ===========================================
 
-    public function __construct($mac, $ua) {
-        // Load the constants
-        if ($this->_load_constants()) {
-            // Making sure that the mac is well formed: XXXXXXXXXXXX
-            $this->_strMac = preg_replace('/:/', '', $mac);
+    public function __construct($mac = null, $ua = null) {
+        // This is the case when we are in the case of a HTTP request
+        if ($mac && $ua) {
+            // Load the constants
+            if ($this->_load_constants()) {
+                // Making sure that the mac is well formed: XXXXXXXXXXXX
+                $this->_strMac = preg_replace('/:/', '', $mac);
 
-            if ($this->_strMac) {
-                // Trying to detect the device informations
-                $this->_strBrand = $this->_get_brand_from_mac($mac);
+                if ($this->_strMac) {
+                    // Trying to detect the device informations
+                    $this->_strBrand = $this->_get_brand_from_mac($mac);
 
-                if ($this->_strBrand)
-                    $this->_get_family_from_ua($ua, $this->_strBrand);
-            } else
+                    if ($this->_strBrand)
+                        $this->_get_family_from_ua($ua, $this->_strBrand);
+                } else
+                    return false;
+                
+                if ($this->_strBrand && $this->_strFamily)
+                    $this->_set_template_dir();
+                else
+                    return false;
+
+                // init twig object
+                $this->_twig_init();
+            } else 
                 return false;
-            
-            if ($this->_strBrand && $this->_strFamily)
-                $this->_set_template_dir();
-            else
-                return false;
-
-            // init twig object
-            $this->_twig_init();
-        } else 
-            return false;
+        }
     }
 
     // Load the constant file once and for all
@@ -142,8 +145,9 @@ class ConfigFile {
                         return false;
 
                     return true;
-                }
-            
+                } else
+                    return false;
+
             default:
                 return false;
         }
@@ -172,7 +176,29 @@ class ConfigFile {
         return $arrConfig;
     }
 
-    // This function will select the right template to fill
+    /*
+        This function is used if you already have the brand and family info
+        Or if you don't have the UA, like if you are using TFTP.
+        This function require to declare the object without any parameters
+        and then use this function:
+
+        $obj = new ConfigFile();
+        $obj-> set_device_infos('yealink', 't2x');
+    */
+    public function set_device_infos($brand, $family) {
+        $this->_strBrand = strtolower($brand);
+        $this->_strFamily = strtolower($family);
+
+        if ($this->_strBrand && $this->_strFamily)
+            $this->_set_template_dir();
+        else
+            return false;
+
+        // init twig object
+        $this->_twig_init();
+    }
+
+    // This function will select the right template to file
     public function set_config_file($file) {
         // macaddr.cfg - 000000000000.cfg
         if (preg_match("/^([0-9a-f]{12})\.cfg$/i", $file))
@@ -184,12 +210,11 @@ class ConfigFile {
             return false;
     }
     
-
     /* 
         This function will add a json object to merge with the other ones
         You should send first the object containing the more general infos
         and the more specific at the end
-        $obj MUST be a json object
+        $obj MUST be a json object (not yet decoded)
         $obj will be decoded into an associative array
     */
     public function import_settings($obj) {
