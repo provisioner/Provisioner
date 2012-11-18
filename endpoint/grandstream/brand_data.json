@@ -5,8 +5,8 @@
       "directory": "grandstream",
       "brand_id": "2",
       "package": "grandstream.tgz",
-      "md5sum": "d99c2869a85e37253c012c2c81487acf",
-      "last_modified": 1351063064,
+      "md5sum": "01a3e94ff18503613e7f4e9c5d8f5e8f",
+      "last_modified": 1353282032,
       "family_list": [
         {
           "id": "2",
@@ -44,7 +44,7 @@
       "oui_list": [
         "000B82"
       ],
-      "changelog": "PACKAGER: Grandstream Force Update\n\nForce Update"
+      "changelog": "PACKAGER: Update endpoint\/grandstream\/gxphd\/cfg$mac\n\nFew mistake"
     }
   }
 }
