@@ -5,8 +5,8 @@
       "brand_id": "16",
       "directory": "digium",
       "package": "digium.tgz",
-      "md5sum": "3e8305c37b166bb9a24d29b0383480a2",
-      "last_modified": 1346467975,
+      "md5sum": "5d0c38c1edf4b4e9b7c65512da743088",
+      "last_modified": 1353282032,
       "family_list": [
         {
           "id": "1",
@@ -20,7 +20,7 @@
       "oui_list": [
         "000FD3"
       ],
-      "changelog": "PACKAGER: Aastra\n-Add More phones (480i)\nCisco\n-Add More Phones\nDigium\n-Add Digium Line"
+      "changelog": "PACKAGER: Update endpoint\/grandstream\/gxphd\/cfg$mac\n\nFew mistake"
     }
   }
 }
