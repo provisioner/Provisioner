@@ -1,9 +1,10 @@
 <?php
 
 require_once '../bootstrap.php' ;
-require_once 'BigCouch.php';
 
-$db = new BigCouch('http://localhost');
+$db_type = "BigCouch";
+
+$db = new $db_type('http://localhost');
 
 echo '<pre>';
 print_r($db->loadSettings('test', 'afb4be6d5870518b8093d6ab290398dd'));
@@ -11,7 +12,6 @@ echo '</pre>';
 
 exit();
 
-$db_type = "BigCouch";
 // We assume we have:
 // DATABASE: SYSTEM_ACCOUNT -- All global preferences/settings
 // DATABASE: PROVIDERS -- A document for each provider, by provider URL
