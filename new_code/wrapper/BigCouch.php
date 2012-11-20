@@ -1,4 +1,12 @@
 <?php
+/**
+ * CouchDB wrapper
+ *
+ * @author Francis Genet
+ * @license MPL / GPLv2 / LGPL
+ * @package Provisioner
+ */
+
 require_once LIB_BASE . 'php_on_couch/couch.php';
 require_once LIB_BASE . 'php_on_couch/couchClient.php';
 require_once LIB_BASE . 'php_on_couch/couchDocument.php';
@@ -23,11 +31,16 @@ class BigCouch {
             $this->_server_url = $server_url . ':' . $port;
     }
 
-    // will return an array of the requested document.
-    // TODO: Check for exceptions
+    // will return an array of the requested document
     public function loadSettings($database, $document) {
         $couch_client = new couchClient($this->_server_url, $database);
 
-        return $couch_client->asArray()->getDoc($document);
+        try {
+            $doc = $couch_client->asArray()->getDoc($document);
+        } catch (Exception $e) {
+            return false;
+        }
+
+        return $doc;
     }
 }
