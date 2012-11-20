@@ -218,6 +218,7 @@ class ConfigFile {
         $obj will be decoded into an associative array
     */
     public function import_settings($obj) {
+        // TODO: need to check if array or json object
         array_push($this->_arrData, json_decode($obj, true));
     }
 
