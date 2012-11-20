@@ -3,9 +3,12 @@
 define("CONSTANTS_FILE", ROOT_PATH."/new_code/constants.json");
 
 class ConfigFile {
+    // Device infos
     private $_strBrand = null;
-    private $_strMac = null;
     private $_strFamily = null;
+    private $_strModel = null;
+
+    private $_strMac = null;
     private $_strConfigFile = null;
     private $_strTemplateDir = null;
     private $_strFirmVers = null;
@@ -24,6 +27,11 @@ class ConfigFile {
 
     public function get_family() {
         return $this->_strFamily;
+    }
+
+    // This thing is useless for now
+    public function get_model() {
+        return $this->_strModel;
     }
 
     public function get_firmware_version() {
