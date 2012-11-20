@@ -3,6 +3,7 @@
  * SPL Auto-loader
  *
  * @author Darren Schreiber
+ * @author Francis Genet
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
  */
@@ -11,7 +12,8 @@ class ProvisionerConfig {
      * Setup anything required to make our provisioner class work
      */
     public static function setup() {
-        // Register auto-loader. When classes are requested that aren't loaded, we'll find them via endpointsAutoload()
+        // Register auto-loader. When classes are requested that aren't loaded
+        // It is possible to cumulate them.
         spl_autoload_register(array(
             'ProvisionerConfig',
             'wrapperAutoload'

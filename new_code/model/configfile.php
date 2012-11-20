@@ -1,4 +1,12 @@
 <?php
+/**
+ * Represent the config file class that will merge / load / return the requested config file
+ *
+ * @author Francis Genet
+ * @license MPL / GPLv2 / LGPL
+ * @package Provisioner
+ */
+
 // This represent the constant file
 define("CONSTANTS_FILE", ROOT_PATH."/new_code/constants.json");
 
