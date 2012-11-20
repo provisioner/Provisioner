@@ -214,12 +214,14 @@ class ConfigFile {
         This function will add a json object to merge with the other ones
         You should send first the object containing the more general infos
         and the more specific at the end
-        $obj MUST be a json object (not yet decoded)
-        $obj will be decoded into an associative array
+        $obj can be a json object (not yet decoded) or an array
+        $obj will be decoded into an associative array if simple json object
     */
     public function import_settings($obj) {
-        // TODO: need to check if array or json object
-        array_push($this->_arrData, json_decode($obj, true));
+        if (!is_array($obj))
+            array_push($this->_arrData, json_decode($obj, true));
+        else
+            array_push($this->_arrData, $obj);
     }
 
     // This is the final step
