@@ -1,7 +1,7 @@
 <?php
-require_once 'lib/php_on_couch/couch.php';
-require_once 'lib/php_on_couch/couchClient.php';
-require_once 'lib/php_on_couch/couchDocument.php';
+require_once LIB_BASE . 'php_on_couch/couch.php';
+require_once LIB_BASE . 'php_on_couch/couchClient.php';
+require_once LIB_BASE . 'php_on_couch/couchDocument.php';
 
 class BigCouch {
     private $_server_url = null;
@@ -23,6 +23,8 @@ class BigCouch {
             $this->_server_url = $server_url . ':' . $port;
     }
 
+    // will return an array of the requested document.
+    // TODO: Check for exceptions
     public function loadSettings($database, $document) {
         $couch_client = new couchClient($this->_server_url, $database);
 

@@ -1,5 +1,6 @@
 <?php
 
+require_once '../bootstrap.php' ;
 require_once 'BigCouch.php';
 
 $db = new BigCouch('http://localhost');
@@ -17,7 +18,6 @@ $db_type = "BigCouch";
 // DATABASE: <ACCOUNT_ID> - An account_id (which is random) which belongs to a provider and has all of a customer's default account settings AND the individual phone MAC address settings
 
 
-require_once '../bootstrap.php' ;
 require_once 'model/configfile.php';
 
 $mac = "00:15:65:00:00:00";
