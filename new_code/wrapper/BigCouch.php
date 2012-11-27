@@ -32,7 +32,7 @@ class BigCouch {
     }
 
     // will return an array of the requested document
-    public function loadSettings($database, $document) {
+    public function load_settings($database, $document) {
         $couch_client = new couchClient($this->_server_url, $database);
 
         try {
@@ -42,5 +42,16 @@ class BigCouch {
         }
 
         return $doc;
+    }
+
+    public function get_account_from_ip($ip) {
+        $couch_client = new couchClient($this->_server_url, "authorized_ips");
+
+        try {
+            $doc = $couch_client->asArray()->getDoc($ip);
+            return $doc['account_id'];
+        } catch (Exception $e) {
+            return false;
+        }
     }
 }
