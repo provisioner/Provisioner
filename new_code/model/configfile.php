@@ -14,12 +14,12 @@ class ConfigFile {
     // Device infos
     private $_strBrand = null;
     private $_strFamily = null;
-    private $_strModel = null;
+    private $_strModel = null; // Not used
 
     private $_strMac = null;
     private $_strConfigFile = null;
     private $_strTemplateDir = null;
-    private $_strFirmVers = null;
+    private $_strFirmVers = null; // Not used
     private $_objTwig = null;
     private $_arrConstants = null;
     private $_arrData = null;
@@ -55,15 +55,13 @@ class ConfigFile {
     }
 
     // Setter
-    /*public function set_brand($brand) {
+    public function set_brand($brand) {
         $this->_strBrand = $brand;
-        $this->_set_template_dir();
     }
 
     public function set_family($family) {
         $this->_strFamily = $family;
-        $this->_set_template_dir();
-    }*/
+    }
 
     // This function will allow the user to set his own template directory
     public function set_template_dir($templateDir) {
@@ -72,33 +70,8 @@ class ConfigFile {
 
     // ===========================================
 
-    public function __construct($mac = null, $ua = null) {
-        // This is the case of a HTTP request
-        if ($mac && $ua) {
-            // Load the constants
-            if ($this->_load_constants()) {
-                // Making sure that the mac is well formed: XXXXXXXXXXXX
-                $this->_strMac = preg_replace('/:/', '', $mac);
-
-                if ($this->_strMac) {
-                    // Trying to detect the device informations
-                    $this->_strBrand = $this->_get_brand_from_mac($mac);
-
-                    if ($this->_strBrand)
-                        $this->_get_family_from_ua($ua, $this->_strBrand);
-                } else
-                    return false;
-                
-                if ($this->_strBrand && $this->_strFamily)
-                    $this->_set_template_dir();
-                else
-                    return false;
-
-                // init twig object
-                $this->_twig_init();
-            } else 
-                return false;
-        }
+    public function __construct() {
+        $this->_load_constants();
     }
 
     // Load the constant file once and for all
@@ -131,15 +104,16 @@ class ConfigFile {
 
         try {
             $brand = $this->_arrConstants['mac_lookup'][$suffix];
-            return $brand;
+            $this->_strBrand = $brand;
+            return true;
         } catch (Exception $e) {
             return false;
         }
     }
 
     // This funcrion will try to determine the family model from the ua and the brand
-    private function _get_family_from_ua($ua, $brand) {
-        switch ($brand) {
+    private function _get_family_from_ua($ua) {
+        switch ($this->_strBrand) {
             case 'yealink':
                 if (preg_match('#Yealink SIP-[a-z](\d\d)[a-z] (\d*\.\d*\.\d*\.\d*) ((?:[0-9a-fA-F]{2}[:;.]?){6})#i', $ua, $elements)) {
                     // Setting the family
@@ -180,16 +154,19 @@ class ConfigFile {
         $this->_objTwig = new Twig_Environment($loader);
     }
 
-    // This function will merge all the json 
-    private function _merge_config_objects() {
-        $arrConfig = array();
+    // Will try to detect the phone information
+    public function detect_phone_info($mac, $ua) {
+        $this->_strMac = preg_replace('/:/', '', $mac);
+        if ($this->_get_brand_from_mac())
+            if($this->_get_family_from_ua($ua))
+                $this->_set_template_dir();
 
-        $arrConfig = $this->_arrData[0];
-        for ($i=0; $i < (sizeof($this->_arrData)-1); $i++) { 
-            $arrConfig = $this->_merge_array($arrConfig, $this->_arrData[i+1]);
-        }
+                // init twig object
+                $this->_twig_init();
 
-        return $arrConfig;
+                return true;
+
+        return false;
     }
 
     /*
@@ -214,16 +191,33 @@ class ConfigFile {
         $this->_twig_init();
     }
 
+    // This function will merge all the json 
+    public function merge_config_objects() {
+        $arrConfig = array();
+
+        $arrConfig = $this->_arrData[0];
+        for ($i=0; $i < (sizeof($this->_arrData)-1); $i++) { 
+            $arrConfig = $this->merge_array($arrConfig, $this->_arrData[i+1]);
+        }
+
+        return $arrConfig;
+    }
+
     // This function will select the right template to file
-    public function set_config_file($file) {
-        // macaddr.cfg - 000000000000.cfg
-        if (preg_match("/^([0-9a-f]{12})\.cfg$/i", $file))
-            $this->_strConfigFile = "$mac.cfg";
-        // y00000000000
-        elseif (preg_match("/^y00000000000([0-9a-f]{1})\.cfg$/i", $file))
-            $this->_strConfigFile = "y0000000000$suffix.cfg";
-        else
-            return false;
+    public function set_config_file($uri) {
+        switch ($this->_strBrand) {
+            case 'yealink':
+                // macaddr.cfg - 000000000000.cfg
+                if (preg_match("/([0-9a-f]{12})\.cfg$/i", $uri))
+                    $this->_strConfigFile = "$mac.cfg";
+                // y00000000000
+                elseif (preg_match("/y00000000000([0-9a-f]{1})\.cfg$/i", $uri))
+                    $this->_strConfigFile = "y0000000000$suffix.cfg";
+                else
+                    return false;
+            default:
+                return false;
+        }
     }
     
     /* 
@@ -242,9 +236,8 @@ class ConfigFile {
 
     // This is the final step
     public function generate_config_file() {
-        $arrConfig = $this->_merge_config_objects();
-
-        return $this->_objTwig->render($this->_strConfigFile, $arrConfig);
+        if ($this->_objTwig)
+            return $this->_objTwig->render($this->_strConfigFile, $arrConfig);
     }
 }
 
