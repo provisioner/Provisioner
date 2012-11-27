@@ -1,90 +1,66 @@
 <?php
 
-require_once '../bootstrap.php' ;
-
-$db_type = "BigCouch";
-
-$db = new $db_type('http://localhost');
-
-echo '<pre>';
-print_r($db->loadSettings('test', 'afb4be6d5870518b8093d6ab290398dd'));
-echo '</pre>';
-
-exit();
-
 // We assume we have:
 // DATABASE: SYSTEM_ACCOUNT -- All global preferences/settings
 // DATABASE: PROVIDERS -- A document for each provider, by provider URL
 // DATABASE: <ACCOUNT_ID> - An account_id (which is random) which belongs to a provider and has all of a customer's default account settings AND the individual phone MAC address settings
 
-
+require_once '../bootstrap.php' ;
+require_once 'model/utils.php';
 require_once 'model/configfile.php';
 
-$mac = "00:15:65:00:00:00";
-$provider_id = "p.kazoo.io";
+$uri = $_SERVER['REQUEST_URI'];
+$ua = $_SERVER['HTTP_USER_AGENT'];
+$settings_array = array();
+$account_id = null;
+$mac_address = null;
 
-// Retrieve settings about this MAC address
-$db = new $db_type($server_ip);
+$db_type = "BigCouch";
+$db = new $db_type('http://localhost');
 
-$json_1 = $db->loadSettings("system_account", "globals");
-$json_2 = $db->loadSettings("providers", $provider_id);
-$json_3 = $db->loadSettings($account_id, "account_settings");
-$json_4 = $db->loadSEttings($account_id, $mac);
+$settings_manager = new ConfigFile();
 
-if (!$final_settings['model'] or !$final_settings['brand']) {
-    // If model is unknown, try to auto-detect
-    $ua = "yealink SIP-T22P 7.40.1.2 00:15:65:00:00:00";    
+// Let's get the mac address
+$mac_address = ProvisionerUtils::get_mac_address($ua, $uri);
+if (!$mac_address)
+    exit();
+
+// Let's check if there is an account_id
+if (preg_match("#/[0-9a-z]{32}/#", $uri, $match_result))
+    $account_id = $match_result[0];
+else {
+    // Look in a database named "authorized_ips" for the IP this request is coming from. If it's there, we'll get the account_id
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $account_id = $db->get_account_from_ip($ip);
+
+    // If no IP and no account_id, send them the config settings for the "manual, remote provisioning"
+    if (!$account_id)
+        $needs_manual_provisioning = TRUE;
 }
 
-// Prepare the template for this type of phone
-$test = new ConfigFile($mac, $ua);
+// Finally gathering the settings.
+$settings_manager->import_settings($db->loadSettings("system_account", "globals"));
 
-
-$test->import_settings($json);
-
-echo '<pre>';
-var_dump($test);
-echo '</pre>';
-
-
-
-
-
-/*$str_ua = $_SERVER['HTTP_USER_AGENT'];
-$str_requested_file = $_GET['file'];
-
-echo $str_ua . ' |||||| ' . $str_requested_file; */
-
-/*function mergeArray($arr1, $arr2)
-{
-    $keys = array_keys($arr2);
-    foreach($keys as $key) {
-        if(isset( $arr1[$key]) && is_array($arr1[$key]) && is_array($arr2[$key])) {
-            $arr1[$key] = mergeArray($arr1[$key], $arr2[$key]);
-        } else {
-            $arr1[$key] = $arr2[$key];
-        }
-    }
-    return $arr1;
+if ($needs_manual_provisioning)
+    $settings_manager->import_settings($db->loadSettings("system_account", "manual_provisioning"));
+else {
+    //$json_2 = $db->loadSettings("providers", $provider_id);
+    $settings_manager->import_settings($db->loadSettings($account_id, "account_settings"));
+    $settings_manager->import_settings($db->loadSEttings($account_id, $mac_address));
 }
 
-require_once 'twig/lib/Twig/Autoloader.php';
-Twig_Autoloader::register();
+$final_settings = $settings_manager->merge_config_objects();
 
-$loader = new Twig_Loader_Filesystem('templates');
-$twig = new Twig_Environment($loader);
+if (!$final_settings['family'] or !$final_settings['brand']) {
+    // If model or brand is unknown, try to auto-detect
+    if (!$settings_manager->detect_phone_info($mac_address, $ua))
+        exit();
+} else {
+    $settings_manager->set_brand($final_settings['brand']);
+    $settings_manager->set_family($final_settings['family']);
+}
 
-$defaultsFile = file_get_contents('defaults.json');
-$providerFile = file_get_contents('provider.json');
-$phoneFile = file_get_contents('phone.json');
+$settings_manager->set_config_file($uri);
+$settings_manager->generate_config_file();
 
-$finalArray = mergeArray(mergeArray(json_decode($defaultsFile, true), json_decode($providerFile, true)), json_decode($phoneFile, true));
-
-$myFile = "testFile.txt";
-$fh = fopen($myFile, 'w') or die("can't open file");
-$test = "bakajsksksks";
-fwrite($fh, $test);
-fclose($fh);
-
-echo $twig->render("test.cfg", $finalArray);*/
 ?>
