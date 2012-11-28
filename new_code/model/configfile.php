@@ -195,9 +195,11 @@ class ConfigFile {
     public function merge_config_objects() {
         $arrConfig = array();
 
+        var_dump($this->_arrData);
+
         $arrConfig = $this->_arrData[0];
         for ($i=0; $i < (sizeof($this->_arrData)-1); $i++) { 
-            $arrConfig = $this->merge_array($arrConfig, $this->_arrData[i+1]);
+            $arrConfig = $this->_merge_array($arrConfig, $this->_arrData[i+1]);
         }
 
         return $arrConfig;
@@ -209,10 +211,10 @@ class ConfigFile {
             case 'yealink':
                 // macaddr.cfg - 000000000000.cfg
                 if (preg_match("/([0-9a-f]{12})\.cfg$/i", $uri))
-                    $this->_strConfigFile = "$mac.cfg";
+                    $this->_strConfigFile = "\$mac.cfg";
                 // y00000000000
                 elseif (preg_match("/y00000000000([0-9a-f]{1})\.cfg$/i", $uri))
-                    $this->_strConfigFile = "y0000000000$suffix.cfg";
+                    $this->_strConfigFile = "y0000000000\$suffix.cfg";
                 else
                     return false;
             default:
@@ -235,7 +237,7 @@ class ConfigFile {
     }
 
     // This is the final step
-    public function generate_config_file() {
+    public function generate_config_file($arrConfig) {
         if ($this->_objTwig)
             return $this->_objTwig->render($this->_strConfigFile, $arrConfig);
     }
