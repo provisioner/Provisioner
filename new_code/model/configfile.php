@@ -21,8 +21,8 @@ class ConfigFile {
     private $_strTemplateDir = null;
     private $_strFirmVers = null; // Not used
     private $_objTwig = null;
-    private $_arrConstants = null;
-    private $_arrData = null;
+    private $_arrConstants = array();
+    private $_arrData = array();
 
     /*
         Accessors

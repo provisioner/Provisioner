@@ -38,10 +38,13 @@ class BigCouch {
         try {
             $doc = $couch_client->asArray()->getDoc($document);
         } catch (Exception $e) {
-            return false;
+            return array();
         }
 
-        return $doc;
+        if (is_array($doc))
+            return $doc;
+        else
+            return array();
     }
 
     public function get_account_from_ip($ip) {
