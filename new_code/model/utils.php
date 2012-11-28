@@ -10,6 +10,14 @@ class ProvisionerUtils {
             else 
                 return false;
     }
+
+    // Will return the host and only that
+    // No 'www.' and no port
+    public static function get_provider($host_url) {
+        $host = preg_replace("/^www\./", '', $host_url);
+        $host = preg_replace("#:\d*$#", '', $host);
+        return $host;
+    }
 }
 
 ?>
