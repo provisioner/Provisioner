@@ -12,6 +12,7 @@ require_once 'model/configfile.php';
 /*
 $uri = $_SERVER['REQUEST_URI'];
 $ua = $_SERVER['HTTP_USER_AGENT'];
+$host = $_SERVER['HTTP_HOST'];
 */
 
 $uri = "/accounts/002e3a6fe532d90943e6fcaf08e1a408/001565000000.cfg";
@@ -25,7 +26,7 @@ $needs_manual_provisioning = false;
 $db_type = "BigCouch";
 $db = new $db_type('http://localhost');
 
-$_SERVER['HOSTNAME']; // This should give you the provider.
+//echo $_SERVER['HTTP_HOST']; // This should give you the provider.
 // Get the mac address
 // Find the account_id from uri (if no account_id, lookup a default in the provider's settings, if any)
 // Go to the the mac_address doc inside of the account_id database
@@ -84,6 +85,6 @@ if (!$final_settings['family'] or !$final_settings['brand']) {
     $settings_manager->set_device_infos($final_settings['brand'], $final_settings['family']);
 
 $settings_manager->set_config_file($uri);
-$settings_manager->generate_config_file();
+$settings_manager->generate_config_file($final_settings);
 
 ?>
