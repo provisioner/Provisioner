@@ -12,7 +12,7 @@ class ProvisionerUtils {
             $explode_uri = explode('/', $uri);
             $mac_index = sizeof($explode_uri) - 1;
 
-            if (preg_match("#[0-9a-fA-F]{12}#", $explode_uri[$mac_index], $match_result))
+            if (preg_match("#[0-9a-f]{12}#", $explode_uri[$mac_index], $match_result))
                 return $match_result[0];
             else 
                 return false;
@@ -24,6 +24,13 @@ class ProvisionerUtils {
         $host = preg_replace("/^www\./", '', $http_host);
         $host = preg_replace("#:\d*$#", '', $host);
         return $host;
+    }
+
+    public static function get_account_id($uri) {
+        if (preg_match("#[0-9a-f]{32}#", $uri, $match_result))
+            return "account/" . $match_result[0];
+        else
+            return false;
     }
 }
 
