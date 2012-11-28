@@ -199,7 +199,7 @@ class ConfigFile {
 
         $arrConfig = $this->_arrData[0];
         for ($i=0; $i < (sizeof($this->_arrData)-1); $i++) { 
-            $arrConfig = $this->_merge_array($arrConfig, $this->_arrData[i+1]);
+            $arrConfig = $this->_merge_array($arrConfig, $this->_arrData[$i+1]);
         }
 
         return $arrConfig;
