@@ -51,7 +51,7 @@ class BigCouch {
             return array();
     }
 
-    public function get_default_provider_account_id($provider) {
+    public function get_provider($provider_domain) {
         $couch_client = new couchClient($this->_server_url, "providers");
 
         try {
@@ -59,8 +59,8 @@ class BigCouch {
             
             // TODO: Improve this !!!           
             foreach ($response['rows'] as $doc) {
-                if ($doc['key'] == $provider) {
-                    return $doc['value']['default_account_id'];
+                if ($doc['key'] == $provider_domain) {
+                    return $doc['value'];
                 }
             }
         } catch (Exception $e) {
