@@ -5,8 +5,8 @@
       "directory": "grandstream",
       "brand_id": "2",
       "package": "grandstream.tgz",
-      "md5sum": "d2dd61a93239a7a77a8264f55fa6f485",
-      "last_modified": 1344237429,
+      "md5sum": "ae74ea29d12291464c22cf79a8c5d727",
+      "last_modified": 1354168690,
       "family_list": [
         {
           "id": "2",
@@ -44,7 +44,7 @@
       "oui_list": [
         "000B82"
       ],
-      "changelog": "PACKAGER: Force GXP HD update package"
+      "changelog": "PACKAGER: New configuration file name"
     }
   }
 }

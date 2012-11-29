@@ -5,8 +5,8 @@
       "brand_id": "7",
       "directory": "cisco",
       "package": "cisco.tgz",
-      "md5sum": "6a574bce8a5b317fe370a27157f45953",
-      "last_modified": 1348606310,
+      "md5sum": "135e5c39eb68e12d3ecafc59205f18f5",
+      "last_modified": 1350316140,
       "family_list": [
         {
           "id": "5",
@@ -88,11 +88,16 @@
         "001EF7",
         "000E08",
         "1CDF0F",
-        "E05FB9",
+        "30E4DB",
+        "58BFEA",
+        "649EF3",
         "5475D0",
-        "C46413"
+        "C46413",
+        "C89C1D",
+        "D0D0FD",
+        "E05FB9"
       ],
-      "changelog": "PACKAGER: PACKAGER: Update the 79xx by demand\n\n-Popular demand I say! POPULAR!"
+      "changelog": "PACKAGER: Match on @"
     }
   }
 }

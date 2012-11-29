@@ -30,7 +30,7 @@
                     "description":"Buddy List Options",
                     "type":"loop",
                     "loop_start":"1",
-                    "loop_end":"12",
+                    "loop_end":"32",
                     "data":{
                         "item":[
                         {
