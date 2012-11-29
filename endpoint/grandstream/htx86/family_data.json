@@ -6,7 +6,7 @@
     "firmware_ver": 1326826658,
     "firmware_pkg": "htx86_firmware.tgz",
     "description": "",
-    "configuration_files": "$mac.cfg",
+    "configuration_files": "cfg$mac",
     "changelog": "",
             "provisioning_types": [
             "tftp",
