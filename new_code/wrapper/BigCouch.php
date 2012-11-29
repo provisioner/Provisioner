@@ -32,7 +32,8 @@ class BigCouch {
     }
 
     // will return an array of the requested document
-    public function load_settings($database, $document) {
+    public function load_settings($database, $document, $just_settings = true) {
+        $doc = null;
         $couch_client = new couchClient($this->_server_url, $database);
 
         try {
@@ -42,12 +43,32 @@ class BigCouch {
         }
 
         if (is_array($doc))
-            return $doc;
+            if ($just_settings)
+                return $doc['settings'];
+            else
+                return $doc;
         else
             return array();
     }
 
-    public function get_account_from_ip($ip) {
+    public function get_default_provider_account_id($provider) {
+        $couch_client = new couchClient($this->_server_url, "providers");
+
+        try {
+            $response = $couch_client->asArray()->getView('providers', 'list_by_domain');
+            
+            // TODO: Improve this !!!           
+            foreach ($response['rows'] as $doc) {
+                if ($doc['key'] == $provider) {
+                    return $doc['value']['default_account_id'];
+                }
+            }
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    /*public function get_account_from_ip($ip) {
         $couch_client = new couchClient($this->_server_url, "authorized_ips");
 
         try {
@@ -56,5 +77,5 @@ class BigCouch {
         } catch (Exception $e) {
             return false;
         }
-    }
+    }*/
 }

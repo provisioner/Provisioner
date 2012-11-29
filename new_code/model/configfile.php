@@ -143,6 +143,18 @@ class ConfigFile {
         }
     }
 
+    // This function will merge all the json 
+    private function _merge_config_objects() {
+        $arrConfig = array();
+
+        $arrConfig = $this->_arrData[0];
+        for ($i=0; $i < (sizeof($this->_arrData)-1); $i++) { 
+            $arrConfig = $this->_merge_array($arrConfig, $this->_arrData[$i+1]);
+        }
+
+        return $arrConfig;
+    }
+
     // This function will determine the template directory
     private function _set_template_dir() {
         $this->_strTemplateDir = MODULES_DIR . DIRECTORY_SEPARATOR . $this->_strBrand . DIRECTORY_SEPARATOR . $this->_strFamily . DIRECTORY_SEPARATOR;
@@ -159,11 +171,6 @@ class ConfigFile {
         $this->_strMac = preg_replace('/:/', '', $mac);
         if ($this->_get_brand_from_mac())
             if($this->_get_family_from_ua($ua))
-                $this->_set_template_dir();
-
-                // init twig object
-                $this->_twig_init();
-
                 return true;
 
         return false;
@@ -178,7 +185,7 @@ class ConfigFile {
         $obj = new ConfigFile();
         $obj-> set_device_infos('yealink', 't2x');
     */
-    public function set_device_infos($brand, $family) {
+    public function set_device_infos($brand, $family, $model = '') {
         $this->_strBrand = strtolower($brand);
         $this->_strFamily = strtolower($family);
 
@@ -189,20 +196,6 @@ class ConfigFile {
 
         // init twig object
         $this->_twig_init();
-    }
-
-    // This function will merge all the json 
-    public function merge_config_objects() {
-        $arrConfig = array();
-
-        var_dump($this->_arrData);
-
-        $arrConfig = $this->_arrData[0];
-        for ($i=0; $i < (sizeof($this->_arrData)-1); $i++) { 
-            $arrConfig = $this->_merge_array($arrConfig, $this->_arrData[$i+1]);
-        }
-
-        return $arrConfig;
     }
 
     // This function will select the right template to file
@@ -237,7 +230,14 @@ class ConfigFile {
     }
 
     // This is the final step
-    public function generate_config_file($arrConfig) {
+    public function generate_config_file() {
+        $arrConfig = $this->_merge_config_objects();
+
+        // Set the twig template directory
+        $this->_set_template_dir();
+        // init twig object
+        $this->_twig_init();
+
         if ($this->_objTwig)
             return $this->_objTwig->render($this->_strConfigFile, $arrConfig);
     }
