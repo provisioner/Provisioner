@@ -7,7 +7,7 @@ class ProvisionerUtils {
             // need to return the mac address without the ':''
             return preg_replace('/:/', '', $match_result[0]);
         else 
-            // Then let's check in the uri (should be at the end of it)
+            // Then let's check in the URI (should be at the end of it)
             // Then explode the url
             $explode_uri = explode('/', $uri);
             $mac_index = sizeof($explode_uri) - 1;
@@ -26,11 +26,18 @@ class ProvisionerUtils {
         return $host;
     }
 
-    public static function get_account_id($uri) {
+    // Will return the formated account_id from the URI
+    public static function get_account_id($account_id) {
         if (preg_match("#[0-9a-f]{32}#", $uri, $match_result))
-            return "account/" . $match_result[0];
+            return $match_result[0];
         else
             return false;
+    }
+
+    // Will return the formated account_id from the URI
+    public static function get_account_db($account_id) {
+        // account/xx/xx/xxxxxxxxxxxxxxxx
+        return "account/" . substr_replace(substr_replace($match_result[0], '/', 2, 0), '/', 5, 0);
     }
 }
 

@@ -9,24 +9,24 @@ require_once '../bootstrap.php' ;
 require_once 'model/utils.php';
 require_once 'model/configfile.php';
 
-/*
+
 $uri = $_SERVER['REQUEST_URI'];
 $ua = $_SERVER['HTTP_USER_AGENT'];
-$host = $_SERVER['HTTP_HOST'];
-*/
+$http_host = $_SERVER['HTTP_HOST'];
 
-$uri = "/accounts/002e3a6fe532d90943e6fcaf08e1a408/001565000000.cfg";
-$ua = "yealink SIP-T22P 7.40.1.2 00:15:65:00:00:00";
+// $uri = "/accounts/002e3a6fe532d90943e6fcaf08e1a408/001565000000.cfg";
+// $ua = "yealink SIP-T22P 7.40.1.2 00:15:65:00:00:00";
 
 $settings_array = array();
 $account_id = null;
 $mac_address = null;
+$provider = null;
 $needs_manual_provisioning = false;
 
 $db_type = "BigCouch";
 $db = new $db_type('http://localhost');
 
-//echo $_SERVER['HTTP_HOST']; // This should give you the provider.
+// echo $_SERVER['HTTP_HOST']; // This should give you the provider.
 // Get the mac address
 // Find the account_id from uri (if no account_id, lookup a default in the provider's settings, if any)
 // Go to the the mac_address doc inside of the account_id database
@@ -34,6 +34,8 @@ $db = new $db_type('http://localhost');
 // -> retrieve the family and the brand
 // Go to factory_default/brand_family
 // -> get the settings
+// Go to the systen_account
+// -> get the global settings
 // Go to the provider_id Doc
 // -> get the settings
 // Go to the account_id Doc
@@ -42,49 +44,60 @@ $db = new $db_type('http://localhost');
 // merge everything
 // --> TWIG
 
+// Creation of the settings manager
 $settings_manager = new ConfigFile();
 
-// Let's get the mac address
+// Getting the provider from the host
+$provider = ProvisionerUtils::get_provider($http_host);
+
+// Getting the mac address in the URI OR in the User-Agent
 $mac_address = ProvisionerUtils::get_mac_address($ua, $uri);
 if (!$mac_address)
+    // No mac address? Nothing to do here.
     exit();
 
-// Let's check if there is an account_id
-if (preg_match("#[0-9a-z]{32}#", $uri, $match_result)) {
-    $account_id = "account/" . $match_result[0];
-} else {
-    // Look in a database named "authorized_ips" for the IP this request is coming from. If it's there, we'll get the account_id
-    $account_id = "127.0.0.1";
-    //$ip = $_SERVER['REMOTE_ADDR'];
-    $account_id = $db->get_account_from_ip($ip);
+// Getting the account_id from the URI
+$account_id = ProvisionerUtils::get_account_id($uri);
+if (!$account_id) {
+    $account_id = $db->get_default_provider_account_id($provider);
 
-    // If no IP and no account_id, send them the config settings for the "manual, remote provisioning"
+    // If we still don't get an account_id then we need a manual provisioning
     if (!$account_id)
         $needs_manual_provisioning = true;
-}
+    else
+        $account_db = ProvisionerUtils::get_account_db($account_id);
+} else
+    $account_db = ProvisionerUtils::get_account_db($account_id);
 
-// Finally gathering the settings.
-$settings_manager->import_settings($db->load_settings("system_account", "globals"));
-
-if ($needs_manual_provisioning)
+// Manual provisioning
+if ($needs_manual_provisioning) {
     $settings_manager->import_settings($db->load_settings("system_account", "manual_provisioning"));
-else {
-    //$json_2 = $db->load_settings("providers", $provider_id);
-    var_dump($account_id);
-    $settings_manager->import_settings($db->load_settings($account_id, "account_settings"));
-    $settings_manager->import_settings($db->load_settings($account_id, $mac_address));
+    exit();
+} else {
+    // This is the full doc
+    $phone_doc = $db->load_settings($account_id, $mac_address, false);
+
+    // If we have the doc for this phone but there are no brand or no family
+    if (!$phone_doc['brand'] or !$phone_doc['family']) {
+        // /!\ with the current code, it will override the current infos
+        // i.e. if there was no brand but the family was filled, it will be override anyway.
+        if (!$settings_manager->detect_phone_info($mac_address, $ua));
+            exit();
+    } else 
+        $settings_manager->set_device_infos($phone_doc['brand'], $phone_doc['family']);
+
+    $factory_default_target = $settings_manager->get_brand() . '_' . $settings_manager->get_family();
+
+    // This will import all the settings
+    $settings_manager->import_settings($db->load_settings("factory_default", $factory_default_target));
+    $settings_manager->import_settings($db->load_settings("system_account", "global_settings"));
+    $settings_manager->import_settings($db->load_settings("providers", $provider_id));
+    $settings_manager->import_settings($db->load_settings($account_db, $account_id));
+    $settings_manager->import_settings($phone_doc['settings']);
+
+    // Wich file will we need to provide?
+    $settings_manager->set_config_file($uri);
+    $settings_manager->generate_config_file();
 }
-
-$final_settings = $settings_manager->merge_config_objects();
-
-if (!$final_settings['family'] or !$final_settings['brand']) {
-    // If family or brand is unknown, try to auto-detect
-    if (!$settings_manager->detect_phone_info($mac_address, $ua))
-        exit();
-} else 
-    $settings_manager->set_device_infos($final_settings['brand'], $final_settings['family']);
-
-$settings_manager->set_config_file($uri);
-$settings_manager->generate_config_file($final_settings);
 
 ?>
