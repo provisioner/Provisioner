@@ -55,14 +55,8 @@ class BigCouch {
         $couch_client = new couchClient($this->_server_url, "providers");
 
         try {
-            $response = $couch_client->asArray()->getView('providers', 'list_by_domain');
-            
-            // TODO: Improve this !!!           
-            foreach ($response['rows'] as $doc) {
-                if ($doc['key'] == $provider_domain) {
-                    return $doc['value'];
-                }
-            }
+            $response = $couch_client->key($provider_domain)->asArray()->getView('providers', 'list_by_domain');
+            return $response['rows'][0]['value'];
         } catch (Exception $e) {
             return false;
         }
