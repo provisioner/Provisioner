@@ -8,7 +8,7 @@
  */
 
 // This represent the constant file
-define("CONSTANTS_FILE", ROOT_PATH."/new_code/constants.json");
+define('CONSTANTS_FILE', ROOT_PATH.'/new_code/constants.json');
 
 class ConfigFile {
     // Device infos
@@ -116,7 +116,7 @@ class ConfigFile {
         switch ($this->_strBrand) {
             case 'yealink':
                 if (preg_match('#Yealink SIP-[a-z](\d\d)[a-z] (\d*\.\d*\.\d*\.\d*) ((?:[0-9a-fA-F]{2}[:;.]?){6})#i', $ua, $elements)) {
-                    // Setting the family
+                    // Set the family
                     if ($elements[1] < 20)
                         $this->_strFamily = "t1x";
                     elseif ($elements[1] < 30 && $elements[1] >= 20)
@@ -126,7 +126,7 @@ class ConfigFile {
                     else
                         return false;
 
-                    // Setting the firmware version
+                    // Set the firmware version
                     $this->_strFirmVers = $elements[2];
 
                     // Checking the mac address
@@ -232,12 +232,6 @@ class ConfigFile {
     // This is the final step
     public function generate_config_file() {
         $arrConfig = $this->_merge_config_objects();
-
-        if (DEBUG) {
-            echo "<pre>";
-            print_r($arrConfig);
-            echo "</pre>";
-        }
 
         // Set the twig template directory
         $this->_set_template_dir();
