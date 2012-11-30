@@ -52,7 +52,7 @@ class BigCouch {
     }
 
     public function get_provider($provider_domain) {
-        $couch_client = new couchClient($this->_server_url, "providers");
+        $couch_client = new couchClient($this->_server_url, 'providers');
 
         try {
             $response = $couch_client->key($provider_domain)->asArray()->getView('providers', 'list_by_domain');
@@ -61,15 +61,4 @@ class BigCouch {
             return false;
         }
     }
-
-    /*public function get_account_from_ip($ip) {
-        $couch_client = new couchClient($this->_server_url, "authorized_ips");
-
-        try {
-            $doc = $couch_client->asArray()->getDoc($ip);
-            return $doc['account_id'];
-        } catch (Exception $e) {
-            return false;
-        }
-    }*/
 }

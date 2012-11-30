@@ -1,7 +1,10 @@
 <?php
 
+// Just to be sure
+set_time_limit(5);
+
 // This is useless for now 
-define("DEBUG", true);
+define('DEBUG', true);
 
 // We assume we have:
 // DATABASE: SYSTEM_ACCOUNT -- All global preferences/settings
@@ -27,7 +30,7 @@ $mac_address = null;
 $provider = null;
 $needs_manual_provisioning = false;
 
-$db_type = "BigCouch";
+$db_type = 'BigCouch';
 $db = new $db_type('http://localhost');
 
 // Creation of the settings manager
@@ -41,7 +44,6 @@ $provider_view = $db->get_provider($provider_domain);
 // Getting the mac address in the URI OR in the User-Agent
 $mac_address = ProvisionerUtils::get_mac_address($ua, $uri);
 if (!$mac_address)
-    // No mac address?
     // http://cdn.memegenerator.net/instances/250x250/30687023.jpg
     exit();
 
@@ -60,7 +62,9 @@ if (!$account_id) {
 
 // Manual provisioning
 if ($needs_manual_provisioning) {
-    $settings_manager->import_settings($db->load_settings("system_account", "manual_provisioning"));
+    $settings_manager->import_settings($db->load_settings('system_account', 'manual_provisioning'));
+
+    // For now at least
     exit();
 } else {
     // This is the full doc
@@ -78,8 +82,8 @@ if ($needs_manual_provisioning) {
     $factory_default_target = $settings_manager->get_brand() . '_' . $settings_manager->get_family();
 
     // This will import all the settings
-    $settings_manager->import_settings($db->load_settings("factory_defaults", $factory_default_target));
-    $settings_manager->import_settings($db->load_settings("system_account", "global_settings"));
+    $settings_manager->import_settings($db->load_settings('factory_defaults', $factory_default_target));
+    $settings_manager->import_settings($db->load_settings('system_account', 'global_settings'));
     $settings_manager->import_settings($provider_view['settings']);
     $settings_manager->import_settings($db->load_settings($account_db, $account_id));
     $settings_manager->import_settings($phone_doc['settings']);
