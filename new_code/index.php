@@ -1,5 +1,6 @@
 <?php
 
+// This is useless for now 
 define("DEBUG", true);
 
 // We assume we have:
@@ -12,13 +13,13 @@ require_once 'model/utils.php';
 require_once 'model/configfile.php';
 
 
-//$uri = $_SERVER['REQUEST_URI'];
-//$ua = $_SERVER['HTTP_USER_AGENT'];
-//$http_host = $_SERVER['HTTP_HOST'];
+$uri = $_SERVER['REQUEST_URI'];
+$ua = $_SERVER['HTTP_USER_AGENT'];
+$http_host = $_SERVER['HTTP_HOST'];
 
-$uri = "/accounts/002e3a6fe532d90943e6fcaf08e1a408/001565000000.cfg";
+/*$uri = "/accounts/002e3a6fe532d90943e6fcaf08e1a408/001565000000.cfg";
 $ua = "yealink SIP-T22P 7.40.1.2 00:15:65:00:00:00";
-$http_host = "p.kazoo.io";
+$http_host = "p.kazoo.io";*/
 
 $settings_array = array();
 $account_id = null;
@@ -28,24 +29,6 @@ $needs_manual_provisioning = false;
 
 $db_type = "BigCouch";
 $db = new $db_type('http://localhost');
-
-// echo $_SERVER['HTTP_HOST']; // This should give you the provider.
-// Get the mac address
-// Find the account_id from uri (if no account_id, lookup a default in the provider's settings, if any)
-// Go to the the mac_address doc inside of the account_id database
-// -> get the phone settings (keep it for now)
-// -> retrieve the family and the brand
-// Go to factory_default/brand_family
-// -> get the settings
-// Go to the systen_account
-// -> get the global settings
-// Go to the provider_id Doc (in providers db)
-// -> get the settings
-// Go to the account_id Doc
-// -> get the settings
-// put the phone settings now
-// merge everything
-// --> TWIG
 
 // Creation of the settings manager
 $settings_manager = new ConfigFile();
