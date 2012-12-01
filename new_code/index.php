@@ -15,14 +15,13 @@ require_once '../bootstrap.php' ;
 require_once 'model/utils.php';
 require_once 'model/configfile.php';
 
-
-$uri = $_SERVER['REQUEST_URI'];
+/*$uri = $_SERVER['REQUEST_URI'];
 $ua = $_SERVER['HTTP_USER_AGENT'];
-$http_host = $_SERVER['HTTP_HOST'];
+$http_host = $_SERVER['HTTP_HOST'];*/
 
-/*$uri = "/accounts/002e3a6fe532d90943e6fcaf08e1a408/001565000000.cfg";
+$uri = "/accounts/002e3a6fe532d90943e6fcaf08e1a408/001565000000.cfg";
 $ua = "yealink SIP-T22P 7.40.1.2 00:15:65:00:00:00";
-$http_host = "p.kazoo.io";*/
+$http_host = "p.kazoo.io";
 
 $settings_array = array();
 $account_id = null;
@@ -73,7 +72,7 @@ if ($needs_manual_provisioning) {
     // If we have the doc for this phone but there are no brand or no family
     if (!$phone_doc['brand'] or !$phone_doc['family']) {
         // /!\ with the current code, it will override the current infos
-        // i.e. if there was no brand but the family was filled, it will be override anyway.
+        // i.e. if there was no brand but the family was filled, it would be override anyway.
         if (!$settings_manager->detect_phone_info($mac_address, $ua));
             exit();
     } else 
@@ -90,7 +89,10 @@ if ($needs_manual_provisioning) {
 
     // Wich file will we need to provide?
     $settings_manager->set_config_file($uri);
-    echo $settings_manager->generate_config_file();
+
+    echo "<pre>";
+    print_r($settings_manager->generate_config_file());
+    echo "</pre>";
 }
 
 ?>
