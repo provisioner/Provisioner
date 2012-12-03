@@ -10,7 +10,7 @@
               {
                 "description":"Feature Keys (Cordless)",
                 "type":"loop",
-                "loop_start":"0",
+                "loop_start":"1",
                 "loop_end":"9",
                 "data":{
                   "item":[
