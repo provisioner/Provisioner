@@ -19,9 +19,9 @@ require_once 'model/configfile.php';
 $ua = $_SERVER['HTTP_USER_AGENT'];
 $http_host = $_SERVER['HTTP_HOST'];*/
 
-$uri = "/accounts/002e3a6fe532d90943e6fcaf08e1a408/001565000000.cfg";
-$ua = "yealink SIP-T22P 7.40.1.2 00:15:65:00:00:00";
-$http_host = "p.kazoo.io";
+$uri = "/accounts/002e3a6fe532d90943e6fcaf08e1a408/00085d258d4f.cfg";
+$ua = "Aastra55i MAC:00-08-5D-25-8D-4F V:3.2.2.1136-SIP";
+//$http_host = 'p.kazoo.io';
 
 $settings_array = array();
 $account_id = null;
@@ -80,14 +80,23 @@ if ($needs_manual_provisioning) {
 
     $factory_default_target = $settings_manager->get_brand() . '_' . $settings_manager->get_family();
 
+    echo "<pre>";
+    print_r($provider_view['settings']);
+    echo "</pre>";
+
     // This will import all the settings
     $settings_manager->import_settings($db->load_settings('factory_defaults', $factory_default_target));
     $settings_manager->import_settings($db->load_settings('system_account', 'global_settings'));
-    $settings_manager->import_settings($provider_view['settings']);
-    $settings_manager->import_settings($db->load_settings($account_db, $account_id));
-    $settings_manager->import_settings($phone_doc['settings']);
 
-    // Wich file will we need to provide?
+    if (isset($provider_view['settings']))
+        $settings_manager->import_settings($provider_view['settings']);
+
+    $settings_manager->import_settings($db->load_settings($account_db, $account_id));
+
+    if (isset($phone_doc['settings']))
+        $settings_manager->import_settings($phone_doc['settings']);
+
+    
     $settings_manager->set_config_file($uri);
 
     echo "<pre>";

@@ -87,6 +87,7 @@ class ConfigFile {
     */
     private function _merge_array($arr1, $arr2) {
         $keys = array_keys($arr2);
+
         foreach($keys as $key) {
             if(isset( $arr1[$key]) && is_array($arr1[$key]) && is_array($arr2[$key])) {
                 $arr1[$key] = $this->_merge_array($arr1[$key], $arr2[$key]);
@@ -118,11 +119,11 @@ class ConfigFile {
                 if (preg_match('#Yealink SIP-[a-z](\d\d)[a-z] (\d*\.\d*\.\d*\.\d*) ((?:[0-9a-fA-F]{2}[:;.]?){6})#i', $ua, $elements)) {
                     // Set the family
                     if ($elements[1] < 20)
-                        $this->_strFamily = "t1x";
+                        $this->_strFamily = 't1x';
                     elseif ($elements[1] < 30 && $elements[1] >= 20)
-                        $this->_strFamily = "t2x";
+                        $this->_strFamily = 't2x';
                     elseif ($elements[1] >= 30)
-                        $this->_strFamily = "t3x";
+                        $this->_strFamily = 't3x';
                     else
                         return false;
 
@@ -130,14 +131,26 @@ class ConfigFile {
                     $this->_strFirmVers = $elements[2];
 
                     // Checking the mac address
-                    $elements[3] = preg_replace('/:/', '', $elements[3]);
+                    $elements[3] = strtolower(preg_replace('/:/', '', $elements[3]));
                     if ($this->_strMac != $elements[3])
                         return false;
 
                     return true;
                 } else
                     return false;
+            case 'aastra':
+                if (preg_match('#Aastra(\d*\w.) MAC:((?:[0-9a-fA-F]{2}-?){6}) V:(\d*\.\d*\.\d*\.\d*)#i', $ua, $elements)) {
+                    // Set the family. this is harcoded for now.
+                    $this->_strFamily = 'aap9xxx6xxx';
 
+                    // Set the firmware version
+                    $this->_strFirmVers = $elements[3];
+
+                    // Set the mac address
+                    $elements[2] = strtolower(preg_replace('/-/', '', $elements[2]));
+                    if ($this->_strMac != $elements[2])
+                        return false;
+                }
             default:
                 return false;
         }
@@ -149,6 +162,18 @@ class ConfigFile {
 
         $arrConfig = $this->_arrData[0];
         for ($i=0; $i < (sizeof($this->_arrData)-1); $i++) { 
+/*            echo "==========================================";
+            echo "<pre>";
+            print_r($arrConfig);
+            echo "</pre>";
+
+            echo "=============";
+
+            echo "<pre>";
+            print_r($this->_arrData[$i+1]);
+            echo "</pre>";
+            echo "==========================================";*/
+
             $arrConfig = $this->_merge_array($arrConfig, $this->_arrData[$i+1]);
         }
 
@@ -208,6 +233,15 @@ class ConfigFile {
                 // y00000000000
                 elseif (preg_match("/y00000000000([0-9a-f]{1})\.cfg$/i", $uri))
                     $this->_strConfigFile = "y0000000000\$suffix.cfg";
+                else
+                    return false;
+            case 'aastra':
+                // macaddr.cfg - 000000000000.cfg
+                if (preg_match("/([0-9a-f]{12})\.cfg$/i", $uri))
+                    $this->_strConfigFile = "\$mac.cfg";
+                // This one is pretty obvious no?
+                elseif (preg_match("/aastra\.cfg$/i", subject)) 
+                    $this->_strConfigFile = "aastra.cfg";
                 else
                     return false;
             default:
