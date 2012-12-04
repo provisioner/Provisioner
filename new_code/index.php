@@ -92,20 +92,20 @@ if ($needs_manual_provisioning) {
     $settings_manager->import_settings($db->load_settings('factory_defaults', $factory_default_target));
     $settings_manager->import_settings($db->load_settings('system_account', 'global_settings'));
 
+    // Why should we add that if it is empty?
     if (isset($provider_view['settings']))
         $settings_manager->import_settings($provider_view['settings']);
 
     $settings_manager->import_settings($db->load_settings($account_db, $account_id));
 
+    // See above...
     if (isset($phone_doc['settings']))
         $settings_manager->import_settings($phone_doc['settings']);
     
     $test = $settings_manager->set_config_file($uri);
 
     //$settings_manager->generate_config_file();
-    echo "<pre>";
     echo $settings_manager->generate_config_file();
-    echo "</pre>";
 }
 
 ?>
