@@ -43,8 +43,14 @@ class BigCouch {
         }
 
         if (is_array($doc))
+            // If the user just want the settings
             if ($just_settings)
-                return $doc['settings'];
+                // This is ugly but still useful.
+                // What if there is a doc but no settings?
+                if (array_key_exists('settings', $doc))
+                    return $doc['settings'];
+                else 
+                    return array();
             else
                 return $doc;
         else
@@ -56,9 +62,13 @@ class BigCouch {
 
         try {
             $response = $couch_client->key($provider_domain)->asArray()->getView('providers', 'list_by_domain');
-            return $response['rows'][0]['value'];
+            // Basically if the view return an element for the filtered request
+            if (isset($response['rows'][0]['value']))
+                return $response['rows'][0]['value'];
+            else 
+                return array();
         } catch (Exception $e) {
-            return false;
+            return array();
         }
     }
 }
