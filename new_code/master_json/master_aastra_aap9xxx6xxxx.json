@@ -1,0 +1,91 @@
+{
+    "ntp": null,
+    "provisioning_type": null,
+    "tftp_server": null,
+    "http_server": null,
+    "http_path": null,
+
+    "lines": [
+        {
+            "outbound_proxy": {
+                // IP address
+                "host": null,
+                "port": null
+            },
+
+            "registrar": {
+                // IP address
+                "host": null,
+                "port": null
+            },
+
+            "display_name": null,
+            "auth_name": null,
+            "username": null,
+            "auth_password": null,
+            "voicemail": null,
+            "mode": null
+        }
+    ],
+
+    "sip_digit_timeout": null,
+    "sip_dial_plan": null,
+    "sip_voicemail": null,
+
+    "soft_keys": [
+        {
+            "type": null,
+            "label": null,
+            "value": null,
+            "states": null
+        }
+    ],
+
+    "top_soft_keys": [
+        {
+            "type": null,
+            "label": null,
+            "value": null
+        }
+    ],
+
+    "prg_keys": [
+        {
+            "type": null,
+            "value": null
+        }
+    ],
+
+    "expmod1_keys": [
+        {
+            "type": null,
+            "label": null,
+            "value": null
+        }
+    ],
+
+    "expmod2_keys": [
+        {
+            "type": null,
+            "label": null,
+            "value": null
+        }
+    ],
+
+    "expmod3_keys": [
+        {
+            "type": null,
+            "label": null,
+            "value": null
+        }
+    ],
+
+    "feature_keys": [
+        {
+            "label": null,
+            "control": null,
+            "hs_event": null,
+            "base_event": null
+        }
+    ],
+}
