@@ -15,12 +15,12 @@ require_once '../bootstrap.php' ;
 require_once 'model/utils.php';
 require_once 'model/configfile.php';
 
-/*$uri = $_SERVER['REQUEST_URI'];
-$ua = $_SERVER['HTTP_USER_AGENT'];
-$http_host = $_SERVER['HTTP_HOST'];*/
+$uri = strtolower($_SERVER['REQUEST_URI']);
+//$ua = strtolower($_SERVER['HTTP_USER_AGENT']);
+$http_host = strtolower($_SERVER['HTTP_HOST']);
 
-$uri = "/accounts/002e3a6fe532d90943e6fcaf08e1a408/00085d258d4f.cfg";
-$ua = "Aastra55i MAC:00-08-5D-25-8D-4F V:3.2.2.1136-SIP";
+//$uri = "/002e3a6fe532d90943e6fcaf08e1a408/00085d258d4f.cfg";
+$ua = strtolower("Aastra55i MAC:00-08-5D-25-8D-4F V:3.2.2.1136-SIP");
 //$http_host = 'p.kazoo.io';
 
 $settings_array = array();
@@ -37,14 +37,18 @@ $settings_manager = new ConfigFile();
 
 // Getting the provider from the host
 $provider_domain = ProvisionerUtils::get_provider_domain($http_host);
+
 // This is retrieve from a view, it is NOT the full doc
 $provider_view = $db->get_provider($provider_domain);
 
 // Getting the mac address in the URI OR in the User-Agent
 $mac_address = ProvisionerUtils::get_mac_address($ua, $uri);
-if (!$mac_address)
+
+if (!$mac_address) {
     // http://cdn.memegenerator.net/instances/250x250/30687023.jpg
+    echo '';
     exit();
+}   
 
 // Getting the account_id from the URI
 $account_id = ProvisionerUtils::get_account_id($uri);
@@ -64,7 +68,9 @@ if ($needs_manual_provisioning) {
     $settings_manager->import_settings($db->load_settings('system_account', 'manual_provisioning'));
 
     // For now at least
+    echo '';
     exit();
+
 } else {
     // This is the full doc
     $phone_doc = $db->load_settings($account_db, $mac_address, false);
@@ -73,16 +79,14 @@ if ($needs_manual_provisioning) {
     if (!$phone_doc['brand'] or !$phone_doc['family']) {
         // /!\ with the current code, it will override the current infos
         // i.e. if there was no brand but the family was filled, it would be override anyway.
-        if (!$settings_manager->detect_phone_info($mac_address, $ua));
+        if (!$settings_manager->detect_phone_info($mac_address, $ua)) {
+            echo '';
             exit();
+        } 
     } else 
         $settings_manager->set_device_infos($phone_doc['brand'], $phone_doc['family']);
 
     $factory_default_target = $settings_manager->get_brand() . '_' . $settings_manager->get_family();
-
-    echo "<pre>";
-    print_r($provider_view['settings']);
-    echo "</pre>";
 
     // This will import all the settings
     $settings_manager->import_settings($db->load_settings('factory_defaults', $factory_default_target));
@@ -95,12 +99,12 @@ if ($needs_manual_provisioning) {
 
     if (isset($phone_doc['settings']))
         $settings_manager->import_settings($phone_doc['settings']);
-
     
-    $settings_manager->set_config_file($uri);
+    $test = $settings_manager->set_config_file($uri);
 
+    //$settings_manager->generate_config_file();
     echo "<pre>";
-    print_r($settings_manager->generate_config_file());
+    echo $settings_manager->generate_config_file();
     echo "</pre>";
 }
 

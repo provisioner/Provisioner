@@ -34,7 +34,7 @@ class BigCouch {
     // will return an array of the requested document
     public function load_settings($database, $document, $just_settings = true) {
         $doc = null;
-        $couch_client = new couchClient($this->_server_url, $database);
+        $couch_client = new couchClient($this->_server_url, $database); 
 
         try {
             $doc = $couch_client->asArray()->getDoc($document);
@@ -44,17 +44,16 @@ class BigCouch {
 
         if (is_array($doc))
             // If the user just want the settings
-            if ($just_settings)
+            if ($just_settings) {
                 // This is ugly but still useful.
                 // What if there is a doc but no settings?
                 if (array_key_exists('settings', $doc))
                     return $doc['settings'];
-                else 
-                    return array();
+            }
             else
                 return $doc;
-        else
-            return array();
+
+        return array();
     }
 
     public function get_provider($provider_domain) {
@@ -66,9 +65,9 @@ class BigCouch {
             if (isset($response['rows'][0]['value']))
                 return $response['rows'][0]['value'];
             else 
-                return array();
+                return false;
         } catch (Exception $e) {
-            return array();
+            return false;
         }
     }
 }
