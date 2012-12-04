@@ -104,9 +104,11 @@ class ConfigFile {
         $suffix = substr($this->_strMac, 0, 6);
 
         try {
-            $brand = $this->_arrConstants['mac_lookup'][$suffix];
-            $this->_strBrand = $brand;
-            return true;
+            if (array_key_exists($suffix, $this->_arrConstants['mac_lookup'])) {
+                $this->_strBrand = $this->_arrConstants['mac_lookup'][$suffix];
+                return true;
+            } else 
+                return false;
         } catch (Exception $e) {
             return false;
         }
@@ -161,21 +163,8 @@ class ConfigFile {
         $arrConfig = array();
 
         $arrConfig = $this->_arrData[0];
-        for ($i=0; $i < (sizeof($this->_arrData)-1); $i++) { 
-/*            echo "==========================================";
-            echo "<pre>";
-            print_r($arrConfig);
-            echo "</pre>";
-
-            echo "=============";
-
-            echo "<pre>";
-            print_r($this->_arrData[$i+1]);
-            echo "</pre>";
-            echo "==========================================";*/
-
+        for ($i=0; $i < (sizeof($this->_arrData)-1); $i++)
             $arrConfig = $this->_merge_array($arrConfig, $this->_arrData[$i+1]);
-        }
 
         return $arrConfig;
     }
@@ -193,7 +182,7 @@ class ConfigFile {
 
     // Will try to detect the phone information
     public function detect_phone_info($mac, $ua) {
-        $this->_strMac = preg_replace('/:/', '', $mac);
+        $this->_strMac = preg_replace('/[:\-]/', '', $mac);
         if ($this->_get_brand_from_mac())
             if($this->_get_family_from_ua($ua))
                 return true;
@@ -228,19 +217,19 @@ class ConfigFile {
         switch ($this->_strBrand) {
             case 'yealink':
                 // macaddr.cfg - 000000000000.cfg
-                if (preg_match("/([0-9a-f]{12})\.cfg$/i", $uri))
+                if (preg_match("/([0-9a-f]{12})\.cfg$/", $uri))
                     $this->_strConfigFile = "\$mac.cfg";
                 // y00000000000
-                elseif (preg_match("/y00000000000([0-9a-f]{1})\.cfg$/i", $uri))
+                elseif (preg_match("/y00000000000([0-9a-f]{1})\.cfg$/", $uri))
                     $this->_strConfigFile = "y0000000000\$suffix.cfg";
                 else
                     return false;
             case 'aastra':
                 // macaddr.cfg - 000000000000.cfg
-                if (preg_match("/([0-9a-f]{12})\.cfg$/i", $uri))
+                if (preg_match("/([0-9a-f]{12})\.cfg$/", $uri))
                     $this->_strConfigFile = "\$mac.cfg";
                 // This one is pretty obvious no?
-                elseif (preg_match("/aastra\.cfg$/i", subject)) 
+                elseif (preg_match("/(aastra\.cfg)$/", $uri))
                     $this->_strConfigFile = "aastra.cfg";
                 else
                     return false;
