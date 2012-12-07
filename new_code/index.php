@@ -16,11 +16,11 @@ require_once 'model/utils.php';
 require_once 'model/configfile.php';
 
 $uri = strtolower($_SERVER['REQUEST_URI']);
-//$ua = strtolower($_SERVER['HTTP_USER_AGENT']);
+$ua = strtolower($_SERVER['HTTP_USER_AGENT']);
 $http_host = strtolower($_SERVER['HTTP_HOST']);
 
 //$uri = "/002e3a6fe532d90943e6fcaf08e1a408/00085d258d4f.cfg";
-$ua = strtolower("Aastra55i MAC:00-08-5D-25-8D-4F V:3.2.2.1136-SIP");
+//$ua = strtolower("Aastra55i MAC:00-08-5D-25-8D-4F V:3.2.2.1136-SIP");
 //$http_host = 'p.kazoo.io';
 
 $settings_array = array();
@@ -102,7 +102,7 @@ if ($needs_manual_provisioning) {
     if (isset($phone_doc['settings']))
         $settings_manager->import_settings($phone_doc['settings']);
     
-    $test = $settings_manager->set_config_file($uri);
+    $settings_manager->set_config_file($uri);
 
     //$settings_manager->generate_config_file();
     echo $settings_manager->generate_config_file();
