@@ -22,7 +22,7 @@ class BigCouch {
         $this->_set_client($database);
 
         try {
-            $doc = $this->_couch_client->getDoc($document);
+            $doc = $this->_couch_client->asArray()->getDoc($document);
         } catch (Exception $e) {
             return false;
         }
@@ -68,6 +68,7 @@ class BigCouch {
         return $this->_getDoc($database, $document);
     }
 
+    // Do I need to add a parameter specific for the name here?
     public function add($database, $document) {
         $this->_set_client($database);
         if (is_array($document))
@@ -84,7 +85,7 @@ class BigCouch {
     // TODO: fix the needed parameters. 
     // It is a shame that the user need to enter the DB and the doc each time
     public function update($database, $document, $key, $value) {
-        $doc = $this->_getDoc($database, $document);
+        $doc = (object)$this->_getDoc($database, $document);
 
         if ($doc) {
             try {
@@ -99,7 +100,7 @@ class BigCouch {
 
     // This will delete permanently the document
     public function delete($database, $document) {
-        $doc = $this->_getDoc($database, $document);
+        $doc = (object)$this->_getDoc($database, $document);
 
         if ($doc) {
             try {
