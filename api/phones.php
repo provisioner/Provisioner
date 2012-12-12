@@ -18,9 +18,10 @@ class Phones {
      */
 
     function All($brand = null, $family = null) {
-        if (!$brand)
+        if (!$brand) {
             $document_type = 'brand';
-        elseif (!$family) {
+            $filter_key = null;
+        } elseif (!$family) {
             $document_type = 'family';
             $filter_key = $brand;
         } else {
