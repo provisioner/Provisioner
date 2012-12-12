@@ -5,7 +5,7 @@
 $db = new BigCouch('http://localhost');
 
 echo "<pre>";
-print_r($db->getAllByKey('factory_defaults', 'family', 'yealink'));
+print_r($db->getAllByKey('factory_defaults', 'model', 't2x'));
 echo "</pre>";*/
 
 require_once 'vendor/restler.php';
