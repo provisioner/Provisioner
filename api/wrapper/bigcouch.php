@@ -34,20 +34,31 @@ class BigCouch {
         $this->_set_client($database);
 
         try {
-            return $this->_couch_client->asArray()->getAllDocs();
+            return $this->_couch_client
+                        ->asArray()
+                        ->getAllDocs();
         } catch (Exception $e) {
             return false;
         }
     }
 
-    public function getAllByKey($database, $document_type, $filter_key = null) {
+    public function getAllByKey($database, $document_type, $filter_key) {
         $this->_set_client($database);
 
         try {
             if ($filter_key)
-                return $this->_couch_client->startkey(array($filter_key))->endkey(array($filter_key, array()))->asArray()->getView($database, "list_by_$document_type");
+                return $this->_couch_client
+                            ->include_docs(true)
+                            ->startkey(array($filter_key))
+                            ->endkey(array($filter_key, array()))
+                            ->asArray()
+                            ->getView($database, "list_by_$document_type");
             else
-                return $this->_couch_client->asArray()->getView($database, "list_by_$document_type");
+                return $this->_couch_client
+                            ->include_docs(true)
+                            ->asArray()
+                            ->getView($database, "list_by_$document_type");
+
         } catch (Exception $e) {
             return false;
         }
