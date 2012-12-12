@@ -1,6 +1,10 @@
 <?php 
 
-class Bigcouch {
+require_once 'lib/php_on_couch/couch.php';
+require_once 'lib/php_on_couch/couchClient.php';
+require_once 'lib/php_on_couch/couchDocument.php';
+
+class BigCouch {
     private $_server_url = null;
     private $_couch_client = null;
 
@@ -26,23 +30,26 @@ class Bigcouch {
         return $doc;
     }
 
-    public function getAll($database, $document_type = null) {
-        if (!$document_type) {
-            $this->_set_client($database);
+    public function getAll($database) {
+        $this->_set_client($database);
 
-            try {
+        try {
+            return $this->_couch_client->asArray()->getAllDocs();
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    public function getAllByKey($database, $document_type, $filter_key = null) {
+        $this->_set_client($database);
+
+        try {
+            if ($filter_key)
+                return $this->_couch_client->startkey(array($filter_key))->endkey(array($filter_key, array()))->asArray()->getView($database, "list_by_$document_type");
+            else
                 return $this->_couch_client->asArray()->getView($database, "list_by_$document_type");
-            } catch (Exception $e) {
-                return false;
-            }
-        } else {
-            $this->_set_client($database);
-
-            try {
-                return $this->_couch_client->asArray()->getAllDocs();
-            } catch (Exception $e) {
-                return false;
-            }
+        } catch (Exception $e) {
+            return false;
         }
     }
 
