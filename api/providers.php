@@ -8,7 +8,12 @@ class Providers {
     }
 
     function get($provider_id) {
-        
+        $provider = $this->db->get('providers', $provider_id);
+
+        if ($provider)
+            return $provider;
+        else
+            throw new Exception(200, 'No information for this provider');
     }
 
     function post($provider_id, $request_data = null) {
