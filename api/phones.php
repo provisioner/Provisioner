@@ -66,6 +66,7 @@ class Phones {
         }
 
         $alldoc = $this->db->getAll('factory_defaults', $filter_key);
+        // TODO: The following line need to be tested
         return !empty($alldoc['rows']) ? $alldoc['rows'] : array('status' => false, 'message' => 'No data returned');
     }
 
