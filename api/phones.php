@@ -1,7 +1,5 @@
 <?php 
 
-require_once 'wrapper/BigCouch.php';
-
 class Phones {
     public $db;
 
