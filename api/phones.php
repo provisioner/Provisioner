@@ -34,7 +34,7 @@ class Phones {
         }
     }
 
-    private function _delDocument() {
+    private function _delDocument($document) {
         if (array_key_exists('children', $document)) {
             foreach ($document['children'] as $child) {
                 $doc_child = $this->db->get('copy_defaults', $child);
@@ -132,6 +132,9 @@ class Phones {
         $document_name = buildDocumentName($brand, $family, $model);
         if (!$document_name)
             throw new Exception(400, "Could not find at least the brand");
+
+        $document = $this->db->get('factory_defaults', $document_name);
+        $this->_delDocument($document);
     }
 }
 
