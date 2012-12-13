@@ -90,7 +90,7 @@ class Phones {
             if ($this->db->update('factory_defaults', $document_name, $key, $value))
                 return array('status' => true, 'message' => 'Document successfully modified');
             else
-                return array('status' => false, 'message' => 'Error while modifying the data');
+                throw new Exception(500, 'Error while modifying the data');
         }
     }
 
@@ -119,7 +119,7 @@ class Phones {
         if ($this->db->add('factory_defaults', $request_data))
             return array('status' => true, 'message' => 'Document successfully added');
         else
-            return array('status' => false, 'message' => 'Error while adding the data');
+            throw new Exception(500, 'Error while Adding the data');
     }
 
     /**
