@@ -14,7 +14,7 @@ class Accounts {
     }
 
     /**
-     * 
+     * This will allow the user to get the default settings for an account and for a phone 
      *
      * @url GET /{account_id}/defaults
      * @url GET /{account_id}/{mac_address}
@@ -29,13 +29,13 @@ class Accounts {
             if (!$default_settings && array_key_exists('settings', $default_settings))
                 return $default_settings['settings'];
             else
-                throw new RestException(200, 'This account_id do not exist or there are no default settings for this user');
+                throw new RestException(404, 'This account_id do not exist or there are no default settings for this user');
         } else { // retrieving phone specific settings
             $mac_settings = $this->db->get($account_db, $mac_address);
             if (!$mac_settings && array_key_exists('settings', $mac_settings))
                 return $mac_settings['settings'];
             else
-                throw new RestException(200, 'There is no phone with this mac_address for this account or there are no specific settings for this phone');
+                throw new RestException(404, 'There is no phone with this mac_address for this account or there are no specific settings for this phone');
         }
     }
 
@@ -57,14 +57,25 @@ class Accounts {
     }
 
     /**
-     * 
+     * This will allow the user to modify the account/phone settings
      *
      * @url POST /{account_id}
      * @url POST /{account_id}/{mac_address}
      */
 
     function editDocument($account_id, $mac_address = null, $request_data = null) {
+        $account_db = $this->_get_account_db($account_id);
+        if (!$mac_address)
+            $document_name = $account_id;
+        else
+            $document_name = $mac_address;
         
+        foreach ($request_data as $key => $value) {
+            if (!$this->db->update($account_db, $document_name, $key, $value))
+                throw new RestException(500, 'Error while saving');
+        }
+
+        return array('status' => true, 'message' => 'Document successfully modified');
     }
 
     /**
@@ -82,7 +93,6 @@ class Accounts {
                 return;
         } elseif ($account_id && $mac_address) 
             return;
-        }
     }
 
     /**
@@ -95,6 +105,4 @@ class Accounts {
         
     }
 }
-
-7fddae8e897711e0bc11003048c3b1f2
 ?>
