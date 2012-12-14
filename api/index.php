@@ -46,7 +46,7 @@ use Luracast\Restler\Restler;
 $r = new Restler();
 $r->addAPIClass('phones');
 $r->addAPIClass('providers');
-//$r->addAPIClass('accounts');
+$r->addAPIClass('accounts');
 $r->handle();
 
 ?>
