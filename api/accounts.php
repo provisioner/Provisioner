@@ -106,8 +106,18 @@ class Accounts {
      * @url DELETE /{account_id}/defaults
      * @url DELETE /{account_id}/{mac_address}
      */
+
     function delDocument($account_id, $mac_address = null) {
-        
+        // making sure that the mac_address is well fornated
+        $mac_address = strtolower(preg_replace('/[:-]/', '', $mac_address));
+        $account_db = $this->_get_account_db($account_id);
+
+        if ($mac_address) {
+            if (!$this->db->delete($account_db, $mac_address))
+                throw new RestException(500, 'Error while deleting');
+            else
+                return array('status' => true, 'message' => 'Document successfully deleted');
+        }
     }
 }
 ?>

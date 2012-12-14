@@ -14,6 +14,7 @@ class BigCouch {
             $this->_server_url = $server_url . ':' . $port;
     }
 
+    // Format a normal response
     private function _formatNormalResponse($response) {
         foreach ($response as $key => $value) {
             if (preg_match("/^(_|pvt_)/", $key))
@@ -23,6 +24,7 @@ class BigCouch {
         return $response;
     }
 
+    // Format a view response
     private function _formatViewResponse($response) {
         $rows = $response['rows'];
         $return_value = array();
@@ -33,6 +35,7 @@ class BigCouch {
         return $return_value;
     }
 
+    // Set the database for the current client
     private function _set_client($database) {
         $this->_couch_client = new couchClient($this->_server_url, $database);
     }
@@ -46,12 +49,15 @@ class BigCouch {
             return false;
         }
 
+        // Do we want to filter or not?
         if ($format)
             return $this->_formatNormalResponse($doc);
         else
             return $doc;
     }
 
+    // Retrieve all the document for a specific db
+    // /!\ not adapted to views
     public function getAll($database) {
         $this->_set_client($database);
 
@@ -66,6 +72,8 @@ class BigCouch {
         }
     }
 
+    // Retrieve all the document of a certain type and for a specific key
+    // /!\ adapted to views and only
     public function getAllByKey($database, $document_type, $filter_key = null) {
         $this->_set_client($database);
 
@@ -88,6 +96,9 @@ class BigCouch {
         }
     }
 
+    // This will get a specific document
+    // The format argument is used when retrieving a raw doc or a filtered doc
+    // By filtered I mean without the _id, _rev and all the pvt_*
     public function get($database, $document, $format = true) {
         return $this->_getDoc($database, $document, $format);
     }
@@ -136,9 +147,11 @@ class BigCouch {
     }
 
     /*
-        prepare functions
+        Prepare functions
+        Those functions are necessary to format the document data
     */
 
+    // Add - phones
     public function prepareAddPhones($request_data, $document_name, $brand, $family = null, $model = null) {
         $request_data['_id'] = $document_name;
 
@@ -158,11 +171,13 @@ class BigCouch {
         return $request_data;
     }
 
+    // Add - providers
     public function prepareAddProviders($request_data) {
         $request_data['pvt_type'] = 'provider';
         return $request_data;
     }
 
+    // Add - accounts
     public function prepareAddAccounts($request_data, $account_id = null, $mac_address = null) {
         if ($account_id && $mac_address) {
             $request_data['_id'] = $mac_address;
