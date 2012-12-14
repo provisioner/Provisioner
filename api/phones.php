@@ -42,7 +42,7 @@ class Phones {
             }
         }
 
-        if ($this->db->delete('copy_defaults', $document['_id']));
+        $this->db->delete('factory_defaults', $document['_id']);
     }
 
     /**
@@ -147,8 +147,10 @@ class Phones {
         if (!$document_name)
             throw new RestException(400, "Could not find at least the brand");
 
-        $document = $this->db->get('factory_defaults', $document_name);
+        $document = $this->db->get('factory_defaults', $document_name, false);
         $this->_delDocument($document);
+
+        return array('status' => true, 'message' => 'Document successfully deleted');
     }
 }
 

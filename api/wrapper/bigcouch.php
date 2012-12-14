@@ -122,11 +122,10 @@ class BigCouch {
 
     // This will delete permanently the document
     public function delete($database, $document) {
-        $doc = (object)$this->_getDoc($database, $document);
-
+        $doc = $this->_getDoc($database, $document, false);
         if ($doc) {
             try {
-                $this->_couch_client->deleteDoc($doc);
+                $this->_couch_client->deleteDoc((object)$doc);
                 return true;
             } catch (Exception $e) {
                 return false;
@@ -148,7 +147,7 @@ class BigCouch {
             $type = 'family';
             $name = $family;
         } else {
-            $type = 'moldel';
+            $type = 'model';
             $name = $model;
         }
         $request_data['pvt_type'] = $type;
