@@ -82,7 +82,7 @@ class Phones {
         if (empty($request_data))
             throw new RestException(400, "The body for this request cannot be empty");
 
-        $document_name = buildDocumentName($brand, $family, $model);
+        $document_name = $this->_buildDocumentName($brand, $family, $model);
         if (!$document_name)
             throw new RestException(400, "Could not find at least the brand");
 
@@ -143,7 +143,7 @@ class Phones {
      * @url DELETE /{brand}/{family}/{model}
      */
     function delElement($brand, $family = null, $model = null) {
-        $document_name = buildDocumentName($brand, $family, $model);
+        $document_name = $this->_buildDocumentName($brand, $family, $model);
         if (!$document_name)
             throw new RestException(400, "Could not find at least the brand");
 
