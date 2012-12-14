@@ -37,7 +37,7 @@ class BigCouch {
         $this->_couch_client = new couchClient($this->_server_url, $database);
     }
 
-    private function _getDoc($database, $document) {
+    private function _getDoc($database, $document, $format = true) {
         $this->_set_client($database);
 
         try {
@@ -46,7 +46,10 @@ class BigCouch {
             return false;
         }
 
-        return $this->_formatNormalResponse($doc);
+        if ($format)
+            return $this->_formatNormalResponse($doc);
+        else
+            return $doc;
     }
 
     public function getAll($database) {
@@ -83,8 +86,8 @@ class BigCouch {
         }
     }
 
-    public function get($database, $document) {
-        return $this->_getDoc($database, $document);
+    public function get($database, $document, $format = true) {
+        return $this->_getDoc($database, $document, $format);
     }
 
     // Do I need to add a parameter specific for the name here?
@@ -104,12 +107,12 @@ class BigCouch {
     // TODO: fix the needed parameters. 
     // It is a shame that the user need to enter the DB and the doc each time
     public function update($database, $document, $key, $value) {
-        $doc = (object)$this->_getDoc($database, $document);
+        $doc = $this->_getDoc($database, $document, false);
 
         if ($doc) {
             try {
-                $doc->$key = $value;
-                $this->_couch_client->storeDoc($doc);
+                $doc[$key] = $value;
+                $this->_couch_client->storeDoc((object)$doc);
                 return true;
             } catch (Exception $e) {
                 return false;
@@ -129,6 +132,29 @@ class BigCouch {
                 return false;
             }
         }
+    }
+
+    /*
+        prepare functions
+    */
+
+    public function prepareAddPhones($request_data, $document_name, $brand, $family = null, $model = null) {
+        $request_data['_id'] = $document_name;
+
+        if (!$family) {
+            $type = 'brand';
+            $name = $brand;
+        } elseif(!$model) {
+            $type = 'family';
+            $name = $family;
+        } else {
+            $type = 'moldel';
+            $name = $model;
+        }
+        $request_data['pvt_type'] = $type;
+        $request_data['name'] = ucfirst($name);
+
+        return $request_data;
     }
 }
 
