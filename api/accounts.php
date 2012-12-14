@@ -79,27 +79,32 @@ class Accounts {
     }
 
     /**
-     * 
+     * This will allow the user to add an account or a phone
      *
      * @url PUT /
      * @url PUT /{account_id}/{mac_address}
      */
 
+    // TODO: Account add
     function addDocument($account_id = null, $mac_address = null, $request_data = null) {
+        // making sure that the mac_address is well fornated
+        $mac_address = strtolower(preg_replace('/[:-]/', '', $mac_address));
         $account_db = $this->_get_account_db($account_id);
+        $object_ready = $this->db->prepareAddAccounts($request_data, $account_id, $mac_address);
 
-        if (!$account_id && !$mac_address) {
-            if (!$this->db->add($account_db, $request_data))
-                return;
-        } elseif ($account_id && $mac_address) 
-            return;
+        if ($account_id && $mac_address) {
+            if(!$this->db->add($account_db, $object_ready))
+                throw new RestException(500, 'Error while saving');
+            else
+                return array('status' => true, 'message' => 'Document successfully added');
+        }
     }
 
     /**
      * 
      *
-     * @url PUT /{account_id}/defaults
-     * @url PUT /{account_id}/{mac_address}
+     * @url DELETE /{account_id}/defaults
+     * @url DELETE /{account_id}/{mac_address}
      */
     function delDocument($account_id, $mac_address = null) {
         
