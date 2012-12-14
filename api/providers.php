@@ -46,7 +46,7 @@ class Providers {
     }
 
     // This function only delete the provider
-    // TODO: allow the user to also delete the users linked to this provider
+    // TODO: allow the user to also delete the users linked to this provider.
     function delete($provider_id) {
         if (!$this->db->delete('providers', $provider_id))
             throw new RestException(500, 'Error while deleting');
