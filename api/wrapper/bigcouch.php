@@ -14,6 +14,25 @@ class BigCouch {
             $this->_server_url = $server_url . ':' . $port;
     }
 
+    private function _formatNormalResponse($response) {
+        foreach ($response as $key => $value) {
+            if (preg_match("/^(_|pvt_)/", $key))
+                unset($response[$key]);
+        }
+
+        return $response;
+    }
+
+    private function _formatViewResponse($response) {
+        $rows = $response['rows'];
+        $return_value = array();
+        foreach ($rows as $row) {
+            $return_value[$row['id']] = $row['value'];
+        }
+
+        return $return_value;
+    }
+
     private function _set_client($database) {
         $this->_couch_client = new couchClient($this->_server_url, $database);
     }
@@ -27,7 +46,7 @@ class BigCouch {
             return false;
         }
 
-        return $doc;
+        return $this->_formatNormalResponse($doc);
     }
 
     public function getAll($database) {
@@ -47,17 +66,17 @@ class BigCouch {
 
         try {
             if ($filter_key)
-                return $this->_couch_client
-                            ->include_docs(true)
+                $response = $this->_couch_client
                             ->startkey(array($filter_key))
                             ->endkey(array($filter_key, array()))
                             ->asArray()
                             ->getView($database, "list_by_$document_type");
             else
-                return $this->_couch_client
-                            ->include_docs(true)
+                $response = $this->_couch_client
                             ->asArray()
                             ->getView($database, "list_by_$document_type");
+
+            return $this->_formatResponse($response);
 
         } catch (Exception $e) {
             return false;

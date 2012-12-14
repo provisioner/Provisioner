@@ -4,7 +4,7 @@ class Phones {
     public $db;
 
     function __construct() {
-        $this->db = new BigCouch('http://localhost');
+        $this->db = new BigCouch(DB_SERVER);
     }
 
     private function _buildDocumentName($brand, $family = null, $model = null) {
@@ -51,23 +51,20 @@ class Phones {
      * @url GET /
      * @url GET /{brand}
      * @url GET /{brand}/{family}
+     * @url GET /{brand}/{family}/{model}
      */
 
-    function All($brand = null, $family = null) {
-        if (!$brand) {
-            $document_type = 'brand';
-            $filter_key = null;
-        } elseif (!$family) {
-            $document_type = 'family';
-            $filter_key = $brand;
-        } else {
-            $document_type = 'model';
-            $filter_key = $family;
-        }
+    function getElement($brand = null, $family = null, $model = null) {
+        if (!$brand)
+            $result = $this->db->getAllByKey('factory_defaults', 'brand', null);
+        elseif (!$family)
+            $result = $this->db->getAllByKey('factory_defaults', 'family', $brand);
+        elseif (!$model)
+            $result = $this->db->getAllByKey('factory_defaults', 'model', $family);
+        else
+            $result = $this->db->get('factory_defaults', $brand . '_' . $family . '_' . $model);
 
-        $alldoc = $this->db->getAll('factory_defaults', $filter_key);
-        // TODO: The following line need to be tested
-        return !empty($alldoc['rows']) ? $alldoc['rows'] : array('status' => false, 'message' => 'No data returned');
+        return !empty($result) ? $result : array('status' => false, 'message' => 'No data found');
     }
 
     /**
@@ -78,19 +75,19 @@ class Phones {
      * @url POST /{brand}/{family}/{model}
      */
 
-    function editSettings($brand, $family = null, $model = null, $request_data = null) {
+    function editElement($brand, $family = null, $model = null, $request_data = null) {
         if (empty($request_data))
-            throw new Exception(400, "The body for this request cannot be empty");
+            throw new RestException(400, "The body for this request cannot be empty");
 
         $document_name = buildDocumentName($brand, $family, $model);
         if (!$document_name)
-            throw new Exception(400, "Could not find at least the brand");
+            throw new RestException(400, "Could not find at least the brand");
 
         foreach ($request_data as $key => $value) {
             if ($this->db->update('factory_defaults', $document_name, $key, $value))
                 return array('status' => true, 'message' => 'Document successfully modified');
             else
-                throw new Exception(500, 'Error while modifying the data');
+                throw new RestException(500, 'Error while modifying the data');
         }
     }
 
@@ -102,13 +99,13 @@ class Phones {
      * @url PUT /{brand}/{family}/{model}
      */
 
-    function addDocument($brand, $family = null, $model = null, $request_data = null) {
+    function addElement($brand, $family = null, $model = null, $request_data = null) {
         if (empty($request_data))
-            throw new Exception(400, "The body for this request cannot be empty");
+            throw new RestException(400, "The body for this request cannot be empty");
 
         $document_name = buildDocumentName($brand, $family, $model);
         if (!$document_name)
-            throw new Exception(400, "Could not find at least the brand");
+            throw new RestException(400, "Could not find at least the brand");
 
         $parent = $this->db->get('factory_defaults', $this->_getParent($document_name));
         $this->db->update('factory_defaults', $document_name, 'children', array_push($parent['children'], $document_name));
@@ -119,7 +116,7 @@ class Phones {
         if ($this->db->add('factory_defaults', $request_data))
             return array('status' => true, 'message' => 'Document successfully added');
         else
-            throw new Exception(500, 'Error while Adding the data');
+            throw new RestException(500, 'Error while Adding the data');
     }
 
     /**
@@ -129,10 +126,10 @@ class Phones {
      * @url DELETE /{brand}/{family}
      * @url DELETE /{brand}/{family}/{model}
      */
-    function delete($brand, $family = null, $model = null) {
+    function delElement($brand, $family = null, $model = null) {
         $document_name = buildDocumentName($brand, $family, $model);
         if (!$document_name)
-            throw new Exception(400, "Could not find at least the brand");
+            throw new RestException(400, "Could not find at least the brand");
 
         $document = $this->db->get('factory_defaults', $document_name);
         $this->_delDocument($document);
