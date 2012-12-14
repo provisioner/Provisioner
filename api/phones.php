@@ -9,11 +9,11 @@ class Phones {
 
     private function _buildDocumentName($brand, $family = null, $model = null) {
         if ($model)
-            return '$brand_$family_$model';
+            return $brand . "_" . $family . "_" . $model;
         elseif ($family)
-            return '$brand_$family';
+            return $brand . "_" . $family;
         elseif ($brand)
-            return '$brand';
+            return $brand;
         else
             return false;
     }
@@ -53,7 +53,7 @@ class Phones {
      * @url GET /{brand}/{family}
      * @url GET /{brand}/{family}/{model}
      */
-
+    // DONE
     function getElement($brand = null, $family = null, $model = null) {
         if (!$brand)
             $result = $this->db->getAllByKey('factory_defaults', 'brand', null);
@@ -64,7 +64,10 @@ class Phones {
         else
             $result = $this->db->get('factory_defaults', $brand . '_' . $family . '_' . $model);
 
-        return !empty($result) ? $result : array('status' => false, 'message' => 'No data found');
+        if (!empty($result))
+            return $result;
+        else
+            throw new RestException(404, "No data found");
     }
 
     /**
@@ -98,16 +101,22 @@ class Phones {
      * @url PUT /{brand}/{family}
      * @url PUT /{brand}/{family}/{model}
      */
-
+    // DOING
     function addElement($brand, $family = null, $model = null, $request_data = null) {
         if (empty($request_data))
             throw new RestException(400, "The body for this request cannot be empty");
 
-        $document_name = buildDocumentName($brand, $family, $model);
+        $document_name = $this->_buildDocumentName($brand, $family, $model);
         if (!$document_name)
             throw new RestException(400, "Could not find at least the brand");
 
+        // We need to determine if there is a parent for this element.
+        // If it is a family for example, the parent is the brand
         $parent = $this->db->get('factory_defaults', $this->_getParent($document_name));
+        if (!$parent && $family)
+            // This Exception status don't seems right...
+            throw new RestException(400, "You need to create the parent of this element first. If you are trying to create a device family, make sure that the brand exist");
+
         $this->db->update('factory_defaults', $document_name, 'children', array_push($parent['children'], $document_name));
 
         $request_data = json_decode($request_data);
