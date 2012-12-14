@@ -157,6 +157,11 @@ class BigCouch {
 
         return $request_data;
     }
+
+    public function prepareAddProviders($request_data) {
+        $request_data['pvt_type'] = 'provider';
+        return $request_data;
+    }
 }
 
 ?>
