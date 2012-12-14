@@ -162,6 +162,14 @@ class BigCouch {
         $request_data['pvt_type'] = 'provider';
         return $request_data;
     }
+
+    public function prepareAddAccounts($request_data, $account_id = null, $mac_address = null) {
+        if ($account_id && $mac_address) {
+            $request_data['_id'] = $mac_address;
+        }
+
+        return $request_data;
+    }
 }
 
 ?>
