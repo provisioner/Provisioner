@@ -56,15 +56,17 @@ class BigCouch {
         $this->_set_client($database);
 
         try {
-            return $this->_couch_client
-                        ->asArray()
-                        ->getAllDocs();
+            $response = $this->_couch_client
+                             ->asArray()
+                             ->getAllDocs();
+
+            return $this->_formatNormalResponse($response);
         } catch (Exception $e) {
             return false;
         }
     }
 
-    public function getAllByKey($database, $document_type, $filter_key) {
+    public function getAllByKey($database, $document_type, $filter_key = null) {
         $this->_set_client($database);
 
         try {
@@ -79,7 +81,7 @@ class BigCouch {
                             ->asArray()
                             ->getView($database, "list_by_$document_type");
 
-            return $this->_formatResponse($response);
+            return $this->_formatViewResponse($response);
 
         } catch (Exception $e) {
             return false;
