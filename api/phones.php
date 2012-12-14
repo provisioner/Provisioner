@@ -112,17 +112,24 @@ class Phones {
 
         // We need to determine if there is a parent for this element.
         // If it is a family for example, the parent is the brand
-        $parent = $this->db->get('factory_defaults', $this->_getParent($document_name));
-        if (!$parent && $family)
-            // This Exception status don't seems right...
+        $parent = $this->db->get('factory_defaults', $this->_getParent($document_name), false);
+        if (!$parent && $family) {
+            // This Exception status code don't seems right...
             throw new RestException(400, "You need to create the parent of this element first. If you are trying to create a device family, make sure that the brand exist");
+        } elseif ($parent && $family) {
+            if (array_key_exists('children', $parent))
+                array_push($parent['children'], $document_name);
+            else
+                $parent['children'] = array($document_name);
+            // updating the parent
+            //return !$this->db->update('factory_defaults', $parent['_id'], 'children', $parent['children'], $document_name);
+            if ($this->db->update('factory_defaults', $parent['_id'], 'children', $parent['children'], $document_name) === false)
+                throw new RestException(500, 'Could not update the parent element');
+        }
+        
+        $object_ready = $this->db->prepareAddPhones($request_data, $document_name, $brand, $family, $model);
 
-        $this->db->update('factory_defaults', $document_name, 'children', array_push($parent['children'], $document_name));
-
-        $request_data = json_decode($request_data);
-        $request_data->_id = $document_name;
-
-        if ($this->db->add('factory_defaults', $request_data))
+        if ($this->db->add('factory_defaults', $object_ready))
             return array('status' => true, 'message' => 'Document successfully added');
         else
             throw new RestException(500, 'Error while Adding the data');
