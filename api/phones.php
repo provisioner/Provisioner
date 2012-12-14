@@ -53,7 +53,7 @@ class Phones {
      * @url GET /{brand}/{family}
      * @url GET /{brand}/{family}/{model}
      */
-    // DONE
+
     function getElement($brand = null, $family = null, $model = null) {
         if (!$brand)
             $result = $this->db->getAllByKey('factory_defaults', 'brand', null);
@@ -101,7 +101,7 @@ class Phones {
      * @url PUT /{brand}/{family}
      * @url PUT /{brand}/{family}/{model}
      */
-    // DOING
+
     function addElement($brand, $family = null, $model = null, $request_data = null) {
         if (empty($request_data))
             throw new RestException(400, "The body for this request cannot be empty");
@@ -142,6 +142,7 @@ class Phones {
      * @url DELETE /{brand}/{family}
      * @url DELETE /{brand}/{family}/{model}
      */
+    
     function delElement($brand, $family = null, $model = null) {
         $document_name = $this->_buildDocumentName($brand, $family, $model);
         if (!$document_name)

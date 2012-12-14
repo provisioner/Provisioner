@@ -7,6 +7,15 @@ class Providers {
         $this->db = new BigCouch(DB_SERVER);
     }
 
+    /**
+     *  This is the function that will allow the administrator to retrieve all the providers
+     *
+     * @url GET /
+     */
+    function retrieveAll() {
+        return $this->db->getAllByKey('providers', 'domain');
+    }
+
     // This will get the information for a specific provider
     function get($provider_id) {
         $provider = $this->db->get('providers', $provider_id);
