@@ -1,7 +1,7 @@
 <?php 
 
-class Auth {
-    
+class Auth implements iAuthenticate {
+
 }
 
 ?>

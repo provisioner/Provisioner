@@ -3,6 +3,8 @@
 class Phones {
     public $db;
 
+    static $FIELDS = array('name', 'settings');
+
     function __construct() {
         $this->db = new BigCouch(DB_SERVER);
     }
@@ -43,6 +45,24 @@ class Phones {
         }
 
         $this->db->delete('factory_defaults', $document['_id']);
+    }
+
+    private function _validateAdd($data)
+    {
+        foreach (authors::$FIELDS as $field) {
+            if (!isset($data[$field]))
+                throw new RestException(400, "$field field missing");
+        }
+        return $data;
+    }
+
+    private function _validateEdit($data)
+    {
+        foreach (authors::$FIELDS as $field) {
+            if (!isset($data[$field]))
+                throw new RestException(400, "$field field missing");
+        }
+        return $data;
     }
 
     /**
@@ -142,7 +162,7 @@ class Phones {
      * @url DELETE /{brand}/{family}
      * @url DELETE /{brand}/{family}/{model}
      */
-    
+
     function delElement($brand, $family = null, $model = null) {
         $document_name = $this->_buildDocumentName($brand, $family, $model);
         if (!$document_name)
