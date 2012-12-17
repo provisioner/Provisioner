@@ -149,6 +149,36 @@ class BigCouch {
         }
     }
 
+    public function deleteView($database, $brand, $family = null, $model = null) {
+        $this->_set_client($database);
+
+        // In the following code, we need to add a 'z' at the end of last element
+        // of the endkey since it is a range
+        if (!$family) {
+            $startkey = array($brand);
+            $endkey = array($brand.'z');
+        }
+        elseif (!$model) {
+            $startkey = array($brand, $family);
+            $endkey = array($brand, $family.'z');
+        } else {
+            $startkey = array($brand, $family, $model);
+            $endkey = array($brand, $family, $model.'z');
+        }
+
+        $response = $this->_couch_client
+                        ->startkey($startkey)
+                        ->endkey($endkey)
+                        ->asArray()
+                        ->getView($database, "list_by_all");
+
+        foreach ($response['rows'] as  $row) {
+            if ($this->delete($database, $row['id']))
+                throw new RestException(500, "Error while deleting element");
+                
+        }
+    }
+
     /*
         Prepare functions
         Those functions are necessary to format the data which are going to be send

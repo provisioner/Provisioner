@@ -20,33 +20,6 @@ class Phones {
             return false;
     }
 
-    private function _getParent($document_name) {
-        $elems = explode('_', $document_name);
-        if (sizeof($elems) == 1)
-            return false;
-        else {
-            array_pop($elems);
-
-            $parent_name = $elems[0];
-            for ($i=1; $i < sizeof($elems); $i++) { 
-                $parent_name = $parent_name . '_' . $elems[$i];
-            }
-
-            return $parent_name;
-        }
-    }
-
-    private function _delDocument($document) {
-        if (array_key_exists('children', $document)) {
-            foreach ($document['children'] as $child) {
-                $doc_child = $this->db->get('copy_defaults', $child);
-                $this->_delDocument($doc_child);
-            }
-        }
-
-        $this->db->delete('factory_defaults', $document['_id']);
-    }
-
     /**
      *  This is the function that will allow the administrator to retrieve all brands/families/models/
      *
@@ -119,23 +92,6 @@ class Phones {
         if (!$this->db->add('factory_defaults', Validator::validateAdd($object_ready, $this->_FIELDS)))
             throw new RestException(500, 'Error while Adding the data');
 
-        // We need to determine if there is a parent for this element.
-        // If it is a family for example, the parent is the brand
-        $parent = $this->db->get('factory_defaults', $this->_getParent($document_name), false);
-        if (!$parent && $family) {
-            // This Exception status code don't seems right...
-            throw new RestException(400, "You need to create the parent of this element first. If you are trying to create a device family, make sure that the brand exist for example");
-        } elseif ($parent && $family) {
-            if (array_key_exists('children', $parent))
-                array_push($parent['children'], $document_name);
-            else
-                $parent['children'] = array($document_name);
-            // updating the parent
-            //return !$this->db->update('factory_defaults', $parent['_id'], 'children', $parent['children'], $document_name);
-            if ($this->db->update('factory_defaults', $parent['_id'], 'children', $parent['children'], $document_name) === false)
-                throw new RestException(500, 'Could not update the parent element');
-        }
-
         return array('status' => true, 'message' => 'Document successfully added');
     }
 
@@ -148,12 +104,7 @@ class Phones {
      */
 
     function delElement($brand, $family = null, $model = null) {
-        $document_name = $this->_buildDocumentName($brand, $family, $model);
-        if (!$document_name)
-            throw new RestException(400, "Could not find at least the brand");
-
-        $document = $this->db->get('factory_defaults', $document_name, false);
-        $this->_delDocument($document);
+        $this->db->deleteView('factory_defaults', $brand, $family, $model);
 
         return array('status' => true, 'message' => 'Document successfully deleted');
     }
