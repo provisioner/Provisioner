@@ -137,18 +137,26 @@ class BigCouch {
     }
 
     // This will delete permanently the document
-    public function delete($database, $document) {
-        $doc = $this->_getDoc($database, $document, false);
-        if ($doc) {
-            try {
-                $this->_couch_client->deleteDoc((object)$doc);
-                return true;
-            } catch (Exception $e) {
-                return false;
+    public function delete($database, $document = null) {
+        // We are deleting a document;
+        if ($document) {
+            $doc = $this->_getDoc($database, $document, false);
+            if ($doc) {
+                try {
+                    $this->_couch_client->deleteDoc((object)$doc);
+                    return true;
+                } catch (Exception $e) {
+                    return false;
+                }
             }
+        } else { // We are deleting a database
+            $this->_set_client($database);
+            $this->_couch_client->deleteDatabase();
         }
     }
 
+    // This function will be used for now only for the phones APIs
+    // it is necessary because of the way that we are handling the parenting stuffs.
     public function deleteView($database, $brand, $family = null, $model = null) {
         $this->_set_client($database);
 
@@ -167,15 +175,14 @@ class BigCouch {
         }
 
         $response = $this->_couch_client
-                        ->startkey($startkey)
-                        ->endkey($endkey)
-                        ->asArray()
-                        ->getView($database, "list_by_all");
+                         ->startkey($startkey)
+                         ->endkey($endkey)
+                         ->asArray()
+                         ->getView($database, "list_by_all");
 
         foreach ($response['rows'] as  $row) {
             if ($this->delete($database, $row['id']))
                 throw new RestException(500, "Error while deleting element");
-                
         }
     }
 
