@@ -49,7 +49,7 @@ class Phones {
 
     private function _validateAdd($data)
     {
-        foreach (authors::$FIELDS as $field) {
+        foreach (Phones::$FIELDS as $field) {
             if (!isset($data[$field]))
                 throw new RestException(400, "$field field missing");
         }
@@ -58,9 +58,9 @@ class Phones {
 
     private function _validateEdit($data)
     {
-        foreach (authors::$FIELDS as $field) {
-            if (!isset($data[$field]))
-                throw new RestException(400, "$field field missing");
+        foreach ($data as $key => $value) {
+            if (!in_array($key, Phones::$FIELDS))
+                throw new RestException(400, "$key is not suppose to be there");
         }
         return $data;
     }
@@ -106,6 +106,8 @@ class Phones {
         if (!$document_name)
             throw new RestException(400, "Could not find at least the brand");
 
+        $this->_validateEdit($request_data);
+
         foreach ($request_data as $key => $value) {
             if ($this->db->update('factory_defaults', $document_name, $key, $value))
                 return array('status' => true, 'message' => 'Document successfully modified');
@@ -129,13 +131,18 @@ class Phones {
         $document_name = $this->_buildDocumentName($brand, $family, $model);
         if (!$document_name)
             throw new RestException(400, "Could not find at least the brand");
+        
+        $object_ready = $this->db->prepareAddPhones($request_data, $document_name, $brand, $family, $model);
+
+        if (!$this->db->add('factory_defaults', $this->_validateAdd($object_ready)))
+            throw new RestException(500, 'Error while Adding the data');
 
         // We need to determine if there is a parent for this element.
         // If it is a family for example, the parent is the brand
         $parent = $this->db->get('factory_defaults', $this->_getParent($document_name), false);
         if (!$parent && $family) {
             // This Exception status code don't seems right...
-            throw new RestException(400, "You need to create the parent of this element first. If you are trying to create a device family, make sure that the brand exist");
+            throw new RestException(400, "You need to create the parent of this element first. If you are trying to create a device family, make sure that the brand exist for example");
         } elseif ($parent && $family) {
             if (array_key_exists('children', $parent))
                 array_push($parent['children'], $document_name);
@@ -146,13 +153,8 @@ class Phones {
             if ($this->db->update('factory_defaults', $parent['_id'], 'children', $parent['children'], $document_name) === false)
                 throw new RestException(500, 'Could not update the parent element');
         }
-        
-        $object_ready = $this->db->prepareAddPhones($request_data, $document_name, $brand, $family, $model);
 
-        if ($this->db->add('factory_defaults', $object_ready))
-            return array('status' => true, 'message' => 'Document successfully added');
-        else
-            throw new RestException(500, 'Error while Adding the data');
+        return array('status' => true, 'message' => 'Document successfully added');
     }
 
     /**
