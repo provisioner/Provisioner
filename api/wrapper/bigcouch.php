@@ -17,6 +17,7 @@ class BigCouch {
     // Format a normal response
     private function _formatNormalResponse($response) {
         foreach ($response as $key => $value) {
+            // No pvt_* and no _* 
             if (preg_match("/^(_|pvt_)/", $key))
                 unset($response[$key]);
         }
@@ -29,6 +30,7 @@ class BigCouch {
         $rows = $response['rows'];
         $return_value = array();
         foreach ($rows as $row) {
+            // The id will be the key
             $return_value[$row['id']] = $row['value'];
         }
 
@@ -40,6 +42,7 @@ class BigCouch {
         $this->_couch_client = new couchClient($this->_server_url, $database);
     }
 
+    // Will retrieve a single document
     private function _getDoc($database, $document, $format = true) {
         $this->_set_client($database);
 
@@ -148,7 +151,7 @@ class BigCouch {
 
     /*
         Prepare functions
-        Those functions are necessary to format the document data
+        Those functions are necessary to format the data which are going to be send
     */
 
     // Add - phones
