@@ -3,6 +3,8 @@
 class Providers {
     public $db;
 
+    private $_FIELDS = array('name', 'settings', 'domain', 'default_account_id');
+
     function __construct() {
         $this->db = new BigCouch(DB_SERVER);
     }
@@ -28,6 +30,8 @@ class Providers {
 
     // This will update the information for a provider
     function post($provider_id, $request_data = null) {
+        Validator::validateEdit($request_data, $this->_FIELDS);
+
         foreach ($request_data as $key => $value) {
             if (!$this->db->update('providers', $provider_id, $key, $value))
                 throw new RestException(500, 'Error while saving');
@@ -39,7 +43,7 @@ class Providers {
     // This will add a provider
     function put($request_data = null) {
         $object_ready = $this->db->prepareAddProviders($request_data);
-        if (!$this->db->add('providers', $object_ready))
+        if (!$this->db->add('providers', Validator::validateAdd($object_ready, $this->_FIELDS)))
             throw new RestException(500, 'Error while Adding');
         else
             return array('status' => true, 'message' => 'Provider successfully added');

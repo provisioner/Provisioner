@@ -3,7 +3,7 @@
 class Phones {
     public $db;
 
-    static $FIELDS = array('name', 'settings');
+    static $_FIELDS = array('name', 'settings');
 
     function __construct() {
         $this->db = new BigCouch(DB_SERVER);
@@ -47,24 +47,6 @@ class Phones {
         $this->db->delete('factory_defaults', $document['_id']);
     }
 
-    private function _validateAdd($data)
-    {
-        foreach (Phones::$FIELDS as $field) {
-            if (!isset($data[$field]))
-                throw new RestException(400, "$field field missing");
-        }
-        return $data;
-    }
-
-    private function _validateEdit($data)
-    {
-        foreach ($data as $key => $value) {
-            if (!in_array($key, Phones::$FIELDS))
-                throw new RestException(400, "$key is not suppose to be there");
-        }
-        return $data;
-    }
-
     /**
      *  This is the function that will allow the administrator to retrieve all brands/families/models/
      *
@@ -106,7 +88,7 @@ class Phones {
         if (!$document_name)
             throw new RestException(400, "Could not find at least the brand");
 
-        $this->_validateEdit($request_data);
+        Validator::validateEdit($request_data, $this->_FIELDS);
 
         foreach ($request_data as $key => $value) {
             if ($this->db->update('factory_defaults', $document_name, $key, $value))
@@ -134,7 +116,7 @@ class Phones {
         
         $object_ready = $this->db->prepareAddPhones($request_data, $document_name, $brand, $family, $model);
 
-        if (!$this->db->add('factory_defaults', $this->_validateAdd($object_ready)))
+        if (!$this->db->add('factory_defaults', Validator::validateAdd($object_ready, $this->_FIELDS)))
             throw new RestException(500, 'Error while Adding the data');
 
         // We need to determine if there is a parent for this element.
