@@ -11,7 +11,7 @@ $r = new Restler();
 $r->addAPIClass('phones');
 $r->addAPIClass('providers');
 $r->addAPIClass('accounts');
-//$r->addAuthenticationClass('auth');
+$r->addAuthenticationClass('auth');
 $r->handle();
 
 ?>
