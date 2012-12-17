@@ -49,8 +49,8 @@ class Accounts {
         $account_db = $this->_get_account_db($account_id);
 
         // This should force the user to send an object like {'settings': {}}
-        if (!empty($request_data['settings'])) {
-            foreach ($request_data as $key => $value) {
+        if (!isset($request_data['settings'])) {
+            foreach ($request_data['settings'] as $key => $value) {
                 $this->db->update($account_db, $account_id, $key);
             }
         }
@@ -81,12 +81,11 @@ class Accounts {
     /**
      * This will allow the user to add an account or a phone
      *
-     * @url PUT /
+     * @url PUT /{account_id}
      * @url PUT /{account_id}/{mac_address}
      */
 
-    // TODO: Account add
-    function addDocument($account_id = null, $mac_address = null, $request_data = null) {
+    function addDocument($account_id, $mac_address = null, $request_data = null) {
         // making sure that the mac_address is well fornated
         $mac_address = strtolower(preg_replace('/[:-]/', '', $mac_address));
         $account_db = $this->_get_account_db($account_id);
@@ -101,15 +100,15 @@ class Accounts {
     }
 
     /**
-     * 
+     * Delete the whole account or just a phone
      *
-     * @url DELETE /{account_id}/defaults
+     * @url DELETE /{account_id}
      * @url DELETE /{account_id}/{mac_address}
      */
 
     function delDocument($account_id, $mac_address = null) {
         // making sure that the mac_address is well fornated
-        $mac_address = strtolower(preg_replace('/[:-]/', '', $mac_address));
+        $mac_address = strtolower(preg_replace('/-/', '', $mac_address));
         $account_db = $this->_get_account_db($account_id);
 
         if ($mac_address) {
@@ -117,6 +116,8 @@ class Accounts {
                 throw new RestException(500, 'Error while deleting');
             else
                 return array('status' => true, 'message' => 'Document successfully deleted');
+        } else {
+            $this->db->delete($account_db);
         }
     }
 }
