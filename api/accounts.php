@@ -3,7 +3,7 @@
 class Accounts {
     public $db;
 
-    private $_FIELDS_ACCOUNT = array('settings');
+    private $_FIELDS_ACCOUNT = array('settings', 'name', 'provider_id');
     private $_FIELDS_MAC = array('settings', 'brand', 'family', 'model');
 
     function __construct() {
@@ -93,15 +93,18 @@ class Accounts {
      */
 
     function addDocument($account_id, $mac_address = null, $request_data = null) {
+        if (!$request_data)
+            throw new RestException(400, "The body cannot be empty for this request");
+
         // making sure that the mac_address is well formated
         $mac_address = strtolower(preg_replace('/[:-]/', '', $mac_address));
         $account_db = $this->_get_account_db($account_id);
-        $object_ready = $this->db->prepareAddAccounts($request_data, $account_id, $mac_address);
+        $object_ready = $this->db->prepareAddAccounts($request_data, $account_db, $account_id, $mac_address);
 
         if (!$mac_address)
-            Validator::validateEdit($object_ready, $this->_FIELDS_ACCOUNTS);
+            Validator::validateAdd($object_ready, $this->_FIELDS_ACCOUNT);
         else
-            Validator::validateEdit($object_ready, $this->_FIELDS_MAC);
+            Validator::validateAdd($object_ready, $this->_FIELDS_MAC);
 
         if(!$this->db->add($account_db, $object_ready))
             throw new RestException(500, 'Error while saving');
@@ -128,6 +131,7 @@ class Accounts {
                 return array('status' => true, 'message' => 'Document successfully deleted');
         } else {
             $this->db->delete($account_db);
+            return array('status' => true, 'message' => 'Account successfully deleted');
         }
     }
 }
