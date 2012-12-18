@@ -218,10 +218,11 @@ class BigCouch {
     }
 
     // Add - accounts
-    public function prepareAddAccounts($request_data, $account_id = null, $mac_address = null) {
-        if ($account_id && $mac_address) {
+    public function prepareAddAccounts($request_data, $account_id, $mac_address = null) {
+        if ($mac_address)
             $request_data['_id'] = $mac_address;
-        }
+        else
+            $request_data['_id'] = $account_id;
 
         return $request_data;
     }
