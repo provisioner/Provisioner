@@ -3,6 +3,9 @@
 class Accounts {
     public $db;
 
+    private $_FIELDS_ACCOUNT = array('settings');
+    private $_FIELDS_MAC = array('settings', 'brand', 'family', 'model');
+
     function __construct() {
         $this->db = new BigCouch(DB_SERVER);
     }
@@ -53,7 +56,11 @@ class Accounts {
             foreach ($request_data['settings'] as $key => $value) {
                 $this->db->update($account_db, $account_id, $key);
             }
-        }
+        } else
+            throw new RestException(400, "settings is not well formed");
+
+        return array('status' => true, 'message' => 'Settings successfully modified');
+            
     }
 
     /**
@@ -86,17 +93,20 @@ class Accounts {
      */
 
     function addDocument($account_id, $mac_address = null, $request_data = null) {
-        // making sure that the mac_address is well fornated
+        // making sure that the mac_address is well formated
         $mac_address = strtolower(preg_replace('/[:-]/', '', $mac_address));
         $account_db = $this->_get_account_db($account_id);
         $object_ready = $this->db->prepareAddAccounts($request_data, $account_id, $mac_address);
 
-        if ($account_id && $mac_address) {
-            if(!$this->db->add($account_db, $object_ready))
-                throw new RestException(500, 'Error while saving');
-            else
-                return array('status' => true, 'message' => 'Document successfully added');
-        }
+        if (!$mac_address)
+            Validator::validateEdit($object_ready, $this->_FIELDS_ACCOUNTS);
+        else
+            Validator::validateEdit($object_ready, $this->_FIELDS_MAC);
+
+        if(!$this->db->add($account_db, $object_ready))
+            throw new RestException(500, 'Error while saving');
+        else
+            return array('status' => true, 'message' => 'Document successfully added');
     }
 
     /**
