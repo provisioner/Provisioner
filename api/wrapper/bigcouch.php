@@ -218,7 +218,12 @@ class BigCouch {
     }
 
     // Add - accounts
-    public function prepareAddAccounts($request_data, $account_id, $mac_address = null) {
+    public function prepareAddAccounts($request_data, $account_db, $account_id, $mac_address = null) {
+        // We first need to make sure that the database is created
+        $this->_set_client($account_db);
+        if (!$this->_couch_client->databaseExists())
+            $this->_couch_client->createDatabase();
+
         if ($mac_address)
             $request_data['_id'] = $mac_address;
         else
