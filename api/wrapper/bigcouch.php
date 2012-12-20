@@ -112,9 +112,11 @@ class BigCouch {
         }
     }
 
-    // This will get a specific document
-    // The format argument is used when retrieving a raw doc or a filtered doc
-    // By filtered I mean without the _* and all the pvt_*
+    /*
+        This will get a specific document
+        The format argument is used when retrieving a raw doc or a filtered doc.
+        By filtered I mean without the _* and all the pvt_*.
+    */
     public function get($database, $document, $format = true) {
         return $this->_getDoc($database, $document, $format);
     }
