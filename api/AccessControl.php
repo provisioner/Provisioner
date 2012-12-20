@@ -1,8 +1,5 @@
 <?php 
 
-use \Luracast\Restler\iAuthenticate;
-use \Luracast\Restler\Resources;
-
 class AccessControl implements iAuthenticate {
 
     public static $requires = 'user';
