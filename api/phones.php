@@ -1,12 +1,17 @@
 <?php 
 
+/**
+ * All methods in this class are protected - Some more than others
+ * Brand/family/model APIs
+ */
+
 class Phones {
     public $db;
 
-    private $_FIELDS = array('name', 'settings');
+    private $_FIELDS = array('settings');
 
     function __construct() {
-        $this->db = new BigCouch(DB_SERVER);
+        $this->db = new BigCouch(DB_SERVER, DB_PORT);
     }
 
     private function _buildDocumentName($brand, $family = null, $model = null) {
@@ -27,6 +32,8 @@ class Phones {
      * @url GET /{brand}
      * @url GET /{brand}/{family}
      * @url GET /{brand}/{family}/{model}
+     * @access protected
+     * @class  AccessControl {@requires admin}
      */
 
     function getElement($brand = null, $family = null, $model = null) {
@@ -51,6 +58,8 @@ class Phones {
      * @url POST /{brand}
      * @url POST /{brand}/{family}
      * @url POST /{brand}/{family}/{model}
+     * @access protected
+     * @class  AccessControl {@requires admin}
      */
 
     function editElement($brand, $family = null, $model = null, $request_data = null) {
@@ -77,6 +86,8 @@ class Phones {
      * @url PUT /{brand}
      * @url PUT /{brand}/{family}
      * @url PUT /{brand}/{family}/{model}
+     * @access protected
+     * @class  AccessControl {@requires admin}
      */
 
     function addElement($brand, $family = null, $model = null, $request_data = null) {
@@ -101,6 +112,8 @@ class Phones {
      * @url DELETE /{brand}
      * @url DELETE /{brand}/{family}
      * @url DELETE /{brand}/{family}/{model}
+     * @access protected
+     * @class  AccessControl {@requires admin}
      */
 
     function delElement($brand, $family = null, $model = null) {

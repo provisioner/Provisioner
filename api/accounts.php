@@ -1,5 +1,11 @@
 <?php 
 
+/**
+ * All methods in this class are protected
+ * Accounts APIs
+ * @access protected
+ */
+
 class Accounts {
     public $db;
 
@@ -7,7 +13,7 @@ class Accounts {
     private $_FIELDS_MAC = array('settings', 'brand', 'family', 'model');
 
     function __construct() {
-        $this->db = new BigCouch(DB_SERVER);
+        $this->db = new BigCouch(DB_SERVER, DB_PORT);
     }
 
     // Will return the formated account_id from the raw account_id
@@ -21,6 +27,8 @@ class Accounts {
      *
      * @url GET /{account_id}/defaults
      * @url GET /{account_id}/{mac_address}
+     * @access protected
+     * @class  AccessControl {@requires user}
      */
 
     function retrieveDocument($account_id, $mac_address = null) {
@@ -46,6 +54,8 @@ class Accounts {
      * Edit default settings for a user (just the settings)
      *
      * @url POST /{account_id}/defaults
+     * @access protected
+     * @class  AccessControl {@requires user}
      */
 
     function edit($account_id, $request_data = null) {
@@ -66,8 +76,11 @@ class Accounts {
     /**
      * This will allow the user to modify the account/phone settings
      *
+     * @class  Auth {@requires user}
      * @url POST /{account_id}
      * @url POST /{account_id}/{mac_address}
+     * @access protected
+     * @class  AccessControl {@requires user}
      */
 
     function editDocument($account_id, $mac_address = null, $request_data = null) {
@@ -88,8 +101,11 @@ class Accounts {
     /**
      * This will allow the user to add an account or a phone
      *
+     * @class  Auth {@requires user}
      * @url PUT /{account_id}
      * @url PUT /{account_id}/{mac_address}
+     * @access protected
+     * @class  AccessControl {@requires user}
      */
 
     function addDocument($account_id, $mac_address = null, $request_data = null) {
@@ -117,6 +133,8 @@ class Accounts {
      *
      * @url DELETE /{account_id}
      * @url DELETE /{account_id}/{mac_address}
+     * @access protected
+     * @class  AccessControl {@requires user}
      */
 
     function delDocument($account_id, $mac_address = null) {
