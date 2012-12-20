@@ -9,7 +9,7 @@ class BigCouch {
     private $_couch_client = null;
 
     // The server url must be like: http://my.couch.server.com
-    public function __construct($server_url, $port = '5984') {
+    public function __construct($server_url, $port) {
         if (strlen($server_url))
             $this->_server_url = $server_url . ':' . $port;
     }
@@ -77,7 +77,7 @@ class BigCouch {
 
     // Retrieve all the document of a certain type and for a specific key
     // /!\ adapted to views and only
-    public function getAllByKey($database, $document_type, $filter_key = null) {
+    public function getAllByKey($database, $document_type, $filter_key = null, $format = true) {
         $this->_set_client($database);
 
         try {
@@ -92,8 +92,21 @@ class BigCouch {
                             ->asArray()
                             ->getView($database, "list_by_$document_type");
 
-            return $this->_formatViewResponse($response);
+            if ($format)
+                return $this->_formatViewResponse($response);
+            else
+                return $response;
 
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    public function getOneByKey($database, $document_type, $filter_key) {
+        $this->_set_client($database);
+
+        try {
+            return $this->_couch_client->asArray()->key($filter_key)->getView($database, "list_by_$document_type");
         } catch (Exception $e) {
             return false;
         }
@@ -101,7 +114,7 @@ class BigCouch {
 
     // This will get a specific document
     // The format argument is used when retrieving a raw doc or a filtered doc
-    // By filtered I mean without the _id, _rev and all the pvt_*
+    // By filtered I mean without the _* and all the pvt_*
     public function get($database, $document, $format = true) {
         return $this->_getDoc($database, $document, $format);
     }
@@ -197,16 +210,18 @@ class BigCouch {
 
         if (!$family) {
             $type = 'brand';
-            $name = $brand;
+            $request_data['brand'] = $brand;
         } elseif(!$model) {
             $type = 'family';
-            $name = $family;
+            $request_data['brand'] = $brand;
+            $request_data['family'] = $family;
         } else {
             $type = 'model';
-            $name = $model;
+            $request_data['brand'] = $brand;
+            $request_data['family'] = $family;
+            $request_data['model'] = $model;
         }
         $request_data['pvt_type'] = $type;
-        $request_data['name'] = ucfirst($name);
 
         return $request_data;
     }
