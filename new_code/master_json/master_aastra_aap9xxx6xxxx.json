@@ -8,13 +8,11 @@
     "lines": [
         {
             "outbound_proxy": {
-                // IP address
                 "host": null,
                 "port": null
             },
 
             "registrar": {
-                // IP address
                 "host": null,
                 "port": null
             },
