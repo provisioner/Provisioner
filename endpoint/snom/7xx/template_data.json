@@ -54,6 +54,15 @@
                 "type":"break"
               },
               {
+                "variable":"$firmwareurl",
+                "default_value":"",
+                "description":"Firmware URL",
+                "type":"input"
+              },
+              {
+                "type":"break"
+              },
+              {
                 "variable":"$advertisement_on",
                 "default_value":"on",
                 "description":"Advertisement Enabled",
