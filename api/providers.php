@@ -32,7 +32,7 @@ class Providers {
         if ($provider)
             return $provider;
         else
-            throw new RestException(200, 'No information for this provider');
+            throw new RestException(404, 'No information for this provider');
     }
 
     /**
