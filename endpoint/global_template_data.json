@@ -1,530 +1,382 @@
 {
-    "template_data": {
-        "category": [{
-            "name": "globals",
-            "subcategory": [{
-                "name": "globals",
-                "item": [
-                {
-                    "variable": "$mac",
-                    "default_value": "",
-                    "description": "Mac Address",
-                    "type": "input"
-                },
-                {
-                    "type": "break"
-                },
-                {
-                    "description": "Line Options",
-                    "type": "loop_line_options",
-                    "data": {
-                        "item": [
-                       {
-                            "variable": "$line_enabled",
-                            "default_value": false,
-                            "description": "Enable Line {$count}",
-                            "type": "checkbox"
-                        },
-                        {
-                            "variable": "$displayname",
-                            "default_value": "",
-                            "description": "Display Name",
-                            "type": "input"
-                        },
-                        {
-                            "variable": "$username",
-                            "default_value": "",
-                            "description": "Username Name",
-                            "type": "input"
-                        },
-                        {
-                            "variable": "$authname",
-                            "default_value": "",
-                            "description": "Auth Name",
-                            "type": "input"
-                        },
-                        {
-                            "variable": "$secret",
-                            "default_value": "",
-                            "description": "Secret/Password",
-                            "type": "input"
-                        },
-                        {
-                            "variable": "$server_host",
-                            "default_value": "",
-                            "description": "Server Host",
-                            "type": "input"
-                        },
-                        {
-                            "variable": "$server_port",
-                            "default_value": "5060",
-                            "description": "Server Port",
-                            "type": "input"
-                        },
-                        {
-                            "variable": "$server_expires",
-                            "default_value": "3600",
-                            "description": "Server Expires",
-                            "type": "input"
-                        },
-                        {
-                            "variable": "$backup_server_host",
-                            "default_value": "",
-                            "description": "Backup Server Host",
-                            "type": "input"
-                        },
-                        {
-                            "variable": "$backup_server_port",
-                            "default_value": "5060",
-                            "description": "Backup Server Port",
-                            "type": "input"
-                        },
-                        {
-                            "variable": "$backup_server_expires",
-                            "default_value": "3600",
-                            "description": "Backup Server Expires",
-                            "type": "input"
-                        },
-                        {
-                            "variable": "$use_outbound_proxy",
-                            "default_value": false,
-                            "description": "Use Outbound Proxy",
-                            "type": "checkbox"
-                        },
-                        {
-                            "variable": "$outbound_host",
-                            "default_value": "",
-                            "description": "Outbound Host",
-                            "type": "input"
-                        },
-                        {
-                            "variable": "$outbound_port",
-                            "default_value": "5060",
-                            "description": "Outbound Port",
-                            "type": "input"
-                        },
-                        {
-                            "variable": "$backup_outbound_host",
-                            "default_value": "",
-                            "description": "Backup Outbound Host",
-                            "type": "input"
-                        },
-                        {
-                            "variable": "$backup_outbound_port",
-                            "default_value": "",
-                            "description": "Backup Outbound Port",
-                            "type": "input"
-                        },
-                        {
-                            "variable": "$use_stun_server",
-                            "default_value": false,
-                            "description": "Use Stun Proxy",
-                            "type": "checkbox"
-                        },
-                        {
-                            "variable": "$stun_server_host",
-                            "default_value": "",
-                            "description": "STUN Server",
-                            "type": "input"
-                        },
-                        {
-                            "variable":"$stun_server_port",
-                            "default_value": "",
-                            "description":"STUN Server Port",
-                            "max_chars":"6",
-                            "type":"input"
-                        },
-                        {
-                            "variable":"$transport",
-                            "default_value":"0",
-                            "description":"Transport",
-                            "type":"list",
-                            "data":[
-                            {
-                                "text":"UDP",
-                                "value":"UDP"
+    "globals": {
+        "description": "Globally Accessible Settings for all phones",
+        "items": {
+            "mac": {
+                "default_value": "",
+                "description": "Mac Address",
+                "type": "input"
+            },
+            "lines": {
+                "type": "line_loop",
+                "loop_data": {
+                    "line_enabled": {
+                        "default_value": false,
+                        "description": "Enable Line {{ count }}",
+                        "type": "checkbox"
+                    },
+                    "displayname": {
+                        "default_value": "",
+                        "description": "Display Name",
+                        "type": "input"
+                    },
+                    "username": {
+                        "default_value": "",
+                        "description": "Username Name",
+                        "type": "input"
+                    },
+                    "authname": {
+                        "default_value": "",
+                        "description": "Authication Name/ID",
+                        "type": "input"
+                    },
+                    "secret": {
+                        "default_value": "",
+                        "description": "Secret/Password",
+                        "type": "input"
+                    },
+                    "server": {
+                        "type": "group",
+                        "items": {
+                            "host": {
+                                "default_value": "",
+                                "description": "Server {{ count }} Host",
+                                "type": "input"
                             },
-                            {
-                                "text":"TCP",
-                                "value":"TCP"
+                            "port": {
+                                "default_value": 5060,
+                                "description": "Server {{ count }} Port",
+                                "type": "input"
                             },
-                            {
-                                "text":"TLS",
-                                "value":"TLS"
-                            },
-                            {
-                                "text":"DNS-SRV",
-                                "value":"DNSSRV"
+                            "expires": {
+                                "default_value": 3600,
+                                "description": "Server {{ count }} Expires",
+                                "type": "input"
                             }
-                            ]
-                        },
-                        {
-                            "variable":"$nat_traversal",
-                            "default_value":"0",
-                            "description":"NAT Traversal",
-                            "type":"list",
-                            "data":[
-                            {
-                                "text":"Disabled",
-                                "value":"0"
-                            },
-                            {
-                                "text":"STUN",
-                                "value":"1"
-                            }
-                            ]
-                        },
-						{
-			                "variable":"$rport_enable",
-			                "default_value":"1",
-			                "description":"RPort Enable",
-			                "type":"list",
-			                "data":[
-			                {
-			                    "text":"TRUE",
-			                    "value":"1"
-			                },
-			                {
-			                    "text":"FALSE",
-			                    "value":"0"
-			                }
-							]
-						},
-						{
-			                "variable":"$udp_keepalive_enable",
-			                "default_value":"1",
-			                "description":"UDP Keep-alive Message Enable",
-							"tooltip":"fun",
-			                "type":"list",
-			                "data":[
-			                {
-			                    "text":"TRUE",
-			                    "value":"1"
-			                },
-			                {
-			                    "text":"FALSE",
-			                    "value":"0"
-			                }
-							]
-						},
-						{
-		                    "variable": "$udp_keepalive_seconds",
-		                    "default_value": "30",
-		                    "description": "UDP Keep-alive Interval(seconds)",
-		                    "type": "input"
-		                },
-						{
-		                    "variable": "$sip_registration_retry_timer",
-		                    "default_value": "5",
-		                    "description": "SIP Registration Retry Timer",
-		                    "type": "input"
-		                },
-                        {
-                            "variable":"$first_audio_codec",
-                            "default_value":"G711u",
-                            "description":"First Preferred Audio Codec",
-                            "type":"list",
-                            "data":[
-                            {
-                                "text":"G711u",
-                                "value":"G711u"
-                            },
-                            {
-                                "text":"G711a",
-                                "value":"G711a"
-                            },
-                            {
-                                "text":"G726-16",
-                                "value":"G726-16"
-                            },
-                            {
-                                "text":"G726-24",
-                                "value":"G726-24"
-                            },
-                            {
-                                "text":"G726-32",
-                                "value":"G726-32"
-                            },
-                            {
-                                "text":"G726-40",
-                                "value":"G726-40"
-                            },
-                            {
-                                "text":"G729a",
-                                "value":"G729a"
-                            },
-                            {
-                                "text":"G722",
-                                "value":"G722"
-                            }
-                            ]
-                        },
-                        {
-                            "variable":"$second_audio_codec",
-                            "default_value":"Unspecified",
-                            "description":"Second Preferred Audio Codec",
-                            "type":"list",
-                            "data":[
-                            {
-                                "text":"Unspecified",
-                                "value":"Unspecified"
-                            },
-                            {
-                                "text":"G711u",
-                                "value":"G711u"
-                            },
-                            {
-                                "text":"G711a",
-                                "value":"G711a"
-                            },
-                            {
-                                "text":"G726-16",
-                                "value":"G726-16"
-                            },
-                            {
-                                "text":"G726-24",
-                                "value":"G726-24"
-                            },
-                            {
-                                "text":"G726-32",
-                                "value":"G726-32"
-                            },
-                            {
-                                "text":"G726-40",
-                                "value":"G726-40"
-                            },
-                            {
-                                "text":"G729a",
-                                "value":"G729a"
-                            },
-                            {
-                                "text":"G722",
-                                "value":"G722"
-                            }
-                            ]
-                        },
-                        {
-                            "variable":"$third_audio_codec",
-                            "default_value":"Unspecified",
-                            "description":"Third Preferred Audio Codec",
-                            "type":"list",
-                            "data":[
-                            {
-                                "text":"Unspecified",
-                                "value":"Unspecified"
-                            },
-                            {
-                                "text":"G711u",
-                                "value":"G711u"
-                            },
-                            {
-                                "text":"G711a",
-                                "value":"G711a"
-                            },
-                            {
-                                "text":"G726-16",
-                                "value":"G726-16"
-                            },
-                            {
-                                "text":"G726-24",
-                                "value":"G726-24"
-                            },
-                            {
-                                "text":"G726-32",
-                                "value":"G726-32"
-                            },
-                            {
-                                "text":"G726-40",
-                                "value":"G726-40"
-                            },
-                            {
-                                "text":"G729a",
-                                "value":"G729a"
-                            },
-                            {
-                                "text":"G722",
-                                "value":"G722"
-                            }
-                            ]
                         }
+                    },
+                    "outbound_proxy": {
+                        "type": "group",
+                        "items": {
+                            "enable": {
+                                "default_value": false,
+                                "description": "Use Outbound Proxy",
+                                "type": "checkbox"
+                            },
+                            "host": {
+                                "default_value": "",
+                                "description": "Outbound Host",
+                                "type": "input"
+                            },
+                            "port": {
+                                "default_value": 5060,
+                                "description": "Outbound Port",
+                                "type": "input"
+                            }
+                        }
+                    },
+                    "stun_server": {
+                        "type": "group",
+                        "items": {
+                            "enable": {
+                                "default_value": false,
+                                "description": "Use Stun Server",
+                                "type": "checkbox"
+                            },
+                            "host": {
+                                "default_value": "",
+                                "description": "Stun Server Host",
+                                "type": "input"
+                            },
+                            "port": {
+                                "default_value": "5060",
+                                "description": "Stun Server Port",
+                                "type": "input"
+                            }
+                        }
+                    },
+                    "transport": {
+                        "default_value": "0",
+                        "description": "Transport",
+                        "type": "list",
+                        "data": [
+                            {
+                                "text": "UDP",
+                                "value": "UDP"
+                            },
+                            {
+                                "text": "TCP",
+                                "value": "TCP"
+                            },
+                            {
+                                "text": "TLS",
+                                "value": "TLS"
+                            },
+                            {
+                                "text": "DNS-SRV",
+                                "value": "DNSSRV"
+                            }
                         ]
+                    },
+                    "nat_traversal": {
+                        "default_value": "0",
+                        "description": "NAT Traversal",
+                        "type": "list",
+                        "data": [
+                            {
+                                "text": "Disabled",
+                                "value": "0"
+                            },
+                            {
+                                "text": "STUN",
+                                "value": "1"
+                            }
+                        ]
+                    },
+                    "rport_enable": {
+                        "default_value": "1",
+                        "description": "RPort Enable",
+                        "type": "list",
+                        "data": [
+                            {
+                                "text": "TRUE",
+                                "value": "1"
+                            },
+                            {
+                                "text": "FALSE",
+                                "value": "0"
+                            }
+                        ]
+                    },
+                    "upd_keepalive_enable": {
+                        "default_value": "1",
+                        "description": "UDP Keep-alive Message Enable",
+                        "tooltip": "fun",
+                        "type": "list",
+                        "data": [
+                            {
+                                "text": "TRUE",
+                                "value": "1"
+                            },
+                            {
+                                "text": "FALSE",
+                                "value": "0"
+                            }
+                        ]
+                    },
+                    "udp_keepalive_seconds": {
+                        "default_value": "30",
+                        "description": "UDP Keep-alive Interval(seconds)",
+                        "type": "input"
+                    },
+                    "sip_registration_retry_timer": {
+                        "default_value": "5",
+                        "description": "SIP Registration Retry Timer",
+                        "type": "input"
+                    },
+                    "audio_codecs": {
+                        "quantity": 3,
+                        "start": 1,
+                        "type": "loop",
+                        "loop_data": {
+                            "codec": {
+                                "default_value": {
+                                    "1": "G711u",
+                                    "2": "NA",
+                                    "3": "NA"
+                                },
+                                "description": "Preferred Audio Codec # {{ count }} ",
+                                "type": "list",
+                                "data": [
+                                    {
+                                        "text": "Not Specified",
+                                        "value": "NA"
+                                    },
+                                    {
+                                        "text": "G711u",
+                                        "value": "G711u"
+                                    },
+                                    {
+                                        "text": "G711a",
+                                        "value": "G711a"
+                                    },
+                                    {
+                                        "text": "G726-16",
+                                        "value": "G726-16"
+                                    },
+                                    {
+                                        "text": "G726-24",
+                                        "value": "G726-24"
+                                    },
+                                    {
+                                        "text": "G726-32",
+                                        "value": "G726-32"
+                                    },
+                                    {
+                                        "text": "G726-40",
+                                        "value": "G726-40"
+                                    },
+                                    {
+                                        "text": "G729a",
+                                        "value": "G729a"
+                                    },
+                                    {
+                                        "text": "G722",
+                                        "value": "G722"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "voicemail_extension": {
+                        "default_value": "*97",
+                        "description": "Voicemail Extension",
+                        "type": "input"
                     }
-                },
-                {
-                    "type": "break"
-                },
-				{
-                    "variable": "$registration_retry_rand",
-                    "default_value": "5",
-                    "description": "Registration Retry Randomization",
-                    "type": "input"
-                },
-                {
-                    "variable": "$ntp",
-                    "default_value": "",
-                    "description": "NTP Server",
-                    "type": "input"
-                },
-                {
-                    "variable": "$local_port",
-                    "default_value": "5060",
-                    "description": "SIP Local Port",
-                    "type": "input"
-                },
-				{
-	                "variable":"$connection_type",
-	                "default_value":"DHCP",
-	                "description":"Connection Type",
-	                "type":"list",
-	                "data":[
-	                {
-	                    "text":"DHCP",
-	                    "value":"DHCP"
-	                },
-	                {
-	                    "text":"Static IP",
-	                    "value":"STATIC"
-	                },
-	                {
-	                    "text":"PPOE",
-	                    "value":"PPOE"
-	                },
-	                {
-	                    "text":"BOOTP",
-	                    "value":"BOOTP"
-	                }
-					]
-				},
-                {
-                    "variable": "$ip4_address",
-                    "default_value": "",
-                    "description": "IPv4 Address",
-                    "type": "input"
-                },
-                {
-                    "variable": "$ip6_address",
-                    "default_value": "",
-                    "description": "IPv6 Address",
-                    "type": "input"
-                },
-                {
-                    "variable": "$subnet_mask",
-                    "default_value": "255.255.255.0",
-                    "description": "Subnet Mask",
-                    "type": "input"
-                },
-                {
-                    "variable": "$gateway_address",
-                    "default_value": "",
-                    "description": "Gateway Address",
-                    "type": "input"
-                },
-                {
-                    "variable": "$primary_dns",
-                    "default_value": "",
-                    "description": "Primary DNS",
-                    "type": "input"
-                },
-                {
-                    "type": "break"
-                },
-                {
-                    "variable": "$ppoe_username",
-                    "default_value": "",
-                    "description": "PPOE Username",
-                    "type": "input"
-                },
-                {
-                    "variable": "$ppoe_password",
-                    "default_value": "",
-                    "description": "PPOE Password",
-                    "type": "input"
-                },
-                {
-                    "type": "break"
-                },
-				{
-	                "variable":"$vlan_enable",
-	                "default_value":"0",
-	                "description":"VLAN Enable",
-	                "type":"list",
-	                "data":[
-	                {
-	                    "text":"TRUE",
-	                    "value":"1"
-	                },
-	                {
-	                    "text":"FALSE",
-	                    "value":"0"
-	                }
-					]
-				},
-                {
-                    "variable": "$vlan_id",
-                    "default_value": "0",
-                    "description": "VLAN ID",
-                    "type": "input"
-                },
-                {
-                    "variable": "$vlan_qos",
-                    "default_value": "0",
-                    "description": "VLAN QOS",
-                    "type": "input"
-                },
-                {
-                    "type": "break"
-                },
-                {
-                "variable":"$voicemail_extension",
-                "default_value":"*97",
-                "description":"Voicemail Extension",
-                "type":"input"
-                },
-                {
-                "variable":"$dateformat",
-                "default_value":"middle-endian",
-                "description":"Date format",
-                "type":"list",
-                "data":[
-                  {
-                    "text":"Month/Day/Year (US)",
-                    "value":"middle-endian"
-                  },
-                  {
-                    "text":"Day-Month-Year (European)",
-                    "value":"little-endian"
-                  },
-                  {
-                    "text":"Year.Month.Day (China, Japan, ISO8601)",
-                    "value":"big-endian"
-                  }
+                }
+            },
+            "registration_retry_rand": {
+                "default_value": "5",
+                "description": "Registration Retry Randomization",
+                "type": "input"
+            },
+            "ntp": {
+                "default_value": "",
+                "description": "Network Time Server (NTP)",
+                "type": "input"
+            },
+            "network": {
+                "type": "group",
+                "items": {
+                    "local_port": {
+                        "default_value": "5060",
+                        "description": "SIP Local Port",
+                        "type": "input"
+                    },
+                    "connection_type": {
+                        "default_value": "DHCP",
+                        "description": "Connection Type",
+                        "type": "list",
+                        "data": [
+                            {
+                                "text": "DHCP",
+                                "value": "DHCP"
+                            },
+                            {
+                                "text": "Static IP",
+                                "value": "STATIC"
+                            },
+                            {
+                                "text": "PPOE",
+                                "value": "PPOE"
+                            },
+                            {
+                                "text": "BOOTP",
+                                "value": "BOOTP"
+                            }
+                        ]
+                    },
+                    "ip4_address": {
+                        "default_value": "",
+                        "description": "IPv4 Address",
+                        "type": "input"
+                    },
+                    "ip6_address": {
+                        "default_value": "",
+                        "description": "IPv6 Address",
+                        "type": "input"
+                    },
+                    "subnet": {
+                        "default_value": "255.255.255.0",
+                        "description": "Subnet Mask",
+                        "type": "input"
+                    },
+                    "gateway": {
+                        "default_value": "",
+                        "description": "Gateway Address",
+                        "type": "input"
+                    },
+                    "primary_dns": {
+                        "default_value": "",
+                        "description": "Primary DNS",
+                        "type": "input"
+                    },
+                    "secondary_dns": {
+                        "default_value": "",
+                        "description": "Secondary DNS",
+                        "type": "input"
+                    },
+                    "ppoe_username": {
+                        "default_value": "",
+                        "description": "PPOE Username",
+                        "type": "input"
+                    },
+                    "ppoe_password": {
+                        "default_value": "",
+                        "description": "PPOE Password",
+                        "type": "input"
+                    },
+                    "vlan": {
+                        "type": "group",
+                        "items": {
+                            "enable": {
+                                "default_value": false,
+                                "description": "VLAN Enable",
+                                "type": "checkbox"
+                            },
+                            "id": {
+                                "default_value": "0",
+                                "description": "VLAN ID",
+                                "type": "input"
+                            },
+                            "QOS": {
+                                "default_value": "0",
+                                "description": "VLAN QOS",
+                                "type": "input"
+                            }
+                        }
+                    }
+                }
+            },
+            "dateformat": {
+                "default_value": "middle-endian",
+                "description": "Date format",
+                "type": "list",
+                "data": [
+                    {
+                        "text": "Month/Day/Year (US)",
+                        "value": "middle-endian"
+                    },
+                    {
+                        "text": "Day-Month-Year (European)",
+                        "value": "little-endian"
+                    },
+                    {
+                        "text": "Year.Month.Day (China, Japan, ISO8601)",
+                        "value": "big-endian"
+                    }
                 ]
-                },
-                {
-                "variable":"$timeformat",
-                "default_value":"12hour",
-                "description":"Time format",
-                "type":"list",
-                "data":[
-                  {
-                    "text":"AM\/PM",
-                    "value":"12hour"
-                  },
-                  {
-                    "text":"24 hour",
-                    "value":"24hour"
-                  }
+            },
+            "timeformat": {
+                "default_value": "12hour",
+                "description": "Time format",
+                "type": "list",
+                "data": [
+                    {
+                        "text": "AM/PM",
+                        "value": "12hour"
+                    },
+                    {
+                        "text": "24 hour",
+                        "value": "24hour"
+                    }
                 ]
-                },
-                {
-                    "type": "break"
-                },
-                {
-                    "variable": "$tonescheme",
-                    "default_value": "US",
-                    "description": "Tone Scheme (e.g. Dialtone)",
-                    "type": "list",
-                    "data": [
+            },
+            "tonescheme": {
+                "default_value": "US",
+                "description": "Tone Scheme (e.g. Dialtone)",
+                "type": "list",
+                "data": [
                     {
                         "text": "USA",
                         "value": "US"
@@ -533,14 +385,13 @@
                         "text": "New Zealand",
                         "value": "NZ"
                     }
-                    ]
-                },
-                {
-                    "variable": "$provision_protocol",
-                    "default_value": "http",
-                    "description": "Provision Protocol",
-                    "type": "list",
-                    "data": [
+                ]
+            },
+            "provision_protocol": {
+                "default_value": "http",
+                "description": "Provision Protocol",
+                "type": "list",
+                "data": [
                     {
                         "text": "HTTP",
                         "value": "http"
@@ -549,10 +400,8 @@
                         "text": "TFTP",
                         "value": "tftp"
                     }
-                    ]
-                }
                 ]
-            }]
-        }]
+            }
+        }
     }
 }
