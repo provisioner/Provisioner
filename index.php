@@ -11,7 +11,7 @@ define('DEBUG', true);
 // DATABASE: PROVIDERS -- A document for each provider, by provider URL
 // DATABASE: <ACCOUNT_ID> - An account_id (which is random) which belongs to a provider and has all of a customer's default account settings AND the individual phone MAC address settings
 
-require_once '../bootstrap.php' ;
+require_once 'bootstrap.php' ;
 require_once 'model/utils.php';
 require_once 'model/configfile.php';
 

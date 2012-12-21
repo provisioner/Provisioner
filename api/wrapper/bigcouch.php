@@ -31,6 +31,7 @@ class BigCouch {
         $return_value = array();
         foreach ($rows as $row) {
             // The id will be the key
+            // TODO: allow the user to choose what must be the key
             $return_value[$row['id']] = $row['value'];
         }
 
