@@ -1,6 +1,4 @@
 {
-  "data": {
-    "brands": {
       "name": "Yealink\/Dreamwave",
       "brand_id": "8",
       "directory": "yealink",
@@ -13,8 +11,7 @@
           "name": "Yealink\/Dreamwave T1X Models: [T18]",
           "directory": "t1x",
           "description": "Make more configuration settings available from UI",
-          "changelog": "",
-          "last_modified": null
+          "changelog": ""
         },
         {
           "id": "1",
@@ -22,7 +19,10 @@
           "directory": "t2x",
           "description": "Make more configuration settings available from UI",
           "changelog": "",
-          "last_modified": null
+          "last_modified": null,
+          "template_data": [
+				"t26.json"
+			]
         },
         {
           "id": "2",
@@ -37,6 +37,4 @@
         "001565"
       ],
       "changelog": "PACKAGER: Cisco\n\n-Error in Family_data.json"
-    }
-  }
 }
