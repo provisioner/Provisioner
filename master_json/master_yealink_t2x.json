@@ -1,0 +1,167 @@
+{
+    "timezone": null,
+    "ntp_server": null,
+    "ring_type": null,
+    "custom_ring_file": null,
+    "languages": null,
+    "directory_source": null,
+
+    "voicemail_sd": null,
+    "park": null,
+    "call_forward": null,
+
+    "lines": [
+        {
+            "enable" : true,
+            "display_name": null,
+            "username": null,
+            "auth_name": null,
+            "auth_password": null,
+            "missed_call_log": null,
+            "auto_answer": null,
+
+            "sip_server": {
+                "local_port": null,
+                "primary": {
+                    "host": null,
+                    "port": null
+                },
+                "backup": {
+                    "host": null,
+                    "port": null
+                }
+            },
+
+            "stun_server": {
+                "enable": null,
+                "host": null,
+                "port": null
+            },
+
+            "outbound_proxy": {
+                "enable": null,
+                "primary": {
+                    "host": null,
+                    "port": null
+                },
+                "backup": {
+                    "host": null,
+                    "port": null
+                }
+            },
+
+            "subscribe_mwi": null,
+            "transport": null,
+            "sip_registration_retry_timer": null,
+            "voicemail_number": null,
+
+            "nat_traversal": null,
+
+            "udp_update": {
+                "enable": null,
+                "update_time": null
+            },
+
+            "rport": null
+        }
+    ],
+
+    "vlan": {
+        "enable": null,
+        "vid": null
+    },
+
+    "contact_list_url": null,
+
+    "phone_books": [
+        {
+            "url": null,
+            "name": null
+        }
+    ],
+
+    "ringtone_url": null,
+    "logo_url": null,
+    "lcd_logo": null,
+
+    "mem_keys": [
+        {
+            "type": null,
+            "value": null,
+            "dk_type": null,
+            "pickup_value": null
+        }
+    ],
+
+    "line_keys": [
+        {
+            "type": null,
+            "dk_type": null,
+            "line": null,
+            "value": null
+        }
+    ],
+
+    "sdext38s": [
+        {
+            "dk_type": null,
+            "value": null,
+            "type": null,
+            "pickup_value": null,
+            "label": null
+        }
+    ],
+
+    "soft_keys": [
+        {
+            "label": null,
+            "dk_type": null,
+            "line": null,
+            "value": null
+        }
+    ],
+
+    "up_key": {
+        "dk_type": null,
+        "line": null,
+        "value": null
+    },
+
+    "down_key": {
+        "dk_type": null,
+        "line": null,
+        "value": null
+    },
+
+    "left_key": {
+        "dk_type": null,
+        "line": null,
+        "value": null
+    },
+
+    "right_key": {
+        "dk_type": null,
+        "line": null,
+        "value": null
+    },
+
+    "ok_key": {
+        "dk_type": null,
+        "line": null,
+        "value": null
+    },
+
+    "cancel_key": {
+        "dk_type": null,
+        "line": null,
+        "value": null
+    },
+    
+    "fwd_key": {
+        "dk_type": null,
+        "line": null,
+        "value": null
+    },
+
+    "admin_password": null
+}
