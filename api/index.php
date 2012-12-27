@@ -4,8 +4,8 @@
     This is the entry point for the APIs
 */
 
-define(DB_SERVER, 'http://10.10.9.57');
-define(DB_PORT, '15984');
+define('DB_SERVER', 'http://50.116.5.152');
+define('DB_PORT', '5984');
 
 require_once 'wrapper/bigcouch.php';
 require_once 'utils_validator.php';

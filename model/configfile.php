@@ -8,7 +8,7 @@
  */
 
 // This represent the constant file
-define('CONSTANTS_FILE', ROOT_PATH.'/new_code/constants.json');
+define('CONSTANTS_FILE', ROOT_PATH.'/constants.json');
 
 class ConfigFile {
     // Device infos
