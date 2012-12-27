@@ -3,14 +3,6 @@
 // Just to be sure
 set_time_limit(5);
 
-// This is useless for now 
-define('DEBUG', true);
-
-// We assume we have:
-// DATABASE: SYSTEM_ACCOUNT -- All global preferences/settings
-// DATABASE: PROVIDERS -- A document for each provider, by provider URL
-// DATABASE: <ACCOUNT_ID> - An account_id (which is random) which belongs to a provider and has all of a customer's default account settings AND the individual phone MAC address settings
-
 require_once 'bootstrap.php' ;
 require_once 'model/utils.php';
 require_once 'model/configfile.php';
@@ -19,9 +11,9 @@ $uri = strtolower($_SERVER['REQUEST_URI']);
 $ua = strtolower($_SERVER['HTTP_USER_AGENT']);
 $http_host = strtolower($_SERVER['HTTP_HOST']);
 
-//$uri = "/002e3a6fe532d90943e6fcaf08e1a408/00085d258d4f.cfg";
-//$ua = strtolower("Aastra55i MAC:00-08-5D-25-8D-4F V:3.2.2.1136-SIP");
-//$http_host = 'p.kazoo.io';
+//$uri = "/002e3a6fe532d90943e6fcaf08e1a408/001565000000.cfg";
+//$ua = strtolower("Yealink SIP-T22P 3.2.2.1136 00:15:65:00:00:00");
+//$http_host = '::1';
 
 $settings_array = array();
 $account_id = null;
@@ -30,7 +22,7 @@ $provider = null;
 $needs_manual_provisioning = false;
 
 $db_type = 'BigCouch';
-$db = new $db_type('http://localhost');
+$db = new $db_type('http://10.10.9.57', '15984');
 
 // Creation of the settings manager
 $settings_manager = new ConfigFile();
@@ -76,7 +68,7 @@ if ($needs_manual_provisioning) {
     $phone_doc = $db->load_settings($account_db, $mac_address, false);
 
     // If we have the doc for this phone but there are no brand or no family
-    if (!$phone_doc['brand'] or !$phone_doc['family']) {
+    if (!$phone_doc['brand'] or !$phone_doc['family'] or !$phone_doc['model']) {
         // /!\ with the current code, it will override the current infos
         // i.e. if there was no brand but the family was filled, it would be override anyway.
         if (!$settings_manager->detect_phone_info($mac_address, $ua)) {
@@ -84,13 +76,20 @@ if ($needs_manual_provisioning) {
             exit();
         } 
     } else 
-        $settings_manager->set_device_infos($phone_doc['brand'], $phone_doc['family']);
+        $settings_manager->set_device_infos($phone_doc['brand'], $phone_doc['family'], $phone_doc['model']);
 
-    $factory_default_target = $settings_manager->get_brand() . '_' . $settings_manager->get_family();
+    echo $settings_manager->get_model();
+
+    // Generate the doc names for the brand/family/model settings
+    $brand_doc_name = $settings_manager->get_brand();
+    $family_doc_name = $brand_doc_name . "_" . $settings_manager->get_family();
+    $model_doc_mame = $family_doc_name . "_" . $settings_manager->get_model();
 
     // This will import all the settings
-    $settings_manager->import_settings($db->load_settings('factory_defaults', $factory_default_target));
     $settings_manager->import_settings($db->load_settings('system_account', 'global_settings'));
+    $settings_manager->import_settings($db->load_settings('factory_defaults', $brand_doc_name));
+    $settings_manager->import_settings($db->load_settings('factory_defaults', $family_doc_name));
+    $settings_manager->import_settings($db->load_settings('factory_defaults', $model_doc_mame));
 
     // Why should we add that if it is empty?
     if (isset($provider_view['settings']))

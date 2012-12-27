@@ -14,7 +14,7 @@ class ConfigFile {
     // Device infos
     private $_strBrand = null;
     private $_strFamily = null;
-    private $_strModel = null; // Not used
+    private $_strModel = null;
 
     private $_strMac = null;
     private $_strConfigFile = null;
@@ -61,6 +61,10 @@ class ConfigFile {
 
     public function set_family($family) {
         $this->_strFamily = $family;
+    }
+
+    public function set_model($model) {
+        $this->_strModel = $model;
     }
 
     // This function will allow the user to set his own template directory
@@ -199,9 +203,10 @@ class ConfigFile {
         $obj = new ConfigFile();
         $obj-> set_device_infos('yealink', 't2x');
     */
-    public function set_device_infos($brand, $family, $model = '') {
+    public function set_device_infos($brand, $family, $model) {
         $this->_strBrand = strtolower($brand);
         $this->_strFamily = strtolower($family);
+        $this->_strModel = strtolower($model);
 
         if ($this->_strBrand && $this->_strFamily)
             $this->_set_template_dir();
@@ -255,6 +260,10 @@ class ConfigFile {
     // This is the final step
     public function generate_config_file() {
         $arrConfig = $this->_merge_config_objects();
+
+        echo '<pre>';
+        print_r($arrConfig);
+        echo '</pre>';
 
         // Set the twig template directory
         $this->_set_template_dir();
