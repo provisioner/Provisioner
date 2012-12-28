@@ -1,14 +1,6 @@
 {
     "timezone": null,
     "ntp_server": null,
-    "ring_type": null,
-    "custom_ring_file": null,
-    "languages": null,
-    "directory_source": null,
-
-    "voicemail_sd": null,
-    "park": null,
-    "call_forward": null,
 
     "lines": [
         {
@@ -21,7 +13,7 @@
             "auto_answer": null,
 
             "sip_server": {
-                "local_port": null,
+                "listen_port": null,
                 "primary": {
                     "host": null,
                     "port": null
@@ -31,6 +23,8 @@
                     "port": null
                 }
             },
+
+            "expire": null,
 
             "stun_server": {
                 "enable": null,
@@ -163,5 +157,26 @@
         "value": null
     },
 
-    "admin_password": null
+    "admin_password": null,
+
+    "autop": {
+        "update_mode": null,
+        "schedule_min": null
+    },
+
+    "autoprovision": {
+        "server_type": null,
+        "path": null
+    },
+
+    "firmware": {
+        "server_type": null,
+        "server_ip": null,
+        "name": null
+    },
+
+    "rfc2543_hold": null,
+
+    "country": null,
+    "dialnow_delay": null
 }
