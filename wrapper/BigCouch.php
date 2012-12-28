@@ -58,12 +58,10 @@ class BigCouch {
 
     public function get_provider($provider_domain) {
         $couch_client = new couchClient($this->_server_url, 'providers');
-
-        echo $provider_domain;
-
+        
         try {
             $response = $couch_client->key($provider_domain)->asArray()->getView('providers', 'list_by_domain');
-            
+
             // Basically if the view return an element for the filtered request
             if (isset($response['rows'][0]['value']))
                 return $response['rows'][0]['value'];
