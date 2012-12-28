@@ -137,5 +137,24 @@
         "value": null
     },
 
-    "admin_password": null
+    "admin_password": null,
+
+    "autop": {
+        "update_mode": null,
+        "schedule_min": null
+    },
+
+    "autoprovision": {
+        "server_type": null,
+        "path": null
+    },
+
+    "firmware": {
+        "server_type": null,
+        "server_ip": null,
+        "name": null
+    } ,
+
+    "country": null,
+    "dialnow_delay": null
 }
