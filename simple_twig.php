@@ -7134,16 +7134,22 @@ class Twig_NodeVisitor_SafeAnalysis implements Twig_NodeVisitorInterface
     }
 }
 
+class Twig_Node_Expression_TempName extends Twig_Node_Expression
+{
+    public function __construct($name, $lineno)
+    {
+        parent::__construct(array(), array('name' => $name), $lineno);
+    }
 
-
-/*
- * This file is part of Twig.
- *
- * (c) 2010 Fabien Potencier
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+    public function compile(Twig_Compiler $compiler)
+    {
+        $compiler
+            ->raw('$_')
+            ->raw($this->getAttribute('name'))
+            ->raw('_')
+        ;
+    }
+}
 
 /**
  * Twig_NodeVisitor_Optimizer tries to optimizes the AST.
