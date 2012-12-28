@@ -261,10 +261,6 @@ class ConfigFile {
     public function generate_config_file() {
         $arrConfig = $this->_merge_config_objects();
 
-        echo '<pre>';
-        print_r($arrConfig);
-        echo '</pre>';
-
         // Set the twig template directory
         $this->_set_template_dir();
         // init twig object

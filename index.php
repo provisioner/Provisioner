@@ -78,8 +78,6 @@ if ($needs_manual_provisioning) {
     } else 
         $settings_manager->set_device_infos($phone_doc['brand'], $phone_doc['family'], $phone_doc['model']);
 
-    echo $settings_manager->get_model();
-
     // Generate the doc names for the brand/family/model settings
     $brand_doc_name = $settings_manager->get_brand();
     $family_doc_name = $brand_doc_name . "_" . $settings_manager->get_family();
