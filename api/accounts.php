@@ -37,7 +37,8 @@ class Accounts {
         // Retrieving the default settings for a user
         if (!$mac_address) {
             $default_settings = $this->db->get($account_db, $account_id);
-            if (!$default_settings && array_key_exists('settings', $default_settings))
+            
+            if ($default_settings && array_key_exists('settings', $default_settings))
                 return $default_settings['settings'];
             else
                 throw new RestException(404, 'This account_id do not exist or there are no default settings for this user');
