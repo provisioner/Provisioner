@@ -1,0 +1,13 @@
+{
+    "database": {
+        "type": "BigCouch",
+        "url": "localhost",
+        "port": 5984,
+
+        "master_provider": {
+            "name": "Master provider",
+            "ip": "yourIP",
+            "domain": "yourDomain"
+        }
+    }
+}
