@@ -46,7 +46,6 @@
 
             "subscribe_mwi": null,
             "transport": null,
-            "sip_registration_retry_timer": null,
             "voicemail_number": null,
 
             "nat_traversal": null,
@@ -60,12 +59,13 @@
         }
     ],
 
-    "vlan": {
-        "enable": null,
-        "vid": null
-    },
+    "logo_url": null,
 
-    "contact_list_url": null,
+    "phone_settings": {
+        "background": null,
+        "screensaver_time": null,
+        "theme": null
+    },
 
     "phone_books": [
         {
@@ -74,12 +74,9 @@
         }
     ],
 
-    "ringtone_url": null,
-    "logo_url": null,
-    "lcd_logo": null,
-
     "mem_keys": [
         {
+            "line": null,
             "type": null,
             "value": null,
             "dk_type": null,
@@ -92,23 +89,13 @@
             "type": null,
             "dk_type": null,
             "line": null,
-            "value": null
-        }
-    ],
-
-    "sdext38s": [
-        {
-            "dk_type": null,
             "value": null,
-            "type": null,
-            "pickup_value": null,
             "label": null
         }
     ],
 
     "soft_keys": [
         {
-            "label": null,
             "dk_type": null,
             "line": null,
             "value": null
@@ -157,26 +144,28 @@
         "value": null
     },
 
-    "admin_password": null,
+    "sdext38s": [
+        {
+            "line": null,
+            "dk_type": null,
+            "value": null,
+            "type": null,
+            "pickup_value": null,
+            "label": null
+        }
+    ],
 
-    "autop": {
-        "update_mode": null,
-        "schedule_min": null
-    },
+    "admin_password": null,
 
     "autoprovision": {
         "server_type": null,
         "path": null
     },
 
-    "firmware": {
-        "server_type": null,
-        "server_ip": null,
-        "name": null
-    },
-
-    "rfc2543_hold": null,
-
     "country": null,
-    "dialnow_delay": null
+    "dialnow_delay": null,
+
+    "firmware": {
+        "url": null
+    }
 }
