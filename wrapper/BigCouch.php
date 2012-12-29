@@ -34,7 +34,7 @@ class BigCouch {
     // will return an array of the requested document
     public function load_settings($database, $document, $just_settings = true) {
         $doc = null;
-        $couch_client = new couchClient($this->_server_url, $database); 
+        $couch_client = new couchClient($this->_server_url, $database);
 
         try {
             $doc = $couch_client->asArray()->getDoc($document);
