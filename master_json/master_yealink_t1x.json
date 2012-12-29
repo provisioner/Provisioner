@@ -1,14 +1,6 @@
 {
     "timezone": null,
     "ntp_server": null,
-    "ring_type": null,
-    "custom_ring_file": null,
-    "languages": null,
-    "directory_source": null,
-
-    "voicemail_sd": null,
-    "park": null,
-    "call_forward": null,
 
     "lines": [
         {
