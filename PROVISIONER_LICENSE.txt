@@ -24,6 +24,7 @@ Contributor(s):
 	K Anderson
 	Raymond Chandler
 	Andrew Miffleton
+    Francis Genet
 
 Alternatively, the contents of this file may be used under the terms of
 either the GNU General Public License Version 2 or later (the "GPL"), or

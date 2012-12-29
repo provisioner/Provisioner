@@ -46,7 +46,6 @@
 
             "subscribe_mwi": null,
             "transport": null,
-            "sip_registration_retry_timer": null,
             "voicemail_number": null,
 
             "nat_traversal": null,
@@ -78,24 +77,6 @@
     "logo_url": null,
     "lcd_logo": null,
 
-    "mem_keys": [
-        {
-            "type": null,
-            "value": null,
-            "dk_type": null,
-            "pickup_value": null
-        }
-    ],
-
-    "line_keys": [
-        {
-            "type": null,
-            "dk_type": null,
-            "line": null,
-            "value": null
-        }
-    ],
-
     "sdext38s": [
         {
             "dk_type": null,
@@ -103,15 +84,6 @@
             "type": null,
             "pickup_value": null,
             "label": null
-        }
-    ],
-
-    "soft_keys": [
-        {
-            "label": null,
-            "dk_type": null,
-            "line": null,
-            "value": null
         }
     ],
 
@@ -174,8 +146,6 @@
         "server_ip": null,
         "name": null
     },
-
-    "rfc2543_hold": null,
 
     "country": null,
     "dialnow_delay": null
