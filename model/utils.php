@@ -2,7 +2,7 @@
 
 class ProvisionerUtils {
     public static function get_mac_address($ua, $uri) {
-        // Let's check in the User-Agent
+        // Let's check in th001565000000e User-Agent
         if (preg_match("#[0-9a-fA-F]{2}(?=([:-]?))(?:\\1[0-9a-fA-F]{2}){5}#", $ua, $match_result))
             // need to return the mac address without the ':''
             return strtolower(preg_replace('/[:-]/', '', $match_result[0]));
