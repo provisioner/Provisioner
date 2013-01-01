@@ -818,7 +818,7 @@ P90 = 0
 # Allow Auto Answer by Call-Info. 0 - No, 1 - Yes
 # Number: 0, 1
 # Mandatory
-P298 = 0
+P298 = 1
 
 # Refer-To Use Target Contact. 0 - No, 1 - Yes
 # Number: 0, 1

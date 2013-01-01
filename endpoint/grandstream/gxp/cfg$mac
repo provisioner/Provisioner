@@ -486,7 +486,7 @@ P129 = 0
 P90 = 0
 
 # Allow Auto Answer by Call-Info. 0 - no, 1 - yes
-P298 = 0
+P298 = 1
 
 # Turn off speaker on remote disconnect. 0 - no, 1 - yes
 P299 = 0
