@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * This file contains utilities functions
+ *
+ * @author Francis Genet
+ * @license MPL / GPLv2 / LGPL
+ * @package Provisioner
+ * @version 5.0
+ */
+
 class ProvisionerUtils {
     public static function get_mac_address($ua, $uri) {
         // Let's check in th001565000000e User-Agent

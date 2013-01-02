@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Index file for the config generator
+ *
+ * @author Francis Genet
+ * @license MPL / GPLv2 / LGPL
+ * @package Provisioner
+ * @version 5.0
+ */
+
 // Just to be sure
 set_time_limit(5);
 

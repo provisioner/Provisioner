@@ -7,6 +7,7 @@
  * @author Francis Genet
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
+ * @version 5.0
  */
 
 require_once 'bootstrap.php';
@@ -140,6 +141,8 @@ if (strtolower($configs->database->type) == "bigcouch") {
         die("ERROR: " . $e->getMessage() . " (" . $e->getCode() . ")<br>");
     }
 
+    // OK, this is lame... But better then nothing.
+    // TODO: put an ugly ASCII art right here
     echo "=========================== <br>";
     echo "SUCCESS!<br>";
     echo "=========================== <br>";
