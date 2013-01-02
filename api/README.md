@@ -1,3 +1,127 @@
 Provisioners APIs README.
 
-TBD
+APIs Doc
+--------
+
+Date: January 2, 2013
+Version 5.0
+
+======================
+
+The first step before any use of the APIs is to run the setup_db.php script.
+This will create the base structure for the database.
+In order to do so, you will have to edit the config.json file:
+
+database.type: This is the db type that you will use (for now, only BigCouch is supported).
+database.url: This is your database server url. Make sure to do not add the '/' at the end.
+database.port: This is the port that you will use.
+
+The master provider is the admin, he will be the only one able to use the phones APIs.
+database.master_provider.name: The name of your main provider (Could be anything... Really).
+database.master_provider.ip: This is the IP that the provider will use to request the APIs.
+database.master_provider.domain: This is the domain used to provision a phone. 
+    if the phone is requesting http://p.kazoo.io/ when provisioning, the domain is then "p.kazoo.io".
+    It can be an IP address. depends how you configured your phones.
+
+Once you saw the "SUCCESS" message, your database should be ready.
+
+EVERY REQUEST BODY CONTENT-TYPE MUST BE 'application/json'
+
+
+-----------
+Phones APIs
+-----------
+
+Those APIs will allow you to add/edit/delete/list The brand/family/model settings.
+We are talking here about the default settings for each brand/family/model.
+You have to keep in mind that the hierarchy is respected when merging the files.
+That means that if there is a common setting between a family and its brand, then
+the family will override the brand setting. 
+Same thing for model/family settings and model/brand settings.
+
+If the database used is BigCouch, the document name will be as followed:
+    brand_family_model. ex: yealink_t2x_t22
+
+GET: 
+----
+
+Protected, requires 'admin'
+
+urls:
+    /
+    /{brand}
+    /{brand}/{family}
+    /{brand}/{family}/{model}
+
+The request will return the informations for each brands/families/models in the database.
+For a request on /yealink, all the families for this brand will be returned
+
+PUT:
+----
+
+Protected, requires 'admin'
+
+urls:
+    /{brand}
+    /{brand}/{family}
+    /{brand}/{family}/{model}
+
+The request will add an element as a brand, family or model with the given datas in the body.
+
+The body should look like:
+
+{
+    "settings": {
+        "random_settings": true,
+        "another_one": null,
+        "bla": ["Blabla", Blablabla]
+    }
+}
+
+The root "settings" is mandatory. Any other root attribute will not be used.
+
+POST:
+-----
+
+Protected, requires 'admin'
+
+urls:
+    /{brand}
+    /{brand}/{family}
+    /{brand}/{family}/{model}
+
+The request will edit an existing brand/family/model
+
+The body should look like:
+
+{
+    "settings": {
+        "random_settings": true,
+        "another_one": null,
+        "bla": ["Blabla", Blablabla]
+    }
+}
+
+Any other root attribute will result in a 400 error.
+You will have to resend the entire 'settings' object. 
+Otherwise the object sent will entirely override the previous object.
+This will be fixed in a near future.
+
+DELETE:
+-------
+
+Protected, requires 'admin'
+
+urls:
+    /{brand}
+    /{brand}/{family}
+    /{brand}/{family}/{model}
+
+Sending this kind of request will delete the document.
+/!\ It will not be possible to get it back unless you have a backu of your DB /!\
+BE WARNED!
+
+
+---------
+Providers
+---------
