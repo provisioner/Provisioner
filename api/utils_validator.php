@@ -19,6 +19,7 @@ class Validator {
         return $data;
     }
 
+    // TODO: this function must not allow some attribute as well
     static function validateAdd($data, $fields)
     {
         foreach ($fields as $field) {
