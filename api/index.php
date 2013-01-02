@@ -1,8 +1,13 @@
 <?php
 
-/*
-    This is the entry point for the APIs
-*/
+/**
+ * This is the entry point for the APIs
+ *
+ * @author Francis Genet
+ * @license MPL / GPLv2 / LGPL
+ * @package Provisioner
+ * @version 5.0
+ */
 
 define('DB_SERVER', 'http://10.10.9.57');
 define('DB_PORT', '15984');

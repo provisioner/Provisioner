@@ -1,5 +1,14 @@
 <?php 
 
+/**
+ * This file contains the validators 
+ *
+ * @author Francis Genet
+ * @license MPL / GPLv2 / LGPL
+ * @package Provisioner
+ * @version 5.0
+ */
+
 class Validator {
     static function validateEdit($data, $fields)
     {

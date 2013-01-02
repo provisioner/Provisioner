@@ -3,6 +3,11 @@
 /**
  * All methods in this class are protected - Some more than others
  * Brand/family/model APIs
+ *
+ * @author Francis Genet
+ * @license MPL / GPLv2 / LGPL
+ * @package Provisioner
+ * @version 5.0
  */
 
 class Phones {

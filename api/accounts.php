@@ -3,7 +3,11 @@
 /**
  * All methods in this class are protected
  * Accounts APIs
- * @access protected
+ *
+ * @author Francis Genet
+ * @license MPL / GPLv2 / LGPL
+ * @package Provisioner
+ * @version 5.0
  */
 
 class Accounts {

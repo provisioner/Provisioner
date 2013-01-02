@@ -1,5 +1,14 @@
 <?php 
 
+/**
+ * This file manage all the APIs for the providers
+ *
+ * @author Francis Genet
+ * @license MPL / GPLv2 / LGPL
+ * @package Provisioner
+ * @version 5.0
+ */
+
 class Providers {
     public $db;
 
