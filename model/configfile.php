@@ -1,10 +1,12 @@
 <?php
+
 /**
  * Represent the config file class that will merge / load / return the requested config file
  *
  * @author Francis Genet
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
+ * @version 5.0
  */
 
 // This represent the constant file
