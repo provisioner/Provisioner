@@ -1,5 +1,15 @@
 <?php 
 
+/**
+ * This file contains The AccessControl class
+ * It is used to determine wether or not you are allowed to access an API
+ *
+ * @author Francis Genet
+ * @license MPL / GPLv2 / LGPL
+ * @package Provisioner
+ * @version 5.0
+ */
+
 class AccessControl implements iAuthenticate {
 
     public static $requires = 'user';
