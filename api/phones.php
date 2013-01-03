@@ -122,8 +122,8 @@ class Phones {
      */
 
     function delElement($brand, $family = null, $model = null) {
-        // NOP, this is not OK for the wrapper. it is too specific.
-        // I MUST find a way to use the delete() function isteand of this one.
+        // NOP, this is NOT OK for the wrapper. it is too specific.
+        // I MUST find a way to use the delete() function instead of this one.
         // If I don't the other wrappers will need to implement this function as well.
         $this->db->deleteView('factory_defaults', $brand, $family, $model);
 
