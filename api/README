@@ -25,6 +25,11 @@ Once you saw the "SUCCESS" message, your database should be ready.
 
 EVERY REQUEST BODY CONTENT-TYPE MUST BE 'application/json'
 
+In all the following APIs, there is a "settings" attribute example in the ../master_json folder.
+If you add some attributes, you will have to modify the template which are in the
+../endpoint/brand/family/ folder.
+The template system used is TWIG (http://twig.sensiolabs.org/).
+
 
 -----------
 Phones APIs
