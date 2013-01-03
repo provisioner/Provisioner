@@ -5,8 +5,8 @@
       "brand_id": "7",
       "directory": "cisco",
       "package": "cisco.tgz",
-      "md5sum": "6a9092b35e23738a5e7e70f1453b3a0e",
-      "last_modified": 1349162251,
+      "md5sum": "72805e30ca22551ea7b043f5b84fbd6e",
+      "last_modified": 1354171030,
       "family_list": [
         {
           "id": "5",
@@ -88,11 +88,16 @@
         "001EF7",
         "000E08",
         "1CDF0F",
-        "E05FB9",
+        "30E4DB",
+        "58BFEA",
+        "649EF3",
         "5475D0",
-        "C46413"
+        "C46413",
+        "C89C1D",
+        "D0D0FD",
+        "E05FB9"
       ],
-      "changelog": "PACKAGER: Remove Firmware Install info. N\/A."
+      "changelog": "PACKAGER: Quick fix for BLF on SPA5xx"
     }
   }
 }
