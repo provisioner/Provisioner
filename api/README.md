@@ -1,5 +1,3 @@
-Provisioners APIs README.
-
 APIs Doc
 --------
 
@@ -125,3 +123,75 @@ BE WARNED!
 ---------
 Providers
 ---------
+
+Thoses APis will contain all the providers informations like the providers specific settings.
+It will contain the authorized IP, the domain and the authorization level.
+A default account_id can also be specified if the phone is not recognized.
+
+GET:
+----
+
+Protected, requires 'admin'
+
+urls:
+    /
+    /{provider_id}
+
+This request will return all the providers information if the request is made on the root.
+If a provider_id is in the url, it will return the information for a specific provider.
+
+PUT:
+----
+
+Protected, requires 'admin'
+
+urls:
+    /
+
+This request will add a provider. It will always be a 'user' level provider.
+If you want to add an admin, You will have to do it through the database interface.
+The body of the request should look like:
+
+{
+    "name": "Provider name",
+    "domain": "provider.domain.com",
+    // This can be null, but must be provided
+    "default_account_id": "002e3a6fe532d90943e6fcaf08e1a408",
+    // This cannot be an array for now. One IP by provider.
+    "authorized_ip": "10.10.9.57",
+    "settings": {
+        "random_settings": true,
+        "another_one": null,
+        "bla": ["Blabla", Blablabla]
+    }
+}
+
+It is mandatory to provide every root attribute as the above example.
+
+POST:
+-----
+
+Protected, requires 'admin'
+
+urls:
+    /{provider_id}
+
+This request will edit an existing provider information. The attributes must be among
+"name", "domain", "default_account_id", "authorized_ip" or "settings".
+You don't have to send all those attributes. You can for example just modify the domain.
+However if you are modifying the settings, you must resend the whole previous object,
+otherwise only the newly sent information will be saved. As said previously, I know this
+suck and I will work on that.
+
+DELETE:
+-------
+
+Protected, requires 'admin'
+
+urls:
+    /{provider_id}
+
+This will delete all the informations about the provider. If any account were linked to
+this provider, they will be kept.
+/!\ Be carefull with this function, it will actually delete the provider document. It will not
+be possible to get the data back /!\
