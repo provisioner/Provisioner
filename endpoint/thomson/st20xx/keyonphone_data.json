@@ -8,43 +8,10 @@
                         "name":"phonekeys",
                         "item":[
                             {
-                                "variable":"$BLFType",
-                                "default_value":"0",
-                                "description":"Type of BLF",
-                                "type":"list",
-                                "data":[
-                                    {"value":"0","text":"User-oriented BLF"},
-                                    {"value":"1","text":"List-oriented BLF"},
-                                    {"value":"2","text":"Presence BLF"}
-                                ]
-                            },
-                            {
-                                "variable":"$StartSpareFK",
-                                "default_value":"0",
-                                "description":"Start key for List-oriented BLF",
-								"max_chars":"2",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$BLFListSipUri",
-                                "default_value":"L/<sip:>",
-                                "description":"List-oriented BLF URI",
-                                "max_chars":"90",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$ServiceSupervisionFK",
-                                "default_value":"1",
-                                "description":"Start key for User-oriented BLF",
-								"max_chars":"2",
-                                "type":"input"
-                            },
-                            {"type":"break"},
-                            {
                                 "variable":"$FeatureKeyFunc01",
                                 "description":"Key &nbsp;&nbsp;1 Function",
                                 "type":"list","default_value":"L","data":[
-                                    {"value":"L","text":"Programmed (Speed Dial)"},{"value":"S","text":"Supervision"}
+                                    {"value":"L","text":"Programmed (Speed Dial)"}
                                 ]
                             },
                             {
@@ -56,7 +23,7 @@
                                 "variable":"$FeatureKeyFunc02",
                                 "description":"Key &nbsp;&nbsp;2 Function",
                                 "type":"list","default_value":"L","data":[
-                                    {"value":"L","text":"Programmed (Speed Dial)"},{"value":"S","text":"Supervision"}
+                                    {"value":"L","text":"Programmed (Speed Dial)"}
                                 ]
                             },
                             {
@@ -166,25 +133,67 @@
                                 "description":"FeatureKeyLock",
                                 "type":"input"
                             },
+                            {"type":"break"},
                             {
-                                "variable":"$Current_Max_Multiline",
-                                "default_value":"10",
-                                "description":"Number of Multilines to support",
+                                "variable":"$Transfer_to_voice_mail",
+                                "default_value":"1",
+                                "description":"Transfer to voice mail",
                                 "type":"list",
                                 "data":[
-                                    {"value":"1","text":"1"},
-                                    {"value":"2","text":"2"},
-                                    {"value":"3","text":"3"},
-                                    {"value":"4","text":"4"},
-                                    {"value":"5","text":"5"},
-                                    {"value":"6","text":"6"},
-                                    {"value":"7","text":"7"},
-                                    {"value":"8","text":"8"},
-                                    {"value":"9","text":"9"},
-                                    {"value":"10","text":"10"}
+                                    {"value":"0","text":"Disable softkey"},
+                                    {"value":"1","text":"Enable softkey"}
+                                ]                        
+                            },
+                            {
+                                "variable":"$ManualLog",
+                                "default_value":"0",
+                                "description":"Log in/out feature",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"Disabled"},
+                                    {"value":"1","text":"Enabled"}
                                 ]
                             },
-                            {"type":"break"},
+                            {
+                                "variable":"$PhoneLock",
+                                "default_value":"0",
+                                "description":"Phone Lock",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"Active"},
+                                    {"value":"1","text":"Inactive"}
+                                ]
+                            },
+                            {
+                                "variable":"$PasswordFlag",
+                                "default_value":"0",
+                                "description":"PIN for Phone Lock",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"PIN not required"},
+                                    {"value":"1","text":"PIN required"}
+                                ]
+                            },
+                            {
+                                "variable":"$PasswordString",
+                                "default_value":"0000",
+                                "description":"Password String (PIN)",
+                                "tooltip":"Only digits!",
+                                "max_chars":"4",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$Pick_up_call",
+                                "default_value":"1",
+                                "description":"Pickup call",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"Softkey disabled"},
+                                    {"value":"1","text":"Softkey enabled"}
+                                ]
+                            },
+
+
                             {
                                 "variable":"$softkey01",
                                 "default_value":"TrVoiceMail",
