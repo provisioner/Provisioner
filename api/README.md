@@ -195,3 +195,88 @@ This will delete all the informations about the provider. If any account were li
 this provider, they will be kept.
 /!\ Be carefull with this function, it will actually delete the provider document. It will not
 be possible to get the data back /!\
+
+
+--------
+Accounts
+--------
+
+Those request will allow you to create accounts. An account will contain phone specific settings
+but also account specific settings. the settings hierarchy will be account settings before
+phone specific settings.
+
+GET:
+----
+
+Protected, requires 'user'
+
+urls:
+    /{account_id}/defaults
+    /{account_id}/{mac_address}
+
+The first url allow to get the settings for a given account_id.
+The second url allow to get the settings for a given mac_address. The phone with the given
+mac_adress must be owned by the given account.
+
+PUT:
+----
+
+Protected, requires 'user'
+
+urls:
+    /{account_id}
+    /{account_id}/{mac_address}
+
+This request will add an account or a phone with the given mac_address.
+for an account, the request must look like:
+
+{
+    "name": "Test Account",
+    "Provider_id": "81fd15da451a27c2bb30093d144b938a",
+    "settings": {
+        "random_settings": true,
+        "another_one": null,
+        "bla": ["Blabla", Blablabla]
+    }
+}
+
+It is mandatory to provide every root attribute as the above example.
+
+For a phone, the request must look like:
+
+{
+    "brand": "yealink",
+    "family": "t2x",
+    "model": "t22",
+    "settings": {
+        "random_settings": true,
+        "another_one": null,
+        "bla": ["Blabla", Blablabla]
+    }
+}
+
+POST:
+-----
+
+Protected, requires 'user'
+
+urls:
+    /{account_id}
+    /{account_id}/defaults
+    /{account_id}/{mac_address}
+
+The first and the third url will allow you to modify all the account and phone information.
+However, the second one will be used if you want to modify the "settings" and only the "settings".
+As for the other APIs, you will have to send the whole updated "settings" attribute (I know...).
+
+DELETE:
+-------
+
+Protected, requires 'user'
+
+urls:
+    /{account_id}
+    /{account_id}/{mac_address}
+
+This will delete an account and all the phone linked to this account.
+/!\ It will actually delete the documents and there will be no way to get them back /!\
