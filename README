@@ -1,0 +1,49 @@
+Provisioner v5.0
+----------------
+
+Supported phones (01.03.2013):
+
+Yealink:
+    - t1x
+    - t2x
+    - t3x
+
+Coming soon:
+
+Aastra
+
+-------------------------------
+
+In order to make the provisioner working, you will need (at least) a BigCouch development environment
+Support for MySQL will be coming soon, no worries...
+
+You will need to setup the database as metioned in the API README (/api/README) and fill it with whatever
+settings you need to provision your phones.
+
+You will also need to fill your BigCouch server address and port in /index.php (it should be around the line 34)
+and in the API index (/api/index.php).
+
+The must important part then will be to fill your database with all the information needed to provision your phones. 
+For this, you can use the APIs.
+The system defaults are optional for now, but you should use them anyway. They can be found in the master_json
+folder. Each supported phone family have its own json file.
+The account should be created using a Kazoo account_id but they can also be genrated by your own system, as
+long as your are using it in the provisioning request url and as long as it is unique.
+It should then look like http://yourdomain.com/account_id.
+When you will add an account using the APIs, it will create a database for this account. You can set several
+phones (a phone will be retrieve using its mac address) for one account and then different settings for each one
+of those phones.
+the provisioner domain should be the domain that the phones are going to request. So, if the phone is requesting
+http://p.kazoo.io/account_id, the domain will be p.kazoo.io.
+The general hierarchy is as follow:
+
+    1) Global settings (system_account db)
+    2) Brand factory defaults settings
+    3) Family factory defaults settings
+    4) Model factory defaults settings
+    5) Provider settings
+    6) Account settings
+    7) Phone settings
+
+Keep in mind that if a setting is common to 2 or more layers, the last one will override the others.
+Again, you should use the master json files to know how to build the settings attribute in your database.
