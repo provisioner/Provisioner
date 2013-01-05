@@ -93,10 +93,13 @@ if ($needs_manual_provisioning) {
     $model_doc_mame = $family_doc_name . "_" . $settings_manager->get_model();
 
     // This will import all the settings
+    // Need to be flat files
+    // =======
     $settings_manager->import_settings($db->load_settings('system_account', 'global_settings'));
     $settings_manager->import_settings($db->load_settings('factory_defaults', $brand_doc_name));
     $settings_manager->import_settings($db->load_settings('factory_defaults', $family_doc_name));
     $settings_manager->import_settings($db->load_settings('factory_defaults', $model_doc_mame));
+    // =======
 
     // Why should we add that if it is empty?
     if (isset($provider_view['settings']))
