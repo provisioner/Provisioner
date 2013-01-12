@@ -1,5 +1,14 @@
 <?php 
 
+/**
+ * This file contains the validators 
+ *
+ * @author Francis Genet
+ * @license MPL / GPLv2 / LGPL
+ * @package Provisioner
+ * @version 5.0
+ */
+
 class Validator {
     static function validateEdit($data, $fields)
     {
@@ -10,6 +19,7 @@ class Validator {
         return $data;
     }
 
+    // TODO: this function must not allow some attribute as well
     static function validateAdd($data, $fields)
     {
         foreach ($fields as $field) {

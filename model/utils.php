@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * This file contains utilities functions
+ *
+ * @author Francis Genet
+ * @license MPL / GPLv2 / LGPL
+ * @package Provisioner
+ * @version 5.0
+ */
+
 class ProvisionerUtils {
     public static function get_mac_address($ua, $uri) {
         // Let's check in th001565000000e User-Agent
@@ -38,6 +47,15 @@ class ProvisionerUtils {
     public static function get_account_db($account_id) {
         // account/xx/xx/xxxxxxxxxxxxxxxx
         return "account/" . substr_replace(substr_replace($account_id, '/', 2, 0), '/', 5, 0);
+    }
+
+    public static function is_generic_polycom_request($ua, $uri) {
+        if (preg_match("/polycom/", $ua)) {
+            if (preg_match("/0{12}\.cfg$/", $uri, $match_result))
+                return $match_result[0];
+        }
+
+        return false;
     }
 }
 

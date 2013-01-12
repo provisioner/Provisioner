@@ -12,8 +12,9 @@
             "missed_call_log": null,
             "auto_answer": null,
 
+            "sip_listen_port": null,
+
             "sip_server": {
-                "listen_port": null,
                 "primary": {
                     "host": null,
                     "port": null
@@ -47,6 +48,17 @@
             "subscribe_mwi": null,
             "transport": null,
             "sip_registration_retry_timer": null,
+
+            "codecs": {
+                "pcmu": null,
+                "pcma": null,
+                "g723": null,
+                "g729": null,
+                "g722": null,
+                "ilbc": null,
+                "g726": null
+            },
+
             "voicemail_number": null,
 
             "nat_traversal": null,
@@ -158,6 +170,7 @@
     },
 
     "admin_password": null,
+    "user_password": null,
 
     "autop": {
         "update_mode": null,
