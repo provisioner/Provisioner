@@ -1,7 +1,8 @@
 {
+    "version": "5.0",
     "database": {
         "type": "BigCouch",
-        "url": "localhost",
+        "url": "http://localhost",
         "port": 5984,
 
         "master_provider": {

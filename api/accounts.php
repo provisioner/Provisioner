@@ -3,7 +3,11 @@
 /**
  * All methods in this class are protected
  * Accounts APIs
- * @access protected
+ *
+ * @author Francis Genet
+ * @license MPL / GPLv2 / LGPL
+ * @package Provisioner
+ * @version 5.0
  */
 
 class Accounts {
@@ -72,6 +76,46 @@ class Accounts {
 
         return array('status' => true, 'message' => 'Settings successfully modified');
             
+    }
+
+    /**
+     * This function is used to add a logo
+     *
+     * @url POST /{account_id}/logo
+     * @access protected
+     * @class  AccessControl {@requires user}
+     */
+    function updateLogo($account_id, $request_data) {
+        $error = $request_data['logo']['error'];
+        $extension = substr($request_data['logo']['name'], -3);
+        $size = $request_data['logo']['size'];
+        $tmp_name = $request_data['logo']['tmp_name'];
+
+        if ($error != UPLOAD_ERR_OK)
+            throw new RestException(500, "An error occured while uploading the logo");
+
+        $account_folder = "upload/" . $account_id;
+        if (!opendir($account_folder)) {
+            if (!mkdir(pathname($account_folder)))
+                throw new RestException(500, "Could not create the account folder");
+        }
+
+        if (!$extension == 'dob')
+            throw new RestException(400, "The logo must be a 'dob' file");
+
+        // 1000000 B = 1MB
+        if ($size > 1000000)
+            throw new RestException(400, "The file is too big");
+
+        if (!move_uploaded_file($tmp_name, $account_folder . '/logo.dob'))
+            throw new RestException(400, "The logo could not be moved to his final destination");
+
+        $account_db = $this->_get_account_db($account_id);
+        $account_doc = $this->db->get($account_db, $account_id);
+
+        $json_obj = json_decode($account_doc['settings'], true);
+
+        return array('status' => true, 'message' => 'Logo uploaded and settings updated');
     }
 
     /**
