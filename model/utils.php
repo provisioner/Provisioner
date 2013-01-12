@@ -48,6 +48,15 @@ class ProvisionerUtils {
         // account/xx/xx/xxxxxxxxxxxxxxxx
         return "account/" . substr_replace(substr_replace($account_id, '/', 2, 0), '/', 5, 0);
     }
+
+    public static function is_generic_polycom_request($ua, $uri) {
+        if (preg_match("/polycom/", $ua)) {
+            if (preg_match("/0{12}\.cfg$/", $uri, $match_result))
+                return $match_result[0];
+        }
+
+        return false;
+    }
 }
 
 ?>

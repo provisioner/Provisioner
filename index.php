@@ -20,8 +20,15 @@ $uri = strtolower($_SERVER['REQUEST_URI']);
 $ua = strtolower($_SERVER['HTTP_USER_AGENT']);
 $http_host = strtolower($_SERVER['HTTP_HOST']);
 
+// YEALINK
 //$uri = "/002e3a6fe532d90943e6fcaf08e1a408/001565000000.cfg";
 //$ua = strtolower("Yealink SIP-T22P 3.2.2.1136 00:15:65:00:00:00");
+
+
+// POLYCOM
+/*$uri = "/Provisioner/000000000000.cfg";
+$ua = strtolower("FileTransport PolycomSoundStationIP-SSIP_5000-UA/4.0.3.7562 Type/Application");*/
+
 //$http_host = '::1';
 
 $settings_array = array();
@@ -29,6 +36,14 @@ $account_id = null;
 $mac_address = null;
 $provider = null;
 $needs_manual_provisioning = false;
+
+// TODO: (urgent!)
+// Polycom specific test.
+// I think this is dirty and we should find another way.
+// A brand specific code in a generic code... ugh.
+/*echo ProvisionerUtils::is_generic_polycom_request($ua, $uri);
+
+exit();*/
 
 $db_type = 'BigCouch';
 $db = new $db_type('http://10.10.9.57', '15984');
@@ -93,6 +108,7 @@ if ($needs_manual_provisioning) {
     $model_doc_mame = $family_doc_name . "_" . $settings_manager->get_model();
 
     // This will import all the settings
+    
     // Need to be flat files
     // =======
     $settings_manager->import_settings($db->load_settings('system_account', 'global_settings'));
