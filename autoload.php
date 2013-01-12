@@ -18,6 +18,11 @@ class ProvisionerConfig {
             'ProvisionerConfig',
             'wrapperAutoload'
         ));
+
+        spl_autoload_register(array(
+            'ProvisionerConfig',
+            'endpointsAutoload'
+        ));
     }
 
     public static function wrapperAutoload($class) {
@@ -35,10 +40,9 @@ class ProvisionerConfig {
         return false;
     }
 
-    /*public static function endpointsAutoload($class) {		
+    public static function endpointsAutoload($class) {		
         // If for some reason we get here and the class is already loaded, return
-        if (class_exists($class, FALSE))
-        {
+        if (class_exists($class, FALSE)) {
             return TRUE;
         }
 
@@ -51,7 +55,7 @@ class ProvisionerConfig {
         }
         
         return FALSE;
-    }*/
+    }
 }
 
 ProvisionerConfig::setup();

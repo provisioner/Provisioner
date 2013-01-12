@@ -24,6 +24,7 @@ require_once 'lib/restler/restler.php';
 use Luracast\Restler\Restler;
 
 $r = new Restler();
+$r->setSupportedFormats('JsonFormat', 'UploadFormat');
 $r->addAPIClass('phones');
 $r->addAPIClass('providers');
 $r->addAPIClass('accounts');
