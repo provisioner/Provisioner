@@ -26,8 +26,10 @@ $http_host = strtolower($_SERVER['HTTP_HOST']);
 
 
 // POLYCOM
-/*$uri = "/Provisioner/000000000000.cfg";
-$ua = strtolower("FileTransport PolycomSoundStationIP-SSIP_5000-UA/4.0.3.7562 Type/Application");*/
+//$uri = "/002e3a6fe532d90943e6fcaf08e1a408/000000000000.cfg";
+//$uri = "/002e3a6fe532d90943e6fcaf08e1a408/0004f2e765da-phone.cfg";
+//$uri = "/002e3a6fe532d90943e6fcaf08e1a408/common.cfg";
+//$ua = strtolower("FileTransport PolycomSoundStationIP-SSIP_5000-UA/4.0.3.7562 Type/Application");
 
 //$http_host = '::1';
 
@@ -41,9 +43,14 @@ $needs_manual_provisioning = false;
 // Polycom specific test.
 // I think this is dirty and we should find another way.
 // A brand specific code in a generic code... ugh.
-/*echo ProvisionerUtils::is_generic_polycom_request($ua, $uri);
+$poly_template = ProvisionerUtils::is_generic_polycom_request($ua, $uri);
 
-exit();*/
+//echo MODULES_DIR . "polycom/" . $poly_template;
+
+if ($poly_template) {
+    echo file_get_contents(MODULES_DIR . "polycom/" . $poly_template);
+    exit();
+}
 
 $db_type = 'BigCouch';
 $db = new $db_type('http://10.10.9.57', '15984');
