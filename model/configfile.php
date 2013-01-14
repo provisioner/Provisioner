@@ -120,7 +120,8 @@ class ConfigFile {
         }
     }
 
-    // This funcrion will try to determine the family model from the ua and the brand
+    // This function will try to determine the family model from the ua and the brand
+    // Each time we add a brand, we need to modify this file for now (Maybe use the phone specific files)
     private function _get_family_from_ua($ua) {
         switch ($this->_strBrand) {
             case 'yealink':
@@ -221,25 +222,34 @@ class ConfigFile {
 
     // This function will select the right template to file
     public function set_config_file($uri) {
+        // Then let's check in the URI (should be at the end of it)
+        // Then explode the url
+        $explode_uri = explode('/', $uri);
+        $mac_index = sizeof($explode_uri) - 1;
+
         switch ($this->_strBrand) {
             case 'yealink':
                 // macaddr.cfg - 000000000000.cfg
-                if (preg_match("/([0-9a-f]{12})\.cfg$/", $uri))
+                if (preg_match("/([0-9a-f]{12})\.cfg$/", $explode_uri[$mac_index]))
                     $this->_strConfigFile = "\$mac.cfg";
                 // y00000000000
-                elseif (preg_match("/y00000000000([0-9a-f]{1})\.cfg$/", $uri))
+                elseif (preg_match("/y00000000000([0-9a-f]{1})\.cfg$/", $explode_uri[$mac_index]))
                     $this->_strConfigFile = "y0000000000\$suffix.cfg";
                 else
                     return false;
             case 'aastra':
                 // macaddr.cfg - 000000000000.cfg
-                if (preg_match("/([0-9a-f]{12})\.cfg$/", $uri))
+                if (preg_match("/([0-9a-f]{12})\.cfg$/", $explode_uri[$mac_index]))
                     $this->_strConfigFile = "\$mac.cfg";
                 // This one is pretty obvious no?
-                elseif (preg_match("/(aastra\.cfg)$/", $uri))
+                elseif (preg_match("/(aastra\.cfg)$/", $explode_uri[$mac_index]))
                     $this->_strConfigFile = "aastra.cfg";
                 else
                     return false;
+            case 'polycom':
+                // macaddr-phone.cfg
+                if (preg_match("/([0-9a-f]{12})-phone\.cfg$/", $explode_uri[$mac_index]))
+                    $this->_strConfigFile = "\$mac-phone.cfg";
             default:
                 return false;
         }

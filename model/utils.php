@@ -53,6 +53,10 @@ class ProvisionerUtils {
         if (preg_match("/polycom/", $ua)) {
             if (preg_match("/0{12}\.cfg$/", $uri, $match_result))
                 return $match_result[0];
+
+            // This should be dynamic
+            if (preg_match("/common.cfg$/", $uri, $match_result))
+                return "common.cfg";
         }
 
         return false;
