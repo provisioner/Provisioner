@@ -55,8 +55,14 @@ class ProvisionerUtils {
                 return $match_result[0];
 
             // This should be dynamic
-            if (preg_match("/common.cfg$/", $uri, $match_result))
+            if (preg_match("/common\.cfg$/", $uri, $match_result))
                 return "common.cfg";
+
+            if (preg_match("/sip_[1-9]{3}\.ld$/", $uri, $match_result))
+                return 'app_file/' . $match_result[0];
+
+            if (preg_match("/phone1_[1-9]{3}\.cfg$/", $uri, $match_result))
+
         }
 
         return false;
