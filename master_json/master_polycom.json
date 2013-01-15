@@ -1,0 +1,110 @@
+{
+    "lines": [
+        {
+            "enable" : true,
+            "display_name": null,
+            "type": null,
+            "username": null,
+            "third_party_name": null,
+            "auth_name": null,
+            "auth_password": null,
+
+            "sip_server": {
+                "host": null,
+                "port": null,
+                "transport": null
+            },
+
+            "transport": null,
+            "expire": null,
+
+            "outbound_proxy": {
+                "transport": null,
+                "host": null,
+                "port": null
+            },
+
+            "ringtype": null,
+            "linekeys": null,
+
+            "autoOffHook": {
+                "enable": null,
+                "contact": null
+            },
+
+            "call": {
+                "autoOffHook": {
+                    "enable": null,
+                    "contact": null
+                },
+
+                "missedCallTracking": null,
+                "serverMissedCall": null,
+                "callWaiting_ring": null
+            },
+            
+            "divert": {
+                "contact": null,
+                "autoOnSpecificCaller": null,
+                "shareDisabled": null,
+                "forward": null,
+
+                "busy": {
+                    "enable": null,
+                    "contact": null
+                },
+
+                "noanswer": {
+                    "enable": null,
+                    "timeout": null,
+                    "contact": null
+                },
+
+                "dnd": {
+                    "enable": null,
+                    "contact": null
+                }
+            },
+
+            "dialplan": {
+                "impossibleMatchHandling": null,
+                "removeEndOfDial": null,
+                "applyToUserSend": null,
+                "applyToUserDial": null,
+                "applyToCallListDial": null,
+                "applyToDirectoryDial": null,
+                "digitmap": null,
+                "digitmapTimeout": null,
+
+                "routing": {
+                    "host": null,
+                    "port": null
+                },
+
+                "emergency": {
+                    "value": null,
+                    "host": null
+                }
+            },
+
+            "microbrowser": {
+                "main_home": null,
+
+                "idle_display": {
+                    "home": null,
+                    "refresh": null
+                }
+            },
+
+            "msg": {
+                "bypassInstantMessage": null,
+
+                "wmi": {
+                    "subscribe": null,
+                    "callBackMode": null,
+                    "callBack": null
+                }
+            }
+        }
+    ],
+}
