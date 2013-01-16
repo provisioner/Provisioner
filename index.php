@@ -22,8 +22,8 @@ $ua = strtolower($_SERVER['HTTP_USER_AGENT']);
 $http_host = strtolower($_SERVER['HTTP_HOST']);
 
 // YEALINK
-$uri = "/002e3a6fe532d90943e6fcaf08e1a408/001565000000.cfg";
-$ua = strtolower("Yealink SIP-T22P 3.2.2.1136 00:15:65:00:00:00");
+//$uri = "/002e3a6fe532d90943e6fcaf08e1a408/001565000000.cfg";
+//$ua = strtolower("Yealink SIP-T22P 3.2.2.1136 00:15:65:00:00:00");
 
 // Polycom
 //$ua = strtolower("FileTransport PolycomSoundStationIP-SSIP_5000-UA/4.0.3.7562 Type/Application");
