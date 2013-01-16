@@ -15,23 +15,18 @@ set_time_limit(5);
 require_once 'bootstrap.php' ;
 require_once 'model/utils.php';
 require_once 'model/configfile.php';
+require_once 'model/settings.php';
 
 $uri = strtolower($_SERVER['REQUEST_URI']);
 $ua = strtolower($_SERVER['HTTP_USER_AGENT']);
 $http_host = strtolower($_SERVER['HTTP_HOST']);
 
 // YEALINK
-//$uri = "/002e3a6fe532d90943e6fcaf08e1a408/001565000000.cfg";
-//$ua = strtolower("Yealink SIP-T22P 3.2.2.1136 00:15:65:00:00:00");
+$uri = "/002e3a6fe532d90943e6fcaf08e1a408/001565000000.cfg";
+$ua = strtolower("Yealink SIP-T22P 3.2.2.1136 00:15:65:00:00:00");
 
-
-// POLYCOM
-//$uri = "/002e3a6fe532d90943e6fcaf08e1a408/000000000000.cfg";
-//$uri = "/002e3a6fe532d90943e6fcaf08e1a408/0004f2e765da-phone.cfg";
-//$uri = "/002e3a6fe532d90943e6fcaf08e1a408/common.cfg";
+// Polycom
 //$ua = strtolower("FileTransport PolycomSoundStationIP-SSIP_5000-UA/4.0.3.7562 Type/Application");
-
-//$http_host = '::1';
 
 $settings_array = array();
 $account_id = null;
@@ -39,24 +34,27 @@ $mac_address = null;
 $provider = null;
 $needs_manual_provisioning = false;
 
-// TODO: (urgent!)
-// Polycom specific test.
-// I think this is dirty and we should find another way.
-// A brand specific code in a generic code... ugh.
-$poly_template = ProvisionerUtils::is_generic_polycom_request($ua, $uri);
+// If the requested is not suppose to be dynamically generated
+// =================================
+$static_request = ProvisionerUtils::is_static_file_request($ua, $uri);
 
-//echo MODULES_DIR . "polycom/" . $poly_template;
-
-if ($poly_template) {
-    echo file_get_contents(MODULES_DIR . "polycom/" . $poly_template);
+if ($static_request) {
+    $location = 'Location: ' . $static_request;
+    header($location);
     exit();
 }
+// =================================
 
-$db_type = 'BigCouch';
-$db = new $db_type('http://10.10.9.57', '15984');
+// Load the settings
+$objSettings = new Settings();
+$settings = $objSettings->getSettings();
 
-// Creation of the settings manager
-$settings_manager = new ConfigFile();
+// Load the datasource
+$db_type = $settings->database->type;
+$db = new $db_type($settings->database->url, $settings->database->port);
+
+// Load the config manager
+$config_manager = new ConfigFile();
 
 // Getting the provider from the host
 $provider_domain = ProvisionerUtils::get_provider_domain($http_host);
@@ -71,7 +69,7 @@ if (!$mac_address) {
     // http://cdn.memegenerator.net/instances/250x250/30687023.jpg
     echo '';
     exit();
-}   
+}
 
 // Getting the account_id from the URI
 $account_id = ProvisionerUtils::get_account_id($uri);
@@ -88,12 +86,11 @@ if (!$account_id) {
 
 // Manual provisioning
 if ($needs_manual_provisioning) {
-    $settings_manager->import_settings($db->load_settings('system_account', 'manual_provisioning'));
+    $config_manager->import_settings($db->load_settings('system_account', 'manual_provisioning'));
 
     // For now at least
     echo '';
     exit();
-
 } else {
     // This is the full doc
     $phone_doc = $db->load_settings($account_db, $mac_address, false);
@@ -102,42 +99,40 @@ if ($needs_manual_provisioning) {
     if (!$phone_doc['brand'] or !$phone_doc['family'] or !$phone_doc['model']) {
         // /!\ with the current code, it will override the current infos
         // i.e. if there was no brand but the family was filled, it would be override anyway.
-        if (!$settings_manager->detect_phone_info($mac_address, $ua)) {
+        if (!$config_manager->detect_phone_info($mac_address, $ua)) {
             echo '';
             exit();
         } 
     } else 
-        $settings_manager->set_device_infos($phone_doc['brand'], $phone_doc['family'], $phone_doc['model']);
+        $config_manager->set_device_infos($phone_doc['brand'], $phone_doc['family'], $phone_doc['model']);
 
     // Generate the doc names for the brand/family/model settings
-    $brand_doc_name = $settings_manager->get_brand();
-    $family_doc_name = $brand_doc_name . "_" . $settings_manager->get_family();
-    $model_doc_mame = $family_doc_name . "_" . $settings_manager->get_model();
+    $brand_doc_name = $config_manager->get_brand();
+    $family_doc_name = $brand_doc_name . "_" . $config_manager->get_family();
+    $model_doc_mame = $family_doc_name . "_" . $config_manager->get_model();
 
     // This will import all the settings
     
     // Need to be flat files
     // =======
-    $settings_manager->import_settings($db->load_settings('system_account', 'global_settings'));
-    $settings_manager->import_settings($db->load_settings('factory_defaults', $brand_doc_name));
-    $settings_manager->import_settings($db->load_settings('factory_defaults', $family_doc_name));
-    $settings_manager->import_settings($db->load_settings('factory_defaults', $model_doc_mame));
+    $config_manager->import_settings($db->load_settings('system_account', 'global_settings'));
+    $config_manager->import_settings($db->load_settings('factory_defaults', $brand_doc_name));
+    $config_manager->import_settings($db->load_settings('factory_defaults', $family_doc_name));
+    $config_manager->import_settings($db->load_settings('factory_defaults', $model_doc_mame));
     // =======
 
     // Why should we add that if it is empty?
     if (isset($provider_view['settings']))
-        $settings_manager->import_settings($provider_view['settings']);
+        $config_manager->import_settings($provider_view['settings']);
 
-    $settings_manager->import_settings($db->load_settings($account_db, $account_id));
+    $config_manager->import_settings($db->load_settings($account_db, $account_id));
 
     // See above...
     if (isset($phone_doc['settings']))
-        $settings_manager->import_settings($phone_doc['settings']);
+        $config_manager->import_settings($phone_doc['settings']);
     
-    $settings_manager->set_config_file($uri);
+    $config_manager->set_config_file($uri);
 
-    //$settings_manager->generate_config_file();
-    echo $settings_manager->generate_config_file();
+    //$config_manager->generate_config_file();
+    echo $config_manager->generate_config_file();
 }
-
-?>
