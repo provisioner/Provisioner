@@ -273,6 +273,10 @@ class ConfigFile {
     public function generate_config_file() {
         $arrConfig = $this->_merge_config_objects();
 
+        $target_phone = "endpoint_" . $this->_strBrand . "_" . $this->_strFamily . "_phone";
+        $phone = new $target_phone();
+        $arrConfig = $phone->prepare($arrConfig);
+
         // Set the twig template directory
         $this->_set_template_dir();
         // init twig object

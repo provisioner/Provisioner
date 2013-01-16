@@ -13,15 +13,12 @@ class ProvisionerUtils {
     public static function get_mac_address($ua, $uri) {
         // Let's check in th001565000000e User-Agent
         if (preg_match("#[0-9a-fA-F]{2}(?=([:-]?))(?:\\1[0-9a-fA-F]{2}){5}#", $ua, $match_result))
-            // need to return the mac address without the ':''
+            // need to return the mac address without the ':'
             return strtolower(preg_replace('/[:-]/', '', $match_result[0]));
         else 
-            // Then let's check in the URI (should be at the end of it)
-            // Then explode the url
-            $explode_uri = explode('/', $uri);
-            $mac_index = sizeof($explode_uri) - 1;
+            $requested_file = ProvisionerUtils::_strip_uri($uri);
 
-            if (preg_match("#[0-9a-fA-F]{12}#", $explode_uri[$mac_index], $match_result))
+            if (preg_match("#[0-9a-fA-F]{12}#", $requested_file, $match_result))
                 return strtolower($match_result[0]);
             else 
                 return false;
@@ -49,23 +46,31 @@ class ProvisionerUtils {
         return "account/" . substr_replace(substr_replace($account_id, '/', 2, 0), '/', 5, 0);
     }
 
-    public static function is_generic_polycom_request($ua, $uri) {
+    private static function _strip_uri($uri) {
+        // Then let's check in the URI (should be at the end of it)
+        // Then explode the url
+        $explode_uri = explode('/', $uri);
+        $mac_index = sizeof($explode_uri) - 1;
+
+        return $explode_uri[$mac_index];
+    }
+
+    // This function will determine weither the current request is a static file or not
+    public static function is_static_file_request($ua, $uri) {
+        $folder = null;
+        $target = null;
+
+        // Polycom
         if (preg_match("/polycom/", $ua)) {
-            if (preg_match("/0{12}\.cfg$/", $uri, $match_result))
-                return $match_result[0];
-
-            // This should be dynamic
-            if (preg_match("/common\.cfg$/", $uri, $match_result))
-                return "common.cfg";
-
-            if (preg_match("/sip_[1-9]{3}\.ld$/", $uri, $match_result))
-                return 'app_file/' . $match_result[0];
-
-            if (preg_match("/phone1_[1-9]{3}\.cfg$/", $uri, $match_result))
-
+            $folder = MODULES_DIR . "polycom/";
+            if (!preg_match("/[0-9a-fA-F]{12}-phone\.cfg$/", $uri, $match_result))
+                $target = ProvisionerUtils::_strip_uri($uri);
         }
 
-        return false;
+        if (!$target)
+            return false;
+        else
+            return $folder . $target;
     }
 }
 
