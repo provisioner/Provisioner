@@ -1,7 +1,7 @@
 <?php
 
 abstract class endpoint_base {
-    public function prepare($settings) {
+    public function prepareConfig($settings) {
         return $settings;
     }
 }
