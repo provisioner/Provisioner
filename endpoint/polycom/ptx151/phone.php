@@ -1,13 +1,12 @@
-<?PHP
-
+<?php
 /**
- * Polycom Base File
+ * Phone Base File
  *
  * @author Andrew Nagy
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
- */
-abstract class endpoint_polycom_base extends endpoint_base {
+ **/
+class endpoint_polycom_ptx151_phone extends endpoint_polycom_base {
     function prepareConfig($settings) {
         parent::prepareConfig($settings);
 

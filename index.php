@@ -34,17 +34,6 @@ $mac_address = null;
 $provider = null;
 $needs_manual_provisioning = false;
 
-// If the requested is not suppose to be dynamically generated
-// =================================
-$static_request = ProvisionerUtils::is_static_file_request($ua, $uri);
-
-if ($static_request) {
-    $location = 'Location: ' . $static_request;
-    header($location);
-    exit();
-}
-// =================================
-
 // Load the settings
 $objSettings = new Settings();
 $settings = $objSettings->getSettings();
@@ -105,6 +94,17 @@ if ($needs_manual_provisioning) {
         } 
     } else 
         $config_manager->set_device_infos($phone_doc['brand'], $phone_doc['family'], $phone_doc['model']);
+
+    // If the requested file is not suppose to be dynamically generated
+    // =================================
+    $static_request = ProvisionerUtils::is_static_file_request($ua, $uri, $config_manager->get_model());
+
+    if ($static_request) {
+        $location = 'Location: ' . $static_request;
+        header($location);
+        exit();
+    }
+    // =================================
 
     // Generate the doc names for the brand/family/model settings
     $brand_doc_name = $config_manager->get_brand();
