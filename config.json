@@ -1,5 +1,6 @@
 {
     "version": "5.0",
+    "static_data_origin": "flat",
     "database": {
         "type": "BigCouch",
         "url": "http://10.10.9.57",

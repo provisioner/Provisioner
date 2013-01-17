@@ -111,14 +111,21 @@ if ($needs_manual_provisioning) {
     $family_doc_name = $brand_doc_name . "_" . $config_manager->get_family();
     $model_doc_mame = $family_doc_name . "_" . $config_manager->get_model();
 
+    $brand_file = STATIC_DIR . $brand_doc_name . ".json";
+    $family_file = STATIC_DIR . $family_doc_name . ".json";
+    $model_file = STATIC_DIR . $model_doc_mame . ".json";
     // This will import all the settings
     
-    // Need to be flat files
-    // =======
-    $config_manager->import_settings($db->load_settings('system_account', 'global_settings'));
-    $config_manager->import_settings($db->load_settings('factory_defaults', $brand_doc_name));
-    $config_manager->import_settings($db->load_settings('factory_defaults', $family_doc_name));
-    $config_manager->import_settings($db->load_settings('factory_defaults', $model_doc_mame));
+    if ($settings->static_data_origin == "flat") {
+        $config_manager->import_settings(json_decode(file_get_contents($brand_file), true));
+        $config_manager->import_settings(json_decode(file_get_contents($family_file), true));
+        $config_manager->import_settings(json_decode(file_get_contents($model_file), true));
+    } else {
+        //$config_manager->import_settings($db->load_settings('system_account', 'global_settings'));
+        $config_manager->import_settings($db->load_settings('factory_defaults', $brand_doc_name));
+        $config_manager->import_settings($db->load_settings('factory_defaults', $family_doc_name));
+        $config_manager->import_settings($db->load_settings('factory_defaults', $model_doc_mame));
+    }
     // =======
 
     // Why should we add that if it is empty?
