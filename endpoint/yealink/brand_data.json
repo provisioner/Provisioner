@@ -1,29 +1,36 @@
 {
     "t18": {
-        "folder": "t1x"
+        "folder": "t1x",
+        "config_files": []
     },
 
     "t20": {
-        "folder": "t2x"
+        "folder": "t2x",
+        "config_files": []
     },
 
     "t22": {
-        "folder": "t2x"
+        "folder": "t2x",
+        "config_files": []
     },
 
     "t26": {
-        "folder": "t2x"
+        "folder": "t2x",
+        "config_files": []
     },
 
     "t28": {
-        "folder": "t2x"
+        "folder": "t2x",
+        "config_files": []
     },
 
     "t32": {
-        "folder": "t3x"
+        "folder": "t3x",
+        "config_files": []
     },
 
     "t38": {
-        "folder": "t3x"
+        "folder": "t3x",
+        "config_files": []
     }
 }

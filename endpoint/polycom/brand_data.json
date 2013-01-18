@@ -1,93 +1,116 @@
 {
     "430": {
-        "folder": "firmware325"
+        "folder": "firmware325",
+        "config_files": []
     },
 
     "320": {
-        "folder": "firmware3333"
+        "folder": "firmware3333",
+        "config_files": []
     },
 
     "330": {
-        "folder": "firmware3333"
+        "folder": "firmware3333",
+        "config_files": []
     },
 
     "ptx151": {
-        "folder": "ptx151"
+        "folder": "ptx151",
+        "config_files": []
     },
 
     "321": {
-        "folder": "spipm"
+        "folder": "spipm",
+        "config_files": []
     },
 
     "331": {
-        "folder": "spipm"
+        "folder": "spipm",
+        "config_files": []
     },
 
     "335": {
-        "folder": "spipm"
+        "folder": "spipm",
+        "config_files": []
     },
 
     "450": {
-        "folder": "spipm"
+        "folder": "spipm",
+        "config_files": []
     },
 
     "550": {
-        "folder": "spipm"
+        "folder": "spipm",
+        "config_files": []
     },
 
     "560": {
-        "folder": "spipm"
+        "folder": "spipm",
+        "config_files": []
     },
 
     "650": {
-        "folder": "spipm"
+        "folder": "spipm",
+        "config_files": []
     },
 
     "670": {
-        "folder": "spipm"
+        "folder": "spipm",
+        "config_files": []
     },
 
     "5000": {
-        "folder": "spipm"
+        "folder": "spipm",
+        "config_files": []
     },
 
     "6000": {
-        "folder": "spipm"
+        "folder": "spipm",
+        "config_files": []
     },
 
     "7000": {
-        "folder": "spipm"
+        "folder": "spipm",
+        "config_files": []
     },
 
     "1500": {
-        "folder": "spipm"
+        "folder": "spipm",
+        "config_files": []
     },
 
     "301": {
-        "folder": "splm"
+        "folder": "splm",
+        "config_files": []
     },
 
     "501": {
-        "folder": "splm"
+        "folder": "splm",
+        "config_files": []
     },
 
     "600": {
-        "folder": "splm"
+        "folder": "splm",
+        "config_files": []
     },
 
     "601": {
-        "folder": "splm"
+        "folder": "splm",
+        "config_files": []
     },
 
     "4000": {
-        "folder": "splm"
+        "folder": "splm",
+        "config_files": []
     },
 
     "300": {
-        "folder": "spom"
+        "folder": "spom",
+        "config_files": []
     },
     
     "500": {
-        "folder": "spom"
+        "folder": "spom",
+        "config_files": []
     }
 }
