@@ -31,20 +31,36 @@ $objSettings = new Settings();
 $settings = $objSettings->getSettings();
 
 // HTTP
-if ($settings->server_type == "http") {
+if (!isset($argv)) {
     // Load the config manager
     // This will return a config_manager
-    $config_generator = new $this->config_manager();
+    $config_manager_name = "ConfigGenerator_" . $settings->config_manager;
+    $config_generator = new $config_manager_name();
     $config_manager = $config_generator->get_config_manager($uri, $ua, $http_host, $settings);
 
     // Set the file that will be genrated
     $target = ProvisionerUtils::strip_uri($uri);
     $config_manager->set_config_file($target);
-    
+
     echo $config_manager->generate_config_file();
 
 // TFTP
-} elseif ($settings->server_type == "tftp") {
-    echo "TBD";
+} else {
+    $brand = $argv[1];
+    $model = $argv[2];
+    $source_file_path  = $argv[3];
+    $arrConfig = json_decode(file_get_contents($source_file_path), true);
+
+    // This is generator is generic and is basically building a simple config manager
+    // with a minimum of information (brand/model/a file containing the settings)
+    $config_generator = new ConfigGenerator_generic();
+    $config_manager = $config_generator->get_config_manager($brand, $model, $arrConfig);
+
+    foreach (ProvisionerUtils::get_file_list() as $value) {
+        $config_manager->set_config_file($target);
+
+        // make a file with the returned value
+        $config_manager->generate_config_file();
+    }
 }
 

@@ -206,20 +206,21 @@ class ConfigFile {
         and then use this function:
 
         $obj = new ConfigFile();
-        $obj-> set_device_infos('yealink', 't2x');
+        $obj-> set_device_infos('polycom', '550');
     */
-    public function set_device_infos($brand, $family, $model) {
+    public function set_device_infos($brand, $model) {
         $this->_strBrand = strtolower($brand);
-        $this->_strFamily = strtolower($family);
         $this->_strModel = strtolower($model);
 
-        if ($this->_strBrand && $this->_strFamily)
+        if ($this->_strBrand && $this->_strModel)
             $this->_set_template_dir();
         else
             return false;
 
         // init twig object
         $this->_twig_init();
+
+        return true;
     }
 
     // This function will select the right template to file

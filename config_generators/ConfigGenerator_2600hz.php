@@ -120,6 +120,8 @@ class ConfigGenerator_2600hz {
             if (isset($phone_doc['settings']))
                 $config_manager->import_settings($phone_doc['settings']);
         }
+
+        return $config_manager;
     }
 }
 
