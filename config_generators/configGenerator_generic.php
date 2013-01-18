@@ -9,10 +9,9 @@
  * @version 5.0
  */
 
-require_once PROVISIONER_BASE . 'classes/utils.php';
 require_once PROVISIONER_BASE . 'classes/configfile.php';
 
-class ConfigGenerator_2600hz {
+class ConfigGenerator_generic {
     public function get_config_manager($brand, $model, $arrConfig) {
         // Load the config manager
         $config_manager = new ConfigFile();
