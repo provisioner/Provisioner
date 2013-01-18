@@ -223,32 +223,29 @@ class ConfigFile {
     }
 
     // This function will select the right template to file
-    public function set_config_file($uri) {
-        // This will return just the requested file
-        $target = ProvisionerUtils::strip_uri($uri);
-
+    public function set_config_file($file) {
         switch ($this->_strBrand) {
             case 'yealink':
                 // macaddr.cfg - 000000000000.cfg
-                if (preg_match("/([0-9a-f]{12})\.cfg$/", $target))
+                if (preg_match("/([0-9a-f]{12})\.cfg$/", $file))
                     $this->_strConfigFile = "\$mac.cfg";
                 // y00000000000
-                elseif (preg_match("/y00000000000([0-9a-f]{1})\.cfg$/", $target))
+                elseif (preg_match("/y00000000000([0-9a-f]{1})\.cfg$/", $file))
                     $this->_strConfigFile = "y0000000000\$suffix.cfg";
                 else
                     return false;
             case 'aastra':
                 // macaddr.cfg - 000000000000.cfg
-                if (preg_match("/([0-9a-f]{12})\.cfg$/", $target))
+                if (preg_match("/([0-9a-f]{12})\.cfg$/", $file))
                     $this->_strConfigFile = "\$mac.cfg";
                 // This one is pretty obvious no?
-                elseif (preg_match("/(aastra\.cfg)$/", $target))
+                elseif (preg_match("/(aastra\.cfg)$/", $file))
                     $this->_strConfigFile = "aastra.cfg";
                 else
                     return false;
             case 'polycom':
                 // macaddr-phone.cfg
-                if (preg_match("/[a-z0-9_]*\.cfg$/", $target, $match_result))
+                if (preg_match("/[a-z0-9_]*\.cfg$/", $file, $match_result))
                     $this->_strConfigFile = $match_result;
             default:
                 return false;

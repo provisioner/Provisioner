@@ -1,27 +1,93 @@
 {
-    "folders": {
-        "430": "firmware325",
-        "320": "firmware3333",
-        "330": "firmware3333",
-        "ptx151": "ptx151",
-        "321": "spipm",
-        "331": "spipm",
-        "335": "spipm",
-        "450": "spipm",
-        "550": "spipm",
-        "560": "spipm",
-        "650": "spipm",
-        "670": "spipm",
-        "5000": "spipm",
-        "6000": "spipm",
-        "7000": "spipm",
-        "1500": "spipm",
-        "301": "splm",
-        "501": "splm",
-        "600": "splm",
-        "601": "splm",
-        "4000": "splm",
-        "300": "spom",
-        "500": "spom"
+    "430": {
+        "folder": "firmware325"
+    },
+
+    "320": {
+        "folder": "firmware3333"
+    },
+
+    "330": {
+        "folder": "firmware3333"
+    },
+
+    "ptx151": {
+        "folder": "ptx151"
+    },
+
+    "321": {
+        "folder": "spipm"
+    },
+
+    "331": {
+        "folder": "spipm"
+    },
+
+    "335": {
+        "folder": "spipm"
+    },
+
+    "450": {
+        "folder": "spipm"
+    },
+
+    "550": {
+        "folder": "spipm"
+    },
+
+    "560": {
+        "folder": "spipm"
+    },
+
+    "650": {
+        "folder": "spipm"
+    },
+
+    "670": {
+        "folder": "spipm"
+    },
+
+    "5000": {
+        "folder": "spipm"
+    },
+
+    "6000": {
+        "folder": "spipm"
+    },
+
+    "7000": {
+        "folder": "spipm"
+    },
+
+    "1500": {
+        "folder": "spipm"
+    },
+
+    "301": {
+        "folder": "splm"
+    },
+
+    "501": {
+        "folder": "splm"
+    },
+
+    "600": {
+        "folder": "splm"
+    },
+
+    "601": {
+        "folder": "splm"
+    },
+
+    "4000": {
+        "folder": "splm"
+    },
+
+    "300": {
+        "folder": "spom"
+    },
+    
+    "500": {
+        "folder": "spom"
     }
 }

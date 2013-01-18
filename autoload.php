@@ -19,10 +19,18 @@ class ProvisionerConfig {
             'wrapperAutoload'
         ));
 
+        // Endpoint loader
         spl_autoload_register(array(
             'ProvisionerConfig',
             'endpointsAutoload'
         ));
+
+        // config_manager loader
+        spl_autoload_register(array(
+            'ProvisionerConfig',
+            'configMngrAutoload'
+        ));
+
     }
 
     public static function wrapperAutoload($class) {
@@ -55,6 +63,21 @@ class ProvisionerConfig {
         }
         
         return FALSE;
+    }
+
+    public static function configMngrAutoload($class) {
+        // If for some reason we get here and the class is already loaded, return
+        if (class_exists($class, FALSE))
+            return true;
+
+        // Try to include the class
+        $file = "ConfigGenerator_" . $class . '.php';
+        if (is_file(CONFIG_MANAGER_DIR . $file)) {
+            require_once CONFIG_MANAGER_DIR . $file;
+            return true;
+        }
+
+        return false;
     }
 }
 

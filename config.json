@@ -1,6 +1,8 @@
 {
     "version": "5.0",
-    "static_data_origin": "flat",
+    "static_data_source": "flat",
+    "config_manager": "2600hz",
+    "server_type": "http",
     "database": {
         "type": "BigCouch",
         "url": "http://10.10.9.57",
