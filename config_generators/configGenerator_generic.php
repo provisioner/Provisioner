@@ -17,6 +17,13 @@ class ConfigGenerator_generic {
         $config_manager = new ConfigFile();
 
         $config_manager->set_device_infos($brand, $model);
+
+        // Import the default settings
+        $config_manager->import_settings(json_decode(file_get_contents($brand_file), true));
+        $config_manager->import_settings(json_decode(file_get_contents($family_file), true));
+        $config_manager->import_settings(json_decode(file_get_contents($model_file), true));
+
+        // Import the given settings 
         $config_manager->import_settings($arrConfig);
 
         return $config_manager;

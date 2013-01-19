@@ -1,6 +1,6 @@
 {
     "version": "5.0",
-    "static_data_source": "flat",
+    "static_data_source": "database",
     "config_manager": "2600hz",
     "database": {
         "type": "BigCouch",
