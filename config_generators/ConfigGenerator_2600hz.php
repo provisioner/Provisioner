@@ -74,7 +74,7 @@ class ConfigGenerator_2600hz {
                     exit();
                 } 
             } else 
-                $config_manager->set_device_infos($phone_doc['brand'], $phone_doc['family'], $phone_doc['model']);
+                $config_manager->set_device_infos($phone_doc['brand'], $phone_doc['model']);
 
             // If the requested file is not suppose to be dynamically generated
             // =================================
@@ -119,9 +119,11 @@ class ConfigGenerator_2600hz {
             // See above...
             if (isset($phone_doc['settings']))
                 $config_manager->import_settings($phone_doc['settings']);
+
+            return $config_manager;
         }
 
-        return $config_manager;
+        return false;
     }
 }
 

@@ -62,7 +62,7 @@ class ProvisionerUtils {
 
     public static function get_folder($brand, $model) {
         $brand_data = ProvisionerUtils::_get_brand_data($brand);
-        return $base_folder . $brand_data[$model]["folder"];
+        return $brand_data[$model]["folder"];
     }
 
     public static function get_file_list($brand, $model) {
@@ -88,6 +88,10 @@ class ProvisionerUtils {
             return false;
         else
             return $folder . $target;
+    }
+
+    public static function validate_arguments($argv) {
+        // TODO
     }
 }
 

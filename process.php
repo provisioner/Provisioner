@@ -15,13 +15,9 @@ set_time_limit(5);
 require_once 'bootstrap.php' ;
 require_once 'classes/settings.php';
 
-$uri = strtolower($_SERVER['REQUEST_URI']);
-$ua = strtolower($_SERVER['HTTP_USER_AGENT']);
-$http_host = strtolower($_SERVER['HTTP_HOST']);
-
 // YEALINK
-//$uri = "/002e3a6fe532d90943e6fcaf08e1a408/001565000000.cfg";
-//$ua = strtolower("Yealink SIP-T22P 3.2.2.1136 00:15:65:00:00:00");
+$uri = "/002e3a6fe532d90943e6fcaf08e1a408/001565000000.cfg";
+$ua = strtolower("Yealink SIP-T22P 3.2.2.1136 00:15:65:00:00:00");
 
 // Polycom
 //$ua = strtolower("FileTransport PolycomSoundStationIP-SSIP_5000-UA/4.0.3.7562 Type/Application");
@@ -32,6 +28,10 @@ $settings = $objSettings->getSettings();
 
 // HTTP
 if (!isset($argv)) {
+    /*$uri = strtolower($_SERVER['REQUEST_URI']);
+    $ua = strtolower($_SERVER['HTTP_USER_AGENT']);*/
+    $http_host = strtolower($_SERVER['HTTP_HOST']);
+
     // Load the config manager
     // This will return a config_manager
     $config_manager_name = "ConfigGenerator_" . $settings->config_manager;
@@ -46,8 +46,8 @@ if (!isset($argv)) {
 
 // TFTP
 } else {
-    $brand = $argv[1];
-    $model = $argv[2];
+    $brand = strtolower($argv[1]);
+    $model = strtolower($argv[2]);
     $source_file_path  = $argv[3];
     $arrConfig = json_decode(file_get_contents($source_file_path), true);
 

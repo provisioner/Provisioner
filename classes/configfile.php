@@ -212,14 +212,6 @@ class ConfigFile {
         $this->_strBrand = strtolower($brand);
         $this->_strModel = strtolower($model);
 
-        if ($this->_strBrand && $this->_strModel)
-            $this->_set_template_dir();
-        else
-            return false;
-
-        // init twig object
-        $this->_twig_init();
-
         return true;
     }
 
@@ -235,6 +227,7 @@ class ConfigFile {
                     $this->_strConfigFile = "y0000000000\$suffix.cfg";
                 else
                     return false;
+                break;
             case 'aastra':
                 // macaddr.cfg - 000000000000.cfg
                 if (preg_match("/([0-9a-f]{12})\.cfg$/", $file))
@@ -244,10 +237,12 @@ class ConfigFile {
                     $this->_strConfigFile = "aastra.cfg";
                 else
                     return false;
+                break;
             case 'polycom':
                 // macaddr-phone.cfg
                 if (preg_match("/[a-z0-9_]*\.cfg$/", $file, $match_result))
-                    $this->_strConfigFile = $match_result;
+                    $this->_strConfigFile = $match_result[0];
+                break;
             default:
                 return false;
         }
@@ -274,12 +269,14 @@ class ConfigFile {
         $folder = ProvisionerUtils::get_folder($this->_strBrand, $this->_strModel);
 
         $target_phone = "endpoint_" . $this->_strBrand . "_" . $folder . "_phone";
+
         $phone = new $target_phone();
         $arrConfig = $phone->prepareConfig($arrConfig);
 
         // Set the twig template directory
         // Not sure if that should be here
         $this->_set_template_dir();
+
         // init twig object
         $this->_twig_init();
 

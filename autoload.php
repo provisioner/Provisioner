@@ -71,7 +71,7 @@ class ProvisionerConfig {
             return true;
 
         // Try to include the class
-        $file = "ConfigGenerator_" . $class . '.php';
+        $file = $class . '.php';
         if (is_file(CONFIG_MANAGER_DIR . $file)) {
             require_once CONFIG_MANAGER_DIR . $file;
             return true;
