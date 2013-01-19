@@ -1,9 +1,11 @@
 {
     "version": "5.0",
+    "static_data_source": "database",
+    "config_manager": "2600hz",
     "database": {
         "type": "BigCouch",
-        "url": "http://localhost",
-        "port": 5984,
+        "url": "http://10.10.9.57",
+        "port": 15984,
 
         "master_provider": {
             "name": "Master provider",

@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<firmware-settings> 
-	<firmware perm="">{$provisioning_type}://{$provisioning_path}/{$firmware}</firmware>
-</firmware-settings>
