@@ -16,8 +16,8 @@ require_once 'bootstrap.php' ;
 require_once 'classes/settings.php';
 
 // YEALINK
-$uri = "/002e3a6fe532d90943e6fcaf08e1a408/001565000000.cfg";
-$ua = strtolower("Yealink SIP-T22P 3.2.2.1136 00:15:65:00:00:00");
+/*$uri = "/002e3a6fe532d90943e6fcaf08e1a408/001565000000.cfg";
+$ua = strtolower("Yealink SIP-T22P 3.2.2.1136 00:15:65:00:00:00");*/
 
 // Polycom
 //$ua = strtolower("FileTransport PolycomSoundStationIP-SSIP_5000-UA/4.0.3.7562 Type/Application");
@@ -28,8 +28,8 @@ $settings = $objSettings->getSettings();
 
 // HTTP
 if (!isset($argv)) {
-    /*$uri = strtolower($_SERVER['REQUEST_URI']);
-    $ua = strtolower($_SERVER['HTTP_USER_AGENT']);*/
+    $uri = strtolower($_SERVER['REQUEST_URI']);
+    $ua = strtolower($_SERVER['HTTP_USER_AGENT']);
     $http_host = strtolower($_SERVER['HTTP_HOST']);
 
     // Load the config manager
