@@ -240,8 +240,18 @@ class ConfigFile {
                 break;
             case 'polycom':
                 // macaddr-phone.cfg
-                if (preg_match("/[a-z0-9_]*\.cfg$/", $file, $match_result))
+                if (preg_match("/[0-9a-f]{12}-phone\.cfg$/", $file))
+                    $this->_strConfigFile = "\$mac-phone.cfg";
+                // macaddr_reg.cfg
+                elseif (preg_match("/[0-9a-f]{12}_reg\.cfg$/", $file))
+                    $this->_strConfigFile = "\$mac-phone.cfg";
+                // macaddr.cfg
+                elseif (preg_match("/[0-9a-f]{12}\.cfg$/", $file))
+                    $this->_strConfigFile = "\$mac.cfg";
+                elseif (preg_match("/(phone1|server|sip)_[0-9]{3,4}\.cfg$/", $file, $match_result))
                     $this->_strConfigFile = $match_result[0];
+                elseif (preg_match("/sip\.cfg$/", $file))
+                    $this->_strConfigFile = "sip.cfg";
                 break;
             default:
                 return false;
