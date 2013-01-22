@@ -14,7 +14,6 @@ require_once PROVISIONER_BASE . 'classes/configfile.php';
 
 class ConfigGenerator_2600hz {
     private $account_id = null;
-    private $provider = null;
     private $needs_manual_provisioning = false;
     private $mac_address = null;
 
@@ -33,29 +32,29 @@ class ConfigGenerator_2600hz {
         $provider_view = $db->get_provider($provider_domain);
 
         // Getting the mac address in the URI OR in the User-Agent
-        $mac_address = ProvisionerUtils::get_mac_address($ua, $uri);
+        $this->mac_address = ProvisionerUtils::get_mac_address($ua, $uri);
 
-        if (!$mac_address) {
+        if (!$this->mac_address) {
             // http://cdn.memegenerator.net/instances/250x250/30687023.jpg
             echo '';
             exit();
         }
 
         // Getting the account_id from the URI
-        $account_id = ProvisionerUtils::get_account_id($uri);
-        if (!$account_id) {
-            $account_id = $provider_view['default_account_id'];
+        $this->account_id = ProvisionerUtils::get_account_id($uri);
+        if (!$this->account_id) {
+            $this->account_id = $provider_view['default_account_id'];
 
             // If we still don't get an account_id then we need a manual provisioning
-            if (!$account_id)
-                $needs_manual_provisioning = true;
+            if (!$this->account_id)
+                $this->needs_manual_provisioning = true;
             else
-                $account_db = ProvisionerUtils::get_account_db($account_id);
+                $account_db = ProvisionerUtils::get_account_db($this->account_id);
         } else
-            $account_db = ProvisionerUtils::get_account_db($account_id);
+            $account_db = ProvisionerUtils::get_account_db($this->account_id);
 
         // Manual provisioning
-        if ($needs_manual_provisioning) {
+        if ($this->needs_manual_provisioning) {
             $config_manager->import_settings($db->load_settings('system_account', 'manual_provisioning'));
 
             // For now at least
@@ -63,13 +62,13 @@ class ConfigGenerator_2600hz {
             exit();
         } else {
             // This is the full doc
-            $phone_doc = $db->load_settings($account_db, $mac_address, false);
+            $phone_doc = $db->load_settings($account_db, $this->mac_address, false);
 
             // If we have the doc for this phone but there are no brand or no family
             if (!$phone_doc['brand'] or !$phone_doc['family'] or !$phone_doc['model']) {
                 // /!\ with the current code, it will override the current infos
                 // i.e. if there was no brand but the family was filled, it would be override anyway.
-                if (!$config_manager->detect_phone_info($mac_address, $ua)) {
+                if (!$config_manager->detect_phone_info($this->mac_address, $ua)) {
                     echo '';
                     exit();
                 } 
@@ -114,7 +113,7 @@ class ConfigGenerator_2600hz {
             if (isset($provider_view['settings']))
                 $config_manager->import_settings($provider_view['settings']);
 
-            $config_manager->import_settings($db->load_settings($account_db, $account_id));
+            $config_manager->import_settings($db->load_settings($account_db, $this->account_id));
 
             // See above...
             if (isset($phone_doc['settings']))

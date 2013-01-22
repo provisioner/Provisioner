@@ -1,0 +1,4 @@
+Options +FollowSymLinks
+RewriteEngine On
+#RewriteCond %{REQUEST_URI} !index\.php [NC] # Don't rewrite if we already have
+RewriteRule ^(.*)$ process.php [L]                                            
