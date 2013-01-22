@@ -78,7 +78,7 @@ class ConfigGenerator_2600hz {
 
             // If the requested file is not suppose to be dynamically generated
             // =================================
-            $static_request = ProvisionerUtils::is_static_file_request($ua, $uri, $config_manager->get_model());
+            $static_request = ProvisionerUtils::is_static_file($ua, $uri, $config_manager->get_model());
 
             if ($static_request) {
                 $location = 'Location: ' . $static_request;
