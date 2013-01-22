@@ -71,8 +71,7 @@ class ProvisionerUtils {
     }
 
     // This function will determine weither the current request is a static file or not
-    // This must be adapted since we now use it when we knoe the brand
-    public static function is_static_file_request($ua, $uri, $model) {
+    public static function is_static_file($ua, $uri, $model) {
         $folder = null;
         $target = null;
 
@@ -80,7 +79,9 @@ class ProvisionerUtils {
         if (preg_match("/polycom/", $ua)) {
             $folder = ProvisionerUtils::get_folder("polycom", $model);
 
-            if (!preg_match("/[a-z0-9_]*\.cfg$/", $uri, $match_result))
+            if (preg_match("/0{12}\.cfg$/", $uri))
+                $target = "000000000000.cfg";
+            elseif (!preg_match("/[a-z0-9_]*\.cfg$/", $uri, $match_result))
                 $target = ProvisionerUtils::strip_uri($uri);
         }
 

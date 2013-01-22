@@ -15,22 +15,23 @@ set_time_limit(5);
 require_once 'bootstrap.php' ;
 require_once 'classes/settings.php';
 
-// YEALINK
-/*$uri = "/002e3a6fe532d90943e6fcaf08e1a408/001565000000.cfg";
-$ua = strtolower("Yealink SIP-T22P 3.2.2.1136 00:15:65:00:00:00");*/
-
-// Polycom
-//$ua = strtolower("FileTransport PolycomSoundStationIP-SSIP_5000-UA/4.0.3.7562 Type/Application");
-
 // Load the settings
 $objSettings = new Settings();
 $settings = $objSettings->getSettings();
 
 // HTTP
 if (!isset($argv)) {
-    $uri = strtolower($_SERVER['REQUEST_URI']);
-    $ua = strtolower($_SERVER['HTTP_USER_AGENT']);
+    /*$uri = strtolower($_SERVER['REQUEST_URI']);
+    $ua = strtolower($_SERVER['HTTP_USER_AGENT']);*/
     $http_host = strtolower($_SERVER['HTTP_HOST']);
+
+    // YEALINK
+    /*$uri = "/002e3a6fe532d90943e6fcaf08e1a408/001565000000.cfg";
+    $ua = strtolower("Yealink SIP-T22P 3.2.2.1136 00:15:65:00:00:00");*/
+
+    // Polycom
+    $ua = strtolower("FileTransport PolycomSoundStationIP-SSIP_5000-UA/4.0.3.7562 (SN:0004f2e765da) Type/Application");
+    $uri = "/002e3a6fe532d90943e6fcaf08e1a408/0004f2e765da_reg.cfg";
 
     // Load the config manager
     // This will return a config_manager
@@ -60,6 +61,7 @@ if (!isset($argv)) {
         $config_manager->set_config_file($target);
 
         // make a file with the returned value
+        // This is not doing it for now, it will need to be implemented
         $config_manager->generate_config_file();
     }
 }
