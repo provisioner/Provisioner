@@ -1,0 +1,185 @@
+{
+    "lines": [
+        {
+            "display_name": null,
+            "type": null,
+            "username": null,
+            "third_party_name": null,
+            "auth_name": null,
+            "auth_password": null,
+
+            "sip_server": {
+                "host": null,
+                "port": null,
+                "transport": null
+            },
+
+            "transport": null,
+            "expire": null,
+
+            "outbound_proxy": {
+                "transport": null,
+                "host": null,
+                "port": null
+            },
+
+            "ringtype": null,
+            "linekeys": null,
+
+            "autoOffHook": {
+                "enable": null,
+                "contact": null
+            },
+
+            "call": {
+                "autoOffHook": {
+                    "enable": null,
+                    "contact": null
+                },
+
+                "missedCallTracking": null,
+                "serverMissedCall": null,
+                "callWaiting_ring": null
+            },
+            
+            "divert": {
+                "contact": null,
+                "autoOnSpecificCaller": null,
+                "shareDisabled": null,
+                "forward": null,
+
+                "busy": {
+                    "enable": null,
+                    "contact": null
+                },
+
+                "noanswer": {
+                    "enable": null,
+                    "timeout": null,
+                    "contact": null
+                },
+
+                "dnd": {
+                    "enable": null,
+                    "contact": null
+                }
+            },
+
+            "dialplan": {
+                "impossibleMatchHandling": null,
+                "removeEndOfDial": null,
+                "applyToUserSend": null,
+                "applyToUserDial": null,
+                "applyToCallListDial": null,
+                "applyToDirectoryDial": null,
+
+                "digitmap": {
+                    "value": null,
+                    "timeOut": null,
+                },
+
+                "routing": {
+                    "server": {
+                        "address": null
+                    },
+
+                    "emergency": {
+                        "value": null
+                    }
+                }
+            },
+
+            "msg": {
+                "bypassInstantMessage": null,
+
+                "wmi": {
+                    "subscribe": null,
+                    "callBackMode": null,
+                    "callBack": null
+                }
+            }
+        }
+    ],
+
+    "microbrowser": {
+        "main": {
+            "home": null
+        },
+
+        "idle_display": {
+            "home": null,
+            "refresh": null
+        }
+    },
+
+    "attendants": [
+        {
+            "extension": null,
+            "server": null,
+            "label": null
+        }
+    ],
+
+    "presence": null,
+    "local_port": null,
+    "wmi_tone": null,
+
+    "qos": {
+        "ethernet": {
+            "user_priority": {
+                "rtp": null,
+                "callControl": null,
+                "other": null
+            }
+        },
+
+        "ip": {
+            "rtp": {
+                "dscp": null,
+                "min_delay": null,
+                "max_throughput": null,
+                "max_reliability": null,
+                "min_cost": null,
+                "precedence": null
+            },
+
+            "callControl": {
+                "dscp": null,
+                "min_delay": null,
+                "max_throughput": null,
+                "max_reliability": null,
+                "min_cost": null,
+                "precedence": null
+            }
+        }
+    },
+
+    "tcp_ip": {
+        "sntp": {
+            "resyncPeriod": null,
+            "address": null,
+            "address_overrideDHCP": null,
+            "gmtOffset": null,
+            "gmtOffset_overrideDHCP": null,
+            "daylightSavings": null,
+        }
+    },
+
+    "log": {
+        "level": {
+            "change": {
+                "usb": null
+            }
+        },
+
+        "render": {
+            "file": {
+                "upload": {
+                    "append": {
+                        "limitMode": null
+                    }
+                }
+            }
+        }
+    }
+}
