@@ -49,6 +49,12 @@ class Phones {
         return $brands;
     }
 
+    // Yep...
+    function options()
+    {
+          return;
+    }
+
     /**
      *  This is the function that will allow the administrator to retrieve all brands/families/models/
      *
