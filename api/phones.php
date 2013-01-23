@@ -68,14 +68,14 @@ class Phones {
 
     function getElement($brand = null, $family = null, $model = null) {
         if (!$brand)
-            $result = $this->_getAllPhonesInfo();
+            $result['data'] = $this->_getAllPhonesInfo();
             //$result = $this->db->getAllByKey('factory_defaults', 'brand', null);
         elseif (!$family)
-            $result = $this->db->getAllByKey('factory_defaults', 'family', $brand);
+            $result['data'] = $this->db->getAllByKey('factory_defaults', 'family', $brand);
         elseif (!$model)
-            $result = $this->db->getAllByKey('factory_defaults', 'model', $family);
+            $result['data'] = $this->db->getAllByKey('factory_defaults', 'model', $family);
         else
-            $result = $this->db->get('factory_defaults', $brand . '_' . $family . '_' . $model);
+            $result['data'] = $this->db->get('factory_defaults', $brand . '_' . $family . '_' . $model);
 
         if (!empty($result))
             return $result;
