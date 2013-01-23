@@ -1,0 +1,171 @@
+{
+    "timezone": null,
+    "ntp_server": null,
+
+    "lines": [
+        {
+            "enable" : true,
+            "display_name": null,
+            "username": null,
+            "auth_name": null,
+            "auth_password": null,
+            "missed_call_log": null,
+            "auto_answer": null,
+
+            "sip_server": {
+                "listen_port": null,
+                "primary": {
+                    "host": null,
+                    "port": null
+                },
+                "backup": {
+                    "host": null,
+                    "port": null
+                }
+            },
+
+            "expire": null,
+
+            "stun_server": {
+                "enable": null,
+                "host": null,
+                "port": null
+            },
+
+            "outbound_proxy": {
+                "enable": null,
+                "primary": {
+                    "host": null,
+                    "port": null
+                },
+                "backup": {
+                    "host": null,
+                    "port": null
+                }
+            },
+
+            "subscribe_mwi": null,
+            "transport": null,
+            "voicemail_number": null,
+
+            "nat_traversal": null,
+
+            "udp_update": {
+                "enable": null,
+                "update_time": null
+            },
+
+            "rport": null
+        }
+    ],
+
+    "logo_url": null,
+
+    "phone_settings": {
+        "background": null,
+        "screensaver_time": null,
+        "theme": null
+    },
+
+    "phone_books": [
+        {
+            "url": null,
+            "name": null
+        }
+    ],
+
+    "mem_keys": [
+        {
+            "line": null,
+            "type": null,
+            "value": null,
+            "dk_type": null,
+            "pickup_value": null
+        }
+    ],
+
+    "line_keys": [
+        {
+            "type": null,
+            "dk_type": null,
+            "line": null,
+            "value": null,
+            "label": null
+        }
+    ],
+
+    "soft_keys": [
+        {
+            "dk_type": null,
+            "line": null,
+            "value": null
+        }
+    ],
+
+    "up_key": {
+        "dk_type": null,
+        "line": null,
+        "value": null
+    },
+
+    "down_key": {
+        "dk_type": null,
+        "line": null,
+        "value": null
+    },
+
+    "left_key": {
+        "dk_type": null,
+        "line": null,
+        "value": null
+    },
+
+    "right_key": {
+        "dk_type": null,
+        "line": null,
+        "value": null
+    },
+
+    "ok_key": {
+        "dk_type": null,
+        "line": null,
+        "value": null
+    },
+
+    "cancel_key": {
+        "dk_type": null,
+        "line": null,
+        "value": null
+    },
+    
+    "fwd_key": {
+        "dk_type": null,
+        "line": null,
+        "value": null
+    },
+
+    "sdext38s": [
+        {
+            "line": null,
+            "dk_type": null,
+            "value": null,
+            "type": null,
+            "pickup_value": null,
+            "label": null
+        }
+    ],
+
+    "admin_password": null,
+
+    "autoprovision": {
+        "server_type": null,
+        "path": null
+    },
+
+    "country": null,
+    "dialnow_delay": null,
+
+    "firmware": {
+        "url": null
+    }
+}
