@@ -66,8 +66,9 @@ class ProvisionerUtils {
     }
 
     public static function get_file_list($brand, $model) {
-        $brand_data = ProvisionerUtils::_get_brand_data($brand);
-        return $brand_data[$model]["config_files"];
+        $folder = ProvisionerUtils::get_folder($brand, $model);
+        $files = json_decode(file_get_contents(MODULES_DIR . $brand . "/".$folder . "/family_data.json"), true);
+        return $files["configuration_files"];
     }
 
     // This function will determine weither the current request is a static file or not

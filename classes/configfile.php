@@ -52,6 +52,10 @@ class ConfigFile {
         return $this->_strConfigFile;
     }
 
+    public function sset_config_file($file) {
+        $this->_strConfigFile = $file;
+    }
+
     public function get_template_dir() {
         return $this->_strTemplateDir;
     }
