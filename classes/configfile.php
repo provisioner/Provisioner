@@ -180,7 +180,7 @@ class ConfigFile {
     private function _set_template_dir() {
         $folder = ProvisionerUtils::get_folder($this->_strBrand, $this->_strModel);
 
-        $this->_strTemplateDir = MODULES_DIR . DIRECTORY_SEPARATOR . $this->_strBrand . DIRECTORY_SEPARATOR . $folder . DIRECTORY_SEPARATOR;
+        $this->_strTemplateDir = MODULES_DIR . $this->_strBrand . DIRECTORY_SEPARATOR . $folder . DIRECTORY_SEPARATOR;
     }
 
     // Initialize Twig
@@ -239,9 +239,16 @@ class ConfigFile {
                     return false;
                 break;
             case 'polycom':
-                // macaddr-phone.cfg
-                if (preg_match("/[a-z0-9_]*\.cfg$/", $file, $match_result))
+                // macaddr_reg.cfg
+                if (preg_match("/[0-9a-f]{12}_reg\.cfg$/", $file))
+                    $this->_strConfigFile = "\$mac_reg.cfg";
+                // macaddr.cfg
+                elseif (preg_match("/[0-9a-f]{12}\.cfg$/", $file))
+                    $this->_strConfigFile = "\$mac.cfg";
+                elseif (preg_match("/(phone1|server|sip)_[0-9]{3,4}\.cfg$/", $file, $match_result))
                     $this->_strConfigFile = $match_result[0];
+                elseif (preg_match("/sip\.cfg$/", $file))
+                    $this->_strConfigFile = "sip.cfg";
                 break;
             default:
                 return false;
@@ -267,7 +274,6 @@ class ConfigFile {
         $arrConfig = $this->_merge_config_objects();
 
         $folder = ProvisionerUtils::get_folder($this->_strBrand, $this->_strModel);
-
         $target_phone = "endpoint_" . $this->_strBrand . "_" . $folder . "_phone";
 
         $phone = new $target_phone();

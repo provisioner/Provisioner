@@ -26,7 +26,11 @@ class Providers {
      * @class  AccessControl {@requires admin}
      */
     function retrieveAll() {
-        return $this->db->getAllByKey('providers', 'domain');
+        $result = array();
+
+        $result['data'] = $this->db->getAllByKey('providers', 'domain');
+        
+        return $result;
     }
 
     /**
@@ -36,7 +40,9 @@ class Providers {
      * @class  AccessControl {@requires admin}
      */
     function get($provider_id) {
-        $provider = $this->db->get('providers', $provider_id);
+        $provider = array();
+
+        $provider['data'] = $this->db->get('providers', $provider_id);
 
         if ($provider)
             return $provider;
