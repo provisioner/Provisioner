@@ -19,7 +19,7 @@ require_once 'classes/settings.php';
 $objSettings = new Settings();
 $settings = $objSettings->getSettings();
 
-// HTTP
+// Databse Based
 if (!isset($argv)) {
     $uri = strtolower($_SERVER['REQUEST_URI']);
     $ua = strtolower($_SERVER['HTTP_USER_AGENT']);
@@ -45,24 +45,57 @@ if (!isset($argv)) {
 
     echo $config_manager->generate_config_file();
 
-// TFTP
+// CLI Based
 } else {
+    if(!isset($argv[1]) || !isset($argv[2]) || !isset($argv[3])) {
+        die("Usage: php process.php <brand> <model> <source_file_path>\n");
+    }
     $brand = strtolower($argv[1]);
     $model = strtolower($argv[2]);
     $source_file_path  = $argv[3];
+    if(!file_exists($source_file_path)) {
+        die("File ".$source_file_path." does not exist!\n");
+    }
     $arrConfig = json_decode(file_get_contents($source_file_path), true);
-
+    if(json_errors()) {
+        die("FATAL: ".json_errors()."\n");
+    }
     // This is generator is generic and is basically building a simple config manager
     // with a minimum of information (brand/model/a file containing the settings)
     $config_generator = new ConfigGenerator_generic();
     $config_manager = $config_generator->get_config_manager($brand, $model, $arrConfig);
 
-    foreach (ProvisionerUtils::get_file_list() as $value) {
-        $config_manager->set_config_file($target);
+    foreach (ProvisionerUtils::get_file_list($brand, $model) as $value) {
+        $config_manager->sset_config_file($value);
 
         // make a file with the returned value
         // This is not doing it for now, it will need to be implemented
-        $config_manager->generate_config_file();
+        echo $config_manager->generate_config_file();
     }
 }
 
+function json_errors() {
+    switch (json_last_error()) {
+            case JSON_ERROR_NONE:
+                return false;
+            break;
+            case JSON_ERROR_DEPTH:
+                return ' - Maximum stack depth exceeded';
+            break;
+            case JSON_ERROR_STATE_MISMATCH:
+                return ' - Underflow or the modes mismatch';
+            break;
+            case JSON_ERROR_CTRL_CHAR:
+                return ' - Unexpected control character found';
+            break;
+            case JSON_ERROR_SYNTAX:
+                return ' - Syntax error, malformed JSON';
+            break;
+            case JSON_ERROR_UTF8:
+                return ' - Malformed UTF-8 characters, possibly incorrectly encoded';
+            break;
+            default:
+                return ' - Unknown error';
+            break;
+        }
+}
