@@ -30,6 +30,31 @@ class Phones {
             return false;
     }
 
+    private function _getAllPhonesInfo() {
+        $brands = $this->db->getAllByKey('factory_defaults', 'brand', null);
+
+        foreach ($brands as $brand_key => $brand_content) {
+            $families = $this->db->getAllByKey('factory_defaults', 'family', $brand_key);
+
+            foreach ($families as $family_key => $family_value) {
+                $models = $this->db->getAllByKey('factory_defaults', 'model', $family_key);
+
+                if ($models)
+                    $families[$family_value]["models"] = $models;
+            }
+
+            $brands[$brand_key]["families"] = $families;
+        }
+
+        return $brands;
+    }
+
+    // Yep...
+    function options()
+    {
+          return;
+    }
+
     /**
      *  This is the function that will allow the administrator to retrieve all brands/families/models/
      *
@@ -43,13 +68,14 @@ class Phones {
 
     function getElement($brand = null, $family = null, $model = null) {
         if (!$brand)
-            $result = $this->db->getAllByKey('factory_defaults', 'brand', null);
+            $result['data'] = $this->_getAllPhonesInfo();
+            //$result = $this->db->getAllByKey('factory_defaults', 'brand', null);
         elseif (!$family)
-            $result = $this->db->getAllByKey('factory_defaults', 'family', $brand);
+            $result['data'] = $this->db->getAllByKey('factory_defaults', 'family', $brand);
         elseif (!$model)
-            $result = $this->db->getAllByKey('factory_defaults', 'model', $family);
+            $result['data'] = $this->db->getAllByKey('factory_defaults', 'model', $family);
         else
-            $result = $this->db->get('factory_defaults', $brand . '_' . $family . '_' . $model);
+            $result['data'] = $this->db->get('factory_defaults', $brand . '_' . $family . '_' . $model);
 
         if (!empty($result))
             return $result;

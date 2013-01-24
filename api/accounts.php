@@ -40,14 +40,16 @@ class Accounts {
 
         // Retrieving the default settings for a user
         if (!$mac_address) {
-            $default_settings = $this->db->get($account_db, $account_id);
+            $default_settings = array();
+            $default_settings['data'] = $this->db->get($account_db, $account_id);
             
             if ($default_settings && array_key_exists('settings', $default_settings))
                 return $default_settings['settings'];
             else
                 throw new RestException(404, 'This account_id do not exist or there are no default settings for this user');
         } else { // retrieving phone specific settings
-            $mac_settings = $this->db->get($account_db, $mac_address);
+            $mac_settings = array();
+            $mac_settings['data'] = $this->db->get($account_db, $mac_address);
             if (!$mac_settings && array_key_exists('settings', $mac_settings))
                 return $mac_settings['settings'];
             else

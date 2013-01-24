@@ -1,0 +1,448 @@
+{
+    "lines": [
+        {
+            "display_name": null,
+            "username": null,
+            "type": null,
+            "third_party_name": null,
+            "auth_name": null,
+            "auth_password": null,
+
+            "sip_server": {
+                "1": {
+                    "host": null,
+                    "port": null,
+                    "expire": null
+                }
+            },
+
+            "outbound_proxy": {
+                "host": null,
+                "port": null,
+                "transport": null
+            },
+
+            "ringtype": null,
+            "linekeys": null,
+
+            "call": {
+                "autoOffHook": {
+                    "enable": null,
+                    "contact": null
+                },
+
+                "missedCallTracking": null,
+                "serverMissedCall": null,
+                "callWaiting_ring": null
+            },
+            
+            "divert": {
+                "contact": null,
+                "autoOnSpecificCaller": null,
+                "shareDisabled": null,
+                "forward": null,
+
+                "busy": {
+                    "enable": null,
+                    "contact": null
+                },
+
+                "noanswer": {
+                    "enable": null,
+                    "timeout": null,
+                    "contact": null
+                },
+
+                "dnd": {
+                    "enable": null,
+                    "contact": null
+                }
+            },
+
+            "dialplan": {
+                "impossibleMatchHandling": null,
+                "removeEndOfDial": null,
+                "applyToUserSend": null,
+                "applyToUserDial": null,
+                "applyToCallListDial": null,
+                "applyToDirectoryDial": null,
+
+                "digitmap": {
+                    "value": null,
+                    "timeOut": null,
+                },
+
+                "routing": {
+                    "server": {
+                        "address": null
+                    },
+
+                    "emergency": {
+                        "value": null
+                    }
+                }
+            },
+
+            "msg": {
+                "bypassInstantMessage": null,
+
+                "wmi": {
+                    "subscribe": null,
+                    "callBackMode": null,
+                    "callBack": null
+                }
+            }
+        }
+    ],
+
+    "attendants": [
+        {
+            "extension": null,
+            "server": null,
+            "label": null
+        }
+    ],
+
+    "sip_server": {
+        "1": {
+            "address": null,
+            "port": null,
+            "transport": null,
+
+            "expire": {
+                "value": null,
+                "overlap": null,
+                "lineSeize": null
+            },
+
+            "register": null,
+            "retryTimeOut": null,
+            "retryMaxCount": null,
+            "lcs": null
+        }
+    },
+
+    "dhcp": {
+        "available": null,
+        "option": null,
+        "type": null
+    },
+
+    "sip": {
+        "useRFC2543hold": null,
+        "useSendonlyHold": null,
+        "lcs": null,
+        "sendCompactHdrs": null,
+
+        "keepalive": {
+            "sessionTimers": null
+        },
+
+        "requestURI": {
+            "E164": {
+                " addGlobalPrefix": null
+            }
+        },
+
+        "allowTransferOnProceeding": null,
+        "ms-forking": null,
+        "pingInterval": null,
+        "useContactInReferTo": null,
+
+        "outbound_proxy": {
+            "address": null,
+            "port": null,
+            "transport": null
+        },
+
+        "alertInfo": {
+            "1": {
+                "value": null,
+                "class": null
+            }
+        },
+
+        "requestValidation": {
+            "1": {
+                "request": {
+                    "1": {
+                        "value": null,
+                        "event": null
+                    }
+                },
+
+                "method": null
+            },
+
+            "2": {
+                "request": {
+                    "1": {
+                        "value": null,
+                        "event": null
+                    }
+                },
+                
+                "method": null
+            },
+
+            "digest": {
+                "realm": null
+            }
+        },
+
+        "specialEvent": {
+            "lineSeize": {
+                "nonStandard": null
+            },
+
+            "checkSync": {
+                "alwaysReboot": null
+            }
+        },
+
+        "conference": {
+            "address": null
+        },
+
+        "dialog": {
+            "useSDP": null,
+            "usePvalue": null
+        },
+
+        "connectionReuse": {
+            "useAlias": null
+        }
+    },
+
+    "sdp": {
+        "answer": {
+            "useLocalPreferences": null
+        }
+    },
+
+    "dialplan": {
+        "impossibleMatchHandling": null,
+        "removeEndOfDial": null,
+        "applyToUserSend": null,
+        "applyToUserDial": null,
+        "applyToCallListDial": null,
+        "applyToDirectoryDial": null,
+
+        "digitmap": {
+            "value": null,
+            "timeOut": null,
+        },
+
+        "routing": {
+            "server": {
+                "1": {
+                    "address": null,
+                    "port": null
+                }
+            },
+
+            "emergency": {
+                "1": {
+                    "value": null,
+                    "server": null
+                }
+            }
+        }
+    },
+
+    "lcl": {
+        "datetime": {
+            "time": {
+                "24HourClock": null
+            },
+
+            "date": {
+                "format": null,
+                "longFormat": null,
+                "dateTop": null
+            }
+        }
+    },
+
+    "up": {
+        "headsetMode": null,
+        "useDirectoryNames": null,
+        "oneTouchVoiceMail": null,
+        "welcomeSoundEnabled": null,
+        "welcomeSoundOnWarmBootEnabled": null,
+        "localClockEnabled": null,
+
+        "backlight": {
+            "onIntensity": null,
+            "idleIntensity": null
+        }
+    },
+
+    "call": {
+        "rejectBusyOnDnd": null,
+        "enableOnNotRegistered": null,
+        "offeringTimeOut": null,
+        "ringBackTimeOut": null,
+        "dialtoneTimeOut": null,
+        "lastCallReturnString": null,
+        "callsPerLineKey": null,
+
+        "stickyAutoLineSeize": {
+            "value": null,
+            "onHookDialing": null
+        },
+
+        "singleKeyPressConference": null,
+        "localConferenceCallHold": null,
+
+        "transfert": {
+            "blindPreferred": null,
+        },
+
+        "directedCallPickupString": null,
+
+        "donotdisturb": {
+            "perReg": null
+        },
+
+        "shared": {
+            "disableDivert": null,
+            "seizeFailReorder": null,
+            "oneTouchResume": null,
+            "exposeAutoHolds": null
+        },
+
+        "hold": {
+            "localReminder": {
+                "enable": null,
+                "period": null,
+                "startDelay": null
+            }
+        }
+    },
+
+    "qos": {
+        "ethernet": {
+            "user_priority": {
+                "rtp": null,
+                "callControl": null,
+                "other": null
+            }
+        },
+
+        "ip": {
+            "rtp": {
+                "dscp": null,
+                "min_delay": null,
+                "max_throughput": null,
+                "max_reliability": null,
+                "min_cost": null,
+                "precedence": null
+            },
+
+            "callControl": {
+                "dscp": null,
+                "min_delay": null,
+                "max_throughput": null,
+                "max_reliability": null,
+                "min_cost": null,
+                "precedence": null
+            }
+        }
+    },
+
+    "tcp_ip": {
+        "sntp": {
+            "resyncPeriod": null,
+
+            "address": {
+                "value": null,
+                "overrideDHCP": null
+            },
+
+            "gmtOffset": {
+                "value": null,
+                "overrideDHCP": null
+            },
+
+            "daylightSavings": {
+                "fixedDayEnable": null,
+
+                "start": {
+                    "month": null,
+                    "date": null,
+                    "time": null,
+
+                    "dayOfWeek": {
+                        "enable": null,
+                        "lastInMonth": null
+                    }
+                },
+
+                "stop": {
+                    "month": null,
+                    "date": null,
+                    "time": null,
+
+                    "dayOfWeek": {
+                        "enable": null,
+                        "lastInMonth": null
+                    }
+                }
+            }
+        },
+
+        "port": {
+            "rtp": {
+                "filterByIp": null,
+                "filterByPort": null
+            }
+        },
+
+        "keepalive": {
+            "tcp": {
+                "sip": {
+                    "tls": {
+                        "enable": null
+                    }
+                }
+            }
+        }
+    },
+
+    "mb": {
+        "proxy": null,
+
+        "main": {
+            "home": null
+        },
+
+        "idleDisplay": {
+            "home": null,
+            "refresh": null
+        },
+
+        "limits": {
+            "nodes": null,
+            "cache": null
+        }
+    },
+
+    "log": {
+        "level": {
+            "change": {
+                "usb": null
+            }
+        },
+
+        "render": {
+            "file": {
+                "upload": {
+                    "append": {
+                        "limitMode": null
+                    }
+                }
+            }
+        }
+    }
+}
