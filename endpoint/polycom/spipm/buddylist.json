@@ -24,6 +24,22 @@
                     ]
                 },
                 {
+                    "variable":"$enableblsk",
+                    "default_value": 1,
+                    "description":"Buddy List Soft Keys:",
+                    "type":"radio",
+                    "data":[
+                    {
+                        "text":"Enabled",
+                        "value":"1"
+                    },
+                    {
+                        "text":"Disabled",
+                        "value":"0"
+                    }
+                    ]
+                },
+                {
                 	"type":"break"
                 },
                 {
