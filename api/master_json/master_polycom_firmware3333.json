@@ -12,7 +12,6 @@
                 "1": {
                     "host": null,
                     "port": null,
-                    "transport": null,
                     "expire": null
                 }
             },
@@ -75,13 +74,11 @@
 
                 "routing": {
                     "server": {
-                        "address": null,
-                        "port": null
+                        "address": null
                     },
 
                     "emergency": {
-                        "value": null,
-                        "server": null
+                        "value": null
                     }
                 }
             },
@@ -98,27 +95,16 @@
         }
     ],
 
-    "local_port": null,
+    "attendants": [
+        {
+            "extension": null,
+            "server": null,
+            "label": null
+        }
+    ],
 
     "sip_server": {
         "1": {
-            "address": null,
-            "port": null,
-            "transport": null,
-
-            "expire": {
-                "value": null,
-                "overlap": null,
-                "lineSeize": null
-            },
-
-            "register": null,
-            "retryTimeOut": null,
-            "retryMaxCount": null,
-            "lcs": null
-        },
-
-        "2": {
             "address": null,
             "port": null,
             "transport": null,
@@ -292,83 +278,6 @@
         }
     },
 
-    "feature": {
-        "1": {
-            "name": null,
-            "enable": null
-        },
-
-        "2": {
-            "name": null,
-            "enable": null
-        },
-        
-        "3": {
-            "name": null,
-            "enable": null
-        },
-        
-        "4": {
-            "name": null,
-            "enable": null
-        },
-        
-        "5": {
-            "name": null,
-            "enable": null
-        },
-        
-        "6": {
-            "name": null,
-            "enable": null
-        },
-        
-        "7": {
-            "name": null,
-            "enable": null
-        },
-        
-        "8": {
-            "name": null,
-            "enable": null
-        },
-        
-        "9": {
-            "name": null,
-            "enable": null
-        },
-        
-        "10": {
-            "name": null,
-            "enable": null
-        },
-        
-        "11": {
-            "name": null,
-            "enable": null
-        },
-        
-        "12": {
-            "name": null,
-            "enable": null
-        },
-        
-        "13": {
-            "name": null,
-            "enable": null
-        },
-        
-        "14": {
-            "name": null,
-            "enable": null
-        },
-        
-        "15": {
-            "name": null,
-            "enable": null
-        },
-    },
-
     "call": {
         "rejectBusyOnDnd": null,
         "enableOnNotRegistered": null,
@@ -389,7 +298,7 @@
         "transfert": {
             "blindPreferred": null,
         },
-        
+
         "directedCallPickupString": null,
 
         "donotdisturb": {
@@ -443,11 +352,6 @@
     },
 
     "tcp_ip": {
-        "netMon": {
-            "enable": null,
-            "period": null
-        },
-
         "sntp": {
             "resyncPeriod": null,
 
@@ -491,17 +395,12 @@
         "port": {
             "rtp": {
                 "filterByIp": null,
-                "filterByPort": null,
-                "forceSend": null,
-                "mediaPortRangeStart": null
+                "filterByPort": null
             }
         },
 
         "keepalive": {
             "tcp": {
-                "idleTransmitInterval": null,
-                "noResponseTrasmitInterval": null,
-
                 "sip": {
                     "tls": {
                         "enable": null
@@ -529,15 +428,6 @@
         }
     },
 
-    "usb": {
-        "enable": null,
-
-        "bulkDrive": {
-            "enable": null,
-            "name": null
-        }
-    },
-
     "log": {
         "level": {
             "change": {
@@ -553,14 +443,6 @@
                     }
                 }
             }
-        },
-
-        "sched": {
-            "2": {
-                "startDay": null
-            }
         }
-    },
-
-    "wmi_tone": null
+    }
 }
