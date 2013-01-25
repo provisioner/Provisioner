@@ -1,0 +1,26 @@
+{
+    "lines": [
+        {
+            "display_name": "{{ sip.name }}",
+            "username": "{{ sip.username }}",
+            "type": null,
+            "third_party_name": null,
+            "auth_name": "{{ sip.username }}",
+            "auth_password": "{{ sip.password }}",
+
+            "sip_server": {
+                "1": {
+                    "host": "{{ sip.realm }}",
+                    "port": "7000",
+                    "expire": "{{ sip.registration_expiration }}"
+                }
+            },
+
+            "outbound_proxy": {
+                "host": null,
+                "port": null,
+                "transport": null
+            }
+        }
+    ]
+}
