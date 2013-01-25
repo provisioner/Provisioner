@@ -13,15 +13,20 @@
 require_once 'lib/php_on_couch/couch.php';
 require_once 'lib/php_on_couch/couchClient.php';
 require_once 'lib/php_on_couch/couchDocument.php';
+require_once 'lib/simple_twig.php';
 
 class BigCouch {
     private $_server_url = null;
     private $_couch_client = null;
+    private $_objTwig = null;
 
     // The server url must be like: http://my.couch.server.com
     public function __construct($server_url, $port) {
         if (strlen($server_url))
             $this->_server_url = $server_url . ':' . $port;
+
+        $loader = new Twig_Loader_Filesystem('master_json/');
+        $this->_objTwig = new Twig_Environment($loader);
     }
 
     // Format a normal response
@@ -42,7 +47,7 @@ class BigCouch {
         foreach ($rows as $row) {
             // The id will be the key
             // TODO: allow the user to choose what must be the key
-            $return_value[$row['id']] = $row['value'];
+            $return_value[$row['value']['name']] = $row['value'];
         }
 
         return $return_value;
@@ -247,17 +252,30 @@ class BigCouch {
 
     // Add - accounts
     public function prepareAddAccounts($request_data, $account_db, $account_id, $mac_address = null) {
+        $finalObj = array();
+
         // We first need to make sure that the database is created
+        $brand = $request_data['provision']['endpoint_brand'];
+        $family = $request_data['provision']['endpoint_family'];
+        $template_file = "master_" . $brand . "_" . $family . ".json";
+
+        if ($this->_objTwig)
+            $settings = $this->_objTwig->render($template_file, $request_data);
+
         $this->_set_client($account_db);
         if (!$this->_couch_client->databaseExists())
             $this->_couch_client->createDatabase();
 
-        if ($mac_address)
-            $request_data['_id'] = $mac_address;
-        else
-            $request_data['_id'] = $account_id;
+        if ($mac_address) {
+            $finalObj['_id'] = $mac_address;
+            $finalObj['brand'] = $brand;
+            $finalObj['family'] = $family;
+            $finalObj['settings'] = $settings;
+        }
+        /*else
+            $request_data['_id'] = $account_id;*/
 
-        return $request_data;
+        return $finalObj;
     }
 }
 

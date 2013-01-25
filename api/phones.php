@@ -37,8 +37,7 @@ class Phones {
             $families = $this->db->getAllByKey('factory_defaults', 'family', $brand_key);
 
             foreach ($families as $family_key => $family_value) {
-                $explode = explode("_", $family_key);
-                $models = $this->db->getAllByKey('factory_defaults', 'model', $explode[1]);
+                $models = $this->db->getAllByKey('factory_defaults', 'model', $family_key);
 
                 if ($models)
                     $families[$family_key]['models'] = $models;
