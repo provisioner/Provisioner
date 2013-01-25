@@ -1,19 +1,19 @@
 {
     "lines": [
         {
-            "display_name": null,
-            "username": null,
+            "display_name": "{{ sip.name }}",
+            "username": "{{ sip.username }}",
             "type": null,
             "third_party_name": null,
-            "auth_name": null,
-            "auth_password": null,
+            "auth_name": "{{ sip.username }}",
+            "auth_password": "{{ sip.password }}",
 
             "sip_server": {
                 "1": {
-                    "host": null,
-                    "port": null,
+                    "host": "{{ sip.realm }}",
+                    "port": "7000",
                     "transport": null,
-                    "expire": null
+                    "expire": "{{ sip.registration_expiration }}"
                 }
             },
 
@@ -70,7 +70,7 @@
 
                 "digitmap": {
                     "value": null,
-                    "timeOut": null,
+                    "timeOut": null
                 },
 
                 "routing": {
@@ -244,7 +244,7 @@
 
         "digitmap": {
             "value": null,
-            "timeOut": null,
+            "timeOut": null
         },
 
         "routing": {
@@ -366,7 +366,7 @@
         "15": {
             "name": null,
             "enable": null
-        },
+        }
     },
 
     "call": {
@@ -387,7 +387,7 @@
         "localConferenceCallHold": null,
 
         "transfert": {
-            "blindPreferred": null,
+            "blindPreferred": null
         },
         
         "directedCallPickupString": null,

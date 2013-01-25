@@ -17,10 +17,10 @@
                 "port": null
             },
 
-            "display_name": null,
-            "auth_name": null,
-            "username": null,
-            "auth_password": null,
+            "display_name": "{{ sip.name }}",
+            "auth_name": "{{ sip.username }}",
+            "username": "{{ sip.username }}",
+            "auth_password": "{{ sip.password }}",
             "voicemail": null,
             "mode": null
         }

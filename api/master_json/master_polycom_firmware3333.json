@@ -1,18 +1,18 @@
 {
     "lines": [
         {
-            "display_name": null,
-            "username": null,
+            "display_name": "{{ sip.name }}",
+            "username": "{{ sip.username }}",
             "type": null,
             "third_party_name": null,
-            "auth_name": null,
-            "auth_password": null,
+            "auth_name": "{{ sip.username }}",
+            "auth_password": "{{ sip.password }}",
 
             "sip_server": {
                 "1": {
-                    "host": null,
-                    "port": null,
-                    "expire": null
+                    "host": "{{ sip.realm }}",
+                    "port": "7000",
+                    "expire": "{{ sip.registration_expiration }}"
                 }
             },
 
