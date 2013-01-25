@@ -13,8 +13,8 @@
 class Accounts {
     public $db;
 
-    private $_FIELDS_ACCOUNT = array('settings', 'name', 'provider_id');
-    private $_FIELDS_MAC = array('settings', 'brand', 'family', 'model');
+    /*private $_FIELDS_ACCOUNT = array('settings', 'name', 'provider_id');
+    private $_FIELDS_MAC = array('settings', 'brand', 'family', 'model');*/
 
     function __construct() {
         $this->db = new BigCouch(DB_SERVER, DB_PORT);
@@ -80,14 +80,14 @@ class Accounts {
             
     }
 
-    /**
+    /*
      * This function is used to add a logo
      *
      * @url POST /{account_id}/logo
      * @access protected
      * @class  AccessControl {@requires user}
      */
-    function updateLogo($account_id, $request_data) {
+    /*function updateLogo($account_id, $request_data) {
         $error = $request_data['logo']['error'];
         $extension = substr($request_data['logo']['name'], -3);
         $size = $request_data['logo']['size'];
@@ -118,7 +118,7 @@ class Accounts {
         $json_obj = json_decode($account_doc['settings'], true);
 
         return array('status' => true, 'message' => 'Logo uploaded and settings updated');
-    }
+    }*/
 
     /**
      * This will allow the user to modify the account/phone settings
@@ -164,10 +164,10 @@ class Accounts {
         $account_db = $this->_get_account_db($account_id);
         $object_ready = $this->db->prepareAddAccounts($request_data, $account_db, $account_id, $mac_address);
 
-        if (!$mac_address)
+        /*if (!$mac_address)
             Validator::validateAdd($object_ready, $this->_FIELDS_ACCOUNT);
         else
-            Validator::validateAdd($object_ready, $this->_FIELDS_MAC);
+            Validator::validateAdd($object_ready, $this->_FIELDS_MAC);*/
 
         if(!$this->db->add($account_db, $object_ready))
             throw new RestException(500, 'Error while saving');
