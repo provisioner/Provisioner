@@ -2,7 +2,12 @@
     "version": "5.0",
     "static_data_source": "database",
     "config_manager": "2600hz",
-    "provisioner_endpoint_path": "/Provisioner/endpoint/",
+
+    "paths": {
+        "endpoint": "/Provisioner/endpoint/",
+        "firmwares": "http://173.255.241.245/firmware/"
+    },
+    
     "database": {
         "type": "BigCouch",
         "url": "http://10.10.9.57",
