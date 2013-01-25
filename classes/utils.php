@@ -82,8 +82,10 @@ class ProvisionerUtils {
 
             if (preg_match("/0{12}\.cfg$/", $uri))
                 $target = "000000000000.cfg";
-            elseif (!preg_match("/[a-z0-9_]*\.cfg$/", $uri, $match_result))
-                $target = ProvisionerUtils::strip_uri($uri);
+            elseif (!preg_match("/[a-z0-9_]*\.cfg$/", $uri)) {
+                preg_match("/[0-9a-zA-Z]{32}(.*)$/", $uri, $match_result);
+                $target = $match_result[1];
+            }
         }
 
         if (!$target)
