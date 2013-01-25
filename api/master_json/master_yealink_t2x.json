@@ -1,5 +1,5 @@
 {
-    "timezone": null,
+    "timezone": "{{ timezone }}",
     "ntp_server": null,
 
     "lines": [

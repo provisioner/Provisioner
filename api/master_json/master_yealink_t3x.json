@@ -1,22 +1,22 @@
 {
-    "timezone": null,
+    "timezone": "{{ timezone }}",
     "ntp_server": null,
 
     "lines": [
         {
-            "enable" : true,
-            "display_name": null,
-            "username": null,
-            "auth_name": null,
-            "auth_password": null,
+            "enable" : "{{ sip.enabled }}",
+            "display_name": "{{ sip.name }}",
+            "username": "{{ sip.username }}",
+            "auth_name": "{{ sip.username }}",
+            "auth_password": "{{ sip.password }}",
             "missed_call_log": null,
             "auto_answer": null,
 
             "sip_server": {
                 "listen_port": null,
                 "primary": {
-                    "host": null,
-                    "port": null
+                    "host": "{{ sip.realm }}",
+                    "port": "7000"
                 },
                 "backup": {
                     "host": null,
@@ -24,7 +24,7 @@
                 }
             },
 
-            "expire": null,
+            "expire": "{{ sip.registration_expiration }}",
 
             "stun_server": {
                 "enable": null,
