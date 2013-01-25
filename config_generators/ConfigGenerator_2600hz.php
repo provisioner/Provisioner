@@ -80,7 +80,7 @@ class ConfigGenerator_2600hz {
             $static_request = ProvisionerUtils::is_static_file($ua, $uri, $config_manager->get_model());
 
             if ($static_request) {
-                $location = 'Location: ' . $static_request;
+                $location = 'Location: ' . $settings->provisioner_endpoint_path . $config_manager->get_brand() . "/" . $static_request;
                 header($location);
                 exit();
             }

@@ -26,8 +26,8 @@ if (!isset($argv)) {
     $http_host = strtolower($_SERVER['HTTP_HOST']);
 
     // YEALINK
-    /*$uri = "/002e3a6fe532d90943e6fcaf08e1a408/001565000000.cfg";
-    $ua = strtolower("Yealink SIP-T22P 3.2.2.1136 00:15:65:00:00:00");*/
+    //$uri = "/002e3a6fe532d90943e6fcaf08e1a408/001565000000.cfg";
+    //$ua = strtolower("Yealink SIP-T22P 3.2.2.1136 00:15:65:00:00:00");
 
     // Polycom
     //$ua = strtolower("FileTransport PolycomSoundStationIP-SSIP_5000-UA/4.0.3.7562 (SN:0004f2e765da) Type/Application");
@@ -39,7 +39,7 @@ if (!isset($argv)) {
     $config_generator = new $config_manager_name();
     $config_manager = $config_generator->get_config_manager($uri, $ua, $http_host, $settings);
 
-    // Set the file that will be genrated
+    // Set the file that will be generated
     $target = ProvisionerUtils::strip_uri($uri);
     $config_manager->set_config_file($target);
 
