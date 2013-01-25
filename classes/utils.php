@@ -72,26 +72,31 @@ class ProvisionerUtils {
     }
 
     // This function will determine weither the current request is a static file or not
-    public static function is_static_file($ua, $uri, $model) {
+    public static function is_static_file($ua, $uri, $model, $brand, $settings) {
         $folder = null;
         $target = null;
 
         // Polycom
-        if (preg_match("/polycom/", $ua)) {
+        if ($brand == "polycom") {
             $folder = ProvisionerUtils::get_folder("polycom", $model);
 
             if (preg_match("/0{12}\.cfg$/", $uri))
-                $target = "000000000000.cfg";
+                $location = $settings->paths->endpoint . "polycom/000000000000.cfg";
             elseif (!preg_match("/[a-z0-9_]*\.cfg$/", $uri)) {
-                preg_match("/[0-9a-zA-Z]{32}(.*)$/", $uri, $match_result);
-                $target = $match_result[1];
+                if (preg_match("/([0-9a-zA-Z\-_]*\.ld)$/", $uri, $match_result))
+                    $location = $settings->paths->firmwares . $brand . "/" . $folder . "/firmware/" . $match_result[1];
+                elseif (preg_match("/[0-9a-zA-Z]{32}(.*)$/", $uri, $match_result))
+                    $location = $settings->paths->endpoint . $brand . "/" . $folder . $match_result[1];
             }
         }
 
-        if (!$target)
+        if (!$location )
             return false;
-        else
-            return $folder . $target;
+        else {
+            $location = 'Location: ' . $location;
+            header($location);
+            exit();
+        }
     }
 
     public static function json_errors() {
