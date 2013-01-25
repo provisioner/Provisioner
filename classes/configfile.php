@@ -52,10 +52,6 @@ class ConfigFile {
         return $this->_strConfigFile;
     }
 
-    public function sset_config_file($file) {
-        $this->_strConfigFile = $file;
-    }
-
     public function get_template_dir() {
         return $this->_strTemplateDir;
     }
@@ -63,6 +59,10 @@ class ConfigFile {
     // Setter
     public function set_brand($brand) {
         $this->_strBrand = $brand;
+    }
+
+    public function sset_config_file($file) {
+        $this->_strConfigFile = $file;
     }
 
     public function set_family($family) {

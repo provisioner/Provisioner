@@ -67,7 +67,7 @@ class ProvisionerUtils {
 
     public static function get_file_list($brand, $model) {
         $folder = ProvisionerUtils::get_folder($brand, $model);
-        $files = json_decode(file_get_contents(MODULES_DIR . $brand . "/".$folder . "/family_data.json"), true);
+        $files = json_decode(file_get_contents(MODULES_DIR . $brand . "/". $folder . "/family_data.json"), true);
         return $files["configuration_files"];
     }
 
@@ -92,8 +92,30 @@ class ProvisionerUtils {
             return $folder . $target;
     }
 
-    public static function validate_arguments($argv) {
-        // TODO
+    public static function json_errors() {
+        switch (json_last_error()) {
+            case JSON_ERROR_NONE:
+                return false;
+            break;
+            case JSON_ERROR_DEPTH:
+                return ' - Maximum stack depth exceeded';
+            break;
+            case JSON_ERROR_STATE_MISMATCH:
+                return ' - Underflow or the modes mismatch';
+            break;
+            case JSON_ERROR_CTRL_CHAR:
+                return ' - Unexpected control character found';
+            break;
+            case JSON_ERROR_SYNTAX:
+                return ' - Syntax error, malformed JSON';
+            break;
+            case JSON_ERROR_UTF8:
+                return ' - Malformed UTF-8 characters, possibly incorrectly encoded';
+            break;
+            default:
+                return ' - Unknown error';
+            break;
+        }
     }
 }
 
