@@ -26,6 +26,12 @@ class Accounts {
         return "account/" . substr_replace(substr_replace($account_id, '/', 2, 0), '/', 5, 0);
     }
 
+    // Yep...
+    function options()
+    {
+        return;
+    }
+
     /**
      * This will allow the user to get the default settings for an account and for a phone 
      *
