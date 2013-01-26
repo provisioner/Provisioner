@@ -1,4 +1,4 @@
-Provisioner v5.0
+Provisioner v5.0.2
 ----------------
 
 Supported phones (01.03.2013):
@@ -7,10 +7,11 @@ Yealink:
     - t1x
     - t2x
     - t3x
+    
+Polycoms
 
 Coming soon:
-
-Aastra
+    Aastra
 
 -------------------------------
 
