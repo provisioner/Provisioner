@@ -3106,6 +3106,7 @@ P395 = {$key_name_18}
 # String
 P396 = {$speed_dial_18}
 
+# Multipupose Key 19
 # ------------------------------------------------------------------------------------- 
 # Key Mode.
 # 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
@@ -3113,20 +3114,135 @@ P396 = {$speed_dial_18}
 # 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search
 # Number: 0-11
 # Mandatory
-P1460 = 0
+P1440 = {$key_mode_19}
 
-# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4, 
-# Number: 0-3
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P1441 = 0
+
+# Name. Max length allowed is 128 characters.
+# String
+P1442 = {$key_name_19}
+
+# User ID. Max length allowed is 64 character
+# String
+P1443 = {$speed_dial_19}
+
+# Multipupose Key 20
+# ------------------------------------------------------------------------------------- 
+# Key Mode.
+# 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
+# 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn
+# 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search
+# Number: 0-11
+# Mandatory
+P1444 = {$key_mode_20}
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P1445 = 0
+
+# Name. Max length allowed is 128 characters.
+# String
+P1446 = {$key_name_20}
+
+# User ID. Max length allowed is 64 character
+# String
+P1447 = {$speed_dial_20}
+
+# Multipupose Key 21
+# ------------------------------------------------------------------------------------- 
+# Key Mode.
+# 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
+# 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn
+# 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search
+# Number: 0-11
+# Mandatory
+P1448 = {$key_mode_21}
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P1449 = 0
+
+# Name. Max length allowed is 128 characters.
+# String
+P1450 = {$key_name_21}
+
+# User ID. Max length allowed is 64 character
+# String
+P1451 = {$speed_dial_21}
+
+# Multipupose Key 22
+# ------------------------------------------------------------------------------------- 
+# Key Mode.
+# 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
+# 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn
+# 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search
+# Number: 0-11
+# Mandatory
+P1452 = {$key_mode_22}
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P1453 = 0
+
+# Name. Max length allowed is 128 characters.
+# String
+P1454 = {$key_name_22}
+
+# User ID. Max length allowed is 64 character
+# String
+P1455 = {$speed_dial_22}
+
+# Multipupose Key 23
+# ------------------------------------------------------------------------------------- 
+# Key Mode.
+# 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
+# 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn
+# 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search
+# Number: 0-11
+# Mandatory
+P1456 = {$key_mode_23}
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P1457 = 0
+
+# Name. Max length allowed is 128 characters.
+# String
+P1458 = {$key_name_23}
+
+# User ID. Max length allowed is 64 character
+# String
+P1459 = {$speed_dial_23}
+
+# Multipupose Key 24
+# ------------------------------------------------------------------------------------- 
+# Key Mode.
+# 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
+# 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn
+# 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search
+# Number: 0-11
+# Mandatory
+P1460 = {$key_mode_24}
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
 # Mandatory
 P1461 = 0
 
 # Name. Max length allowed is 128 characters.
 # String
-P1462 =
+P1462 = {$key_name_24}
 
 # User ID. Max length allowed is 64 character
 # String
-P1463 =
+P1463 = {$speed_dial_24}
 
 # -------------------------------------------------------------------------------------
 #--------------------------------------------------------------------------------------
