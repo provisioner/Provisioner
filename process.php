@@ -30,7 +30,7 @@ if (!isset($argv)) {
     //$ua = strtolower("Yealink SIP-T22P 3.2.2.1136 00:15:65:00:00:00");
 
     // Polycom
-    $ua = strtolower("FileTransport PolycomSoundStationIP-SSIP_5000-UA/4.0.3.7562 (SN:0004f2e765da) Type/Application");
+    //$ua = strtolower("FileTransport PolycomSoundStationIP-SSIP_5000-UA/4.0.3.7562 (SN:0004f2e765da) Type/Application");
     //$uri = "/002e3a6fe532d90943e6fcaf08e1a408/0004f2e765da_reg.cfg";
 
     // Load the config manager
