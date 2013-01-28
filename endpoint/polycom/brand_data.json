@@ -2,7 +2,7 @@
     "430": {
         "folder": "firmware325",
         "config_files": [
-            "[PHONE_MAC_ADDRESS]_reg.cfg", 
+            "$mac_reg.cfg", 
             "server_327.cfg", 
             "phone1_327.cfg", 
             "sip_327.cfg"
@@ -12,7 +12,7 @@
     "320": {
         "folder": "firmware3333",
         "config_files": [
-            "[PHONE_MAC_ADDRESS]_reg.cfg", 
+            "$mac_reg.cfg", 
             "sip_3333.cfg"
         ]
     },
@@ -20,7 +20,7 @@
     "330": {
         "folder": "firmware3333",
         "config_files": [
-            "[PHONE_MAC_ADDRESS]_reg.cfg", 
+            "$mac_reg.cfg", 
             "sip_3333.cfg"
         ]
     },
@@ -37,7 +37,7 @@
     "321": {
         "folder": "spipm",
         "config_files": [
-            "[PHONE_MAC_ADDRESS]_reg.cfg", 
+            "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
         ]
@@ -46,7 +46,7 @@
     "331": {
         "folder": "spipm",
         "config_files": [
-            "[PHONE_MAC_ADDRESS]_reg.cfg", 
+            "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
         ]
@@ -55,7 +55,7 @@
     "335": {
         "folder": "spipm",
         "config_files": [
-            "[PHONE_MAC_ADDRESS]_reg.cfg", 
+            "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
         ]
@@ -64,7 +64,7 @@
     "450": {
         "folder": "spipm",
         "config_files": [
-            "[PHONE_MAC_ADDRESS]_reg.cfg", 
+            "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
         ]
@@ -73,7 +73,7 @@
     "550": {
         "folder": "spipm",
         "config_files": [
-            "[PHONE_MAC_ADDRESS]_reg.cfg", 
+            "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
         ]
@@ -82,7 +82,7 @@
     "560": {
         "folder": "spipm",
         "config_files": [
-            "[PHONE_MAC_ADDRESS]_reg.cfg", 
+            "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
         ]
@@ -91,7 +91,7 @@
     "650": {
         "folder": "spipm",
         "config_files": [
-            "[PHONE_MAC_ADDRESS]_reg.cfg", 
+            "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
         ]
@@ -100,7 +100,7 @@
     "670": {
         "folder": "spipm",
         "config_files": [
-            "[PHONE_MAC_ADDRESS]_reg.cfg", 
+            "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
         ]
@@ -109,7 +109,7 @@
     "5000": {
         "folder": "spipm",
         "config_files": [
-            "[PHONE_MAC_ADDRESS]_reg.cfg", 
+            "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
         ]
@@ -118,7 +118,7 @@
     "6000": {
         "folder": "spipm",
         "config_files": [
-            "[PHONE_MAC_ADDRESS]_reg.cfg", 
+            "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
         ]
@@ -127,7 +127,7 @@
     "7000": {
         "folder": "spipm",
         "config_files": [
-            "[PHONE_MAC_ADDRESS]_reg.cfg", 
+            "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
         ]
@@ -136,7 +136,7 @@
     "1500": {
         "folder": "spipm",
         "config_files": [
-            "[PHONE_MAC_ADDRESS]_reg.cfg", 
+            "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
         ]
@@ -145,7 +145,7 @@
     "301": {
         "folder": "splm",
         "config_files": [
-            "[PHONE_MAC_ADDRESS]_reg.cfg", 
+            "$mac_reg.cfg", 
             "phone1_318.cfg", 
             "server_318.cfg", 
             "sip_318.cfg"
@@ -155,7 +155,7 @@
     "501": {
         "folder": "splm",
         "config_files": [
-            "[PHONE_MAC_ADDRESS]_reg.cfg", 
+            "$mac_reg.cfg", 
             "phone1_318.cfg", 
             "server_318.cfg", 
             "sip_318.cfg"
@@ -165,7 +165,7 @@
     "600": {
         "folder": "splm",
         "config_files": [
-            "[PHONE_MAC_ADDRESS]_reg.cfg", 
+            "$mac_reg.cfg", 
             "phone1_318.cfg", 
             "server_318.cfg", 
             "sip_318.cfg"
@@ -175,7 +175,7 @@
     "601": {
         "folder": "splm",
         "config_files": [
-            "[PHONE_MAC_ADDRESS]_reg.cfg", 
+            "$mac_reg.cfg", 
             "phone1_318.cfg", 
             "server_318.cfg", 
             "sip_318.cfg"
@@ -185,7 +185,7 @@
     "4000": {
         "folder": "splm",
         "config_files": [
-            "[PHONE_MAC_ADDRESS]_reg.cfg", 
+            "$mac_reg.cfg", 
             "phone1_318.cfg", 
             "server_318.cfg", 
             "sip_318.cfg"
@@ -195,7 +195,7 @@
     "300": {
         "folder": "spom",
         "config_files": [
-            "[PHONE_MAC_ADDRESS]_reg.cfg", 
+            "$mac_reg.cfg", 
             "server_213.cfg", 
             "phone1_213.cfg", 
             "sip_213.cfg"
@@ -205,7 +205,7 @@
     "500": {
         "folder": "spom",
         "config_files": [
-            "[PHONE_MAC_ADDRESS]_reg.cfg", 
+            "$mac_reg.cfg", 
             "server_213.cfg", 
             "phone1_213.cfg", 
             "sip_213.cfg"
