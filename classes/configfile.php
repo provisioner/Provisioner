@@ -18,6 +18,9 @@ class ConfigFile {
     private $_strFamily = null;
     private $_strModel = null;
 
+    // http or tftp
+    private $_requestType = null;
+
     private $_strMac = null;
     private $_strConfigFile = null;
     private $_strTemplateDir = null;
@@ -44,6 +47,10 @@ class ConfigFile {
         return $this->_strModel;
     }
 
+    public function get_request_type() {
+        return $this->_requestType;
+    }
+
     public function get_firmware_version() {
         return $this->_strFirmVers;
     }
@@ -61,16 +68,20 @@ class ConfigFile {
         $this->_strBrand = $brand;
     }
 
-    public function sset_config_file($file) {
-        $this->_strConfigFile = $file;
-    }
-
     public function set_family($family) {
         $this->_strFamily = $family;
     }
 
     public function set_model($model) {
         $this->_strModel = $model;
+    }
+
+    public function set_request_type($requestType) {
+        $this->_requestType = $requestType;
+    }
+
+    public function sset_config_file($file) {
+        $this->_strConfigFile = $file;
     }
 
     // This function will allow the user to set his own template directory
