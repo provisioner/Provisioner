@@ -1,7 +1,7 @@
 {
     "lines": [
         {
-            "display_name": "{{ sip.name }}",
+            "display_name": "{{ name }}",
             "type": null,
             "username": "{{ sip.username }}",
             "third_party_name": null,

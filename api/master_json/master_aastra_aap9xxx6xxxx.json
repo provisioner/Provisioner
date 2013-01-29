@@ -17,7 +17,7 @@
                 "port": null
             },
 
-            "display_name": "{{ sip.name }}",
+            "display_name": "{{ name }}",
             "auth_name": "{{ sip.username }}",
             "username": "{{ sip.username }}",
             "auth_password": "{{ sip.password }}",

@@ -5,7 +5,7 @@
     "lines": [
         {
             "enable" : "{{ sip.enabled }}",
-            "display_name": "{{ sip.name }}",
+            "display_name": "{{ name }}",
             "username": "{{ sip.username }}",
             "auth_name": "{{ sip.username }}",
             "auth_password": "{{ sip.password }}",
