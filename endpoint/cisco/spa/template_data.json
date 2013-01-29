@@ -1,0 +1,162 @@
+{
+  "template_data":{
+    "category":[
+      {
+        "name":"general",
+        "subcategory":[
+          {
+            "name":"General Settings",
+            "item":[
+              {
+                "variable":"$station_name",
+                "default_value":"",
+                "description":"Station Name",
+                "type":"input"
+              },
+              {
+                "type":"break"
+              },
+              {
+                "variable":"$page_code",
+                "default_value":"",
+                "description":"Paging Code",
+                "type":"input"
+              },
+              {
+                "type":"break"
+              },
+              {
+                "variable":"$enable_webserver",
+                "default_value":"No",
+                "description":"Enable Webserver",
+                "type":"radio",
+                "data":[
+                  {
+                    "text":"Yes",
+                    "value":"Yes"
+                  },
+                  {
+                    "text":"No",
+                    "value":"No"
+                  }
+                ]
+              },
+              {
+                "variable":"$webserver_port",
+                "default_value":"80",
+                "description":"Webserver Port",
+                "type":"input"
+              },
+              {
+                "variable":"$enable_webserver_admin",
+                "default_value":"No",
+                "description":"Enable Webserver Admin",
+                "type":"radio",
+                "data":[
+                  {
+                    "text":"Yes",
+                    "value":"Yes"
+                  },
+                  {
+                    "text":"No",
+                    "value":"No"
+                  }
+                ]
+              },
+              {
+                "variable":"$administrator_password",
+                "default_value":"",
+                "description":"Administrator Password",
+                "type":"input"
+              },
+              {
+                "variable":"$user_password",
+                "default_value":"",
+                "description":"User Password",
+                "type":"input"
+              },
+              {
+                "type":"break"
+              },
+              {
+                "variable":"$upgrade_path",
+                "default_value":"tftp:\/\/",
+                "description":"Upgrade Rule",
+                "type":"input"
+              },
+              {
+                "variable":"$enable_upgrade",
+                "default_value":"No",
+                "description":"Enable Upgrade",
+                "type":"radio",
+                "data":[
+                  {
+                    "text":"Yes",
+                    "value":"Yes"
+                  },
+                  {
+                    "text":"No",
+                    "value":"No"
+                  }
+                ]
+              },
+              {
+                "type":"break"
+              },
+              {
+                "variable":"$dial_plan",
+                "default_value":"( [23456789]11 | *xxx. | <:1352>[2-9]xxxxxx | <:1>[2-9]xx[2-9]xxxxxxS0 | 1[2-9]xx[2-9]xxxxxxS0 | 011xxxxxxx. | [#*x][*x][*x]. )",
+                "description":"Dial Plan",
+                "type":"input"
+              },
+              {
+                "variable":"$text_logo",
+                "default_value":"",
+                "description":"Text Logo",
+                "type":"input"
+              },
+              {
+                "variable":"$picture_url",
+                "default_value":"tftp:\/\/",
+                "description":"BMP Picture Path",
+                "type":"input"
+              },
+              {
+                "variable":"$logo_type",
+                "default_value":"Text Logo",
+                "description":"Logo Type",
+                "type":"radio",
+                "data":[
+                  {
+                    "text":"Text Logo",
+                    "value":"Text Logo"
+                  },
+                  {
+                    "text":"BMP Picture",
+                    "value":"BMP Picture"
+                  }
+                ]
+              },
+              {
+                "variable":"$background_type",
+                "default_value":"Text Logo",
+                "description":"Background Type",
+                "type":"radio",
+                "data":[
+                  {
+                    "text":"Text Logo",
+                    "value":"Text Logo"
+                  },
+                  {
+                    "text":"BMP Picture",
+                    "value":"BMP Picture"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

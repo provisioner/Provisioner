@@ -1,0 +1,22 @@
+image_version: "{$image_name}"
+
+cnf_join_enable: "1"
+semi_attended_transfer: "0"
+call_waiting: "1"
+anonymous_call_block: "0"
+callerid_blocking: "0"
+dnd_control: "0"
+
+dtmf_inband: "1"
+dtmf_outofband: "avt"
+dtmf_db_level: "3"
+dtmf_avt_payload: "101"
+timer_t1: "500"
+timer_t2: "4000"
+sip_retx: "10"
+sip_invite_retx: "6"
+timer_invite_expires: "180"
+
+http_proxy_addr: ""
+http_proxy_port: 80
+remote_party_id: 0

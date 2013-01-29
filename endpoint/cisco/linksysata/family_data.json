@@ -1,0 +1,119 @@
+{
+    "data": {
+        "name": "Linksys/Cisco/Sipura SPA Adapter Models [AG310,PAP2T,RTP300,SPA1001,SPA2102,SPA3102,SPA8000,WRP400,WRTP54G,WRT54G2]",
+        "id": "6",
+        "directory": "linksysata",
+        "firmware_ver": "",
+        "firmware_pkg": "NULL",
+        "firmware_md5sum": "",
+        "description": "New Device",
+        "configuration_files": "$model.cfg,spa$mac.xml",
+        "changelog": "",
+        "provisioning_types": [
+            "tftp",
+            "http"
+        ],
+        "model_list": [
+            {
+                "model": "SPA2102",
+                "lines": "2",
+                "id": "1",
+                "firmware": "spa2100-*.bin",
+                "template_data": [
+                    "template_data.json",
+                    "keys.json"
+                ]
+            },
+            {
+                "model": "SPA3102",
+                "lines": "1",
+                "id": "2",
+                "template_data": [
+                    "template_data.json",
+                    "keys.json"
+                ]
+            },
+            {
+                "model": "AG310",
+                "lines": "1",
+                "id": "3",
+                "template_data": [
+                    "template_data.json",
+                    "keys.json"
+                ]
+            },
+            {
+                "model": "PAP2T",
+                "lines": "2",
+                "id": "4",
+                "template_data": [
+                    "template_data.json",
+                    "keys.json"
+                ]
+            },
+            {
+                "model": "RTP300",
+                "lines": "2",
+                "id": "5",
+                "template_data": [
+                    "template_data.json",
+                    "keys.json"
+                ]
+            },
+            {
+                "model": "SPA1001",
+                "lines": "1",
+                "id": "6",
+                "template_data": [
+                    "template_data.json",
+                    "keys.json"
+                ]
+            },
+            {
+                "model": "SPA8000",
+                "lines": "8",
+                "id": "7",
+                "template_data": [
+                    "template_data.json",
+                    "keys.json"
+                ]
+            },
+            {
+                "model": "WRP400",
+                "lines": "2",
+                "id": "8",
+                "template_data": [
+                    "template_data.json",
+                    "keys.json"
+                ]
+            },
+            {
+                "model": "WRTP54G",
+                "lines": "2",
+                "id": "9",
+                "template_data": [
+                    "template_data.json",
+                    "keys.json"
+                ]
+            },
+            {
+                "model": "WRTP54G2",
+                "lines": "2",
+                "id": "10",
+                "template_data": [
+                    "template_data.json",
+                    "keys.json"
+                ]
+            },
+            {
+                "model": "SPA112",
+                "lines": "2",
+                "id": "11",
+                "template_data": [
+                    "template_data.json",
+                    "keys.json"
+                ]
+            }
+        ]
+    }
+}
