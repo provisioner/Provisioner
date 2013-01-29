@@ -281,7 +281,7 @@ class ConfigFile {
         $target_phone = "endpoint_" . $this->_strBrand . "_" . $folder . "_phone";
 
         $phone = new $target_phone();
-        $arrConfig = $phone->prepareConfig($arrConfig);
+        $arrConfig = $phone->prepareConfig($arrConfig, $this);
 
         // Set the twig template directory
         // Not sure if that should be here
