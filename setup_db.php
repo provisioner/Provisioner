@@ -12,9 +12,9 @@
 
 require_once 'bootstrap.php';
 
-require_once LIB_BASE . 'php_on_couch/couch.php';
-require_once LIB_BASE . 'php_on_couch/couchClient.php';
-require_once LIB_BASE . 'php_on_couch/couchDocument.php';
+require_once LIB_BASE . 'lib/php_on_couch/couch.php';
+require_once LIB_BASE . 'lib/php_on_couch/couchClient.php';
+require_once LIB_BASE . 'lib/php_on_couch/couchDocument.php';
 
 define('CONFIG_FILE', PROVISIONER_BASE . 'config.json');
 
@@ -32,7 +32,7 @@ if (strtolower($configs->database->type) == "bigcouch") {
     // =========
 
     // Creating the database
-    $couch_client = new couchClient($server_url, "providers_test");
+    $couch_client = new couchClient($server_url, "providers");
 
     if (!$couch_client->databaseExists())
         $couch_client->createDatabase();
@@ -76,7 +76,7 @@ if (strtolower($configs->database->type) == "bigcouch") {
     // ================
 
     // Creating the database
-    $couch_client->useDatabase("factory_defaults_test");
+    $couch_client->useDatabase("factory_defaults");
 
     if (!$couch_client->databaseExists())
         $couch_client->createDatabase();
@@ -120,7 +120,7 @@ if (strtolower($configs->database->type) == "bigcouch") {
     // =======================
 
     // Creating the database
-    $couch_client->useDatabase("system_account_test");
+    $couch_client->useDatabase("system_account");
 
     if (!$couch_client->databaseExists())
         $couch_client->createDatabase();
@@ -141,7 +141,7 @@ if (strtolower($configs->database->type) == "bigcouch") {
         die("ERROR: " . $e->getMessage() . " (" . $e->getCode() . ")<br>");
     }
 
-    // OK, this is lame... But better then nothing.
+    // OK, this is lame... But better than nothing.
     // TODO: put an ugly ASCII art right here
     echo "=========================== <br>";
     echo "SUCCESS!<br>";
