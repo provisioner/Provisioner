@@ -1,0 +1,148 @@
+{
+    "data": {
+        "name": "Linksys/Cisco/Sipura SPA Phone Models 5xx, 3xx [303,501G,502G,504G,525G,525G2]",
+        "id": "3",
+        "directory": "spa5xx",
+        "firmware_ver": "",
+        "firmware_pkg": "NULL",
+        "firmware_md5sum": "",
+        "configuration_files": "$model.cfg,spa$mac.xml",
+        "changelog": "",
+        "description": "",
+        "provisioning_types": [
+            "tftp",
+            "http"
+        ],
+        "model_list": [
+            {
+                "model": "SPA501G",
+                "lines": "8",
+                "id": "1",
+                "template_data": [
+                    "template_data.json",
+                    "keys.json",
+                    "provisioning.json"
+                ]
+            },
+            {
+                "model": "SPA502G",
+                "lines": "1",
+                "id": "2",
+                "template_data": [
+                    "template_data.json",
+                    "keys.json",
+                    "provisioning.json",
+                    "a_unit1.json",
+                    "a_unit2.json"
+                ]
+            },
+            {
+                "model": "SPA504G",
+                "lines": "4",
+                "id": "3",
+                "template_data": [
+                    "4_lines.json",
+                    "template_data.json",
+                    "keys.json",
+                    "provisioning.json",
+                    "a_unit1.json",
+                    "a_unit2.json"
+                ]
+            },
+            {
+                "model": "SPA508G",
+                "lines": "8",
+                "id": "4",
+                "template_data": [
+                    "8_lines.json",
+                    "template_data.json",
+                    "keys.json",
+                    "provisioning.json",
+                    "a_unit1.json",
+                    "a_unit2.json"
+                ]
+            },
+            {
+                "model": "SPA509G",
+                "lines": "12",
+                "id": "5",
+                "template_data": [
+                    "12_lines.json",
+                    "template_data.json",
+                    "keys.json",
+                    "provisioning.json",
+                    "a_unit1.json",
+                    "a_unit2.json"
+                ]
+            },
+            {
+                "model": "SPA525G",
+                "lines": "5",
+                "id": "6",
+                "template_data": [
+                    "5_lines.json",
+                    "template_data.json",
+                    "keys.json",
+                    "provisioning.json",
+                    "a_unit1.json",
+                    "a_unit2.json"
+                ]
+            },
+            {
+                "model": "SPA525G2",
+                "lines": "5",
+                "id": "7",
+                "template_data": [
+                    "5_lines.json",
+                    "template_data.json",
+                    "keys.json",
+                    "provisioning.json",
+                    "a_unit1.json",
+                    "a_unit2.json"
+                ]
+            },
+            {
+                "model": "SPA303",
+                "lines": "3",
+                "id": "8",
+                "template_data": [
+                    "3_lines.json",
+                    "template_data.json",
+                    "keys.json",
+                    "provisioning.json"
+                ]
+            },
+            {
+                "model": "SPA512G",
+                "lines": "1",
+                "id": "9",
+                "template_data": [
+                    "template_data.json",
+                    "keys.json",
+                    "provisioning.json"
+                ]
+            },
+            {
+                "model": "SPA514G",
+                "lines": "4",
+                "id": "10",
+                "template_data": [
+                    "4_lines.json",
+                    "template_data.json",
+                    "keys.json",
+                    "provisioning.json"
+                ]
+            },
+            {
+                "model": "SPA301",
+                "lines": "1",
+                "id": "11",
+                "template_data": [
+                    "template_data.json",
+                    "keys.json",
+                    "provisioning.json"
+                ]
+            }
+        ]
+    }
+}

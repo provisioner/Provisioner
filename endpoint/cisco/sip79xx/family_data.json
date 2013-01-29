@@ -1,0 +1,34 @@
+{
+    "data": {
+        "name": "Cisco SIP 79x0 Models [7940,7960]",
+        "id": "1",
+        "directory": "sip79xx",
+        "firmware_ver": 1335392855,
+        "firmware_pkg": "sip79xx_firmware.tgz",
+        "firmware_md5sum": "73ec81b420cc9aace4fbc90f926b1c7e",
+        "description": "",
+        "configuration_files": "SIP$mac.cnf,SIPDefault.cnf,XMLDefault.cnf.xml,SEP$mac.cnf.xml,RINGLIST.DAT,ringlist.xml",
+        "changelog": "",
+        "provisioning_types": [
+            "tftp"
+        ],
+        "model_list": [
+            {
+                "model": "7940",
+                "lines": "4",
+                "id": "1",
+                "template_data": [
+                    "template_data.json"
+                ]
+            },
+            {
+                "model": "7960",
+                "lines": "6",
+                "id": "2",
+                "template_data": [
+                    "template_data.json"
+                ]
+            }
+        ]
+    }
+}
