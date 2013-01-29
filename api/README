@@ -250,13 +250,21 @@ It is mandatory to provide every root attribute as the above example.
 For a phone, the request must look like:
 
 {
-    "brand": "yealink",
-    "family": "t2x",
-    "model": "t22",
-    "settings": {
-        "random_settings": true,
-        "another_one": null,
-        "bla": ["Blabla", Blablabla]
+    "provision": {
+        "endpoint_brand": "yealink",
+        "endpoint_family": "t2x",
+        "endpoint_model": "t22"
+    },
+
+    "timezone": "America/Los_Angeles",
+    "name": "John Doe",
+
+    "sip": {
+        "enabled": true,
+        "username": "frifri",
+        "password": "mahsupersekwet",
+        "registration_expiration": "120",
+        "realm": "sip.2600hz.com"
     }
 }
 
