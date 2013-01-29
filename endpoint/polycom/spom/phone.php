@@ -8,8 +8,8 @@
  * @package Provisioner
  */
 class endpoint_polycom_spom_phone extends endpoint_polycom_base {
-    function prepareConfig($settings) {
-        parent::prepareConfig($settings);
+    function prepareConfig($settings, $config_manager) {
+        parent::prepareConfig($settings, $config_manager);
 
         return $settings;
     }
