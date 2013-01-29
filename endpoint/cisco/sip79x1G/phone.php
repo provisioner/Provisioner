@@ -7,8 +7,8 @@
  * @package Provisioner
  */
 class endpoint_cisco_sip79x1G_phone extends endpoint_cisco_base {
-	function prepareConfig($settings) {
-        parent::prepareConfig($settings);
+	function prepareConfig($settings, $config_manager) {
+        parent::prepareConfig($settings, $config_manager);
 
         return $settings;
     }
