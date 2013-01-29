@@ -1,36 +1,57 @@
 {
     "t18": {
         "folder": "t1x",
-        "config_files": []
+        "config_files": [
+            "y0000000000$suffix.cfg",
+            "$mac.cfg"
+        ]
     },
 
     "t20": {
         "folder": "t2x",
-        "config_files": []
+        "config_files": [
+            "y0000000000$suffix.cfg",
+            "$mac.cfg"
+        ]
     },
 
     "t22": {
         "folder": "t2x",
-        "config_files": []
+        "config_files": [
+            "y0000000000$suffix.cfg",
+            "$mac.cfg"
+        ]
     },
 
     "t26": {
         "folder": "t2x",
-        "config_files": []
+        "config_files": [
+            "y0000000000$suffix.cfg",
+            "$mac.cfg"
+        ]
     },
 
     "t28": {
         "folder": "t2x",
-        "config_files": []
+        "config_files": [
+            "y0000000000$suffix.cfg",
+            "$mac.cfg"
+        ]
     },
 
     "t32": {
         "folder": "t3x",
-        "config_files": []
+        "config_files": [
+            "y0000000000$suffix.cfg",
+            "$mac.cfg"
+        ]
     },
 
     "t38": {
         "folder": "t3x",
-        "config_files": []
+        "config_files": [
+            "y0000000000$suffix.cfg",
+            "$mac.cfg"
+        ]
     }
 }
