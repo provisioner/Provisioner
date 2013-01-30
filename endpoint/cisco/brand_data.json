@@ -244,5 +244,5 @@
             "$model.cfg",
             "spa$mac.xml"
         ]
-    },
+    }
 }

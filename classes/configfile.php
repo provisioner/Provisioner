@@ -48,7 +48,7 @@ class ConfigFile {
     }
 
     public function get_request_type() {
-        return $this->_requestType;
+        return $this->_strRequestType;
     }
 
     public function get_firmware_version() {
@@ -77,7 +77,7 @@ class ConfigFile {
     }
 
     public function set_request_type($requestType) {
-        $this->_requestType = $requestType;
+        $this->_strRequestType = $requestType;
     }
 
     public function sset_config_file($file) {
@@ -204,6 +204,17 @@ class ConfigFile {
         $this->_objTwig = new Twig_Environment($loader);
     }
 
+    public function get_current_provisioning_address() {
+        $host = $_SERVER['HTTP_HOST'];
+        $full_uri = $_SERVER['REQUEST_URI'];
+
+        preg_match('/^(.*\/)(.*)$/', $full_uri, $match);
+        $target_uri = $match[1];
+
+        if ($this->_strRequestType)
+            return $this->_strRequestType . '://' . $host . $target_uri;
+    }
+
     // Will try to detect the phone information
     public function detect_phone_info($mac, $ua) {
         $this->_strMac = preg_replace('/[:\-]/', '', $mac);
@@ -265,11 +276,17 @@ class ConfigFile {
                 elseif (preg_match("/sip\.cfg$/", $file))
                     $this->_strConfigFile = "sip.cfg";
                 break;
+            case 'cisco':
+                if (preg_match("/spa[0-9a-zA-Z]{3,4}\.cfg$/", $file))
+                    $this->_strConfigFile = "\$model.cfg";
+                elseif (preg_match("/spa[0-9a-f]{12}\.xml$/", $file))
+                    $this->_strConfigFile = "spa\$mac.xml";
+                break;
             default:
                 return false;
         }
     }
-    
+
     /* 
         This function will add a json object to merge with the other ones
         You should send first the object containing the more general infos
@@ -291,15 +308,16 @@ class ConfigFile {
         $folder = ProvisionerUtils::get_folder($this->_strBrand, $this->_strModel);
         $target_phone = "endpoint_" . $this->_strBrand . "_" . $folder . "_phone";
 
-        $phone = new $target_phone();
-        $arrConfig = $phone->prepareConfig($arrConfig, $this);
-
         // Set the twig template directory
         // Not sure if that should be here
         $this->_set_template_dir();
 
         // init twig object
         $this->_twig_init();
+
+        // This should be one of the last thing to be done I think.
+        $phone = new $target_phone();
+        $arrConfig = $phone->prepareConfig($arrConfig, $this);
 
         if ($this->_objTwig)
             return $this->_objTwig->render($this->_strConfigFile, $arrConfig);
