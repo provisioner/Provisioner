@@ -33,6 +33,10 @@ if (!isset($argv)) {
     //$ua = strtolower("FileTransport PolycomSoundStationIP-SSIP_5000-UA/4.0.3.7562 (SN:0004f2e765da) Type/Application");
     //$uri = "/002e3a6fe532d90943e6fcaf08e1a408/0004f2e765da_reg.cfg";
 
+    // Cisco
+    //$ua = "Cisco/SPA504G-7.4.9c (649EF3788E6A)(CCQ162306EA)";
+    //$uri = "/002e3a6fe532d90943e6fcaf08e1a408/spa504g.cfg";
+
     // Load the config manager
     // This will return a config_manager
     $config_manager_name = "ConfigGenerator_" . $settings->config_manager;
@@ -41,6 +45,7 @@ if (!isset($argv)) {
 
     // Set the file that will be generated
     $target = ProvisionerUtils::strip_uri($uri);
+    $config_manager->set_request_type('http');
     $config_manager->set_config_file($target);
 
     echo $config_manager->generate_config_file();
@@ -69,6 +74,7 @@ if (!isset($argv)) {
     // with a minimum of information (brand/model/a file containing the settings)
     $config_generator = new ConfigGenerator_generic();
     $config_manager = $config_generator->get_config_manager($brand, $model, $arrConfig);
+    $config_manager->set_request_type('tftp');
 
     foreach (ProvisionerUtils::get_file_list($brand, $model) as $value) {
         $config_manager->sset_config_file($value);

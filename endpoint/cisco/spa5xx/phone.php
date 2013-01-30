@@ -14,3 +14,5 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
         return $settings;
     }
 }
+
+?>
