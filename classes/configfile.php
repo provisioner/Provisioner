@@ -10,7 +10,7 @@
  */
 
 // This represent the constant file
-define('OUI_FILE', ROOT_PATH.'/oui_list.json');
+define('CONSTANTS_FILE', ROOT_PATH.'/constants.json');
 
 class ConfigFile {
     // Device infos
@@ -97,7 +97,7 @@ class ConfigFile {
 
     // Load the constant file once and for all
     private function _load_constants() {
-        return $this->_arrConstants = json_decode(file_get_contents(OUI_FILE), true);
+        return $this->_arrConstants = json_decode(file_get_contents(CONSTANTS_FILE), true);
     }
 
     /*
