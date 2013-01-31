@@ -13,9 +13,7 @@ class endpoint_cisco_base extends endpoint_base {
         parent::prepareConfig($settings, $config_manager);
 
         // for $model.cfg
-        $settings['provisioning_path'] = $config_manager->get_current_provisioning_address();
-
-        return $settings;
+        $settings['provisioning_path'] = $config_manager->get_current_provisioning_url();
     }
 }
 

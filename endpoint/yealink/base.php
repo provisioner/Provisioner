@@ -12,7 +12,8 @@ class endpoint_yealink_base extends endpoint_base {
     function prepareConfig(&$settings, $config_manager) {
         parent::prepareConfig($settings, $config_manager);
 
-        return $settings;
+        $constants = $config_manager->get_constants();
+        $settings['timezone'] = $constants['timezone_lookup'][$settings['timezone']];
     }
 }
 

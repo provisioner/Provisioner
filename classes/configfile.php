@@ -323,8 +323,6 @@ class ConfigFile {
         $phone = new $target_phone();
         $arrConfig = $phone->prepareConfig($arrConfig, $this);
 
-        echo $this->_strConfigFile;
-
         if ($this->_objTwig)
             return $this->_objTwig->render($this->_strConfigFile, $arrConfig);
     }
