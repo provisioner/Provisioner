@@ -30,6 +30,10 @@ if (!isset($argv)) {
     //$uri = "/002e3a6fe532d90943e6fcaf08e1a408/0015652103df.cfg";
     //$ua = strtolower("yealink SIP-T22P 7.61.0.80 00:15:65:21:03:df");
 
+    //$uri = "/002e3a6fe532d90943e6fcaf08e1a408/y000000000038.cfg";
+    //$uri = "/002e3a6fe532d90943e6fcaf08e1a408/00156527c764.cfg";
+    //$ua = strtolower("Yealink SIP-T38G  38.0.0.105 00:15:65:27:c7:64");
+
     // Polycom
     //$ua = strtolower("FileTransport PolycomSoundStationIP-SSIP_5000-UA/4.0.3.7562 (SN:0004f2e765da) Type/Application");
     //$uri = "/002e3a6fe532d90943e6fcaf08e1a408/0004f2e765da_reg.cfg";
