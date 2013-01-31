@@ -60,7 +60,7 @@ if (strtolower($configs->database->type) == "bigcouch") {
 
     // by ip
     $view->{"list_by_ip"} = array(
-        "map" => "function(doc) { if (doc.pvt_type != 'provider') return; emit(doc.authorized_ip, {'access_type': doc.pvt_access_type}); }"
+        "map" => "function(doc) { if (doc.pvt_type != 'provider') return; for (i in doc.authorized_ip) {emit(doc.authorized_ip[i], {'access_type': doc.pvt_access_type})}; }"
     );
 
     $provider_view->views = $view;
