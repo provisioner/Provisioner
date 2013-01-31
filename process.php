@@ -26,8 +26,9 @@ if (!isset($argv)) {
     $http_host = strtolower($_SERVER['HTTP_HOST']);
 
     // YEALINK
-    //$uri = "/002e3a6fe532d90943e6fcaf08e1a408/001565000000.cfg";
-    //$ua = strtolower("Yealink SIP-T22P 3.2.2.1136 00:15:65:00:00:00");
+    //$uri = "/002e3a6fe532d90943e6fcaf08e1a408/y000000000005.cfg";
+    //$uri = "/002e3a6fe532d90943e6fcaf08e1a408/0015652103df.cfg";
+    //$ua = strtolower("yealink SIP-T22P 7.61.0.80 00:15:65:21:03:df");
 
     // Polycom
     //$ua = strtolower("FileTransport PolycomSoundStationIP-SSIP_5000-UA/4.0.3.7562 (SN:0004f2e765da) Type/Application");
