@@ -63,6 +63,10 @@ class ConfigFile {
         return $this->_strTemplateDir;
     }
 
+    public function get_constants() {
+        return $this->_arrConstants;
+    }
+
     // Setter
     public function set_brand($brand) {
         $this->_strBrand = $brand;
@@ -204,7 +208,7 @@ class ConfigFile {
         $this->_objTwig = new Twig_Environment($loader);
     }
 
-    public function get_current_provisioning_address() {
+    public function get_current_provisioning_url() {
         $host = $_SERVER['HTTP_HOST'];
         $full_uri = $_SERVER['REQUEST_URI'];
 
@@ -245,12 +249,12 @@ class ConfigFile {
     public function set_config_file($file) {
         switch ($this->_strBrand) {
             case 'yealink':
-                // macaddr.cfg - 000000000000.cfg
-                if (preg_match("/([0-9a-f]{12})\.cfg$/", $file))
-                    $this->_strConfigFile = "\$mac.cfg";
                 // y00000000000
-                elseif (preg_match("/y00000000000([0-9a-f]{1})\.cfg$/", $file))
+                if (preg_match("/y0000000000[0-9]{2}\.cfg$/", $file))
                     $this->_strConfigFile = "y0000000000\$suffix.cfg";
+                // macaddr.cfg - 000000000000.cfg
+                elseif (preg_match("/([0-9a-f]{12})\.cfg$/", $file))
+                    $this->_strConfigFile = "\$mac.cfg";
                 else
                     return false;
                 break;
@@ -318,6 +322,8 @@ class ConfigFile {
         // This should be one of the last thing to be done I think.
         $phone = new $target_phone();
         $arrConfig = $phone->prepareConfig($arrConfig, $this);
+
+        echo $this->_strConfigFile;
 
         if ($this->_objTwig)
             return $this->_objTwig->render($this->_strConfigFile, $arrConfig);
