@@ -10,7 +10,7 @@
 
             "sip_server": {
                 "1": {
-                    "host": "{{ sip.realm }}",
+                    "host": "{{ realm }}",
                     "port": "7000",
                     "transport": null,
                     "expire": "{{ sip.registration_expiration }}"
