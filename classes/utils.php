@@ -4,6 +4,7 @@
  * This file contains utilities functions
  *
  * @author Francis Genet
+ * @author Andrew Nagy
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
  * @version 5.0

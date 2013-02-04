@@ -4,6 +4,7 @@
  * Represent the config file class that will merge / load / return the requested config file
  *
  * @author Francis Genet
+ * @author Andrew Nagy
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
  * @version 5.0

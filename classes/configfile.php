@@ -4,6 +4,7 @@
  * Represent the config file class that will merge / load / return the requested config file
  *
  * @author Francis Genet
+ * @author Andrew Nagy
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
  * @version 5.0
@@ -109,6 +110,8 @@ class ConfigFile {
         The first array must be the model. If some data from the second
         array are common with the first one, the datas from the first
         array will be overwritten
+
+        This is not from me
     */
     private function _merge_array($arr1, $arr2) {
         $keys = array_keys($arr2);

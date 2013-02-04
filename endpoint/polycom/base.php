@@ -1,4 +1,4 @@
-<?PHP
+<?php
 
 /**
  * Polycom Base File
@@ -13,3 +13,5 @@ abstract class endpoint_polycom_base extends endpoint_base {
         parent::prepareConfig($settings, $config_manager);
     }
 }
+
+?>

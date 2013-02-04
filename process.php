@@ -63,7 +63,7 @@ if (!isset($argv)) {
     $config_manager->set_request_type('tftp');
 
     foreach (ProvisionerUtils::get_file_list($brand, $model) as $value) {
-        $config_manager->sset_config_file($value);
+        $config_manager->set_config_file($value);
 
         // make a file with the returned value
         // This is not doing it for now, it will need to be implemented

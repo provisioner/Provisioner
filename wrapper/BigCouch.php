@@ -2,7 +2,7 @@
 
 /**
  * This file contains The BigCouch wrapper
- * Everything relating to the database manipulation should be done here
+ * (Almost) Everything relating to the database manipulation should be done here
  *
  * @author Francis Genet
  * @license MPL / GPLv2 / LGPL
