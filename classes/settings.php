@@ -23,11 +23,12 @@ class Settings {
         }
     }
 
+    // This is not from me
     private function _array_to_object($array) {
     $obj = new stdClass;
         foreach($array as $k => $v) {
             if(is_array($v)) {
-                $obj->{$k} = $this->_array_to_object($v); //RECURSION
+                $obj->{$k} = $this->_array_to_object($v);
             } else {
                 $obj->{$k} = $v;
             }
