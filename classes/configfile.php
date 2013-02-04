@@ -84,7 +84,7 @@ class ConfigFile {
         $this->_strRequestType = $requestType;
     }
 
-    public function sset_config_file($file) {
+    public function set_config_file($file) {
         $this->_strConfigFile = $file;
     }
 
@@ -208,6 +208,8 @@ class ConfigFile {
         $this->_objTwig = new Twig_Environment($loader);
     }
 
+    // This will return the current url for the provisioner
+    // ex: http://localhost:8888/Provisioner
     public function get_current_provisioning_url() {
         $host = $_SERVER['HTTP_HOST'];
         $full_uri = $_SERVER['REQUEST_URI'];
@@ -243,52 +245,6 @@ class ConfigFile {
         $this->_strModel = strtolower($model);
 
         return true;
-    }
-
-    // This function will select the right template to file
-    public function set_config_file($file) {
-        switch ($this->_strBrand) {
-            case 'yealink':
-                // y00000000000
-                if (preg_match("/y0000000000[0-9]{2}\.cfg$/", $file))
-                    $this->_strConfigFile = "y0000000000\$suffix.cfg";
-                // macaddr.cfg - 000000000000.cfg
-                elseif (preg_match("/([0-9a-f]{12})\.cfg$/", $file))
-                    $this->_strConfigFile = "\$mac.cfg";
-                else
-                    return false;
-                break;
-            case 'aastra':
-                // macaddr.cfg - 000000000000.cfg
-                if (preg_match("/([0-9a-f]{12})\.cfg$/", $file))
-                    $this->_strConfigFile = "\$mac.cfg";
-                // This one is pretty obvious no?
-                elseif (preg_match("/(aastra\.cfg)$/", $file))
-                    $this->_strConfigFile = "aastra.cfg";
-                else
-                    return false;
-                break;
-            case 'polycom':
-                // macaddr_reg.cfg
-                if (preg_match("/[0-9a-f]{12}_reg\.cfg$/", $file))
-                    $this->_strConfigFile = "\$mac_reg.cfg";
-                // macaddr.cfg
-                elseif (preg_match("/[0-9a-f]{12}\.cfg$/", $file))
-                    $this->_strConfigFile = "\$mac.cfg";
-                elseif (preg_match("/(phone1|server|sip)_[0-9]{3,4}\.cfg$/", $file, $match_result))
-                    $this->_strConfigFile = $match_result[0];
-                elseif (preg_match("/sip\.cfg$/", $file))
-                    $this->_strConfigFile = "sip.cfg";
-                break;
-            case 'cisco':
-                if (preg_match("/spa[0-9a-zA-Z]{3,4}\.cfg$/", $file))
-                    $this->_strConfigFile = "\$model.cfg";
-                elseif (preg_match("/spa[0-9a-f]{12}\.xml$/", $file))
-                    $this->_strConfigFile = "spa\$mac.xml";
-                break;
-            default:
-                return false;
-        }
     }
 
     /* 
