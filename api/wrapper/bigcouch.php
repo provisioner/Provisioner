@@ -259,6 +259,20 @@ class BigCouch {
         $family = $request_data['provision']['endpoint_family'];
         $template_file = "master_" . $brand . "_" . $family . ".json";
 
+        if ($brand == "yealink") {
+            foreach ($request_data['media']['audio']['codecs'] as $codec) {
+                if ($codec == "G729")
+                    $request_data['codecs']['g729'] = true;
+                elseif ($codec == "PCMU")
+                    $request_data['codecs']['pcmu'] = true;
+                elseif ($codec == "PCMA")
+                    $request_data['codecs']['pcma'] = true;
+                elseif ($codec == "G722_16" || $codec == "G722_32")
+                    $request_data['codecs']['g722'] = true;
+            }
+        }
+
+        // Generate the intermediate object
         if ($this->_objTwig)
             $settings = $this->_objTwig->render($template_file, $request_data);
 
@@ -270,7 +284,7 @@ class BigCouch {
             $finalObj['_id'] = $mac_address;
             $finalObj['brand'] = $brand;
             $finalObj['family'] = $family;
-            $finalObj['settings'] = $settings;
+            $finalObj['settings'] = json_decode($settings);
         }
         /*else
             $request_data['_id'] = $account_id;*/
