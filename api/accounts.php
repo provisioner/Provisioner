@@ -56,8 +56,9 @@ class Accounts {
         } else { // retrieving phone specific settings
             $mac_settings = array();
             $mac_settings['data'] = $this->db->get($account_db, $mac_address);
-            if (!$mac_settings && array_key_exists('settings', $mac_settings))
-                return $mac_settings['settings'];
+
+            if ($mac_settings && array_key_exists('settings', $mac_settings['data']))
+                return $mac_settings['data']['settings'];
             else
                 throw new RestException(404, 'There is no phone with this mac_address for this account or there are no specific settings for this phone');
         }
