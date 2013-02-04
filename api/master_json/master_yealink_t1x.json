@@ -4,7 +4,7 @@
 
     "lines": [
         {
-            "enable" : "{{ sip.enabled }}",
+            "enable" : "{{ enabled }}",
             "display_name": "{{ name }}",
             "username": "{{ sip.username }}",
             "auth_name": "{{ sip.username }}",
@@ -15,7 +15,7 @@
             "sip_server": {
                 "listen_port": null,
                 "primary": {
-                    "host": "{{ sip.realm }}",
+                    "host": "{{ realm }}",
                     "port": "7000"
                 },
                 "backup": {
