@@ -6,6 +6,12 @@
             "server_327.cfg", 
             "phone1_327.cfg", 
             "sip_327.cfg"
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/server_[0-9]{3,4}\\.cfg$/",
+            "/phone1_[0-9]{3,4}\\.cfg$/",
+            "/sip_[0-9]{3,4}\\.cfg$/"
         ]
     },
 
@@ -14,6 +20,10 @@
         "config_files": [
             "$mac_reg.cfg", 
             "sip_3333.cfg"
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/sip_[0-9]{3,4}\\.cfg$/"
         ]
     },
 
@@ -22,6 +32,10 @@
         "config_files": [
             "$mac_reg.cfg", 
             "sip_3333.cfg"
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/sip_[0-9]{3,4}\\.cfg$/"
         ]
     },
 
@@ -40,6 +54,11 @@
             "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/sip\\.cfg$/",
+            "/features\\.cfg$/"
         ]
     },
 
@@ -49,6 +68,11 @@
             "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/sip\\.cfg$/",
+            "/features\\.cfg$/"
         ]
     },
 
@@ -58,6 +82,11 @@
             "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/sip\\.cfg$/",
+            "/features\\.cfg$/"
         ]
     },
 
@@ -67,6 +96,11 @@
             "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/sip\\.cfg$/",
+            "/features\\.cfg$/"
         ]
     },
 
@@ -76,6 +110,11 @@
             "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/sip\\.cfg$/",
+            "/features\\.cfg$/"
         ]
     },
 
@@ -85,6 +124,11 @@
             "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/sip\\.cfg$/",
+            "/features\\.cfg$/"
         ]
     },
 
@@ -94,6 +138,11 @@
             "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/sip\\.cfg$/",
+            "/features\\.cfg$/"
         ]
     },
 
@@ -103,6 +152,11 @@
             "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/sip\\.cfg$/",
+            "/features\\.cfg$/"
         ]
     },
 
@@ -112,6 +166,11 @@
             "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/sip\\.cfg$/",
+            "/features\\.cfg$/"
         ]
     },
 
@@ -121,6 +180,11 @@
             "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/sip\\.cfg$/",
+            "/features\\.cfg$/"
         ]
     },
 
@@ -130,6 +194,11 @@
             "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/sip\\.cfg$/",
+            "/features\\.cfg$/"
         ]
     },
 
@@ -139,6 +208,11 @@
             "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/sip\\.cfg$/",
+            "/features\\.cfg$/"
         ]
     },
 
@@ -149,6 +223,12 @@
             "phone1_318.cfg", 
             "server_318.cfg", 
             "sip_318.cfg"
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/phone1_[0-9]{3}\\.cfg$/",
+            "/server_[0-9]{3}\\.cfg$/",
+            "/sip_[0-9]{3}\\.cfg$/"
         ]
     },
 
@@ -159,6 +239,12 @@
             "phone1_318.cfg", 
             "server_318.cfg", 
             "sip_318.cfg"
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/phone1_[0-9]{3}\\.cfg$/",
+            "/server_[0-9]{3}\\.cfg$/",
+            "/sip_[0-9]{3}\\.cfg$/"
         ]
     },
 
@@ -169,6 +255,12 @@
             "phone1_318.cfg", 
             "server_318.cfg", 
             "sip_318.cfg"
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/phone1_[0-9]{3}\\.cfg$/",
+            "/server_[0-9]{3}\\.cfg$/",
+            "/sip_[0-9]{3}\\.cfg$/"
         ]
     },
 
@@ -179,6 +271,12 @@
             "phone1_318.cfg", 
             "server_318.cfg", 
             "sip_318.cfg"
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/phone1_[0-9]{3}\\.cfg$/",
+            "/server_[0-9]{3}\\.cfg$/",
+            "/sip_[0-9]{3}\\.cfg$/"
         ]
     },
 
@@ -189,6 +287,12 @@
             "phone1_318.cfg", 
             "server_318.cfg", 
             "sip_318.cfg"
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/phone1_[0-9]{3}\\.cfg$/",
+            "/server_[0-9]{3}\\.cfg$/",
+            "/sip_[0-9]{3}\\.cfg$/"
         ]
     },
 
@@ -199,6 +303,12 @@
             "server_213.cfg", 
             "phone1_213.cfg", 
             "sip_213.cfg"
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/server_[0-9]{3}\\.cfg$/",
+            "/phone1_[0-9]{3}\\.cfg$/",
+            "/sip_[0-9]{3}\\.cfg$/"
         ]
     },
     
@@ -209,6 +319,12 @@
             "server_213.cfg", 
             "phone1_213.cfg", 
             "sip_213.cfg"
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/server_[0-9]{3}\\.cfg$/",
+            "/phone1_[0-9]{3}\\.cfg$/",
+            "/sip_[0-9]{3}\\.cfg$/"
         ]
     }
 }
