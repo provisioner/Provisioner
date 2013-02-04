@@ -66,9 +66,13 @@ class ProvisionerUtils {
     }
 
     public static function get_file_list($brand, $model) {
-        $folder = ProvisionerUtils::get_folder($brand, $model);
-        $files = json_decode(file_get_contents(MODULES_DIR . $brand . "/". $folder . "/family_data.json"), true);
-        return $files["configuration_files"];
+        $files = json_decode(file_get_contents(MODULES_DIR . $brand . "/brand_data.json"), true);
+        return $files[$model]["config_files"];
+    }
+
+    public static function get_regex_list($brand, $model) {
+        $files = json_decode(file_get_contents(MODULES_DIR . $brand . "/brand_data.json"), true);
+        return $files[$model]["regexs"];
     }
 
     // This function will determine weither the current request is a static file or not
