@@ -43,8 +43,12 @@ class ProvisionerUtils {
 
     // Will return the formated account_id from the raw account_id
     public static function get_account_db($account_id) {
-        // account/xx/xx/xxxxxxxxxxxxxxxx
-        return "account/" . substr_replace(substr_replace($account_id, '/', 2, 0), '/', 5, 0);
+        // making sure that $account_id is well formed
+        if (preg_match("#[0-9a-f]{32}#", $account_id))
+            // account/xx/xx/xxxxxxxxxxxxxxxx
+            return "account/" . substr_replace(substr_replace($account_id, '/', 2, 0), '/', 5, 0);
+        else 
+            return false;
     }
 
     public static function strip_uri($uri) {
