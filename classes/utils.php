@@ -35,8 +35,8 @@ class ProvisionerUtils {
 
     // Will return the raw account_id from the URI
     public static function get_account_id($uri) {
-        if (preg_match("#[0-9a-f]{32}#", $uri, $match_result))
-            return $match_result[0];
+        if (preg_match("#\/([0-9a-f]{32})\/#", $uri, $match_result))
+            return $match_result[1];
         else
             return false;
     }
