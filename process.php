@@ -26,6 +26,9 @@ if (!isset($argv)) {
     $ua = strtolower($_SERVER['HTTP_USER_AGENT']);
     $http_host = strtolower($_SERVER['HTTP_HOST']);
 
+    //$uri = "/002e3a6fe532d90943e6fcaf08e1a408/y000000000038.cfg";
+    $ua = "yealink SIP-T22P 7.61.0.80 00:15:65:21:03:df";
+
     // Load the config manager
     // This will return a config_manager
     $config_manager_name = "ConfigGenerator_" . $settings->config_manager;
