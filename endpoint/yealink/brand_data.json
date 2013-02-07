@@ -3,11 +3,13 @@
         "folder": "t1x",
         "config_files": [
             "y0000000000$suffix.cfg",
-            "$mac.cfg"
+            "$mac.cfg",
+            "contactData1.xml"
         ],
         "regexs": [
             "/y0000000000[0-9]{2}\\.cfg$/" ,
-            "/([0-9a-f]{12})\\.cfg$/"
+            "/([0-9a-f]{12})\\.cfg$/",
+            "/contactData1\\.xml$/i"
         ]
     },
 
@@ -15,11 +17,13 @@
         "folder": "t2x",
         "config_files": [
             "y0000000000$suffix.cfg",
-            "$mac.cfg"
+            "$mac.cfg",
+            "contactData1.xml"
         ],
         "regexs": [
             "/y0000000000[0-9]{2}\\.cfg$/" ,
-            "/([0-9a-f]{12})\\.cfg$/"
+            "/([0-9a-f]{12})\\.cfg$/",
+            "/contactData1\\.xml$/i"
         ]
     },
 
@@ -27,11 +31,13 @@
         "folder": "t2x",
         "config_files": [
             "y0000000000$suffix.cfg",
-            "$mac.cfg"
+            "$mac.cfg",
+            "contactData1.xml"
         ],
         "regexs": [
             "/y0000000000[0-9]{2}\\.cfg$/" ,
-            "/([0-9a-f]{12})\\.cfg$/"
+            "/([0-9a-f]{12})\\.cfg$/",
+            "/contactData1\\.xml$/i"
         ]
     },
 
@@ -39,11 +45,13 @@
         "folder": "t2x",
         "config_files": [
             "y0000000000$suffix.cfg",
-            "$mac.cfg"
+            "$mac.cfg",
+            "contactData1.xml"
         ],
         "regexs": [
             "/y0000000000[0-9]{2}\\.cfg$/" ,
-            "/([0-9a-f]{12})\\.cfg$/"
+            "/([0-9a-f]{12})\\.cfg$/",
+            "/contactData1\\.xml$/i"
         ]
     },
 
@@ -51,11 +59,13 @@
         "folder": "t2x",
         "config_files": [
             "y0000000000$suffix.cfg",
-            "$mac.cfg"
+            "$mac.cfg",
+            "contactData1.xml"
         ],
         "regexs": [
             "/y0000000000[0-9]{2}\\.cfg$/" ,
-            "/([0-9a-f]{12})\\.cfg$/"
+            "/([0-9a-f]{12})\\.cfg$/",
+            "/contactData1\\.xml$/i"
         ]
     },
 
@@ -63,11 +73,13 @@
         "folder": "t3x",
         "config_files": [
             "y0000000000$suffix.cfg",
-            "$mac.cfg"
+            "$mac.cfg",
+            "contactData1.xml"
         ],
         "regexs": [
             "/y0000000000[0-9]{2}\\.cfg$/" ,
-            "/([0-9a-f]{12})\\.cfg$/"
+            "/([0-9a-f]{12})\\.cfg$/",
+            "/contactData1\\.xml$/i"
         ]
     },
 
@@ -75,11 +87,13 @@
         "folder": "t3x",
         "config_files": [
             "y0000000000$suffix.cfg",
-            "$mac.cfg"
+            "$mac.cfg",
+            "contactData1.xml"
         ],
         "regexs": [
             "/y0000000000[0-9]{2}\\.cfg$/" ,
-            "/([0-9a-f]{12})\\.cfg$/"
+            "/([0-9a-f]{12})\\.cfg$/",
+            "/contactData1\\.xml$/i"
         ]
     }
 }
