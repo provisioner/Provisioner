@@ -12,8 +12,8 @@ class YealinkTest extends PHPUnit_Framework_TestCase
         $objSettings = new Settings();
         $settings = $objSettings->getSettings();
 
-        $uri = "/002e3a6fe532d90943e6fcaf08e1a408/001565000000.cfg";
-        $ua = "Yealink SIP-T22P 3.2.2.1136 00:15:65:00:00:00";
+        $uri = "/002e3a6fe532d90943e6fcaf08e1a420/0015651ab7b5.cfg";
+        $ua = "Yealink SIP-T22P 3.2.2.1136 00:15:65:1a:b7:b5";
         $http_host = "10.10.9.79";
 
         // Load the config manager
