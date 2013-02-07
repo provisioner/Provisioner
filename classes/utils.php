@@ -84,6 +84,7 @@ class ProvisionerUtils {
     public static function is_static_file($ua, $uri, $model, $brand, $settings) {
         $folder = null;
         $target = null;
+        $location = null;
 
         // Polycom
         if ($brand == "polycom") {
@@ -99,7 +100,7 @@ class ProvisionerUtils {
             }
         }
 
-        if (!$location )
+        if (!$location)
             return false;
         else {
             $location = 'Location: ' . $location;
