@@ -1,6 +1,8 @@
 <?php
 
 require_once "../classes/utils.php";
+require_once "../bootstrap.php";
+
 
 class UtilsTest extends PHPUnit_Framework_TestCase {
     public function testGetMacAddress() {
@@ -82,6 +84,12 @@ class UtilsTest extends PHPUnit_Framework_TestCase {
         $uri = "/002e3a6fe532d90943e6fcaf08e1a408/bla/001565000000.cfg";
         $return = ProvisionerUtils::strip_uri($uri);
         $this->assertEquals("001565000000.cfg", $return);
+    }
+
+    public function testGetFolder() {
+        // Normal
+        $folder = ProvisionerUtils::get_folder("yealink", "t22");
+        $this->assertEquals('t2x');
     }
 }
 
