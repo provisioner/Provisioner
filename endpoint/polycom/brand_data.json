@@ -5,8 +5,8 @@
       "directory": "polycom",
       "brand_id": "4",
       "package": "polycom.tgz",
-      "md5sum": "a214625924f0892cc668ccb6649ad456",
-      "last_modified": 1358327019,
+      "md5sum": "c2562cce9808861c7bd659bef1fb6f0e",
+      "last_modified": 1358450102,
       "family_list": [
         {
           "id": "4",
@@ -61,7 +61,7 @@
         "0004F2",
         "00907A"
       ],
-      "changelog": "PACKAGER: Update endpoint\/grandstream\/gxphd\/ext_b_2.json"
+      "changelog": "PACKAGER: PACKAGER: Update endpoint\/grandstream\/gxphd\/ext_b_2.json"
     }
   }
 }
