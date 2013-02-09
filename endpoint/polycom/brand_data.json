@@ -2,12 +2,14 @@
     "430": {
         "folder": "firmware325",
         "config_files": [
+            "$mac.cfg",
             "$mac_reg.cfg", 
             "server_327.cfg", 
             "phone1_327.cfg", 
             "sip_327.cfg"
         ],
         "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/server_[0-9]{3,4}\\.cfg$/",
             "/phone1_[0-9]{3,4}\\.cfg$/",
@@ -18,10 +20,12 @@
     "320": {
         "folder": "firmware3333",
         "config_files": [
+            "$mac.cfg",
             "$mac_reg.cfg", 
             "sip_3333.cfg"
         ],
         "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/sip_[0-9]{3,4}\\.cfg$/"
         ]
@@ -30,10 +34,12 @@
     "330": {
         "folder": "firmware3333",
         "config_files": [
+            "$mac.cfg",
             "$mac_reg.cfg", 
             "sip_3333.cfg"
         ],
         "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/sip_[0-9]{3,4}\\.cfg$/"
         ]
@@ -51,11 +57,13 @@
     "321": {
         "folder": "spipm",
         "config_files": [
+            "$mac.cfg",
             "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
         ],
         "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/sip\\.cfg$/",
             "/features\\.cfg$/"
@@ -65,11 +73,13 @@
     "331": {
         "folder": "spipm",
         "config_files": [
+            "$mac.cfg",
             "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
         ],
         "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/sip\\.cfg$/",
             "/features\\.cfg$/"
@@ -79,11 +89,13 @@
     "335": {
         "folder": "spipm",
         "config_files": [
+            "$mac.cfg",
             "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
         ],
         "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/sip\\.cfg$/",
             "/features\\.cfg$/"
@@ -93,11 +105,13 @@
     "450": {
         "folder": "spipm",
         "config_files": [
+            "$mac.cfg",
             "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
         ],
         "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/sip\\.cfg$/",
             "/features\\.cfg$/"
@@ -107,11 +121,13 @@
     "550": {
         "folder": "spipm",
         "config_files": [
+            "$mac.cfg",
             "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
         ],
         "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/sip\\.cfg$/",
             "/features\\.cfg$/"
@@ -121,11 +137,13 @@
     "560": {
         "folder": "spipm",
         "config_files": [
+            "$mac.cfg",
             "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
         ],
         "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/sip\\.cfg$/",
             "/features\\.cfg$/"
@@ -135,11 +153,13 @@
     "650": {
         "folder": "spipm",
         "config_files": [
+            "$mac.cfg",
             "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
         ],
         "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/sip\\.cfg$/",
             "/features\\.cfg$/"
@@ -149,11 +169,13 @@
     "670": {
         "folder": "spipm",
         "config_files": [
+            "$mac.cfg",
             "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
         ],
         "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/sip\\.cfg$/",
             "/features\\.cfg$/"
@@ -163,11 +185,13 @@
     "5000": {
         "folder": "spipm",
         "config_files": [
+            "$mac.cfg",
             "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
         ],
         "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/sip\\.cfg$/",
             "/features\\.cfg$/"
@@ -177,11 +201,13 @@
     "6000": {
         "folder": "spipm",
         "config_files": [
+            "$mac.cfg",
             "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
         ],
         "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/sip\\.cfg$/",
             "/features\\.cfg$/"
@@ -191,11 +217,13 @@
     "7000": {
         "folder": "spipm",
         "config_files": [
+            "$mac.cfg",
             "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
         ],
         "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/sip\\.cfg$/",
             "/features\\.cfg$/"
@@ -205,11 +233,13 @@
     "1500": {
         "folder": "spipm",
         "config_files": [
+            "$mac.cfg",
             "$mac_reg.cfg", 
             "sip.cfg", 
             "features.cfg" 
         ],
         "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/sip\\.cfg$/",
             "/features\\.cfg$/"
@@ -219,12 +249,14 @@
     "301": {
         "folder": "splm",
         "config_files": [
+            "$mac.cfg",
             "$mac_reg.cfg", 
             "phone1_318.cfg", 
             "server_318.cfg", 
             "sip_318.cfg"
         ],
         "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/phone1_[0-9]{3}\\.cfg$/",
             "/server_[0-9]{3}\\.cfg$/",
@@ -235,12 +267,14 @@
     "501": {
         "folder": "splm",
         "config_files": [
+            "$mac.cfg",
             "$mac_reg.cfg", 
             "phone1_318.cfg", 
             "server_318.cfg", 
             "sip_318.cfg"
         ],
         "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/phone1_[0-9]{3}\\.cfg$/",
             "/server_[0-9]{3}\\.cfg$/",
@@ -251,12 +285,14 @@
     "600": {
         "folder": "splm",
         "config_files": [
+            "$mac.cfg",
             "$mac_reg.cfg", 
             "phone1_318.cfg", 
             "server_318.cfg", 
             "sip_318.cfg"
         ],
         "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/phone1_[0-9]{3}\\.cfg$/",
             "/server_[0-9]{3}\\.cfg$/",
@@ -267,12 +303,14 @@
     "601": {
         "folder": "splm",
         "config_files": [
+            "$mac.cfg",
             "$mac_reg.cfg", 
             "phone1_318.cfg", 
             "server_318.cfg", 
             "sip_318.cfg"
         ],
         "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/phone1_[0-9]{3}\\.cfg$/",
             "/server_[0-9]{3}\\.cfg$/",
@@ -283,12 +321,14 @@
     "4000": {
         "folder": "splm",
         "config_files": [
+            "$mac.cfg",
             "$mac_reg.cfg", 
             "phone1_318.cfg", 
             "server_318.cfg", 
             "sip_318.cfg"
         ],
         "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/phone1_[0-9]{3}\\.cfg$/",
             "/server_[0-9]{3}\\.cfg$/",
@@ -299,12 +339,14 @@
     "300": {
         "folder": "spom",
         "config_files": [
+            "$mac.cfg",
             "$mac_reg.cfg", 
             "server_213.cfg", 
             "phone1_213.cfg", 
             "sip_213.cfg"
         ],
         "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/server_[0-9]{3}\\.cfg$/",
             "/phone1_[0-9]{3}\\.cfg$/",
@@ -315,12 +357,14 @@
     "500": {
         "folder": "spom",
         "config_files": [
+            "$mac.cfg",
             "$mac_reg.cfg", 
             "server_213.cfg", 
             "phone1_213.cfg", 
             "sip_213.cfg"
         ],
         "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/server_[0-9]{3}\\.cfg$/",
             "/phone1_[0-9]{3}\\.cfg$/",

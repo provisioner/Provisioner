@@ -12,7 +12,7 @@
 
 class ProvisionerUtils {
     public static function get_mac_address($ua, $uri) {
-        // Let's check in th001565000000e User-Agent
+        // Let's check in the User-Agent
         if (preg_match("#[0-9a-fA-F]{2}(?=([:-]?))(?:\\1[0-9a-fA-F]{2}){5}#", $ua, $match_result))
             // need to return the mac address without the ':'
             return strtolower(preg_replace('/[:-]/', '', $match_result[0]));
@@ -132,6 +132,31 @@ class ProvisionerUtils {
                 return ' - Unknown error';
             break;
         }
+    }
+
+    // This not from me
+    public static function array_to_object($array) {
+        $obj = new stdClass;
+        foreach($array as $k => $v) {
+            if(is_array($v)) {
+                $obj->{$k} = ProvisionerUtils::array_to_object($v);
+            } else {
+                $obj->{$k} = $v;
+            }
+        }
+        return $obj;
+    }
+
+    // Not from me either
+    public static function object_to_array($data) {
+        if (is_array($data) || is_object($data)) {
+            $result = array();
+            foreach ($data as $key => $value) {
+                $result[$key] = ProvisionerUtils::object_to_array($value);
+            }
+            return $result;
+        }
+        return $data;
     }
 }
 

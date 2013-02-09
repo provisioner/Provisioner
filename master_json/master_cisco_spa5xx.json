@@ -1,0 +1,34 @@
+{
+    "station_name": "{{ name }}",
+    "voicemail_number": null,
+    "timezone": null,
+
+    "lines": {
+        "display_name": "{{ name }}",
+        "username": "{{ sip.username }}",
+        "auth_name": "{{ sip.username }}",
+        "auth_password": "{{ sip.password }}",
+        "expire": {{ sip.registration_expiration }},
+
+        "sip_server": {
+            "primary": {
+                "host": "{{ realm }}",
+                "port": null
+            }
+        },
+
+        "outbound_proxy": {
+            "enable": null,
+
+            "primary": {
+                "host": null,
+                "port": null
+            },
+
+            "backup": {
+                "host": null,
+                "port": null
+            }
+        }
+    }
+}

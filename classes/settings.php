@@ -11,29 +11,18 @@
 
 define("CONFIG_FILE", PROVISIONER_BASE . 'config.json');
 
+require_once 'classes/utils.php';
+
 class Settings {
     private $_objSettings = null;
 
     public function __construct() {
         try {
             $arr_file_content = json_decode(file_get_contents(CONFIG_FILE), true);
-            $this->_objSettings = $this->_array_to_object($arr_file_content);
+            $this->_objSettings = ProvisionerUtils::array_to_object($arr_file_content);
         } catch (Exception $e) {
             echo "Could not load the settings: " . $e->getMessage() . "\n";
         }
-    }
-
-    // This is not from me
-    private function _array_to_object($array) {
-    $obj = new stdClass;
-        foreach($array as $k => $v) {
-            if(is_array($v)) {
-                $obj->{$k} = $this->_array_to_object($v);
-            } else {
-                $obj->{$k} = $v;
-            }
-        }
-        return $obj;
     }
 
     public function getSettings() {
