@@ -78,12 +78,6 @@ class ConfigGenerator_2600hz {
             // If the requested file is not suppose to be dynamically generated
             // =================================
             ProvisionerUtils::is_static_file($ua, $uri, $config_manager->get_model(), $config_manager->get_brand(), $settings);
-
-            if ($static_request) {
-                $location = 'Location: ' . $settings->provisioner_endpoint_path . $config_manager->get_brand() . "/" . $static_request;
-                header($location);
-                exit();
-            }
             // =================================
 
             // Generate the doc names for the brand/family/model settings

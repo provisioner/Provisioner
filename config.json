@@ -4,7 +4,7 @@
     "config_manager": "2600hz",
 
     "paths": {
-        "endpoint": "/Provisioner/endpoint/",
+        "endpoint": "/endpoint/",
         "firmwares": "http://173.255.241.245/firmware/"
     },
     
