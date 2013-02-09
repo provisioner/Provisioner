@@ -18,15 +18,11 @@ require_once 'lib/simple_twig.php';
 class BigCouch {
     private $_server_url = null;
     private $_couch_client = null;
-    private $_objTwig = null;
 
     // The server url must be like: http://my.couch.server.com
     public function __construct($server_url, $port) {
         if (strlen($server_url))
             $this->_server_url = $server_url . ':' . $port;
-
-        $loader = new Twig_Loader_Filesystem('master_json/');
-        $this->_objTwig = new Twig_Environment($loader);
     }
 
     // Format a normal response
@@ -126,6 +122,15 @@ class BigCouch {
         } catch (Exception $e) {
             return false;
         }
+    }
+
+    public function isDBexist($db) {
+        // I think it is better to create a new client instead of changing the current one
+        $client = new couchClient($this->_server_url, $db);
+        if ($client->databaseExists())
+            return true;
+        else 
+            return false;
     }
 
     /*
@@ -254,40 +259,36 @@ class BigCouch {
     public function prepareAddAccounts($request_data, $account_db, $account_id, $mac_address = null) {
         $finalObj = array();
 
-        // We first need to make sure that the database is created
-        $brand = $request_data['provision']['endpoint_brand'];
-        $family = $request_data['provision']['endpoint_family'];
-        $template_file = "master_" . $brand . "_" . $family . ".json";
-
-        if ($brand == "yealink") {
-            foreach ($request_data['media']['audio']['codecs'] as $codec) {
-                if ($codec == "G729")
-                    $request_data['codecs']['g729'] = true;
-                elseif ($codec == "PCMU")
-                    $request_data['codecs']['pcmu'] = true;
-                elseif ($codec == "PCMA")
-                    $request_data['codecs']['pcma'] = true;
-                elseif ($codec == "G722_16" || $codec == "G722_32")
-                    $request_data['codecs']['g722'] = true;
-            }
+        if ($mac_address) {
+            // We first need to make sure that the database is created
+            $brand = $request_data['provision']['endpoint_brand'];
+            $family = $request_data['provision']['endpoint_family'];
+            $model = $request_data['provision']['endpoint_model'];
         }
 
-        // Generate the intermediate object
-        if ($this->_objTwig)
-            $settings = $this->_objTwig->render($template_file, $request_data);
+        // A couple of unset for useless value coming from kazoo
+        unset($request_data['provision']);
+        unset($request_data['available_apps']);
+        unset($request_data['apps']);
+        unset($request_data['billing_id']);
 
         $this->_set_client($account_db);
         if (!$this->_couch_client->databaseExists())
             $this->_couch_client->createDatabase();
 
+        // Device
         if ($mac_address) {
             $finalObj['_id'] = $mac_address;
             $finalObj['brand'] = $brand;
             $finalObj['family'] = $family;
-            $finalObj['settings'] = json_decode($settings);
+            $finalObj['model'] = $model;
+            $finalObj['settings'] = $request_data;
+        } else { // Account
+            $finalObj['_id'] = $account_id;
+            $finalObj['name'] = $request_data['name'];
+            $finalObj['settings'] = $request_data;
+            $finalObj['provider_id'] = $request_data['reseller_id'];
         }
-        /*else
-            $request_data['_id'] = $account_id;*/
 
         return $finalObj;
     }

@@ -227,6 +227,10 @@
         "config_files": [
             "$model.cfg",
             "spa$mac.xml"
+        ],
+        "regexs": [
+            "/spa.*\\.cfg$/i",
+            "/spa[a-z0-9]{12}\\.xml/i"
         ]
     },
 

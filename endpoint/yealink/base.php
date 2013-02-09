@@ -9,6 +9,10 @@
  * @package Provisioner
  */
 class endpoint_yealink_base extends endpoint_base {
+    public function __construct() {
+        parent::__construct();
+    }
+
     function prepareConfig(&$settings, $config_manager) {
         parent::prepareConfig($settings, $config_manager);
 
@@ -17,8 +21,19 @@ class endpoint_yealink_base extends endpoint_base {
 
         // ContactList
         if ($config_manager->get_request_type() == 'http'){
-            if (preg_match("/^(.*\/)(.*\.[a-z]{3})$/", $_SERVER['REQUEST_URI'], $match))
-                $settings['contact_list_url'] = "http://" . $_SERVER['HTTP_HOST'] . $match[1] . "contactData1.xml";
+            $settings['contact_list_url'] = $config_manager->get_current_provisioning_url() . "contactData1.xml";
+        }
+
+        // Codecs
+        foreach ($settings['media']['audio']['codecs'] as $codec) {
+            if ($codec == "G729")
+                $settings['codecs']['g729'] = true;
+            elseif ($codec == "PCMU")
+                $settings['codecs']['pcmu'] = true;
+            elseif ($codec == "PCMA")
+                $settings['codecs']['pcma'] = true;
+            elseif ($codec == "G722_16" || $codec == "G722_32")
+                $settings['codecs']['g722'] = true;
         }
     }
 }

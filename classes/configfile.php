@@ -243,8 +243,9 @@ class ConfigFile {
         $obj = new ConfigFile();
         $obj-> set_device_infos('polycom', '550');
     */
-    public function set_device_infos($brand, $model) {
+    public function set_device_infos($brand, $family, $model) {
         $this->_strBrand = strtolower($brand);
+        $this->_strFamily = strtolower($family);
         $this->_strModel = strtolower($model);
 
         return true;
@@ -280,7 +281,7 @@ class ConfigFile {
 
         // This should be one of the last thing to be done I think.
         $phone = new $target_phone();
-        $arrConfig = $phone->prepareConfig($arrConfig, $this);
+        $arrConfig = ProvisionerUtils::object_to_array($phone->prepareConfig($arrConfig, $this));
 
         if ($this->_objTwig)
             return $this->_objTwig->render($this->_strConfigFile, $arrConfig);

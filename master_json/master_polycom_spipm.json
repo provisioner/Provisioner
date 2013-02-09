@@ -4,7 +4,7 @@
             "display_name": "{{ name }}",
             "type": null,
             "username": "{{ sip.username }}",
-            "third_party_name": null,
+            "third_party_name": "{{ name }}",
             "auth_name": "{{ sip.username }}",
             "auth_password": "{{ sip.password }}",
 
@@ -25,11 +25,6 @@
 
             "ringtype": null,
             "linekeys": null,
-
-            "autoOffHook": {
-                "enable": null,
-                "contact": null
-            },
 
             "call": {
                 "autoOffHook": {
@@ -75,7 +70,7 @@
 
                 "digitmap": {
                     "value": null,
-                    "timeOut": null,
+                    "timeOut": null
                 },
 
                 "routing": {
@@ -159,9 +154,9 @@
             "resyncPeriod": null,
             "address": null,
             "address_overrideDHCP": null,
-            "gmtOffset": null,
+            "gmtOffset": "{{ timezone }}",
             "gmtOffset_overrideDHCP": null,
-            "daylightSavings": null,
+            "daylightSavings": null
         }
     },
 
