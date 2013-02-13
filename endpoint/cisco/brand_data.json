@@ -94,7 +94,7 @@
     },
 
     "7940g": {
-        "folder": "sip79x1G",
+        "folder": "sip79x1g",
         "config_files": [
             "SEP$mac.cnf.xml",
             "XMLDefault.cnf.xml",
@@ -105,7 +105,7 @@
     },
 
     "7941g": {
-        "folder": "sip79x1G",
+        "folder": "sip79x1g",
         "config_files": [
             "SEP$mac.cnf.xml",
             "XMLDefault.cnf.xml",
@@ -116,7 +116,7 @@
     },
 
     "7961g": {
-        "folder": "sip79x1G",
+        "folder": "sip79x1g",
         "config_files": [
             "SEP$mac.cnf.xml",
             "XMLDefault.cnf.xml",
@@ -203,6 +203,10 @@
         "config_files": [
             "$model.cfg",
             "spa$mac.xml"
+        ],
+        "regexs": [
+            "/spa.*\\.cfg$/i",
+            "/spa[a-z0-9]{12}\\.xml/i"
         ]
     },
 
@@ -211,6 +215,10 @@
         "config_files": [
             "$model.cfg",
             "spa$mac.xml"
+        ],
+        "regexs": [
+            "/spa.*\\.cfg$/i",
+            "/spa[a-z0-9]{12}\\.xml/i"
         ]
     },
 
@@ -219,6 +227,10 @@
         "config_files": [
             "$model.cfg",
             "spa$mac.xml"
+        ],
+        "regexs": [
+            "/spa.*\\.cfg$/i",
+            "/spa[a-z0-9]{12}\\.xml/i"
         ]
     },
 
@@ -239,6 +251,10 @@
         "config_files": [
             "$model.cfg",
             "spa$mac.xml"
+        ],
+        "regexs": [
+            "/spa.*\\.cfg$/i",
+            "/spa[a-z0-9]{12}\\.xml/i"
         ]
     },
 
@@ -247,6 +263,10 @@
         "config_files": [
             "$model.cfg",
             "spa$mac.xml"
+        ],
+        "regexs": [
+            "/spa.*\\.cfg$/i",
+            "/spa[a-z0-9]{12}\\.xml/i"
         ]
     }
 }
