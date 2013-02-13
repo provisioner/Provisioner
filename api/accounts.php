@@ -35,7 +35,7 @@ class Accounts {
     /**
      * This will allow the user to get the default settings for an account and for a phone 
      *
-     * @url GET /{account_id}/defaults
+     * @url GET /{account_id}
      * @url GET /{account_id}/{mac_address}
      * @access protected
      * @class  AccessControl {@requires user}
@@ -48,17 +48,17 @@ class Accounts {
         if (!$mac_address) {
             $default_settings = array();
             $default_settings['data'] = $this->db->get($account_db, $account_id);
-            
-            if ($default_settings && array_key_exists('settings', $default_settings))
-                return $default_settings['settings'];
+
+            if (isset($default_settings['data']['settings']))
+                return $default_settings;
             else
                 throw new RestException(404, 'This account_id do not exist or there are no default settings for this user');
         } else { // retrieving phone specific settings
             $mac_settings = array();
             $mac_settings['data'] = $this->db->get($account_db, $mac_address);
 
-            if ($mac_settings && array_key_exists('settings', $mac_settings['data']))
-                return $mac_settings['data']['settings'];
+            if (isset($mac_settings['data']['settings']))
+                return $mac_settings;
             else
                 throw new RestException(404, 'There is no phone with this mac_address for this account or there are no specific settings for this phone');
         }
@@ -90,7 +90,6 @@ class Accounts {
     /**
      * This will allow the user to modify the account/phone settings
      *
-     * @class  Auth {@requires user}
      * @url POST /{account_id}
      * @url POST /{account_id}/{mac_address}
      * @access protected
