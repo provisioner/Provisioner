@@ -13,7 +13,6 @@
 require_once 'lib/php_on_couch/couch.php';
 require_once 'lib/php_on_couch/couchClient.php';
 require_once 'lib/php_on_couch/couchDocument.php';
-require_once 'lib/simple_twig.php';
 
 class BigCouch {
     private $_server_url = null;
@@ -287,7 +286,7 @@ class BigCouch {
             $finalObj['_id'] = $account_id;
             $finalObj['name'] = $request_data['name'];
             $finalObj['settings'] = $request_data;
-            $finalObj['provider_id'] = $request_data['reseller_id'];
+            $finalObj['provider_id'] = $request_data['provider_id'];
         }
 
         return $finalObj;
