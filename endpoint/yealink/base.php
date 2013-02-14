@@ -23,7 +23,7 @@ class endpoint_yealink_base extends endpoint_base {
 
         // ContactList
         if ($config_manager->get_request_type() == 'http'){
-            $settings['contact_list_url'] = $config_manager->get_current_provisioning_url() . "contactData1.xml";
+            $settings['contact_list_url'] = $config_manager->get_current_provisioning_url();
         }
 
         // Codecs
