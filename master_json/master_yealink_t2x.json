@@ -40,8 +40,8 @@
                     "port": "{{ outbound_proxy.primary.port }}"
                 },
                 "backup": {
-                    "host": null,
-                    "port": null
+                    "host": "{{ outbound_proxy.backup.host }}",
+                    "port": "{{ outbound_proxy.backup.port }}"
                 }
             },
 
@@ -59,7 +59,7 @@
                 "g726": {{ codecs.g726|default('null') }}
             },
 
-            "voicemail_number": null,
+            "voicemail_number": {{ voicemail }},
 
             "nat_traversal": null,
 
