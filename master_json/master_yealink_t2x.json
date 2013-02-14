@@ -34,10 +34,10 @@
             },
 
             "outbound_proxy": {
-                "enable": {{ outbound_proxy.enable }},
+                "enable": {{ outbound_proxy.enable|default('0') }},
                 "primary": {
-                    "host": {{ outbound_proxy.primary.host }},
-                    "port": {{ outbound_proxy.primary.host }}
+                    "host": "{{ outbound_proxy.primary.host }}",
+                    "port": "{{ outbound_proxy.primary.port }}"
                 },
                 "backup": {
                     "host": null,
