@@ -33,10 +33,10 @@
             },
 
             "outbound_proxy": {
-                "enable": null,
+                "enable": {{ outbound_proxy.enable|default('0') }},
                 "primary": {
-                    "host": null,
-                    "port": null
+                    "host": "{{ outbound_proxy.primary.host }}",
+                    "port": "{{ outbound_proxy.primary.host }}"
                 },
                 "backup": {
                     "host": null,
