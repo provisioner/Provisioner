@@ -69,6 +69,8 @@
         }
     ],
 
+    "contact_list_url": "{{ contact_list_url }}",
+
     "logo_url": null,
 
     "phone_settings": {
