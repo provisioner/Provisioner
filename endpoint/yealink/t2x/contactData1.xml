@@ -4,7 +4,7 @@
   <blacklist></blacklist>
   <group sGroupName="" sGroupRing="">
     {% for contact in directory %}
-    <contact sDisplayName="{{ contact.name }}" sOfficeNumber="{{ contact.extension }}" sMobilNumber="" sOtherNumber="" sLine="0" sRing="Auto" group=""/>
+    <contact sDisplayName="{{ contact.name }}" sOfficeNumber="{{ contact.internal_number }}" sMobilNumber="" sOtherNumber="{{ contact.external_number }}" sLine="0" sRing="Auto" group=""/>
     {% endfor %}
   </group>
 </contactData>
