@@ -46,7 +46,7 @@
 
             "subscribe_mwi": null,
             "transport": null,
-            "voicemail_number": {{ voicemail }},
+            "voicemail_number": "{{ voicemail }}",
 
             "nat_traversal": null,
 
