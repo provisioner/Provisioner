@@ -77,7 +77,7 @@
         "vid": null
     },
 
-    "contact_list_url": null,
+    "contact_list_url": "{{ contact_list_url }}",
 
     "phone_books": [
         {
@@ -191,5 +191,6 @@
     "rfc2543_hold": null,
 
     "country": null,
-    "dialnow_delay": null
+    "dialnow_delay": null,
+    "directory": [{% for contact in directory %} { "name": "{{contact.name}}", "internal_number": "{{contact.internal_number}}", "external_number": "{{contact.external_number}}" }, {% endfor %} {}]
 }
