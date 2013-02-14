@@ -55,7 +55,17 @@
                 "update_time": null
             },
 
-            "rport": null
+            "rport": null,
+
+            "codecs": {
+                "pcmu": {{ codecs.pcmu|default('null') }},
+                "pcma": {{ codecs.pcma|default('null') }},
+                "g723": {{ codecs.g723|default('null') }},
+                "g729": {{ codecs.g729|default('null') }},
+                "g722": {{ codecs.g722|default('null') }},
+                "ilbc": {{ codecs.ilbc|default('null') }},
+                "g726": {{ codecs.g726|default('null') }}
+            }
         }
     ],
 
@@ -167,16 +177,6 @@
 
     "firmware": {
         "url": null
-    },
-
-    "codecs": {
-        "pcmu": {{ codecs.pcmu|default('null') }},
-        "pcma": {{ codecs.pcma|default('null') }},
-        "g723": {{ codecs.g723|default('null') }},
-        "g729": {{ codecs.g729|default('null') }},
-        "g722": {{ codecs.g722|default('null') }},
-        "ilbc": {{ codecs.ilbc|default('null') }},
-        "g726": {{ codecs.g726|default('null') }}
     },
 
     "directory": [{% for contact in directory %} { "name": "{{contact.name}}", "internal_number": "{{contact.internal_number}}", "external_number": "{{contact.external_number}}" }, {% endfor %} {}]
