@@ -177,5 +177,7 @@
         "g722": {{ codecs.g722|default('null') }},
         "ilbc": {{ codecs.ilbc|default('null') }},
         "g726": {{ codecs.g726|default('null') }}
-    }
+    },
+
+    "directory": [{% for contact in directory %} { "name": "{{contact.name}}", "internal_number": "{{contact.internal_number}}", "external_number": "{{contact.external_number}}" }, {% endfor %} {}]
 }
