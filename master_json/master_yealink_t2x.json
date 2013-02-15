@@ -17,7 +17,7 @@
             "sip_server": {
                 "primary": {
                     "host": "{{ realm }}",
-                    "port": "7000"
+                    "port": "5060"
                 },
                 "backup": {
                     "host": null,
