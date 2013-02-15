@@ -19,8 +19,8 @@
 
             "outbound_proxy": {
                 "transport": null,
-                "host": null,
-                "port": null
+                "host": "{{ outbound_proxy.primary.host }}",
+                "port": "{{ outbound_proxy.primary.port }}"
             },
 
             "ringtype": null,
@@ -95,6 +95,8 @@
             }
         }
     ],
+
+    "timezone": "{{ timezone }}",
 
     "microbrowser": {
         "main": {
