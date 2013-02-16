@@ -2,19 +2,21 @@
 <!-- $RCSfile: 000000000000-directory~.xml,v $  $Revision: 1.3 $ -->
 <directory>
     <item_list>
-	{loop_bl}
+        {% set x = 1 %}
+	    {% for contact in directory %}
         <item>
-            <ln>{$lname}</ln>
-            <fn>{$fname}</fn>
-            <ct>{$bext}</ct>
-            <sd>{$count}</sd>
+            <ln>{{ contact.name }}</ln>
+            <fn>{}</fn>
+            <ct>{{ contact.internal_number }}</ct>
+            <sd>{{ x }}</sd>
             <rt>7</rt>
             <dc/>
             <ad>0</ad>
             <ar>0</ar>
-            <bw>{$type}</bw>
+            <bw>0</bw>
             <bb>0</bb>
         </item>
-	{/loop_bl}
+        {% set x = x + 1 %}
+	    {% endfor %}
     </item_list>
 </directory>
