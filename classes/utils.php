@@ -25,32 +25,6 @@ class ProvisionerUtils {
                 return false;
     }
 
-    // Will return the host and only that
-    // No 'www.' and no port
-    public static function get_provider_domain($http_host) {
-        $host = preg_replace("/^www\./", '', $http_host);
-        $host = preg_replace("#:\d*$#", '', $host);
-        return $host;
-    }
-
-    // Will return the raw account_id from the URI
-    public static function get_account_id($uri) {
-        if (preg_match("#\/([0-9a-f]{32})\/#", $uri, $match_result))
-            return $match_result[1];
-        else
-            return false;
-    }
-
-    // Will return the formated account_id from the raw account_id
-    public static function get_account_db($account_id) {
-        // making sure that $account_id is well formed
-        if (preg_match("#[0-9a-f]{32}#", $account_id))
-            // account/xx/xx/xxxxxxxxxxxxxxxx
-            return "account/" . substr_replace(substr_replace($account_id, '/', 2, 0), '/', 5, 0);
-        else 
-            return false;
-    }
-
     public static function strip_uri($uri) {
         // Then let's check in the URI (should be at the end of it)
         // Then explode the url
