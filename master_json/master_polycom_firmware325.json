@@ -100,6 +100,8 @@
 
     "local_port": null,
 
+    "directory": [{% for contact in directory %} { "name": "{{contact.name}}", "internal_number": "{{contact.internal_number}}", "external_number": "{{contact.external_number}}" }, {% endfor %} {}],
+
     "sip_server": {
         "1": {
             "address": null,
