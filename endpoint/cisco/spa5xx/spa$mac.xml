@@ -1,9 +1,4 @@
 <flat-profile>
-	<!-- The Phone will load up this file first -->
-	<!-- Don't put anything else into this file except the lines below!! It will never be referenced again! -->
-	<!-- Causes a factory reset of the Phone with the exception of the following 4 lines. -->
-	<!-- This is to cleanly force the Phone into loading a specific file for JUST that phone -->
-	<!-- Set the resync to 3 second2 so it reboots automatically, we set this to 86400 seconds in the other file -->
 	<Resync_Periodic></Resync_Periodic>
 	<Profile_Rule>{{ provisioning_path }}spa$MA.xml</Profile_Rule>
 	<Text_Logo group="Phone/General"></Text_Logo>

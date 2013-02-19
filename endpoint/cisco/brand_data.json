@@ -155,6 +155,10 @@
         "config_files": [
             "spa$mac.xml",
             "$model.cfg"
+        ],
+        "regexs": [
+            "/spa[a-z0-9]{12}\\.xml/i",
+            "/spa.*\\.cfg$/i"
         ]
     },
 
@@ -163,6 +167,10 @@
         "config_files": [
             "spa$mac.xml",
             "$model.cfg"
+        ],
+        "regexs": [
+            "/spa[a-z0-9]{12}\\.xml/i",
+            "/spa.*\\.cfg$/i"
         ]
     },
 
@@ -171,6 +179,10 @@
         "config_files": [
             "spa$mac.xml",
             "$model.cfg"
+        ],
+        "regexs": [
+            "/spa[a-z0-9]{12}\\.xml/i",
+            "/spa.*\\.cfg$/i"
         ]
     },
 
@@ -179,6 +191,10 @@
         "config_files": [
             "spa$mac.xml",
             "$model.cfg"
+        ],
+        "regexs": [
+            "/spa[a-z0-9]{12}\\.xml/i",
+            "/spa.*\\.cfg$/i"
         ]
     },
 
@@ -187,6 +203,10 @@
         "config_files": [
             "spa$mac.xml",
             "$model.cfg"
+        ],
+        "regexs": [
+            "/spa[a-z0-9]{12}\\.xml/i",
+            "/spa.*\\.cfg$/i"
         ]
     },
 
@@ -195,6 +215,10 @@
         "config_files": [
             "spa$mac.xml",
             "$model.cfg"
+        ],
+        "regexs": [
+            "/spa[a-z0-9]{12}\\.xml/i",
+            "/spa.*\\.cfg$/i"
         ]
     },
 
