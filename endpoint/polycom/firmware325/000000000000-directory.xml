@@ -6,7 +6,7 @@
         {% for contact in directory %}
         <item>
             <ln>{{ contact.name }}</ln>
-            <fn>{}</fn>
+            <fn></fn>
             <ct>{{ contact.internal_number }}</ct>
             <sd>{{ x }}</sd>
             <rt>7</rt>
