@@ -75,11 +75,6 @@ class ConfigGenerator_2600hz {
             } else 
                 $config_manager->set_device_infos($phone_doc['brand'], $phone_doc['family'], $phone_doc['model']);
 
-            // If the requested file is not suppose to be dynamically generated
-            // =================================
-            ProvisionerUtils::is_static_file($ua, $uri, $config_manager->get_model(), $config_manager->get_brand(), $settings);
-            // =================================
-
             // Generate the doc names for the brand/family/model settings
             $brand_doc_name = $config_manager->get_brand();
             $family_doc_name = $brand_doc_name . "_" . $config_manager->get_family();
@@ -118,6 +113,7 @@ class ConfigGenerator_2600hz {
             $config_file_list = ProvisionerUtils::get_file_list($config_manager->get_brand(), $config_manager->get_model());
             $regex_list = ProvisionerUtils::get_regex_list($config_manager->get_brand(), $config_manager->get_model());
 
+            // We check first if the file is suppose to go through TWIG
             // for each configuration file possible for this model
             for ($i=0; $i < count($config_file_list); $i++) { 
                 if (preg_match($regex_list[$i], $target)) {
@@ -125,6 +121,9 @@ class ConfigGenerator_2600hz {
                     return $config_manager;
                 }
             }
+
+            // Otherwise
+            ProvisionerUtils::is_static_file($ua, $uri, $config_manager->get_model(), $config_manager->get_brand(), $settings);
         }
 
         return false;
