@@ -6,14 +6,16 @@
             "$mac_reg.cfg", 
             "server_327.cfg", 
             "phone1_327.cfg", 
-            "sip_327.cfg"
+            "sip_327.cfg",
+            "000000000000-directory.xml"
         ],
         "regexs": [
             "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/server_[0-9]{3,4}\\.cfg$/",
             "/phone1_[0-9]{3,4}\\.cfg$/",
-            "/sip_[0-9]{3,4}\\.cfg$/"
+            "/sip_[0-9]{3,4}\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
 
@@ -22,12 +24,14 @@
         "config_files": [
             "$mac.cfg",
             "$mac_reg.cfg", 
-            "sip_3333.cfg"
+            "sip_3333.cfg",
+            "000000000000-directory.xml"
         ],
         "regexs": [
             "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
-            "/sip_[0-9]{3,4}\\.cfg$/"
+            "/sip_[0-9]{3,4}\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
 
@@ -36,12 +40,14 @@
         "config_files": [
             "$mac.cfg",
             "$mac_reg.cfg", 
-            "sip_3333.cfg"
+            "sip_3333.cfg",
+            "000000000000-directory.xml"
         ],
         "regexs": [
             "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
-            "/sip_[0-9]{3,4}\\.cfg$/"
+            "/sip_[0-9]{3,4}\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
 
@@ -60,13 +66,16 @@
             "$mac.cfg",
             "$mac_reg.cfg", 
             "sip.cfg", 
-            "features.cfg" 
+            "features.cfg",
+            "000000000000-directory.xml"
         ],
         "regexs": [
             "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/sip\\.cfg$/",
-            "/features\\.cfg$/"
+            "/features\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
 
@@ -76,13 +85,15 @@
             "$mac.cfg",
             "$mac_reg.cfg", 
             "sip.cfg", 
-            "features.cfg" 
+            "features.cfg",
+            "000000000000-directory.xml" 
         ],
         "regexs": [
             "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/sip\\.cfg$/",
-            "/features\\.cfg$/"
+            "/features\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
 
@@ -92,13 +103,15 @@
             "$mac.cfg",
             "$mac_reg.cfg", 
             "sip.cfg", 
-            "features.cfg" 
+            "features.cfg",
+            "000000000000-directory.xml" 
         ],
         "regexs": [
             "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/sip\\.cfg$/",
-            "/features\\.cfg$/"
+            "/features\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
 
@@ -108,13 +121,15 @@
             "$mac.cfg",
             "$mac_reg.cfg", 
             "sip.cfg", 
-            "features.cfg" 
+            "features.cfg",
+            "000000000000-directory.xml" 
         ],
         "regexs": [
             "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/sip\\.cfg$/",
-            "/features\\.cfg$/"
+            "/features\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
 
@@ -124,13 +139,15 @@
             "$mac.cfg",
             "$mac_reg.cfg", 
             "sip.cfg", 
-            "features.cfg" 
+            "features.cfg",
+            "000000000000-directory.xml"
         ],
         "regexs": [
             "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/sip\\.cfg$/",
-            "/features\\.cfg$/"
+            "/features\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
 
@@ -140,13 +157,15 @@
             "$mac.cfg",
             "$mac_reg.cfg", 
             "sip.cfg", 
-            "features.cfg" 
+            "features.cfg",
+            "000000000000-directory.xml"
         ],
         "regexs": [
             "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/sip\\.cfg$/",
-            "/features\\.cfg$/"
+            "/features\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
 
@@ -156,13 +175,15 @@
             "$mac.cfg",
             "$mac_reg.cfg", 
             "sip.cfg", 
-            "features.cfg" 
+            "features.cfg",
+            "000000000000-directory.xml"
         ],
         "regexs": [
             "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/sip\\.cfg$/",
-            "/features\\.cfg$/"
+            "/features\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
 
@@ -172,13 +193,15 @@
             "$mac.cfg",
             "$mac_reg.cfg", 
             "sip.cfg", 
-            "features.cfg" 
+            "features.cfg",
+            "000000000000-directory.xml" 
         ],
         "regexs": [
             "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/sip\\.cfg$/",
-            "/features\\.cfg$/"
+            "/features\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
 
@@ -188,13 +211,15 @@
             "$mac.cfg",
             "$mac_reg.cfg", 
             "sip.cfg", 
-            "features.cfg" 
+            "features.cfg",
+            "000000000000-directory.xml" 
         ],
         "regexs": [
             "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/sip\\.cfg$/",
-            "/features\\.cfg$/"
+            "/features\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
 
@@ -204,13 +229,15 @@
             "$mac.cfg",
             "$mac_reg.cfg", 
             "sip.cfg", 
-            "features.cfg" 
+            "features.cfg",
+            "000000000000-directory.xml" 
         ],
         "regexs": [
             "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/sip\\.cfg$/",
-            "/features\\.cfg$/"
+            "/features\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
 
@@ -220,13 +247,15 @@
             "$mac.cfg",
             "$mac_reg.cfg", 
             "sip.cfg", 
-            "features.cfg" 
+            "features.cfg",
+            "000000000000-directory.xml" 
         ],
         "regexs": [
             "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/sip\\.cfg$/",
-            "/features\\.cfg$/"
+            "/features\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
 
@@ -236,13 +265,15 @@
             "$mac.cfg",
             "$mac_reg.cfg", 
             "sip.cfg", 
-            "features.cfg" 
+            "features.cfg",
+            "000000000000-directory.xml" 
         ],
         "regexs": [
             "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/sip\\.cfg$/",
-            "/features\\.cfg$/"
+            "/features\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
 
@@ -253,14 +284,16 @@
             "$mac_reg.cfg", 
             "phone1_318.cfg", 
             "server_318.cfg", 
-            "sip_318.cfg"
+            "sip_318.cfg",
+            "000000000000-directory.xml"
         ],
         "regexs": [
             "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/phone1_[0-9]{3}\\.cfg$/",
             "/server_[0-9]{3}\\.cfg$/",
-            "/sip_[0-9]{3}\\.cfg$/"
+            "/sip_[0-9]{3}\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
 
@@ -271,14 +304,16 @@
             "$mac_reg.cfg", 
             "phone1_318.cfg", 
             "server_318.cfg", 
-            "sip_318.cfg"
+            "sip_318.cfg",
+            "000000000000-directory.xml"
         ],
         "regexs": [
             "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/phone1_[0-9]{3}\\.cfg$/",
             "/server_[0-9]{3}\\.cfg$/",
-            "/sip_[0-9]{3}\\.cfg$/"
+            "/sip_[0-9]{3}\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
 
@@ -289,14 +324,16 @@
             "$mac_reg.cfg", 
             "phone1_318.cfg", 
             "server_318.cfg", 
-            "sip_318.cfg"
+            "sip_318.cfg",
+            "000000000000-directory.xml"
         ],
         "regexs": [
             "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/phone1_[0-9]{3}\\.cfg$/",
             "/server_[0-9]{3}\\.cfg$/",
-            "/sip_[0-9]{3}\\.cfg$/"
+            "/sip_[0-9]{3}\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
 
@@ -307,14 +344,16 @@
             "$mac_reg.cfg", 
             "phone1_318.cfg", 
             "server_318.cfg", 
-            "sip_318.cfg"
+            "sip_318.cfg",
+            "000000000000-directory.xml"
         ],
         "regexs": [
             "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/phone1_[0-9]{3}\\.cfg$/",
             "/server_[0-9]{3}\\.cfg$/",
-            "/sip_[0-9]{3}\\.cfg$/"
+            "/sip_[0-9]{3}\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
 
@@ -325,14 +364,16 @@
             "$mac_reg.cfg", 
             "phone1_318.cfg", 
             "server_318.cfg", 
-            "sip_318.cfg"
+            "sip_318.cfg",
+            "000000000000-directory.xml"
         ],
         "regexs": [
             "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/phone1_[0-9]{3}\\.cfg$/",
             "/server_[0-9]{3}\\.cfg$/",
-            "/sip_[0-9]{3}\\.cfg$/"
+            "/sip_[0-9]{3}\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
 
@@ -343,14 +384,16 @@
             "$mac_reg.cfg", 
             "server_213.cfg", 
             "phone1_213.cfg", 
-            "sip_213.cfg"
+            "sip_213.cfg",
+            "000000000000-directory.xml"
         ],
         "regexs": [
             "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/server_[0-9]{3}\\.cfg$/",
             "/phone1_[0-9]{3}\\.cfg$/",
-            "/sip_[0-9]{3}\\.cfg$/"
+            "/sip_[0-9]{3}\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
     
@@ -361,14 +404,16 @@
             "$mac_reg.cfg", 
             "server_213.cfg", 
             "phone1_213.cfg", 
-            "sip_213.cfg"
+            "sip_213.cfg",
+            "000000000000-directory.xml"
         ],
         "regexs": [
             "/[0-9a-f]{12}\\.cfg$/",
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/server_[0-9]{3}\\.cfg$/",
             "/phone1_[0-9]{3}\\.cfg$/",
-            "/sip_[0-9]{3}\\.cfg$/"
+            "/sip_[0-9]{3}\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     }
 }
