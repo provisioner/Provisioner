@@ -8,7 +8,7 @@
             <ln>{{ contact.name }}</ln>
             <fn></fn>
             <ct>{{ contact.internal_number }}</ct>
-            <sd>{{ x }}</sd>
+            <sd></sd>
             <rt>7</rt>
             <dc/>
             <ad>0</ad>
