@@ -144,6 +144,7 @@ class ConfigFile {
 
     // This function will try to determine the family model from the ua and the brand
     // Each time we add a brand, we need to modify this file for now (Maybe use the phone specific files)
+    // ======= This function is useless for now =======
     private function _get_family_from_ua($ua) {
         switch ($this->_strBrand) {
             case 'yealink':
