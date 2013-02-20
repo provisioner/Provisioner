@@ -32,12 +32,14 @@
         "config_files": [
             "y0000000000$suffix.cfg",
             "$mac.cfg",
-            "contactData1.xml"
+            "contactData1.xml",
+            "phonebook1.xml"
         ],
         "regexs": [
             "/y0000000000[0-9]{2}\\.cfg$/" ,
             "/([0-9a-f]{12})\\.cfg$/",
-            "/contactData1\\.xml$/i"
+            "/contactData1\\.xml$/i",
+            "/phonebook1\\.xml/i"
         ]
     },
 

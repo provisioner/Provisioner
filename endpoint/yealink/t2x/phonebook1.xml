@@ -1,0 +1,8 @@
+<{{ name }}IPPhoneDirectory>
+    {% for contact in directory %}
+    <DirectoryEntry>
+        <Name>{{ contact.name }}</Name>
+        <Telephone>{{ contact.internal_number }}</Telephone>
+    </DirectoryEntry>
+    {% endfor %}
+</{{ name }}IPPhoneDirectory>
