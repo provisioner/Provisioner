@@ -24,9 +24,9 @@
         <Dial_Plan_{$line}_ ua="na">{$dial_plan}</Dial_Plan_{$line}_>
 		
 	<!-- User Proxy and Registration - These are extension specific settings too--> 
-	<Proxy_{$line}_ ua="na">{$server.ip.1}</Proxy_{$line}_>
+	<Proxy_{$line}_ ua="na">{$server.ip.1}:{$server.port.1}</Proxy_{$line}_>
         <Use_Outbound_Proxy_{$line}_ ua="na">No</Use_Outbound_Proxy_{$line}_>
-        <Outbound_Proxy_{$line}_ ua="na">{$server.ip.1}</Outbound_Proxy_{$line}_>
+        <Outbound_Proxy_{$line}_ ua="na">{$server.ip.1}:{$server.port.1}</Outbound_Proxy_{$line}_>
         <Register_Expires_{$line}_ ua="ro">120</Register_Expires_{$line}_>
         <Ans_Call_Without_Reg_{$line}_ ua="na">No</Ans_Call_Without_Reg_{$line}_>
         <Use_DNS_SRV_{$line}_ ua="rw">No</Use_DNS_SRV_{$line}_>
