@@ -1,7 +1,12 @@
 <?php 
 
 /**
- * Represent the config file class that will merge / load / return the requested config file
+ * Adapters take in desired settings for a phone from some other system and convert them into a standard form which we can use to generate config files.
+ * In other words, some systems will send a SIP Proxy and some may send a SIP Registrar setting. This adapter will convert whatever gets sent from that
+ * system into the format we need for provisioner.net, such as $settings['proxy'];
+ *
+ * This particular adapter is smart. It will take in settings from the Kazoo platform and break them into account, user and device settings and process them
+ * accordingly, respecting the standard Kazoo GUI representation of codecs, proxies and other settings. 
  *
  * @author Francis Genet
  * @license MPL / GPLv2 / LGPL
@@ -9,30 +14,27 @@
  * @version 5.0
  */
 
-require_once PROVISIONER_BASE . 'classes/utils.php';
-require_once PROVISIONER_BASE . 'classes/configfile.php';
-
-class ConfigGenerator_2600hz {
+class adapter_2600hz_adapter {
     private $account_id = null;
     private $needs_manual_provisioning = false;
     private $mac_address = null;
 
     public function get_config_manager($uri, $ua, $http_host, $settings) {
         // Load the datasource
-        $db_type = $settings->database->type;
+        $db_type = 'wrapper_' . $settings->database->type;
         $db = new $db_type($settings->database->url, $settings->database->port);
 
         // Load the config manager
-        $config_manager = new ConfigFile();
+        $config_manager = new system_configfile();
 
         // Getting the provider from the host
-        $provider_domain = ProvisionerUtils::get_provider_domain($http_host);
+        $provider_domain = helper_utils::get_provider_domain($http_host);
 
         // This is retrieve from a view, it is NOT the full doc
         $provider_view = $db->get_provider($provider_domain);
 
         // Getting the mac address in the URI OR in the User-Agent
-        $this->mac_address = ProvisionerUtils::get_mac_address($ua, $uri);
+        $this->mac_address = helper_utils::get_mac_address($ua, $uri);
 
         if (!$this->mac_address) {
             // http://cdn.memegenerator.net/instances/250x250/30687023.jpg
@@ -41,7 +43,7 @@ class ConfigGenerator_2600hz {
         }
 
         // Getting the account_id from the URI
-        $this->account_id = ProvisionerUtils::get_account_id($uri);
+        $this->account_id = helper_utils::get_account_id($uri);
         if (!$this->account_id) {
             $this->account_id = $provider_view['default_account_id'];
 
@@ -49,9 +51,9 @@ class ConfigGenerator_2600hz {
             if (!$this->account_id)
                 $this->needs_manual_provisioning = true;
             else
-                $account_db = ProvisionerUtils::get_account_db($this->account_id);
+                $account_db = helper_utils::get_account_db($this->account_id);
         } else
-            $account_db = ProvisionerUtils::get_account_db($this->account_id);
+            $account_db = helper_utils::get_account_db($this->account_id);
 
         // Manual provisioning
         if ($this->needs_manual_provisioning) {
@@ -109,9 +111,9 @@ class ConfigGenerator_2600hz {
                 $config_manager->import_settings($phone_doc['settings']);
 
             // Set the targeted config file
-            $target = ProvisionerUtils::strip_uri($uri);
-            $config_file_list = ProvisionerUtils::get_file_list($config_manager->get_brand(), $config_manager->get_model());
-            $regex_list = ProvisionerUtils::get_regex_list($config_manager->get_brand(), $config_manager->get_model());
+            $target = helper_utils::strip_uri($uri);
+            $config_file_list = helper_utils::get_file_list($config_manager->get_brand(), $config_manager->get_model());
+            $regex_list = helper_utils::get_regex_list($config_manager->get_brand(), $config_manager->get_model());
 
             // We check first if the file is suppose to go through TWIG
             // for each configuration file possible for this model
@@ -123,7 +125,7 @@ class ConfigGenerator_2600hz {
             }
 
             // Otherwise
-            ProvisionerUtils::is_static_file($ua, $uri, $config_manager->get_model(), $config_manager->get_brand(), $settings);
+            helper_utils::is_static_file($ua, $uri, $config_manager->get_model(), $config_manager->get_brand(), $settings);
         }
 
         return false;

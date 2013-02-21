@@ -10,14 +10,14 @@
  * @version 5.0
  */
 
-class ProvisionerUtils {
+class helper_utils {
     public static function get_mac_address($ua, $uri) {
         // Let's check in the User-Agent
         if (preg_match("#[0-9a-fA-F]{2}(?=([:-]?))(?:\\1[0-9a-fA-F]{2}){5}#", $ua, $match_result))
             // need to return the mac address without the ':'
             return strtolower(preg_replace('/[:-]/', '', $match_result[0]));
         else 
-            $requested_file = ProvisionerUtils::strip_uri($uri);
+            $requested_file = helper_utils::strip_uri($uri);
 
             if (preg_match("#[0-9a-fA-F]{12}#", $requested_file, $match_result))
                 return strtolower($match_result[0]);
@@ -66,7 +66,7 @@ class ProvisionerUtils {
     }
 
     public static function get_folder($brand, $model) {
-        $brand_data = ProvisionerUtils::_get_brand_data($brand);
+        $brand_data = helper_utils::_get_brand_data($brand);
         return $brand_data[$model]["folder"];
     }
 
@@ -88,7 +88,7 @@ class ProvisionerUtils {
 
         // Polycom
         if ($brand == "polycom") {
-            $folder = ProvisionerUtils::get_folder("polycom", $model);
+            $folder = helper_utils::get_folder("polycom", $model);
 
             if (preg_match("/0{12}\.cfg$/", $uri))
                 $location = $settings->paths->endpoint . "polycom/000000000000.cfg";
@@ -140,7 +140,7 @@ class ProvisionerUtils {
         $obj = new stdClass;
         foreach($array as $k => $v) {
             if(is_array($v)) {
-                $obj->{$k} = ProvisionerUtils::array_to_object($v);
+                $obj->{$k} = helper_utils::array_to_object($v);
             } else {
                 $obj->{$k} = $v;
             }
@@ -153,7 +153,7 @@ class ProvisionerUtils {
         if (is_array($data) || is_object($data)) {
             $result = array();
             foreach ($data as $key => $value) {
-                $result[$key] = ProvisionerUtils::object_to_array($value);
+                $result[$key] = helper_utils::object_to_array($value);
             }
             return $result;
         }

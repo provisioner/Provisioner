@@ -14,10 +14,9 @@
 set_time_limit(5);
 
 require_once 'bootstrap.php' ;
-require_once 'classes/settings.php';
 
 // Load the settings
-$objSettings = new Settings();
+$objSettings = new helper_settings();
 $settings = $objSettings->getSettings();
 
 // Databse Based
@@ -44,12 +43,12 @@ if (!isset($argv)) {
     //$ua = "Cisco/SPA504G-7.4.9c (649EF3788E6A)(CCQ162306EA)";
     //$uri = "/002e3a6fe532d90943e6fcaf08e1a408/spa504g.cfg";
 
-    // Load the config manager
-    // This will return a config_manager
-    $config_manager_name = "ConfigGenerator_" . $settings->config_manager;
-    $config_generator = new $config_manager_name();
+    // Load the configuration adapter (converts format from FreePBX/Kazoo/etc. to a standard format)
+    // This will return a class which will pre-process configurations
+    $adapter_name = "adapter_" . $settings->adapter . "_adapter";
+    $adapter = new $adapter_name();
 
-    $config_manager = $config_generator->get_config_manager($uri, $ua, $http_host, $settings);
+    $config_manager = $adapter->get_config_manager($uri, $ua, $http_host, $settings);
     $config_manager->set_request_type('http');
 
     echo $config_manager->generate_config_file();
@@ -76,8 +75,8 @@ if (!isset($argv)) {
 
     // This is generator is generic and is basically building a simple config manager
     // with a minimum of information (brand/model/a file containing the settings)
-    $config_generator = new ConfigGenerator_generic();
-    $config_manager = $config_generator->get_config_manager($brand, $model, $arrConfig);
+    $adapter = new adapter_generic_adapter();
+    $config_manager = $adapter->get_config_manager($brand, $model, $arrConfig);
     $config_manager->set_request_type('tftp');
 
     foreach (ProvisionerUtils::get_file_list($brand, $model) as $value) {

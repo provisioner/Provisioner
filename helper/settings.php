@@ -11,15 +11,13 @@
 
 define("CONFIG_FILE", PROVISIONER_BASE . 'config.json');
 
-require_once 'classes/utils.php';
-
-class Settings {
+class helper_settings {
     private $_objSettings = null;
 
     public function __construct() {
         try {
             $arr_file_content = json_decode(file_get_contents(CONFIG_FILE), true);
-            $this->_objSettings = ProvisionerUtils::array_to_object($arr_file_content);
+            $this->_objSettings = helper_utils::array_to_object($arr_file_content);
         } catch (Exception $e) {
             echo "Could not load the settings: " . $e->getMessage() . "\n";
         }

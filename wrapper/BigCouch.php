@@ -14,7 +14,7 @@ require_once LIB_BASE . 'php_on_couch/couch.php';
 require_once LIB_BASE . 'php_on_couch/couchClient.php';
 require_once LIB_BASE . 'php_on_couch/couchDocument.php';
 
-class BigCouch {
+class wrapper_bigcouch {
     private $_server_url = null;
 
     /*

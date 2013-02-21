@@ -13,7 +13,7 @@
 // This represent the constant file
 define('CONSTANTS_FILE', ROOT_PATH.'/constants.json');
 
-class ConfigFile {
+class system_configfile {
     // Device infos
     private $_strBrand = null;
     private $_strFamily = null;
@@ -200,7 +200,7 @@ class ConfigFile {
 
     // This function will determine the template directory
     private function _set_template_dir() {
-        $folder = ProvisionerUtils::get_folder($this->_strBrand, $this->_strModel);
+        $folder = helper_utils::get_folder($this->_strBrand, $this->_strModel);
 
         $this->_strTemplateDir = MODULES_DIR . $this->_strBrand . DIRECTORY_SEPARATOR . $folder . DIRECTORY_SEPARATOR;
     }
@@ -269,7 +269,7 @@ class ConfigFile {
     public function generate_config_file() {
         $arrConfig = $this->_merge_config_objects();
 
-        $folder = ProvisionerUtils::get_folder($this->_strBrand, $this->_strModel);
+        $folder = helper_utils::get_folder($this->_strBrand, $this->_strModel);
         $target_phone = "endpoint_" . $this->_strBrand . "_" . $folder . "_phone";
 
         // Set the twig template directory
@@ -281,7 +281,7 @@ class ConfigFile {
 
         // This should be one of the last thing to be done I think.
         $phone = new $target_phone();
-        $arrConfig = ProvisionerUtils::object_to_array($phone->prepareConfig($arrConfig, $this));
+        $arrConfig = helper_utils::object_to_array($phone->prepareConfig($arrConfig, $this));
 
         if ($this->_objTwig)
             return $this->_objTwig->render($this->_strConfigFile, $arrConfig);

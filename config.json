@@ -1,7 +1,7 @@
 {
     "version": "5.0.3",
     "static_data_source": "database",
-    "config_manager": "2600hz",
+    "adapter": "2600hz",
 
     "paths": {
         "endpoint": "/endpoint/",
@@ -9,8 +9,8 @@
     },
     
     "database": {
-        "type": "BigCouch",
-        "url": "http://10.10.9.57",
+        "type": "bigcouch",
+        "url": "http://10.10.15.162",
         "port": 15984,
 
         "master_provider": {

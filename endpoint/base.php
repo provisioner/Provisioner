@@ -16,12 +16,12 @@ abstract class endpoint_base {
 
     // Initialize Twig
     private function _twig_init() {
-        $loader = new Twig_Loader_Filesystem("master_json/");
+        $loader = new Twig_Loader_Filesystem("adapter/2600hz/masterjson/");
         $this->_objTwig = new Twig_Environment($loader);
     }
 
     protected function encode_config(&$settings, $config_manager) {
-        $template_file = "master_" . $config_manager->get_brand() . "_" . $config_manager->get_family() . ".json";
+        $template_file = $config_manager->get_brand() . $config_manager->get_family() . ".json";
 
         if ($this->_objTwig)
             // /!\ The result is a StdClass, not an array
