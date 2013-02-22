@@ -13,10 +13,11 @@ class endpoint_yealink_base extends endpoint_base {
         parent::__construct();
     }
 
-    function prepareConfig(&$settings, $config_manager) {
-        parent::prepareConfig($settings, $config_manager);
+    function prepareConfig(&$config_manager) {
+        parent::prepareConfig($config_manager);
 
         $constants = $config_manager->get_constants();
+        $settings = $config_manager->get_settings();
 
         if (array_key_exists('timezone', $settings))
             $settings['timezone'] = $constants['timezone_lookup'][$settings['timezone']];
@@ -37,6 +38,8 @@ class endpoint_yealink_base extends endpoint_base {
             elseif ($codec == "G722_16" || $codec == "G722_32")
                 $settings['codecs']['g722'] = true;
         }
+
+        $config_manager->set_settings($settings);
     }
 }
 

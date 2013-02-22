@@ -120,6 +120,9 @@ class adapter_2600hz_adapter {
             for ($i=0; $i < count($config_file_list); $i++) { 
                 if (preg_match($regex_list[$i], $target)) {
                     $config_manager->set_config_file($config_file_list[$i]);
+                    $merged_settings = $config_manager->get_merged_config_objects();
+                    $config_manager->set_settings($merged_settings);
+
                     return $config_manager;
                 }
             }

@@ -68,6 +68,10 @@ class system_configfile {
         return $this->_arrConstants;
     }
 
+    public function get_settings() {
+        return $this->_arrData;
+    }
+
     // Setter
     public function set_brand($brand) {
         $this->_strBrand = $brand;
@@ -92,6 +96,10 @@ class system_configfile {
     // This function will allow the user to set his own template directory
     public function set_template_dir($templateDir) {
         $this->_strTemplateDir = $templateDir;
+    }
+
+    public function set_settings($settings) {
+        $this->_arrData = $settings;
     }
 
     // ===========================================
@@ -187,17 +195,6 @@ class system_configfile {
         }
     }
 
-    // This function will merge all the json 
-    private function _merge_config_objects() {
-        $arrConfig = array();
-
-        $arrConfig = $this->_arrData[0];
-        for ($i=0; $i < (sizeof($this->_arrData)-1); $i++)
-            $arrConfig = $this->_merge_array($arrConfig, $this->_arrData[$i+1]);
-
-        return $arrConfig;
-    }
-
     // This function will determine the template directory
     private function _set_template_dir() {
         $folder = helper_utils::get_folder($this->_strBrand, $this->_strModel);
@@ -234,6 +231,17 @@ class system_configfile {
         return false;
     }
 
+    // This function will merge all the json 
+    public function get_merged_config_objects() {
+        $arrConfig = array();
+
+        $arrConfig = $this->_arrData[0];
+        for ($i=0; $i < (sizeof($this->_arrData)-1); $i++)
+            $arrConfig = $this->_merge_array($arrConfig, $this->_arrData[$i+1]);
+
+        return $arrConfig;
+    }
+
     /*
         This function is used if you already have the brand and family info
         Or if you don't have the UA, like if you are using TFTP.
@@ -267,8 +275,6 @@ class system_configfile {
 
     // This is the final step
     public function generate_config_file() {
-        $arrConfig = $this->_merge_config_objects();
-
         $folder = helper_utils::get_folder($this->_strBrand, $this->_strModel);
         $target_phone = "endpoint_" . $this->_strBrand . "_" . $folder . "_phone";
 
@@ -281,7 +287,7 @@ class system_configfile {
 
         // This should be one of the last thing to be done I think.
         $phone = new $target_phone();
-        $arrConfig = helper_utils::object_to_array($phone->prepareConfig($arrConfig, $this));
+        $arrConfig = helper_utils::object_to_array($phone->prepareConfig($this));
 
         if ($this->_objTwig)
             return $this->_objTwig->render($this->_strConfigFile, $arrConfig);

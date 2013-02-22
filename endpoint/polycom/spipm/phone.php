@@ -15,7 +15,6 @@ class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
 
     function prepareConfig($settings, $config_manager) {
         parent::prepareConfig($settings, $config_manager);
-        $this->encode_config($settings, $config_manager);
         
         return $settings;
     }
