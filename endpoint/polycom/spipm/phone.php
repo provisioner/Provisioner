@@ -13,9 +13,7 @@ class endpoint_polycom_spipm_phone extends endpoint_polycom_base {
         parent::__construct();
     }
 
-    function prepareConfig($settings, $config_manager) {
-        parent::prepareConfig($settings, $config_manager);
-        
-        return $settings;
+    function prepareConfig(&$config_manager) {
+        parent::prepareConfig($config_manager);
     }
 }

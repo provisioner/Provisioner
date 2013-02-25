@@ -30,7 +30,9 @@
                     "host": "{{ outbound_proxy.backup.host }}",
                     "port": "{{ outbound_proxy.backup.port }}"
                 }
-            }
+            },
+
+            "voicemail_number": "{{ voicemail }}"
         }
     ]
 }

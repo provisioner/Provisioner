@@ -13,14 +13,16 @@ abstract class endpoint_polycom_base extends endpoint_base {
         parent::__construct();
     }
 
-    function prepareConfig(&$settings, $config_manager) {
-        parent::prepareConfig($settings, $config_manager);
+    function prepareConfig(&$config_manager) {
+        parent::prepareConfig($config_manager);
 
-        $this->_set_timezone($settings, $config_manager);
+        $this->_set_timezone($config_manager);
     }
 
-    private function _set_timezone(&$settings, $config_manager) {
+    private function _set_timezone(&$config_manager) {
         $constants = $config_manager->get_constants();
+        $settings = $config_manager->get_settings();
+
         $tz = $constants['timezone_lookup'][$settings['timezone']];
         $strip_tz = explode(":", $tz);
 
@@ -30,6 +32,8 @@ abstract class endpoint_polycom_base extends endpoint_base {
             $sub_tz = 30 * 60;
 
         $settings['timezone'] = $main_tz + $sub_tz;
+
+        $config_manager->set_settings($settings);
     }
 }
 
