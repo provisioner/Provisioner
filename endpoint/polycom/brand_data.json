@@ -74,7 +74,6 @@
             "/[0-9a-f]{12}_reg\\.cfg$/",
             "/sip\\.cfg$/",
             "/features\\.cfg$/",
-            "/[a-fA-F0-9]{12}-directory\\.xml$/i",
             "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },

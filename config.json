@@ -10,7 +10,7 @@
     
     "database": {
         "type": "bigcouch",
-        "url": "http://10.10.15.162",
+        "url": "http://10.10.9.99",
         "port": 15984,
 
         "master_provider": {

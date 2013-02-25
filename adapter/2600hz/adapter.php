@@ -115,13 +115,21 @@ class adapter_2600hz_adapter {
             $config_file_list = helper_utils::get_file_list($config_manager->get_brand(), $config_manager->get_model());
             $regex_list = helper_utils::get_regex_list($config_manager->get_brand(), $config_manager->get_model());
 
+            $merged_settings = $config_manager->get_merged_config_objects();
+
+            $loader = new Twig_Loader_Filesystem(PROVISIONER_BASE . 'adapter/2600hz/');
+            $objTwig = new Twig_Environment($loader);
+
+            $line_settings = json_decode($objTwig->render('master.json', $merged_settings), true);
+            $merged_settings = array_merge($merged_settings, $line_settings);
+            
+            $config_manager->set_settings($merged_settings);
+
             // We check first if the file is suppose to go through TWIG
             // for each configuration file possible for this model
             for ($i=0; $i < count($config_file_list); $i++) { 
                 if (preg_match($regex_list[$i], $target)) {
                     $config_manager->set_config_file($config_file_list[$i]);
-                    $merged_settings = $config_manager->get_merged_config_objects();
-                    $config_manager->set_settings($merged_settings);
 
                     return $config_manager;
                 }
@@ -129,6 +137,8 @@ class adapter_2600hz_adapter {
 
             // Otherwise
             helper_utils::is_static_file($ua, $uri, $config_manager->get_model(), $config_manager->get_brand(), $settings);
+
+            die("Could not find the file to send back");
         }
 
         return false;

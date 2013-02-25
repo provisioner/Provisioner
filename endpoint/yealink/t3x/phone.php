@@ -13,10 +13,8 @@ class endpoint_yealink_t3x_phone extends endpoint_yealink_base {
         parent::__construct();
     }
 
-    function prepareConfig($settings, $config_manager) {
-        parent::prepareConfig($settings, $config_manager);
-
-        return $settings;
+    function prepareConfig(&$config_manager) {
+        parent::prepareConfig($config_manager);
     }
 }
 

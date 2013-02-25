@@ -35,7 +35,7 @@ class endpoint_yealink_base extends endpoint_base {
                 $settings['codecs']['pcmu'] = true;
             elseif ($codec == "PCMA")
                 $settings['codecs']['pcma'] = true;
-            elseif ($codec == "G722_16" || $codec == "G722_32")
+            elseif ($codec == "G722_16" || $codec == "G722_32") 
                 $settings['codecs']['g722'] = true;
         }
 

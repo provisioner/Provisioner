@@ -287,10 +287,10 @@ class system_configfile {
 
         // This should be one of the last thing to be done I think.
         $phone = new $target_phone();
-        $arrConfig = helper_utils::object_to_array($phone->prepareConfig($this));
+        helper_utils::object_to_array($phone->prepareConfig($this));
 
         if ($this->_objTwig)
-            return $this->_objTwig->render($this->_strConfigFile, $arrConfig);
+            return $this->_objTwig->render($this->_strConfigFile, $this->_arrData);
     }
 }
 
