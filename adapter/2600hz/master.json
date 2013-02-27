@@ -21,7 +21,7 @@
             "expire": "{{ sip.registration_expiration }}",
 
             "outbound_proxy": {
-                "enable": null,
+                "enable": {{ outbound_proxy.enable }},
                 "primary": {
                     "host": "{{ outbound_proxy.primary.host }}",
                     "port": "{{ outbound_proxy.primary.port }}"
