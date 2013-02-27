@@ -154,25 +154,21 @@
         "folder": "spa",
         "config_files": [
             "spa$mac.xml",
-            "$model.cfg",
-            "directory.xml"
+            "$model.cfg"
         ],
         "regexs": [
             "/[a-f0-9]{12}\\.xml/i",
-            "/spa.*\\.cfg$/i",
-            "/directory-\\.xml/i"
+            "/spa.*\\.cfg$/i"
         ]
     },
 
     "921": {
         "folder": "spa",
         "config_files": [
-            "directory.xml",
             "spa$mac.xml",
             "$model.cfg"
         ],
         "regexs": [
-            "/directory-[a-f0-9]{12}\\.xml/i",
             "/[a-f0-9]{12}\\.xml/i",
             "/spa.*\\.cfg$/i"
         ]
@@ -182,13 +178,11 @@
         "folder": "spa",
         "config_files": [
             "spa$mac.xml",
-            "$model.cfg",
-            "directory.xml"
+            "$model.cfg"
         ],
         "regexs": [
             "/[a-f0-9]{12}\\.xml/i",
-            "/spa.*\\.cfg$/i",
-            "/directory\\.xml/i"
+            "/spa.*\\.cfg$/i"
         ]
     },
 
@@ -196,13 +190,11 @@
         "folder": "spa",
         "config_files": [
             "spa$mac.xml",
-            "$model.cfg",
-            "directory.xml"
+            "$model.cfg"
         ],
         "regexs": [
             "/[a-f0-9]{12}\\.xml/i",
-            "/spa.*\\.cfg$/i",
-            "/directory\\.xml/i"
+            "/spa.*\\.cfg$/i"
         ]
     },
 
@@ -210,13 +202,11 @@
         "folder": "spa",
         "config_files": [
             "spa$mac.xml",
-            "$model.cfg",
-            "directory.xml"
+            "$model.cfg"
         ],
         "regexs": [
             "/[a-f0-9]{12}\\.xml/i",
-            "/spa.*\\.cfg$/i",
-            "/directory\\.xml/i"
+            "/spa.*\\.cfg$/i"
         ]
     },
 
@@ -224,13 +214,11 @@
         "folder": "spa",
         "config_files": [
             "spa$mac.xml",
-            "$model.cfg",
-            "directory.xml"
+            "$model.cfg"
         ],
         "regexs": [
             "/[a-f0-9]{12}\\.xml/i",
-            "/spa.*\\.cfg$/i",
-            "/directory\\.xml/i"
+            "/spa.*\\.cfg$/i"
         ]
     },
 
