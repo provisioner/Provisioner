@@ -8,9 +8,11 @@
  * @package Provisioner
  */
 class endpoint_cisco_spa_phone extends endpoint_cisco_base {
-    function prepareConfig($settings, $config_manager) {
-        parent::prepareConfig($settings, $config_manager);
+    public function __construct() {
+        parent::__construct();
+    }
 
-        return $settings;
+    function prepareConfig(&$config_manager) {
+        parent::prepareConfig($config_manager);
     }
 }

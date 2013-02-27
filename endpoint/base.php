@@ -15,7 +15,11 @@ abstract class endpoint_base {
     }
 
     public function prepareConfig(&$config_manager) {
+        $settings = $config_manager->get_settings();
+
+        $settings['provisioning_url'] = $config_manager->get_current_provisioning_url();
         
+        $config_manager->set_settings($settings);
     }
 }
 

@@ -1,6 +1,6 @@
 <flat-profile>
 	<Resync_Periodic></Resync_Periodic>
-	<Profile_Rule>{{ provisioning_path }}spa$MA.xml</Profile_Rule>
+	<Profile_Rule>{{ provisioning_url }}spa$MA.xml</Profile_Rule>
 	<Text_Logo group="Phone/General"></Text_Logo>
 	<Select_Background_Picture ua="ro">Text Logo</Select_Background_Picture>
 
@@ -10,8 +10,8 @@
   <Enable_Web_Server ua="na">Yes</Enable_Web_Server>
   <Web_Server_Port ua="na">80</Web_Server_Port>
   <Enable_Web_Admin_Access ua="na">Yes</Enable_Web_Admin_Access>
-  <Admin_Passwd ua="na"></Admin_Passwd>
-  <User_Password ua="rw"></User_Password>
+  <Admin_Passwd ua="na">{{ password.admin }}</Admin_Passwd>
+  <User_Password ua="rw">{{ password.user }}</User_Password>
   <Signaling_Protocol ua="na">SIP</Signaling_Protocol> <!-- options: SIP/SPCP -->
   <SPCP_Auto-detect ua="na">Yes</SPCP_Auto-detect>
   <Phone-UI-readonly ua="na">No</Phone-UI-readonly>
@@ -231,7 +231,7 @@
 
   <Share_Ext_{{ x }}_ ua="na">private</Share_Ext_{{ x }}_> <!-- options: private/shared -->
   <Shared_User_ID_{{ x }}_ ua="na"></Shared_User_ID_{{ x }}_>
-  <Subscription_Expires_{{ x }}_ ua="na">3600</Subscription_Expires_{{ x }}_>
+  <Subscription_Expires_{{ x }}_ ua="na">{{ line.expire|default('60') }}</Subscription_Expires_{{ x }}_>
   <Restrict_MWI_{{ x }}_ ua="na">No</Restrict_MWI_{{ x }}_>
   <Monitor_User_ID_{{ x }}_ ua="na"></Monitor_User_ID_{{ x }}_>
 
@@ -282,7 +282,7 @@
   <Auth_Page_Realm_{{ x }}_ ua="na"></Auth_Page_Realm_{{ x }}_>
   <Conference_Bridge_URL_{{ x }}_ ua="na"></Conference_Bridge_URL_{{ x }}_>
   <Auth_Page_Password_{{ x }}_ ua="na"></Auth_Page_Password_{{ x }}_>
-  <Mailbox_ID_{{ x }}_ ua="na"></Mailbox_ID_{{ x }}_>
+  <Mailbox_ID_{{ x }}_ ua="na">{{ line.voicemail_number|default('*97') }}</Mailbox_ID_{{ x }}_>
   <Voice_Mail_Server_{{ x }}_ ua="na"></Voice_Mail_Server_{{ x }}_>
   <Voice_Mail_Subscribe_Interval_{{ x }}_ ua="na">86400</Voice_Mail_Subscribe_Interval_{{ x }}_>
   <State_Agent_{{ x }}_ ua="na"></State_Agent_{{ x }}_>
@@ -297,13 +297,13 @@
 
   <Proxy_{{ x }}_ ua="na">{{ line.sip_server.primary.host }}</Proxy_{{ x }}_>
   <Outbound_Proxy_{{ x }}_ ua="na">{{ line.outbound_proxy.primary.host }}</Outbound_Proxy_{{ x }}_>
-  <Alternate_Proxy_{{ x }}_ ua="na"></Alternate_Proxy_{{ x }}_>
+  <Alternate_Proxy_{{ x }}_ ua="na">{{ line.sip_server.backup.host }}</Alternate_Proxy_{{ x }}_>
   <Alternate_Outbound_Proxy_{{ x }}_ ua="na">{{ line.outbound_proxy.backup.host }}</Alternate_Outbound_Proxy_{{ x }}_>
   <Use_Outbound_Proxy_{{ x }}_ ua="na">Yes</Use_Outbound_Proxy_{{ x }}_>
   <Use_OB_Proxy_In_Dialog_{{ x }}_ ua="na">Yes</Use_OB_Proxy_In_Dialog_{{ x }}_>
   <Register_{{ x }}_ ua="na">Yes</Register_{{ x }}_>
   <Make_Call_Without_Reg_{{ x }}_ ua="na">No</Make_Call_Without_Reg_{{ x }}_>
-  <Register_Expires_{{ x }}_ ua="na">3600</Register_Expires_{{ x }}_>
+  <Register_Expires_{{ x }}_ ua="na">{{ line.expire|default('60') }}</Register_Expires_{{ x }}_>
   <Ans_Call_Without_Reg_{{ x }}_ ua="na">No</Ans_Call_Without_Reg_{{ x }}_>
   <Use_DNS_SRV_{{ x }}_ ua="na">No</Use_DNS_SRV_{{ x }}_>
   <DNS_SRV_Auto_Prefix_{{ x }}_ ua="na">No</DNS_SRV_Auto_Prefix_{{ x }}_>
@@ -317,17 +317,17 @@
   <User_ID_{{ x }}_ ua="na">{{ line.username }}</User_ID_{{ x }}_>
   <Password_{{ x }}_ ua="na">{{ line.auth_password }}</Password_{{ x }}_>
   <Use_Auth_ID_{{ x }}_ ua="na">Yes</Use_Auth_ID_{{ x }}_>
-  <Auth_ID_{{ x }}_ ua="na">{{ line.username }}</Auth_ID_{{ x }}_>
+  <Auth_ID_{{ x }}_ ua="na">{{ line.auth_name }}</Auth_ID_{{ x }}_>
   <Reversed_Auth_Realm_{{ x }}_ ua="na"></Reversed_Auth_Realm_{{ x }}_>
   <Mini_Certificate_{{ x }}_ ua="na"></Mini_Certificate_{{ x }}_>
   <SRTP_Private_Key_{{ x }}_ ua="na"></SRTP_Private_Key_{{ x }}_>
 
   <!-- Audio Configuration -->
 
-  <Preferred_Codec_{{ x }}_ ua="na">G711u</Preferred_Codec_{{ x }}_> <!-- options: G711u/G711a/G726-16/G726-24/G726-32/G726-40/G729a/G722 -->
+  <Preferred_Codec_{{ x }}_ ua="na">{{ codecs.0 }}</Preferred_Codec_{{ x }}_> <!-- options: G711u/G711a/G726-16/G726-24/G726-32/G726-40/G729a/G722 -->
   <Use_Pref_Codec_Only_{{ x }}_ ua="na">No</Use_Pref_Codec_Only_{{ x }}_>
-  <Second_Preferred_Codec_{{ x }}_ ua="na">Unspecified</Second_Preferred_Codec_{{ x }}_> <!-- options: Unspecified/G711u/G711a/G726-16/G726-24/G726-32/G726-40/G729a/G722 -->
-  <Third_Preferred_Codec_{{ x }}_ ua="na">Unspecified</Third_Preferred_Codec_{{ x }}_> <!-- options: Unspecified/G711u/G711a/G726-16/G726-24/G726-32/G726-40/G729a/G722 -->
+  <Second_Preferred_Codec_{{ x }}_ ua="na">{{ codecs.1|default('Unspecified') }}</Second_Preferred_Codec_{{ x }}_> <!-- options: Unspecified/G711u/G711a/G726-16/G726-24/G726-32/G726-40/G729a/G722 -->
+  <Third_Preferred_Codec_{{ x }}_ ua="na">{{ codecs.2|default('Unspecified') }}</Third_Preferred_Codec_{{ x }}_> <!-- options: Unspecified/G711u/G711a/G726-16/G726-24/G726-32/G726-40/G729a/G722 -->
   <G729a_Enable_{{ x }}_ ua="na">Yes</G729a_Enable_{{ x }}_>
   <G723_Enable_{{ x }}_ ua="na">Yes</G723_Enable_{{ x }}_>
   <G722_Enable_{{ x }}_ ua="na">Yes</G722_Enable_{{ x }}_>
@@ -357,6 +357,9 @@
   <Short_Name_{{ x }}_ ua="na">$USER</Short_Name_{{ x }}_>
   <Share_Call_Appearance_{{ x }}_ ua="na">private</Share_Call_Appearance_{{ x }}_> <!-- options: private/shared -->
   <Extended_Function_{{ x }}_ ua="na"></Extended_Function_{{ x }}_>
+
+  <XML_Directory_Service_Name ua="na">{{ line.username }} directory</XML_Directory_Service_Name>
+  <XML_Directory_Service_URL ua="na">{{ provisioning_url }}directory.xml</XML_Directory_Service_URL>
 
   {% set x = x + 1 %}
   {% endfor %}
@@ -431,7 +434,7 @@
 
   <Station_Name ua="na"></Station_Name>
   <Station_Display_Name ua="na"></Station_Display_Name>
-  <Voice_Mail_Number ua="na"></Voice_Mail_Number>
+  <Voice_Mail_Number ua="na">{{ lines.0.voicemail_number }}</Voice_Mail_Number>
   <BMP_Picture_Download_URL ua="na"></BMP_Picture_Download_URL>
   <Select_Logo ua="na"></Select_Logo> <!-- options: Default/BMP Picture/Text Logo/None -->
   <Softkey_Labels_Font ua="na">Auto</Softkey_Labels_Font> <!-- options: Normal/Narrow/Auto -->
@@ -519,15 +522,6 @@
 
   <Group_Paging_Script ua="na">pggrp=224.168.168.168:34560;name=All;num=800;listen=yes;</Group_Paging_Script>
 
-  <!-- Broadsoft Settings -->
-
-  <Directory_Enable ua="na">No</Directory_Enable>
-  <XSI_Host_Server ua="na"></XSI_Host_Server>
-  <Directory_Name ua="na"></Directory_Name>
-  <Directory_Type ua="na">Enterprise</Directory_Type> <!-- options: Enterprise/Group/Personal -->
-  <Directory_UserID ua="na"></Directory_UserID>
-  <Directory_Password ua="na"></Directory_Password>
-
   <!-- LDAP Corporate Directory Search -->
 
   <LDAP_Dir_Enable ua="na">No</LDAP_Dir_Enable>
@@ -549,8 +543,6 @@
 
   <!-- XML Service -->
 
-  <XML_Directory_Service_Name ua="na"></XML_Directory_Service_Name>
-  <XML_Directory_Service_URL ua="na"></XML_Directory_Service_URL>
   <XML_Application_Service_Name ua="na"></XML_Application_Service_Name>
   <XML_Application_Service_URL ua="na"></XML_Application_Service_URL>
 

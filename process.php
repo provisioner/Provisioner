@@ -25,6 +25,15 @@ if (!isset($argv)) {
     $ua = strtolower($_SERVER['HTTP_USER_AGENT']);
     $http_host = strtolower($_SERVER['HTTP_HOST']);
 
+    //$ua = strtolower("FileTransport PolycomSoundStationIP-SSIP_5000-UA/4.0.3.7562 (SN:001565000000) Type/Application");
+
+    // Cisco
+    //$ua = "Cisco/SPA504G-7.4.9c (001565000000)(CCQ162306EA)";
+    //$uri = "/002e3a6fe532d90943e6fcaf08e1a408/spa001565000000.xml";
+
+    //$ua = "Linksys/SPA-921-5.1.8 (4MJ00HC02158)";
+    //$uri = "/002e3a6fe532d90943e6fcaf08e1a408/directory-001565000000.xml";
+
     // Load the configuration adapter (converts format from FreePBX/Kazoo/etc. to a standard format)
     // This will return a class which will pre-process configurations
     $adapter_name = "adapter_" . $settings->adapter . "_adapter";

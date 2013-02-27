@@ -1,0 +1,12 @@
+<CiscoIPPhoneDirectory>
+  <Title>Directory</Title> 
+  <Prompt>Select the User</Prompt>
+  {% set x = 1 %}
+  {% for contact in directory %}
+  <DirectoryEntry>
+    <Name>{{ contact.name }}</Name> 
+    <Telephone>{{ contact.internal_number }}</Telephone> 
+  </DirectoryEntry>
+  {% set x = x + 1 %}
+  {% endfor %}
+</CiscoIPPhoneDirectory>

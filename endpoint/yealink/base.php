@@ -22,11 +22,6 @@ class endpoint_yealink_base extends endpoint_base {
         if (array_key_exists('timezone', $settings))
             $settings['timezone'] = $constants['timezone_lookup'][$settings['timezone']];
 
-        // ContactList
-        if ($config_manager->get_request_type() == 'http'){
-            $settings['contact_list_url'] = $config_manager->get_current_provisioning_url();
-        }
-
         // Codecs
         foreach ($settings['media']['audio']['codecs'] as $codec) {
             if ($codec == "G729")
