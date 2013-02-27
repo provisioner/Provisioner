@@ -62,8 +62,6 @@ class Phones {
      * @url GET /{brand}
      * @url GET /{brand}/{family}
      * @url GET /{brand}/{family}/{model}
-     * @access protected
-     * @class  AccessControl {@requires admin}
      */
 
     function getElement($brand = null, $family = null, $model = null) {
