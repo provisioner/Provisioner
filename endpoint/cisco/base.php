@@ -9,22 +9,26 @@
  * @package Provisioner
  */
 class endpoint_cisco_base extends endpoint_base {
-    function prepareConfig(&$config_manager) {
-        parent::prepareConfig($config_manager);
+    public function __construct(&$config_manager) {
+        parent::__construct($config_manager);
+    }
 
-        $this->_set_timezone($config_manager);
-        $this->_set_codecs($config_manager);
+    function prepareConfig() {
+        parent::prepareConfig();
+
+        $this->_set_timezone();
+        $this->_set_codecs();
     }
 
     // Generating the timezone string
-    private function _set_timezone(&$config_manager) {
-        $constants = $config_manager->get_constants();
-        $settings = $config_manager->get_settings();
+    private function _set_timezone() {
+        $constants = $this->config_manager->get_constants();
+        $settings = $this->config_manager->get_settings();
 
         $tz = $constants['timezone_lookup'][$settings['timezone']];
         $strip = explode(":", $tz);
         $left = $strip[0];
-        $right = isset($strip[1])? $strip[1] : null;
+        isset($strip[1]) ? $right = $strip[1] : $right = null;
         $tmp_num = substr($left, 1);
 
         if ($left < 0)
@@ -32,16 +36,16 @@ class endpoint_cisco_base extends endpoint_base {
         else
             $tmp_num < 10 ? $final_tz = 'GMT+0' . $tmp_num : $final_tz = 'GMT+' . $tmp_num;
 
-        !empty($right) ? $final_tz = $final_tz . ':30' : $final_tz = $final_tz . ':00';
+        $right != null ? $final_tz = $final_tz . ':30' : $final_tz = $final_tz . ':00';
 
         $settings['timezone'] = $final_tz;
 
-        $config_manager->set_settings($settings);
+        $this->config_manager->set_settings($settings);
     }
 
     // Generating the codec list
-    private function _set_codecs(&$config_manager) {
-        $settings = $config_manager->get_settings();
+    private function _set_codecs() {
+        $settings = $this->config_manager->get_settings();
         $codecs = $settings['media']['audio']['codecs'];
 
         for ($i = 0; $i < 3; $i++){
@@ -49,7 +53,7 @@ class endpoint_cisco_base extends endpoint_base {
                 $settings['codecs'][$i] = $this->_parse_codec_name($codecs[$i]);
         }
 
-        $config_manager->set_settings($settings);
+        $this->config_manager->set_settings($settings);
     }
 
     // Get the Cisco translation from our base value

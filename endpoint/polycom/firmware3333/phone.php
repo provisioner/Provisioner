@@ -9,9 +9,11 @@
  * @package Provisioner
  */
 class endpoint_polycom_firmware3333_phone extends endpoint_polycom_base {
-    function prepareConfig($settings, $config_manager) {
-        parent::prepareConfig($settings, $config_manager);
+    public function __construct(&$config_manager) {
+        parent::__construct($config_manager);
+    }
 
-        return $settings;
+    function prepareConfig() {
+        parent::prepareConfig();
     }
 }

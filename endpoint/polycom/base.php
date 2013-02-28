@@ -9,8 +9,8 @@
  * @package Provisioner
  */
 abstract class endpoint_polycom_base extends endpoint_base {
-    public function __construct() {
-        parent::__construct();
+    public function __construct(&$config_manager) {
+        parent::__construct($config_manager);
     }
 
     function prepareConfig() {
