@@ -9,15 +9,15 @@
  * @package Provisioner
  */
 class endpoint_yealink_base extends endpoint_base {
-    public function __construct() {
-        parent::__construct();
+    public function __construct(&$config_manager) {
+        parent::__construct($config_manager);
     }
 
-    function prepareConfig(&$config_manager) {
-        parent::prepareConfig($config_manager);
+    function prepareConfig() {
+        parent::prepareConfig();
 
-        $constants = $config_manager->get_constants();
-        $settings = $config_manager->get_settings();
+        $constants = $this->config_manager->get_constants();
+        $settings = $this->config_manager->get_settings();
 
         if (array_key_exists('timezone', $settings))
             $settings['timezone'] = $constants['timezone_lookup'][$settings['timezone']];
@@ -34,7 +34,7 @@ class endpoint_yealink_base extends endpoint_base {
                 $settings['codecs']['g722'] = true;
         }
 
-        $config_manager->set_settings($settings);
+        $this->config_manager->set_settings($settings);
     }
 }
 

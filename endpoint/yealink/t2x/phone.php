@@ -9,12 +9,12 @@
  * @package Provisioner
  */
 class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
-    public function __construct() {
-        parent::__construct();
+    public function __construct(&$config_manager) {
+        parent::__construct($config_manager);
     }
 
-    function prepareConfig(&$config_manager) {
-        parent::prepareConfig($config_manager);
+    function prepareConfig() {
+        parent::prepareConfig();
     }
 }
 
