@@ -24,7 +24,7 @@ class endpoint_cisco_base extends endpoint_base {
         $tz = $constants['timezone_lookup'][$settings['timezone']];
         $strip = explode(":", $tz);
         $left = $strip[0];
-        $right = $strip[1];
+        $right = isset($strip[1])? $strip[1] : null;
         $tmp_num = substr($left, 1);
 
         if ($left < 0)

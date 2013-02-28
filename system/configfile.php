@@ -267,10 +267,13 @@ class system_configfile {
         $obj will be decoded into an associative array if simple json object
     */
     public function import_settings($obj) {
-        if (!is_array($obj))
-            array_push($this->_arrData, json_decode($obj, true));
-        else
-            array_push($this->_arrData, $obj);
+        if ($obj) {
+            if (!is_array($obj))
+                array_push($this->_arrData, json_decode($obj, true));
+            else
+                array_push($this->_arrData, $obj);
+        } else
+            die();
     }
 
     // This is the final step
@@ -286,8 +289,8 @@ class system_configfile {
         $this->_twig_init();
 
         // This should be one of the last thing to be done I think.
-        $phone = new $target_phone();
-        helper_utils::object_to_array($phone->prepareConfig($this));
+        $phone = new $target_phone($this);
+        helper_utils::object_to_array($phone->prepareConfig());
 
         if ($this->_objTwig)
             return $this->_objTwig->render($this->_strConfigFile, $this->_arrData);

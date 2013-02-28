@@ -263,6 +263,9 @@ class BigCouch {
             $brand = $request_data['provision']['endpoint_brand'];
             $family = $request_data['provision']['endpoint_family'];
             $model = $request_data['provision']['endpoint_model'];
+
+            // Set a random local port
+            $request_data['local_port'] = rand(4000, 65000);
         }
 
         // A couple of unset for useless value coming from kazoo

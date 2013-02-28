@@ -27,6 +27,8 @@ if (!isset($argv)) {
 
     //$ua = strtolower("FileTransport PolycomSoundStationIP-SSIP_5000-UA/4.0.3.7562 (SN:001565000000) Type/Application");
 
+    //$ua = strtolower("yealink SIP-T22P 7.61.0.80 00:15:65:00:00:00");
+
     // Cisco
     //$ua = "Cisco/SPA504G-7.4.9c (001565000000)(CCQ162306EA)";
     //$uri = "/002e3a6fe532d90943e6fcaf08e1a408/spa001565000000.xml";
@@ -40,9 +42,16 @@ if (!isset($argv)) {
     $adapter = new $adapter_name();
 
     $config_manager = $adapter->get_config_manager($uri, $ua, $http_host, $settings);
-    $config_manager->set_request_type('http');
-
-    echo $config_manager->generate_config_file();
+    if ($config_manager) {
+        $config_manager->set_request_type('http');
+        
+        $result = $config_manager->generate_config_file();
+        if ($result)
+            echo $result;
+        else
+            die();
+    } else 
+        die();
 
 // CLI Based
 } else {
@@ -75,6 +84,10 @@ if (!isset($argv)) {
 
         // make a file with the returned value
         // This is not doing it for now, it will need to be implemented
-        echo $config_manager->generate_config_file();
+        $result = $config_manager->generate_config_file();
+        if ($result)
+            echo $result;
+        else
+            die();
     }
 }

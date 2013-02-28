@@ -10,16 +10,18 @@
  */
 
 abstract class endpoint_base {
-    public function __construct() {
+    protected $config_manager;
 
+    public function __construct(&$config_manager) {
+        $this->config_manager = $config_manager;
     }
 
-    public function prepareConfig(&$config_manager) {
-        $settings = $config_manager->get_settings();
+    public function prepareConfig() {
+        $settings = $this->config_manager->get_settings();
 
-        $settings['provisioning_url'] = $config_manager->get_current_provisioning_url();
+        $settings['provisioning_url'] = $this->config_manager->get_current_provisioning_url();
         
-        $config_manager->set_settings($settings);
+        $this->config_manager->set_settings($settings);
     }
 }
 

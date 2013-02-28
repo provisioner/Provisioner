@@ -38,8 +38,7 @@ class adapter_2600hz_adapter {
 
         if (!$this->mac_address) {
             // http://cdn.memegenerator.net/instances/250x250/30687023.jpg
-            echo '';
-            exit();
+            return false;
         }
 
         // Getting the account_id from the URI
@@ -60,7 +59,6 @@ class adapter_2600hz_adapter {
             $config_manager->import_settings($db->load_settings('system_account', 'manual_provisioning'));
 
             // For now at least
-            echo '';
             exit();
         } else {
             // This is the full doc
@@ -71,8 +69,7 @@ class adapter_2600hz_adapter {
                 // /!\ with the current code, it will override the current infos
                 // i.e. if there was no brand but the family was filled, it would be override anyway.
                 if (!$config_manager->detect_phone_info($this->mac_address, $ua)) {
-                    echo '';
-                    exit();
+                    return false;
                 } 
             } else 
                 $config_manager->set_device_infos($phone_doc['brand'], $phone_doc['family'], $phone_doc['model']);
@@ -115,12 +112,15 @@ class adapter_2600hz_adapter {
             $config_file_list = helper_utils::get_file_list($config_manager->get_brand(), $config_manager->get_model());
             $regex_list = helper_utils::get_regex_list($config_manager->get_brand(), $config_manager->get_model());
 
+            // Retrieve the settings (meaning a first merged object)
             $merged_settings = $config_manager->get_merged_config_objects();
 
             $loader = new Twig_Loader_Filesystem(PROVISIONER_BASE . 'adapter/2600hz/');
             $objTwig = new Twig_Environment($loader);
 
+            // Building lines settings
             $line_settings = json_decode($objTwig->render('master.json', $merged_settings), true);
+            // Remerge everything
             $merged_settings = array_merge($merged_settings, $line_settings);
             
             $config_manager->set_settings($merged_settings);
@@ -135,10 +135,10 @@ class adapter_2600hz_adapter {
                 }
             }
 
-            // Otherwise
+            // Otherwise the file is suppose to be static, just redirecting.
             helper_utils::is_static_file($ua, $uri, $config_manager->get_model(), $config_manager->get_brand(), $settings);
 
-            die("Could not find the file to send back");
+            return false;
         }
 
         return false;

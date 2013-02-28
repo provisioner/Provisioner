@@ -42,7 +42,7 @@ class wrapper_bigcouch {
         try {
             $doc = $couch_client->asArray()->getDoc($document);
         } catch (Exception $e) {
-            return array();
+            return false;
         }
 
         if (is_array($doc))
@@ -56,7 +56,7 @@ class wrapper_bigcouch {
             else
                 return $doc;
 
-        return array();
+        return false;
     }
 
     public function get_provider($provider_domain) {
