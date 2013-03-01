@@ -100,8 +100,11 @@ class Accounts {
         $account_db = $this->_get_account_db($account_id);
         if (!$mac_address)
             $document_name = $account_id;
-        else
+        else {
             $document_name = $mac_address;
+            $current_doc = $this->db->get($account_db, $mac_address);
+            $request_data['settings']['local_port'] = $current_doc['settings']['local_port'];
+        }
         
         foreach ($request_data as $key => $value) {
             if (!$this->db->update($account_db, $document_name, $key, $value))

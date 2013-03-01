@@ -9,7 +9,7 @@
  * @version 5.0
  */
 
-define('DB_SERVER', 'http://10.10.9.57');
+define('DB_SERVER', 'http://10.10.9.99');
 define('DB_PORT', '15984');
 
 // CORS
