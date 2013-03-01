@@ -203,9 +203,10 @@ class adapter_2600hz_adapter {
             // for each configuration file possible for this model
             for ($i=0; $i < count($config_file_list); $i++) { 
                 if (preg_match($regex_list[$i], $target)) {
-                    $config_manager->set_config_file($config_file_list[$i]);
+                    $current_file = $config_file_list[$i];
+                    $config_manager->set_config_file($current_file);
 
-                    $log->logInfo("Found the correct file: $config_file_list\[$i\]");
+                    $log->logInfo("Found the correct file: $current_file");
                     $log->logDebug('SUCCESS! return the config manager...');
                     return $config_manager;
                 }
