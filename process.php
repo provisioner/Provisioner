@@ -40,7 +40,7 @@ if (!isset($argv)) {
     //$ua = "Cisco/SPA504G-7.4.9c (001565000000)(CCQ162306EA)";
     //$uri = "/002e3a6fe532d90943e6fcaf08e1a408/spa001565000000.xml";
 
-    $ua = "Linksys/SPA-921-5.1.8 (4MJ00HC02158)";
+    //$ua = "Linksys/SPA-921-5.1.8 (4MJ00HC02158)";
     //$uri = "/002e3a6fe532d90943e6fcaf08e1a408/directory-001565000000.xml";
 
     $log->logDebug("Current UA: $ua");
