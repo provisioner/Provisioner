@@ -111,7 +111,16 @@ class Accounts {
                 throw new RestException(500, 'Error while saving');
         }
 
-        return array('status' => true, 'message' => 'Document successfully modified');
+        if ($mac_address) {
+            if (!$this->db->isDocExist('mac_lookup', $mac_address)) {
+                $obj = array('_id' => $mac_address, 'account_id' => $account_id);
+                if ($this->db->add('mac_lookup', $obj))
+                    return array('status' => true, 'message' => 'Document successfully added');
+            }
+            return array('status' => false, 'message' => 'Could not create the mac_lookup document');
+
+        } else
+            return array('status' => true, 'message' => 'Document successfully added');
     }
 
     /**
@@ -142,13 +151,16 @@ class Accounts {
         if(!$this->db->add($account_db, $object_ready))
             throw new RestException(500, 'Error while saving');
         else {
-            if (!$this->db->isDocExist('mac_lookup', $mac_address)) {
-                $obj = array('_id' => $mac_address, 'account_id' => $account_id);
-                if ($this->db->add('mac_lookup', $obj))
-                    return array('status' => true, 'message' => 'Document successfully added');
-            }
+            if ($mac_address) {
+                if (!$this->db->isDocExist('mac_lookup', $mac_address)) {
+                    $obj = array('_id' => $mac_address, 'account_id' => $account_id);
+                    if ($this->db->add('mac_lookup', $obj))
+                        return array('status' => true, 'message' => 'Document successfully added');
+                }
+                return array('status' => false, 'message' => 'Could not create the mac_lookup document');
 
-            return array('status' => false, 'message' => 'Could not create the mac_lookup document');
+            } else
+                return array('status' => true, 'message' => 'Document successfully added');
         }
     }
 
