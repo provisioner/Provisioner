@@ -14,7 +14,7 @@
  * @version 5.0
  */
 
-require_once LIB_BASE . 'Klogger.php';
+require_once LIB_BASE . 'KLogger.php';
 
 class adapter_2600hz_adapter {
     private $account_id = null;
