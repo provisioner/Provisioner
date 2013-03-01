@@ -20,8 +20,8 @@ abstract class endpoint_polycom_base extends endpoint_base {
     }
 
     private function _set_timezone() {
-        $constants = $this->$config_manager->get_constants();
-        $settings = $this->$config_manager->get_settings();
+        $constants = $this->config_manager->get_constants();
+        $settings = $this->config_manager->get_settings();
 
         $tz = $constants['timezone_lookup'][$settings['timezone']];
         $strip_tz = explode(":", $tz);
@@ -33,7 +33,7 @@ abstract class endpoint_polycom_base extends endpoint_base {
 
         $settings['timezone'] = $main_tz + $sub_tz;
 
-        $this->$config_manager->set_settings($settings);
+        $this->config_manager->set_settings($settings);
     }
 }
 
