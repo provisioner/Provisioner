@@ -81,7 +81,7 @@ class wrapper_bigcouch {
         try {
             $doc = $couch_client->asArray()->getDoc($mac_address);
         } catch (Exception $e) {
-            echo $e->getMessage();
+            return false;
         }
 
         if (isset($doc['account_id']))
