@@ -15,7 +15,7 @@ set_time_limit(5);
 date_default_timezone_set('America/Los_Angeles');
 
 require_once 'bootstrap.php' ;
-require_once LIB_BASE . 'Klogger.php';
+require_once LIB_BASE . 'KLogger.php';
 
 // Load the settings
 $objSettings = new helper_settings();
