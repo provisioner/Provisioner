@@ -169,8 +169,12 @@ class Accounts {
         if ($mac_address) {
             if (!$this->db->delete($account_db, $mac_address))
                 throw new RestException(500, 'Error while deleting');
-            else
+            else {
+                if (!$this->db->delete('mac_lookup', $mac_address))
+                    throw new RestException(500, 'Could mot delete the lookup entry');
+
                 return array('status' => true, 'message' => 'Document successfully deleted');
+            }
         } else {
             $this->db->delete($account_db);
             return array('status' => true, 'message' => 'Account successfully deleted');
