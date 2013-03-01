@@ -74,4 +74,19 @@ class wrapper_bigcouch {
             return false;
         }
     }
+
+    public function get_account_id($mac_address) {
+        $couch_client = new couchClient($this->_server_url, 'mac_lookup');
+
+        try {
+            $doc = $couch_client->asArray()->getDoc($mac_address);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+
+        if (isset($doc['account_id']))
+            return $doc['account_id'];
+
+        return false;
+    }
 }

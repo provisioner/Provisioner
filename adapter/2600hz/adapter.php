@@ -24,6 +24,12 @@ class adapter_2600hz_adapter {
         $db_type = 'wrapper_' . $settings->database->type;
         $db = new $db_type($settings->database->url, $settings->database->port);
 
+        // Getting the mac address in the URI OR in the User-Agent
+        $this->mac_address = helper_utils::get_mac_address($ua, $uri);
+        if (!$this->mac_address)
+            // http://cdn.memegenerator.net/instances/250x250/30687023.jpg
+            return false;
+
         // Load the config manager
         $config_manager = new system_configfile();
 
@@ -32,17 +38,15 @@ class adapter_2600hz_adapter {
 
         // This is retrieve from a view, it is NOT the full doc
         $provider_view = $db->get_provider($provider_domain);
-
-        // Getting the mac address in the URI OR in the User-Agent
-        $this->mac_address = helper_utils::get_mac_address($ua, $uri);
-
-        if (!$this->mac_address) {
-            // http://cdn.memegenerator.net/instances/250x250/30687023.jpg
+        if (!$provider_view) 
             return false;
-        }
 
         // Getting the account_id from the URI
         $this->account_id = helper_utils::get_account_id($uri);
+        // If not found, let's try with the mac_lookup
+        if (!$this->account_id)
+            $this->account_id = $db->get_account_id($this->mac_address);
+
         if (!$this->account_id) {
             $this->account_id = $provider_view['default_account_id'];
 

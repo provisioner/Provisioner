@@ -132,6 +132,15 @@ class BigCouch {
             return false;
     }
 
+    public function isDocExist($db, $document) {
+        $client = new couchClient($this->_server_url, $db);
+
+        if ($this->_getDoc($db, $document, false))
+            return true;
+        else
+            return false;
+    }
+
     /*
         This will get a specific document
         The format argument is used when retrieving a raw doc or a filtered doc.
