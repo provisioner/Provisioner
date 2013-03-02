@@ -1,6 +1,6 @@
 <flat-profile>
 	<Resync_Periodic></Resync_Periodic>
-	<Profile_Rule>{{ provisioning_url }}spa$MA.xml</Profile_Rule>
+	<Profile_Rule>{{ provisioning_url }}$MA.xml</Profile_Rule>
 	<Text_Logo group="Phone/General"></Text_Logo>
 	<Select_Background_Picture ua="ro">Text Logo</Select_Background_Picture>
 
