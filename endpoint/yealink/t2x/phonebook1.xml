@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<{{ name }}IPPhoneDirectory>
+<RemoteIPPhoneDirectory>
     {% for contact in directory %}
     <DirectoryEntry>
         <Name>{{ contact.name }}</Name>
         <Telephone>{{ contact.internal_number }}</Telephone>
     </DirectoryEntry>
     {% endfor %}
-</{{ name }}IPPhoneDirectory>
+</RemoteIPPhoneDirectory>
