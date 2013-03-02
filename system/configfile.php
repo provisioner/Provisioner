@@ -272,8 +272,7 @@ class system_configfile {
                 array_push($this->_arrData, json_decode($obj, true));
             else
                 array_push($this->_arrData, $obj);
-        } else
-            die();
+        }
     }
 
     // This is the final step

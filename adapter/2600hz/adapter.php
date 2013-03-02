@@ -23,7 +23,7 @@ class adapter_2600hz_adapter {
 
     public function get_config_manager($uri, $ua, $http_host, $settings) {
         // Logger
-        $log = Klogger::instance(LOGS_BASE, Klogger::DEBUG);
+        $log = KLogger::instance(LOGS_BASE, Klogger::DEBUG);
         $log->logInfo('- Entering 2600hz adapter -');
 
         // Load the datasource

@@ -21,9 +21,9 @@ require_once LIB_BASE . 'KLogger.php';
 $objSettings = new helper_settings();
 $settings = $objSettings->getSettings();
 
-$log = Klogger::instance(LOGS_BASE, Klogger::DEBUG);
+$log = KLogger::instance(LOGS_BASE, Klogger::DEBUG);
 $log->logInfo('======================================================');
-$log->logInfo('================ Entering process.php ================');
+$log->logInfo('================== Starting process ==================');
 $log->logInfo('======================================================');
 
 // Databse Based

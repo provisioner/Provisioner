@@ -10,6 +10,8 @@
  * @version 5.0
  */
 
+require_once LIB_BASE . 'KLogger.php';
+
 class helper_utils {
     public static function get_mac_address($ua, $uri) {
         // Let's check in the User-Agent
@@ -82,6 +84,8 @@ class helper_utils {
 
     // This function will determine weither the current request is a static file or not
     public static function is_static_file($ua, $uri, $model, $brand, $settings) {
+        $log = KLogger::instance(LOGS_BASE, Klogger::DEBUG);
+
         $log->logInfo('- Entering static file function -');
         $folder = null;
         $target = null;

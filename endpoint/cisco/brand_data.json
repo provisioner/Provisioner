@@ -231,7 +231,7 @@
         ],
         "regexs": [
             "/spa.*\\.cfg$/i",
-            "/spa[a-z0-9]{12}\\.xml/i",
+            "/[a-z0-9]{12}\\.xml/i",
             "/directory\\.xml/i"
         ]
     },
@@ -245,7 +245,7 @@
         ],
         "regexs": [
             "/spa.*\\.cfg$/i",
-            "/spa[a-z0-9]{12}\\.xml/i",
+            "/[a-z0-9]{12}\\.xml/i",
             "/directory\\.xml/i"
         ]
     },
@@ -259,7 +259,7 @@
         ],
         "regexs": [
             "/spa.*\\.cfg$/i",
-            "/spa[a-z0-9]{12}\\.xml/i",
+            "/[a-z0-9]{12}\\.xml/i",
             "/directory\\.xml/i"
         ]
     },
@@ -273,7 +273,7 @@
         ],
         "regexs": [
             "/spa.*\\.cfg$/i",
-            "/spa[a-z0-9]{12}\\.xml/i",
+            "/[a-z0-9]{12}\\.xml/i",
             "/directory\\.xml/i"
         ]
     },
@@ -287,7 +287,7 @@
         ],
         "regexs": [
             "/spa.*\\.cfg$/i",
-            "/spa[a-z0-9]{12}\\.xml/i",
+            "/[a-z0-9]{12}\\.xml/i",
             "/directory\\.xml/i"
         ]
     },
@@ -301,7 +301,7 @@
         ],
         "regexs": [
             "/spa.*\\.cfg$/i",
-            "/spa[a-z0-9]{12}\\.xml/i",
+            "/[a-z0-9]{12}\\.xml/i",
             "/directory\\.xml/i"
         ]
     }
