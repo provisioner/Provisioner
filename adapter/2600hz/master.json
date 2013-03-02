@@ -34,5 +34,10 @@
 
             "voicemail_number": "{{ voicemail }}"
         }
-    ]
+    ],
+
+    "vlan": {
+        "enable": {{ provision.vlan.enable }},
+        "vid": {{ provision.vlan.number }}
+    },
 }

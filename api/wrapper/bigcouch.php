@@ -278,7 +278,6 @@ class BigCouch {
         }
 
         // A couple of unset for useless value coming from kazoo
-        unset($request_data['provision']);
         unset($request_data['available_apps']);
         unset($request_data['apps']);
         unset($request_data['billing_id']);
