@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <firmware-settings> 
-  <firmware>{$provisioning_type}://{$server.ip.1}/{$firmware}</firmware>
+  <firmware>{$provisioning_type}://{$provisioning_path}/{$firmware}</firmware>
 </firmware-settings>
