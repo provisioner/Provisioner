@@ -1,8 +1,18 @@
 {
+    "version": "5.0.3",
+    "static_data_source": "database",
+    "adapter": "2600hz",
+    "db_prefix": "",
+
+    "paths": {
+        "endpoint": "/endpoint/",
+        "firmwares": "http://173.255.241.245/firmware/"
+    },
+    
     "database": {
-        "type": "BigCouch",
-        "url": "localhost",
-        "port": 5984,
+        "type": "bigcouch",
+        "url": "http://10.10.9.99",
+        "port": 15984,
 
         "master_provider": {
             "name": "Master provider",

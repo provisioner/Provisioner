@@ -13,32 +13,15 @@ class ProvisionerConfig {
      */
     public static function setup() {
         // Register auto-loader. When classes are requested that aren't loaded
-        // It is possible to cumulate them.
         spl_autoload_register(array(
             'ProvisionerConfig',
-            'wrapperAutoload'
+            'autoload'
         ));
     }
 
-    public static function wrapperAutoload($class) {
+    public static function autoload($class) {		
         // If for some reason we get here and the class is already loaded, return
-        if (class_exists($class, FALSE))
-            return true;
-
-        // Try to include the class
-        $file = $class . '.php';
-        if (is_file(WRAPPER_DIR . $file)) {
-            require_once WRAPPER_DIR . $file;
-            return true;
-        }
-
-        return false;
-    }
-
-    /*public static function endpointsAutoload($class) {		
-        // If for some reason we get here and the class is already loaded, return
-        if (class_exists($class, FALSE))
-        {
+        if (class_exists($class, FALSE)) {
             return TRUE;
         }
 
@@ -51,7 +34,7 @@ class ProvisionerConfig {
         }
         
         return FALSE;
-    }*/
+    }
 }
 
 ProvisionerConfig::setup();

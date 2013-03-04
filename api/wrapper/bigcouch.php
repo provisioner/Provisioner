@@ -1,5 +1,15 @@
 <?php 
 
+/**
+ * This file contains The BigCouch wrapper
+ * Everything relating to the database manipulation should be done here
+ *
+ * @author Francis Genet
+ * @license MPL / GPLv2 / LGPL
+ * @package Provisioner
+ * @version 5.0
+ */
+
 require_once 'lib/php_on_couch/couch.php';
 require_once 'lib/php_on_couch/couchClient.php';
 require_once 'lib/php_on_couch/couchDocument.php';
@@ -32,7 +42,7 @@ class BigCouch {
         foreach ($rows as $row) {
             // The id will be the key
             // TODO: allow the user to choose what must be the key
-            $return_value[$row['id']] = $row['value'];
+            $return_value[$row['value']['name']] = $row['value'];
         }
 
         return $return_value;
@@ -40,11 +50,13 @@ class BigCouch {
 
     // Set the database for the current client
     private function _set_client($database) {
+        $database = DB_PREFIX . $database;
         $this->_couch_client = new couchClient($this->_server_url, $database);
     }
 
     // Will retrieve a single document
     private function _getDoc($database, $document, $format = true) {
+        $database = DB_PREFIX . $database;
         $this->_set_client($database);
 
         try {
@@ -63,6 +75,7 @@ class BigCouch {
     // Retrieve all the document for a specific db
     // /!\ not adapted to views
     public function getAll($database) {
+        $database = DB_PREFIX . $database;
         $this->_set_client($database);
 
         try {
@@ -79,6 +92,7 @@ class BigCouch {
     // Retrieve all the document of a certain type and for a specific key
     // /!\ adapted to views and only
     public function getAllByKey($database, $document_type, $filter_key = null, $format = true) {
+        $database = DB_PREFIX . $database;
         $this->_set_client($database);
 
         try {
@@ -104,6 +118,7 @@ class BigCouch {
     }
 
     public function getOneByKey($database, $document_type, $filter_key) {
+        $database = DB_PREFIX . $database;
         $this->_set_client($database);
 
         try {
@@ -113,17 +128,39 @@ class BigCouch {
         }
     }
 
+    public function isDBexist($db) {
+        $db = DB_PREFIX . $db;
+        // I think it is better to create a new client instead of changing the current one
+        $client = new couchClient($this->_server_url, $db);
+        if ($client->databaseExists())
+            return true;
+        else 
+            return false;
+    }
+
+    public function isDocExist($db, $document) {
+        $db = DB_PREFIX . $db;
+        $client = new couchClient($this->_server_url, $db);
+
+        if ($this->_getDoc($db, $document, false))
+            return true;
+        else
+            return false;
+    }
+
     /*
         This will get a specific document
         The format argument is used when retrieving a raw doc or a filtered doc.
         By filtered I mean without the _* and all the pvt_*.
     */
     public function get($database, $document, $format = true) {
+        $database = DB_PREFIX . $database;
         return $this->_getDoc($database, $document, $format);
     }
 
     // Do I need to add a parameter specific for the name here?
     public function add($database, $document) {
+        $database = DB_PREFIX . $database;
         $this->_set_client($database);
         if (is_array($document))
             $document = (object)$document;
@@ -139,6 +176,7 @@ class BigCouch {
     // TODO: fix the needed parameters. 
     // It is a shame that the user need to enter the DB and the doc each time
     public function update($database, $document, $key, $value) {
+        $database = DB_PREFIX . $database;
         $doc = $this->_getDoc($database, $document, false);
 
         if ($doc) {
@@ -154,6 +192,7 @@ class BigCouch {
 
     // This will delete permanently the document
     public function delete($database, $document = null) {
+        $database = DB_PREFIX . $database;
         // We are deleting a document;
         if ($document) {
             $doc = $this->_getDoc($database, $document, false);
@@ -174,6 +213,7 @@ class BigCouch {
     // This function will be used for now only for the phones APIs
     // it is necessary because of the way that we are handling the parenting stuffs.
     public function deleteView($database, $brand, $family = null, $model = null) {
+        $database = DB_PREFIX . $database;
         $this->_set_client($database);
 
         // In the following code, we need to add a 'z' at the end of last element
@@ -237,17 +277,42 @@ class BigCouch {
 
     // Add - accounts
     public function prepareAddAccounts($request_data, $account_db, $account_id, $mac_address = null) {
-        // We first need to make sure that the database is created
+        $finalObj = array();
+
+        if ($mac_address) {
+            // We first need to make sure that the database is created
+            $brand = $request_data['provision']['endpoint_brand'];
+            $family = $request_data['provision']['endpoint_family'];
+            $model = $request_data['provision']['endpoint_model'];
+
+            // Set a random local port
+            $request_data['local_port'] = rand(4000, 65000);
+        }
+
+        // A couple of unset for useless value coming from kazoo
+        unset($request_data['available_apps']);
+        unset($request_data['apps']);
+        unset($request_data['billing_id']);
+
         $this->_set_client($account_db);
         if (!$this->_couch_client->databaseExists())
             $this->_couch_client->createDatabase();
 
-        if ($mac_address)
-            $request_data['_id'] = $mac_address;
-        else
-            $request_data['_id'] = $account_id;
+        // Device
+        if ($mac_address) {
+            $finalObj['_id'] = $mac_address;
+            $finalObj['brand'] = $brand;
+            $finalObj['family'] = $family;
+            $finalObj['model'] = $model;
+            $finalObj['settings'] = $request_data;
+        } else { // Account
+            $finalObj['_id'] = $account_id;
+            $finalObj['name'] = $request_data['name'];
+            $finalObj['settings'] = $request_data;
+            $finalObj['provider_id'] = $request_data['provider_id'];
+        }
 
-        return $request_data;
+        return $finalObj;
     }
 }
 

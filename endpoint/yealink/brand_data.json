@@ -1,40 +1,99 @@
 {
-      "name": "Yealink\/Dreamwave",
-      "brand_id": "8",
-      "directory": "yealink",
-      "package": "yealink.tgz",
-      "md5sum": "90dca91bf07c19088cb0a90c21a990a9",
-      "last_modified": 1347559296,
-      "family_list": [
-        {
-          "id": "3",
-          "name": "Yealink\/Dreamwave T1X Models: [T18]",
-          "directory": "t1x",
-          "description": "Make more configuration settings available from UI",
-          "changelog": ""
-        },
-        {
-          "id": "1",
-          "name": "Yealink\/Dreamwave T2X Models: [T20, T22, T26, T28]",
-          "directory": "t2x",
-          "description": "Make more configuration settings available from UI",
-          "changelog": "",
-          "last_modified": null,
-          "template_data": [
-				"t26.json"
-			]
-        },
-        {
-          "id": "2",
-          "name": "Yealink\/Dreamwave T3X Models: [T32, T38]",
-          "directory": "t3x",
-          "description": "Make more settings available in user interface",
-          "changelog": "",
-          "last_modified": null
-        }
-      ],
-      "oui_list": [
-        "001565"
-      ],
-      "changelog": "PACKAGER: Cisco\n\n-Error in Family_data.json"
+    "t18": {
+        "folder": "t1x",
+        "config_files": [
+            "y0000000000$suffix.cfg",
+            "$mac.cfg",
+            "phonebook1.xml"
+        ],
+        "regexs": [
+            "/y0000000000[0-9]{2}\\.cfg$/" ,
+            "/([0-9a-f]{12})\\.cfg$/",
+            "/phonebook1\\.xml/i"
+        ]
+    },
+
+    "t20": {
+        "folder": "t2x",
+        "config_files": [
+            "y0000000000$suffix.cfg",
+            "$mac.cfg",
+            "phonebook1.xml"
+        ],
+        "regexs": [
+            "/y0000000000[0-9]{2}\\.cfg$/" ,
+            "/([0-9a-f]{12})\\.cfg$/",
+            "/phonebook1\\.xml/i"
+        ]
+    },
+
+    "t22": {
+        "folder": "t2x",
+        "config_files": [
+            "y0000000000$suffix.cfg",
+            "$mac.cfg",
+            "phonebook1.xml"
+        ],
+        "regexs": [
+            "/y0000000000[0-9]{2}\\.cfg$/" ,
+            "/([0-9a-f]{12})\\.cfg$/",
+            "/phonebook1\\.xml/i"
+        ]
+    },
+
+    "t26": {
+        "folder": "t2x",
+        "config_files": [
+            "y0000000000$suffix.cfg",
+            "$mac.cfg",
+            "phonebook1.xml"
+        ],
+        "regexs": [
+            "/y0000000000[0-9]{2}\\.cfg$/" ,
+            "/([0-9a-f]{12})\\.cfg$/",
+            "/phonebook1\\.xml/i"
+        ]
+    },
+
+    "t28": {
+        "folder": "t2x",
+        "config_files": [
+            "y0000000000$suffix.cfg",
+            "$mac.cfg",
+            "phonebook1.xml"
+        ],
+        "regexs": [
+            "/y0000000000[0-9]{2}\\.cfg$/" ,
+            "/([0-9a-f]{12})\\.cfg$/",
+            "/phonebook1\\.xml/i"
+        ]
+    },
+
+    "t32": {
+        "folder": "t3x",
+        "config_files": [
+            "y0000000000$suffix.cfg",
+            "$mac.cfg",
+            "phonebook1.xml"
+        ],
+        "regexs": [
+            "/y0000000000[0-9]{2}\\.cfg$/" ,
+            "/([0-9a-f]{12})\\.cfg$/",
+            "/phonebook1\\.xml/i"
+        ]
+    },
+
+    "t38": {
+        "folder": "t3x",
+        "config_files": [
+            "y0000000000$suffix.cfg",
+            "$mac.cfg",
+            "phonebook1.xml"
+        ],
+        "regexs": [
+            "/y0000000000[0-9]{2}\\.cfg$/" ,
+            "/([0-9a-f]{12})\\.cfg$/",
+            "/phonebook1\\.xml/i"
+        ]
+    }
 }

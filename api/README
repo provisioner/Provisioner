@@ -1,0 +1,295 @@
+APIs Doc
+--------
+
+Date: January 2, 2013
+Version 5.0
+
+======================
+
+The first step before any use of the APIs is to run the setup_db.php script.
+This will create the base structure for the database.
+In order to do so, you will have to edit the config.json file:
+
+database.type: This is the db type that you will use (for now, only BigCouch is supported).
+database.url: This is your database server url. Make sure to do not add the '/' at the end.
+database.port: This is the port that you will use.
+
+The master provider is the admin, he will be the only one able to use the phones APIs.
+database.master_provider.name: The name of your main provider (Could be anything... Really).
+database.master_provider.ip: This is the IP that the provider will use to request the APIs.
+database.master_provider.domain: This is the domain used to provision a phone. 
+    if the phone is requesting http://p.kazoo.io/ when provisioning, the domain is then "p.kazoo.io".
+    It can be an IP address. depends how you configured your phones.
+
+Once you saw the "SUCCESS" message, your database should be ready.
+
+EVERY REQUEST BODY CONTENT-TYPE MUST BE 'application/json'
+
+In all the following APIs, there is a "settings" attribute example in the ../master_json folder.
+If you add some attributes, you will have to modify the template which are in the
+../endpoint/brand/family/ folder.
+The template system used is TWIG (http://twig.sensiolabs.org/).
+
+
+-----------
+Phones APIs
+-----------
+
+Those APIs will allow you to add/edit/delete/list The brand/family/model settings.
+We are talking here about the default settings for each brand/family/model.
+You have to keep in mind that the hierarchy is respected when merging the files.
+That means that if there is a common setting between a family and its brand, then
+the family will override the brand setting. 
+Same thing for model/family settings and model/brand settings.
+
+If the database used is BigCouch, the document name will be as followed:
+    brand_family_model. ex: yealink_t2x_t22
+
+GET: 
+----
+
+Protected, requires 'admin'
+
+urls:
+    /
+    /{brand}
+    /{brand}/{family}
+    /{brand}/{family}/{model}
+
+The request will return the informations for each brands/families/models in the database.
+For a request on /yealink, all the families for this brand will be returned
+
+PUT:
+----
+
+Protected, requires 'admin'
+
+urls:
+    /{brand}
+    /{brand}/{family}
+    /{brand}/{family}/{model}
+
+The request will add an element as a brand, family or model with the given datas in the body.
+
+The body should look like:
+
+{
+    "settings": {
+        "random_settings": true,
+        "another_one": null,
+        "bla": ["Blabla", Blablabla]
+    }
+}
+
+The root "settings" is mandatory. Any other root attribute will not be used.
+
+POST:
+-----
+
+Protected, requires 'admin'
+
+urls:
+    /{brand}
+    /{brand}/{family}
+    /{brand}/{family}/{model}
+
+The request will edit an existing brand/family/model
+
+The body should look like:
+
+{
+    "settings": {
+        "random_settings": true,
+        "another_one": null,
+        "bla": ["Blabla", Blablabla]
+    }
+}
+
+Any other root attribute will result in a 400 error.
+You will have to resend the entire 'settings' object. 
+Otherwise the object sent will entirely override the previous object.
+This will be fixed in a near future.
+
+DELETE:
+-------
+
+Protected, requires 'admin'
+
+urls:
+    /{brand}
+    /{brand}/{family}
+    /{brand}/{family}/{model}
+
+Sending this kind of request will delete the document.
+/!\ It will not be possible to get it back unless you have a backu of your DB /!\
+BE WARNED!
+
+
+---------
+Providers
+---------
+
+Thoses APis will contain all the providers informations like the providers specific settings.
+It will contain the authorized IP, the domain and the authorization level.
+A default account_id can also be specified if the phone is not recognized.
+
+GET:
+----
+
+Protected, requires 'admin'
+
+urls:
+    /
+    /{provider_id}
+
+This request will return all the providers information if the request is made on the root.
+If a provider_id is in the url, it will return the information for a specific provider.
+
+PUT:
+----
+
+Protected, requires 'admin'
+
+urls:
+    /
+
+This request will add a provider. It will always be a 'user' level provider.
+If you want to add an admin, You will have to do it through the database interface.
+The body of the request should look like:
+
+{
+    "name": "Provider name",
+    "domain": "provider.domain.com",
+    // This can be null, but must be provided
+    "default_account_id": "002e3a6fe532d90943e6fcaf08e1a408",
+    // This cannot be an array for now. One IP by provider.
+    "authorized_ip": "10.10.9.57",
+    "settings": {
+        "random_settings": true,
+        "another_one": null,
+        "bla": ["Blabla", Blablabla]
+    }
+}
+
+It is mandatory to provide every root attribute as the above example.
+
+POST:
+-----
+
+Protected, requires 'admin'
+
+urls:
+    /{provider_id}
+
+This request will edit an existing provider information. The attributes must be among
+"name", "domain", "default_account_id", "authorized_ip" or "settings".
+You don't have to send all those attributes. You can for example just modify the domain.
+However if you are modifying the settings, you must resend the whole previous object,
+otherwise only the newly sent information will be saved. As said previously, I know this
+suck and I will work on that.
+
+DELETE:
+-------
+
+Protected, requires 'admin'
+
+urls:
+    /{provider_id}
+
+This will delete all the informations about the provider. If any account were linked to
+this provider, they will be kept.
+/!\ Be carefull with this function, it will actually delete the provider document. It will not
+be possible to get the data back /!\
+
+
+--------
+Accounts
+--------
+
+Those request will allow you to create accounts. An account will contain phone specific settings
+but also account specific settings. the settings hierarchy will be account settings before
+phone specific settings.
+
+GET:
+----
+
+Protected, requires 'user'
+
+urls:
+    /{account_id}/defaults
+    /{account_id}/{mac_address}
+
+The first url allow to get the settings for a given account_id.
+The second url allow to get the settings for a given mac_address. The phone with the given
+mac_adress must be owned by the given account.
+
+PUT:
+----
+
+Protected, requires 'user'
+
+urls:
+    /{account_id}
+    /{account_id}/{mac_address}
+
+This request will add an account or a phone with the given mac_address.
+for an account, the request must look like:
+
+{
+    "name": "Test Account",
+    "Provider_id": "81fd15da451a27c2bb30093d144b938a",
+    "settings": {
+        "random_settings": true,
+        "another_one": null,
+        "bla": ["Blabla", Blablabla]
+    }
+}
+
+It is mandatory to provide every root attribute as the above example.
+
+For a phone, the request must look like:
+
+{
+    "provision": {
+        "endpoint_brand": "yealink",
+        "endpoint_family": "t2x",
+        "endpoint_model": "t22"
+    },
+
+    "timezone": "America/Los_Angeles",
+    "name": "John Doe",
+
+    "sip": {
+        "enabled": true,
+        "username": "frifri",
+        "password": "mahsupersekwet",
+        "registration_expiration": "120",
+        "realm": "sip.2600hz.com"
+    }
+}
+
+POST:
+-----
+
+Protected, requires 'user'
+
+urls:
+    /{account_id}
+    /{account_id}/defaults
+    /{account_id}/{mac_address}
+
+The first and the third url will allow you to modify all the account and phone information.
+However, the second one will be used if you want to modify the "settings" and only the "settings".
+As for the other APIs, you will have to send the whole updated "settings" attribute (I know...).
+
+DELETE:
+-------
+
+Protected, requires 'user'
+
+urls:
+    /{account_id}
+    /{account_id}/{mac_address}
+
+This will delete an account and all the phone linked to this account.
+/!\ It will actually delete the documents and there will be no way to get them back /!\

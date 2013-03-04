@@ -1,67 +1,418 @@
 {
-  "data": {
-    "brands": {
-      "name": "Polycom",
-      "directory": "polycom",
-      "brand_id": "4",
-      "package": "polycom.tgz",
-      "md5sum": "3f0c6344788cda72323ed420d9e374b4",
-      "last_modified": 1354169605,
-      "family_list": [
-        {
-          "id": "4",
-          "name": "SoundPoint IP 430 [430]",
-          "directory": "firmware325",
-          "description": "",
-          "changelog": "",
-          "last_modified": null
-        },
-        {
-          "id": "6",
-          "name": "SoundPoint IP 3xx [320,330]",
-          "directory": "firmware3333",
-          "description": "",
-          "changelog": "",
-          "last_modified": null
-        },
-        {
-          "id": "5",
-          "name": "Polycom PTX151",
-          "directory": "ptx151",
-          "description": "",
-          "changelog": "",
-          "last_modified": null
-        },
-        {
-          "id": "3",
-          "name": "SoundPoint\/Station\/VVX In-Production Models [321,331,335,450,550,560,650,670,5000,6000,7000,1500]",
-          "directory": "spipm",
-          "description": "Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality",
-          "changelog": "",
-          "last_modified": null
-        },
-        {
-          "id": "2",
-          "name": "SoundPoint\/Station Legacy Models [301,501,600,601,4000]",
-          "directory": "splm",
-          "description": "Fixed Digit Map Problems with three digit extensions in the 1xx range",
-          "changelog": "",
-          "last_modified": null
-        },
-        {
-          "id": "1",
-          "name": "SoundPoint Old Models [300,500]",
-          "directory": "spom",
-          "description": "Fixed Digit Map Problems with three digit extensions in the 1xx range",
-          "changelog": "",
-          "last_modified": null
-        }
-      ],
-      "oui_list": [
-        "0004F2",
-        "00907A"
-      ],
-      "changelog": "PACKAGER: Update endpoint\/polycom\/spipm\/sip.cfg\n\nDisabled urldialing."
+    "430": {
+        "folder": "firmware325",
+        "config_files": [
+            "$mac.cfg",
+            "$mac_reg.cfg", 
+            "server_327.cfg", 
+            "phone1_327.cfg", 
+            "sip_327.cfg",
+            "000000000000-directory.xml"
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/server_[0-9]{3,4}\\.cfg$/",
+            "/phone1_[0-9]{3,4}\\.cfg$/",
+            "/sip_[0-9]{3,4}\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
+        ]
+    },
+
+    "320": {
+        "folder": "firmware3333",
+        "config_files": [
+            "$mac.cfg",
+            "$mac_reg.cfg", 
+            "sip_3333.cfg",
+            "000000000000-directory.xml"
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/sip_[0-9]{3,4}\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
+        ]
+    },
+
+    "330": {
+        "folder": "firmware3333",
+        "config_files": [
+            "$mac.cfg",
+            "$mac_reg.cfg", 
+            "sip_3333.cfg",
+            "000000000000-directory.xml"
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/sip_[0-9]{3,4}\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
+        ]
+    },
+
+    "ptx151": {
+        "folder": "ptx151",
+        "config_files": [
+            "sip_$ext.cfg",
+            "slnk_cfg.cfg",
+            "sip_allusers.cfg"
+        ]
+    },
+
+    "321": {
+        "folder": "spipm",
+        "config_files": [
+            "$mac.cfg",
+            "$mac_reg.cfg", 
+            "sip.cfg", 
+            "features.cfg",
+            "000000000000-directory.xml"
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/sip\\.cfg$/",
+            "/features\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
+        ]
+    },
+
+    "331": {
+        "folder": "spipm",
+        "config_files": [
+            "$mac.cfg",
+            "$mac_reg.cfg", 
+            "sip.cfg", 
+            "features.cfg",
+            "000000000000-directory.xml" 
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/sip\\.cfg$/",
+            "/features\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
+        ]
+    },
+
+    "335": {
+        "folder": "spipm",
+        "config_files": [
+            "$mac.cfg",
+            "$mac_reg.cfg", 
+            "sip.cfg", 
+            "features.cfg",
+            "000000000000-directory.xml" 
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/sip\\.cfg$/",
+            "/features\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
+        ]
+    },
+
+    "450": {
+        "folder": "spipm",
+        "config_files": [
+            "$mac.cfg",
+            "$mac_reg.cfg", 
+            "sip.cfg", 
+            "features.cfg",
+            "000000000000-directory.xml" 
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/sip\\.cfg$/",
+            "/features\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
+        ]
+    },
+
+    "550": {
+        "folder": "spipm",
+        "config_files": [
+            "$mac.cfg",
+            "$mac_reg.cfg", 
+            "sip.cfg", 
+            "features.cfg",
+            "000000000000-directory.xml"
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/sip\\.cfg$/",
+            "/features\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
+        ]
+    },
+
+    "560": {
+        "folder": "spipm",
+        "config_files": [
+            "$mac.cfg",
+            "$mac_reg.cfg", 
+            "sip.cfg", 
+            "features.cfg",
+            "000000000000-directory.xml"
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/sip\\.cfg$/",
+            "/features\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
+        ]
+    },
+
+    "650": {
+        "folder": "spipm",
+        "config_files": [
+            "$mac.cfg",
+            "$mac_reg.cfg", 
+            "sip.cfg", 
+            "features.cfg",
+            "000000000000-directory.xml"
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/sip\\.cfg$/",
+            "/features\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
+        ]
+    },
+
+    "670": {
+        "folder": "spipm",
+        "config_files": [
+            "$mac.cfg",
+            "$mac_reg.cfg", 
+            "sip.cfg", 
+            "features.cfg",
+            "000000000000-directory.xml" 
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/sip\\.cfg$/",
+            "/features\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
+        ]
+    },
+
+    "5000": {
+        "folder": "spipm",
+        "config_files": [
+            "$mac.cfg",
+            "$mac_reg.cfg", 
+            "sip.cfg", 
+            "features.cfg",
+            "000000000000-directory.xml" 
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/sip\\.cfg$/",
+            "/features\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
+        ]
+    },
+
+    "6000": {
+        "folder": "spipm",
+        "config_files": [
+            "$mac.cfg",
+            "$mac_reg.cfg", 
+            "sip.cfg", 
+            "features.cfg",
+            "000000000000-directory.xml" 
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/sip\\.cfg$/",
+            "/features\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
+        ]
+    },
+
+    "7000": {
+        "folder": "spipm",
+        "config_files": [
+            "$mac.cfg",
+            "$mac_reg.cfg", 
+            "sip.cfg", 
+            "features.cfg",
+            "000000000000-directory.xml" 
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/sip\\.cfg$/",
+            "/features\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
+        ]
+    },
+
+    "1500": {
+        "folder": "spipm",
+        "config_files": [
+            "$mac.cfg",
+            "$mac_reg.cfg", 
+            "sip.cfg", 
+            "features.cfg",
+            "000000000000-directory.xml" 
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/sip\\.cfg$/",
+            "/features\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
+        ]
+    },
+
+    "301": {
+        "folder": "splm",
+        "config_files": [
+            "$mac.cfg",
+            "$mac_reg.cfg", 
+            "phone1_318.cfg", 
+            "server_318.cfg", 
+            "sip_318.cfg",
+            "000000000000-directory.xml"
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/phone1_[0-9]{3}\\.cfg$/",
+            "/server_[0-9]{3}\\.cfg$/",
+            "/sip_[0-9]{3}\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
+        ]
+    },
+
+    "501": {
+        "folder": "splm",
+        "config_files": [
+            "$mac.cfg",
+            "$mac_reg.cfg", 
+            "phone1_318.cfg", 
+            "server_318.cfg", 
+            "sip_318.cfg",
+            "000000000000-directory.xml"
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/phone1_[0-9]{3}\\.cfg$/",
+            "/server_[0-9]{3}\\.cfg$/",
+            "/sip_[0-9]{3}\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
+        ]
+    },
+
+    "600": {
+        "folder": "splm",
+        "config_files": [
+            "$mac.cfg",
+            "$mac_reg.cfg", 
+            "phone1_318.cfg", 
+            "server_318.cfg", 
+            "sip_318.cfg",
+            "000000000000-directory.xml"
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/phone1_[0-9]{3}\\.cfg$/",
+            "/server_[0-9]{3}\\.cfg$/",
+            "/sip_[0-9]{3}\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
+        ]
+    },
+
+    "601": {
+        "folder": "splm",
+        "config_files": [
+            "$mac.cfg",
+            "$mac_reg.cfg", 
+            "phone1_318.cfg", 
+            "server_318.cfg", 
+            "sip_318.cfg",
+            "000000000000-directory.xml"
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/phone1_[0-9]{3}\\.cfg$/",
+            "/server_[0-9]{3}\\.cfg$/",
+            "/sip_[0-9]{3}\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
+        ]
+    },
+
+    "4000": {
+        "folder": "splm",
+        "config_files": [
+            "$mac.cfg",
+            "$mac_reg.cfg", 
+            "phone1_318.cfg", 
+            "server_318.cfg", 
+            "sip_318.cfg",
+            "000000000000-directory.xml"
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/phone1_[0-9]{3}\\.cfg$/",
+            "/server_[0-9]{3}\\.cfg$/",
+            "/sip_[0-9]{3}\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
+        ]
+    },
+
+    "300": {
+        "folder": "spom",
+        "config_files": [
+            "$mac.cfg",
+            "$mac_reg.cfg", 
+            "server_213.cfg", 
+            "phone1_213.cfg", 
+            "sip_213.cfg",
+            "000000000000-directory.xml"
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/server_[0-9]{3}\\.cfg$/",
+            "/phone1_[0-9]{3}\\.cfg$/",
+            "/sip_[0-9]{3}\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
+        ]
+    },
+    
+    "500": {
+        "folder": "spom",
+        "config_files": [
+            "$mac.cfg",
+            "$mac_reg.cfg", 
+            "server_213.cfg", 
+            "phone1_213.cfg", 
+            "sip_213.cfg",
+            "000000000000-directory.xml"
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}\\.cfg$/",
+            "/[0-9a-f]{12}_reg\\.cfg$/",
+            "/server_[0-9]{3}\\.cfg$/",
+            "/phone1_[0-9]{3}\\.cfg$/",
+            "/sip_[0-9]{3}\\.cfg$/",
+            "/[a-fA-F0-9]{12}-directory\\.xml$/i"
+        ]
     }
-  }
 }

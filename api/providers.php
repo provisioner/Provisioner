@@ -1,5 +1,14 @@
 <?php 
 
+/**
+ * This file manage all the APIs for the providers
+ *
+ * @author Francis Genet
+ * @license MPL / GPLv2 / LGPL
+ * @package Provisioner
+ * @version 5.0
+ */
+
 class Providers {
     public $db;
 
@@ -17,7 +26,11 @@ class Providers {
      * @class  AccessControl {@requires admin}
      */
     function retrieveAll() {
-        return $this->db->getAllByKey('providers', 'domain');
+        $result = array();
+
+        $result['data'] = $this->db->getAllByKey('providers', 'domain');
+        
+        return $result;
     }
 
     /**
@@ -27,7 +40,9 @@ class Providers {
      * @class  AccessControl {@requires admin}
      */
     function get($provider_id) {
-        $provider = $this->db->get('providers', $provider_id);
+        $provider = array();
+
+        $provider['data'] = $this->db->get('providers', $provider_id);
 
         if ($provider)
             return $provider;

@@ -1,30 +1,40 @@
-<?PHP
+<?php
 
 /**
  * Polycom Base File
  *
  * @author Andrew Nagy
+ * @author Francis Genet
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
  */
 abstract class endpoint_polycom_base extends endpoint_base {
-
-    public $brand_name = 'polycom';
-
-    function config_files() {
-        $result = parent::config_files();
-		return $result;
-	}
-        
-    function prepare_for_generateconfig() {
-        $this->mac = strtolower($this->mac);
-        parent::prepare_for_generateconfig();
+    public function __construct(&$config_manager) {
+        parent::__construct($config_manager);
     }
 
-    function reboot() {
-        if (($this->engine == "asterisk") AND ($this->system == "unix")) {
-            exec($this->engine_location . " -rx 'sip notify polycom-check-cfg " . $this->settings['line'][0]['username'] . "'");
-        }
+    function prepareConfig() {
+        parent::prepareConfig();
+
+        $this->_set_timezone();
     }
 
+    private function _set_timezone() {
+        $constants = $this->config_manager->get_constants();
+        $settings = $this->config_manager->get_settings();
+
+        $tz = $constants['timezone_lookup'][$settings['timezone']];
+        $strip_tz = explode(":", $tz);
+
+        $main_tz = $strip_tz[0] * 60 * 60;
+        $sub_tz = 0;
+        if (isset($strip_tz[1]))
+            $sub_tz = 30 * 60;
+
+        $settings['timezone'] = $main_tz + $sub_tz;
+
+        $this->config_manager->set_settings($settings);
+    }
 }
+
+?>

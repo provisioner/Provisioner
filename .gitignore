@@ -1,5 +1,7 @@
 setup.php
+master.json
 temp/
+logs/
 
 .DS_Store
 /nbproject/private/

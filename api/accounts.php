@@ -3,14 +3,18 @@
 /**
  * All methods in this class are protected
  * Accounts APIs
- * @access protected
+ *
+ * @author Francis Genet
+ * @license MPL / GPLv2 / LGPL
+ * @package Provisioner
+ * @version 5.0
  */
 
 class Accounts {
     public $db;
 
-    private $_FIELDS_ACCOUNT = array('settings', 'name', 'provider_id');
-    private $_FIELDS_MAC = array('settings', 'brand', 'family', 'model');
+    /*private $_FIELDS_ACCOUNT = array('settings', 'name', 'provider_id');
+    private $_FIELDS_MAC = array('settings', 'brand', 'family', 'model');*/
 
     function __construct() {
         $this->db = new BigCouch(DB_SERVER, DB_PORT);
@@ -22,10 +26,16 @@ class Accounts {
         return "account/" . substr_replace(substr_replace($account_id, '/', 2, 0), '/', 5, 0);
     }
 
+    // Yep...
+    function options()
+    {
+        return;
+    }
+
     /**
      * This will allow the user to get the default settings for an account and for a phone 
      *
-     * @url GET /{account_id}/defaults
+     * @url GET /{account_id}
      * @url GET /{account_id}/{mac_address}
      * @access protected
      * @class  AccessControl {@requires user}
@@ -36,16 +46,19 @@ class Accounts {
 
         // Retrieving the default settings for a user
         if (!$mac_address) {
-            $default_settings = $this->db->get($account_db, $account_id);
-            
-            if ($default_settings && array_key_exists('settings', $default_settings))
-                return $default_settings['settings'];
+            $default_settings = array();
+            $default_settings['data'] = $this->db->get($account_db, $account_id);
+
+            if (isset($default_settings['data']['settings']))
+                return $default_settings;
             else
                 throw new RestException(404, 'This account_id do not exist or there are no default settings for this user');
         } else { // retrieving phone specific settings
-            $mac_settings = $this->db->get($account_db, $mac_address);
-            if (!$mac_settings && array_key_exists('settings', $mac_settings))
-                return $mac_settings['settings'];
+            $mac_settings = array();
+            $mac_settings['data'] = $this->db->get($account_db, $mac_address);
+
+            if (isset($mac_settings['data']['settings']))
+                return $mac_settings;
             else
                 throw new RestException(404, 'There is no phone with this mac_address for this account or there are no specific settings for this phone');
         }
@@ -73,11 +86,10 @@ class Accounts {
         return array('status' => true, 'message' => 'Settings successfully modified');
             
     }
-
+    
     /**
      * This will allow the user to modify the account/phone settings
      *
-     * @class  Auth {@requires user}
      * @url POST /{account_id}
      * @url POST /{account_id}/{mac_address}
      * @access protected
@@ -88,15 +100,29 @@ class Accounts {
         $account_db = $this->_get_account_db($account_id);
         if (!$mac_address)
             $document_name = $account_id;
-        else
+        else {
             $document_name = $mac_address;
+            $current_doc = $this->db->get($account_db, $mac_address);
+
+            if (isset($current_doc['settings']['local_port']))
+                $request_data['settings']['local_port'] = $current_doc['settings']['local_port'];
+        }
         
         foreach ($request_data as $key => $value) {
             if (!$this->db->update($account_db, $document_name, $key, $value))
                 throw new RestException(500, 'Error while saving');
         }
 
-        return array('status' => true, 'message' => 'Document successfully modified');
+        if ($mac_address) {
+            if (!$this->db->isDocExist('mac_lookup', $mac_address)) {
+                $obj = array('_id' => $mac_address, 'account_id' => $account_id);
+                if ($this->db->add('mac_lookup', $obj))
+                    return array('status' => true, 'message' => 'Document successfully added');
+            }
+            return array('status' => false, 'message' => 'Could not create the mac_lookup document');
+
+        } else
+            return array('status' => true, 'message' => 'Document successfully added');
     }
 
     /**
@@ -116,17 +142,28 @@ class Accounts {
         // making sure that the mac_address is well formated
         $mac_address = strtolower(preg_replace('/[:-]/', '', $mac_address));
         $account_db = $this->_get_account_db($account_id);
-        $object_ready = $this->db->prepareAddAccounts($request_data, $account_db, $account_id, $mac_address);
 
-        if (!$mac_address)
-            Validator::validateAdd($object_ready, $this->_FIELDS_ACCOUNT);
-        else
-            Validator::validateAdd($object_ready, $this->_FIELDS_MAC);
+        if ($mac_address) {
+            if (!$this->db->isDBexist($account_db))
+                return array('status' => false, 'message' => 'The account do not exist yet');
+        }
+
+        $object_ready = $this->db->prepareAddAccounts($request_data, $account_db, $account_id, $mac_address);
 
         if(!$this->db->add($account_db, $object_ready))
             throw new RestException(500, 'Error while saving');
-        else
-            return array('status' => true, 'message' => 'Document successfully added');
+        else {
+            if ($mac_address) {
+                if (!$this->db->isDocExist('mac_lookup', $mac_address)) {
+                    $obj = array('_id' => $mac_address, 'account_id' => $account_id);
+                    if ($this->db->add('mac_lookup', $obj))
+                        return array('status' => true, 'message' => 'Document successfully added');
+                }
+                return array('status' => false, 'message' => 'Could not create the mac_lookup document');
+
+            } else
+                return array('status' => true, 'message' => 'Document successfully added');
+        }
     }
 
     /**
@@ -146,8 +183,12 @@ class Accounts {
         if ($mac_address) {
             if (!$this->db->delete($account_db, $mac_address))
                 throw new RestException(500, 'Error while deleting');
-            else
+            else {
+                if (!$this->db->delete('mac_lookup', $mac_address))
+                    throw new RestException(500, 'Could mot delete the lookup entry');
+
                 return array('status' => true, 'message' => 'Document successfully deleted');
+            }
         } else {
             $this->db->delete($account_db);
             return array('status' => true, 'message' => 'Account successfully deleted');

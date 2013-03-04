@@ -3,6 +3,11 @@
 /**
  * All methods in this class are protected - Some more than others
  * Brand/family/model APIs
+ *
+ * @author Francis Genet
+ * @license MPL / GPLv2 / LGPL
+ * @package Provisioner
+ * @version 5.0
  */
 
 class Phones {
@@ -25,6 +30,31 @@ class Phones {
             return false;
     }
 
+    private function _getAllPhonesInfo() {
+        $brands = $this->db->getAllByKey('factory_defaults', 'brand', null);
+
+        foreach ($brands as $brand_key => $brand_content) {
+            $families = $this->db->getAllByKey('factory_defaults', 'family', $brand_key);
+
+            foreach ($families as $family_key => $family_value) {
+                $models = $this->db->getAllByKey('factory_defaults', 'model', $family_key);
+
+                if ($models)
+                    $families[$family_key]['models'] = $models;
+            }
+
+            $brands[$brand_key]["families"] = $families;
+        }
+
+        return $brands;
+    }
+
+    // Yep...
+    function options()
+    {
+        return;
+    }
+
     /**
      *  This is the function that will allow the administrator to retrieve all brands/families/models/
      *
@@ -32,19 +62,18 @@ class Phones {
      * @url GET /{brand}
      * @url GET /{brand}/{family}
      * @url GET /{brand}/{family}/{model}
-     * @access protected
-     * @class  AccessControl {@requires admin}
      */
 
     function getElement($brand = null, $family = null, $model = null) {
         if (!$brand)
-            $result = $this->db->getAllByKey('factory_defaults', 'brand', null);
+            $result['data'] = $this->_getAllPhonesInfo();
+            //$result = $this->db->getAllByKey('factory_defaults', 'brand', null);
         elseif (!$family)
-            $result = $this->db->getAllByKey('factory_defaults', 'family', $brand);
+            $result['data'] = $this->db->getAllByKey('factory_defaults', 'family', $brand);
         elseif (!$model)
-            $result = $this->db->getAllByKey('factory_defaults', 'model', $family);
+            $result['data'] = $this->db->getAllByKey('factory_defaults', 'model', $family);
         else
-            $result = $this->db->get('factory_defaults', $brand . '_' . $family . '_' . $model);
+            $result['data'] = $this->db->get('factory_defaults', $brand . '_' . $family . '_' . $model);
 
         if (!empty($result))
             return $result;
@@ -117,8 +146,8 @@ class Phones {
      */
 
     function delElement($brand, $family = null, $model = null) {
-        // NOP, this is not OK for the wrapper. it is too specific.
-        // I MUST find a way to use the delete() function isteand of this one.
+        // NOP, this is NOT OK for the wrapper. it is too specific.
+        // I MUST find a way to use the delete() function instead of this one.
         // If I don't the other wrappers will need to implement this function as well.
         $this->db->deleteView('factory_defaults', $brand, $family, $model);
 
