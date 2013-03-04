@@ -56,7 +56,6 @@ class adapter_2600hz_adapter {
             $log->logFatal("Could not load the provider information - EXIT");
             return false;
         }
-        $log->logInfo("Current provider object", $provider_view);
             
         $log->logInfo('Looking for the account_id...');
         // Getting the account_id from the URI
@@ -79,7 +78,7 @@ class adapter_2600hz_adapter {
         } else {
             $log->logDebug("Current account_id: $this->account_id");
             $account_db = helper_utils::get_account_db($this->account_id);
-            $log->logDebug("Current account database name: $account_db");
+            $log->logDebug("Current account database name (without the prefix): $account_db");
         }
             
 
@@ -96,7 +95,6 @@ class adapter_2600hz_adapter {
             $log->logInfo('Looking for the device information...');
             // This is the full doc
             $phone_doc = $db->load_settings($account_db, $this->mac_address, false);
-            $log->logInfo('Current device object', $phone_doc);
 
             // If we have the doc for this phone but there are no brand or no family
             if (!$phone_doc['brand'] or !$phone_doc['family'] or !$phone_doc['model']) {
@@ -166,7 +164,6 @@ class adapter_2600hz_adapter {
             $log->logInfo('Retrieving a first version of the merge setting object...');
             // Retrieve the settings (meaning a first merged object)
             $merged_settings = $config_manager->get_merged_config_objects();
-            $log->logInfo('Object: ', $merged_settings);
 
             $log->logInfo('Loading Twig...');
             $loader = new Twig_Loader_Filesystem(PROVISIONER_BASE . 'adapter/2600hz/');
@@ -176,12 +173,14 @@ class adapter_2600hz_adapter {
             $log->logInfo('Building lines settings...');
             // Building lines settings
             $line_settings = json_decode($objTwig->render('master.json', $merged_settings), true);
-            $log->logInfo('Current Line object', $line_settings);
+            if (!$line_settings) {
+                $log->logWarn('Line settings NULL!');
+                return false;
+            }
 
             $log->logInfo('Remerging everything...');
             // Remerge everything
             $merged_settings = array_merge($merged_settings, $line_settings);
-            $log->logInfo('Final merged object ', $merged_settings);
             
             $log->logInfo('Reassigning merge object into the config manager...');
             $config_manager->set_settings($merged_settings);

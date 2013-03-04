@@ -21,7 +21,7 @@
             "expire": "{{ sip.registration_expiration }}",
 
             "outbound_proxy": {
-                "enable": {{ outbound_proxy.enable }},
+                "enable": "{{ outbound_proxy.enable }}",
                 "primary": {
                     "host": "{{ outbound_proxy.primary.host }}",
                     "port": "{{ outbound_proxy.primary.port }}"
@@ -37,7 +37,7 @@
     ],
 
     "vlan": {
-        "enable": {{ provision.vlan.enable }},
-        "vid": {{ provision.vlan.number }}
-    },
+        "enable": "{{ provision.vlan.enable }}",
+        "vid": "{{ provision.vlan.number }}"
+    }
 }

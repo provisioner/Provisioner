@@ -2,6 +2,7 @@
     "version": "5.0.3",
     "static_data_source": "database",
     "adapter": "2600hz",
+    "db_prefix": "",
 
     "paths": {
         "endpoint": "/endpoint/",

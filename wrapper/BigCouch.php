@@ -18,6 +18,7 @@ require_once LIB_BASE . 'KLogger.php';
 class wrapper_bigcouch {
     private $_server_url = null;
     private $_log = null;
+    private $_settings = null;
 
     /*
         Accessors
@@ -36,13 +37,19 @@ class wrapper_bigcouch {
 
         if (strlen($server_url))
             $this->_server_url = $server_url . ':' . $port;
+
+        // Load the settings
+        $objSettings = new helper_settings();
+        $this->_settings = $objSettings->getSettings();
     }
 
     // will return an array of the requested document
     public function load_settings($database, $document, $just_settings = true) {
+        $doc = null;
+        $database = $this->_settings->db_prefix . $database;
+
         $this->_log->logInfo('- Entering load_settings -');
         $this->_log->logInfo("Retrieving the document $document...");
-        $doc = null;
         $couch_client = new couchClient($this->_server_url, $database);
         $this->_log->logInfo('Couch client loaded!');
 
@@ -72,15 +79,17 @@ class wrapper_bigcouch {
             return $doc;
         }
 
-        $this->_log->logWarn('Oops... something when obviously wrong when getting the doc');
+        $this->_log->logWarn('Oops... something went obviously wrong when getting the doc');
         return false;
     }
 
     public function get_provider($provider_domain) {
-        $couch_client = new couchClient($this->_server_url, 'providers');
+        $database = $this->_settings->db_prefix . 'providers';
+
+        $couch_client = new couchClient($this->_server_url, $database);
         
         try {
-            $response = $couch_client->key($provider_domain)->asArray()->getView('providers', 'list_by_domain');
+            $response = $couch_client->key($provider_domain)->asArray()->getView($database, 'list_by_domain');
 
             // Basically if the view return an element for the filtered request
             if (isset($response['rows'][0]['value']))
@@ -93,7 +102,8 @@ class wrapper_bigcouch {
     }
 
     public function get_account_id($mac_address) {
-        $couch_client = new couchClient($this->_server_url, 'mac_lookup');
+        $database = $this->_settings->db_prefix . 'mac_lookup';
+        $couch_client = new couchClient($this->_server_url, $database);
 
         try {
             $doc = $couch_client->asArray()->getDoc($mac_address);
