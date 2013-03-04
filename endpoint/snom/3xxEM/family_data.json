@@ -1,14 +1,14 @@
 {
 	"data":
 	{
-		"name":"Snom 7xx Models [710, 720, 760]",
-		"id":"3",
-		"directory":"7xx",
+		"name":"Snom 3xx Models EM [320, 360, 370 with Expansion Module]",
+		"id":"4",
+		"directory":"3xxEM",
 		"firmware_ver":"",
 		"firmware_pkg":"NULL",
 		"firmware_md5sum":"",
 		"description":"Server + Password Settings, htm File Fixes",
-		"configuration_files":"general_custom.xml,general.xml,snom$model-$mac.htm,snom$model.htm,$mac_firmware.xml",
+		"configuration_files":"general_custom.xml,general.xml,snom$model-$mac.htm,snom-$mac.htm,snom$model.htm,$mac_firmware.xml",
 		"changelog":"",
 		"provisioning_types":
 		[
@@ -18,45 +18,51 @@
 		"model_list":
 		[
 			{
-				"model":"710",
-				"lines":"4",
+				"model":"320",
+				"lines":"12",
 				"id":"1",
+				"firmware":"snom320?*.bin",
 				"template_data":
 				[
 					"line_options.json",
 					"template_data.json",
 					"action_urls.json",
-					"function_keys.json",
-					"speed_dials.json",
-					"idle_touch_keys.json"
+					"keys.json",
+					"functionkeys.json",
+					"sidecar.json",
+					"speed_dials.json"
 				]
 			},
 			{
-				"model":"720",
+				"model":"360",
 				"lines":"12",
 				"id":"2",
+				"firmware":"snom360?*.bin",
 				"template_data":
 				[
 					"line_options.json",
 					"template_data.json",
 					"action_urls.json",
-					"function_keys.json",
-					"speed_dials.json",
-					"idle_touch_keys.json"
+					"keys.json",
+					"functionkeys.json",
+					"sidecar.json",
+					"speed_dials.json"
 				]
 			},
 			{
-				"model":"760",
+				"model":"370",
 				"lines":"12",
 				"id":"3",
+				"firmware":"snom370?*.bin",
 				"template_data":
 				[
 					"line_options.json",
 					"template_data.json",
 					"action_urls.json",
-					"function_keys.json",
-					"speed_dials.json",
-					"idle_touch_keys.json"
+					"keys.json",
+					"functionkeys.json",
+					"sidecar.json",
+					"speed_dials.json"
 				]
 			}
 		]

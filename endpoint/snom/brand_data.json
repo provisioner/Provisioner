@@ -5,12 +5,12 @@
       "directory": "snom",
       "brand_id": "6",
       "package": "snom.tgz",
-      "md5sum": "ca18574b09cb9e449026adc0881435aa",
-      "last_modified": 1348941671,
+      "md5sum": "14a2efb7510da1fc1d34e663373e6bf3",
+      "last_modified": 1362093464,
       "family_list": [
         {
           "id": "1",
-          "name": "Snom Models [300, 320, 360, 370]",
+          "name": "Snom 3xx Models [300, 320, 360, 370]",
           "directory": "3xx820m3",
           "description": "Server + Password Settings, htm File Fixes",
           "changelog": "",
@@ -18,7 +18,7 @@
         },
         {
           "id": "3",
-          "name": "Snom Models [710, 720, 760]",
+          "name": "Snom 7xx Models [710, 720, 760]",
           "directory": "7xx",
           "description": "Server + Password Settings, htm File Fixes",
           "changelog": "",
@@ -26,8 +26,16 @@
         },
         {
           "id": "2",
-          "name": "Snom Models [870]",
+          "name": "Snom 8xx Models [870]",
           "directory": "8xx",
+          "description": "Server + Password Settings, htm File Fixes",
+          "changelog": "",
+          "last_modified": null
+        },
+        {
+          "id": "4",
+          "name": "Snom 3xx Models EM [320-60-70 with Expansion Module]",
+          "directory": "3xxEM",
           "description": "Server + Password Settings, htm File Fixes",
           "changelog": "",
           "last_modified": null
@@ -36,7 +44,7 @@
       "oui_list": [
         "000413"
       ],
-      "changelog": "PACKAGER: Remove Firmware Install info. N\/A."
+      "changelog": "PACKAGER: Update endpoint\/snom\/7xx\/template_data.json\n\nAdd firmware URL\n\nAdd Expansion Module for 3xx serie"
     }
   }
 }
