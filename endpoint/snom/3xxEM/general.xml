@@ -47,7 +47,7 @@
 		<subscribe_config perm="R">off</subscribe_config>
 		<subscription_delay perm="R">3</subscription_delay>
 		<tcp_listen perm="R">off</tcp_listen>
-		<timezone perm="R">USA-8</timezone>
+		<timezone perm="R">USA-7</timezone>
 		<tone_scheme perm="R">USA</tone_scheme>
 		<transfer_on_hangup perm="R">on</transfer_on_hangup>
 		<transfer_on_hangup_with_starcode perm="R">on</transfer_on_hangup_with_starcode>
