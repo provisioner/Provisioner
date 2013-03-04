@@ -5,8 +5,8 @@
       "directory": "polycom",
       "brand_id": "4",
       "package": "polycom.tgz",
-      "md5sum": "4b74708404612a1c9e4a937be27b40e0",
-      "last_modified": 1352138705,
+      "md5sum": "c2562cce9808861c7bd659bef1fb6f0e",
+      "last_modified": 1358450102,
       "family_list": [
         {
           "id": "4",
@@ -61,7 +61,7 @@
         "0004F2",
         "00907A"
       ],
-      "changelog": "PACKAGER: Update endpoint\/polycom\/spipm\/sip.cfg\n\nUpdate SNTP. Add ending tag"
+      "changelog": "PACKAGER: PACKAGER: Update endpoint\/grandstream\/gxphd\/ext_b_2.json"
     }
   }
 }

@@ -5,268 +5,309 @@
                 "name":"Other settings",
                 "subcategory":[
                     {
-                        "name":"autoprovision",
+                        "name":"other",
                         "item":[
+                            {
+                                "variable":"$NTPFlag",
+                                "default_value":"1",
+                                "description":"NTP update service",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"Disabled"},
+                                    {"value":"1","text":"Enabled"}
+                                ]
+                            },
+                            {
+                                "variable":"$NtpIP",
+                                "default_value":"",
+                                "description":"NTP server address",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$NtpZoneNum",
+                                "default_value":"23",
+                                "description":"NTP Timezone",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"(GMT-12)Einwetok, Kwajalein"},
+                                    {"value":"1","text":"(GMT-11)Midland Island, Samoa"},
+                                    {"value":"2","text":"(GMT-10) Hawaii"},
+                                    {"value":"3","text":"(GMT-9) Alaska"},
+                                    {"value":"4","text":"(GMT-8) Pacific Time (US and Canada), Tijuana"},
+                                    {"value":"5","text":"(GMT-7) Arizona"},
+                                    {"value":"6","text":"(GMT-7) Mountain Time"},
+                                    {"value":"7","text":"(GMT-6) Central Time"},
+                                    {"value":"8","text":"(GMT-6) Mexico City, Tegucigalpa"},
+                                    {"value":"9","text":"(GMT-6) Central America, Mexico City, Saskatchewan"},
+                                    {"value":"10","text":"(GMT-5) Bogota, Lima, Quito"},
+                                    {"value":"11","text":"(GMT-5) Eastern Time"},
+                                    {"value":"12","text":"(GMT-5) Indiana (East)"},
+                                    {"value":"13","text":"(GMT-4) Atlantic"},
+                                    {"value":"14","text":"(GMT-4) Caracas, La Paz"},
+                                    {"value":"15","text":"(GMT-3:30) Newfoundland"},
+                                    {"value":"16","text":"(GMT-3) Brasilia"},
+                                    {"value":"17","text":"(GMT-3) Buenos Aires, Georgetown"},
+                                    {"value":"18","text":"(GMT-2)"},
+                                    {"value":"19","text":"(GMT-1)"},
+                                    {"value":"20","text":"(GMT)"},
+                                    {"value":"21","text":"(GMT) Greenwich Mean Time: Dublin, Edinburgh, Lisbon, London"},
+                                    {"value":"22","text":"(GMT+1) Amsterdam, Copenhagen, Madrid, Paris, Vilnius"},
+                                    {"value":"23","text":"(GMT+1) CET"},
+                                    {"value":"24","text":"(GMT+1) Bratislava, Budapest, Ljubljana, Prague, Warsaw"},
+                                    {"value":"25","text":"(GMT+1) Brussels, Berlin, Bern, Rome, Stockholm, Vienna"},
+                                    {"value":"26","text":"(GMT+2) Athens, Istanbul, Minsk"},
+                                    {"value":"27","text":"(GMT+2) Bucharest"},
+                                    {"value":"28","text":"(GMT+2) Cairo"},
+                                    {"value":"29","text":"(GMT+2) Harare, Pretoria"},
+                                    {"value":"30","text":"(GMT+2) Helsinki, Riga, Tallinn"},
+                                    {"value":"31","text":"(GMT+2) Israel"},
+                                    {"value":"32","text":"(GMT+3) Baghdad, Kueait, Riyadh"},
+                                    {"value":"33","text":"(GMT+3) Moscow, St. Petersburg, Volgograd"},
+                                    {"value":"34","text":"(GMT+3) Nairobi"},
+                                    {"value":"35","text":"(GMT+3:30) Teheran"},
+                                    {"value":"36","text":"(GMT+4) Abu Dhabi"},
+                                    {"value":"37","text":"(GMT+4) Baku, Tbilisi"},
+                                    {"value":"38","text":"(GMT+4:30) Kabul"},
+                                    {"value":"39","text":"(GMT+5) Ekaterinburg"},
+                                    {"value":"40","text":"(GMT+5) Islamabad, Karachi,Tashkent"},
+                                    {"value":"41","text":"(GMT+5:30) Bombay, Calcutta, Madras, New Dehli"},
+                                    {"value":"42","text":"(GMT+5:45) Kathmandu"},
+                                    {"value":"43","text":"(GMT+6) Almaty, Dhaka"},
+                                    {"value":"44","text":"(GMT+6) Colombo"},
+                                    {"value":"45","text":"(GMT+6:30) Rangoon"},
+                                    {"value":"46","text":"(GMT+7) Bangkok, Hanoi, Jakarta"},
+                                    {"value":"47","text":"(GMT+8) Beijing, Chongqing, Hong Kong, Urumqi"},
+                                    {"value":"48","text":"(GMT+8) Perth"},
+                                    {"value":"49","text":"(GMT+8) Urumqui, Taipei, Kuala Lumpur, Singapore"},
+                                    {"value":"50","text":"(GMT+9) Osaka, Sappora, Tokyo"},
+                                    {"value":"51","text":"(GMT+9) Seoul"},
+                                    {"value":"52","text":"(GMT+9) Yakutsk"},
+                                    {"value":"53","text":"(GMT+9:30) Adelaide"},
+                                    {"value":"54","text":"(GMT+9:30) Darwin"},
+                                    {"value":"55","text":"(GMT+10) Brisbane"},
+                                    {"value":"56","text":"(GMT+10)"},
+                                    {"value":"57","text":"(GMT+10)"},
+                                    {"value":"58","text":"(GMT+10)"},
+                                    {"value":"59","text":"(GMT+10) "},
+                                    {"value":"60","text":"(GMT+11) Magadan, Solomon Is., New Caledonia"},
+                                    {"value":"61","text":"(GMT+12) Auckland, Wellington"},
+                                    {"value":"62","text":"(GMT+12) Fiji, Kamchatka, Marshall Is."},
+                                    {"value":"63","text":"(GMT+13) Nukualofa"}
+                                ]
+                            },
+                            {
+                                "variable":"$NtpDaylight",
+                                "default_value":"1",
+                                "description":"Daylight saving time",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"Off"},
+                                    {"value":"1","text":"On"}
+                                ]
+                            },
 							{"type":"break"},
                             {
-                                "variable":"$AutoprovisionHTTPServer",
-                                "default_value":"",
-                                "description":"AutoprovisionHTTPServer",
+                                "variable":"$sysName",
+                                "default_value":"ST2030 SIP",
+                                "description":"SNMP System Name",
                                 "type":"input"
                             },
                             {
-                                "variable":"$AutoprovisionTFTPServer",
-                                "default_value":"",
-                                "description":"AutoprovisionTFTPServer",
+                                "variable":"$sysDescr",
+                                "default_value":"Thomson",
+                                "description":"SNMP System Description",
                                 "type":"input"
                             },
                             {
-                                "variable":"$AutoprovisionTimeDays",
+                                "variable":"$sysLocation",
+                                "default_value":"Office",
+                                "description":"SNMP System Location",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$sysContact",
+                                "default_value":"Thomson",
+                                "description":"SNMP System Contact",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$sysCommName1",
+                                "default_value":"public",
+                                "description":"SNMP community name 1",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$sysCommName2",
+                                "default_value":"",
+                                "description":"SNMP community name 2",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$sysCommName3",
+                                "default_value":"",
+                                "description":"SNMP community name 3",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$flag",
+                                "default_value":"1",
+                                "description":"SNMP flag",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"Disable"},
+                                    {"value":"1","text":"Enable"}
+                                ]
+                            },
+                            {
+                                "variable":"$commRW1",
                                 "default_value":"0",
-                                "description":"AutoprovisionTimeDays",
+                                "description":"SNMP community authority 1",
                                 "type":"input"
                             },
                             {
-                                "variable":"$Autoprovisionstarttime",
-                                "default_value":"00:00",
-                                "description":"Autoprovisionstarttime",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$AutoprovisionTimeSpan",
+                                "variable":"$commRW2",
                                 "default_value":"0",
-                                "description":"AutoprovisionTimeSpan",
+                                "description":"SNMP community authority 2",
                                 "type":"input"
                             },
                             {
-                                "variable":"$AutoprovisionRetryPeriod",
-                                "default_value":"30",
-                                "description":"AutoprovisionRetryPeriod",
+                                "variable":"$commRW3",
+                                "default_value":"0",
+                                "description":"SNMP community authority 3",
                                 "type":"input"
+                            },
+                            {
+                                "variable":"$filter",
+                                "default_value":"0",
+                                "description":"SNMP Manager filter",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"Filter all"},
+                                    {"value":"1","text":"Allow all"},
+                                    {"value":"2","text":"Limited"}
+                                ]
+                            },
+                            {
+                                "variable":"$snmpManager1",
+                                "default_value":"0.0.0.0",
+                                "description":"SNMP Manager 1",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$snmpManager2",
+                                "default_value":"0.0.0.0",
+                                "description":"SNMP Manager 2",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$snmpManager3",
+                                "default_value":"0.0.0.0",
+                                "description":"SNMP Manager 3",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$snmpManager4",
+                                "default_value":"0.0.0.0",
+                                "description":"SNMP Manager 4",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$snmpManager5",
+                                "default_value":"0.0.0.0",
+                                "description":"SNMP Manager 5",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$sysTrapSrv",
+                                "default_value":"0.0.0.0",
+                                "description":"SNMP Trap receiver",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$TrapLevel",
+                                "default_value":"0",
+                                "description":"TrapLevel",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"Enable ALL SNMP traps"},
+                                    {"value":"1","text":"Enable Critical/Major/Minor SNMP traps"},
+                                    {"value":"2","text":"Enable Critical/Major SNMP traps"},
+                                    {"value":"3","text":"Enable Critical SNMP traps"},
+                                    {"value":"4","text":"Disable all SNMP traps"}
+                                ]
                             },
 							{"type":"break"},
-                            {
-                                "variable":"$PPPoEID",
-                                "default_value":"",
-                                "description":"PPPoEID",
+							{
+                                "variable":"$TOS",
+                                "default_value":"160",
+                                "description":"TOS (0-255)",
                                 "type":"input"
                             },
                             {
-                                "variable":"$PPPoELCPMod",
-                                "default_value":"2",
-                                "description":"PPPoELCPMod",
-                                "type":"input"
+                                "variable":"$DSCPflag",
+                                "default_value":"0",
+                                "description":"Diffserv function",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"Disabled"},
+                                    {"value":"1","text":"Enabled"}
+                                ]                        
                             },
-                            {
-                                "variable":"$PPPoELCPTimer",
-                                "default_value":"60",
-                                "description":"PPPoELCPTimer",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$PPPoEPWD",
-                                "default_value":"",
-                                "description":"PPPoEPWD",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$PPPoEMTU",
-                                "default_value":"1454",
-                                "description":"PPPoEMTU",
-                                "type":"input"
-                            },
-							{"type":"break"},
                             {
                                 "variable":"$DSCP1",
                                 "default_value":"46",
-                                "description":"DSCP1",
+                                "description":"Diffserv setting for VOICE RTP (0-63)",
                                 "type":"input"
                             },
                             {
                                 "variable":"$DSCP2",
                                 "default_value":"40",
-                                "description":"DSCP2",
+                                "description":"Diffserv setting for VOICE signaling (0-63)",
                                 "type":"input"
                             },
                             {
                                 "variable":"$DSCP3",
                                 "default_value":"40",
-                                "description":"DSCP3",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$TOS",
-                                "default_value":"160",
-                                "description":"TOS",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$VLANid1",
-                                "default_value":"1",
-                                "description":"VLANid1",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$VLANid2",
-                                "default_value":"1",
-                                "description":"VLANid2",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$VLANTag1",
-                                "default_value":"6",
-                                "description":"VLANTag1",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$VLANTagdata",
-                                "default_value":"6",
-                                "description":"VLANTagdata",
+                                "description":"Diffserv setting for DHCP message(0-63)",
                                 "type":"input"
                             },
 							{"type":"break"},
                             {
                                 "variable":"$DNSSrv1",
                                 "default_value":"0.0.0.0",
-                                "description":"DNSSrv1",
+                                "description":"Primary DNS server",
                                 "type":"input"
                             },
                             {
                                 "variable":"$DNSSrv2",
                                 "default_value":"0.0.0.0",
-                                "description":"DNSSrv2",
+                                "description":"Secondary DNS server",
                                 "type":"input"
                             },
                             {
                                 "variable":"$DNSFLG",
                                 "default_value":"1",
-                                "description":"DNSFLG",
-                                "type":"input"
+                                "description":"DNS server settings",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"from FLASH"},
+                                    {"value":"1","text":"from Network"}
+                                ]                        
                             },
                             {
                                 "variable":"$DNSFB",
                                 "default_value":"0",
-                                "description":"DNSFB",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$DSCPflag",
-                                "default_value":"0",
-                                "description":"DSCPflag",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$ESWITCH_LAN",
-                                "default_value":"1",
-                                "description":"ESWITCH_LAN",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$ESWITCH_PC",
-                                "default_value":"1",
-                                "description":"ESWITCH_PC",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$Gateway",
-                                "default_value":"0.0.0.0",
-                                "description":"Gateway",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$HttpsType",
-                                "default_value":"0",
-                                "description":"HttpsType",
-                                "type":"input"
+                                "description":"Setting DNS query mode",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"Normal"},
+                                    {"value":"1","text":"Circular"}
+                                ]                        
                             },
                             {
                                 "variable":"$ipwan",
                                 "default_value":"10.1.24.88",
                                 "description":"ipwan",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$IpDFflag",
-                                "default_value":"0",
-                                "description":"IpDFflag",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$lldpXFlag",
-                                "default_value":"0",
-                                "description":"lldpXFlag",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$lldpTxPeriod",
-                                "default_value":"30",
-                                "description":"lldpTxPeriod",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$lldpTTL",
-                                "default_value":"120",
-                                "description":"lldpTTL",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$lldpPortDesc",
-                                "default_value":"",
-                                "description":"lldpPortDesc",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$lldpSysName",
-                                "default_value":"",
-                                "description":"lldpSysName",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$lldpSysDesc",
-                                "default_value":"",
-                                "description":"lldpSysDesc",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$lldpSysCap",
-                                "default_value":"2097184",
-                                "description":"lldpSysCap",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$lldpChassisID",
-                                "default_value":"4",
-                                "description":"lldpChassisID",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$lldpPortID",
-                                "default_value":"4",
-                                "description":"lldpPortID",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$lldpXMediaCap",
-                                "default_value":"65539",
-                                "description":"lldpXMediaCap",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$lldpXNetPolicy",
-                                "default_value":"1",
-                                "description":"lldpXNetPolicy",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$lldpXEndpLocIdenti",
-                                "default_value":"0",
-                                "description":"lldpXEndpLocIdenti",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$lldpXAssetID",
-                                "default_value":"",
-                                "description":"lldpXAssetID",
                                 "type":"input"
                             },
                             {
@@ -276,68 +317,59 @@
                                 "type":"input"
                             },
                             {
-                                "variable":"$PersistentVLANfromDHCP",
+                                "variable":"$Gateway",
+                                "default_value":"0.0.0.0",
+                                "description":"Gateway",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$IpDFflag",
                                 "default_value":"0",
-                                "description":"PersistentVLANfromDHCP",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$TelnetTime",
-                                "default_value":"240",
-                                "description":"TelnetTime",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$TelnetSrv",
-                                "default_value":"0",
-                                "description":"TelnetSrv",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$VLAN",
-                                "default_value":"0",
-                                "description":"VLAN",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$WanModFlag",
-                                "default_value":"1",
-                                "description":"WanModFlag",
-                                "type":"input"
+                                "description":"Ip DF flag option",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"Disabled"},
+                                    {"value":"1","text":"Dont Fragment"}
+                                ]                        
                             },
 							{"type":"break"},
                             {
-                                "variable":"$STUNSrv",
-                                "default_value":"",
-                                "description":"STUNSrv",
-                                "type":"input"
+                                "variable":"$ESWITCH_LAN",
+                                "default_value":"1",
+                                "description":"Phone Ethernet Switch port LAN",
+                                "type":"list",
+                                "data":[
+                                    {"value":"1","text":"Auto speed and duplex"},
+                                    {"value":"2","text":"100/Half Duplex"},
+                                    {"value":"3","text":"100/Full Duplex"},
+                                    {"value":"4","text":"10/Half Duplex"},
+                                    {"value":"5","text":"10/Full Duplex"}
+                                ]                        
                             },
                             {
-                                "variable":"$STUNPort",
-                                "default_value":"0",
-                                "description":"STUNPort",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$STUNFlag",
-                                "default_value":"0",
-                                "description":"STUNFlag",
-                                "type":"input"
+                                "variable":"$ESWITCH_PC",
+                                "default_value":"1",
+                                "description":"Phone Ethernet Switch port PC",
+                                "type":"list",
+                                "data":[
+                                    {"value":"1","text":"Auto speed and duplex"},
+                                    {"value":"2","text":"100/Half Duplex"},
+                                    {"value":"3","text":"100/Full Duplex"},
+                                    {"value":"4","text":"10/Half Duplex"},
+                                    {"value":"5","text":"10/Full Duplex"}
+                                ]                        
                             },
 							{"type":"break"},
                             {
                                 "variable":"$sw_call_wait",
                                 "default_value":"1",
-                                "description":"sw_call_wait",
-                                "type":"input"
-                            },
-							{"type":"break"},
-                            {
-                                "variable":"$UPnPFlag",
-                                "default_value":"1",
-                                "description":"UPnPFlag",
-                                "type":"input"
-							}
+                                "description":"Call waiting",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"SI"},
+                                    {"value":"1","text":"SG"}
+                                ]                        
+                            }
                         ]
                     }
                 ]

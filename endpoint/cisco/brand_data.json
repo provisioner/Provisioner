@@ -5,8 +5,8 @@
       "brand_id": "7",
       "directory": "cisco",
       "package": "cisco.tgz",
-      "md5sum": "135e5c39eb68e12d3ecafc59205f18f5",
-      "last_modified": 1350316140,
+      "md5sum": "72805e30ca22551ea7b043f5b84fbd6e",
+      "last_modified": 1354171030,
       "family_list": [
         {
           "id": "5",
@@ -97,7 +97,7 @@
         "D0D0FD",
         "E05FB9"
       ],
-      "changelog": "PACKAGER: Match on @"
+      "changelog": "PACKAGER: Quick fix for BLF on SPA5xx"
     }
   }
 }

@@ -5,9 +5,9 @@
       "brand_id": "1",
       "directory": "aastra",
       "package": "aastra.tgz",
-      "md5sum": "0f7f5dfe0a39c06a750429b724800fda",
-      "last_modified": 1346468403,
-      "changelog": "PACKAGER: Aastra & Cisco\n-Force Update of Both (gotta fix this)",
+      "md5sum": "89e94190210b3e04dd6551b3d8f4f175",
+      "last_modified": 1355983880,
+      "changelog": "PACKAGER: Update endpoint\/snom\/7xx\/template_data.json\n\nAdd firmware URL",
       "family_list": [
         {
           "id": "1",

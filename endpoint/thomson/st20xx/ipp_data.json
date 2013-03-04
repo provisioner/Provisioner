@@ -14,14 +14,10 @@
                                 "type":"input"
                             },
                             {
-                                "variable":"$Transfer_to_voice_mail",
-                                "default_value":"1",
-                                "description":"Transfer to voice mail",
-                                "type":"list",
-                                "data":[
-                                    {"value":"0","text":"Disable softkey"},
-                                    {"value":"1","text":"Enable softkey"}
-                                ]                        
+                                "variable":"$EmergencyDialPlan",
+                                "default_value":"|911|11x|1[2-8]|",
+                                "description":"EmergencyDialPlan",
+                                "type":"input"
                             },
                             {
                                 "variable":"$Ringer_default_vol",
@@ -115,7 +111,7 @@
                             {
                                 "variable":"$Disable_call_progress",
                                 "default_value":"0",
-                                "description":"Disable call progress",
+                                "description":"Display call progress",
                                 "type":"list",
                                 "data":[
                                     {"value":"0","text":"Disabled"},
@@ -153,16 +149,6 @@
                                 ]
                             },
                             {
-                                "variable":"$ManualLog",
-                                "default_value":"0",
-                                "description":"Log in/out feature",
-                                "type":"list",
-                                "data":[
-                                    {"value":"0","text":"Disabled"},
-                                    {"value":"1","text":"Enabled"}
-                                ]
-                            },
-                            {
                                 "variable":"$NeverHangup",
                                 "default_value":"0",
                                 "description":"NeverHangup",
@@ -178,44 +164,6 @@
                                 "description":"OptionVisible",
                                 "max_chars":"4",
                                 "type":"input"
-                            },
-                            {
-                                "variable":"$PasswordFlag",
-                                "default_value":"0",
-                                "description":"PasswordFlag",
-                                "type":"list",
-                                "data":[
-                                    {"value":"0","text":"PIN not required"},
-                                    {"value":"1","text":"PIN required"}
-                                ]
-                            },
-                            {
-                                "variable":"$PasswordString",
-                                "default_value":"0000",
-                                "description":"Password String",
-                                "tooltip":"Only digits!",
-                                "max_chars":"4",
-                                "type":"input"
-                            },
-                            {
-                                "variable":"$PhoneLock",
-                                "default_value":"0",
-                                "description":"Phone Lock",
-                                "type":"list",
-                                "data":[
-                                    {"value":"0","text":"Active"},
-                                    {"value":"1","text":"Inactive"}
-                                ]
-                            },
-                            {
-                                "variable":"$Pick_up_call",
-                                "default_value":"1",
-                                "description":"Pickup call",
-                                "type":"list",
-                                "data":[
-                                    {"value":"0","text":"Softkey disabled"},
-                                    {"value":"1","text":"Softkey enabled"}
-                                ]
                             },
                             {
                                 "variable":"$AutoAnsMode",
@@ -547,12 +495,6 @@
                                     {"value":"1","text":"Out of Band (RFC2833)"},
                                     {"value":"4","text":"SIP INFO"}
                                 ]
-                            },
-                            {
-                                "variable":"$EmergencyDialPlan",
-                                "default_value":"|911|11x|1[2-8]|",
-                                "description":"EmergencyDialPlan",
-                                "type":"input"
                             },
                             {
                                 "variable":"$NormalDigitFlag",
