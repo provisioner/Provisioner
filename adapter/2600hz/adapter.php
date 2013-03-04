@@ -98,15 +98,15 @@ class adapter_2600hz_adapter {
 
             // If we have the doc for this phone but there are no brand or no family
             if (!$phone_doc['brand'] or !$phone_doc['family'] or !$phone_doc['model']) {
-                $log->logWarn('HuHo... something is missing here!');
+                $log->logFatal('HuHo... something is missing here! Canceling request');
 
-                $log->logInfo('Will now try to detect phone information...');
+                /*$log->logInfo('Will now try to detect phone information...');
                 // /!\ with the current code, it will override the current infos
                 // i.e. if there was no brand but the family was filled, it would be override anyway.
                 if (!$config_manager->detect_phone_info($this->mac_address, $ua)) {
                     $log->logFatal("And that's a fail... - EXIT");
                     return false;
-                } 
+                } */
             } else {
                 $log->logInfo('Setting brand/family/model info for config manager...');
                 $log->logInfo('Current brand: ', $phone_doc['brand']);
