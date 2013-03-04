@@ -2,10 +2,10 @@
   "template_data":{
     "category":[
       {
-        "name":"speed dials",
+        "name":"Speed Dials",
         "subcategory":[
           {
-            "name":"Internet Port (WAN)",
+            "name":"Speed Dials",
             "item":[
               {
                 "description":"Speed Dial (1-9)",
@@ -19,9 +19,6 @@
                       "default_value":"",
                       "description":"Speed Dial {$count} Value",
                       "type":"input"
-                    },
-                    {
-                      "type":"none"
                     }
                   ]
                 }
@@ -29,23 +26,20 @@
               {
                 "variable":"$speeddial_pound",
                 "default_value":"",
-                "description":"Speed Dial # Value",
+                "description":"Speed Dial #(10) Value",
                 "type":"input"
               },
               {
                 "variable":"$speeddial_asterisk",
                 "default_value":"",
-                "description":"Speed Dial * Value",
+                "description":"Speed Dial *(11) Value",
                 "type":"input"
               },
               {
-                "type":"break"
-              },
-              {
-                "description":"Speed Dial (10-30)",
+                "description":"Speed Dial (12-32)",
                 "type":"loop",
-                "loop_start":"10",
-                "loop_end":"30",
+                "loop_start":"12",
+                "loop_end":"32",
                 "data":{
                   "item":[
                     {
@@ -53,9 +47,6 @@
                       "default_value":"",
                       "description":"Speed Dial {$count} Value",
                       "type":"input"
-                    },
-                    {
-                      "type":"none"
                     }
                   ]
                 }

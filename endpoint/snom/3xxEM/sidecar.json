@@ -2,16 +2,16 @@
   "template_data":{
     "category":[
       {
-        "name":"Phone Keys",
+        "name":"Expansion Module Keys",
         "subcategory":[
           {
-            "name":"",
+            "name":"Expansion Module Keys",
             "item":[
               {
-                "description":"Function Keys (0-5)",
+                "description":"Expansion Module (12-53)",
                 "type":"loop",
-                "loop_start":"0",
-                "loop_end":"5",
+                "loop_start":"12",
+                "loop_end":"53",
                 "data":{
                   "item":[
                     {

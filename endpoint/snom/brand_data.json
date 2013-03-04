@@ -10,7 +10,7 @@
       "family_list": [
         {
           "id": "1",
-          "name": "Snom Models [300, 320, 360, 370]",
+          "name": "Snom 3xx Models [300, 320, 360, 370]",
           "directory": "3xx820m3",
           "description": "Server + Password Settings, htm File Fixes",
           "changelog": "",
@@ -18,7 +18,7 @@
         },
         {
           "id": "3",
-          "name": "Snom Models [710, 720, 760]",
+          "name": "Snom 7xx Models [710, 720, 760]",
           "directory": "7xx",
           "description": "Server + Password Settings, htm File Fixes",
           "changelog": "",
@@ -26,8 +26,16 @@
         },
         {
           "id": "2",
-          "name": "Snom Models [870]",
+          "name": "Snom 8xx Models [870]",
           "directory": "8xx",
+          "description": "Server + Password Settings, htm File Fixes",
+          "changelog": "",
+          "last_modified": null
+        },
+        {
+          "id": "4",
+          "name": "Snom 3xx Models EM [320-60-70 with Expansion Module]",
+          "directory": "3xxEM",
           "description": "Server + Password Settings, htm File Fixes",
           "changelog": "",
           "last_modified": null
@@ -36,7 +44,7 @@
       "oui_list": [
         "000413"
       ],
-      "changelog": "PACKAGER: Update endpoint\/snom\/7xx\/template_data.json\n\nAdd firmware URL"
+      "changelog": "PACKAGER: Update endpoint\/snom\/7xx\/template_data.json\n\nAdd firmware URL\n\nAdd Expansion Module for 3xx serie"
     }
   }
 }
