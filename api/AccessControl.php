@@ -20,7 +20,7 @@ class AccessControl implements iAuthenticate {
     function __isAllowed() {
         $this->db = new BigCouch(DB_SERVER, DB_PORT);
         $host_ip = $_SERVER['REMOTE_ADDR'];
-        $database = DB_PREFIX . 'providers';
+        $database = 'providers';
 
         $response = $this->db->getOneByKey($database, 'ip', $_SERVER['REMOTE_ADDR']);
         $access_type = isset($response['rows'][0]['value']['access_type']) ? $response['rows'][0]['value']['access_type'] : false;

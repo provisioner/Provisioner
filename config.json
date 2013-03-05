@@ -2,7 +2,7 @@
     "version": "5.0.3",
     "static_data_source": "database",
     "adapter": "2600hz",
-    "db_prefix": "",
+    "db_prefix": "prv_",
 
     "paths": {
         "endpoint": "/endpoint/",
@@ -11,13 +11,13 @@
     
     "database": {
         "type": "bigcouch",
-        "url": "http://10.10.9.99",
-        "port": 15984,
+        "url": "http://127.0.0.1",
+        "port": 5984,
 
         "master_provider": {
             "name": "Master provider",
-            "ip": "yourIP",
-            "domain": "yourDomain"
+            "ip": "10.2.1.11",
+            "domain": "p.itacs.net"
         }
     }
 }

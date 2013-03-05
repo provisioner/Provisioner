@@ -12,9 +12,9 @@
 
 require_once 'bootstrap.php';
 
-require_once LIB_BASE . 'lib/php_on_couch/couch.php';
-require_once LIB_BASE . 'lib/php_on_couch/couchClient.php';
-require_once LIB_BASE . 'lib/php_on_couch/couchDocument.php';
+require_once LIB_BASE . '/php_on_couch/couch.php';
+require_once LIB_BASE . '/php_on_couch/couchClient.php';
+require_once LIB_BASE . '/php_on_couch/couchDocument.php';
 
 define('CONFIG_FILE', PROVISIONER_BASE . 'config.json');
 
@@ -32,7 +32,7 @@ if (strtolower($configs->database->type) == "bigcouch") {
     // =========
 
     // Creating the database
-    $couch_client = new couchClient($server_url, "providers");
+    $couch_client = new couchClient($server_url, "prv_providers");
 
     if (!$couch_client->databaseExists())
         $couch_client->createDatabase();
@@ -76,7 +76,7 @@ if (strtolower($configs->database->type) == "bigcouch") {
     // ================
 
     // Creating the database
-    $couch_client->useDatabase("factory_defaults");
+    $couch_client->useDatabase("prv_factory_defaults");
 
     if (!$couch_client->databaseExists())
         $couch_client->createDatabase();
@@ -120,7 +120,7 @@ if (strtolower($configs->database->type) == "bigcouch") {
     // =======================
 
     // Creating the database
-    $couch_client->useDatabase("system_account");
+    $couch_client->useDatabase("prv_system_account");
 
     if (!$couch_client->databaseExists())
         $couch_client->createDatabase();

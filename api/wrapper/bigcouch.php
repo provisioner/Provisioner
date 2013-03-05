@@ -56,7 +56,6 @@ class BigCouch {
 
     // Will retrieve a single document
     private function _getDoc($database, $document, $format = true) {
-        $database = DB_PREFIX . $database;
         $this->_set_client($database);
 
         try {
@@ -75,7 +74,6 @@ class BigCouch {
     // Retrieve all the document for a specific db
     // /!\ not adapted to views
     public function getAll($database) {
-        $database = DB_PREFIX . $database;
         $this->_set_client($database);
 
         try {
@@ -92,7 +90,6 @@ class BigCouch {
     // Retrieve all the document of a certain type and for a specific key
     // /!\ adapted to views and only
     public function getAllByKey($database, $document_type, $filter_key = null, $format = true) {
-        $database = DB_PREFIX . $database;
         $this->_set_client($database);
 
         try {
@@ -118,7 +115,6 @@ class BigCouch {
     }
 
     public function getOneByKey($database, $document_type, $filter_key) {
-        $database = DB_PREFIX . $database;
         $this->_set_client($database);
 
         try {
@@ -139,9 +135,6 @@ class BigCouch {
     }
 
     public function isDocExist($db, $document) {
-        $db = DB_PREFIX . $db;
-        $client = new couchClient($this->_server_url, $db);
-
         if ($this->_getDoc($db, $document, false))
             return true;
         else
@@ -154,13 +147,11 @@ class BigCouch {
         By filtered I mean without the _* and all the pvt_*.
     */
     public function get($database, $document, $format = true) {
-        $database = DB_PREFIX . $database;
         return $this->_getDoc($database, $document, $format);
     }
 
     // Do I need to add a parameter specific for the name here?
     public function add($database, $document) {
-        $database = DB_PREFIX . $database;
         $this->_set_client($database);
         if (is_array($document))
             $document = (object)$document;
@@ -176,7 +167,6 @@ class BigCouch {
     // TODO: fix the needed parameters. 
     // It is a shame that the user need to enter the DB and the doc each time
     public function update($database, $document, $key, $value) {
-        $database = DB_PREFIX . $database;
         $doc = $this->_getDoc($database, $document, false);
 
         if ($doc) {
@@ -192,7 +182,6 @@ class BigCouch {
 
     // This will delete permanently the document
     public function delete($database, $document = null) {
-        $database = DB_PREFIX . $database;
         // We are deleting a document;
         if ($document) {
             $doc = $this->_getDoc($database, $document, false);
@@ -213,7 +202,6 @@ class BigCouch {
     // This function will be used for now only for the phones APIs
     // it is necessary because of the way that we are handling the parenting stuffs.
     public function deleteView($database, $brand, $family = null, $model = null) {
-        $database = DB_PREFIX . $database;
         $this->_set_client($database);
 
         // In the following code, we need to add a 'z' at the end of last element
