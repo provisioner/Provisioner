@@ -100,6 +100,7 @@ class adapter_2600hz_adapter {
             if (!$phone_doc['brand'] or !$phone_doc['family'] or !$phone_doc['model']) {
                 $log->logFatal('HuHo... something is missing here! Canceling request');
 
+                return false;
                 /*$log->logInfo('Will now try to detect phone information...');
                 // /!\ with the current code, it will override the current infos
                 // i.e. if there was no brand but the family was filled, it would be override anyway.
