@@ -30,7 +30,7 @@
         <Proxy_{{ x }}_ ua="na">{{ line.sip_server.primary.host }}</Proxy_{{ x }}_>
         <Use_Outbound_Proxy_{{ x }}_ ua="na">Yes</Use_Outbound_Proxy_{{ x }}_>
         <Outbound_Proxy_{{ x }}_ ua="na">{{ line.outbound_proxy.primary.host }}</Outbound_Proxy_{{ x }}_>
-        <Register_Expires_{{ x }}_ ua="ro">{{ line.expire }}</Register_Expires_{{ x }}_>
+        <Register_Expires_{{ x }}_ ua="ro">{{ line.expire|default('60') }}</Register_Expires_{{ x }}_>
         <Ans_Call_Without_Reg_{{ x }}_ ua="na">No</Ans_Call_Without_Reg_{{ x }}_>
         <Use_DNS_SRV_{{ x }}_ ua="rw">No</Use_DNS_SRV_{{ x }}_>
         <Proxy_Fallback_Intvl_{{ x }}_ ua="ro">120</Proxy_Fallback_Intvl_{{ x }}_>

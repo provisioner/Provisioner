@@ -18,7 +18,7 @@
                 }
             },
 
-            "expire": "{{ sip.registration_expiration }}",
+            "expire": "{{ sip.registration_expiration|expire_seconds }}",
 
             "outbound_proxy": {
                 "enable": "{{ outbound_proxy.enable }}",
