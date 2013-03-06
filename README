@@ -3,14 +3,14 @@ Provisioner v5.1.2
 
 Supported phones (03.04.2013):
 
-Yealink  
+Yealink 
+ - t1x
  - t2x
  - t3x
 Polycoms
  - spipm
 Cisco
  - spa
- - spa5xx
 
 -------------------------------
 
