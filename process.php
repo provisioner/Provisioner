@@ -33,6 +33,10 @@ if (!isset($argv)) {
     $http_host = strtolower($_SERVER['HTTP_HOST']);
 
     //$ua = strtolower("FileTransport PolycomSoundStationIP-SSIP_5000-UA/4.0.3.7562 (SN:001565000000) Type/Application");
+    //$uri = "/002e3a6fe532d90943e6fcaf08e1a408/001565000000_reg.cfg";
+
+    //$ua = "linksys/spa-942-6.1.5(a) (88019fa84784)";
+    //$uri = "/001565000000.xml";
 
     //$ua = strtolower("yealink SIP-T22P 7.61.0.80 00:15:65:00:00:00");
 

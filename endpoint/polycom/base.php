@@ -17,6 +17,18 @@ abstract class endpoint_polycom_base extends endpoint_base {
         parent::prepareConfig();
 
         $this->_set_timezone();
+
+        $settings = $this->config_manager->get_settings();
+        if (isset($settings['hotline']) && !empty($settings['hotline'])) {
+            $number = $settings['hotline'];
+
+            unset($settings['hotline']);
+
+            $settings['hotline']['number'] = $number;
+            $settings['hotline']['enable'] = true;
+        }
+
+        $this->config_manager->set_settings($settings);
     }
 
     private function _set_timezone() {

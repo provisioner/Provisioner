@@ -32,7 +32,7 @@ if (strtolower($configs->database->type) == "bigcouch") {
     // =========
 
     // Creating the database
-    $couch_client = new couchClient($server_url, "prv_providers");
+    $couch_client = new couchClient($server_url, $configs->db_prefix . "providers");
 
     if (!$couch_client->databaseExists())
         $couch_client->createDatabase();
@@ -49,7 +49,7 @@ if (strtolower($configs->database->type) == "bigcouch") {
     $provider_doc->settings = null;
 
     $provider_view = new stdCLass();
-    $provider_view->_id = "_design/providers";
+    $provider_view->_id = "_design/" . $configs->db_prefix . "providers";
     $provider_view->language = "javascript";
 
     $view = new stdCLass();
@@ -76,7 +76,7 @@ if (strtolower($configs->database->type) == "bigcouch") {
     // ================
 
     // Creating the database
-    $couch_client->useDatabase("prv_factory_defaults");
+    $couch_client->useDatabase($configs->db_prefix . "factory_defaults");
 
     if (!$couch_client->databaseExists())
         $couch_client->createDatabase();
@@ -84,7 +84,7 @@ if (strtolower($configs->database->type) == "bigcouch") {
 
     // Creating the views
     $factory_view = new stdCLass();
-    $factory_view->_id = "_design/factory_defaults";
+    $factory_view->_id = "_design/" . $configs->db_prefix . "factory_defaults";
     $factory_view->language = "javascript";
 
     // reset
@@ -120,7 +120,7 @@ if (strtolower($configs->database->type) == "bigcouch") {
     // =======================
 
     // Creating the database
-    $couch_client->useDatabase("prv_system_account");
+    $couch_client->useDatabase($configs->db_prefix . "system_account");
 
     if (!$couch_client->databaseExists())
         $couch_client->createDatabase();

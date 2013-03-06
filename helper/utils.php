@@ -15,16 +15,16 @@ require_once LIB_BASE . 'KLogger.php';
 class helper_utils {
     public static function get_mac_address($ua, $uri) {
         // Let's check in the User-Agent
-        if (preg_match("#[0-9a-fA-F]{2}(?=([:-]?))(?:\\1[0-9a-fA-F]{2}){5}#", $ua, $match_result))
+        if (!preg_match("/linksys|cisco/i", $ua) && preg_match("#[0-9a-fA-F]{2}(?=([:-]?))(?:\\1[0-9a-fA-F]{2}){5}#", $ua, $match_result))
             // need to return the mac address without the ':'
             return strtolower(preg_replace('/[:-]/', '', $match_result[0]));
         else 
             $requested_file = helper_utils::strip_uri($uri);
 
-            if (preg_match("#[0-9a-fA-F]{12}#", $requested_file, $match_result))
-                return strtolower($match_result[0]);
-            else 
-                return false;
+        if (preg_match("#[0-9a-fA-F]{12}#", $requested_file, $match_result))
+            return strtolower($match_result[0]);
+        else 
+            return false;
     }
 
     // Will return the host and only that
@@ -95,7 +95,7 @@ class helper_utils {
         if ($brand == "polycom") {
             $log->logInfo('Looking for Polycom...');
             $folder = helper_utils::get_folder("polycom", $model);
-            $log->logDebug('Looking into folder: ', $folder);
+            $log->logDebug("Looking into folder: $folder");
 
             if (preg_match("/0{12}\.cfg$/", $uri)) {
                 $log->logInfo('File is 000000000000.cfg...');
@@ -103,8 +103,9 @@ class helper_utils {
             } elseif (!preg_match("/[a-z0-9_]*\.cfg$/", $uri)) {
                 if (preg_match("/([0-9a-zA-Z\-_]*\.ld)$/", $uri, $match_result))
                     $location = $settings->paths->firmwares . $brand . "/" . $folder . "/firmware/" . $match_result[1];
-                elseif (preg_match("/[0-9a-zA-Z]{32}(.*)$/", $uri, $match_result))
-                    $location = $settings->paths->endpoint . $brand . "/" . $folder . $match_result[1];
+                // This is if we have an account_id in the url
+                elseif (preg_match("/(\/[0-9a-fA-F]{32}){0,1}(.*)$/", $uri, $match_result))
+                    $location = $settings->paths->endpoint . $brand . "/" . $folder . $match_result[2];
             }
         }
 

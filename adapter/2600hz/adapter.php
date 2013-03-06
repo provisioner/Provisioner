@@ -34,6 +34,7 @@ class adapter_2600hz_adapter {
         $log->logInfo('Looking for the mac address...');
         // Getting the mac address in the URI OR in the User-Agent
         $this->mac_address = helper_utils::get_mac_address($ua, $uri);
+
         if (!$this->mac_address) {
             $log->logFatal('Could not find a mac address - EXIT');
             // http://cdn.memegenerator.net/instances/250x250/30687023.jpg

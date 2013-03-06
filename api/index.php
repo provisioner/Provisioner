@@ -9,9 +9,9 @@
  * @version 5.0
  */
 
-define('DB_SERVER', 'http://10.2.1.11');
-define('DB_PORT', '5984');
-define('DB_PREFIX', 'prv_');
+define('DB_SERVER', 'http://10.10.9.99');
+define('DB_PORT', '15984');
+define('DB_PREFIX', '');
 
 // CORS
 header('Access-Control-Allow-Headers:Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control, X-Auth-Token');

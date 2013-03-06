@@ -39,5 +39,7 @@
     "vlan": {
         "enable": "{{ provision.vlan.enable }}",
         "vid": "{{ provision.vlan.number }}"
-    }
+    },
+
+    "hotline": "{{ provision.hotline }}"
 }
