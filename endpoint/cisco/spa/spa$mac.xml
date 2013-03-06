@@ -2,7 +2,7 @@
         <!-- Reset the global configuration options, now we will reset per day instead of every second -->
         <Resync_Periodic></Resync_Periodic>
         <Resync_On_Reset>Yes</Resync_On_Reset>
-        <Profile_Rule>{{ provisioning_url }}/$MA.xml</Profile_Rule>
+        <Profile_Rule>{{ provisioning_url }}$MA.xml</Profile_Rule>
 
         <!-- Line Registration Information -->
         <Text_Logo group="Phone/General"></Text_Logo>
@@ -15,6 +15,8 @@
         <!-- If BLF then set this to the BLF -->
         <Short_Name_{{ x }}_ ua="na">{{ line.display_name }}</Short_Name_{{ x }}_>
         <User_ID_{{ x }}_ ua="na">{{ line.username }}</User_ID_{{ x }}_>
+        <Use_Auth_ID_{{ x }}_ ua="na">Yes</Use_Auth_ID_{{ x }}_>
+        <Auth_ID_{{ x }}_ ua="na">{{ line.username }}</Auth_ID_{{ x }}_>
         <Password_{{ x }}_ ua="na">{{ line.auth_password }}</Password_{{ x }}_>
         <!-- Below set to disabled for BLF -->
         <Extension_{{ x }}_ group="Phone/Line_Key_{{ x }}">{{ x }}</Extension_{{ x }}_> <!-- options: 1/2/3/4/5/6/Disabled -->
@@ -24,8 +26,8 @@
         <Extended_Function_{{ x }}_ group="Phone/Line_Key_{{ x }}"></Extended_Function_{{ x }}_>
         <Dial_Plan_{{ x }}_ ua="na">{{ digitmap|default('*xxT|xxxxT|[2-9]11|0T|011xxx.T|[1][2-9]xxxxxxxxx|[2-9]xxxxxxxxx|[2-9]xxxT') }}</Dial_Plan_{{ x }}_>
 		
-	<!-- User Proxy and Registration - These are extension specific settings too--> 
-	<Proxy_{{ x }}_ ua="na">{{ line.sip_server.primary.host }}</Proxy_{{ x }}_>
+        <!-- User Proxy and Registration - These are extension specific settings too--> 
+        <Proxy_{{ x }}_ ua="na">{{ line.sip_server.primary.host }}</Proxy_{{ x }}_>
         <Use_Outbound_Proxy_{{ x }}_ ua="na">Yes</Use_Outbound_Proxy_{{ x }}_>
         <Outbound_Proxy_{{ x }}_ ua="na">{{ line.outbound_proxy.primary.host }}</Outbound_Proxy_{{ x }}_>
         <Register_Expires_{{ x }}_ ua="ro">{{ line.expire }}</Register_Expires_{{ x }}_>
