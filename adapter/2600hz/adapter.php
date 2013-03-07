@@ -26,6 +26,13 @@ class adapter_2600hz_adapter {
         $log = KLogger::instance(LOGS_BASE, Klogger::DEBUG);
         $log->logInfo('- Entering 2600hz adapter -');
 
+        $log->logInfo('Testing request verb...');
+        if ($_SERVER['REQUEST_METHOD'] != 'GET') {
+            $log->logFatal('The request is a PUT - EXIT');
+            return false;
+        }
+            
+
         // Load the datasource
         $db_type = 'wrapper_' . $settings->database->type;
         $db = new $db_type($settings->database->url, $settings->database->port);
