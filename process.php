@@ -28,7 +28,7 @@ $log->logInfo('======================================================');
 
 // Databse Based
 if (!isset($argv)) {
-    $uri = strtolower($_SERVER['REQUEST_URI']);
+    $uri = $_SERVER['REQUEST_URI'];
     $ua = strtolower($_SERVER['HTTP_USER_AGENT']);
     $http_host = strtolower($_SERVER['HTTP_HOST']);
 

@@ -10,11 +10,11 @@
             "000000000000-directory.xml"
         ],
         "regexs": [
-            "/[0-9a-f]{12}\\.cfg$/",
-            "/[0-9a-f]{12}_reg\\.cfg$/",
-            "/server_[0-9]{3,4}\\.cfg$/",
-            "/phone1_[0-9]{3,4}\\.cfg$/",
-            "/sip_[0-9]{3,4}\\.cfg$/",
+            "/[0-9a-f]{12}\\.cfg$/i",
+            "/[0-9a-f]{12}_reg\\.cfg$/i",
+            "/server_[0-9]{3,4}\\.cfg$/i",
+            "/phone1_[0-9]{3,4}\\.cfg$/i",
+            "/sip_[0-9]{3,4}\\.cfg$/i",
             "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
@@ -28,9 +28,9 @@
             "000000000000-directory.xml"
         ],
         "regexs": [
-            "/[0-9a-f]{12}\\.cfg$/",
-            "/[0-9a-f]{12}_reg\\.cfg$/",
-            "/sip_[0-9]{3,4}\\.cfg$/",
+            "/[0-9a-f]{12}\\.cfg$/i",
+            "/[0-9a-f]{12}_reg\\.cfg$/i",
+            "/sip_[0-9]{3,4}\\.cfg$/i",
             "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
@@ -44,9 +44,9 @@
             "000000000000-directory.xml"
         ],
         "regexs": [
-            "/[0-9a-f]{12}\\.cfg$/",
-            "/[0-9a-f]{12}_reg\\.cfg$/",
-            "/sip_[0-9]{3,4}\\.cfg$/",
+            "/[0-9a-f]{12}\\.cfg$/i",
+            "/[0-9a-f]{12}_reg\\.cfg$/i",
+            "/sip_[0-9]{3,4}\\.cfg$/i",
             "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
@@ -70,10 +70,10 @@
             "000000000000-directory.xml"
         ],
         "regexs": [
-            "/[0-9a-f]{12}\\.cfg$/",
-            "/[0-9a-f]{12}_reg\\.cfg$/",
-            "/sip\\.cfg$/",
-            "/features\\.cfg$/",
+            "/[0-9a-f]{12}\\.cfg$/i",
+            "/[0-9a-f]{12}_reg\\.cfg$/i",
+            "/sip\\.cfg$/i",
+            "/features\\.cfg$/i",
             "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
@@ -88,10 +88,10 @@
             "000000000000-directory.xml" 
         ],
         "regexs": [
-            "/[0-9a-f]{12}\\.cfg$/",
-            "/[0-9a-f]{12}_reg\\.cfg$/",
-            "/sip\\.cfg$/",
-            "/features\\.cfg$/",
+            "/[0-9a-f]{12}\\.cfg$/i",
+            "/[0-9a-f]{12}_reg\\.cfg$/i",
+            "/sip\\.cfg$/i",
+            "/features\\.cfg$/i",
             "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
@@ -106,10 +106,10 @@
             "000000000000-directory.xml" 
         ],
         "regexs": [
-            "/[0-9a-f]{12}\\.cfg$/",
-            "/[0-9a-f]{12}_reg\\.cfg$/",
-            "/sip\\.cfg$/",
-            "/features\\.cfg$/",
+            "/[0-9a-f]{12}\\.cfg$/i",
+            "/[0-9a-f]{12}_reg\\.cfg$/i",
+            "/sip\\.cfg$/i",
+            "/features\\.cfg$/i",
             "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
@@ -124,10 +124,10 @@
             "000000000000-directory.xml" 
         ],
         "regexs": [
-            "/[0-9a-f]{12}\\.cfg$/",
-            "/[0-9a-f]{12}_reg\\.cfg$/",
-            "/sip\\.cfg$/",
-            "/features\\.cfg$/",
+            "/[0-9a-f]{12}\\.cfg$/i",
+            "/[0-9a-f]{12}_reg\\.cfg$/i",
+            "/sip\\.cfg$/i",
+            "/features\\.cfg$/i",
             "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
@@ -142,10 +142,10 @@
             "000000000000-directory.xml"
         ],
         "regexs": [
-            "/[0-9a-f]{12}\\.cfg$/",
-            "/[0-9a-f]{12}_reg\\.cfg$/",
-            "/sip\\.cfg$/",
-            "/features\\.cfg$/",
+            "/[0-9a-f]{12}\\.cfg$/i",
+            "/[0-9a-f]{12}_reg\\.cfg$/i",
+            "/sip\\.cfg$/i",
+            "/features\\.cfg$/i",
             "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
@@ -160,10 +160,10 @@
             "000000000000-directory.xml"
         ],
         "regexs": [
-            "/[0-9a-f]{12}\\.cfg$/",
-            "/[0-9a-f]{12}_reg\\.cfg$/",
-            "/sip\\.cfg$/",
-            "/features\\.cfg$/",
+            "/[0-9a-f]{12}\\.cfg$/i",
+            "/[0-9a-f]{12}_reg\\.cfg$/i",
+            "/sip\\.cfg$/i",
+            "/features\\.cfg$/i",
             "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
@@ -178,10 +178,10 @@
             "000000000000-directory.xml"
         ],
         "regexs": [
-            "/[0-9a-f]{12}\\.cfg$/",
-            "/[0-9a-f]{12}_reg\\.cfg$/",
-            "/sip\\.cfg$/",
-            "/features\\.cfg$/",
+            "/[0-9a-f]{12}\\.cfg$/i",
+            "/[0-9a-f]{12}_reg\\.cfg$/i",
+            "/sip\\.cfg$/i",
+            "/features\\.cfg$/i",
             "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
@@ -196,10 +196,10 @@
             "000000000000-directory.xml" 
         ],
         "regexs": [
-            "/[0-9a-f]{12}\\.cfg$/",
-            "/[0-9a-f]{12}_reg\\.cfg$/",
-            "/sip\\.cfg$/",
-            "/features\\.cfg$/",
+            "/[0-9a-f]{12}\\.cfg$/i",
+            "/[0-9a-f]{12}_reg\\.cfg$/i",
+            "/sip\\.cfg$/i",
+            "/features\\.cfg$/i",
             "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
@@ -214,10 +214,10 @@
             "000000000000-directory.xml" 
         ],
         "regexs": [
-            "/[0-9a-f]{12}\\.cfg$/",
-            "/[0-9a-f]{12}_reg\\.cfg$/",
-            "/sip\\.cfg$/",
-            "/features\\.cfg$/",
+            "/[0-9a-f]{12}\\.cfg$/i",
+            "/[0-9a-f]{12}_reg\\.cfg$/i",
+            "/sip\\.cfg$/i",
+            "/features\\.cfg$/i",
             "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
@@ -232,10 +232,10 @@
             "000000000000-directory.xml" 
         ],
         "regexs": [
-            "/[0-9a-f]{12}\\.cfg$/",
-            "/[0-9a-f]{12}_reg\\.cfg$/",
-            "/sip\\.cfg$/",
-            "/features\\.cfg$/",
+            "/[0-9a-f]{12}\\.cfg$/i",
+            "/[0-9a-f]{12}_reg\\.cfg$/i",
+            "/sip\\.cfg$/i",
+            "/features\\.cfg$/i",
             "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
@@ -250,10 +250,10 @@
             "000000000000-directory.xml" 
         ],
         "regexs": [
-            "/[0-9a-f]{12}\\.cfg$/",
-            "/[0-9a-f]{12}_reg\\.cfg$/",
-            "/sip\\.cfg$/",
-            "/features\\.cfg$/",
+            "/[0-9a-f]{12}\\.cfg$/i",
+            "/[0-9a-f]{12}_reg\\.cfg$/i",
+            "/sip\\.cfg$/i",
+            "/features\\.cfg$/i",
             "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
@@ -268,10 +268,10 @@
             "000000000000-directory.xml" 
         ],
         "regexs": [
-            "/[0-9a-f]{12}\\.cfg$/",
-            "/[0-9a-f]{12}_reg\\.cfg$/",
-            "/sip\\.cfg$/",
-            "/features\\.cfg$/",
+            "/[0-9a-f]{12}\\.cfg$/i",
+            "/[0-9a-f]{12}_reg\\.cfg$/i",
+            "/sip\\.cfg$/i",
+            "/features\\.cfg$/i",
             "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
@@ -287,11 +287,11 @@
             "000000000000-directory.xml"
         ],
         "regexs": [
-            "/[0-9a-f]{12}\\.cfg$/",
-            "/[0-9a-f]{12}_reg\\.cfg$/",
-            "/phone1_[0-9]{3}\\.cfg$/",
-            "/server_[0-9]{3}\\.cfg$/",
-            "/sip_[0-9]{3}\\.cfg$/",
+            "/[0-9a-f]{12}\\.cfg$/i",
+            "/[0-9a-f]{12}_reg\\.cfg$/i",
+            "/phone1_[0-9]{3}\\.cfg$/i",
+            "/server_[0-9]{3}\\.cfg$/i",
+            "/sip_[0-9]{3}\\.cfg$/i",
             "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
@@ -307,11 +307,11 @@
             "000000000000-directory.xml"
         ],
         "regexs": [
-            "/[0-9a-f]{12}\\.cfg$/",
-            "/[0-9a-f]{12}_reg\\.cfg$/",
-            "/phone1_[0-9]{3}\\.cfg$/",
-            "/server_[0-9]{3}\\.cfg$/",
-            "/sip_[0-9]{3}\\.cfg$/",
+            "/[0-9a-f]{12}\\.cfg$/i",
+            "/[0-9a-f]{12}_reg\\.cfg$/i",
+            "/phone1_[0-9]{3}\\.cfg$/i",
+            "/server_[0-9]{3}\\.cfg$/i",
+            "/sip_[0-9]{3}\\.cfg$/i",
             "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
@@ -327,11 +327,11 @@
             "000000000000-directory.xml"
         ],
         "regexs": [
-            "/[0-9a-f]{12}\\.cfg$/",
-            "/[0-9a-f]{12}_reg\\.cfg$/",
-            "/phone1_[0-9]{3}\\.cfg$/",
-            "/server_[0-9]{3}\\.cfg$/",
-            "/sip_[0-9]{3}\\.cfg$/",
+            "/[0-9a-f]{12}\\.cfg$/i",
+            "/[0-9a-f]{12}_reg\\.cfg$/i",
+            "/phone1_[0-9]{3}\\.cfg$/i",
+            "/server_[0-9]{3}\\.cfg$/i",
+            "/sip_[0-9]{3}\\.cfg$/i",
             "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
@@ -347,11 +347,11 @@
             "000000000000-directory.xml"
         ],
         "regexs": [
-            "/[0-9a-f]{12}\\.cfg$/",
-            "/[0-9a-f]{12}_reg\\.cfg$/",
-            "/phone1_[0-9]{3}\\.cfg$/",
-            "/server_[0-9]{3}\\.cfg$/",
-            "/sip_[0-9]{3}\\.cfg$/",
+            "/[0-9a-f]{12}\\.cfg$/i",
+            "/[0-9a-f]{12}_reg\\.cfg$/i",
+            "/phone1_[0-9]{3}\\.cfg$/i",
+            "/server_[0-9]{3}\\.cfg$/i",
+            "/sip_[0-9]{3}\\.cfg$/i",
             "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
@@ -367,11 +367,11 @@
             "000000000000-directory.xml"
         ],
         "regexs": [
-            "/[0-9a-f]{12}\\.cfg$/",
-            "/[0-9a-f]{12}_reg\\.cfg$/",
-            "/phone1_[0-9]{3}\\.cfg$/",
-            "/server_[0-9]{3}\\.cfg$/",
-            "/sip_[0-9]{3}\\.cfg$/",
+            "/[0-9a-f]{12}\\.cfg$/i",
+            "/[0-9a-f]{12}_reg\\.cfg$/i",
+            "/phone1_[0-9]{3}\\.cfg$/i",
+            "/server_[0-9]{3}\\.cfg$/i",
+            "/sip_[0-9]{3}\\.cfg$/i",
             "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
@@ -387,11 +387,11 @@
             "000000000000-directory.xml"
         ],
         "regexs": [
-            "/[0-9a-f]{12}\\.cfg$/",
-            "/[0-9a-f]{12}_reg\\.cfg$/",
-            "/server_[0-9]{3}\\.cfg$/",
-            "/phone1_[0-9]{3}\\.cfg$/",
-            "/sip_[0-9]{3}\\.cfg$/",
+            "/[0-9a-f]{12}\\.cfg$/i",
+            "/[0-9a-f]{12}_reg\\.cfg$/i",
+            "/server_[0-9]{3}\\.cfg$/i",
+            "/phone1_[0-9]{3}\\.cfg$/i",
+            "/sip_[0-9]{3}\\.cfg$/i",
             "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
@@ -407,11 +407,11 @@
             "000000000000-directory.xml"
         ],
         "regexs": [
-            "/[0-9a-f]{12}\\.cfg$/",
-            "/[0-9a-f]{12}_reg\\.cfg$/",
-            "/server_[0-9]{3}\\.cfg$/",
-            "/phone1_[0-9]{3}\\.cfg$/",
-            "/sip_[0-9]{3}\\.cfg$/",
+            "/[0-9a-f]{12}\\.cfg$/i",
+            "/[0-9a-f]{12}_reg\\.cfg$/i",
+            "/server_[0-9]{3}\\.cfg$/i",
+            "/phone1_[0-9]{3}\\.cfg$/i",
+            "/sip_[0-9]{3}\\.cfg$/i",
             "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     }
