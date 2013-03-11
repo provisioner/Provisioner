@@ -10,7 +10,6 @@
         <ntp_refresh_timer perm="">3600</ntp_refresh_timer>
         <keyboard_lock perm="">off</keyboard_lock>
         <redirect_number perm="">*72</redirect_number>
-        <session_timer perm="">60</session_timer>
 
         <gui_fkey1 perm="">key_event F_ADR_BOOK</gui_fkey1>
         <gui_fkey2 perm="">key_event F_SETTINGS</gui_fkey2>
@@ -21,7 +20,7 @@
         {% for line in lines %}
         <user_active idx="{{ x }}" perm="">on</user_active>
         <user_host idx="{{ x }}" perm="">{{ line.sip_server.primary.host }}</user_host>
-        <user_outbound idx="{{ x }}" perm="">{{ line.outbound_proxy.host }}</user_outbound> 
+        <user_outbound idx="{{ x }}" perm="">{{ line.outbound_proxy.primary.host }}</user_outbound> 
         <user_realname idx="{{ x }}" perm="">{{ line.display_name }}</user_realname>
         <user_name idx="{{ x }}" perm="">{{ line.username }}</user_name>
         <user_pname idx="{{ x }}" perm="">{{ line.username }}</user_pname>
@@ -33,14 +32,16 @@
 
         <vlan_id perm="">{{ vlan.vid }}</vlan_id>
         <intercom_connect_type perm="">intercom_connect_type_handsfree</intercom_connect_type>
-        <answer_after_policy>idle</answer_after_policy>
         <http_user perm="R">snom</http_user>
-        <http_pass perm="R">{{ password.admin|default('@dm1n') }}</http_pass>
+        <http_pass perm="R">{{ password.user|default('p@ssword') }}</http_pass>
+        <admin_mode_login perm="">admin</admin_mode_login>
+        <admin_mode_password perm="R">{{ password.user|default('@dm1n') }}</admin_mode_password>
+        <admin_mode_password_confirm perm="R">{{ password.user|default('@dm1n') }}</admin_mode_password_confirm>
         <https_port perm="">443</https_port>
         <webserver_type perm="">http_https</webserver_type>
         <firmware_status perm="R">{{ provisioning_url }}{mac}.xml</firmware_status>
         <update_policy perm="">auto_update</update_policy>
-        <timezone perm="R">{{ timezone }}</timezone>
+        <timezone perm="">{{ timezone }}</timezone>
         <ntp_server perm="">{{ sntp_server.primary|default('pool.ntp.org') }}</ntp_server>
     </phone-settings>
 </settings>
