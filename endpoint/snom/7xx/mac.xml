@@ -10,6 +10,9 @@
         <ntp_refresh_timer perm="">3600</ntp_refresh_timer>
         <keyboard_lock perm="">off</keyboard_lock>
         <redirect_number perm="">*72</redirect_number>
+        <user_subscription_expiry idx="1" perm="">60</user_subscription_expiry>
+        <session_timer perm="">60</session_timer>
+        <retry_after_failed_subscribe idx="1" perm="">60</retry_after_failed_subscribe>
 
         <gui_fkey1 perm="">key_event F_ADR_BOOK</gui_fkey1>
         <gui_fkey2 perm="">key_event F_SETTINGS</gui_fkey2>
@@ -43,5 +46,20 @@
         <update_policy perm="">auto_update</update_policy>
         <timezone perm="">{{ timezone }}</timezone>
         <ntp_server perm="">{{ sntp_server.primary|default('pool.ntp.org') }}</ntp_server>
+
+        <dialplan>
+            <template match="*." timeout="2" scheme="sip" user="phone" rewrite="" />
+            <template match="*.." timeout="2" scheme="sip" user="phone" rewrite="" />
+            <template match="*..." timeout="2" scheme="sip" user="phone" rewrite="" />
+            <template match="*...." timeout="2" scheme="sip" user="phone" rewrite="" />
+            <template match="911" timeout="0" scheme="sip" user="phone" rewrite="" />
+            <template match="0" timeout="2" scheme="sip" user="phone" rewrite="" />
+            <template match="011*" timeout="4" scheme="sip" user="phone" rewrite="" />
+            <template match="[2-9]......" timeout="3" scheme="sip" user="phone" rewrite="" />
+            <template match="[2-9]........." timeout="3" scheme="sip" user="phone" rewrite="" />
+            <template match="[0-1][2-9]........." timeout="3" scheme="sip" user="phone" rewrite="" />
+            <template match="[1-9].." timeout="3" scheme="sip" user="phone" rewrite="" />
+            <template match="[1-9]..." timeout="3" scheme="sip" user="phone" rewrite="" />
+        </dialplan>
     </phone-settings>
 </settings>
