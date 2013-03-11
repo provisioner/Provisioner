@@ -1,5 +1,5 @@
 {
-    "version": "5.1.3",
+    "version": "5.2.0",
     "static_data_source": "database",
     "adapter": "2600hz",
     "db_prefix": "",

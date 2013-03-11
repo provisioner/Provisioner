@@ -1,0 +1,11 @@
+{   
+    "710": {
+        "folder": "7xx",
+        "config_files": [
+            "mac.xml"
+        ],
+        "regexs": [
+            "/[0-9a-f]{12}\\.xml$/"
+        ]
+    }
+}
