@@ -275,6 +275,10 @@ class BigCouch {
 
             // Set a random local port
             $request_data['local_port'] = rand(4000, 65000);
+
+            // Set random port for RTP
+            $request_data['rtp_min_port'] = rand(5000, 65000);
+            $request_data['rtp_max_port'] = $request_data['rtp_min_port'] + 10;
         }
 
         // A couple of unset for useless value coming from kazoo

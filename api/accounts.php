@@ -106,6 +106,11 @@ class Accounts {
 
             if (isset($current_doc['settings']['local_port']))
                 $request_data['settings']['local_port'] = $current_doc['settings']['local_port'];
+
+            // This update the brand/model/family if needed.
+            $request_data['brand'] = $request_data['provision']['endpoint_brand'];
+            $request_data['family'] = $request_data['provision']['endpoint_family'];
+            $request_data['model'] = $request_data['provision']['endpoint_model'];
         }
         
         foreach ($request_data as $key => $value) {
