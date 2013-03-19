@@ -1,4 +1,4 @@
-Provisioner v5.1.3
+Provisioner v5.2.1
 ----------------
 
 Supported phones (03.04.2013):
@@ -11,6 +11,8 @@ Polycoms
  - spipm
 Cisco
  - spa
+Snom
+ - 7xx
 
 -------------------------------
 

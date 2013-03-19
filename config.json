@@ -1,5 +1,5 @@
 {
-    "version": "5.2.0",
+    "version": "5.2.1",
     "static_data_source": "database",
     "adapter": "2600hz",
     "db_prefix": "",
@@ -11,7 +11,7 @@
     
     "database": {
         "type": "bigcouch",
-        "url": "http://10.10.9.99",
+        "url": "http://10.10.2.225",
         "port": 15984,
 
         "master_provider": {
