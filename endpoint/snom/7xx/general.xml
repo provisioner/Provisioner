@@ -20,18 +20,18 @@
 		<record_missed_calls idx="" perm="">off</record_missed_calls>
 		<log_level perm="">5</log_level>
 	</phone-settings>
-	<dialplan>
-	    <template match="*." timeout="2" scheme="sip" user="phone" rewrite="" />
-	    <template match="*.." timeout="2" scheme="sip" user="phone" rewrite="" />
-	    <template match="*..." timeout="2" scheme="sip" user="phone" rewrite="" />
-	    <template match="*...." timeout="2" scheme="sip" user="phone" rewrite="" />
-	    <template match="911" timeout="0" scheme="sip" user="phone" rewrite="" />
-	    <template match="0" timeout="2" scheme="sip" user="phone" rewrite="" />
-	    <template match="011*" timeout="4" scheme="sip" user="phone" rewrite="" />
-	    <template match="[2-9]......" timeout="3" scheme="sip" user="phone" rewrite="" />
-	    <template match="[2-9]........." timeout="3" scheme="sip" user="phone" rewrite="" />
-	    <template match="[0-1][2-9]........." timeout="3" scheme="sip" user="phone" rewrite="" />
-	    <template match="[1-9].." timeout="3" scheme="sip" user="phone" rewrite="" />
-	    <template match="[1-9]..." timeout="3" scheme="sip" user="phone" rewrite="" />
-	</dialplan>
+    <dialplan>
+        <template match="*." timeout="2" scheme="sip" user="phone" rewrite="" />
+        <template match="*.." timeout="2" scheme="sip" user="phone" rewrite="" />
+        <template match="*..." timeout="2" scheme="sip" user="phone" rewrite="" />
+        <template match="*...." timeout="2" scheme="sip" user="phone" rewrite="" />
+        <template match="911" timeout="0" scheme="sip" user="phone" rewrite="" />
+        <template match="0" timeout="2" scheme="sip" user="phone" rewrite="" />
+        <template match="011*" timeout="4" scheme="sip" user="phone" rewrite="" />
+        <template match="[2-9]......" timeout="3" scheme="sip" user="phone" rewrite="" />
+        <template match="[2-9]........." timeout="3" scheme="sip" user="phone" rewrite="" />
+        <template match="[0-1][2-9]........." timeout="3" scheme="sip" user="phone" rewrite="" />
+        <template match="[1-9].." timeout="3" scheme="sip" user="phone" rewrite="" />
+        <template match="[1-9]..." timeout="3" scheme="sip" user="phone" rewrite="" />
+    </dialplan>
 </settings>

@@ -30,6 +30,7 @@
         <user_mailbox idx="{{ x }}" perm="">{{ line.voicemail_number|default('*97') }}</user_mailbox>
         <user_pass idx="{{ x }}" perm="">{{ line.auth_password }}</user_pass>
         <codec_priority_list idx="1" perm="">{{ codecs|default('pcmu,pcma,g722') }}</codec_priority_list>
+        <user_srtp idx="{{ x }}" perm="">off</user_srtp>
         {% set x = x + 1 %}
         {% endfor %}
 
@@ -62,4 +63,16 @@
             <template match="[1-9]..." timeout="3" scheme="sip" user="phone" rewrite="" />
         </dialplan>
     </phone-settings>
+
+    <tbook>
+        {% set x = 0 %}
+        {% for contact in directory %}
+        <item context="active" type="" fav="false" mod="true" index="{{ x }}">
+            <name>{{ contact.name }}</name>
+            <number>{{ contact.internal_number }}</number>
+            <number_type>sip</number_type>
+        </item>
+        {% set x = x + 1 %}
+        {% endfor %}
+    </tbook>
 </settings>
