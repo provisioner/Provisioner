@@ -483,7 +483,7 @@ class couchClient extends couch {
 		}
 
 		$url  = '/'.urlencode($this->dbname).'/_bulk_docs';
-		return $this->_queryAndTest ('POST', $url, array(200,201),array(),$request);
+		return $this->_queryAndTest ('POST', $url, array(200,201,202),array(),$request);
 	}
 
 
@@ -515,7 +515,7 @@ class couchClient extends couch {
 		}
 
 		$url  = '/'.urlencode($this->dbname).'/_bulk_docs';
-		return $this->_queryAndTest ('POST', $url, array(200,201),array(),$request);
+		return $this->_queryAndTest ('POST', $url, array(200,201,202),array(),$request);
 	}
 
 
@@ -582,7 +582,7 @@ class couchClient extends couch {
 			}
 		}
 
-                return $this->_queryAndTest ($method, $url, array(200,201),$params,$data,$contentType);
+                return $this->_queryAndTest ($method, $url, array(200,201,202),$params,$data,$contentType);
 	}
 
 	/**
@@ -601,7 +601,7 @@ class couchClient extends couch {
 		$method = 'COPY';
 		$url  = '/'.urlencode($this->dbname);
 		$url.='/'.urlencode($id);
-		return $this->_queryAndTest ($method, $url, array(200,201),array(),$new_id);
+		return $this->_queryAndTest ($method, $url, array(200,201,202),array(),$new_id);
 	}
 
 	/**
@@ -663,7 +663,7 @@ class couchClient extends couch {
 		$url  = '/'.urlencode($this->dbname).
 				'/'.urlencode($doc->_id).
 				'/'.urlencode($attachment_name);
-		return $this->_queryAndTest ('DELETE', $url, array(200),array('rev'=>$doc->_rev));
+		return $this->_queryAndTest ('DELETE', $url, array(200,202),array('rev'=>$doc->_rev));
 	}
 
 	/**
@@ -679,7 +679,7 @@ class couchClient extends couch {
 			return FALSE;
 		}
 		$url = '/'.urlencode($this->dbname).'/'.urlencode($doc->_id).'?rev='.urlencode($doc->_rev);
-		return $this->_queryAndTest ('DELETE', $url, array(200));
+		return $this->_queryAndTest ('DELETE', $url, array(200,202));
 	}
 
 	/**
