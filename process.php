@@ -89,16 +89,16 @@ if (!isset($argv)) {
 
     $arrConfig = json_decode(file_get_contents($source_file_path), true);
     if(json_errors()) {
-        die("FATAL: " . ProvisionerUtils::json_errors() . "\n");
+        die("FATAL: " . helper_utils::json_errors() . "\n");
     }
 
-    // This is adapter is generic and is basically building a simple config manager
+    // This adapter is generic and is basically building a simple config manager
     // with a minimum of information (brand/model/a file containing the settings)
     $adapter = new adapter_generic_adapter();
     $config_manager = $adapter->get_config_manager($brand, $model, $arrConfig);
     $config_manager->set_request_type('tftp');
 
-    foreach (ProvisionerUtils::get_file_list($brand, $model) as $value) {
+    foreach (helper_utils::get_file_list($brand, $model) as $value) {
         $config_manager->set_config_file($value);
 
         // make a file with the returned value

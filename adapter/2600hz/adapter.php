@@ -121,7 +121,7 @@ class adapter_2600hz_adapter {
                 $log->logInfo('Current brand: ', $phone_doc['brand']);
                 $log->logInfo('Current family: ', $phone_doc['family']);
                 $log->logInfo('Current model: ', $phone_doc['model']);
-                $config_manager->set_device_infos($phone_doc['brand'], $phone_doc['family'], $phone_doc['model']);
+                $config_manager->set_device_infos($phone_doc['brand'], $phone_doc['model']);
             }  
 
             $log->logInfo('Generating doc name for brand/family/model...');

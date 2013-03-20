@@ -251,10 +251,10 @@ class system_configfile {
         $obj = new ConfigFile();
         $obj-> set_device_infos('polycom', '550');
     */
-    public function set_device_infos($brand, $family, $model) {
+    public function set_device_infos($brand, $model) {
         $this->_strBrand = strtolower($brand);
-        $this->_strFamily = strtolower($family);
         $this->_strModel = strtolower($model);
+        $this->_strFamily = helper_utils::get_folder($brand, $model);
 
         return true;
     }
