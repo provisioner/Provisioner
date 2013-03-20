@@ -15,10 +15,6 @@
  * @version 5.0
  */
 
-require_once PROVISIONER_BASE . 'classes/utils.php';
-require_once PROVISIONER_BASE . 'classes/configfile.php';
-
-
 class adapter_generic_adapter {
     public function get_config_manager($brand, $model, $arrConfig) {
         // Load the config manager
