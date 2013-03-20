@@ -107,10 +107,12 @@ class Accounts {
             if (isset($current_doc['settings']['local_port']))
                 $request_data['settings']['local_port'] = $current_doc['settings']['local_port'];
 
-            // This update the brand/model/family if needed.
-            $request_data['brand'] = $request_data['provision']['endpoint_brand'];
-            $request_data['family'] = $request_data['provision']['endpoint_family'];
-            $request_data['model'] = $request_data['provision']['endpoint_model'];
+            if (isset($request_data['settings']['provision'])) {
+                // This update the brand/model/family if needed.
+                $request_data['brand'] = $request_data['settings']['provision']['endpoint_brand'];
+                $request_data['family'] = $request_data['settings']['provision']['endpoint_family'];
+                $request_data['model'] = $request_data['settings']['provision']['endpoint_model'];
+            }
         }
         
         foreach ($request_data as $key => $value) {
@@ -123,8 +125,12 @@ class Accounts {
                 $obj = array('_id' => $mac_address, 'account_id' => $account_id);
                 if ($this->db->add('mac_lookup', $obj))
                     return array('status' => true, 'message' => 'Document successfully added');
+            } else {
+                if (!$this->db->update('mac_lookup', $mac_address, 'account_id', $account_id))
+                    throw new RestException(500, 'Error while saving mac_lookup');
             }
-            return array('status' => false, 'message' => 'Could not create the mac_lookup document');
+
+            return array('status' => true, 'message' => 'Document successfully added');
 
         } else
             return array('status' => true, 'message' => 'Document successfully added');
