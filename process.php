@@ -92,7 +92,7 @@ if (!isset($argv)) {
         die("FATAL: " . helper_utils::json_errors() . "\n");
     }
 
-    // This adapter is generic and is basically building a simple config manager
+    // This is adapter is generic and is basically building a simple config manager
     // with a minimum of information (brand/model/a file containing the settings)
     $adapter = new adapter_generic_adapter();
     $config_manager = $adapter->get_config_manager($brand, $model, $arrConfig);
