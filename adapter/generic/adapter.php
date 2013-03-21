@@ -22,8 +22,7 @@ class adapter_generic_adapter {
 
         $config_manager->set_device_infos($brand, $model);
 
-        // Import the given settings 
-        $config_manager->import_settings($arrConfig);
+        $config_manager->set_settings($arrConfig);
 
         return $config_manager;
     }

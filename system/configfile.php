@@ -20,7 +20,7 @@ class system_configfile {
     private $_strModel = null;
 
     // http or tftp
-    private $_requestType = null;
+    private $_strRequestType = null;
 
     private $_strMac = null;
     private $_strConfigFile = null;

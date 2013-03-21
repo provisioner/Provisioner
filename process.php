@@ -88,7 +88,7 @@ if (!isset($argv)) {
     }
 
     $arrConfig = json_decode(file_get_contents($source_file_path), true);
-    if(json_errors()) {
+    if(helper_utils::json_errors()) {
         die("FATAL: " . helper_utils::json_errors() . "\n");
     }
 
