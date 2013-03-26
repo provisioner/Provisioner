@@ -215,7 +215,7 @@ class Accounts {
                 foreach ($doc_list['row'] as $doc) {
                     // /!\ Ghetto hack following...
                     // We check the id of the document to know if it a device doc or the account doc
-                    if preg_match("/[a-f0-9]{12}/i", $doc['id']) {
+                    if preg_match("/^[a-f0-9]{12}$/i", $doc['id']) {
                         if (!$this->db->delete('mac_lookup', $doc['id']))
                             throw new RestException(500, 'Could not delete a lookup entry');
                     }
