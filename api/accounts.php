@@ -212,10 +212,10 @@ class Accounts {
             } else { // If we are trying to delete an account
                 $doc_list = $this->db->getAll($account_db);
                 // We get the document list inside of the account database
-                foreach ($doc_list['row'] as $doc) {
+                foreach ($doc_list['rows'] as $doc) {
                     // /!\ Ghetto hack following...
                     // We check the id of the document to know if it a device doc or the account doc
-                    if preg_match("/^[a-f0-9]{12}$/i", $doc['id']) {
+                    if (preg_match("/^[a-f0-9]{12}$/i", $doc['id'])) {
                         if (!$this->db->delete('mac_lookup', $doc['id']))
                             throw new RestException(500, 'Could not delete a lookup entry');
                     }
