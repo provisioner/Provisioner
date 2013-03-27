@@ -28,10 +28,9 @@ class adapter_2600hz_adapter {
 
         $log->logInfo('Testing request verb...');
         if ($_SERVER['REQUEST_METHOD'] != 'GET') {
-            $log->logFatal('The request is a PUT - EXIT');
+            $log->logFatal('The request is a PUT');
             return false;
         }
-            
 
         // Load the datasource
         $db_type = 'wrapper_' . $settings->database->type;
@@ -180,8 +179,19 @@ class adapter_2600hz_adapter {
             $log->logInfo('Twig loaded!');
 
             $log->logInfo('Building lines settings...');
+
+            // Yeah, let's choose the right template
+            if (file_exists(PROVISIONER_BASE . 'adapter/2600hz/' . $brand_doc_name))
+                $master_template = $model_template;
+            elseif(file_exists(PROVISIONER_BASE . 'adapter/2600hz/' . $family_doc_name))
+                $master_template = $family_template;
+            elseif(file_exists(PROVISIONER_BASE . 'adapter/2600hz/' . $model_doc_mame))
+                $master_template = $model_doc_mame;
+            else
+                $master_template = 'master.json'
+
             // Building lines settings
-            $line_settings = json_decode($objTwig->render('master.json', $merged_settings), true);
+            $line_settings = json_decode($objTwig->render($master_template, $merged_settings), true);
             if (!$line_settings) {
                 $log->logWarn('Line settings NULL!');
                 return false;

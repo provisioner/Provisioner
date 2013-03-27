@@ -1,0 +1,32 @@
+{
+    "lines": [
+        {
+            "enable" : "{{ enabled }}",
+            "display_name": "{{ name }}",
+            "username": "{{ sip.username }}@{{ realm }}",
+            "auth_name": "{{ sip.username }}",
+            "auth_password": "{{ sip.password }}",
+
+            "sip_server": {
+                "primary": {
+                    "host": "{{ outbound_proxy.primary.host }}",
+                    "port": "{{ outbound_proxy.primary.port }}"
+                },
+                "backup": {
+                    "host": "{{ outbound_proxy.backup.host }}",
+                    "port": "{{ outbound_proxy.backup.port }}"
+                }
+            },
+
+            "expire": "{{ sip.expire_seconds }}",
+            "voicemail_number": "{{ voicemail }}"
+        }
+    ],
+
+    "vlan": {
+        "enable": "{{ provision.vlan.enable }}",
+        "vid": "{{ provision.vlan.number }}"
+    },
+
+    "hotline": "{{ provision.hotline }}"
+}
