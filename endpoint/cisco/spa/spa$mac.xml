@@ -28,6 +28,7 @@
 		
         <!-- User Proxy and Registration - These are extension specific settings too--> 
         <Proxy_{{ x }}_ ua="na">{{ line.sip_server.primary.host }}</Proxy_{{ x }}_>
+        <SIP_Port_{{ x }}_ ua="na">{{ local_port }}</SIP_Port_{{ x }}_>
         <Use_Outbound_Proxy_{{ x }}_ ua="na">Yes</Use_Outbound_Proxy_{{ x }}_>
         <Outbound_Proxy_{{ x }}_ ua="na">{{ line.outbound_proxy.primary.host }}</Outbound_Proxy_{{ x }}_>
         <Register_Expires_{{ x }}_ ua="ro">{{ line.expire|default('60') }}</Register_Expires_{{ x }}_>
@@ -46,14 +47,14 @@
         <Upgrade_Rule ua="ro"></Upgrade_Rule>
 
 
-        <Time_Zone  ua="na">{{ timezone }}</Time_Zone>
+        <Time_Zone ua="na">{{ timezone }}</Time_Zone>
 
         <!-- Admin -->
-         <Enable_Web_Server ua="na">Yes</Enable_Web_Server>
-         <Web_Server_Port ua="na">80</Web_Server_Port>
-         <Enable_Web_Admin_Access ua="na">Yes</Enable_Web_Admin_Access>
-         <Admin_Passwd ua="na">{{ password.admin }}</Admin_Passwd>
-         <User_Password ua="na">{{ password.user }}</User_Password>
+        <Enable_Web_Server ua="na">Yes</Enable_Web_Server>
+        <Web_Server_Port ua="na">80</Web_Server_Port>
+        <Enable_Web_Admin_Access ua="na">Yes</Enable_Web_Admin_Access>
+        <Admin_Passwd ua="na">{{ password.admin }}</Admin_Passwd>
+        <User_Password ua="na">{{ password.user }}</User_Password>
 
         <!-- options: -->
         <Server_Type group="Attendant_Console/General">Broadsoft</Server_Type>

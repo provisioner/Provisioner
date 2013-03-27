@@ -50,8 +50,7 @@ class Phones {
     }
 
     // Yep...
-    function options()
-    {
+    function options() {
         return;
     }
 

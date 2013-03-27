@@ -254,7 +254,7 @@
   <!-- SIP Settings -->
 
   <SIP_Transport_{{ x }}_ ua="na">UDP</SIP_Transport_{{ x }}_> <!-- options: UDP/TCP/TLS -->
-  <SIP_Port_{{ x }}_ ua="na">{{ line.sip_server.primary.port }}</SIP_Port_{{ x }}_>
+  <SIP_Port_{{ x }}_ ua="na">{{ local_port }}</SIP_Port_{{ x }}_>
   <SIP_100REL_Enable_{{ x }}_ ua="na">No</SIP_100REL_Enable_{{ x }}_>
   <EXT_SIP_Port_{{ x }}_ ua="na"></EXT_SIP_Port_{{ x }}_>
   <Auth_Resync-Reboot_{{ x }}_ ua="na">Yes</Auth_Resync-Reboot_{{ x }}_>
