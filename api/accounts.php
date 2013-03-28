@@ -12,11 +12,16 @@
 
 class Accounts {
     public $db;
+    private $_log;
 
     /*private $_FIELDS_ACCOUNT = array('settings', 'name', 'provider_id');
     private $_FIELDS_MAC = array('settings', 'brand', 'family', 'model');*/
 
     function __construct() {
+        // Le EPIC logger init
+        $this->_log = KLogger::instance(LOGS_BASE, Klogger::DEBUG);
+
+        $this->_log->logDebug("Connecting to BigCouch...");
         $this->db = new BigCouch(DB_SERVER, DB_PORT);
     }
 
@@ -27,8 +32,7 @@ class Accounts {
     }
 
     // Yep...
-    function options()
-    {
+    function options() {
         return;
     }
 
@@ -46,45 +50,32 @@ class Accounts {
 
         // Retrieving the default settings for a user
         if (!$mac_address) {
+            $this->_log->logDebug(" - GET - retrieve account doc $account_id");
+            $this->_log->logDebug("Request coming from " . $_SERVER['REMOTE_ADDR']);
+
             $default_settings = array();
             $default_settings['data'] = $this->db->get($account_db, $account_id);
 
             if (isset($default_settings['data']['settings']))
                 return $default_settings;
-            else
+            else {
+                $this->_log->logDebug("No account with this id - EXIT");
                 throw new RestException(404, 'This account_id do not exist or there are no default settings for this user');
+            }
         } else { // retrieving phone specific settings
+            $this->_log->logDebug(" - GET - retrieve account doc $account_id for mac doc $mac_address");
+            $this->_log->logDebug("Request coming from " . $_SERVER['REMOTE_ADDR']);
+
             $mac_settings = array();
             $mac_settings['data'] = $this->db->get($account_db, $mac_address);
 
             if (isset($mac_settings['data']['settings']))
                 return $mac_settings;
-            else
+            else {
+                $this->_log->logDebug("No doc for this mac address - EXIT");
                 throw new RestException(404, 'There is no phone with this mac_address for this account or there are no specific settings for this phone');
-        }
-    }
-
-    /**
-     * Edit default settings for a user (just the settings)
-     *
-     * @url POST /{account_id}/defaults
-     * @access protected
-     * @class  AccessControl {@requires user}
-     */
-
-    function edit($account_id, $request_data = null) {
-        $account_db = $this->_get_account_db($account_id);
-
-        // This should force the user to send an object like {'settings': {}}
-        if (!isset($request_data['settings'])) {
-            foreach ($request_data['settings'] as $key => $value) {
-                $this->db->update($account_db, $account_id, $key);
             }
-        } else
-            throw new RestException(400, "settings is not well formed");
-
-        return array('status' => true, 'message' => 'Settings successfully modified');
-            
+        }
     }
     
     /**
@@ -98,9 +89,15 @@ class Accounts {
 
     function editDocument($account_id, $mac_address = null, $request_data = null) {
         $account_db = $this->_get_account_db($account_id);
-        if (!$mac_address)
+        if (!$mac_address) {
+            $this->_log->logDebug(" - POST - edit account doc $account_id");
+            $this->_log->logDebug("Request coming from " . $_SERVER['REMOTE_ADDR']);
             $document_name = $account_id;
+        }
         else {
+            $this->_log->logDebug(" - POST - edit in doc $account_id mac address $mac_address");
+            $this->_log->logDebug("Request coming from " . $_SERVER['REMOTE_ADDR']);
+
             $document_name = $mac_address;
             $current_doc = $this->db->get($account_db, $mac_address);
 
@@ -116,19 +113,25 @@ class Accounts {
         }
         
         foreach ($request_data as $key => $value) {
-            if (!$this->db->update($account_db, $document_name, $key, $value))
+            if (!$this->db->update($account_db, $document_name, $key, $value)) {
+                $this->_log->logDebug("Could not save key:$key - EXIT");
                 throw new RestException(500, 'Error while saving');
+            }
         }
 
         if ($mac_address) {
+            $this->_log->logDebug("Will not edit the mac_lookup...");
             if (!$this->db->isDocExist('mac_lookup', $mac_address)) {
                 $obj = array('_id' => $mac_address, 'account_id' => $account_id);
                 if ($this->db->add('mac_lookup', $obj))
                     return array('status' => true, 'message' => 'Document successfully added');
             } else {
-                if (!$this->db->update('mac_lookup', $mac_address, 'account_id', $account_id))
+                if (!$this->db->update('mac_lookup', $mac_address, 'account_id', $account_id)) {
+                    $this->_log->logDebug("Error... Edit for account $account_id and mac_address $mac_address FAIL");
                     throw new RestException(500, 'Error while saving mac_lookup');
+                }
             }
+            $this->_log->logDebug("done... Edit for account $account_id and mac_address $mac_address SUCCESS");
 
             return array('status' => true, 'message' => 'Document successfully added');
 
@@ -147,33 +150,48 @@ class Accounts {
      */
 
     function addDocument($account_id, $mac_address = null, $request_data = null) {
-        if (!$request_data)
+        $this->_log->logDebug(" - PUT - Adding account first...");
+        $this->_log->logDebug("Request coming from " . $_SERVER['REMOTE_ADDR']);
+
+        if (!$request_data) {
+            $this->_log->logDebug("Empty body... Stopping here");
             throw new RestException(400, "The body cannot be empty for this request");
+        }
 
         // making sure that the mac_address is well formated
         $mac_address = strtolower(preg_replace('/[:-]/', '', $mac_address));
         $account_db = $this->_get_account_db($account_id);
 
         if ($mac_address) {
-            if (!$this->db->isDBexist($account_db))
+            if (!$this->db->isDBexist($account_db)) {
+                $this->_log->logDebug("Account $account_id do not exist and trying to add a mac address... EXIT");
                 return array('status' => false, 'message' => 'The account do not exist yet');
+            }
         }
 
         $object_ready = $this->db->prepareAddAccounts($request_data, $account_db, $account_id, $mac_address);
 
-        if(!$this->db->add($account_db, $object_ready))
+        if(!$this->db->add($account_db, $object_ready)) {
+            $this->_log->logDebug("Fail to add the account... EXIT");
             throw new RestException(500, 'Error while saving');
-        else {
+        } else {
             if ($mac_address) {
+                $this->_log->logDebug("Adding the device with mac_address $mac_address...");
                 if (!$this->db->isDocExist('mac_lookup', $mac_address)) {
+                    $this->_log->logDebug("The mac_lookup...");
                     $obj = array('_id' => $mac_address, 'account_id' => $account_id);
-                    if ($this->db->add('mac_lookup', $obj))
+                    if ($this->db->add('mac_lookup', $obj)) {
+                        $this->_log->logDebug("SUCCESS! exit...");
                         return array('status' => true, 'message' => 'Document successfully added');
+                    }
                 }
+                $this->_log->logDebug("Could not add the mac_lookup entry... EXIT");
                 return array('status' => false, 'message' => 'Could not create the mac_lookup document');
 
-            } else
+            } else {
+                $this->_log->logDebug("Successfully Add account");
                 return array('status' => true, 'message' => 'Document successfully added');
+            }
         }
     }
 
@@ -195,40 +213,61 @@ class Accounts {
         if ($this->db->isDBexist($account_db)) {
             // If we are trying to delete a device
             if ($mac_address) {
+                $this->_log->logDebug(" - DELETE - Deleting a device ($mac_address) for account $account_id...");
+                $this->_log->logDebug("Request coming from " . $_SERVER['REMOTE_ADDR']);
                 // Let's check also if the device that we are trying to delete exist
-                if ($this->db->isDBexist($account_db)) {
+                if ($this->db->isDBexist($mac_address)) {
+                    $this->_log->logDebug("The device does exist... let's delete it");
                     // First we delete the device document
-                    if (!$this->db->delete($account_db, $mac_address))
+                    if (!$this->db->delete($account_db, $mac_address)) {
+                        $this->_log->logDebug("Could not delete the device doc ($mac_address) - EXIT");
                         throw new RestException(500, 'Error while deleting');
-                    else {
+                    } else {
+                        $this->_log->logDebug("Now deleting the mac lookup entry...");
                         // Then we delete the device in the mac_lookup db
-                        if (!$this->db->delete('mac_lookup', $mac_address))
+                        if (!$this->db->delete('mac_lookup', $mac_address)) {
+                            $this->_log->logDebug("Failed to delete the mac_lookup entry ($mac_address) - EXIT");
                             throw new RestException(500, 'Could not delete the lookup entry');
+                        }
 
+                        $this->_log->logDebug("Successfully deleted device ($mac_address)");
                         return array('status' => true, 'message' => 'Document successfully deleted');
                     }
                 } else
                     throw new RestException(404, 'This device do not exist in this account');
             } else { // If we are trying to delete an account
+                $this->_log->logDebug(" - DELETE - Deleting an account ($account_id)...");
+                $this->_log->logDebug("Request coming from " . $_SERVER['REMOTE_ADDR']);
+
                 $doc_list = $this->db->getAll($account_db);
+                $this->_log->logDebug("Retrieved the device list now deleting them...");
                 // We get the document list inside of the account database
                 foreach ($doc_list['rows'] as $doc) {
                     // /!\ Ghetto hack following...
                     // We check the id of the document to know if it a device doc or the account doc
                     if (preg_match("/^[a-f0-9]{12}$/i", $doc['id'])) {
-                        if (!$this->db->delete('mac_lookup', $doc['id']))
+                        if (!$this->db->delete('mac_lookup', $doc['id'])) {
+                            $this->_log->logDebug("Fail to delete the mac_lookup entry for" . $doc['id']);
                             throw new RestException(500, 'Could not delete a lookup entry');
+                        }
                     }
                 }
 
+                $this->_log->logDebug("All devices for account $account_id deleted, will now delete the account db...");
+
                 // And let's delete the account database then
-                if ($this->db->delete($account_db))
+                if ($this->db->delete($account_db)) {
+                    $this->_log->logDebug("SUCCESS - exit");
                     return array('status' => true, 'message' => 'Account successfully deleted');
-                else
+                } else {
+                    $this->_log->logDebug("Failed to delete the account ($account_id) - EXIT");
                     throw new RestException(500, 'Could not delete the account database');
+                }
             }
-        } else
+        } else {
+            $this->_log->logDebug("The account ($account_id) do not exist");
             throw new RestException(404, 'This account do not exist');
+        }
     }
 }
 ?>

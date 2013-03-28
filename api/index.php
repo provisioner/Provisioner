@@ -9,7 +9,7 @@
  * @version 5.0
  */
 
-define('DB_SERVER', 'http://10.10.9.99');
+define('DB_SERVER', 'http://10.10.2.232');
 define('DB_PORT', '15984');
 define('DB_PREFIX', '');
 
@@ -22,7 +22,13 @@ header('Access-Control-Max-Age:86400');
 require_once 'wrapper/bigcouch.php';
 require_once 'utils_validator.php';
 require_once 'lib/restler/restler.php';
+require_once 'lib/KLogger.php';
 use Luracast\Restler\Restler;
+
+$log = KLogger::instance('logs', Klogger::DEBUG);
+$log->logInfo('======================================================');
+$log->logInfo('================== Starting process ==================');
+$log->logInfo('======================================================');
 
 $r = new Restler();
 $r->setSupportedFormats('JsonFormat', 'UploadFormat');
