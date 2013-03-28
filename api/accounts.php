@@ -19,7 +19,7 @@ class Accounts {
 
     function __construct() {
         // Le EPIC logger init
-        $this->_log = KLogger::instance(LOGS_BASE, Klogger::DEBUG);
+        $this->_log = KLogger::instance('logs', Klogger::DEBUG);
 
         $this->_log->logInfo('======================================================');
         $this->_log->logInfo('================== Starting process ==================');
