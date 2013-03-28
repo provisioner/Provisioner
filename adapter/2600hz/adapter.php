@@ -188,7 +188,7 @@ class adapter_2600hz_adapter {
             elseif(file_exists(PROVISIONER_BASE . 'adapter/2600hz/' . $model_doc_mame))
                 $master_template = $model_doc_mame;
             else
-                $master_template = 'master.json'
+                $master_template = 'master.json';
 
             // Building lines settings
             $line_settings = json_decode($objTwig->render($master_template, $merged_settings), true);
