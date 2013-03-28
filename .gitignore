@@ -2,7 +2,7 @@ setup.php
 master.json
 config.json
 temp/
-logs/
+logs/log*
 
 .DS_Store
 /nbproject/private/
