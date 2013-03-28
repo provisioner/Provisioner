@@ -25,11 +25,6 @@ require_once 'lib/restler/restler.php';
 require_once 'lib/KLogger.php';
 use Luracast\Restler\Restler;
 
-$log = KLogger::instance('logs', Klogger::DEBUG);
-$log->logInfo('======================================================');
-$log->logInfo('================== Starting process ==================');
-$log->logInfo('======================================================');
-
 $r = new Restler();
 $r->setSupportedFormats('JsonFormat', 'UploadFormat');
 $r->addAPIClass('phones');

@@ -21,6 +21,9 @@ class Accounts {
         // Le EPIC logger init
         $this->_log = KLogger::instance(LOGS_BASE, Klogger::DEBUG);
 
+        $log->logInfo('======================================================');
+        $log->logInfo('================== Starting process ==================');
+        $log->logInfo('======================================================');
         $this->_log->logDebug("Connecting to BigCouch...");
         $this->db = new BigCouch(DB_SERVER, DB_PORT);
     }
