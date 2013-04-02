@@ -35,7 +35,6 @@ if (!isset($argv)) {
     //$ua = "Mozilla/4.0 (compatible; snom710-SIP 8.7.3.8 1.1.5-IFX-05.01.12)";
     //$uri = "/000413742517.xml";
 
-
     //$ua = strtolower("FileTransport PolycomSoundStationIP-SSIP_5000-UA/4.0.3.7562 (SN:001565000000) Type/Application");
     //$uri = "/002e3a6fe532d90943e6fcaf08e1a408/001565000000_reg.cfg";
 
