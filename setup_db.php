@@ -141,6 +141,15 @@ if (strtolower($configs->database->type) == "bigcouch") {
         die("ERROR: " . $e->getMessage() . " (" . $e->getCode() . ")<br>");
     }
 
+    // Mac Lookup Database
+    // ===================
+
+    // Creating the database
+    $couch_client->useDatabase($configs->db_prefix . "mac_lookup");
+
+    if (!$couch_client->databaseExists())
+        $couch_client->createDatabase();
+
     // OK, this is lame... But better than nothing.
     // TODO: put an ugly ASCII art right here
     echo "=========================== <br>";
