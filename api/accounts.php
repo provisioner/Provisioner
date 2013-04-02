@@ -123,7 +123,7 @@ class Accounts {
         }
 
         if ($mac_address) {
-            $this->_log->logDebug("Will not edit the mac_lookup...");
+            $this->_log->logDebug("Will now edit the mac_lookup...");
             if (!$this->db->isDocExist('mac_lookup', $mac_address)) {
                 $obj = array('_id' => $mac_address, 'account_id' => $account_id);
                 if ($this->db->add('mac_lookup', $obj))
