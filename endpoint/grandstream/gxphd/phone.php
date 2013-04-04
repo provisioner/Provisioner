@@ -13,6 +13,27 @@ class endpoint_grandstream_gxphd_phone extends endpoint_grandstream_base {
 
     function parse_lines_hook($line_data, $line_total) {
         $line_data['line_active'] = (isset($line_data['secret']) ? '1' : '0');
+
+        if (isset($line_data['transport'])) {
+            switch ($line_data['transport']) {
+                case "UDP":
+                    $line_data['transport'] = 0;
+                    break;
+                case "TCP":
+                    $line_data['transport'] = 1;
+                    break;
+                case "TLS":
+                    $line_data['transport'] = 2;
+                    break;
+                default:
+                    $line_data['transport'] = 0;
+                    break;
+            }
+        } else {
+            $line_data['transport'] = 0;
+        }
+        
+        
         return($line_data);
     }
 
