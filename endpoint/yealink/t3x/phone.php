@@ -14,7 +14,7 @@ class endpoint_yealink_t3x_phone extends endpoint_yealink_base {
 
     function parse_lines_hook($line_data, $line_total) {
         $line_data['line_active'] = 1;
-        $line_data['line_m1'] = $line_data['line'] - 1;
+        $line_data['line_m1'] = $line_data['line'];
         $line_data['voicemail_number'] = '*97';
         $line_data['missed_call_log'] = isset($this->settings['missed_call_log']) ? $this->settings['missed_call_log'] : 0;
         
