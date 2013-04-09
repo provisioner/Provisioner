@@ -3,6 +3,7 @@ master.json
 config.json
 temp/
 logs/log*
+api/logs/log*
 
 .DS_Store
 /nbproject/private/
