@@ -164,7 +164,7 @@ P330 = {$enable_xml_phonebook}
 # This is a string of up to 256 characters that should contain a path to the XML file.  
 # It MUST be in the host/path format. For example: "directory.grandstream.com/engineering"
 # String
-P331 =
+P331 = {$xml_server_path}
 
 # Phonebook Download Interval
 # This is an integer variable in minute.  
@@ -595,7 +595,7 @@ P250 = 400
 # SIP Transport. 0 - UDP, 1 - TCP, 2 - TLS/TCP
 # Number: 0-2
 # Mandatory
-P130 = 0
+P130 = {$transport.line.1|0}
 
 # SIP URI Scheme when using TLS. 0 - sip, 1 - sips. Default is 1
 # Number: 0, 1

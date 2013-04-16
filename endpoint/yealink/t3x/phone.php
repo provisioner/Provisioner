@@ -130,5 +130,23 @@ class endpoint_yealink_t3x_phone extends endpoint_yealink_base {
                 }
             }
         }
+        
+        // check if logo_url
+        $filename = 'custom.png';
+        if(isset($this->settings['logo_url']) && strlen($this->settings['logo_url']))
+        {
+        	// set to logo filename
+	        $url = $this->settings['logo_url'];
+	        $parts = explode('/', $url);
+	        $filename = array_pop($parts);
+	        $this->settings['logo_url_file'] = $filename;
+	        $this->settings['uselogo'] = 'Config:'.$filename;
+        }
+	        
+        // handle custom logo properly
+        if(isset($this->settings['uselogo']) && stristr($this->settings['uselogo'], "Config:"))
+        {
+	        $this->settings['uselogo'] = 'Config:'.$filename;
+        }
     }
 }
