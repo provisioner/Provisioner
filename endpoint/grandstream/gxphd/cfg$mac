@@ -758,7 +758,7 @@ P272 = 0
 # Account Ring Tone. 0 - system ring tone, 1 - custom ring tone 1, 2 - custom ring tone 2, 3 - custom ring tone 3.
 # Number: 0-3
 # Mandatory
-P104 = 0
+P104 = 3
 
 # Matching Incoming Caller ID. Matching Rule 1.
 # String
@@ -841,12 +841,12 @@ P258 = 0
 # choice 1.   
 # Number: 0, 2, 4, 8, 9, 18, 98
 # Mandatory
-P57 = 0
+P57 = 18
 
 # choice 2.  
 # Number: 0, 2, 4, 8, 9, 18, 98
 # Mandatory
-P58 = 8
+P58 = 0
 
 # choice 3.   
 # Number: 0, 2, 4, 8, 9, 18, 98
@@ -1292,12 +1292,12 @@ P449 = 0
 # choice 1.   
 # Number: 0, 2, 4, 8, 9, 18, 98
 # Mandatory
-P451 = 0
+P451 = 18
 
 # choice 2.  
 # Number: 0, 2, 4, 8, 9, 18, 98
 # Mandatory
-P452 = 8
+P452 = 0
 
 # choice 3.   
 # Number: 0, 2, 4, 8, 9, 18, 98
@@ -1742,12 +1742,12 @@ P549 = 0
 # choice 1.   
 # Number: 0, 2, 4, 8, 9, 18, 98
 # Mandatory
-P551 = 0
+P551 = 18
 
 # choice 2.  
 # Number: 0, 2, 4, 8, 9, 18, 98
 # Mandatory
-P552 = 8
+P552 = 0
 
 # choice 3.   
 # Number: 0, 2, 4, 8, 9, 18, 98
@@ -2193,12 +2193,12 @@ P649 = 0
 # choice 1.   
 # Number: 0, 2, 4, 8, 9, 18, 98
 # Mandatory
-P651 = 0
+P651 = 18
 
 # choice 2.  
 # Number: 0, 2, 4, 8, 9, 18, 98
 # Mandatory
-P652 = 8
+P652 = 0
 
 # choice 3.   
 # Number: 0, 2, 4, 8, 9, 18, 98
