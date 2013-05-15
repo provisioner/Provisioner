@@ -46,6 +46,7 @@ if (strtolower($configs->database->type) == "bigcouch") {
     $provider_doc->domain = $provider->domain;
     $provider_doc->default_account_id = null;
     $provider_doc->pvt_access_type = "admin";
+    $provider_doc->pvt_type = "provider";
     $provider_doc->settings = null;
 
     $provider_view = new stdCLass();
@@ -152,9 +153,9 @@ if (strtolower($configs->database->type) == "bigcouch") {
 
     // OK, this is lame... But better than nothing.
     // TODO: put an ugly ASCII art right here
-    echo "=========================== <br>";
-    echo "SUCCESS!<br>";
-    echo "=========================== <br>";
+    echo "=========================== \n";
+    echo "SUCCESS!\n";
+    echo "=========================== \n";
 }
 
  ?>
