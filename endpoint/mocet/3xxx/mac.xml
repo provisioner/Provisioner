@@ -47,6 +47,10 @@
         <Line_SipProxyPort type="integer">{{ line.sip_server.primary.port }}</Line_SipProxyPort>
         <Line_SipOutboundProxy type="string">{{ line.outbound_proxy.primary.host }}</Line_SipOutboundProxy>
         <Line_SipOutboundPort type="integer">{{ line.outbound_proxy.primary.port }}</Line_SipOutboundPort>
+        <Line_SipRegistrar type="string">{{ line.outbound_proxy.primary.host }}</Line_SipRegistrar>
+        <Line_SipRegistrarOutbound type="string">{{ line.outbound_proxy.primary.host }}</Line_SipRegistrarOutbound>
+        <Line_SipRegistrarPort type="integer">{{ line.outbound_proxy.primary.port }}</Line_SipRegistrarPort>
+        <Line_SipRegistrarOutboundPort type="integer">{{ line.outbound_proxy.primary.port }}</Line_SipRegistrarOutboundPort>
         <Line_SIPRegExpireTime type="integer">{{ line.expire|default('60') }} </Line_SIPRegExpireTime>
         <Line_SIPRegRetryAfterTime type="integer">300</Line_SIPRegRetryAfterTime>
         <Line_BKSipProxy type="string"/>
