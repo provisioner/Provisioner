@@ -1,0 +1,20 @@
+{
+    "Pacific/Midway": "2",
+    "America/Adak": "4",
+    "America/Anchorage": "6",
+    "America/Los_Angeles": "8",
+    "America/Hermosillo": "10",
+    "America/Belize": "12",
+    "America/Bogota": "14",
+    "America/Aruba": "16",
+    "America/St_Johns": "17",
+    "America/Mendoza": "18",
+    "America/Noronha": "20",
+    "America/Scoresbysund": "22",
+    "America/Danmarkshavn": "24",
+    "Pacific/Palau": "42",
+    "Pacific/Port_Moresby": "44",
+    "Pacific/Kosrae": "46",
+    "Pacific/Tarawa": "48",
+    "Pacific/Apia": "50"
+}

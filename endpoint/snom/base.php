@@ -4,6 +4,7 @@
  * Snom Base File
  *
  * @author Jort
+ * @author Francis Genet
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
  */
