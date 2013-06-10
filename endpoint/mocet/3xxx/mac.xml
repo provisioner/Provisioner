@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <PhoneConfig>
+    <APSInformation>
+        <APS_Enable type="integer">1</APS_Enable>
+        <APS_On_Boot type="integer">1</APS_On_Boot>
+        <APS_Period type="integer">10</APS_Period>
+        <APS_Server_Type type="integer">1</APS_Server_Type>
+        <APS_Server_Directory type="string">provisioner</APS_Server_Directory>
+        <APS_Server_Name type="string"></APS_Server_Name>
+        <APS_Server_Password type="string"></APS_Server_Password>
+    </APSInformation>
     <SystemSettings>
         <System_Admin_Name type="string">admin</System_Admin_Name>
         <System_Admin_Password type="string">{{ password.admin|default('1234') }}</System_Admin_Password>
@@ -39,6 +48,7 @@
     <LineSettings index="{{ x }}">
         <Line_Server_Mode type="integer">0</Line_Server_Mode>
         <Line_Enable type="integer">{{ line.enable }}</Line_Enable>
+        <Line_Extention type="string">{{ line.username }}</Line_Extention>
         <Line_User type="string">{{ line.auth_name }}</Line_User>
         <Line_Password type="string">{{ line.auth_password }}</Line_Password>
         <Line_DisplayName type="string">{{ line.display_name }}</Line_DisplayName>
@@ -47,12 +57,12 @@
         <Line_SipProxyPort type="integer">{{ line.sip_server.primary.port }}</Line_SipProxyPort>
         <Line_SipOutboundProxy type="string">{{ line.outbound_proxy.primary.host }}</Line_SipOutboundProxy>
         <Line_SipOutboundPort type="integer">{{ line.outbound_proxy.primary.port }}</Line_SipOutboundPort>
-        <Line_SipRegistrar type="string">{{ line.outbound_proxy.primary.host }}</Line_SipRegistrar>
+        <Line_SipRegistrar type="string">{{ line.sip_server.primary.host }}</Line_SipRegistrar>
         <Line_SipRegistrarOutbound type="string">{{ line.outbound_proxy.primary.host }}</Line_SipRegistrarOutbound>
-        <Line_SipRegistrarPort type="integer">{{ line.outbound_proxy.primary.port }}</Line_SipRegistrarPort>
+        <Line_SipRegistrarPort type="integer">{{ line.sip_server.primary.port }}</Line_SipRegistrarPort>
         <Line_SipRegistrarOutboundPort type="integer">{{ line.outbound_proxy.primary.port }}</Line_SipRegistrarOutboundPort>
-        <Line_SIPRegExpireTime type="integer">{{ line.expire|default('60') }} </Line_SIPRegExpireTime>
-        <Line_SIPRegRetryAfterTime type="integer">300</Line_SIPRegRetryAfterTime>
+        <Line_SIPRegExpireTime type="integer">{{ line.expire|default('60') }}</Line_SIPRegExpireTime>
+        <Line_SIPRegRetryAfterTime type="integer">{{ line.expire|default('60') }}</Line_SIPRegRetryAfterTime>
         <Line_BKSipProxy type="string"/>
         <Line_BKSipProxyPort type="integer">5060</Line_BKSipProxyPort>
         <Line_BKSipRegistrar type="string"/>
@@ -68,7 +78,7 @@
         <Line_MWI_Enable type="integer">0</Line_MWI_Enable>
         <Line_MWI_Address type="string"/>
         <Line_MWI_Port type="integer">5060</Line_MWI_Port>
-        <Line_VoiceMailAccount type="string">voicemail</Line_VoiceMailAccount>
+        <Line_VoiceMailAccount type="string">*97</Line_VoiceMailAccount>
         <Line_VoiceMail_AccessCode type="string"/>
         <Line_CLIP type="integer">1</Line_CLIP>
         <Line_CLIR type="integer">0</Line_CLIR>
