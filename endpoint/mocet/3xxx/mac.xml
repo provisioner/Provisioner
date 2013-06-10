@@ -5,7 +5,6 @@
         <APS_On_Boot type="integer">1</APS_On_Boot>
         <APS_Period type="integer">10</APS_Period>
         <APS_Server_Type type="integer">1</APS_Server_Type>
-        <APS_Server_Directory type="string">provisioner</APS_Server_Directory>
         <APS_Server_Name type="string"></APS_Server_Name>
         <APS_Server_Password type="string"></APS_Server_Password>
     </APSInformation>
