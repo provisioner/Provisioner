@@ -98,11 +98,11 @@ class BigCouch {
                             ->startkey(array($filter_key))
                             ->endkey(array($filter_key, array()))
                             ->asArray()
-                            ->getView($database, "list_by_$document_type");
+                            ->getView(DB_PREFIX . $database, "list_by_$document_type");
             else
                 $response = $this->_couch_client
                             ->asArray()
-                            ->getView($database, "list_by_$document_type");
+                            ->getView(DB_PREFIX . $database, "list_by_$document_type");
 
             if ($format)
                 return $this->_formatViewResponse($response);
@@ -118,7 +118,7 @@ class BigCouch {
         $this->_set_client($database);
 
         try {
-            return $this->_couch_client->asArray()->key($filter_key)->getView($database, "list_by_$document_type");
+            return $this->_couch_client->asArray()->key($filter_key)->getView(DB_PREFIX . $database, "list_by_$document_type");
         } catch (Exception $e) {
             return false;
         }
@@ -222,7 +222,7 @@ class BigCouch {
                          ->startkey($startkey)
                          ->endkey($endkey)
                          ->asArray()
-                         ->getView($database, "list_by_all");
+                         ->getView(DB_PREFIX . $database, "list_by_all");
 
         foreach ($response['rows'] as  $row) {
             if ($this->delete($database, $row['id']))
