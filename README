@@ -1,7 +1,7 @@
-Provisioner v5.2.1
+Provisioner v5.3.1
 ----------------
 
-Supported phones (03.04.2013):
+Supported phones (06.11.2013):
 
 Yealink 
  - t1x
@@ -13,6 +13,8 @@ Cisco
  - spa
 Snom
  - 7xx
+Mocet
+ - 3xxx
 
 -------------------------------
 
