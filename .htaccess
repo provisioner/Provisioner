@@ -5,3 +5,9 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ process.php [L]
+
+<Files config.json>
+    Order allow,deny
+    Deny from all
+    Allow from 127.0.0.1
+</Files>
