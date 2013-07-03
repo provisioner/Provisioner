@@ -35,12 +35,18 @@ class wrapper_bigcouch {
     public function __construct($server_url, $port = '5984') {
         $this->_log = KLogger::instance(LOGS_BASE, Klogger::DEBUG);
 
-        if (strlen($server_url))
-            $this->_server_url = $server_url . ':' . $port;
-
         // Load the settings
         $objSettings = new helper_settings();
         $this->_settings = $objSettings->getSettings();
+
+        if (strlen($server_url))
+            $this->_server_url = $server_url . ':' . $port;
+
+        if (strlen($this->_settings->database->username) && strlen($this->_settings->database->password)) {
+            $this->_server_url = str_replace('http://', '', $this->_server_url);
+            $credentials = $this->_settings->database->username . ':' . $this->_settings->database->password . '@';
+            $this->_server_url = 'http://' . $credentials . $this->_server_url;
+        }
     }
 
     // will return an array of the requested document
