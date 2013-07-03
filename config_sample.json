@@ -13,6 +13,8 @@
         "type": "bigcouch",
         "url": "http://my.bigcouch-server.com",
         "port": 5984,
+        "user": "",
+        "pass": "",
 
         "master_provider": {
             "name": "Master provider",
