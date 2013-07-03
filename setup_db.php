@@ -27,6 +27,11 @@ if (!$configs)
 $server_url = $configs->database->url . ":" . $configs->database->port;
 
 if (strtolower($configs->database->type) == "bigcouch") {
+    if ($configs->database->username && $configs->database->password) {
+        $server_url = str_replace('http://', '', $server_url);
+        $credentials = $configs->database->username . ':' . $configs->database->password . '@';
+        $server_url = 'http://' . $credentials . $server_url;
+    }
 
     // Providers
     // =========
