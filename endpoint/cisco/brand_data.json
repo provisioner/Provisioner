@@ -55,6 +55,14 @@
           "description": "",
           "changelog": "",
           "last_modified": null
+        },
+        {
+          "id": "7",
+          "name": "Cisco SIP 797xG Models [7970G,7971G-GE]",
+          "directory": "sip797xG",
+          "description": "",
+          "changelog": "",
+          "last_modified": null
         }
       ],
       "oui_list": [
@@ -97,7 +105,7 @@
         "D0D0FD",
         "E05FB9"
       ],
-      "changelog": "PACKAGER: Quick fix for BLF on SPA5xx"
+      "changelog": "PACKAGER: Add sip797xG phones"
     }
   }
 }
