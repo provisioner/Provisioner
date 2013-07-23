@@ -34,7 +34,7 @@
         },
         {
           "id": "3",
-          "name": "SoundPoint\/Station\/VVX In-Production Models [321,331,335,450,550,560,650,670,5000,6000,7000,1500]",
+          "name": "SoundPoint\/Station\/VVX In-Production Models [321,331,335,450,550,560,650,670,5000,6000,7000,500,1500]",
           "directory": "spipm",
           "description": "Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality",
           "changelog": "",
