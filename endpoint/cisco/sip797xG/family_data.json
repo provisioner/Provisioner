@@ -1,0 +1,36 @@
+{
+    "data": {
+        "name": "Cisco SIP 797xG Models [7970G,7971G-GE]",
+        "id": "7",
+        "directory": "sip797xG",
+        "firmware_ver": "",
+        "firmware_pkg": "NULL",
+        "firmware_md5sum": "",
+        "description": "",
+        "configuration_files": "SEP$mac.cnf.xml,XMLDefault.cnf.xml,ringlist.xml,dialplan.xml",
+        "changelog": "",
+        "provisioning_types": [
+            "tftp"
+        ],
+        "model_list": [
+            {
+                "model": "7970G",
+                "lines": "8",
+                "id": "1",
+                "firmware": "SIP70.*.loads",
+                "template_data": [
+                    "template_data.json"
+                ]
+            },
+            {
+                "model": "7971G-GE",
+                "lines": "8",
+                "id": "2",
+                "firmware": "SIP07.*.loads",
+                "template_data": [
+                    "template_data.json"
+                ]
+            }
+        ]
+    }
+}
