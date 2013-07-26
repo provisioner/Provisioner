@@ -5,8 +5,8 @@
       "brand_id": "7",
       "directory": "cisco",
       "package": "cisco.tgz",
-      "md5sum": "72805e30ca22551ea7b043f5b84fbd6e",
-      "last_modified": 1354171030,
+      "md5sum": "c71503c551ee01f8d2e4212a4ddb9667",
+      "last_modified": 1374806631,
       "family_list": [
         {
           "id": "5",
@@ -21,6 +21,14 @@
           "name": "Linksys\/Cisco\/Sipura SPA Adapter Models [AG310,PAP2T,RTP300,SPA1001,SPA2102,SPA3102,SPA8000,WRP400,WRTP54G,WRT54G2]",
           "directory": "linksysata",
           "description": "New Device",
+          "changelog": "",
+          "last_modified": null
+        },
+        {
+          "id": "7",
+          "name": "Cisco SIP 797xG Models [7970G,7971G-GE]",
+          "directory": "sip797xG",
+          "description": "",
           "changelog": "",
           "last_modified": null
         },
@@ -52,14 +60,6 @@
           "id": "3",
           "name": "Linksys\/Cisco\/Sipura SPA Phone Models 5xx, 3xx [303,501G,502G,504G,525G,525G2]",
           "directory": "spa5xx",
-          "description": "",
-          "changelog": "",
-          "last_modified": null
-        },
-        {
-          "id": "7",
-          "name": "Cisco SIP 797xG Models [7970G,7971G-GE]",
-          "directory": "sip797xG",
           "description": "",
           "changelog": "",
           "last_modified": null
@@ -105,7 +105,7 @@
         "D0D0FD",
         "E05FB9"
       ],
-      "changelog": "PACKAGER: Add sip797xG phones"
+      "changelog": "PACKAGER: PHPUnit tests for conflicting ids in both families and models"
     }
   }
 }

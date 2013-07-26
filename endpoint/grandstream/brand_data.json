@@ -5,8 +5,8 @@
       "directory": "grandstream",
       "brand_id": "2",
       "package": "grandstream.tgz",
-      "md5sum": "5a658b68a66a7aa069533f8d247ff154",
-      "last_modified": 1358327019,
+      "md5sum": "7ea7e6c9c5c758d62a493c04cd882695",
+      "last_modified": 1374806631,
       "family_list": [
         {
           "id": "2",
@@ -44,7 +44,7 @@
       "oui_list": [
         "000B82"
       ],
-      "changelog": "PACKAGER: Update endpoint\/grandstream\/gxphd\/ext_b_2.json"
+      "changelog": "PACKAGER: PHPUnit tests for conflicting ids in both families and models"
     }
   }
 }

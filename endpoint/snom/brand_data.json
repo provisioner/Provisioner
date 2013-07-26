@@ -5,13 +5,21 @@
       "directory": "snom",
       "brand_id": "6",
       "package": "snom.tgz",
-      "md5sum": "14a2efb7510da1fc1d34e663373e6bf3",
-      "last_modified": 1362093464,
+      "md5sum": "6e4bbc5456f599454fdcdf5b463330b4",
+      "last_modified": 1374806631,
       "family_list": [
         {
           "id": "1",
           "name": "Snom 3xx Models [300, 320, 360, 370]",
           "directory": "3xx820m3",
+          "description": "Server + Password Settings, htm File Fixes",
+          "changelog": "",
+          "last_modified": null
+        },
+        {
+          "id": "4",
+          "name": "Snom 3xx Models EM [320, 360, 370 with Expansion Module]",
+          "directory": "3xxEM",
           "description": "Server + Password Settings, htm File Fixes",
           "changelog": "",
           "last_modified": null
@@ -26,16 +34,8 @@
         },
         {
           "id": "2",
-          "name": "Snom 8xx Models [870]",
+          "name": "Snom 8xx Models [820, 821, 870]",
           "directory": "8xx",
-          "description": "Server + Password Settings, htm File Fixes",
-          "changelog": "",
-          "last_modified": null
-        },
-        {
-          "id": "4",
-          "name": "Snom 3xx Models EM [320-60-70 with Expansion Module]",
-          "directory": "3xxEM",
           "description": "Server + Password Settings, htm File Fixes",
           "changelog": "",
           "last_modified": null
@@ -44,7 +44,7 @@
       "oui_list": [
         "000413"
       ],
-      "changelog": "PACKAGER: Update endpoint\/snom\/7xx\/template_data.json\n\nAdd firmware URL\n\nAdd Expansion Module for 3xx serie"
+      "changelog": "PACKAGER: PHPUnit tests for conflicting ids in both families and models"
     }
   }
 }
