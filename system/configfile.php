@@ -211,11 +211,15 @@ class system_configfile {
     // This will return the current url for the provisioner
     // ex: http://localhost:8888/Provisioner
     public function get_current_provisioning_url() {
-        $host = $_SERVER['HTTP_HOST'];
-        $full_uri = $_SERVER['REQUEST_URI'];
-
-        preg_match('/^(.*\/)(.*)$/', $full_uri, $match);
-        $target_uri = $match[1];
+        if(PHP_SAPI != 'cli') {
+		$host = $_SERVER['HTTP_HOST'];
+        	$full_uri = $_SERVER['REQUEST_URI'];
+		preg_match('/^(.*\/)(.*)$/', $full_uri, $match);
+		$target_uri = $match[1];
+	} else {
+		$host = '';
+		$target_uri = '';
+	}
 
         if ($this->_strRequestType)
             return $this->_strRequestType . '://' . $host . $target_uri;

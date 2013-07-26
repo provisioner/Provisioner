@@ -104,7 +104,7 @@ if (!isset($argv)) {
         // This is not doing it for now, it will need to be implemented
         $result = $config_manager->generate_config_file();
         if ($result)
-            echo $result;
+            echo '['.$value.']'.$result;
         else
             die();
     }

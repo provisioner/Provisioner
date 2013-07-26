@@ -23,7 +23,8 @@ class endpoint_yealink_base extends endpoint_base {
             $settings['timezone'] = $constants['timezone_lookup'][$settings['timezone']];
 
         // Codecs
-        foreach ($settings['media']['audio']['codecs'] as $codec) {
+        if(isset($settings['media']['audio']['codecs'])) {
+	foreach ($settings['media']['audio']['codecs'] as $codec) {
             if ($codec == "G729")
                 $settings['codecs']['g729'] = true;
             elseif ($codec == "PCMU")
@@ -33,6 +34,7 @@ class endpoint_yealink_base extends endpoint_base {
             elseif ($codec == "G722_16" || $codec == "G722_32") 
                 $settings['codecs']['g722'] = true;
         }
+	}
 
         $this->config_manager->set_settings($settings);
     }
