@@ -1,8 +1,7 @@
 <?php
 
-require_once "../classes/utils.php";
-require_once "../bootstrap.php";
-
+require_once dirname(__FILE__)."/classes/utils.php";
+require_once dirname(__FILE__)."/bootstrap.php";
 
 class UtilsTest extends PHPUnit_Framework_TestCase {
     public function testGetMacAddress() {
