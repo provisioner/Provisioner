@@ -1,6 +1,6 @@
 {
   "data": {
-    "name": "SoundPoint\/Station\/VVX In-Production Models [321,331,335,450,550,560,650,670,5000,6000,7000,1500]",
+    "name": "SoundPoint\/Station\/VVX In-Production Models [321,331,335,450,550,560,650,670,5000,6000,7000,500,1500]",
     "id": "3",
     "directory": "spipm",
     "firmware_ver": 1345576660,
@@ -79,7 +79,7 @@
       },
       {
         "model": "SoundPoint IP 650",
-        "lines": "6",
+        "lines": "34",
         "id": "8",
         "template_data": [
           "linekeys.json",
@@ -90,7 +90,7 @@
       },
       {
         "model": "SoundPoint IP 670",
-        "lines": "6",
+        "lines": "34",
         "id": "9",
         "template_data": [
           "linekeys.json",
@@ -102,7 +102,7 @@
       {
         "model": "SoundPoint IP 6000",
         "id": "10",
-        "lines": "3",
+        "lines": "1",
         "template_data": [
           "linekeys.json",
           "template_data.json",
@@ -112,7 +112,7 @@
       {
         "model": "SoundPoint IP 7000",
         "id": "11",
-        "lines": "3",
+        "lines": "1",
         "template_data": [
           "linekeys.json",
           "template_data.json",
@@ -120,7 +120,7 @@
         ]
       },
       {
-        "model": "SoundPoint IP VVX 1500",
+        "model": "VVX 1500",
         "id": "12",
         "lines": "3",
         "template_data": [
@@ -132,7 +132,17 @@
       {
         "model": "SoundPoint IP 5000",
         "id": "15",
-        "lines": "2",
+        "lines": "1",
+        "template_data": [
+          "linekeys.json",
+          "template_data.json",
+          "buddylist.json"
+        ]
+      },
+      {
+        "model": "VVX 500",
+        "id": "16",
+        "lines": "12",
         "template_data": [
           "linekeys.json",
           "template_data.json",
