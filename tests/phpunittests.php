@@ -25,13 +25,25 @@ class StackTest extends PHPUnit_Framework_TestCase
 		    if(file_exists($brand_filename)) {
 				$brand_data = $endpoint->file2json($brand_filename);
 				$family_list = $brand_data['data']['brands']['family_list'];
+                $family_ids = array();
 				foreach($family_list as $familydir) {
+                    if(!in_array($familydir['id'], $family_ids)){
+                        $family_ids[]=$familydir['id'];
+                    } else {
+                        $this->assertFalse(TRUE, "family_list id " . $familydir['id'] . " is duplicated in " . $brand_filename);
+                    }
 					$family_filename = $branddir . '/' . $familydir['directory'] . '/family_data.json';
 					$this->assertTrue(file_exists($family_filename), $branddir . '/' . $familydir['directory'] . ' is missing family_data.json');
 					if(file_exists($family_filename)) {
 						$family_data = $endpoint->file2json($family_filename);
 						$model_data = $family_data['data']['model_list'];
+                        $model_ids = array();
 						foreach($model_data as $modeld) {
+                            if(!in_array($modeld['id'], $model_ids)){
+                                $model_ids[]=$modeld['id'];
+                            } else {
+                                $this->assertFalse(TRUE, "model_list id " . $modeld['id'] . " duplicated in " . $family_filename);
+                            }
 							foreach($modeld['template_data'] as $template_filenames) {
 								$this->assertTrue(file_exists($branddir . '/' . $familydir['directory'] . '/'. $template_filenames), $branddir . '/' . $familydir['directory'] . ' is missing '. $template_filenames);
 								$template_data = $endpoint->file2json($branddir . '/' . $familydir['directory'] . '/'. $template_filenames);
