@@ -121,13 +121,15 @@ foreach (glob(MODULES_DIR."/*", GLOB_ONLYDIR) as $filename) {
 }
 
 copy(ROOT_DIR."/autoload.php",ROOT_DIR."/setup.php");
+mkdir(ROOT_DIR."/temp");
+touch(ROOT_DIR."/temp/.temp");      // Yes it is possible to create a tar with an empty directory, but not all file systems are created equal.
 $endpoint_max[0] = filemtime(ROOT_DIR."/autoload.php");
 $endpoint_max[1] = filemtime(MODULES_DIR."/base.php");
 $endpoint_mac[2] = filemtime(MODULES_DIR."/global_template_data.json");
 
 $endpoint_max = max($endpoint_max);
 
-exec("tar zcf ".RELEASE_DIR."/provisioner_net.tgz --exclude .svn -C ".ROOT_DIR."/ setup.php endpoint/base.php endpoint/global_template_data.json");
+exec("tar zcf ".RELEASE_DIR."/provisioner_net.tgz --exclude .svn -C ".ROOT_DIR."/ autoload.php setup.php endpoint/base.php endpoint/global_template_data.json temp/.temp");
 
 unlink(ROOT_DIR."/setup.php");
 
