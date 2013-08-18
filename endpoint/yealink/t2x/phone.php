@@ -15,7 +15,8 @@ class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
 
     function prepareConfig() {
         parent::prepareConfig();
+		$settings = $this->config_manager->get_settings();
+
+		$this->config_manager->set_settings($settings);
     }
 }
-
-?>

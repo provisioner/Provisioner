@@ -36,6 +36,7 @@ class ProvisionerConfig {
         return FALSE;
     }
 }
-
+//Supress PHP output
+ob_start();
 ProvisionerConfig::setup();
 require_once 'simple_twig.php';

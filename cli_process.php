@@ -74,38 +74,19 @@ if (!isset($argv)) {
 // CLI Based
 } else {
     // Just making sure that everything is where it should be
-    if(!isset($argv[1]) || !isset($argv[2]) || !isset($argv[3])) {
-        die("Usage: php process.php <brand> <model> <source_file_path>\n");
+    if(!isset($argv[1])) {
+        die("Usage: php process.php <source_file_path>\n");
     }
 
-    $brand = strtolower($argv[1]);
-    $model = strtolower($argv[2]);
     $source_file_path = $argv[3];
+	
+	$this->adaptor->load_json($source_file_path);
+	
+	$config = $this->adaptor->get_config_manager();
 
-    if(!file_exists($source_file_path)) {
-        die("File " . $source_file_path . " does not exist!\n");
-    }
-
-    $arrConfig = json_decode(file_get_contents($source_file_path), true);
-    if(helper_utils::json_errors()) {
-        die("FATAL: " . helper_utils::json_errors() . "\n");
-    }
-
-    // This is adapter is generic and is basically building a simple config manager
-    // with a minimum of information (brand/model/a file containing the settings)
-    $adapter = new adapter_generic_adapter();
-    $config_manager = $adapter->get_config_manager($brand, $model, $arrConfig);
-    $config_manager->set_request_type('tftp');
-
-    foreach (helper_utils::get_file_list($brand, $model) as $value) {
-        $config_manager->set_config_file($value);
-
-        // make a file with the returned value
-        // This is not doing it for now, it will need to be implemented
-        $result = $config_manager->generate_config_file();
-        if ($result)
-            echo '['.$value.']'.$result;
-        else
-            die();
-    }
+	$out = $config->generate_config_files();
+	
+	foreach($out as $filename => $data) {
+		
+	}
 }
