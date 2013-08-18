@@ -50,16 +50,16 @@ class provisionerTest extends PHPUnit_Framework_TestCase {
 	
     public function testLoadConfig()
     {
-		$file = file_get_contents('config1.conf');
+		$file = file_get_contents(dirname(__FILE__).'/config1.conf');
 		$json = json_decode($file,TRUE);
-		$o = $this->adaptor->load_json('config1.conf');
+		$o = $this->adaptor->load_json(dirname(__FILE__).'/config1.conf');
 		$this->assertEquals($json['mac'],$o['mac']);
 		$this->assertEquals($json['lines'][0]['display_name'],$o['lines'][0]['display_name']);
 		
 		//Now mash the data with a new set and see what we get
-		$file = file_get_contents('config2.conf');
+		$file = file_get_contents(dirname(__FILE__).'/config2.conf');
 		$json = json_decode($file,TRUE);
-		$o = $this->adaptor->load_json('config2.conf');
+		$o = $this->adaptor->load_json(dirname(__FILE__).'/config2.conf');
 		$this->assertEquals($json['mac'],$o['mac']);
 		$this->assertEquals($json['lines'][0]['display_name'],$o['lines'][0]['display_name']);
     }
