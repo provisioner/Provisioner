@@ -6,7 +6,7 @@ class provisionerTest extends PHPUnit_Framework_TestCase {
  
     protected function setUp()
     {
-        require_once('../bootstrap.php');
+        require_once(dirname(dirname(__FILE__)).'/bootstrap.php');
 		$this->adaptor = new adapter_generic_flat();
     }
  
