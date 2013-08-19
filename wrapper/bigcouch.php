@@ -102,7 +102,10 @@ class wrapper_bigcouch {
                 return $response['rows'][0]['value'];
             else 
                 return false;
+
         } catch (Exception $e) {
+            $this->_log->logCrit('Exception while getting the provider info!');
+            $this->_log->logDebug($e);
             return false;
         }
     }
