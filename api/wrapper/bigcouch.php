@@ -71,6 +71,11 @@ class BigCouch {
             return $doc;
     }
 
+    public function getUuid($database) {
+        $this->_set_client($database);
+        return $this->_couch_client->getUuids(1)[0];
+    }
+
     // Retrieve all the document for a specific db
     // /!\ not adapted to views
     public function getAll($database) {
@@ -85,6 +90,16 @@ class BigCouch {
         } catch (Exception $e) {
             return false;
         }
+    }
+
+    public function createDatabase($db_name) {
+        $this->_set_client($db_name);
+        if (!$this->_couch_client->databaseExists()) {
+            $this->_couch_client->createDatabase();
+            return true;
+        }
+
+        return false;
     }
 
     // Retrieve all the document of a certain type and for a specific key
