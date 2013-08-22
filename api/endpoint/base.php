@@ -18,18 +18,7 @@ abstract class endpoint_base {
 
     public function prepareConfig() {
         $settings = $this->config_manager->get_settings();
-
-        $settings['provisioning_url'] = $this->config_manager->get_current_provisioning_url();
         
         $this->config_manager->set_settings($settings);
     }
-	
-	public function setFilename($strFilename) {
-		$settings = $this->config_manager->get_settings();
-		
-		$strFilename = preg_replace('/\$mac/', $settings['mac'], $strFilename);
-		
-		return $strFilename;
-	}
-	
 }
