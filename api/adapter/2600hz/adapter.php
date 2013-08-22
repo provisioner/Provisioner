@@ -49,6 +49,7 @@ class adapter_2600hz_adapter {
 
         // Load the config manager
         $config_manager = new system_configfile();
+        $config_manager->set_mac_address($mac_address);
 
         $log->logInfo('Looking for the provider information...');
         // This is retrieve from a view, it is NOT the full doc
@@ -103,27 +104,11 @@ class adapter_2600hz_adapter {
             $log->logDebug("Family doc name: $family_doc_name");
             $log->logDebug("Model doc name: $model_doc_mame");
 
-            // This will import all the settings
-            $log->logInfo('Will now import default settings...');
-            // Getting static data from different data sources
-            if ($this->_settings->static_data_source == "flat") {
-                $log->logInfo('Doing it from flat files...');
-
-                $brand_file = STATIC_DIR . $brand_doc_name . ".json";
-                $family_file = STATIC_DIR . $family_doc_name . ".json";
-                $model_file = STATIC_DIR . $model_doc_mame . ".json";
-
-                $config_manager->import_settings(json_decode(file_get_contents($brand_file), true));
-                $config_manager->import_settings(json_decode(file_get_contents($family_file), true));
-                $config_manager->import_settings(json_decode(file_get_contents($model_file), true));
-            } else {
-                $log->logInfo('Doing it from the database...');
-                //$config_manager->import_settings($db->load_settings('system_account', 'global_settings'));
-                $config_manager->import_settings($db->load_settings('factory_defaults', $brand_doc_name));
-                $config_manager->import_settings($db->load_settings('factory_defaults', $family_doc_name));
-                $config_manager->import_settings($db->load_settings('factory_defaults', $model_doc_mame));
-            }
-            // =======
+            $log->logInfo('Doing it from the database...');
+            //$config_manager->import_settings($db->load_settings('system_account', 'global_settings'));
+            $config_manager->import_settings($db->load_settings('factory_defaults', $brand_doc_name));
+            $config_manager->import_settings($db->load_settings('factory_defaults', $family_doc_name));
+            $config_manager->import_settings($db->load_settings('factory_defaults', $model_doc_mame));
 
             // Why should we add that if it is empty?
             if (isset($provider_doc['settings'])) {
@@ -172,8 +157,8 @@ class adapter_2600hz_adapter {
             // Remerge everything
             $merged_settings = array_merge($merged_settings, $line_settings);
             
-            $log->logInfo('Reassigning merge object into the config manager...');
-            $config_manager->set_settings($merged_settings);
+            $log->logInfo('Reassigning merge object into the config manager at key 0...');
+            $config_manager->set_settings($merged_settings, false);
 
             return $config_manager;
         }
