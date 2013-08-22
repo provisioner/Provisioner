@@ -18,11 +18,11 @@ class AccessControl implements iAuthenticate {
     // The authentication is based on the current ip address of the API user
     // This is for now really basic, the user cannot have multiple authorized IP
     function __isAllowed() {
-        $this->db = new BigCouch(DB_SERVER, DB_PORT);
+        $db = new wrapper_bigcouch();
         $host_ip = $_SERVER['REMOTE_ADDR'];
         $database = 'providers';
 
-        $response = $this->db->getOneByKey($database, 'ip', $_SERVER['REMOTE_ADDR']);
+        $response = $db->getOneByKey($database, 'ip', $_SERVER['REMOTE_ADDR']);
         $access_type = isset($response['rows'][0]['value']['access_type']) ? $response['rows'][0]['value']['access_type'] : false;
 
         if (!$access_type) {
