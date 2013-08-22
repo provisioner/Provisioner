@@ -1,0 +1,70 @@
+phone_label: "{$displayname.line.1} "
+
+{line_loop}
+line{$line}_name: "{$authname}"
+line{$line}_shortname: "{$shortname}"
+line{$line}_displayname: "{$shortname}"
+line{$line}_authname: "{$authname}"
+line{$line}_password: "{$secret}"
+{/line_loop}
+
+messages_uri: "{$vmail|*97}"
+
+proxy1_address: "{$server.ip.1}" 
+proxy1_port:"5060"
+
+proxy_emergency: "" 
+proxy_emergency_port: "5060" 
+proxy_backup: "" 
+proxy_backup_port: "5060" 
+outbound_proxy: "" 
+outbound_proxy_port: "5060" 
+
+proxy_register: "1"
+timer_register_expires: "120"
+preferred_codec: "none"
+tos_media: "5"
+enable_vad: "0"
+dial_template: "dialplan"
+network_media_type: "auto"
+autocomplete: "1"
+telnet_level: "2"
+
+nat_enable: "0" 
+nat_address: "" 
+voip_control_port: "5060" 
+start_media_port: "16348" 
+end_media_port:  "20134" 
+nat_received_processing: "0" 
+dyn_dns_addr_1: ""
+dyn_dns_addr_2: ""
+dyn_tftp_addr: "{$server.ip.1}"
+tftp_cfg_dir: "./"
+
+time_zone: {$sip_7940_7960_time_zone}
+sntp_mode: "directedbroadcast"
+sntp_server: "{$network_time_server}"
+time_format_24hr: "1"
+dst_offset: "1"
+dst_start_month: "March"
+dst_start_day: ""
+dst_start_day_of_week: "Sun"
+dst_start_week_of_month: "2"
+dst_start_time: "2"
+dst_stop_month: "Nov"
+dst_stop_day: ""
+dst_stop_day_of_week: "Sunday"
+dst_stop_week_of_month: "1"
+dst_stop_time: "2"
+dst_auto_adjust: "1"
+
+services_url: "{$services_url}"
+directory_url: "{$directory_url}"               
+logo_url: "{$logo_url}"
+
+telnet_level: "2" 
+phone_prompt: "Cisco7960"
+phone_password: "{$telnet_password}" 
+enable_vad: "0" 
+network_media_type: "auto" 
+user_info: phone

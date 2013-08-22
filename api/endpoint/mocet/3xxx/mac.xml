@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<PhoneConfig>
+    <APSInformation>
+        <APS_Enable type="integer">1</APS_Enable>
+        <APS_On_Boot type="integer">1</APS_On_Boot>
+        <APS_Period type="integer">10</APS_Period>
+        <APS_Server_Type type="integer">1</APS_Server_Type>
+        <APS_Server_Name type="string"></APS_Server_Name>
+        <APS_Server_Password type="string"></APS_Server_Password>
+    </APSInformation>
+    <SystemSettings>
+        <System_Admin_Name type="string">admin</System_Admin_Name>
+        <System_Admin_Password type="string">{{ password.admin|default('1234') }}</System_Admin_Password>
+        <System_User_Name type="string">user</System_User_Name>
+        <System_User_Password type="string">{{ password.user|default('1111') }}</System_User_Password>
+        <System_TimeZone type="integer">8</System_TimeZone>
+    </SystemSettings>
+    <PhoneSettings>
+        <Hot_Line_Number type="string">{{ hotline }}</Hot_Line_Number>
+        <Hot_Line_Timeout type="integer">2</Hot_Line_Timeout>
+        <Phone_UserAgent_Add_MAC type="integer">1</Phone_UserAgent_Add_MAC>
+    </PhoneSettings>
+    <NetworkSettings>
+        <Network_SNTPServer type="string">{{ ntp_server.primary|default('pool.ntp.org') }}</Network_SNTPServer>
+        <Network_LocalSipPort type="integer">{{ local_port }}</Network_LocalSipPort>
+        <Network_RTPStartPort type="integer">10000</Network_RTPStartPort>
+        <Network_VlanMode type="integer">0</Network_VlanMode>
+        <Network_VlanPriority type="integer">0</Network_VlanPriority>
+        <Network_VlanID type="integer">{{ vlan.vid }}</Network_VlanID>
+        <Network_VlanOptionID type="integer">176</Network_VlanOptionID>
+    </NetworkSettings>
+    <UpgradeSettings>
+        <Upgrade_Phonebook_Path type="string">root</Upgrade_Phonebook_Path>
+        <Upgrade_Server_Type type="integer">2</Upgrade_Server_Type>
+        <Upgrade_Server_Address type="string">192.168.1.100</Upgrade_Server_Address>
+        <Upgrade_Server_Path type="string"/>
+        <Upgrade_User_Name type="string">root</Upgrade_User_Name>
+        <Upgrade_User_Password type="string">1234</Upgrade_User_Password>
+        <Upgrade_Firmware_Name type="string"/>
+        <Upgrade_Config_Name type="string">PhoneConfigure.xml</Upgrade_Config_Name>
+        <Upgrade_PRPK_Name type="string">addressbook_private.csv</Upgrade_PRPK_Name>
+        <Upgrade_PBPK_Name type="string">addressbook_public.csv</Upgrade_PBPK_Name>
+        <Upgrade_PBPK_Url type="string"/>
+    </UpgradeSettings>
+    {% set x = 0 %}
+    {% for line in lines %}
+    <LineSettings index="{{ x }}">
+        <Line_Server_Mode type="integer">0</Line_Server_Mode>
+        <Line_Enable type="integer">{{ line.enable }}</Line_Enable>
+        <Line_Extention type="string">{{ line.username }}</Line_Extention>
+        <Line_User type="string">{{ line.auth_name }}</Line_User>
+        <Line_Password type="string">{{ line.auth_password }}</Line_Password>
+        <Line_DisplayName type="string">{{ line.display_name }}</Line_DisplayName>
+        <Line_Shared type="integer">0</Line_Shared>
+        <Line_SipProxy type="string">{{ line.sip_server.primary.host }}</Line_SipProxy>
+        <Line_SipProxyPort type="integer">{{ line.sip_server.primary.port }}</Line_SipProxyPort>
+        <Line_SipOutboundProxy type="string">{{ line.outbound_proxy.primary.host }}</Line_SipOutboundProxy>
+        <Line_SipOutboundPort type="integer">{{ line.outbound_proxy.primary.port }}</Line_SipOutboundPort>
+        <Line_SipRegistrar type="string">{{ line.sip_server.primary.host }}</Line_SipRegistrar>
+        <Line_SipRegistrarOutbound type="string">{{ line.outbound_proxy.primary.host }}</Line_SipRegistrarOutbound>
+        <Line_SipRegistrarPort type="integer">{{ line.sip_server.primary.port }}</Line_SipRegistrarPort>
+        <Line_SipRegistrarOutboundPort type="integer">{{ line.outbound_proxy.primary.port }}</Line_SipRegistrarOutboundPort>
+        <Line_SIPRegExpireTime type="integer">{{ line.expire|default('60') }}</Line_SIPRegExpireTime>
+        <Line_SIPRegRetryAfterTime type="integer">{{ line.expire|default('60') }}</Line_SIPRegRetryAfterTime>
+        <Line_BKSipProxy type="string"/>
+        <Line_BKSipProxyPort type="integer">5060</Line_BKSipProxyPort>
+        <Line_BKSipRegistrar type="string"/>
+        <Line_BKSipRegistrarPort type="integer">5060</Line_BKSipRegistrarPort>
+        <Line_SIP_Domain type="string"/>
+        <Line_Locating_SIP_Server type="integer">0</Line_Locating_SIP_Server>
+        <Line_End_Dial_Pond type="integer">0</Line_End_Dial_Pond>
+        <Line_Enable_Auth type="integer">0</Line_Enable_Auth>
+        <Line_Auth_Realm type="string"/>
+        <Line_Enable_CallComp type="integer">0</Line_Enable_CallComp>
+        <Line_DTMFRelay type="integer">1</Line_DTMFRelay>
+        <Line_DTMFPayload type="integer">101</Line_DTMFPayload>
+        <Line_MWI_Enable type="integer">0</Line_MWI_Enable>
+        <Line_MWI_Address type="string"/>
+        <Line_MWI_Port type="integer">5060</Line_MWI_Port>
+        <Line_VoiceMailAccount type="string">*97</Line_VoiceMailAccount>
+        <Line_VoiceMail_AccessCode type="string"/>
+        <Line_CLIP type="integer">1</Line_CLIP>
+        <Line_CLIR type="integer">0</Line_CLIR>
+        <Line_Codec1 type="integer">2</Line_Codec1>
+        <Line_Codec2 type="integer">0</Line_Codec2>
+        <Line_Codec3 type="integer">1</Line_Codec3>
+        <Line_Codec4 type="integer">10</Line_Codec4>
+        <Line_Codec5 type="integer">3</Line_Codec5>
+        <Line_Codec6 type="integer">6</Line_Codec6>
+        <Line_Codec7 type="integer">8</Line_Codec7>
+        <Line_G711U_PTime type="integer">20</Line_G711U_PTime>
+        <Line_G711A_PTime type="integer">20</Line_G711A_PTime>
+        <Line_G723_PTime type="integer">30</Line_G723_PTime>
+        <Line_G729_PTime type="integer">30</Line_G729_PTime>
+        <Line_G726_32_PayLoad type="integer">114</Line_G726_32_PayLoad>
+        <Line_G723_Bitrate type="integer">0</Line_G723_Bitrate>
+        <Line_G726_Bitrate type="integer">0</Line_G726_Bitrate>
+        <Line_Dial_Plan type="string"/>
+    </LineSettings>
+    {% set x = x + 1 %}
+    {% endfor %}
+</PhoneConfig>
+

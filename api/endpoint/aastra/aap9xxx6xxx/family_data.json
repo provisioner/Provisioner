@@ -1,0 +1,171 @@
+{
+  "data": {
+    "name": "Aastra Models: 94xx, 67xx, 9143i [9480i, 9480i CT, 9143i,67xx]",
+    "id": "2",
+    "directory": "aap9xxx6xxx",
+    "firmware_ver": 1323333834,
+    "firmware_md5sum": "1728f70b8ed00afe4f18765b53b6aa9f",
+    "firmware_pkg": "aap9xxx6xxx_firmware.tgz",
+    "description": "Initial Files",
+    "configuration_files": "$mac.cfg,aastra.cfg",
+    "changelog": "",
+        "provisioning_types": [
+        "tftp",
+        "http"
+      ],
+    "model_list": [
+      {
+        "model": "9480i",
+        "lines": "8",
+        "id": "1",
+        "template_data": [
+          "template_data.json",
+          "softkeys.json"
+        ]
+      },
+      {
+        "model": "9480i CT",
+        "lines": "8",
+        "id": "2",
+        "template_data": [
+          "template_data.json",
+          "softkeys.json",
+          "featurekeys.json"
+        ]
+      },
+      {
+        "model": "9143i",
+        "lines": "3",
+        "id": "3",
+        "template_data": [
+          "template_data.json",
+          "prgkeys.json"
+        ]
+      },
+      {
+        "model": "6730i",
+        "lines": "3",
+        "id": "4",
+        "template_data": [
+          "template_data.json",
+          "prgkeys.json"
+        ]
+      },
+      {
+        "model": "6731i",
+        "lines": "6",
+        "id": "5",
+        "template_data": [
+          "template_data.json",
+          "prgkeys.json"
+        ]
+      },
+      {
+        "model": "6739i",
+        "lines": "9",
+        "id": "6",
+        "template_data": [
+          "template_data.json",
+          "softkeys.json",
+          "expmod1.json",
+          "expmod2.json",
+          "expmod3.json"
+        ]
+      },
+      {
+        "model": "6751i",
+        "lines": "1",
+        "id": "7",
+        "template_data": [
+          "template_data.json",
+          "prgkeys.json",
+          "softkeys.json",
+          "expmod1.json",
+          "expmod2.json",
+          "expmod3.json"
+        ]
+      },
+      {
+        "model": "6753i",
+        "lines": "3",
+        "id": "8",
+        "template_data": [
+          "template_data.json",
+          "prgkeys.json",
+          "softkeys.json",
+          "expmod1.json",
+          "expmod2.json",
+          "expmod3.json"
+        ]
+      },
+      {
+        "model": "6755i",
+        "lines": "4",
+        "id": "9",
+        "template_data": [
+          "template_data.json",
+          "prgkeys.json",
+          "softkeys.json",
+          "expmod1.json",
+          "expmod2.json",
+          "expmod3.json"
+        ]
+      },
+      {
+        "model": "6757i",
+        "lines": "9",
+        "id": "10",
+        "template_data": [
+          "template_data.json",
+          "topkeys.json",
+          "softkeys.json",
+          "expmod1.json",
+          "expmod2.json",
+          "expmod3.json"
+        ]
+      },
+      {
+        "model": "6757i CT",
+        "lines": "9",
+        "id": "11",
+        "template_data": [
+          "template_data.json",
+          "topkeys.json",
+          "softkeys.json",
+          "featurekeys.json",
+          "expmod1.json",
+          "expmod2.json",
+          "expmod3.json"
+        ]
+      },
+      {
+        "model": "6735i CT",
+        "lines": "9",
+        "id": "12",
+        "template_data": [
+          "template_data.json",
+          "topkeys.json",
+          "softkeys.json",
+          "featurekeys.json",
+          "expmod1.json",
+          "expmod2.json",
+          "expmod3.json"
+        ]
+      },
+      {
+        "model": "6737i CT",
+        "lines": "9",
+        "id": "13",
+        "template_data": [
+          "template_data.json",
+          "topkeys.json",
+          "softkeys.json",
+          "featurekeys.json",
+          "expmod1.json",
+          "expmod2.json",
+          "expmod3.json"
+        ]
+      }
+    ]
+  }
+}

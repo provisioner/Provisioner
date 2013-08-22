@@ -1,0 +1,113 @@
+{
+    "t18": {
+        "folder": "t1x",
+        "config_files": [
+            "y0000000000$suffix.cfg",
+            "$mac.cfg",
+            "phonebook1.xml"
+        ],
+        "regexs": [
+            "/y0000000000[0-9]{2}\\.cfg$/i" ,
+            "/([0-9a-f]{12})\\.cfg$/i",
+            "/phonebook1\\.xml/i"
+        ]
+    },
+
+    "t20": {
+        "folder": "t2x",
+        "config_files": [
+            "y0000000000$suffix.cfg",
+            "$mac.cfg",
+            "phonebook1.xml"
+        ],
+        "regexs": [
+            "/y0000000000[0-9]{2}\\.cfg$/i" ,
+            "/([0-9a-f]{12})\\.cfg$/i",
+            "/phonebook1\\.xml/i"
+        ]
+    },
+
+    "t22": {
+        "folder": "t2x",
+        "config_files": [
+            "y0000000000$suffix.cfg",
+            "$mac.cfg",
+            "phonebook1.xml"
+        ],
+        "regexs": [
+            "/y0000000000[0-9]{2}\\.cfg$/i" ,
+            "/([0-9a-f]{12})\\.cfg$/i",
+            "/phonebook1\\.xml/i"
+        ]
+    },
+
+    "t26": {
+        "folder": "t2x",
+        "config_files": [
+            "y0000000000$suffix.cfg",
+            "$mac.cfg",
+            "phonebook1.xml"
+        ],
+        "regexs": [
+            "/y0000000000[0-9]{2}\\.cfg$/i" ,
+            "/([0-9a-f]{12})\\.cfg$/i",
+            "/phonebook1\\.xml/i"
+        ]
+    },
+
+    "t28": {
+        "folder": "t2x",
+        "config_files": [
+            "y0000000000$suffix.cfg",
+            "$mac.cfg",
+            "phonebook1.xml"
+        ],
+        "regexs": [
+            "/y0000000000[0-9]{2}\\.cfg$/i" ,
+            "/([0-9a-f]{12})\\.cfg$/i",
+            "/phonebook1\\.xml/i"
+        ]
+    },
+
+    "t32": {
+        "folder": "t3x",
+        "config_files": [
+            "y0000000000$suffix.cfg",
+            "$mac.cfg",
+            "phonebook1.xml"
+        ],
+        "regexs": [
+            "/y0000000000[0-9]{2}\\.cfg$/i" ,
+            "/([0-9a-f]{12})\\.cfg$/i",
+            "/phonebook1\\.xml/i"
+        ]
+    },
+
+    "t38": {
+        "folder": "t3x",
+        "config_files": [
+            "y0000000000$suffix.cfg",
+            "$mac.cfg",
+            "phonebook1.xml"
+        ],
+        "regexs": [
+            "/y0000000000[0-9]{2}\\.cfg$/i" ,
+            "/([0-9a-f]{12})\\.cfg$/i",
+            "/phonebook1\\.xml/i"
+        ]
+    },
+
+    "t46": {
+        "folder": "t4x",
+        "config_files": [
+            "y0000000000$suffix.cfg",
+            "$mac.cfg",
+            "phonebook1.xml"
+        ],
+        "regexs": [
+            "/y0000000000[0-9]{2}\\.cfg$/i" ,
+            "/([0-9a-f]{12})\\.cfg$/i",
+            "/phonebook1\\.xml/i"
+        ]
+    }
+}

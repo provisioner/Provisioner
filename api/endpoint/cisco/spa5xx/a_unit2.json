@@ -1,0 +1,55 @@
+{
+  "template_data":{
+    "category":[
+      {
+        "name":"Expansion",
+        "subcategory":[
+          {
+            "name":"Unit #2",
+            "item":[
+              {
+                "description":"Soft Keys (9480i\/6755i\/6757i)",
+                "type":"loop",
+                "loop_start":"1",
+                "loop_end":"32",
+                "data":{
+                  "item":[
+                    {
+                      "variable":"$unit2_keytype",
+                      "default_value":"line",
+                      "description":"Unit2 Key {$count} Type",
+                      "type":"list",
+                      "data":[
+                        {
+                          "text":"Speed Dial",
+                          "value":"speed"
+                        },
+                        {
+                          "text":"BLF",
+                          "value":"blf"
+                        },
+                        {
+                          "text":"XML",
+                          "value":"xml"
+                        }
+                      ]
+                    },
+                    {
+                      "variable":"$unit2_data",
+                      "default_value":"",
+                      "description":"BLF\/Speed Dial\/XML {$count} Extension",
+                      "type":"input"
+                    },
+                    {
+                      "type":"break"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

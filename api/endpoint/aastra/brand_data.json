@@ -1,0 +1,35 @@
+{
+  "data": {
+    "brands": {
+      "name": "Aastra",
+      "brand_id": "1",
+      "directory": "aastra",
+      "package": "aastra.tgz",
+      "md5sum": "89e94190210b3e04dd6551b3d8f4f175",
+      "last_modified": 1355983880,
+      "changelog": "PACKAGER: Update endpoint\/snom\/7xx\/template_data.json\n\nAdd firmware URL",
+      "family_list": [
+        {
+          "id": "1",
+          "name": "Aastra Models: 480i, 91xxi [480i, 480i CT, 9112i, 9133i]",
+          "directory": "aap91xxi",
+          "description": "Initial Files",
+          "changelog": "",
+          "last_modified": null
+        },
+        {
+          "id": "2",
+          "name": "Aastra Models: 94xx, 67xx, 9143i [9480i, 9480i CT, 9143i,67xx]",
+          "directory": "aap9xxx6xxx",
+          "description": "Initial Files",
+          "changelog": "",
+          "last_modified": null
+        }
+      ],
+      "oui_list": [
+        "00085D",
+        "0010BC"
+      ]
+    }
+  }
+}

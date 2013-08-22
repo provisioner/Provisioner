@@ -1,0 +1,308 @@
+{
+    "186": {
+        "folder": "ata18x",
+        "config_files": [
+            "ata$mac.txt"
+        ]
+    },
+
+    "188": {
+        "folder": "ata18x",
+        "config_files": [
+            "ata$mac.txt"
+        ]
+    },
+
+    "ag310": {
+        "folder": "linksysata",
+        "config_files": [
+            "$model.cfg",
+            "spa$mac.xml"
+        ]
+    },
+
+    "pap2t": {
+        "folder": "linksysata",
+        "config_files": [
+            "$model.cfg",
+            "spa$mac.xml"
+        ]
+    },
+
+    "rtp300": {
+        "folder": "linksysata",
+        "config_files": [
+            "$model.cfg",
+            "spa$mac.xml"
+        ]
+    },
+
+    "spa1001": {
+        "folder": "linksysata",
+        "config_files": [
+            "$model.cfg",
+            "spa$mac.xml"
+        ]
+    },
+
+    "spa2102": {
+        "folder": "linksysata",
+        "config_files": [
+            "$model.cfg",
+            "spa$mac.xml"
+        ]
+    },
+
+    "spa3102": {
+        "folder": "linksysata",
+        "config_files": [
+            "$model.cfg",
+            "spa$mac.xml"
+        ]
+    },
+
+    "spa8000": {
+        "folder": "linksysata",
+        "config_files": [
+            "$model.cfg",
+            "spa$mac.xml"
+        ]
+    },
+
+    "wrp400": {
+        "folder": "linksysata",
+        "config_files": [
+            "$model.cfg",
+            "spa$mac.xml"
+        ]
+    },
+
+    "wrtp54g": {
+        "folder": "linksysata",
+        "config_files": [
+            "$model.cfg",
+            "spa$mac.xml"
+        ]
+    },
+
+    "wrt54g2": {
+        "folder": "linksysata",
+        "config_files": [
+            "$model.cfg",
+            "spa$mac.xml"
+        ]
+    },
+
+    "7940g": {
+        "folder": "sip79x1g",
+        "config_files": [
+            "SEP$mac.cnf.xml",
+            "XMLDefault.cnf.xml",
+            "RINGLIST.DAT",
+            "ringlist.xml",
+            "dialplan.xml"
+        ]
+    },
+
+    "7941g": {
+        "folder": "sip79x1g",
+        "config_files": [
+            "SEP$mac.cnf.xml",
+            "XMLDefault.cnf.xml",
+            "RINGLIST.DAT",
+            "ringlist.xml",
+            "dialplan.xml"
+        ]
+    },
+
+    "7961g": {
+        "folder": "sip79x1g",
+        "config_files": [
+            "SEP$mac.cnf.xml",
+            "XMLDefault.cnf.xml",
+            "RINGLIST.DAT",
+            "ringlist.xml",
+            "dialplan.xml"
+        ]
+    },
+
+    "7940": {
+        "folder": "sip79xx",
+        "config_files": [
+            "SIP$mac.cnf",
+            "SIPDefault.cnf",
+            "XMLDefault.cnf.xml",
+            "SEP$mac.cnf.xml",
+            "RINGLIST.DAT",
+            "ringlist.xml"
+        ]
+    },
+
+    "7960": {
+        "folder": "sip79xx",
+        "config_files": [
+            "SIP$mac.cnf",
+            "SIPDefault.cnf",
+            "XMLDefault.cnf.xml",
+            "SEP$mac.cnf.xml",
+            "RINGLIST.DAT",
+            "ringlist.xml"
+        ]
+    },
+
+    "901": {
+        "folder": "spa",
+        "config_files": [
+            "spa$mac.xml",
+            "$model.cfg"
+        ],
+        "regexs": [
+            "/[a-f0-9]{12}\\.xml/i",
+            "/spa.*\\.cfg$/i"
+        ]
+    },
+
+    "921": {
+        "folder": "spa",
+        "config_files": [
+            "spa$mac.xml",
+            "$model.cfg"
+        ],
+        "regexs": [
+            "/[a-f0-9]{12}\\.xml/i",
+            "/spa.*\\.cfg$/i"
+        ]
+    },
+
+    "922": {
+        "folder": "spa",
+        "config_files": [
+            "spa$mac.xml",
+            "$model.cfg"
+        ],
+        "regexs": [
+            "/[a-f0-9]{12}\\.xml/i",
+            "/spa.*\\.cfg$/i"
+        ]
+    },
+
+    "941": {
+        "folder": "spa",
+        "config_files": [
+            "spa$mac.xml",
+            "$model.cfg"
+        ],
+        "regexs": [
+            "/[a-f0-9]{12}\\.xml/i",
+            "/spa.*\\.cfg$/i"
+        ]
+    },
+
+    "942": {
+        "folder": "spa",
+        "config_files": [
+            "spa$mac.xml",
+            "$model.cfg"
+        ],
+        "regexs": [
+            "/[a-f0-9]{12}\\.xml/i",
+            "/spa.*\\.cfg$/i"
+        ]
+    },
+
+    "962": {
+        "folder": "spa",
+        "config_files": [
+            "spa$mac.xml",
+            "$model.cfg"
+        ],
+        "regexs": [
+            "/[a-f0-9]{12}\\.xml/i",
+            "/spa.*\\.cfg$/i"
+        ]
+    },
+
+    "303": {
+        "folder": "spa5xx",
+        "config_files": [
+            "$model.cfg",
+            "spa$mac.xml",
+            "directory.xml"
+        ],
+        "regexs": [
+            "/spa.*\\.cfg$/i",
+            "/[a-z0-9]{12}\\.xml/i",
+            "/directory\\.xml/i"
+        ]
+    },
+
+    "501g": {
+        "folder": "spa5xx",
+        "config_files": [
+            "$model.cfg",
+            "spa$mac.xml",
+            "directory.xml"
+        ],
+        "regexs": [
+            "/spa.*\\.cfg$/i",
+            "/[a-z0-9]{12}\\.xml/i",
+            "/directory\\.xml/i"
+        ]
+    },
+
+    "502g": {
+        "folder": "spa5xx",
+        "config_files": [
+            "$model.cfg",
+            "spa$mac.xml",
+            "directory.xml"
+        ],
+        "regexs": [
+            "/spa.*\\.cfg$/i",
+            "/[a-z0-9]{12}\\.xml/i",
+            "/directory\\.xml/i"
+        ]
+    },
+
+    "504g": {
+        "folder": "spa5xx",
+        "config_files": [
+            "$model.cfg",
+            "spa$mac.xml",
+            "directory.xml"
+        ],
+        "regexs": [
+            "/spa.*\\.cfg$/i",
+            "/[a-z0-9]{12}\\.xml/i",
+            "/directory\\.xml/i"
+        ]
+    },
+
+    "525g": {
+        "folder": "spa5xx",
+        "config_files": [
+            "$model.cfg",
+            "spa$mac.xml",
+            "directory.xml"
+        ],
+        "regexs": [
+            "/spa.*\\.cfg$/i",
+            "/[a-z0-9]{12}\\.xml/i",
+            "/directory\\.xml/i"
+        ]
+    },
+
+    "525g2": {
+        "folder": "spa5xx",
+        "config_files": [
+            "$model.cfg",
+            "spa$mac.xml",
+            "directory.xml"
+        ],
+        "regexs": [
+            "/spa.*\\.cfg$/i",
+            "/[a-z0-9]{12}\\.xml/i",
+            "/directory\\.xml/i"
+        ]
+    }
+}

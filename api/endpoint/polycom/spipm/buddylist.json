@@ -1,0 +1,82 @@
+{
+    "template_data":{
+        "category":[
+        {
+            "name":"Buddy List",
+            "subcategory":[
+            {
+                "name":"Buddy List",
+                "item":[
+                {
+                    "variable":"$enablebl",
+                    "default_value": 0,
+                    "description":"Buddy List:",
+                    "type":"radio",
+                    "data":[
+                    {
+                        "text":"Enabled",
+                        "value":"1"
+                    },
+                    {
+                        "text":"Disabled",
+                        "value":"0"
+                    }
+                    ]
+                },
+                {
+                	"type":"break"
+                },
+                {
+                    "description":"Buddy List Options",
+                    "type":"loop",
+                    "loop_start":"1",
+                    "loop_end":"32",
+                    "data":{
+                        "item":[
+                        {
+                            "variable":"$bl_fname",
+                            "default_value":"",
+                            "description":"Buddy List {$count} First Name",
+                            "type":"input"
+                        },
+                        {
+                            "variable":"$bl_lname",
+                            "default_value":"",
+                            "description":"Buddy List {$count} Last Name",
+                            "type":"input"
+                        },
+                        {
+                            "variable":"$bl_bext",
+                            "default_value":"",
+                            "description":"Extension",
+                            "type":"input"
+                        },
+                        {
+                            "variable":"$bl_type",
+                            "default_value":"",
+                            "description":"Type",
+                            "type":"list",
+                            "data":[
+                            {
+                                "text":"Speed Dial",
+                                "value":"0"
+                            },
+                            {
+                                "text":"BLF",
+                                "value":"1"
+                            }
+                            ]
+                        },
+                        {
+                            "type":"break"
+                        }
+                        ]
+                    }
+                }
+                ]
+            }
+            ]
+        }
+        ]
+    }
+}

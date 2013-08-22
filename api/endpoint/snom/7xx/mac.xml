@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<settings>
+    <phone-settings>
+        <language perm="">English</language>
+        <web_language perm="">English</web_language>
+        <dhcp perm="">on</dhcp>
+        <tone_scheme perm="">USA</tone_scheme>
+        <time_24_format perm="">off</time_24_format>
+        <date_us_format perm="">on</date_us_format>
+        <ntp_refresh_timer perm="">3600</ntp_refresh_timer>
+        <keyboard_lock perm="">off</keyboard_lock>
+        <redirect_number perm="">*72</redirect_number>
+        <user_subscription_expiry idx="1" perm="">60</user_subscription_expiry>
+        <session_timer perm="">60</session_timer>
+        <retry_after_failed_subscribe idx="1" perm="">60</retry_after_failed_subscribe>
+
+        <gui_fkey1 perm="">key_event F_ADR_BOOK</gui_fkey1>
+        <gui_fkey2 perm="">key_event F_SETTINGS</gui_fkey2>
+        <gui_fkey3 perm="">key_event F_REDIRECT</gui_fkey3>
+        <gui_fkey4 perm="">key_event F_SUPPORT</gui_fkey4>
+
+        {% set x = 1 %}
+        {% for line in lines %}
+        <user_active idx="{{ x }}" perm="">on</user_active>
+        <user_host idx="{{ x }}" perm="">{{ line.sip_server.primary.host }}</user_host>
+        <user_outbound idx="{{ x }}" perm="">{{ line.outbound_proxy.primary.host }}</user_outbound> 
+        <user_realname idx="{{ x }}" perm="">{{ line.display_name }}</user_realname>
+        <user_name idx="{{ x }}" perm="">{{ line.username }}</user_name>
+        <user_pname idx="{{ x }}" perm="">{{ line.username }}</user_pname>
+        <user_mailbox idx="{{ x }}" perm="">{{ line.voicemail_number|default('*97') }}</user_mailbox>
+        <user_pass idx="{{ x }}" perm="">{{ line.auth_password }}</user_pass>
+        <codec_priority_list idx="1" perm="">{{ codecs|default('pcmu,pcma,g722') }}</codec_priority_list>
+        <user_srtp idx="{{ x }}" perm="">off</user_srtp>
+        {% set x = x + 1 %}
+        {% endfor %}
+
+        <vlan_id perm="">{{ vlan.vid }}</vlan_id>
+        <intercom_connect_type perm="">intercom_connect_type_handsfree</intercom_connect_type>
+        <http_user perm="R">snom</http_user>
+        <http_pass perm="R">{{ password.user|default('p@ssword') }}</http_pass>
+        <admin_mode_login perm="">admin</admin_mode_login>
+        <admin_mode_password perm="R">{{ password.user|default('@dm1n') }}</admin_mode_password>
+        <admin_mode_password_confirm perm="R">{{ password.user|default('@dm1n') }}</admin_mode_password_confirm>
+        <https_port perm="">443</https_port>
+        <webserver_type perm="">http_https</webserver_type>
+        <firmware_status perm="R">{{ provisioning_url }}{mac}.xml</firmware_status>
+        <update_policy perm="">auto_update</update_policy>
+        <timezone perm="">{{ timezone }}</timezone>
+        <ntp_server perm="">{{ sntp_server.primary|default('pool.ntp.org') }}</ntp_server>
+
+        <dialplan>
+            <template match="*." timeout="2" scheme="sip" user="phone" rewrite="" />
+            <template match="*.." timeout="2" scheme="sip" user="phone" rewrite="" />
+            <template match="*..." timeout="2" scheme="sip" user="phone" rewrite="" />
+            <template match="*...." timeout="2" scheme="sip" user="phone" rewrite="" />
+            <template match="911" timeout="0" scheme="sip" user="phone" rewrite="" />
+            <template match="0" timeout="2" scheme="sip" user="phone" rewrite="" />
+            <template match="011*" timeout="4" scheme="sip" user="phone" rewrite="" />
+            <template match="[2-9]......" timeout="3" scheme="sip" user="phone" rewrite="" />
+            <template match="[2-9]........." timeout="3" scheme="sip" user="phone" rewrite="" />
+            <template match="[0-1][2-9]........." timeout="3" scheme="sip" user="phone" rewrite="" />
+            <template match="[1-9].." timeout="3" scheme="sip" user="phone" rewrite="" />
+            <template match="[1-9]..." timeout="3" scheme="sip" user="phone" rewrite="" />
+        </dialplan>
+    </phone-settings>
+
+    <tbook>
+        {% set x = 0 %}
+        {% for contact in directory %}
+        <item context="active" type="" fav="false" mod="true" index="{{ x }}">
+            <name>{{ contact.name }}</name>
+            <number>{{ contact.internal_number }}</number>
+            <number_type>sip</number_type>
+        </item>
+        {% set x = x + 1 %}
+        {% endfor %}
+    </tbook>
+</settings>

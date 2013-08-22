@@ -1,0 +1,112 @@
+<flat-profile>
+        <!-- Reset the global configuration options, now we will reset per day instead of every second -->
+        <Resync_Periodic></Resync_Periodic>
+        <Resync_On_Reset>Yes</Resync_On_Reset>
+        <Profile_Rule>{{ provisioning_url }}$MA.xml</Profile_Rule>
+
+        <!-- Line Registration Information -->
+        <Text_Logo group="Phone/General"></Text_Logo>
+        <Station_Name group="Phone/General"></Station_Name>
+        <Voice_Mail_Number group="Phone/General" ua="na">{{ lines.0.voicemail_number }}</Voice_Mail_Number>
+
+        {% set x = 1 %}
+        {% for line in lines %}
+        <Display_Name_{{ x }}_ ua="na">{{ line.display_name }}</Display_Name_{{ x }}_>
+        <!-- If BLF then set this to the BLF -->
+        <Short_Name_{{ x }}_ ua="na">{{ line.display_name }}</Short_Name_{{ x }}_>
+        <User_ID_{{ x }}_ ua="na">{{ line.username }}</User_ID_{{ x }}_>
+        <Use_Auth_ID_{{ x }}_ ua="na">Yes</Use_Auth_ID_{{ x }}_>
+        <Auth_ID_{{ x }}_ ua="na">{{ line.username }}</Auth_ID_{{ x }}_>
+        <Password_{{ x }}_ ua="na">{{ line.auth_password }}</Password_{{ x }}_>
+        <!-- Below set to disabled for BLF -->
+        <Extension_{{ x }}_ group="Phone/Line_Key_{{ x }}">{{ x }}</Extension_{{ x }}_> <!-- options: 1/2/3/4/5/6/Disabled -->
+        <!-- If BLF set to shared -->
+        <Share_Call_Appearance_{{ x }}_ group="Phone/Line_Key_{{ x }}">private</Share_Call_Appearance_{{ x }}_>
+        <!-- this changes how the button works. If it's set when the phone isn't on blf then the button turns orange. so we probably need to remove this normally.-->
+        <Extended_Function_{{ x }}_ group="Phone/Line_Key_{{ x }}"></Extended_Function_{{ x }}_>
+        <Dial_Plan_{{ x }}_ ua="na">{{ digitmap|default('*xxT|xxxxT|[2-9]11|0T|011xxx.T|[1][2-9]xxxxxxxxx|[2-9]xxxxxxxxx|[2-9]xxxT') }}</Dial_Plan_{{ x }}_>
+		
+        <!-- User Proxy and Registration - These are extension specific settings too--> 
+        <Proxy_{{ x }}_ ua="na">{{ line.sip_server.primary.host }}</Proxy_{{ x }}_>
+        <SIP_Port_{{ x }}_ ua="na">{{ local_port }}</SIP_Port_{{ x }}_>
+        <Use_Outbound_Proxy_{{ x }}_ ua="na">Yes</Use_Outbound_Proxy_{{ x }}_>
+        <Outbound_Proxy_{{ x }}_ ua="na">{{ line.outbound_proxy.primary.host }}</Outbound_Proxy_{{ x }}_>
+        <Register_Expires_{{ x }}_ ua="ro">{{ line.expire|default('60') }}</Register_Expires_{{ x }}_>
+        <Ans_Call_Without_Reg_{{ x }}_ ua="na">No</Ans_Call_Without_Reg_{{ x }}_>
+        <Use_DNS_SRV_{{ x }}_ ua="rw">No</Use_DNS_SRV_{{ x }}_>
+        <Proxy_Fallback_Intvl_{{ x }}_ ua="ro">120</Proxy_Fallback_Intvl_{{ x }}_>
+        <Proxy_Redundancy_Method_{{ x }}_ ua="ro">Normal</Proxy_Redundancy_Method_{{ x }}_>
+
+        <XML_Directory_Service_Name ua="na">{{ line.username }} directory</XML_Directory_Service_Name>
+        <XML_Directory_Service_URL ua="na">{{ provisioning_url }}directory-$MA.xml</XML_Directory_Service_URL>
+        {% set x = x + 1 %}
+        {% endfor %}
+
+        <Primary_NTP_Server ua="na">{{ sntp_server.primary|default('pool.ntp.org') }}</Primary_NTP_Server>
+        <Upgrade_Enable ua="ro">No</Upgrade_Enable>
+        <Upgrade_Rule ua="ro"></Upgrade_Rule>
+
+
+        <Time_Zone ua="na">{{ timezone }}</Time_Zone>
+
+        <!-- Admin -->
+        <Enable_Web_Server ua="na">Yes</Enable_Web_Server>
+        <Web_Server_Port ua="na">80</Web_Server_Port>
+        <Enable_Web_Admin_Access ua="na">Yes</Enable_Web_Admin_Access>
+        <Admin_Passwd ua="na">{{ password.admin }}</Admin_Passwd>
+        <User_Password ua="na">{{ password.user }}</User_Password>
+
+        <!-- options: -->
+        <Server_Type group="Attendant_Console/General">Broadsoft</Server_Type>
+        <Attendant_Console_Call_Pickup_Code group="Attendant_Console/General">**#</Attendant_Console_Call_Pickup_Code>
+        <Daylight_Saving_Time_Rule ua="na">start=3/8/7/02:0:0;end=11/1/7/02:0:0;save=1</Daylight_Saving_Time_Rule>
+        <Daylight_Saving_Time_Enable group="Regional/Miscellaneous">No</Daylight_Saving_Time_Enable>
+        <Call_Return_Code ua="na">*69</Call_Return_Code>
+        <Blind_Transfer_Code ua="na">*98</Blind_Transfer_Code>
+        <Call_Back_Act_Code ua="na">*66</Call_Back_Act_Code>
+        <Call_Back_Deact_Code ua="na">*86</Call_Back_Deact_Code>
+        <Cfwd_All_Act_Code ua="na">*72</Cfwd_All_Act_Code>
+        <Cfwd_All_Deact_Code ua="na">*73</Cfwd_All_Deact_Code>
+        <Cfwd_Busy_Act_Code ua="na">*90</Cfwd_Busy_Act_Code>
+        <Cfwd_Busy_Deact_Code ua="na">*91</Cfwd_Busy_Deact_Code>
+        <Cfwd_No_Ans_Act_Code ua="na">*92</Cfwd_No_Ans_Act_Code>
+        <Cfwd_No_Ans_Deact_Code ua="na">*93</Cfwd_No_Ans_Deact_Code>
+        <CW_Act_Code ua="na">*56</CW_Act_Code>
+        <CW_Deact_Code ua="na">*57</CW_Deact_Code>
+        <CW_Per_Call_Act_Code ua="na">*71</CW_Per_Call_Act_Code>
+        <CW_Per_Call_Deact_Code ua="na">*70</CW_Per_Call_Deact_Code>
+        <Block_CID_Act_Code ua="na">*67</Block_CID_Act_Code>
+        <Block_CID_Deact_Code ua="na">*68</Block_CID_Deact_Code>
+        <Block_CID_Per_Call_Act_Code ua="na">*81</Block_CID_Per_Call_Act_Code>
+        <Block_CID_Per_Call_Deact_Code ua="na">*82</Block_CID_Per_Call_Deact_Code>
+        <Block_ANC_Act_Code ua="na">*77</Block_ANC_Act_Code>
+        <Block_ANC_Deact_Code ua="na">*87</Block_ANC_Deact_Code>
+        <DND_Act_Code ua="na">*78</DND_Act_Code>
+        <DND_Deact_Code ua="na">*79</DND_Deact_Code>
+        <Secure_All_Call_Act_Code ua="na">*16</Secure_All_Call_Act_Code>
+        <Secure_No_Call_Act_Code ua="na">*17</Secure_No_Call_Act_Code>
+        <Secure_One_Call_Act_Code ua="na">*18</Secure_One_Call_Act_Code>
+        <Secure_One_Call_Deact_Code ua="na">*19</Secure_One_Call_Deact_Code>
+        <Paging_Code ua="na">*96</Paging_Code>
+        <Call_Park_Code ua="na">*38</Call_Park_Code>
+        <Call_Pickup_Code ua="na">*36</Call_Pickup_Code>
+        <Call_UnPark_Code ua="na">*39</Call_UnPark_Code>
+        <Group_Call_Pickup_Code ua="na">*37</Group_Call_Pickup_Code>
+        <Media_Loopback_Code ua="na">*03</Media_Loopback_Code>
+        <Referral_Services_Codes ua="na"></Referral_Services_Codes>
+
+        <Select_Logo ua="na"></Select_Logo>
+        <Select_Background_Picture ua="ro"></Select_Background_Picture>
+        <Syslog_Server group="System/Optional_Network_Configuration"></Syslog_Server>
+        <Debug_Level group="System/Optional_Network_Configuration">3</Debug_Level>
+        <Debug_Server group="System/Optional_Network_Configuration"></Debug_Server>
+
+        <Speed_Dial_2 ua="rw"></Speed_Dial_2>
+        <Speed_Dial_3 ua="rw"></Speed_Dial_3>
+        <Speed_Dial_4 ua="rw"></Speed_Dial_4>
+        <Speed_Dial_5 ua="rw"></Speed_Dial_5>
+        <Speed_Dial_6 ua="rw"></Speed_Dial_6>
+        <Speed_Dial_7 ua="rw"></Speed_Dial_7>
+        <Speed_Dial_8 ua="rw"></Speed_Dial_8>
+        <Speed_Dial_9 ua="rw"></Speed_Dial_9>
+</flat-profile>

@@ -1,0 +1,21 @@
+{
+    "3062": {
+        "folder": "3xxx",
+        "config_files": [
+            "mac.xml"
+        ],
+        "regexs": [
+            "/([0-9a-f]{12})\\.xml$/i"
+        ]
+    },
+    
+    "3092": {
+        "folder": "3xxx",
+        "config_files": [
+            "mac.xml"
+        ],
+        "regexs": [
+            "/([0-9a-f]{12})\\.xml$/i"
+        ]
+    }
+}
