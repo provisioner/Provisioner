@@ -80,21 +80,6 @@ class helper_utils {
     }
 
 	/**
-	* Strip URI
-	*
-	* @author	frifri
-    * @param	string	$uri	The URI
-	* @return	string	stripped URI
-    */
-    public static function strip_uri($uri) {
-        // Then let's check in the URI (should be at the end of it)
-        // Then explode the url
-        $mac_index = sizeof(explode('/', $uri)) - 1;
-
-        return $explode_uri[$mac_index];
-    }
-
-	/**
 	* Get the Brand extra data from the brand json file
 	*
 	* @author	frifri
@@ -145,53 +130,6 @@ class helper_utils {
     public static function get_regex_list($brand, $model) {
         $files = json_decode(file_get_contents(MODULES_DIR . $brand . "/brand_data.json"), true);
         return $files[$model]["regexs"];
-    }
-
-	/**
-	* This function will determine weither the current request is a static file or not
-	*
-	* @author	frifri
-    * @param	string	$ua         The User-Agent of the request
-    * @param	string	$uri        The uri of the request
-    * @param	string	$model      The phone model
-    * @param	string	$brand      The phone brand
-    * @param	string	$settings   The app iis_set_app_settings(7, virtual_path, application_scope)
-    */
-    public static function is_static_file($ua, $uri, $model, $brand, $settings) {
-        $log = KLogger::instance(LOGS_BASE, Klogger::DEBUG);
-
-        $log->logInfo('- Entering static file function -');
-        $folder = null;
-        $target = null;
-        $location = null;
-
-        // Polycom
-        if ($brand == "polycom") {
-            $log->logInfo('Looking for Polycom...');
-            $folder = helper_utils::get_folder("polycom", $model);
-            $log->logDebug("Looking into folder: $folder");
-
-            if (preg_match("/0{12}\.cfg$/", $uri)) {
-                $log->logInfo('File is 000000000000.cfg...');
-                $location = $settings->paths->endpoint . "polycom/000000000000.cfg";
-            } elseif (!preg_match("/[a-z0-9_]*\.cfg$/", $uri)) {
-                if (preg_match("/([0-9a-zA-Z\-_]*\.ld)$/", $uri, $match_result))
-                    $location = $settings->paths->firmwares . $brand . "/" . $folder . "/firmware/" . $match_result[1];
-                // This is if we have an account_id in the url
-                elseif (preg_match("/(\/[0-9a-fA-F]{32}){0,1}(.*)$/", $uri, $match_result))
-                    $location = $settings->paths->endpoint . $brand . "/" . $folder . $match_result[2];
-            }
-        }
-
-        if (!$location)
-            return false;
-        else {
-            $log->logInfo('Will redirect to :', $location);
-
-            $location = 'Location: ' . $location;
-            header($location);
-            exit();
-        }
     }
 
 	/**
