@@ -10,18 +10,29 @@
  * @version 5.0
  */
 
-require_once 'lib/php_on_couch/couch.php';
-require_once 'lib/php_on_couch/couchClient.php';
-require_once 'lib/php_on_couch/couchDocument.php';
+require_once LIB_BASE . 'php_on_couch/couch.php';
+require_once LIB_BASE . 'php_on_couch/couchClient.php';
+require_once LIB_BASE . 'php_on_couch/couchDocument.php';
+require_once LIB_BASE . 'KLogger.php';
 
-class BigCouch {
-    private $_server_url = null;
-    private $_couch_client = null;
+class wrapper_bigcouch {
+    private $_server_url;
+    private $_couch_client;
+    private $_settings;
+    private $_log;
 
     // The server url must be like: http://my.couch.server.com
-    public function __construct($server_url, $port) {
-        if (strlen($server_url))
-            $this->_server_url = $server_url . ':' . $port;
+    public function __construct() {
+        $this->_log = KLogger::instance(LOGS_BASE, Klogger::DEBUG);
+
+        $this->_settings = helper_settings::get_instance();
+        $this->_server_url = $this->_settings->database->url . ':' . $this->_settings->database->port;
+
+        if (strlen($this->_settings->database->username) && strlen($this->_settings->database->password)) {
+            $this->_server_url = str_replace('http://', '', $this->_server_url);
+            $credentials = $this->_settings->database->username . ':' . $this->_settings->database->password . '@';
+            $this->_server_url = 'http://' . $credentials . $this->_server_url;
+        }
     }
 
     // Format a normal response
@@ -50,7 +61,7 @@ class BigCouch {
 
     // Set the database for the current client
     private function _set_client($database) {
-        $database = DB_PREFIX . $database;
+        $database = $this->_settings->db_prefix . $database;
         $this->_couch_client = new couchClient($this->_server_url, $database);
     }
 
@@ -113,11 +124,11 @@ class BigCouch {
                             ->startkey(array($filter_key))
                             ->endkey(array($filter_key, array()))
                             ->asArray()
-                            ->getView(DB_PREFIX . $database, "list_by_$document_type");
+                            ->getView($this->_settings->db_prefix . $database, "list_by_$document_type");
             else
                 $response = $this->_couch_client
                             ->asArray()
-                            ->getView(DB_PREFIX . $database, "list_by_$document_type");
+                            ->getView($this->_settings->db_prefix . $database, "list_by_$document_type");
 
             if ($format)
                 return $this->_formatViewResponse($response);
@@ -133,14 +144,14 @@ class BigCouch {
         $this->_set_client($database);
 
         try {
-            return $this->_couch_client->asArray()->key($filter_key)->getView(DB_PREFIX . $database, "list_by_$document_type");
+            return $this->_couch_client->asArray()->key($filter_key)->getView($this->_settings->db_prefix . $database, "list_by_$document_type");
         } catch (Exception $e) {
             return false;
         }
     }
 
     public function isDBexist($db) {
-        $db = DB_PREFIX . $db;
+        $db = $this->_settings->db_prefix . $db;
         // I think it is better to create a new client instead of changing the current one
         $client = new couchClient($this->_server_url, $db);
         if ($client->databaseExists())
@@ -237,12 +248,86 @@ class BigCouch {
                          ->startkey($startkey)
                          ->endkey($endkey)
                          ->asArray()
-                         ->getView(DB_PREFIX . $database, "list_by_all");
+                         ->getView($this->_settings->db_prefix . $database, "list_by_all");
 
         foreach ($response['rows'] as  $row) {
             if ($this->delete($database, $row['id']))
                 throw new RestException(500, "Error while deleting element");
         }
+    }
+
+    // will return an array of the requested document
+    public function load_settings($database, $document, $just_settings = true) {
+        $doc = null;
+        $database = $this->_settings->db_prefix . $database;
+
+        $this->_log->logInfo('- Entering load_settings -');
+        $this->_log->logInfo("Retrieving the document $document...");
+        $couch_client = new couchClient($this->_server_url, $database);
+        $this->_log->logInfo('Couch client loaded!');
+
+        try {
+            $doc = $couch_client->asArray()->getDoc($document);
+        } catch (Exception $e) {
+            $error_message = $e->getMessage();
+            $this->_log->logWarn("An error occured while retrieving the document ($document)");
+            $this->_log->logWarn("Error: $error_message");
+            return false;
+        }
+
+        // If the user just want the settings
+        if ($just_settings) {
+            $this->_log->logInfo('Retrieved the doc! will return only the settings');
+            // This is ugly but still useful.
+            // What if there is a doc but no settings?
+            if (array_key_exists('settings', $doc)) {
+                $settings = $doc['settings'];
+                $this->_log->logInfo('Settings found... returning them');
+                return $settings;
+            }
+                
+        } else {
+            $this->_log->logInfo('Retrieved the doc! will return the whole de doc');
+            $this->_log->logInfo('Settings found... returning them');
+            return $doc;
+        }
+
+        $this->_log->logWarn('Oops... something went obviously wrong when getting the doc');
+        return false;
+    }
+
+    public function get_provider($provider_domain) {
+        $database = $this->_settings->db_prefix . 'providers';
+
+        $couch_client = new couchClient($this->_server_url, $database);
+        
+        try {
+            $response = $couch_client->key($provider_domain)->asArray()->getView($database, 'list_by_domain');
+
+            // Basically if the view return an element for the filtered request
+            if (isset($response['rows'][0]['value']))
+                return $response['rows'][0]['value'];
+            else 
+                return false;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    public function get_account_id($mac_address) {
+        $database = $this->_settings->db_prefix . 'mac_lookup';
+        $couch_client = new couchClient($this->_server_url, $database);
+
+        try {
+            $doc = $couch_client->asArray()->getDoc($mac_address);
+        } catch (Exception $e) {
+            return false;
+        }
+
+        if (isset($doc['account_id']))
+            return $doc['account_id'];
+
+        return false;
     }
 
     /*
@@ -322,5 +407,3 @@ class BigCouch {
         return $finalObj;
     }
 }
-
-?>
