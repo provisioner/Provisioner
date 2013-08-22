@@ -49,7 +49,14 @@ class Phones {
         return $brands;
     }
 
-    // Yep...
+    /**
+     *  The Options request handler
+     *
+     * @url OPTIONS /
+     * @url OPTIONS /{brand}
+     * @url OPTIONS /{brand}/{family}
+     * @url OPTIONS /{brand}/{family}/{model}
+     */
     function options() {
         return;
     }
