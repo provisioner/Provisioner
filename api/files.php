@@ -39,6 +39,9 @@ class Files {
         $adapter_name = "adapter_" . $this->_settings->adapter . "_adapter";
         $adapter = new $adapter_name();
 
+        // This grab the settings from whatever datasource you want.
+        // Can set the settings to nothing if the only settings that you need
+        // to use are comming from the payload of this API
         $config_manager = $adapter->get_config_manager(
             $request_data['provider_id'],
             $request_data['mac'], 
@@ -46,6 +49,8 @@ class Files {
             $request_data['model']
         );
 
-        print_r($config_manager);
+        $settings = $request_data['settings'];
+        $config_manager->import_settings($settings);
+        $config_manager->generate_config_files();
     }
 }
