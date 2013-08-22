@@ -120,9 +120,9 @@ class adapter_2600hz_adapter {
             $config_manager->import_settings($db->load_settings($account_db, $account_id));
 
             // See above...
-            if (isset($phone_doc['settings'])) {
+            if (!empty($phone_settings)) {
                 $log->logInfo('Importing device settings');
-                $config_manager->import_settings($phone_doc['settings']);
+                $config_manager->import_settings($phone_settings);
             }
 
             $log->logInfo('Retrieving a first version of the merge setting object...');

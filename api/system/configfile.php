@@ -25,7 +25,6 @@ class system_configfile {
     private $_strMac = null;
     private $_strConfigFile = null;
     private $_strTemplateDir = null;
-    private $_strFirmVers = null; // Not used
     private $_objTwig = null;
     private $_arrConstants = array();
     private $_arrData = array();
@@ -361,12 +360,15 @@ class system_configfile {
 		$phone->prepareConfig();
 
 	    foreach (helper_utils::get_file_list($this->_strBrand, $this->_strModel) as $value) {
-            $file_content = $this->_objTwig->render($value, $this->_arrData);
             $filename = $this->_get_file_name($value);
-            if (!file_put_contents(CONFIG_FILES_BASE . "/$filename", $file_content))
-                return false;
+
+            if ($filename) {
+                $file_content = $this->_objTwig->render($value, $this->_arrData);
+                if (!file_put_contents(CONFIG_FILES_BASE . "/$filename", $file_content))
+                    return false;
+            }
 	    }
 
-		return true;
+        return true;
 	}
 }

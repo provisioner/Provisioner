@@ -55,6 +55,6 @@ class Files {
         if ($config_manager->generate_config_files())
             return array('status' => 'success');
 
-        return array('status' => 'error', 'Could not write one or more configuration files')
+        return array('status' => 'error', 'message' => 'Could not write one or more configuration files');
     }
 }
