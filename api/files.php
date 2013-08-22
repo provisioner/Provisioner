@@ -51,6 +51,10 @@ class Files {
 
         $settings = $request_data['settings'];
         $config_manager->import_settings($settings);
-        $config_manager->generate_config_files();
+        
+        if ($config_manager->generate_config_files())
+            return array('status' => 'success');
+
+        return array('status' => 'error', 'Could not write one or more configuration files')
     }
 }

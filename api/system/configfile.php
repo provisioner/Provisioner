@@ -75,16 +75,6 @@ class system_configfile {
     }
 
 	/**
-	* Get the Firmare Version
-	*
-	* @author	frifri
-	* @return	string	The fimrware version
-    */
-    public function get_firmware_version() {
-        return $this->_strFirmVers;
-    }
-
-	/**
 	* Get the Configuration File
 	*
 	* @author	frifri
@@ -154,6 +144,16 @@ class system_configfile {
         $this->_strModel = $model;
     }
 
+    /**
+    * Set the mac address
+    *
+    * @author   frifri
+    * @param    string  The mac address
+    */
+    public function set_mac_address($mac_address) {
+        $this->_strMac = $mac_address;
+    }
+
 	/**
 	* Set the request type
 	*
@@ -188,12 +188,19 @@ class system_configfile {
 
 	/**
 	* Set the settings
+    * /!\ This will erase all current settings in _arrData
+    * Basicall
 	*
 	* @author	frifri
-	* @param	array	the settings array
+	* @param	array	    the settings array
+    * @param    boolean     Will set the settings at key 0 or as value
     */
-    public function set_settings($settings) {
-        $this->_arrData[0] = $settings;
+    public function set_settings($settings, $reset = true) {
+        if (!$reset) {
+            $this->_arrData = array();
+            $this->_arrData[0] = $settings;
+        } else
+            $this->_arrData = $settings;
     }
 
     // ===========================================
@@ -210,6 +217,17 @@ class system_configfile {
     */
     private function _load_constants() {
         return $this->_arrConstants = json_decode(file_get_contents(CONSTANTS_FILE), true);
+    }
+
+    /**
+    * Will return the final filename to be generated
+    *
+    * @author   frifri
+    * @param    string   The filename
+    */
+    private function _get_file_name($raw_filename) {
+        if (preg_match('/\$mac/', $raw_filename))
+            return str_replace('$mac', $this->_strMac, $raw_filename);
     }
 
 	/**
@@ -239,87 +257,12 @@ class system_configfile {
     }
 
 	/**
-	* This function will try to determine the brand from the mac address
-	*
-	* @author	frifri
-	* @return	boolean	true is succeded or false if didnt
-	*
-	*	TODO This should send an email with the data if nothing is returned
-	*
-    */
-    private function _get_brand_from_mac() {
-        $suffix = substr($this->_strMac, 0, 6);
-
-        try {
-            if (array_key_exists($suffix, $this->_arrConstants['mac_lookup'])) {
-                $this->_strBrand = $this->_arrConstants['mac_lookup'][$suffix];
-                return true;
-            } else 
-                return false;
-        } catch (Exception $e) {
-            return false;
-        }
-    }
-
-	/**
-	* This function will try to determine the family model from the ua and the brand
-	* Each time we add a brand, we need to modify this file for now (Maybe use the phone specific files)
-	*
-	* @author	frifri
-	* @param	string	user agent
-	* @return	boolean	true is succeded or false if didnt
-    */
-    private function _get_family_from_ua($ua) {
-        switch ($this->_strBrand) {
-            case 'yealink':
-                if (preg_match('#Yealink SIP-[a-z](\d\d)[a-z] (\d*\.\d*\.\d*\.\d*) ((?:[0-9a-fA-F]{2}[:;.]?){6})#i', $ua, $elements)) {
-                    // Set the family
-                    if ($elements[1] < 20)
-                        $this->_strFamily = 't1x';
-                    elseif ($elements[1] < 30 && $elements[1] >= 20)
-                        $this->_strFamily = 't2x';
-                    elseif ($elements[1] >= 30)
-                        $this->_strFamily = 't3x';
-                    else
-                        return false;
-
-                    // Set the firmware version
-                    $this->_strFirmVers = $elements[2];
-
-                    // Checking the mac address
-                    $elements[3] = strtolower(preg_replace('/:/', '', $elements[3]));
-                    if ($this->_strMac != $elements[3])
-                        return false;
-
-                    return true;
-                } else
-                    return false;
-            case 'aastra':
-                if (preg_match('#Aastra(\d*\w.) MAC:((?:[0-9a-fA-F]{2}-?){6}) V:(\d*\.\d*\.\d*\.\d*)#i', $ua, $elements)) {
-                    // Set the family. this is harcoded for now.
-                    $this->_strFamily = 'aap9xxx6xxx';
-
-                    // Set the firmware version
-                    $this->_strFirmVers = $elements[3];
-
-                    // Set the mac address
-                    $elements[2] = strtolower(preg_replace('/-/', '', $elements[2]));
-                    if ($this->_strMac != $elements[2])
-                        return false;
-                }
-            default:
-                return false;
-        }
-    }
-
-	/**
 	* This function will determine the template directory
 	*
 	* @author	frifri
     */
     private function _set_template_dir() {
         $folder = helper_utils::get_folder($this->_strBrand, $this->_strModel);
-
         $this->_strTemplateDir = MODULES_DIR . $this->_strBrand . DIRECTORY_SEPARATOR . $folder . DIRECTORY_SEPARATOR;
     }
 
@@ -331,45 +274,6 @@ class system_configfile {
     private function _twig_init() {
         $loader = new Twig_Loader_Filesystem($this->_strTemplateDir);
         $this->_objTwig = new Twig_Environment($loader);
-    }
-
-	/**
-	* This will return the current url for the provisioner
-	*
-	* @author	frifri
-	* @example	http://localhost:8888/Provisioner
-	* @return	string	The URL
-    */
-    public function get_current_provisioning_url() {
-        if(PHP_SAPI != 'cli') {
-		$host = $_SERVER['HTTP_HOST'];
-        	$full_uri = $_SERVER['REQUEST_URI'];
-		preg_match('/^(.*\/)(.*)$/', $full_uri, $match);
-		$target_uri = $match[1];
-	} else {
-		$host = '';
-		$target_uri = '';
-	}
-
-        if ($this->_strRequestType)
-            return $this->_strRequestType . '://' . $host . $target_uri;
-    }
-
-	/**
-	* Will try to detect the phone information
-	*
-	* @author	frifri
-	* @param	string	$mac	The MAC Address
-	* @param	string	$ua	The User Agent
-	* @return	boolean	true if good, false if no good
-    */
-    public function detect_phone_info($mac, $ua) {
-        $this->_strMac = preg_replace('/[:\-]/', '', $mac);
-        if ($this->_get_brand_from_mac())
-            if($this->_get_family_from_ua($ua))
-                return true;
-
-        return false;
     }
 
 	/**
@@ -429,19 +333,18 @@ class system_configfile {
                 array_push($this->_arrData, $obj);
         }
     }
-
+	
 	/**
-	* Generate a SINGLE Configuration File
+	* Generate ALL Configuration File
 	*
-	*   This generated the final configuration file as parsed
+	*   This generated the final configuration files as parsed for the ENTIRE phone
 	*
-	* @author	frifri
 	* @author	tm1000
-	* @return	string	The data of the file
+    * @author   frifri
+	* @return	array	The files as a key (filename) value (data) pair
     */
-    public function generate_config_file($multiple = false) {
-        $folder = helper_utils::get_folder($this->_strBrand, $this->_strModel);
-        $target_phone = "endpoint_" . $this->_strBrand . "_" . $folder . "_phone";
+	public function generate_config_files() {
+		$folder = helper_utils::get_folder($this->_strBrand, $this->_strModel);
 
         // Set the twig template directory
         // Not sure if that should be here
@@ -450,45 +353,20 @@ class system_configfile {
         // init twig object
         $this->_twig_init();
 
-        // This should be one of the last thing to be done I think.
+        // Merging the settings
+        $this->_arrData = $this->get_merged_config_objects();
+		
+        $target_phone = "endpoint_" . $this->_strBrand . "_" . $folder . "_phone";
         $phone = new $target_phone($this);
-		if(!$multiple)
-        	$phone->prepareConfig();
-
-        if ($this->_objTwig)
-            return $this->_objTwig->render($this->_strConfigFile, $this->_arrData);
-    }
-	
-	/**
-	* Generate ALL Configuration File
-	*
-	*   This generated the final configuration files as parsed for the ENTIRE phone
-	*
-	* @author	tm1000
-	* @return	array	The files as a key (filename) value (data) pair
-    */
-	public function generate_config_files() {
-		$output = array();
-		$settings = $this->get_settings();
-		
-		$folder = helper_utils::get_folder($this->_strBrand, $this->_strModel);
-		$target_phone = "endpoint_" . $this->_strBrand . "_" . $folder . "_phone";
-		$phone = new $target_phone($this);
-		
 		$phone->prepareConfig();
-		
-	    foreach (helper_utils::get_file_list($this->_strBrand, $this->_strModel) as $value) {
-	        $this->set_config_file($value);
 
-			$filename = $phone->setFilename($value);
-			//$filename = str_replace('$mac', $settings['mac'],$value);
-	        // make a file with the returned value
-	        // This is not doing it for now, it will need to be implemented
-	        $result = $this->generate_config_file(true);
-			if(!empty($result)) {
-				$output[$filename] = $result;
-			}
+	    foreach (helper_utils::get_file_list($this->_strBrand, $this->_strModel) as $value) {
+            $file_content = $this->_objTwig->render($value, $this->_arrData);
+            $filename = $this->_get_file_name($value);
+            if (!file_put_contents(CONFIG_FILES_BASE . "/$filename", $file_content))
+                return false;
 	    }
-		return $output;
+
+		return true;
 	}
 }
