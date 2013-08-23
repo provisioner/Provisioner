@@ -218,17 +218,6 @@ class system_configfile {
         return $this->_arrConstants = json_decode(file_get_contents(CONSTANTS_FILE), true);
     }
 
-    /**
-    * Will return the final filename to be generated
-    *
-    * @author   frifri
-    * @param    string   The filename
-    */
-    private function _get_file_name($raw_filename) {
-        if (preg_match('/\$mac/', $raw_filename))
-            return str_replace('$mac', $this->_strMac, $raw_filename);
-    }
-
 	/**
 	* Merge two arrays together to get one
 	*
@@ -360,7 +349,7 @@ class system_configfile {
 		$phone->prepareConfig();
 
 	    foreach (helper_utils::get_file_list($this->_strBrand, $this->_strModel) as $value) {
-            $filename = $this->_get_file_name($value);
+            $filename = $phone->setFilename($value);
 
             if ($filename) {
                 $file_content = $this->_objTwig->render($value, $this->_arrData);
