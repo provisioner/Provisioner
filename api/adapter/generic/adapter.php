@@ -19,6 +19,7 @@ class adapter_generic_adapter {
 	private $_objConfig_manager;
 	private $_strBrand;
 	private $_strModel;
+	private	$_boolImport = false;
 	
 	/**
 	* Flat File Constructor
@@ -74,7 +75,13 @@ class adapter_generic_adapter {
 			unset($arrSettings['model']);
 		}
 		
-		$this->_objConfig_manager->set_settings($arrSettings);
+		if(!$this->_boolImport) {
+			$this->_objConfig_manager->set_settings($arrSettings,false);
+			$this->_boolImport = true;
+		} else {
+			$this->_objConfig_manager->import_settings($arrSettings);
+		}
+		
 		
 		return $this->_objConfig_manager->get_settings();
 	}
