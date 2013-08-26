@@ -48,8 +48,6 @@ class endpoint_yealink_base extends endpoint_base {
 		$settings = $this->config_manager->get_settings();
 		$constants = $this->config_manager->get_constants();
 
-        var_dump($this->config_manager->get_mac_address());
-
         if ($strFilename != 'phonebook1.xml') {
     		$model = $this->config_manager->get_model();
     		$strFilename = preg_replace('/\$suffix/', $constants['yealink']['suffixes'][$model], $strFilename);
@@ -57,7 +55,10 @@ class endpoint_yealink_base extends endpoint_base {
     		//Yealink likes lower case letters in its mac address
     		$strFilename = preg_replace('/\$mac/', strtolower($this->config_manager->get_mac_address()), $strFilename);
 		} else {
-            mkdir(CONFIG_FILES_BASE . '/directory/' . $this->config_manager->get_mac_address());
+            $folder = CONFIG_FILES_BASE . '/directory/' . $this->config_manager->get_mac_address();
+            if (!file_exists($folder))
+                mkdir($folder);
+            
             $strFilename = 'directory/' . $this->config_manager->get_mac_address() . '/phonebook1.xml';
         }
 
