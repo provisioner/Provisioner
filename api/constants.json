@@ -204,5 +204,14 @@
         "Pacific/Wake": "+12",
         "Pacific/Wallis": "+12",
         "Pacific/Yap": "+10"
+    },
+
+    "yealink": {
+        "suffixes": {
+            "t28": "00",
+            "t26": "04",
+            "t22": "05",
+            "t20": "07"
+        }
     }
 }
