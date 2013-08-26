@@ -50,6 +50,7 @@ class adapter_2600hz_adapter {
         // Load the config manager
         $config_manager = new system_configfile();
         $config_manager->set_mac_address($mac_address);
+        $config_manager->set_request_type('http');
 
         $log->logInfo('Looking for the provider information...');
         // This is retrieve from a view, it is NOT the full doc
@@ -59,6 +60,9 @@ class adapter_2600hz_adapter {
             $log->logFatal("Could not load the provider information - EXIT");
             return false;
         }
+
+        // This will be used to set the provisioner_url
+        $config_manager->set_domain($provider_doc['domain']);
             
         $log->logInfo('Looking for the account_id in the mac_lookup...');
         $account_id = $db->get_account_id($mac_address);
