@@ -74,6 +74,10 @@ class adapter_generic_adapter {
 			$this->_strModel = $arrSettings['model'];
 			unset($arrSettings['model']);
 		}
+
+		if(!empty($arrSettings['mac'])) {
+			$this->_objConfig_manager->set_mac_address($arrSettings['mac']);
+		}
 		
 		if(!$this->_boolImport) {
 			$this->_objConfig_manager->set_settings($arrSettings,false);
