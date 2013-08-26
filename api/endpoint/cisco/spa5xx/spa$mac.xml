@@ -346,7 +346,7 @@
 
   <!-- Dial Plan -->
 
-  <Dial_Plan_{{ x }}_ ua="na">(*xx|[3469]11|0|00|[2-9]xxxxxx|1xxx[2-9]xxxxxxS0|xxxxxxxxxxxx.)</Dial_Plan_{{ x }}_>
+  <Dial_Plan_{{ x }}_ ua="na">(*xxxxxxx|[3469]11|0|00|[2-9]xxxxxx|1xxx[2-9]xxxxxxS0|xxxxxxxxxxxx.|**xxxxxxx)</Dial_Plan_{{ x }}_>
   <Caller_ID_Map_{{ x }}_ ua="na"></Caller_ID_Map_{{ x }}_>
   <Enable_IP_Dialing_{{ x }}_ ua="na">Yes</Enable_IP_Dialing_{{ x }}_>
   <Emergency_Number_{{ x }}_ ua="na"></Emergency_Number_{{ x }}_>
