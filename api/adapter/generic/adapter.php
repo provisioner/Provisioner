@@ -61,6 +61,7 @@ class adapter_generic_adapter {
 	* This will load/merge an array of settings into the manager
 	*
 	* @author	tm1000
+	* @author 	frifri
     * @param	array	$arrSettings	The array with settings to merge
 	* @return	array	the merged settings in their final form
     */
