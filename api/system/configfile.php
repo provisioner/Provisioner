@@ -23,6 +23,7 @@ class system_configfile {
     private $_strRequestType = null;
 
     private $_strMac = null;
+    private $_strDomain = null;
     private $_strConfigFile = null;
     private $_strTemplateDir = null;
     private $_objTwig = null;
@@ -62,6 +63,27 @@ class system_configfile {
     public function get_model() {
         return $this->_strModel;
     }
+
+    /**
+    * Get the mac address
+    *
+    * @author   frifri
+    * @return   string  The mac address
+    */
+    public function get_mac_address() {
+        return $this->_strMac;
+    }
+
+    /**
+    * Get the domain
+    *
+    * @author   frifri
+    * @return   string  The domain
+    */
+    public function get_domain() {
+        return $this->_strDomain;
+    }
+
 
 	/**
 	* Get the Request Type (TFTP, HTTP)
@@ -151,6 +173,16 @@ class system_configfile {
     */
     public function set_mac_address($mac_address) {
         $this->_strMac = $mac_address;
+    }
+
+    /**
+    * Set the domain
+    *
+    * @author   frifri
+    * @param    string  The domain
+    */
+    public function set_domain($domain) {
+        $this->_strDomain = $domain;
     }
 
 	/**
