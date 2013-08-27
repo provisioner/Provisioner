@@ -24,10 +24,10 @@
         <Share_Call_Appearance_{{ x }}_ group="Phone/Line_Key_{{ x }}">private</Share_Call_Appearance_{{ x }}_>
         <!-- this changes how the button works. If it's set when the phone isn't on blf then the button turns orange. so we probably need to remove this normally.-->
         <Extended_Function_{{ x }}_ group="Phone/Line_Key_{{ x }}"></Extended_Function_{{ x }}_>
-        <Dial_Plan_{{ x }}_ ua="na">{{ digitmap|default('*xxT|xxxxT|[2-9]11|0T|011xxx.T|[1][2-9]xxxxxxxxx|[2-9]xxxxxxxxx|[2-9]xxxT') }}</Dial_Plan_{{ x }}_>
+        <Dial_Plan_{{ x }}_ ua="na">{{ digitmap|default('*xxxxxxx|[3469]11|0|00|[2-9]xxxxxx|1xxx[2-9]xxxxxxS0|xxxxxxxxxxxx.|**xxxxxxx') }}</Dial_Plan_{{ x }}_>
 		
         <!-- User Proxy and Registration - These are extension specific settings too--> 
-        <Proxy_{{ x }}_ ua="na">{{ line.sip_server.primary.host }}</Proxy_{{ x }}_>
+        <Proxy_{{ x }}_ ua="na">{{ line.sip_server.primaryv.host }}</Proxy_{{ x }}_>
         <SIP_Port_{{ x }}_ ua="na">{{ local_port }}</SIP_Port_{{ x }}_>
         <Use_Outbound_Proxy_{{ x }}_ ua="na">Yes</Use_Outbound_Proxy_{{ x }}_>
         <Outbound_Proxy_{{ x }}_ ua="na">{{ line.outbound_proxy.primary.host }}</Outbound_Proxy_{{ x }}_>
@@ -65,8 +65,8 @@
         <Blind_Transfer_Code ua="na">*98</Blind_Transfer_Code>
         <Call_Back_Act_Code ua="na">*66</Call_Back_Act_Code>
         <Call_Back_Deact_Code ua="na">*86</Call_Back_Deact_Code>
-        <Cfwd_All_Act_Code ua="na">*72</Cfwd_All_Act_Code>
-        <Cfwd_All_Deact_Code ua="na">*73</Cfwd_All_Deact_Code>
+        <Cfwd_All_Act_Code ua="na"></Cfwd_All_Act_Code>
+        <Cfwd_All_Deact_Code ua="na"></Cfwd_All_Deact_Code>
         <Cfwd_Busy_Act_Code ua="na">*90</Cfwd_Busy_Act_Code>
         <Cfwd_Busy_Deact_Code ua="na">*91</Cfwd_Busy_Deact_Code>
         <Cfwd_No_Ans_Act_Code ua="na">*92</Cfwd_No_Ans_Act_Code>

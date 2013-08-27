@@ -630,8 +630,8 @@
   <Blind_Transfer_Code ua="na">*98</Blind_Transfer_Code>
   <Call_Back_Act_Code ua="na">*66</Call_Back_Act_Code>
   <Call_Back_Deact_Code ua="na">*86</Call_Back_Deact_Code>
-  <Cfwd_All_Act_Code ua="na">*72</Cfwd_All_Act_Code>
-  <Cfwd_All_Deact_Code ua="na">*73</Cfwd_All_Deact_Code>
+  <Cfwd_All_Act_Code ua="na"></Cfwd_All_Act_Code>
+  <Cfwd_All_Deact_Code ua="na"></Cfwd_All_Deact_Code>
   <Cfwd_Busy_Act_Code ua="na">*90</Cfwd_Busy_Act_Code>
   <Cfwd_Busy_Deact_Code ua="na">*91</Cfwd_Busy_Deact_Code>
   <Cfwd_No_Ans_Act_Code ua="na">*92</Cfwd_No_Ans_Act_Code>
