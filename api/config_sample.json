@@ -3,8 +3,11 @@
     "static_data_source": "database",
     "adapter": "",
     "db_prefix": "",
+    "custom_http_port": "8888",
+
 
     "paths": {
+        "root": "/myprovisionerfolder/",
         "endpoint": "/endpoint/",
         "firmwares": "http://my.domain.com/firmware/"
     },
