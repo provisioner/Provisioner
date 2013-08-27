@@ -18,15 +18,11 @@ abstract class endpoint_base {
 
     public function prepareConfig() {
         $settings = $this->config_manager->get_settings();
+
+        if ($this->config_manager->get_request_type() == 'http') {
+            $settings['provisioning_url'] = 'http://' . $this->config_manager->get_domain() . ':' .  $app_settings->custom_http_port . $app_settings->paths->root;
+        }
         
         $this->config_manager->set_settings($settings);
     }
-	
-	public function setFilename($strFilename) {
-		$settings = $this->config_manager->get_settings();
-
-		$strFilename = preg_replace('/\$mac/', $settings['mac'], $strFilename);
-		
-		return $strFilename;
-	}
 }

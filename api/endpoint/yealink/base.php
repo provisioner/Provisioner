@@ -34,12 +34,10 @@ class endpoint_yealink_base extends endpoint_base {
 	            elseif ($codec == "G722_16" || $codec == "G722_32") 
 	                $settings['codecs']['g722'] = true;
 	        }
-		}
+		}   
 
-        if ($this->config_manager->get_request_type() == 'http') {
-            $settings['provisioning_url'] = 'http://' . $this->config_manager->get_domain() . '/';
+        if ($this->config_manager->get_request_type() == 'http')
             $settings['directory_url'] = $settings['provisioning_url'] . 'directory/' . $this->config_manager->get_mac_address() . '/phonebook1.xml';
-        }
 
         $this->config_manager->set_settings($settings);
     }

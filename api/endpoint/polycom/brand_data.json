@@ -136,16 +136,12 @@
         "folder": "spipm",
         "config_files": [
             "$mac.cfg",
-            "$mac_reg.cfg", 
-            "sip.cfg", 
-            "features.cfg",
+            "$mac_reg.cfg",
             "000000000000-directory.xml"
         ],
         "regexs": [
             "/[0-9a-f]{12}\\.cfg$/i",
             "/[0-9a-f]{12}_reg\\.cfg$/i",
-            "/sip\\.cfg$/i",
-            "/features\\.cfg$/i",
             "/[a-fA-F0-9]{12}-directory\\.xml$/i"
         ]
     },
