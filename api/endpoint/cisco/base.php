@@ -40,6 +40,9 @@ class endpoint_cisco_base extends endpoint_base {
 
         $settings['timezone'] = $final_tz;
 
+        if ($this->config_manager->get_request_type() == 'http')
+            $settings['directory_url'] = $settings['provisioning_url'] . 'directory/' . $this->config_manager->get_mac_address() . '/directory.xml';
+
         $this->config_manager->set_settings($settings);
     }
 
@@ -71,6 +74,23 @@ class endpoint_cisco_base extends endpoint_base {
             default:
                 return null;
         }
+    }
+
+    public function setFilename($strFilename) {
+        $settings = $this->config_manager->get_settings();
+
+        if ($strFilename != 'directory.xml') {
+            //Polycoms seems to likes lower case letters in its mac address too
+            $strFilename = preg_replace('/\$mac/', strtolower($this->config_manager->get_mac_address()), $strFilename);
+        } else {
+            $folder = CONFIG_FILES_BASE . '/directory/' . $this->config_manager->get_mac_address();
+            if (!file_exists($folder))
+                mkdir($folder);
+            
+            $strFilename = 'directory/' . $this->config_manager->get_mac_address() . '/directory.xml';
+        }
+
+        return $strFilename;
     }
 }
 

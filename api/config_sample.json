@@ -3,7 +3,7 @@
     "static_data_source": "database",
     "adapter": "",
     "db_prefix": "",
-    "custom_http_port": "8888",
+    "custom_http_port": "",
 
 
     "paths": {

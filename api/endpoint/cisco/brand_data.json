@@ -225,12 +225,10 @@
     "303": {
         "folder": "spa5xx",
         "config_files": [
-            "$model.cfg",
             "spa$mac.xml",
             "directory.xml"
         ],
         "regexs": [
-            "/spa.*\\.cfg$/i",
             "/[a-z0-9]{12}\\.xml/i",
             "/directory\\.xml/i"
         ]
@@ -239,12 +237,10 @@
     "501g": {
         "folder": "spa5xx",
         "config_files": [
-            "$model.cfg",
             "spa$mac.xml",
             "directory.xml"
         ],
         "regexs": [
-            "/spa.*\\.cfg$/i",
             "/[a-z0-9]{12}\\.xml/i",
             "/directory\\.xml/i"
         ]
@@ -253,12 +249,10 @@
     "502g": {
         "folder": "spa5xx",
         "config_files": [
-            "$model.cfg",
             "spa$mac.xml",
             "directory.xml"
         ],
         "regexs": [
-            "/spa.*\\.cfg$/i",
             "/[a-z0-9]{12}\\.xml/i",
             "/directory\\.xml/i"
         ]
@@ -267,12 +261,10 @@
     "504g": {
         "folder": "spa5xx",
         "config_files": [
-            "$model.cfg",
             "spa$mac.xml",
             "directory.xml"
         ],
         "regexs": [
-            "/spa.*\\.cfg$/i",
             "/[a-z0-9]{12}\\.xml/i",
             "/directory\\.xml/i"
         ]
@@ -281,12 +273,10 @@
     "525g": {
         "folder": "spa5xx",
         "config_files": [
-            "$model.cfg",
             "spa$mac.xml",
             "directory.xml"
         ],
         "regexs": [
-            "/spa.*\\.cfg$/i",
             "/[a-z0-9]{12}\\.xml/i",
             "/directory\\.xml/i"
         ]
@@ -295,12 +285,10 @@
     "525g2": {
         "folder": "spa5xx",
         "config_files": [
-            "$model.cfg",
             "spa$mac.xml",
             "directory.xml"
         ],
         "regexs": [
-            "/spa.*\\.cfg$/i",
             "/[a-z0-9]{12}\\.xml/i",
             "/directory\\.xml/i"
         ]

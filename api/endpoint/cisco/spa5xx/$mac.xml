@@ -359,7 +359,7 @@
   <Extended_Function_{{ x }}_ ua="na"></Extended_Function_{{ x }}_>
 
   <XML_Directory_Service_Name ua="na">{{ line.username }} directory</XML_Directory_Service_Name>
-  <XML_Directory_Service_URL ua="na">{{ provisioning_url }}directory.xml</XML_Directory_Service_URL>
+  <XML_Directory_Service_URL ua="na">{{ directory_url }}</XML_Directory_Service_URL>
 
   {% set x = x + 1 %}
   {% endfor %}

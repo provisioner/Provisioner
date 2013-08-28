@@ -44,7 +44,7 @@ class Files {
         // to use are comming from the payload of this API
         $config_manager = $adapter->get_config_manager(
             $request_data['provider_id'],
-            $request_data['mac'], 
+            strtolower($request_data['mac']), 
             $request_data['brand'], 
             $request_data['model']
         );
