@@ -14,7 +14,7 @@ class helper_settings {
     private $_file;
 
     public static function get_instance($filepath = 'config.json') {
-        $objSettings = new helper_settings($filepath);
+        $objSettings = new helper_settings(PROVISIONER_BASE . $filepath);
         return $objSettings->get_settings();
     }
 
