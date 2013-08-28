@@ -59,7 +59,6 @@
            			<featureOptionMask>1</featureOptionMask>
            			<callWaiting>3</callWaiting>
            			<sharedLine>false</sharedLine>
-           			<messageWaitingLampPolicy>3</messageWaitingLampPolicy>
            			<messageWaitingAMWI>1</messageWaitingAMWI>
            			<ringSettingIdle>4</ringSettingIdle>
            			<ringSettingActive>5</ringSettingActive>
