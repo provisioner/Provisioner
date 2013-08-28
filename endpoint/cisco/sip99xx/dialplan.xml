@@ -1,0 +1,16 @@
+<DIALTEMPLATE>
+<TEMPLATE MATCH="000" Timeout="0"/>
+<TEMPLATE MATCH="13...." Timeout="0"/>
+<TEMPLATE MATCH="1300......" Timeout="0"/>
+<TEMPLATE MATCH="1800......" Timeout="0"/>
+<TEMPLATE MATCH="02........" Timeout="0"/>
+<TEMPLATE MATCH="03........" Timeout="0"/>
+<TEMPLATE MATCH="04........" Timeout="0"/>
+<TEMPLATE MATCH="05........" Timeout="0"/>
+<TEMPLATE MATCH="06........" Timeout="0"/>
+<TEMPLATE MATCH="07........" Timeout="0"/>
+<TEMPLATE MATCH="08........" Timeout="0"/>
+<TEMPLATE MATCH="09........" Timeout="0"/>
+<TEMPLATE MATCH="#..." Timeout="3" User="Phone" />
+<TEMPLATE MATCH="*" Timeout="3"/>
+</DIALTEMPLATE>

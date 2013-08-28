@@ -32,6 +32,14 @@
           "changelog": "",
           "last_modified": null
         },
+	{
+          "id": "8",
+          "name": "Cisco SIP 99xx\/69xx Models [9951,9971,6821,6841,6845]",
+          "directory": "sip99xx",
+          "description": "",
+          "changelog": "",
+          "last_modified": null
+        },
         {
           "id": "4",
           "name": "Cisco SIP 79x1G Models [7940G,7941G,7961G]",
