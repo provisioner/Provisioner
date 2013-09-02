@@ -51,6 +51,32 @@ class endpoint_cisco_sip99xx_phone extends endpoint_cisco_base {
 		}
 		//Cisco time offset is in minutes, our global variable is in seconds
 		//$this->timezone = $global_cfg['gmtoff']/60;
+		if (isset($this->settings['loops']['backup'])) {
+		            foreach ($this->settings['loops']['backup'] as $key => $data) {
+		                if ($this->settings['loops']['backup'][$key]['ip'] == '') {
+		                    unset($this->settings['loops']['backup'][$key]);
+		                }
+		            }
+	        }
+		if (isset($this->settings['loops']['linekey'])) {
+		            foreach ($this->settings['loops']['linekey'] as $key => $data) {
+		                if ($this->settings['loops']['linekey'][$key]['label'] == '') {
+		                    unset($this->settings['loops']['linekey'][$key]);
+		                }
+		            }
+	        }
+		if (isset($this->settings['loops']['servicekey'])) {
+		            foreach ($this->settings['loops']['servicekey'] as $key => $data) {
+		                if ($this->settings['loops']['servicekey'][$key]['name'] == '') {
+		                    unset($this->settings['loops']['servicekey'][$key]);
+		                }
+		            }
+	        }
+
+
+
+
+
 	}
 	
 }
