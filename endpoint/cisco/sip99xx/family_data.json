@@ -33,7 +33,9 @@
                 "firmware": "sip9951.*.loads",
                 "template_data": [
                     "template_data.json",
-                    "line_keys_99.json"
+                    "backup_server.json",
+                    "line_keys_99.json",
+                    "service_keys_99.json"
                 ]
             },
             {
@@ -52,7 +54,10 @@
                 "firmware": "SIP69xx.*.loads",
                 "template_data": [
                     "template_data.json"
-                ]
+                    "template_data.json",
+                    "backup_server.json",
+                    "service_keys_2.json"
+               ]
             },
             {
                 "model": "6845",
@@ -60,7 +65,10 @@
                 "id": "5",
                 "firmware": "SIP69xx.*.loads",
                 "template_data": [
-                    "template_data.json"
+                    "template_data.json",
+                    "backup_server.json",
+                    "line_keys_4.json",
+                    "service_keys_99.json"
                 ]
             }
 
