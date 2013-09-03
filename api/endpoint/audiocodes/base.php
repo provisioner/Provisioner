@@ -38,8 +38,6 @@ class endpoint_audiocodes_base extends endpoint_base {
 
         $settings['timezone'] = $final_tz;
 
-        print_r($settings);
-
         $this->config_manager->set_settings($settings);
     }
     
