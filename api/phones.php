@@ -16,7 +16,7 @@ class Phones {
     private $_FIELDS = array('settings');
 
     function __construct() {
-        $this->db = new BigCouch(DB_SERVER, DB_PORT);
+        $this->db = new wrapper_bigcouch();
     }
 
     private function _buildDocumentName($brand, $family = null, $model = null) {
@@ -135,7 +135,7 @@ class Phones {
         
         $object_ready = $this->db->prepareAddPhones($request_data, $document_name, $brand, $family, $model);
 
-        if (!$this->db->add('factory_defaults', Validator::validateAdd($object_ready, $this->_FIELDS)))
+        if (!$this->db->add('factory_defaults', $object_ready))
             throw new RestException(500, 'Error while Adding the data');
 
         return array('status' => true, 'message' => 'Document successfully added');
