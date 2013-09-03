@@ -1,0 +1,11 @@
+{
+    "420": {
+        "folder": "4xx",
+        "config_files": [
+            "$mac.cfg"
+        ],
+        "regexs": [
+            "/([0-9a-f]{12})\\.cfg$/i"
+        ]
+    }
+}
