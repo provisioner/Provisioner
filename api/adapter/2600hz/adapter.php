@@ -152,6 +152,7 @@ class adapter_2600hz_adapter {
 
             // Building lines settings
             $line_settings = json_decode($objTwig->render($master_template, $merged_settings), true);
+
             if (!$line_settings) {
                 $log->logWarn('Line settings NULL!');
                 return false;
@@ -164,6 +165,7 @@ class adapter_2600hz_adapter {
             $log->logInfo('Reassigning merge object into the config manager at key 0...');
             $config_manager->set_settings($merged_settings, false);
 
+            $log->logInfo('Returning config manager...');
             return $config_manager;
         }
 
