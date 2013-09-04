@@ -1,6 +1,6 @@
 setup.php
 master.json
-config.json
+config_sample.json
 temp/
 logs/log*
 api/logs/log*
