@@ -22,22 +22,31 @@ class endpoint_yealink_base extends endpoint_base {
         if (array_key_exists('timezone', $settings))
             $settings['timezone'] = $constants['timezone_lookup'][$settings['timezone']];
 
+        if ($this->config_manager->get_request_type() == 'http')
+            $settings['directory_url'] = $settings['provisioning_url'] . 'directory/' . $this->config_manager->get_mac_address() . '/phonebook1.xml';
+
+        $this->config_manager->set_settings($settings);
+
+        $this->_set_codecs();
+    }
+
+    private function _set_codecs() {
+        $settings = $this->config_manager->get_settings();
+        $constants = $this->config_manager->get_constants();
+
         // Codecs
         if(isset($settings['media']['audio']['codecs'])) {
             foreach ($settings['media']['audio']['codecs'] as $codec) {
-	            if ($codec == "G729")
-	                $settings['codecs']['g729'] = true;
-	            elseif ($codec == "PCMU")
-	                $settings['codecs']['pcmu'] = true;
-	            elseif ($codec == "PCMA")
-	                $settings['codecs']['pcma'] = true;
-	            elseif ($codec == "G722_16" || $codec == "G722_32") 
-	                $settings['codecs']['g722'] = true;
-	        }
-		}   
-
-        if ($this->config_manager->get_request_type() == 'http')
-            $settings['directory_url'] = $settings['provisioning_url'] . 'directory/' . $this->config_manager->get_mac_address() . '/phonebook1.xml';
+                if ($codec == "G729")
+                    $settings['codecs']['g729'] = true;
+                elseif ($codec == "PCMU")
+                    $settings['codecs']['pcmu'] = true;
+                elseif ($codec == "PCMA")
+                    $settings['codecs']['pcma'] = true;
+                elseif ($codec == "G722_16" || $codec == "G722_32") 
+                    $settings['codecs']['g722'] = true;
+            }
+        }
 
         $this->config_manager->set_settings($settings);
     }
