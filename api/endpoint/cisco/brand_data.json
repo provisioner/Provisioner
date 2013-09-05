@@ -237,7 +237,7 @@
     "501g": {
         "folder": "spa5xx",
         "config_files": [
-            "spa$mac.xml",
+            "$mac.xml",
             "directory.xml"
         ],
         "regexs": [
@@ -249,7 +249,7 @@
     "502g": {
         "folder": "spa5xx",
         "config_files": [
-            "spa$mac.xml",
+            "$mac.xml",
             "directory.xml"
         ],
         "regexs": [
@@ -261,7 +261,7 @@
     "504g": {
         "folder": "spa5xx",
         "config_files": [
-            "spa$mac.xml",
+            "$mac.xml",
             "directory.xml"
         ],
         "regexs": [
@@ -273,7 +273,7 @@
     "525g": {
         "folder": "spa5xx",
         "config_files": [
-            "spa$mac.xml",
+            "$mac.xml",
             "directory.xml"
         ],
         "regexs": [
@@ -285,7 +285,7 @@
     "525g2": {
         "folder": "spa5xx",
         "config_files": [
-            "spa$mac.xml",
+            "$mac.xml",
             "directory.xml"
         ],
         "regexs": [
