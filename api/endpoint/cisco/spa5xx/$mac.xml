@@ -4,6 +4,11 @@
 	<Text_Logo group="Phone/General"></Text_Logo>
 	<Select_Background_Picture ua="ro">Text Logo</Select_Background_Picture>
 
+  <Short_Name_1_ ua="na"></Short_Name_1_>
+  <Short_Name_2_ ua="na"></Short_Name_2_>
+  <Short_Name_3_ ua="na"></Short_Name_3_>
+  <Short_Name_4_ ua="na"></Short_Name_4_>
+
   <!-- System Configuration -->
 
   <Restricted_Access_Domains ua="na"></Restricted_Access_Domains>
@@ -354,7 +359,7 @@
   <!-- Line Key 1 -->
 
   <Extension_{{ x }}_ ua="na">_{{ x }}_</Extension_{{ x }}_> <!-- options: 1/2/3/4/5/6/7/8/9/10/11/12/Disabled -->
-  <Short_Name_{{ x }}_ ua="na">$USER</Short_Name_{{ x }}_>
+  <Short_Name_{{ x }}_ ua="na">{{ line.display_name }}</Short_Name_{{ x }}_>
   <Share_Call_Appearance_{{ x }}_ ua="na">private</Share_Call_Appearance_{{ x }}_> <!-- options: private/shared -->
   <Extended_Function_{{ x }}_ ua="na"></Extended_Function_{{ x }}_>
 
