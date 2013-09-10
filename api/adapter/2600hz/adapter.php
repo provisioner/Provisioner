@@ -140,13 +140,16 @@ class adapter_2600hz_adapter {
 
             $log->logInfo('Building lines settings...');
 
+            //echo PROVISIONER_BASE . 'adapter/2600hz/' . $brand_doc_name . '.json';
+            //exit();
+
             // Yeah, let's choose the right template
-            if (file_exists(PROVISIONER_BASE . 'adapter/2600hz/' . $brand_doc_name))
-                $master_template = $model_template;
-            elseif(file_exists(PROVISIONER_BASE . 'adapter/2600hz/' . $family_doc_name))
-                $master_template = $family_template;
-            elseif(file_exists(PROVISIONER_BASE . 'adapter/2600hz/' . $model_doc_mame))
-                $master_template = $model_doc_mame;
+            if (file_exists(PROVISIONER_BASE . 'adapter/2600hz/' . $brand_doc_name . '.json'))
+                $master_template = $brand_doc_name . '.json';
+            elseif(file_exists(PROVISIONER_BASE . 'adapter/2600hz/' . $family_doc_name . '.json'))
+                $master_template = $family_doc_name . '.json';
+            elseif(file_exists(PROVISIONER_BASE . 'adapter/2600hz/' . $model_doc_mame . '.json'))
+                $master_template = $model_doc_mame . '.json';
             else
                 $master_template = 'master.json';
 
