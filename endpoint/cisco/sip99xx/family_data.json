@@ -53,7 +53,7 @@
                 "id": "4",
                 "firmware": "SIP69xx.*.loads",
                 "template_data": [
-                    "template_data.json"
+                    "template_data.json",
                     "template_data.json",
                     "backup_server.json",
                     "service_keys_2.json"
