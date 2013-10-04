@@ -5,8 +5,8 @@
       "directory": "polycom",
       "brand_id": "4",
       "package": "polycom.tgz",
-      "md5sum": "3f0c6344788cda72323ed420d9e374b4",
-      "last_modified": 1354169605,
+      "md5sum": "005be2af7f8dc8a41374f9f6b0be3fef",
+      "last_modified": 1365455331,
       "family_list": [
         {
           "id": "4",
@@ -34,7 +34,7 @@
         },
         {
           "id": "3",
-          "name": "SoundPoint\/Station\/VVX In-Production Models [321,331,335,450,550,560,650,670,5000,6000,7000,1500]",
+          "name": "SoundPoint\/Station\/VVX In-Production Models [321,331,335,450,550,560,650,670,5000,6000,7000,500,1500]",
           "directory": "spipm",
           "description": "Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality",
           "changelog": "",
@@ -61,7 +61,7 @@
         "0004F2",
         "00907A"
       ],
-      "changelog": "PACKAGER: Update endpoint\/polycom\/spipm\/sip.cfg\n\nDisabled urldialing."
+      "changelog": "PACKAGER: PHPUnit tests for conflicting ids in both families and models"
     }
   }
 }

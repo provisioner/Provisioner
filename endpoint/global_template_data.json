@@ -466,6 +466,50 @@
                     "type": "input"
                 },
                 {
+                    "variable":"$voice_vlan_enable",
+                    "default_value":"0",
+                    "description":"Voice VLAN Enable",
+                    "type":"list",
+                    "data":[
+                        {
+                            "text":"True",
+                            "value":"1"
+                        },
+                        {
+                            "text":"False",
+                            "value":"0"
+                        }
+                            ]
+                },
+                {
+                    "variable": "$voice_vlan_id",
+                    "default_value": "0",
+                    "description": "Voice VLAN ID",
+                    "type": "input"
+                },
+                {
+                    "variable":"$data_vlan_enable",
+                    "default_value":"0",
+                    "description":"Data VLAN Enable",
+                    "type":"list",
+                    "data":[
+                        {
+                            "text":"True",
+                            "value":"1"
+                        },
+                        {
+                            "text":"False",
+                            "value":"0"
+                        }
+                            ]
+                },
+                {
+                    "variable": "$data_vlan_id",
+                    "default_value": "0",
+                    "description": "Data VLAN ID",
+                    "type": "input"
+                },
+                {
                     "variable": "$vlan_qos",
                     "default_value": "0",
                     "description": "VLAN QOS",

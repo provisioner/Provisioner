@@ -5,8 +5,8 @@
       "directory": "thomson",
       "brand_id": "14",
       "package": "thomson.tgz",
-      "md5sum": "4fa1e00c9b8ea3defed6bc7ba768acca",
-      "last_modified": 1348941671,
+      "md5sum": "a748ce323707ad4cfa800c3257ee808c",
+      "last_modified": 1358327019,
       "family_list": [
         {
           "id": "1",
@@ -21,7 +21,7 @@
         "001F9F",
         "00147F"
       ],
-      "changelog": "PACKAGER: Remove Firmware Install info. N\/A."
+      "changelog": "PACKAGER: Update endpoint\/grandstream\/gxphd\/ext_b_2.json"
     }
   }
 }
