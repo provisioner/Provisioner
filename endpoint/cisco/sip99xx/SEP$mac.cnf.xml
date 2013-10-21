@@ -47,6 +47,27 @@
 			<backupProxy>{$backup_ip}</backupProxy>
 			<backupProxyPort>{$backup_port}</backupProxyPort>
 		</sipProxies>
+
+		<sipCallFeatures>
+	        	<cnfJoinEnabled>true</cnfJoinEnabled>
+		        <callForwardURI>x-cisco-serviceuri-cfwdall</callForwardURI>
+		        <callPickupURI>x-cisco-serviceuri-pickup</callPickupURI>
+		        <callPickupListURI>x-cisco-serviceuri-opickup</callPickupListURI>
+	        	<callPickupGroupURI>x-cisco-serviceuri-gpickup</callPickupGroupURI>
+		        <meetMeServiceURI>x-cisco-serviceuri-meetme</meetMeServiceURI>
+		        <abbreviatedDialURI>x-cisco-serviceuri-abbrdial</abbreviatedDialURI>
+		        <rfc2543Hold>false</rfc2543Hold>
+		        <callHoldRingback>2</callHoldRingback>
+		        <localCfwdEnable>true</localCfwdEnable>
+		        <semiAttendedTransfer>true</semiAttendedTransfer>
+		        <anonymousCallBlock>2</anonymousCallBlock>
+		        <callerIdBlocking>2</callerIdBlocking>
+		        <dndControl>0</dndControl>
+		        <remoteCcEnable>true</remoteCcEnable>
+			<retainForwardInformation>true</retainForwardInformation>
+		</sipCallFeatures>
+
+
 		<preferredCodec>{$preferredcodec}</preferredCodec>
 		<phoneLabel>{$displayname.line.1}</phoneLabel>
 		<sipLines>
@@ -170,7 +191,7 @@
 <deviceSecurityMode>1</deviceSecurityMode>
 
   <idleTimeout>0</idleTimeout>
-  <authenticationURL></authenticationURL>
+  <authenticationURL>{$authentication_url}</authenticationURL>
   <directoryURL>{$directory_url}</directoryURL>
   <idleURL>{$idle_url}</idleURL>
   <informationURL></informationURL>
