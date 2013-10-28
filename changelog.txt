@@ -1,0 +1,2 @@
+v5.3.3 - October 28, 2013:
+    - Fix an issue with the delete operation on the phones
