@@ -219,7 +219,7 @@ class Accounts {
                 $this->_log->logDebug(" - DELETE - Deleting a device ($mac_address) for account $account_id...");
                 $this->_log->logDebug("Request coming from " . $_SERVER['REMOTE_ADDR']);
                 // Let's check also if the device that we are trying to delete exist
-                if ($this->db->isDBexist($mac_address)) {
+                if ($this->db->isDocExist($account_db, $mac_address)) {
                     $this->_log->logDebug("The device does exist... let's delete it");
                     // First we delete the device document
                     if (!$this->db->delete($account_db, $mac_address)) {
