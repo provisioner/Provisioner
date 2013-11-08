@@ -14,6 +14,12 @@
                 "type":"input"
               },
               {
+                "variable":"$authentication_url",
+                "default_value":"http://172.23.3.5/auth.php",
+                "description":"Authentication URL",
+                "type":"input"
+              },
+              {
                 "variable":"$info_url",
                 "default_value":"",
                 "description":"Information URL",
@@ -139,7 +145,7 @@
                   	},
                         {
                     	"text":"Australia/Perth",
-                	"value":"West Pacific Standard Time"
+                	"value":"W. Australia Standard Time"
                   	}
                 ]
               }
