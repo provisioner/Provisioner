@@ -8,10 +8,10 @@
             "name":"basic",
             "item":[
               {
-                "description":"Line Keys (3-12)",
+                "description":"Line Keys (3-4)",
                 "type":"loop",
                 "loop_start":"3",
-                "loop_end":"12",
+                "loop_end":"4",
                 "data":{
                   "item":[
                     {
@@ -35,7 +35,7 @@
                       "type":"input"
                     },
                     {
-                      "variable":"$linekey_number",
+                      "variable":"$linekey_extension",
                       "default_value":"",
                       "description":"Line Key {$count} Extension",
                       "type":"input"

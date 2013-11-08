@@ -8,15 +8,15 @@
             "name":"General Settings",
             "item":[
               {
-                "variable":"$services_url",
-                "default_value":"",
-                "description":"Services URL",
-                "type":"input"
-              },
-              {
                 "variable":"$directory_url",
                 "default_value":"http://172.23.3.5/cisco/services/searchDirectory.php",
                 "description":"Directory URL",
+                "type":"input"
+              },
+              {
+                "variable":"$authentication_url",
+                "default_value":"http://172.23.3.5/auth.php",
+                "description":"Authentication URL",
                 "type":"input"
               },
               {
@@ -56,6 +56,13 @@
                 "description":"Logo URL",
                 "type":"input"
               },
+              {
+                "variable":"$dns_server",
+                "default_value":"",
+                "description":"DNS Name Server",
+                "type":"input"
+              },
+
               {
                 "variable":"$image_name",
                 "default_value":"",
@@ -101,7 +108,48 @@
                     "value":"D-M-Ya"
                   }
                 ]
+              },
+		{
+                "variable":"$timezone_template",
+                "default_value":"E. Australia Standard Time",
+                "description":"Timezone selection",
+                "type":"list",
+                "data":[
+                        {
+                    	"text":"America/Los_Angeles",
+                	"value":"Central Standard/Daylight Time"
+                  	},
+                        {
+                    	"text":"Europe/Dublin",
+               	 	"value":"GMT Standard/Daylight Time"
+                  	},
+                        {
+                    	"text":"Pacific/Auckland",
+                	"value":"New Zealand Standard/Daylight Time"
+                  	},
+                        {
+                    	"text":"Australia/Brisbane",
+                	"value":"E. Australia Standard Time"
+                  	},
+                        {
+                    	"text":"Australia/Sydney",
+                	"value":"AUS Eastern Standard/Daylight Time"
+                 	},
+                        {
+                    	"text":"Australia/Adelaide",
+                	"value":"Central Pacific Standard Time"
+                  	},
+                        {
+                    	"text":"Australia/Tasmania",
+                  	"value":"Tasmania Standard/Daylight Time"
+                  	},
+                        {
+                    	"text":"Australia/Perth",
+                	"value":"W. Australia Standard Time"
+                  	}
+                ]
               }
+
             ]
           }
         ]

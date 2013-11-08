@@ -6,7 +6,7 @@
 	<devicePool>
 		<dateTimeSetting>
 			<dateTemplate>{$date_template}</dateTemplate>
-			<timeZone>{$ciscotz}</timeZone>
+			<timeZone>{$timezone_template}</timeZone>
 			<ntps>
 				<ntp>
 					<name>{$network_time_server}</name>
@@ -24,6 +24,16 @@
 						</ports>
 					</callManager>
 				</member>
+                        {loop_backup}
+                                <member priority="{$number}">
+                                        <callManager>
+                                                <processNodeName>{$ip}</processNodeName>
+                                                <ports>
+                                                        <sipPort>{$port}</sipPort>
+                                                </ports>
+                                        </callManager>
+                                </member>
+                        {/loop_backup}
 			</members>
 		</callManagerGroup>
 	</devicePool>
@@ -34,14 +44,35 @@
 			<registerWithProxy>true</registerWithProxy>
 			<outboundProxy>{$outbound_host.line.1}</outboundProxy>
 			<outboundProxyPort>{$outbound_port.line.1}</outboundProxyPort>
-			<backupProxy>{$server_host.line.1}</backupProxy>
-			<backupProxyPort>{$server_port.line.1}</backupProxyPort>
+			<backupProxy>{$backup_ip}</backupProxy>
+			<backupProxyPort>{$backup_port}</backupProxyPort>
 		</sipProxies>
+
+		<sipCallFeatures>
+	        	<cnfJoinEnabled>true</cnfJoinEnabled>
+		        <callForwardURI>x-cisco-serviceuri-cfwdall</callForwardURI>
+		        <callPickupURI>x-cisco-serviceuri-pickup</callPickupURI>
+		        <callPickupListURI>x-cisco-serviceuri-opickup</callPickupListURI>
+	        	<callPickupGroupURI>x-cisco-serviceuri-gpickup</callPickupGroupURI>
+		        <meetMeServiceURI>x-cisco-serviceuri-meetme</meetMeServiceURI>
+		        <abbreviatedDialURI>x-cisco-serviceuri-abbrdial</abbreviatedDialURI>
+		        <rfc2543Hold>false</rfc2543Hold>
+		        <callHoldRingback>2</callHoldRingback>
+		        <localCfwdEnable>true</localCfwdEnable>
+		        <semiAttendedTransfer>true</semiAttendedTransfer>
+		        <anonymousCallBlock>2</anonymousCallBlock>
+		        <callerIdBlocking>2</callerIdBlocking>
+		        <dndControl>0</dndControl>
+		        <remoteCcEnable>true</remoteCcEnable>
+			<retainForwardInformation>true</retainForwardInformation>
+		</sipCallFeatures>
+
+
 		<preferredCodec>{$preferredcodec}</preferredCodec>
 		<phoneLabel>{$displayname.line.1}</phoneLabel>
 		<sipLines>
 {line_loop}
-			<line button="{$line}">
+			<line button="{$line}" lineIndex="{$line}">
 				<featureID>9</featureID>
 				<featureLabel>{$username}</featureLabel>
 				<proxy>USECALLMANAGER</proxy>
@@ -86,6 +117,14 @@
 
 		</sipLines>
 		<dialTemplate>dialplan.xml</dialTemplate>
+		<startMediaPort>10000</startMediaPort>
+     		<stopMediaPort>20000</stopMediaPort>
+     		<voipControlPort>5060</voipControlPort>
+     		<dscpForAudio>184</dscpForAudio>
+         	<dscpVideo>136</dscpVideo>
+         	<dscpForTelepresence>128</dscpForTelepresence>
+     		<ringSettingBusyStationPolicy>0</ringSettingBusyStationPolicy>
+         	<softKeyFile>softkey.xml</softKeyFile>
 	</sipProfile>
 	 <loadInformation>{$image_name}</loadInformation>
 	 <featurePolicyFile>DefaultFP.xml</featurePolicyFile>
@@ -120,7 +159,7 @@
      <displayOnWhenIncomingCall>1</displayOnWhenIncomingCall>
      <spanToPCPort>1</spanToPCPort>
      <loggingDisplay>1</loggingDisplay>
-     <loadServer></loadServer>
+     <loadServer>{$dns_server}</loadServer>
   </vendorConfig>
 <commonConfig>
      <usb1>1</usb1>
@@ -152,7 +191,7 @@
 <deviceSecurityMode>1</deviceSecurityMode>
 
   <idleTimeout>0</idleTimeout>
-  <authenticationURL></authenticationURL>
+  <authenticationURL>{$authentication_url}</authenticationURL>
   <directoryURL>{$directory_url}</directoryURL>
   <idleURL>{$idle_url}</idleURL>
   <informationURL></informationURL>
@@ -215,30 +254,16 @@
                 <vendor></vendor>
                 <version></version>
         </phoneService>
-        <phoneService  type="1" category="0">
-                <name>Corporate Directory</name>
-                <url>http://10.60.0.62/xmlphonedir/</url>
-                <vendor></vendor>
-                <version></version>
+{loop_servicekey}
+        <phoneService  type="{$type}" category="{$category}">
+                <name>{$name}</name>
+                <url>{$url}</url>
+                <vendor>{$vendor}</vendor>
+                <version>{$version}</version>
         </phoneService>
-        <phoneService  type="1" category="0">
-                <name>National Directory</name>
-                <url>http://10.60.0.62/xmlphonedir/Directories/index.xml</url>
-                <vendor></vendor>
-                <version></version>
-        </phoneService>
-        <phoneService  type="0" category="0">
-                <name>Services</name>
-                <url>http://10.61.1.10:8443/ccmcip/getservicesmenu.jsp/</url>
-                <vendor></vendor>
-                <version></version>
-        </phoneService>
-        <phoneService  type="0" category="0">
-                <name>Berbee</name>
-                <url>http://phone-xml.berbee.com/menu.xml</url>
-                <vendor></vendor>
-                <version></version>
-        </phoneService>
+{/loop_servicekey}
+
+
   </phoneServices>
 
 

@@ -36,7 +36,7 @@
           "id": "8",
           "name": "Cisco SIP 99xx\/69xx Models [9951,9971,6821,6841,6845]",
           "directory": "sip99xx",
-          "description": "",
+          "description": "Cisco phones with 9.2+ firmware",
           "changelog": "",
           "last_modified": null
         },
