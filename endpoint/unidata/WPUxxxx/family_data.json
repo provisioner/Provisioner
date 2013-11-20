@@ -1,0 +1,26 @@
+{
+  "data": {
+    "name": "Unidata Model [WPU-7800]",
+    "id": "1",
+    "directory": "WPUxxxx",
+    "firmware_ver": "",
+    "firmware_pkg": "",
+    "firmware_md5sum": "",
+    "description": "",
+    "configuration_files": "e1_common.ini,e1_$mac.ini",
+    "changelog": "",
+    "provisioning_types": [
+      "tftp"
+    ],
+    "model_list": [
+      {
+        "model": "WPU-7800",
+        "lines": "1",
+        "id": "1",
+        "template_data": [
+          "sip_data.json"
+        ]
+      }
+    ]
+  }
+}
