@@ -1,5 +1,5 @@
 <softKeyCfg>
-  <versionStamp>a3d292eb-805d-4841-b7a0-90f2dde852f3</versionStamp>
+  <versionStamp>292f70b3-6320-46f1-bf5e-bc9f59b66daf</versionStamp>
   <typeSoftKey>
     <softKeyDef keyID="Undefined">
       <tag>0</tag>
@@ -106,6 +106,11 @@
       <eventID>35</eventID>
       <helpID>335</helpID>
     </softKeyDef>
+    <softKeyDef keyID="Record">
+      <tag>7747</tag>
+      <eventID>74</eventID>
+      <helpID>374</helpID>
+    </softKeyDef>
   </typeSoftKey>
   <softKeySets>
     <softKeySet id="On Hook">
@@ -119,9 +124,6 @@
       <softKey keyID="Redial" />
       <softKey keyID="EndCall" />
       <softKey keyID="PickUp" />
-      <softKey keyID="GPickUp" />
-      <softKey keyID="OPickUp" />
-      <softKey keyID="MeetMe" />
     </softKeySet>
     <softKeySet id="Off Hook With Feature">
       <softKey keyID="Redial" />
@@ -143,6 +145,7 @@
       <softKey keyID="ConfList" />
       <softKey keyID="RmLstC" />
       <softKey keyID="Park" />
+      <softKey keyID="Record" />
     </softKeySet>
     <softKeySet id="Connected No Feature">
       <softKey keyID="Undefined" />
@@ -154,10 +157,8 @@
       <softKey keyID="Transfer" />
     </softKeySet>
     <softKeySet id="Connected Conference">
-      <softKey keyID="RmLstC" />
-      <softKey keyID="EndCall" />
       <softKey keyID="Confrn" />
-      <softKey keyID="ConfList" />
+      <softKey keyID="EndCall" />
     </softKeySet>
     <softKeySet id="Local Conferenced">
       <softKey keyID="Hold" />

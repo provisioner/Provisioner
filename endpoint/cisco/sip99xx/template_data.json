@@ -7,6 +7,25 @@
           {
             "name":"General Settings",
             "item":[
+
+ 	     {
+                "variable":"$video",
+                "default_value":"0",
+                "description":"Enable Video",
+               "type": "list",
+                "data": [
+                    {
+                        "text": "Yes",
+                        "value": "1"
+                    },
+                    {
+                        "text": "No",
+                        "value": ""
+                    }
+		    ]		
+	     },
+
+
               {
                 "variable":"$directory_url",
                 "default_value":"http://172.23.3.5/cisco/services/searchDirectory.php",
@@ -95,19 +114,47 @@
               },
               {
                 "variable":"$date_template",
-                "default_value":"M/D/YA",
+                "default_value":"D/M/YA",
                 "description":"Date Format",
                 "type":"list",
                 "data":[
                   {
-                    "text":"American",
-                    "value":"M/D/YA"
+                    "text":"European",
+                    "value":"D/M/Ya"
                   },
                   {
-                    "text":"European",
-                    "value":"D-M-Ya"
+                    "text":"American",
+                    "value":"M/D/YA"
                   }
                 ]
+              },
+              {
+                "variable":"$dialplan_template",
+                "default_value":"dialplan.xml",
+                "description":"Dialplan Template",
+                "type":"list",
+                "data":[
+                  {
+                    "text":"Default",
+                    "value":"dialplan.xml"
+                  },
+                  {
+                    "text":"QLD",
+                    "value":"dialplan-qld.xml"
+                  },
+                  {
+                    "text":"NSW",
+                    "value":"dialplan-nsw.xml"
+                  },
+		  {
+                    "text":"VIC",
+                    "value":"dialplan-nsw.xml"
+                  },
+                  {
+                    "text":"PER/ADL",
+                    "value":"dialplan-per.xml"
+                  }
+                 ]
               },
 		{
                 "variable":"$timezone_template",

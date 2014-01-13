@@ -66,8 +66,14 @@
 		        <remoteCcEnable>true</remoteCcEnable>
 			<retainForwardInformation>true</retainForwardInformation>
 		</sipCallFeatures>
-
-
+		<addOnModules>
+                     <addOnModule uuid="" idx="1">
+                        <deviceType>{$kem}</deviceType>
+                        <deviceLine>{$kemlines}</deviceLine>
+                        <loadInformation></loadInformation>
+                        <phoneTemplateId></phoneTemplateId>
+                     </addOnModule>
+                </addOnModules>
 		<preferredCodec>{$preferredcodec}</preferredCodec>
 		<phoneLabel>{$displayname.line.1}</phoneLabel>
 		<sipLines>
@@ -111,12 +117,16 @@
         	                <featureOptionMask>1</featureOptionMask>
 	                </line>
 {/loop_linekey}
-
-
-
-
+{loop_kemkey}
+                        <line button="{$number}">
+                                <featureID>{$type}</featureID>
+                               	<featureLabel>{$label}</featureLabel>
+                                <speedDialNumber>{$extension}</speedDialNumber>
+                                <featureOptionMask>1</featureOptionMask>
+                        </line>
+{/loop_kemkey}
 		</sipLines>
-		<dialTemplate>dialplan.xml</dialTemplate>
+		<dialTemplate>{$dialplan_template}</dialTemplate>
 		<startMediaPort>10000</startMediaPort>
      		<stopMediaPort>20000</stopMediaPort>
      		<voipControlPort>5060</voipControlPort>
@@ -142,7 +152,7 @@
      <garp>0</garp>
      <voiceVlanAccess>0</voiceVlanAccess>
      <ciscoCamera>1</ciscoCamera>
-     <videoCapability>1</videoCapability>
+     <videoCapability>{$video}</videoCapability>
      <usbClasses>0,1,2</usbClasses>
      <sdio>1</sdio>
      <wifi>0</wifi>

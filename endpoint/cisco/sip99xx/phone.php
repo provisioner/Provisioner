@@ -65,6 +65,13 @@ class endpoint_cisco_sip99xx_phone extends endpoint_cisco_base {
 		                }
 		            }
 	        }
+               if (isset($this->settings['loops']['kemkey']) and $this->settings["kem"] != '') {
+                            foreach ($this->settings['loops']['kemkey'] as $key => $data) {
+                                if ($this->settings['loops']['kemkey'][$key]['label'] == '') {
+                                    unset($this->settings['loops']['kemkey'][$key]);
+                                }
+                            }
+                }
 		if (isset($this->settings['loops']['servicekey'])) {
 		            foreach ($this->settings['loops']['servicekey'] as $key => $data) {
 		                if ($this->settings['loops']['servicekey'][$key]['name'] == '') {

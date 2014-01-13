@@ -20,3 +20,4 @@ timer_invite_expires: "180"
 http_proxy_addr: ""
 http_proxy_port: 80
 remote_party_id: 0
+date_format: D/M/Y

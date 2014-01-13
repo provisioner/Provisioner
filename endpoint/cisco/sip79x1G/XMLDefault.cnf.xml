@@ -11,6 +11,7 @@
 -->
 <Default>
 <loadInformation8 model="IP Phone 7940">P0S3-8-12-00</loadInformation8>  
+<loadInformation115 model="IP Phone 7941">term41.default</loadInformation8>
 <loadInformation7 model="IP Phone 7960">P0S3-8-12-00</loadInformation7> 
 <loadInformation435 model="Cisco 7945">SIP45.8-4-2S</loadInformation435>
 <loadInformation436 model="Cisco 7965">SIP45.8-4-2S</loadInformation436> 
