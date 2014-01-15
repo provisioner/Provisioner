@@ -66,14 +66,6 @@
 		        <remoteCcEnable>true</remoteCcEnable>
 			<retainForwardInformation>true</retainForwardInformation>
 		</sipCallFeatures>
-		<addOnModules>
-                     <addOnModule uuid="" idx="1">
-                        <deviceType>{$kem}</deviceType>
-                        <deviceLine>{$kemlines}</deviceLine>
-                        <loadInformation></loadInformation>
-                        <phoneTemplateId></phoneTemplateId>
-                     </addOnModule>
-                </addOnModules>
 		<preferredCodec>{$preferredcodec}</preferredCodec>
 		<phoneLabel>{$displayname.line.1}</phoneLabel>
 		<sipLines>
@@ -138,6 +130,13 @@
 	</sipProfile>
 	 <loadInformation>{$image_name}</loadInformation>
 	 <featurePolicyFile>DefaultFP.xml</featurePolicyFile>
+                <addOnModules>
+                     <addOnModule uuid="" idx="1">
+                        <loadInformation>{$kem}</loadInformation>
+                        <phoneTemplateId></phoneTemplateId>
+                     </addOnModule>
+                </addOnModules>
+
 <commonProfile>
      <phonePassword></phonePassword>
      <backgroundImageAccess>true</backgroundImageAccess>

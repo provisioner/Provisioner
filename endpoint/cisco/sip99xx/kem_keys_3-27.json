@@ -14,8 +14,12 @@
                 "type":"list",
                 "data":[
                   {
-                    "text":"Enable",
-                    "value":"CKEM"
+                    "text":"7915",
+                    "value":"B015-1-0-4-2"
+                  },
+                  {
+                    "text":"7916",
+                    "value":"B016-1-0-4-2"
                   },
                   {
                     "text":"Disable",
