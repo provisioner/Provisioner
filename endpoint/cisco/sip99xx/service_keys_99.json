@@ -1,0 +1,106 @@
+{
+  "template_data":{
+    "category":[
+      {
+        "name":"Services",
+        "subcategory":[
+          {
+            "name":"basic",
+            "item":[
+              {
+                "description":"Services",
+                "type":"loop",
+                "loop_start":"1",
+                "loop_end":"10",
+                "data":{
+                  "item":[
+                    {
+                      "variable":"$servicekey_type",
+                      "default_value":"1",
+                      "description":"Services {$count} Type",
+                      "type":"list",
+                      "data":[
+                        {
+                          "text":"Default",
+                          "value":"0"
+                        },
+                       {
+                          "text":"Contacts Menu",
+                          "value":"1"
+                        },
+                        {
+                          "text":"Messages Menu",
+                          "value":"2"
+                        }
+                      ]
+                    },
+		   {
+                    "variable":"$servicekey_category",
+                      "default_value":"0",
+                      "description":"Category",
+                      "type":"list",
+                      "data":[
+                        {
+                          "text":"0",
+                          "value":"0"
+                        },
+                       {
+                          "text":"1",
+                          "value":"1"
+                        },
+                       {
+                          "text":"2",
+                          "value":"2"
+                        },
+                       {
+                          "text":"3",
+                          "value":"3"
+                        },
+                       {
+                          "text":"4",
+                          "value":"4"
+                        }
+
+
+                      ]
+                    },
+
+
+                    {
+                      "variable":"$servicekey_name",
+                      "default_value":"",
+                      "description":"Name of service",
+                      "type":"input"
+                    },
+                    {
+                      "variable":"$servicekey_url",
+                      "default_value":"",
+                      "description":"URL",
+                      "type":"input"
+                    },
+                   {
+                      "variable":"$servicekey_vendor",
+                      "default_value":"",
+                      "description":"Vendor",
+                      "type":"input"
+                    },
+                  {
+                      "variable":"$servicekey_version",
+                      "default_value":"",
+                      "description":"Version",
+                      "type":"input"
+                    },
+
+                    {
+                      "type":"break"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
