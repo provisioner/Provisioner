@@ -7,7 +7,7 @@
         "firmware_pkg": "NULL",
         "firmware_md5sum": "",
         "description": "",
-        "configuration_files": "SEP$mac.cnf.xml,DefaultFP.xml,RINGLIST.DAT,ringlist.xml,dialplan.xml,softkey.xml",
+        "configuration_files": "DefaultFP.xml,dialplan-nsw.xml,dialplan-per.xml,dialplan-qld.xml,dialplan-vic.xml,dialplan.xml,features.xml,ringlist.xml,SEP$mac.cnf.xml,softkey.xml",
         "changelog": "",
         "provisioning_types": [
             "tftp"
