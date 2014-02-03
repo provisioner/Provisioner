@@ -115,6 +115,7 @@
                 "template_data": [
                     "template_data.json",
                     "backup_server.json",
+                    "line_keys_4.json",
                     "service_keys_99.json"
              	]
             },
@@ -130,7 +131,21 @@
 		    "kem_keys_24.json",
                     "service_keys_99.json"
              	]
+            },
+            {
+                "model": "7965G-sidecar",
+                "lines": "1",
+                "id": "11",
+                "firmware": "term65.*.loads",
+                "template_data": [
+                    "template_data.json",
+                    "backup_server.json",
+                    "line_keys_5.json",
+                    "kem_keys_24_796x.json",
+                    "service_keys_99.json"
+                ]
             }
+
         ]
     }
 }
