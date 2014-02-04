@@ -1,0 +1,26 @@
+{
+  "data": {
+    "name": "AudoCodes Model [MP-1XX]",
+    "id": "1",
+    "directory": "mp-1xx",
+    "firmware_ver": "",
+    "firmware_pkg": "",
+    "firmware_md5sum": "",
+    "description": "",
+    "configuration_files": "$mac.ini",
+    "changelog": "",
+    "provisioning_types": [
+      "tftp"
+    ],
+    "model_list": [
+      {
+        "model": "MP-124",
+        "lines": "24",
+        "id": "1",
+        "template_data": [
+          "sip_data.json"
+        ]
+      }
+    ]
+  }
+}
