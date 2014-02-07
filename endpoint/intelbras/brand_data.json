@@ -1,0 +1,26 @@
+{
+  "data": {
+    "brands": {
+      "name": "Intelbras",
+      "brand_id": "19",
+      "directory": "intelbras",
+      "package": "intelbras.tgz",
+      "md5sum": "ae222fbc61cc7227bb02df7afa9d2be4",
+      "last_modified": 1391788260,
+      "family_list": [
+        {
+          "id": "1",
+          "name": "Intelbras TIP: [200, 300]",
+          "directory": "tip",
+          "description": "Make more configuration settings available from UI",
+          "changelog": "",
+          "last_modified": null
+        }
+      ],
+      "oui_list": [
+        "001A3F"
+      ],
+      "changelog": ""
+    }
+  }
+}
