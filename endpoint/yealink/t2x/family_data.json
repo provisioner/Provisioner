@@ -1,8 +1,8 @@
 {
   "data": {
-    "name": "Yealink\/Dreamwave T2X V71 Models: [T20, T22, T21, T26, T28]",
+    "name": "Yealink\/Dreamwave T2X Models: [T20, T22, T26, T28]",
     "id": "1",
-    "directory": "t2x_v71",
+    "directory": "t2x",
     "firmware_ver": 1326828070,
     "firmware_pkg": "t2x_firmware.tgz",
     "firmware_md5sum": "8c15008a113e9e6954424f3ac485ad70",
@@ -21,20 +21,6 @@
         "template_data": [
           "template_data.json",
           "memory_keys_22.json",
-          "remote_phone_book.json",
-          "dialnow_22.json",
-          "ext38.json"
-        ]
-      },
-      {
-        "model": "T21",
-        "lines": "3",
-        "id": "5",
-        "template_data": [
-          "template_data.json",
-          "line_keys_22.json",
-          "soft_keys_22.json",
-          "hard_keys.json",
           "remote_phone_book.json",
           "dialnow_22.json",
           "ext38.json"
