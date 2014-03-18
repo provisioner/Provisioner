@@ -25,6 +25,14 @@
           "last_modified": null
         },
         {
+          "id": "4", 
+          "name": "Yealink\/Dreamwave T2X V71 Models: [T20, T21, T22, T26, T28]",
+          "directory": "t2x_v71",
+          "description": "Make more configuration settings available from UI",
+          "changelog": "",
+          "last_modified": null
+        },
+        {
           "id": "2",
           "name": "Yealink\/Dreamwave T3X Models: [T32, T38]",
           "directory": "t3x",
