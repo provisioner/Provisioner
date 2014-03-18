@@ -5,8 +5,8 @@
       "directory": "grandstream",
       "brand_id": "2",
       "package": "grandstream.tgz",
-      "md5sum": "2467ba90b50d28ab10f12d1c285e8bb8",
-      "last_modified": 1374806769,
+      "md5sum": "2b4fd590c8193fb7c24663176d678a37",
+      "last_modified": 1395185865,
       "family_list": [
         {
           "id": "2",
@@ -44,7 +44,7 @@
       "oui_list": [
         "000B82"
       ],
-      "changelog": "PACKAGER: Update endpoint\/grandstream\/gxphd\/cfg$mac\n\nAdding support for Multipurpose keys 19-24, supported by Grandstream GXP2124.\r\n\r\nTaken directly from the Grandstream provisioning template, and added variables to match the other 18 keys.\r\nI'm the first to admit I have zero experience programming, so I'm certain there are other things that will need to be changed for these additions to work. I'm researching, and will likely propose more changes to the repo."
+      "changelog": "PACKAGER: "
     }
   }
 }

@@ -5,8 +5,8 @@
       "brand_id": "9",
       "directory": "mitel",
       "package": "mitel.tgz",
-      "md5sum": "036ba0c196822266ed0e08c977a2ab31",
-      "last_modified": 1343188696,
+      "md5sum": "4de75fa10ff608249496929bc2a5f149",
+      "last_modified": 1395183811,
       "family_list": [
         {
           "id": "1",
@@ -20,7 +20,7 @@
       "oui_list": [
         "08000F"
       ],
-      "changelog": "PACKAGER: GXP HD Updates"
+      "changelog": "PACKAGER: "
     }
   }
 }

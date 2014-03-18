@@ -5,8 +5,8 @@
       "directory": "thomson",
       "brand_id": "14",
       "package": "thomson.tgz",
-      "md5sum": "a748ce323707ad4cfa800c3257ee808c",
-      "last_modified": 1358327019,
+      "md5sum": "4021965082b0ff42b048d90c2045381e",
+      "last_modified": 1395185244,
       "family_list": [
         {
           "id": "1",
@@ -21,7 +21,7 @@
         "001F9F",
         "00147F"
       ],
-      "changelog": "PACKAGER: Update endpoint\/grandstream\/gxphd\/ext_b_2.json"
+      "changelog": "PACKAGER: "
     }
   }
 }

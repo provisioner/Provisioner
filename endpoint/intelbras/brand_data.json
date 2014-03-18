@@ -5,8 +5,8 @@
       "brand_id": "19",
       "directory": "intelbras",
       "package": "intelbras.tgz",
-      "md5sum": "ae222fbc61cc7227bb02df7afa9d2be4",
-      "last_modified": 1391788260,
+      "md5sum": "6f42a70a3c1f09dfd6c91c61a051ef8b",
+      "last_modified": 1395183811,
       "family_list": [
         {
           "id": "1",
@@ -20,7 +20,7 @@
       "oui_list": [
         "001A3F"
       ],
-      "changelog": ""
+      "changelog": "PACKAGER: "
     }
   }
 }

@@ -5,9 +5,9 @@
       "brand_id": "1",
       "directory": "aastra",
       "package": "aastra.tgz",
-      "md5sum": "89e94190210b3e04dd6551b3d8f4f175",
-      "last_modified": 1355983880,
-      "changelog": "PACKAGER: Update endpoint\/snom\/7xx\/template_data.json\n\nAdd firmware URL",
+      "md5sum": "ddc6f19c9288e5b35ba10cf45a5f417d",
+      "last_modified": 1395185663,
+      "changelog": "PACKAGER: ",
       "family_list": [
         {
           "id": "1",

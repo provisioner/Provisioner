@@ -1,6 +1,6 @@
 {
   "data": {
-    "last_modified": 1347579866,
+    "last_modified": 1395183811,
     "package": "provisioner_net.tgz",
     "brands": [
       {
@@ -24,6 +24,10 @@
         "directory": "grandstream"
       },
       {
+        "name": "Intelbras",
+        "directory": "intelbras"
+      },
+      {
         "name": "Mitel",
         "directory": "mitel"
       },
@@ -42,6 +46,10 @@
       {
         "name": "Thomson",
         "directory": "thomson"
+      },
+      {
+        "name": "Unidata",
+        "directory": "unidata"
       },
       {
         "name": "Xorcom",

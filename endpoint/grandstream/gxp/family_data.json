@@ -3,16 +3,16 @@
     "name": "GXP Enterprise IP series [280,1200,2000,2010,2020]",
     "id": "1",
     "directory": "gxp",
-    "firmware_ver": 1323333834,
-    "firmware_md5sum": "08f29a78f3a8ba70430896164536403f",
+    "firmware_ver": 1395185795,
+    "firmware_md5sum": "69506226616958e459e0ad93ce07497b",
     "firmware_pkg": "gxp_firmware.tgz",
     "description": "Use Grandstream Encrypted Compiler By Default",
     "configuration_files": "cfg$mac",
     "changelog": "",
-            "provisioning_types": [
-            "tftp",
-            "http"
-        ],
+    "provisioning_types": [
+      "tftp",
+      "http"
+    ],
     "model_list": [
       {
         "model": "GXP280",

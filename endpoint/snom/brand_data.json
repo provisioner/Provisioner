@@ -5,8 +5,8 @@
       "directory": "snom",
       "brand_id": "6",
       "package": "snom.tgz",
-      "md5sum": "6e4bbc5456f599454fdcdf5b463330b4",
-      "last_modified": 1374806631,
+      "md5sum": "1d95a63ec2d633be7c960ecfb27b5d80",
+      "last_modified": 1395183811,
       "family_list": [
         {
           "id": "1",
@@ -44,7 +44,7 @@
       "oui_list": [
         "000413"
       ],
-      "changelog": "PACKAGER: PHPUnit tests for conflicting ids in both families and models"
+      "changelog": "PACKAGER: "
     }
   }
 }

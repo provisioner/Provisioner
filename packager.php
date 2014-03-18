@@ -1,36 +1,12 @@
 <?PHP
-/*
-This file, when run from the web, creates all the needed packages in the releases folder and also generates http://www.provisioner.net/releases
-*/
-//This is not for any 'scary' security measures, it's just so I can prevent robots from running the script all the time.
-if (!isset($_SERVER['PHP_AUTH_USER'])) {
-    header('WWW-Authenticate: Basic realm="Provisioner.net"');
-    header('HTTP/1.0 401 Unauthorized');
-	die('no');
-} else {
-	if(($_SERVER['PHP_AUTH_USER'] != 'maint') && ($_SERVER['PHP_AUTH_PW'] != 'maint')) {
-		die('no');
-	}
-}
-
-if(file_exists('/var/www/html/includes/update_wiki.php')) {
-	include('/var/www/html/includes/update_wiki.php');
-	function updatew($page,$text,$message) {
-		update_wiki($page,$text,$message);
-	}
-} else {
-	function updatew($page,$text,$message) {
-	}
-}
-
 global $force;
 $force = isset($_REQUEST['force']) ? TRUE : FALSE;
-
+$push = isset($_REQUEST['push']) ? TRUE : FALSE;
 set_time_limit(0);
-define("MODULES_DIR", "/var/www/repo/endpoint");
-define("RELEASE_DIR", "/var/www/html/release/v3");
-define("ROOT_DIR", "/var/www/repo");
-define("FIRMWARE_DIR", "/var/www/firmware");
+define("MODULES_DIR", dirname(__FILE__)."/endpoint");
+define("RELEASE_DIR", "/usr/src/test/v3");
+define("ROOT_DIR", dirname(__FILE__));
+define("FIRMWARE_DIR", "/usr/src/provisioner_framework");
 define("BRANCH", "master");
 
 file_put_contents(RELEASE_DIR.'/update_status', '1');
@@ -40,14 +16,12 @@ echo "======PROVISIONER.NET REPO MAINTENANCE SCRIPT======\n\n\n\n";
 $supported_phones = array();
 $master_xml = array();
 
-echo "<pre>";
-
 if(isset($_REQUEST['commit_message'])) {
 	$c_message = $_REQUEST['commit_message'];
 } else {
 	$c_message = "PACKAGER: ".file_get_contents('/var/www/html/c_message.txt');
 }
-if(!isset($_REQUEST['dont_push'])) {
+if($push) {
 	echo "===GIT Information===\n";
 	echo "COMMIT MESSAGE: ".$c_message."\n";
 	echo "Pulling GIT Master Repo......\n";
@@ -152,10 +126,11 @@ $html .= "[http://www.provisioner.net/release/v3/master.json master.json]\n";
 
 $html .= "== Brand Packages == \n".$brands_html;
 
-updatew('Releases',$html,$c_message);
+//updatew('Releases',$html,$c_message);
 
-$fp = fopen('/var/www/data/pages/supported.txt', 'w');
-$html2 = "==This is the list of Supported Phones== \n == Note: This page is edited by an outside script and can not be edited == \n";
+
+//$fp = fopen('/var/www/data/pages/supported.txt', 'w');
+//$html2 = "==This is the list of Supported Phones== \n == Note: This page is edited by an outside script and can not be edited == \n";
 
 //array_multisort($supported_phones);
 
@@ -167,14 +142,14 @@ foreach($supported_phones as $key => $data2) {
 		}
 	}
 }
-fwrite($fp, $html2);
-fclose($fp);
+//fwrite($fp, $html2);
+//fclose($fp);
 
-updatew('Supported',$html2,$c_message);
+//updatew('Supported',$html2,$c_message);
 
-unlink('cookie.txt');
+//unlink('cookie.txt');
 
-if(!isset($_REQUEST['dont_push'])) {
+if($push) {
 	echo "===GIT Information===\n";
 
 	echo "Running Git Add -A, Status:\n";
@@ -197,7 +172,7 @@ if(!isset($_REQUEST['dont_push'])) {
 
 	echo "=====================\n\n";
 }
-if(!isset($_REQUEST['dont_push'])) {
+if($push) {
 	file_put_contents('/var/www/html/sync_check', '1');
 }
 

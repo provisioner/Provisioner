@@ -3,16 +3,16 @@
     "name": "Yealink\/Dreamwave T2X Models: [T20, T22, T26, T28]",
     "id": "1",
     "directory": "t2x",
-    "firmware_ver": 1326828070,
+    "firmware_ver": 1395185757,
     "firmware_pkg": "t2x_firmware.tgz",
-    "firmware_md5sum": "8c15008a113e9e6954424f3ac485ad70",
+    "firmware_md5sum": "ad32f8f0ec85d3de2a4426b66bb3c484",
     "description": "Make more configuration settings available from UI",
     "configuration_files": "y0000000000$suffix.cfg,$mac.cfg",
     "changelog": "",
-            "provisioning_types": [
-            "tftp",
-            "http"
-        ],
+    "provisioning_types": [
+      "tftp",
+      "http"
+    ],
     "model_list": [
       {
         "model": "T20",

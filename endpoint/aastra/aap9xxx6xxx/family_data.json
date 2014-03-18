@@ -3,16 +3,16 @@
     "name": "Aastra Models: 94xx, 67xx, 9143i [9480i, 9480i CT, 9143i,67xx]",
     "id": "2",
     "directory": "aap9xxx6xxx",
-    "firmware_ver": 1323333834,
-    "firmware_md5sum": "1728f70b8ed00afe4f18765b53b6aa9f",
+    "firmware_ver": 1395185663,
+    "firmware_md5sum": "76a1a82e12e4faaa4306553eba48a928",
     "firmware_pkg": "aap9xxx6xxx_firmware.tgz",
     "description": "Initial Files",
     "configuration_files": "$mac.cfg,aastra.cfg",
     "changelog": "",
-        "provisioning_types": [
-        "tftp",
-        "http"
-      ],
+    "provisioning_types": [
+      "tftp",
+      "http"
+    ],
     "model_list": [
       {
         "model": "9480i",

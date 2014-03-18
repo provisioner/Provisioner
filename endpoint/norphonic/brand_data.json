@@ -5,8 +5,8 @@
       "brand_id": "15",
       "directory": "norphonic",
       "package": "norphonic.tgz",
-      "md5sum": "132d4b4fb40abd46d46a5d01e7810156",
-      "last_modified": 1348941671,
+      "md5sum": "ef2a42162cdaddcd6294f68940a51e57",
+      "last_modified": 1395183811,
       "family_list": [
         {
           "id": "1",
@@ -21,7 +21,7 @@
         "1045BE",
         "0050C2"
       ],
-      "changelog": "PACKAGER: Remove Firmware Install info. N\/A."
+      "changelog": "PACKAGER: "
     }
   }
 }

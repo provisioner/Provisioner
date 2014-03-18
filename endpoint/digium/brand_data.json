@@ -5,8 +5,8 @@
       "brand_id": "16",
       "directory": "digium",
       "package": "digium.tgz",
-      "md5sum": "5d0c38c1edf4b4e9b7c65512da743088",
-      "last_modified": 1353282032,
+      "md5sum": "7387f2bda9ce1554dad4b5935024d623",
+      "last_modified": 1395183811,
       "family_list": [
         {
           "id": "1",
@@ -20,7 +20,7 @@
       "oui_list": [
         "000FD3"
       ],
-      "changelog": "PACKAGER: Update endpoint\/grandstream\/gxphd\/cfg$mac\n\nFew mistake"
+      "changelog": "PACKAGER: "
     }
   }
 }
