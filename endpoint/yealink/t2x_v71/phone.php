@@ -7,9 +7,9 @@
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
  */
-class endpoint_yealink_t2x_phone extends endpoint_yealink_base {
+class endpoint_yealink_t2x_v71_phone extends endpoint_yealink_base {
 
-    public $family_line = 't2x';
+    public $family_line = 't2x_v71';
     public $dynamic_mapping = array(
         '$mac.cfg' => array('$mac.cfg', 'y0000000000$suffix.cfg'),
         'y0000000000$suffix.cfg' => '#This File is intentionally left blank'
