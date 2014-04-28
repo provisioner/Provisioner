@@ -872,9 +872,9 @@ class Provisioner_Globals {
                 </flat-profile>");
                 break;
             //yealink
-            case 'y000000000000.cfg':
-                return("#left blank");
-                break;
+            //case 'y000000000000.cfg':
+            //    return("#left blank");
+            //    break;
             //aastra
             case "aastra.cfg":
                 return("#left blank");
