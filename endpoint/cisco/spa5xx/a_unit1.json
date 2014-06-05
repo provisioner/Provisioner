@@ -37,7 +37,13 @@
                     {
                       "variable":"$unit1_data",
                       "default_value":"",
-                      "description":"BLF\/Speed Dial\/XML {$count} Extension",
+                      "description":"BLF\/Speed Dial\/XML {$count} Data",
+                      "type":"input"
+                    },
+                    {
+                      "variable":"$unit1_description",
+                      "default_value":"",
+                      "description":"BLF\/Speed Dial\/XML {$count} Description",
                       "type":"input"
                     },
                     {

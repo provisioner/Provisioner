@@ -132,8 +132,8 @@
                     "value":"Text Logo"
                   },
                   {
-                    "text":"Download BMP Picture",
-                    "value":"Download BMP Picture"
+                    "text":"BMP Picture",
+                    "value":"BMP Picture"
                   }
                 ]
               },
@@ -148,8 +148,8 @@
                     "value":"Text Logo"
                   },
                   {
-                    "text":"BMP Picture",
-                    "value":"BMP Picture"
+                    "text":"Download BMP Picture",
+                    "value":"Download BMP Picture"
                   }
                 ]
               }
