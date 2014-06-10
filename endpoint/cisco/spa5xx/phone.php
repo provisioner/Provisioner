@@ -136,15 +136,18 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
                         $cp = ($this->engine == 'asterisk') ? '+cp' : '';
                         $this->settings['loops']['unit1'][$key]['data'] = "fnc=blf+sd".$cp.";sub=";
                         $this->settings['loops']['unit1'][$key]['data'] .= preg_match('/;.*=.*@.*$/i', $temp_ext) ? $temp_ext : $temp_ext . "@" . $this->settings['line'][0]['server_host'];
+			$this->settings['loops']['unit1'][$key]['data'] .=  ";nme=" . $this->settings['loops']['unit1'][$key]['description'];
                     }
                     if ($this->settings['loops']['unit1'][$key]['keytype'] == 'speed') {
                         $temp_ext = $this->settings['loops']['unit1'][$key]['data'];
                         $this->settings['loops']['unit1'][$key]['data'] = "fnc=sd;sub=";
                         $this->settings['loops']['unit1'][$key]['data'] .= preg_match('/;.*=.*@.*$/i', $temp_ext) ? $temp_ext : $temp_ext . "@" . $this->settings['line'][0]['server_host'];
+			$this->settings['loops']['unit1'][$key]['data'] .=  ";nme=" . $this->settings['loops']['unit1'][$key]['description'];
                     }
                     if ($this->settings['loops']['unit1'][$key]['keytype'] == 'xml') {
                         $temp_ext = $this->settings['loops']['unit1'][$key]['data'];
                         $this->settings['loops']['unit1'][$key]['data'] = "fnc=xml;url=" . $temp_ext;
+			$this->settings['loops']['unit1'][$key]['data'] .=  ";nme=" . $this->settings['loops']['unit1'][$key]['description'];
                     }
                 }
             }
@@ -157,15 +160,18 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
                         $temp_ext = $this->settings['loops']['unit2'][$key]['data'];
                         $this->settings['loops']['unit2'][$key]['data'] = "fnc=blf+sd;sub=";
                         $this->settings['loops']['unit2'][$key]['data'] .= preg_match('/;.*=.*@.*$/i', $temp_ext) ? $temp_ext : $temp_ext . "@" . $this->settings['line'][0]['server_host'];
+			$this->settings['loops']['unit2'][$key]['data'] .=  ";nme=" . $this->settings['loops']['unit2'][$key]['description'];
                     }
                     if ($this->settings['loops']['unit2'][$key]['keytype'] == 'speed') {
                         $temp_ext = $this->settings['loops']['unit2'][$key]['data'];
                         $this->settings['loops']['unit2'][$key]['data'] = "fnc=sd;sub=";
                         $this->settings['loops']['unit2'][$key]['data'] .= preg_match('/;.*=.*@.*$/i', $temp_ext) ? $temp_ext : $temp_ext . "@" . $this->settings['line'][0]['server_host'];
+			$this->settings['loops']['unit2'][$key]['data'] .=  ";nme=" . $this->settings['loops']['unit2'][$key]['description'];
                     }
                     if ($this->settings['loops']['unit2'][$key]['keytype'] == 'xml') {
                         $temp_ext = $this->settings['loops']['unit2'][$key]['data'];
                         $this->settings['loops']['unit2'][$key]['data'] = "fnc=xml;url=" . $temp_ext;
+			$this->settings['loops']['unit2'][$key]['data'] .=  ";nme=" . $this->settings['loops']['unit2'][$key]['description'];
                     }
                 }
             }
