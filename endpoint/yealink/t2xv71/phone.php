@@ -49,7 +49,7 @@ class endpoint_yealink_t2xv71_phone extends endpoint_yealink_base {
 
     function prepare_for_generateconfig() {
         # This contains the last 2 digits of y0000000000xx.cfg, for each model.
-        $model_suffixes = array('T28' => '00', 'T26' => '04', 'T22' => '05', 'T20' => '07');
+        $model_suffixes = array('T28' => '00', 'T26' => '04', 'T22' => '05', 'T21' => '34', 'T20' => '07');
         //Yealink likes lower case letters in its mac address
         $this->mac = strtolower($this->mac);
         $this->config_file_replacements['$suffix'] = $model_suffixes[$this->model];
