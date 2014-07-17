@@ -47,17 +47,17 @@
 		<subscribe_config perm="R">off</subscribe_config>
 		<subscription_delay perm="R">3</subscription_delay>
 		<tcp_listen perm="R">off</tcp_listen>
-		<timezone perm="R">USA-7</timezone>
-		<tone_scheme perm="R">USA</tone_scheme>
+		<timezone perm="R">{$timezone}</timezone>
+		<tone_scheme perm="R">{$tone_scheme}</tone_scheme>
 		<transfer_on_hangup perm="R">on</transfer_on_hangup>
 		<transfer_on_hangup_with_starcode perm="R">on</transfer_on_hangup_with_starcode>
 		<update_policy perm="R">auto_update</update_policy>
-          	<utc_offset perm="R">0</utc_offset>
+          	<utc_offset perm="R">{$gmtoffset}</utc_offset>
 		<use_backlight perm="R">on</use_backlight>
 		<use_hidden_tags perm="R">on</use_hidden_tags>
 		<user_phone perm="R">off</user_phone>
 		<watchdog perm="R">off</watchdog>
 		<web_logout_timer perm="R">5</web_logout_timer>
-		<webserver_type perm="R">https</webserver_type>
+		<webserver_type perm="R">http</webserver_type>
 	</phone-settings>
 </settings>
