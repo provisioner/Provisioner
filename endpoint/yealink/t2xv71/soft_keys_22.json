@@ -87,6 +87,10 @@
                           "value":"31"
                         },
                         {
+                          "text":"LDAP",
+                          "value":"38"
+                        },
+                        {
                           "text":"NewSMS",
                           "value":"32"
                         }
