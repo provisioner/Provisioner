@@ -7,7 +7,7 @@
 	<!-- Phone Information -->
 	<Text_Logo group="Phone/General">{$text_logo}</Text_Logo>
 	<Logo_Type group="User/Screen">{$logo_type}</Logo_Type>
-    <Background_Picture_Type group="User/Screen">{$background_type}</Background_Picture_Type>
+    <Background_Picture_Type ua="na">{$background_type}</Background_Picture_Type>
 	<Select_Logo ua="na">{$logo_type}</Select_Logo>
 	<Select_Background_Picture ua="ro">{$background_type}</Select_Background_Picture>
 	<BMP_Picture_Download_URL ua="ro">{$picture_url}</BMP_Picture_Download_URL>
