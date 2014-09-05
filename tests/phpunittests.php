@@ -1,4 +1,5 @@
 <?php
+require_once 'PHPUnit/TestCase.php';
 define("ROOT_PATH", dirname(dirname(__FILE__)));
 define("MODULES_DIR", ROOT_PATH."/endpoint");
 define("PROVISIONER_BASE", ROOT_PATH.'/');

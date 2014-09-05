@@ -50,7 +50,7 @@
         },
         {
           "id": "8",
-          "name": "Cisco SIP 99xx\/69xx Models [9951,9971,6821,6841,6845]",
+          "name": "Cisco SIP 99xx\/69xx Models [9951,9971,6821,6841,6845] Ver 9.x Models",
           "directory": "sip99xx",
           "description": "",
           "changelog": "",

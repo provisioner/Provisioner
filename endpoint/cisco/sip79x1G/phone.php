@@ -32,6 +32,7 @@ class endpoint_cisco_sip79x1G_phone extends endpoint_cisco_base {
 			'America/Los_Angeles'=>'Central Standard/Daylight Time',
 			'Europe/Dublin'=>'GMT Standard/Daylight Time',
 			'Pacific/Auckland'=>'New Zealand Standard/Daylight Time',
+			'Australia/Sydney'=>'E. Australia Standard Time',
 		),
 	);
 	function prepare_for_generateconfig() {

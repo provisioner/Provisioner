@@ -2,8 +2,8 @@ phone_label: "{$displayname.line.1} "
 
 {line_loop}
 line{$line}_name: "{$authname}"
-line{$line}_shortname: "{$shortname}"
-line{$line}_displayname: "{$shortname}"
+line{$line}_shortname: "{$shortname} {$authname}"
+line{$line}_displayname: "{$shortname} {$authname}"
 line{$line}_authname: "{$authname}"
 line{$line}_password: "{$secret}"
 {/line_loop}
