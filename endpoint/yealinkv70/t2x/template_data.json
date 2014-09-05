@@ -9,40 +9,123 @@
                 "item":[
 				{
 					"variable":"$timezone_name",
-					"default_value":"United States-Eastern Time",
+					"default_value":"GMT",
 					"description":"Timezone Name",
 					"type":"list",
 					"data":[
-					{
-					  "text":"United States-Hawaii",
-					  "value":"United States-Hawaii-Aleutian"
-					},
-					{
-					  "text":"United States-Alaska Time",
-					  "value":"United States-Alaska Time"
-					},
-					{
-					  "text":"United States-Pacific Time",
-					  "value":"United States-Pacific Time"
-					},
-					{
-					  "text":"United States-Mountain Time",
-					  "value":"United States-Mountain Time"
-					},
-					{
-					  "text":"United States-Central Time",
-					  "value":"United States-Central Time"
-					},
-					{
-					  "text":"United States-Eastern Time",
-					  "value":"United States-Eastern Time"
-					}
+					{"text":"Samoa","value":"Samoa"},
+					{"text":"United States-Hawaii-Aleutian","value":"United States-Hawaii-Aleutian"},
+					{"text":"United States-Alaska-Aleutian","value":"United States-Alaska-Aleutian"},
+					{"text":"United States-Alaska Time","value":"United States-Alaska Time"},
+					{"text":"Canada(Vancouver, Whitehorse)","value":"Canada(Vancouver, Whitehorse)"},
+					{"text":"Mexico(Tijuana, Mexicali)","value":"Mexico(Tijuana, Mexicali)"},
+					{"text":"United States-Pacific Time","value":"United States-Pacific Time"},
+					{"text":"Canada(Edmonton, Calgary)","value":"Canada(Edmonton, Calgary)"},
+					{"text":"Mexico(Mazatlan, Chihuahua)","value":"Mexico(Mazatlan, Chihuahua)"},
+					{"text":"United States-Mountain Time","value":"United States-Mountain Time"},
+					{"text":"United States-MST no DST","value":"United States-MST no DST"},
+					{"text":"Canada-Manitoba(Winnipeg)","value":"Canada-Manitoba(Winnipeg)"},
+					{"text":"Chile(Easter Islands)","value":"Chile(Easter Islands)"},
+					{"text":"Mexico(Mexico City, Acapulco)","value":"Mexico(Mexico City, Acapulco)"},
+					{"text":"United States-Central Time","value":"United States-Central Time"},
+					{"text":"Bahamas(Nassau)","value":"Bahamas(Nassau)"},
+					{"text":"Canada(Montreal, Ottawa, Quebec)","value":"Canada(Montreal, Ottawa, Quebec)"},
+					{"text":"Cuba(Havana)","value":"Cuba(Havana)"},
+					{"text":"United States-Eastern Time","value":"United States-Eastern Time"},
+					{"text":"Venezuela(Caracas)","value":"Venezuela(Caracas)"},
+					{"text":"Canada(Halifax, Saint John)","value":"Canada(Halifax, Saint John)"},
+					{"text":"Chile(Santiago)","value":"Chile(Santiago)"},
+					{"text":"Paraguay(Asuncion)","value":"Paraguay(Asuncion)"},
+					{"text":"United Kingdom-Bermuda(Bermuda)","value":"United Kingdom-Bermuda(Bermuda)"},
+					{"text":"United Kingdom(Falkland Islands)","value":"United Kingdom(Falkland Islands)"},
+					{"text":"Trinidad&Tobago","value":"Trinidad&Tobago"},
+					{"text":"Canada-New Foundland(St.Johns)","value":"Canada-New Foundland(St.Johns)"},
+					{"text":"Denmark-Greenland(Nuuk)","value":"Denmark-Greenland(Nuuk)"},
+					{"text":"Argentina(Buenos Aires)","value":"Argentina(Buenos Aires)"},
+					{"text":"Brazil(no DST)","value":"Brazil(no DST)"},
+					{"text":"Brazil(DST)","value":"Brazil(DST)"},
+					{"text":"Brazil(no DST)","value":"Brazil(no DST)"},
+					{"text":"Portugal(Azores)","value":"Portugal(Azores)"},
+					{"text":"GMT","value":"GMT"},
+					{"text":"Greenland","value":"Greenland"},
+					{"text":"Denmark-Faroe Islands(Torshavn)","value":"Denmark-Faroe Islands(Torshavn)"},
+					{"text":"Ireland(Dublin)","value":"Ireland(Dublin)"},
+					{"text":"Portugal(Lisboa, Porto, Funchal)","value":"Portugal(Lisboa, Porto, Funchal)"},
+					{"text":"Spain-Canary Islands(Las Palmas)","value":"Spain-Canary Islands(Las Palmas)"},
+					{"text":"United Kingdom(London)","value":"United Kingdom(London)"},
+					{"text":"Morocco","value":"Morocco"},
+					{"text":"Albania(Tirane)","value":"Albania(Tirane)"},
+					{"text":"Austria(Vienna)","value":"Austria(Vienna)"},
+					{"text":"Belgium(Brussels)","value":"Belgium(Brussels)"},
+					{"text":"Caicos","value":"Caicos"},
+					{"text":"Chad","value":"Chad"},
+					{"text":"Spain(Madrid)","value":"Spain(Madrid)"},
+					{"text":"Croatia(Zagreb)","value":"Croatia(Zagreb)"},
+					{"text":"Czech Republic(Prague)","value":"Czech Republic(Prague)"},
+					{"text":"Denmark(Kopenhagen)","value":"Denmark(Kopenhagen)"},
+					{"text":"France(Paris)","value":"France(Paris)"},
+					{"text":"Germany(Berlin)","value":"Germany(Berlin)"},
+					{"text":"Hungary(Budapest)","value":"Hungary(Budapest)"},
+					{"text":"Italy(Rome)","value":"Italy(Rome)"},
+					{"text":"Luxembourg(Luxembourg)","value":"Luxembourg(Luxembourg)"},
+					{"text":"Macedonia(Skopje)","value":"Macedonia(Skopje)"},
+					{"text":"Netherlands(Amsterdam)","value":"Netherlands(Amsterdam)"},
+					{"text":"Namibia(Windhoek)","value":"Namibia(Windhoek)"},
+					{"text":"Estonia(Tallinn)","value":"Estonia(Tallinn)"},
+					{"text":"Finland(Helsinki)","value":"Finland(Helsinki)"},
+					{"text":"Gaza Strip(Gaza)","value":"Gaza Strip(Gaza)"},
+					{"text":"Greece(Athens)","value":"Greece(Athens)"},
+					{"text":"Israel(Tel Aviv)","value":"Israel(Tel Aviv)"},
+					{"text":"Jordan(Amman)","value":"Jordan(Amman)"},
+					{"text":"Latvia(Riga)","value":"Latvia(Riga)"},
+					{"text":"Lebanon(Beirut)","value":"Lebanon(Beirut)"},
+					{"text":"Moldova(Kishinev)","value":"Moldova(Kishinev)"},
+					{"text":"Russia(Kaliningrad)","value":"Russia(Kaliningrad)"},
+					{"text":"Romania(Bucharest)","value":"Romania(Bucharest)"},
+					{"text":"Syria(Damascus)","value":"Syria(Damascus)"},
+					{"text":"Turkey(Ankara)","value":"Turkey(Ankara)"},
+					{"text":"Ukraine(Kyiv, Odessa)","value":"Ukraine(Kyiv, Odessa)"},
+					{"text":"East Africa Time","value":"East Africa Time"},
+					{"text":"Iraq(Baghdad)","value":"Iraq(Baghdad)"},
+					{"text":"Russia(Moscow)","value":"Russia(Moscow)"},
+					{"text":"Iran(Teheran)","value":"Iran(Teheran)"},
+					{"text":"Armenia(Yerevan)","value":"Armenia(Yerevan)"},
+					{"text":"Azerbaijan(Baku)","value":"Azerbaijan(Baku)"},
+					{"text":"Georgia(Tbilisi)","value":"Georgia(Tbilisi)"},
+					{"text":"Kazakhstan(Aktau)","value":"Kazakhstan(Aktau)"},
+					{"text":"Russia(Samara)","value":"Russia(Samara)"},
+					{"text":"Afghanistan","value":"Afghanistan"},
+					{"text":"Kazakhstan(Aqtobe)","value":"Kazakhstan(Aqtobe)"},
+					{"text":"Kyrgyzstan(Bishkek)","value":"Kyrgyzstan(Bishkek)"},
+					{"text":"Pakistan(Islamabad)","value":"Pakistan(Islamabad)"},
+					{"text":"Russia(Chelyabinsk)","value":"Russia(Chelyabinsk)"},
+					{"text":"India(Calcutta)","value":"India(Calcutta)"},
+					{"text":"Kazakhstan(Astana, Almaty)","value":"Kazakhstan(Astana, Almaty)"},
+					{"text":"Russia(Novosibirsk, Omsk)","value":"Russia(Novosibirsk, Omsk)"},
+					{"text":"Russia(Krasnoyarsk)","value":"Russia(Krasnoyarsk)"},
+					{"text":"Thailand(Bangkok)","value":"Thailand(Bangkok)"},
+					{"text":"China(Beijing)","value":"China(Beijing)"},
+					{"text":"Singapore(Singapore)","value":"Singapore(Singapore)"},
+					{"text":"Australia(Perth)","value":"Australia(Perth)"},
+					{"text":"Korea(Seoul)","value":"Korea(Seoul)"},
+					{"text":"Japan(Tokyo)","value":"Japan(Tokyo)"},
+					{"text":"Australia(Adelaide)","value":"Australia(Adelaide)"},
+					{"text":"Australia(Darwin)","value":"Australia(Darwin)"},
+					{"text":"Australia(Sydney, Melbourne, Canberra)","value":"Australia(Sydney, Melbourne, Canberra)"},
+					{"text":"Australia(Brisbane)","value":"Australia(Brisbane)"},
+					{"text":"Australia(Hobart)","value":"Australia(Hobart)"},
+					{"text":"Russia(Vladivostok)","value":"Russia(Vladivostok)"},
+					{"text":"Australia(Lord Howe Islands)","value":"Australia(Lord Howe Islands)"},
+					{"text":"New Caledonia(Noumea)","value":"New Caledonia(Noumea)"},
+					{"text":"New Zealand(Wellington, Auckland)","value":"New Zealand(Wellington, Auckland)"},
+					{"text":"New Zealand(Chatham Islands)","value":"New Zealand(Chatham Islands)"},
+					{"text":"Tonga(Nukualofa)","value":"Tonga(Nukualofa)"}
 					]	
 					},
 				{
 					"category":"system",
 					"variable":"$timezone_offset",
-					"default_value":"-5",
+					"default_value":"+1",
 					"description":"Timezone GMT Offset",
 					"type":"list",
 					"data":[
@@ -149,7 +232,96 @@
 					]
 					},
                 {
+                    "variable":"$time_format",
+                    "default_value":"0",
+                    "description":"Time Format",
+                    "type":"list",
+		    "data":[
+		    {
+			"text":"12 Hour",
+			"value":"0"
+		    },
+		    {
+			"text":"24 Hour",
+			"value":"1"
+		    }
+		    ]
+                },
+                {
+                    "variable":"$date_format",
+                    "default_value":"0",
+                    "description":"Date Format",
+                    "type":"list",
+		    "data":[
+		    {
+			"text":"WWW MMM DD",
+			"value":"0"
+		    },
+		    {
+			"text":"DD-MMM-YY",
+			"value":"1"
+		    },
+		    {
+			"text":"YYYY-MM-DD",
+			"value":"2"
+		    },
+		    {
+			"text":"DD/MM/YYYY",
+			"value":"3"
+		    },
+		    {
+			"text":"MM/DD/YY",
+			"value":"4"
+		    },
+		    {
+			"text":"DD MMM YYYY",
+			"value":"5"
+		    },
+		    {
+			"text":"WWW DD MMM",
+			"value":"6"
+		    }
+		    ]
+                },
+                {
                     "type":"break"
+                },
+                {
+                    "variable":"$lang_gui",
+                    "default_value":"English",
+                    "description":"GUI Language",
+                    "type":"list",
+		    "data":[
+		    {
+			"text":"English",
+			"value":"English"
+		    },
+		    {
+			"text":"French",
+			"value":"French"
+		    },
+		    {
+			"text":"Italian",
+			"value":"Italian"
+		    },
+		    {
+			"text":"Spanish",
+			"value":"Spanish"
+		    },
+		    {
+			"text":"Portuguese",
+			"value":"Portuguese"
+		    }
+		    ]
+                },
+                {
+                    "type":"break"
+                },
+                {
+                    "variable":"$firmware_url",
+                    "default_value":"",
+                    "description":"Firmware URL",
+                    "type":"input"
                 },
                 {
                     "variable":"$ringtone_url",
@@ -163,7 +335,7 @@
                 {
                     "variable":"$logo_url",
                     "default_value":"",
-                    "description":"Logo Uploaded at http://myphonesetup.com/",
+                    "description":"Logo URL",
                     "type":"input"
                 },
                 {
@@ -407,15 +579,6 @@
                     "type":"break"
                 },
                 {
-                    "variable":"$firmware_name",
-                    "default_value":"",
-                    "description":"Firmware URL",
-                    "type":"input"
-                },
-                {
-                    "type":"break"
-                },
-                {
                     "variable":"$call_pickup",
                     "default_value":"**",
                     "description":"Call Pickup Value (For BLF)",
@@ -469,6 +632,13 @@
                     ]
                 },
                 {
+                    "variable":"$directory_setting_url",
+                    "default_value":"",
+                    "description":"Directory Setting URL",
+                    "type":"input"
+                },
+
+                {
                     "description":"Remote Phone Books (1-5)",
                     "type":"loop",
                     "loop_start":"1",
@@ -504,15 +674,6 @@
 					"variable":"$contact_list_address",
 					"default_value":"",
 					"description":"Contact List URL",
-					"type":"input"
-				},
-				{
-					"type":"break"
-				},
-				{
-					"variable":"$ringtone_url",
-					"default_value":"",
-					"description":"Ringtone URL",
 					"type":"input"
 				},
 				{
