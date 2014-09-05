@@ -1,0 +1,42 @@
+{
+  "template_data":{
+    "category":[
+      {
+        "name":"Backup Servers",
+        "subcategory":[
+          {
+            "name":"basic",
+            "item":[
+              {
+                "description":"Backup Servers",
+                "type":"loop",
+                "loop_start":"1",
+                "loop_end":"4",
+                "data":{
+                  "item":[
+                    {
+                      "variable":"$backup_ip",
+                      "default_value":"",
+                      "description":"Backup IP ({$count})",
+                      "type":"input"
+                    },
+                    {
+                      "variable":"$backup_port",
+                      "default_value":"5060",
+                      "description":"Port",
+                      "type":"input"
+                    },
+
+                    {
+                      "type":"break"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

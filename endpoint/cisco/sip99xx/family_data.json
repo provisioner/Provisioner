@@ -1,13 +1,13 @@
-{
+{ 
     "data": {
-        "name": "Cisco SIP 99xx/69xx Models [9951,9971,6821,6841,6845]",
+        "name": "Cisco SIP 69xx\/79x1\/79x5\/99xx Ver 9.x Models",
         "id": "8",
         "directory": "sip99xx",
         "firmware_ver": "",
         "firmware_pkg": "NULL",
         "firmware_md5sum": "",
         "description": "",
-        "configuration_files": "SEP$mac.cnf.xml,DefaultFP.xml,RINGLIST.DAT,ringlist.xml,dialplan.xml",
+        "configuration_files": "DefaultFP.xml,dialplan-nsw.xml,dialplan-per.xml,dialplan-qld.xml,dialplan-vic.xml,dialplan.xml,features.xml,ringlist.xml,SEP$mac.cnf.xml,softkey.xml",
         "changelog": "",
         "provisioning_types": [
             "tftp"
@@ -20,17 +20,22 @@
 		"firmware": "sip9971.*.loads",
                 "template_data": [
                     "template_data.json",
-		     "line_keys_99.json"
+		    "backup_server.json",
+		    "line_keys_99.json",
+		    "service_keys_99.json"
+		
                 ]
             },
             {
                 "model": "9951",
-                "lines": "10",
+                "lines": "2",
                 "id": "2",
                 "firmware": "sip9951.*.loads",
                 "template_data": [
                     "template_data.json",
-                    "line_keys_99.json"
+                    "backup_server.json",
+                    "line_keys_99.json",
+                    "service_keys_99.json"
                 ]
             },
             {
@@ -48,8 +53,11 @@
                 "id": "4",
                 "firmware": "SIP69xx.*.loads",
                 "template_data": [
-                    "template_data.json"
-                ]
+                    "template_data.json",
+                    "template_data.json",
+                    "backup_server.json",
+                    "service_keys_2.json"
+               ]
             },
             {
                 "model": "6845",
@@ -57,10 +65,86 @@
                 "id": "5",
                 "firmware": "SIP69xx.*.loads",
                 "template_data": [
-                    "template_data.json"
+                    "template_data.json",
+                    "backup_server.json",
+                    "line_keys_4.json",
+                    "service_keys_99.json"
+                ]
+            },
+            {
+             	"model": "7931",
+                "lines": "1",
+                "id": "6",
+                "firmware": "term31.*.loads",
+                "template_data": [
+                    "template_data.json",
+                    "backup_server.json",
+                    "line_keys_24.json",
+                    "service_keys_99.json"
+                ]
+            },
+	    {
+             	"model": "7971G-sidecar",
+                "lines": "1",
+                "id": "7",
+                "firmware": "term71.*.loads",
+                "template_data": [
+                    "template_data.json",
+                    "backup_server.json",
+                    "line_keys_7.json",
+                    "kem_keys_24.json",
+                    "service_keys_99.json"
+                ]
+            },
+            {
+             	"model": "7941-9.X",
+                "lines": "2",
+                "id": "8",
+                "firmware": "term41.*.loads",
+                "template_data": [
+                    "template_data.json",
+                    "backup_server.json",
+                    "service_keys_99.json"
+                ]
+            },
+            {
+                "model": "7961-9.X",
+                "lines": "2",
+                "id": "9",
+                "firmware": "term61.*.loads",
+                "template_data": [
+                    "template_data.json",
+                    "backup_server.json",
+                    "line_keys_4.json",
+                    "service_keys_99.json"
+             	]
+            },
+            {
+                "model": "7975G-9.X",
+                "lines": "2",
+                "id": "10",
+                "firmware": "term71.*.loads",
+                "template_data": [
+                    "template_data.json",
+                    "backup_server.json",
+                    "line_keys_7.json",
+		    "kem_keys_24.json",
+                    "service_keys_99.json"
+             	]
+            },
+            {
+                "model": "7965G-sidecar",
+                "lines": "1",
+                "id": "11",
+                "firmware": "term65.*.loads",
+                "template_data": [
+                    "template_data.json",
+                    "backup_server.json",
+                    "line_keys_5.json",
+                    "kem_keys_24_796x.json",
+                    "service_keys_99.json"
                 ]
             }
-
 
         ]
     }

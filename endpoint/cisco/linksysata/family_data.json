@@ -113,7 +113,17 @@
                     "template_data.json",
                     "keys.json"
                 ]
+            },
+           {
+                "model": "spa232D",
+                "lines": "14",
+                "id": "12",
+                "template_data": [
+                    "template_data.json",
+                    "keys.json"
+                ]
             }
+
         ]
     }
 }
