@@ -1,6 +1,6 @@
 {
   "data": {
-    "name": "GXP Enterprise HD series [2100,2110,2120]",
+    "name": "GXP Enterprise HD series [2100,2110,2120,2130]",
     "id": "4",
     "directory": "gxphd",
     "firmware_ver": 1395185865,
@@ -38,6 +38,17 @@
         "model": "GXP2120",
         "lines": "6",
         "id": "3",
+        "template_data": [
+          "template_data.json",
+          "keys.json",
+          "ext_b_1.json",
+          "ext_b_2.json"
+        ]
+      },
+      {
+        "model": "GXP2130",
+        "lines": "3",
+        "id": "10",
         "template_data": [
           "template_data.json",
           "keys.json",
