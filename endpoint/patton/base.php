@@ -3,7 +3,7 @@
 /**
  * Patton Base File
  *
- * @author Graeme Moss
+ * @author Graeme Moss contact@dcdata.co.za
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
  */
