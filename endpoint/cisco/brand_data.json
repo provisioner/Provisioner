@@ -5,8 +5,8 @@
       "brand_id": "7",
       "directory": "cisco",
       "package": "cisco.tgz",
-      "md5sum": "9be35acd327f6175dec53a694222e77b",
-      "last_modified": 1395185181,
+      "md5sum": "af90417fa185ad714138e24ea60966fe",
+      "last_modified": 1407058336,
       "family_list": [
         {
           "id": "5",
@@ -50,8 +50,16 @@
         },
         {
           "id": "8",
-          "name": "Cisco SIP 99xx\/69xx Models [9951,9971,6821,6841,6845]",
+          "name": "Cisco SIP 99xx\/69xx Models [9951,9971,6821,6841,6845] Ver 9.x Models",
           "directory": "sip99xx",
+          "description": "",
+          "changelog": "",
+          "last_modified": null
+        },
+        {
+          "id": "9",
+          "name": "Cisco SIP 7800 Series [7821,7841,7861]",
+          "directory": "sip78xx",
           "description": "",
           "changelog": "",
           "last_modified": null

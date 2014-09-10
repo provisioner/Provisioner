@@ -1,0 +1,86 @@
+{
+  "template_data":{
+    "category":[
+      {
+        "name":"Kem Keys",
+        "subcategory":[
+          {
+            "name":"basic",
+            "item":[
+              {
+                "variable":"$kem",
+                "default_value":"",
+                "description":"Sidcar",
+                "type":"list",
+                "data":[
+                  {
+                    "text":"Enable",
+                    "value":"CKEM"
+                  },
+                  {
+                    "text":"7915",
+                    "value":"B015-1-0-4-2"
+                  },
+                  {
+                    "text":"7916",
+                    "value":"B016-1-0-4-2"
+                  },
+                  {
+                    "text":"Disable",
+                    "value":""
+                  }
+                ]
+              },
+              {
+               	"variable":"$kemlines",
+                "default_value":"24",
+                "description":"Number of lines on Kem",
+                "type":"input"
+              },
+
+              {
+                "description":"Expansion Keys (1-24)",
+                "type":"loop",
+                "loop_start":"9",
+                "loop_end":"33",
+                "data":{
+                  "item":[
+                    {
+                      "variable":"$kemkey_type",
+                      "default_value":"21",
+                      "description":"Line Key {$count} Type",
+                      "type":"list",
+                      "data":[
+                        {
+                          "text":"Speed Dial",
+                          "value":"21",
+                          "disable":"$kemkey_mode_{$count},$kemkey_pickup_{$count}",
+                          "enable":"$kemkey_line_{$count},$kemkey_extension_{$count}"
+                        }
+                      ]
+                    },
+                    {
+                      "variable":"$kemkey_label",
+                      "default_value":"",
+                      "description":"Line Key {$count} Label",
+                      "type":"input"
+                    },
+                    {
+                      "variable":"$kemkey_extension",
+                      "default_value":"",
+                      "description":"Line Key {$count} Extension",
+                      "type":"input"
+                    },
+                    {
+                      "type":"break"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

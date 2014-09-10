@@ -8,14 +8,6 @@
      "md5sum": "",
      "last_modified": null,
      "family_list": [
-       { 
-	 "id": "3",
-	 "name": "Yealink T1x V70: [T18]",
-	 "directory": "t1x",
-	 "description": "",
-	 "changelog": "",
-	 "last_modified": null
-       },
        {
          "id": "2",
          "name": "Yealink T2X v70: [T20, T22, T26, T28]",

@@ -1,0 +1,32 @@
+<DIALTEMPLATE>
+<TEMPLATE MATCH="000" Timeout="0"/>
+<TEMPLATE MATCH="0,13...." Timeout="0"/>
+<TEMPLATE MATCH="0,1300......" Timeout="0"/>
+<TEMPLATE MATCH="0,1800......" Timeout="0"/>
+<TEMPLATE MATCH="0,02........" Timeout="0"/>
+<TEMPLATE MATCH="0,03........" Timeout="0"/>
+<TEMPLATE MATCH="0,04........" Timeout="0"/>
+<TEMPLATE MATCH="0,05........" Timeout="0"/>
+<TEMPLATE MATCH="0,06........" Timeout="0"/>
+<TEMPLATE MATCH="0,07........" Timeout="0"/>
+<TEMPLATE MATCH="0,08........" Timeout="0"/>
+<TEMPLATE MATCH="0,09........" Timeout="0"/>
+<TEMPLATE MATCH="0,3......."         Timeout="0" User="Phone" Rewrite="073......."/> 
+<TEMPLATE MATCH="0,4......."         Timeout="0" User="Phone" Rewrite="074......."/> 
+<TEMPLATE MATCH="0,5......."         Timeout="0" User="Phone" Rewrite="075......."/> 
+<TEMPLATE MATCH="0,6......."         Timeout="0" User="Phone" Rewrite="076......."/> 
+<TEMPLATE MATCH="0,7......."         Timeout="0" User="Phone" Rewrite="077......."/> 
+<TEMPLATE MATCH="0,8......."         Timeout="0" User="Phone" Rewrite="078......."/> 
+<TEMPLATE MATCH="0,9......."         Timeout="0" User="Phone" Rewrite="079......."/> 
+<TEMPLATE MATCH="1.." Timeout="0" User="Phone" />
+<TEMPLATE MATCH="2..." Timeout="0" User="Phone" />
+<TEMPLATE MATCH="3..." Timeout="0" User="Phone" />
+<TEMPLATE MATCH="4..." Timeout="0" User="Phone" />
+<TEMPLATE MATCH="5..." Timeout="0" User="Phone" />
+<TEMPLATE MATCH="6..." Timeout="0" User="Phone" />
+<TEMPLATE MATCH="7..." Timeout="0" User="Phone" />
+<TEMPLATE MATCH="8..." Timeout="0" User="Phone" />
+<TEMPLATE MATCH="9..." Timeout="0" User="Phone" />
+<TEMPLATE MATCH="#..." Timeout="0" User="Phone" />
+<TEMPLATE MATCH="*" Timeout="3"/>
+</DIALTEMPLATE>

@@ -12,7 +12,9 @@ class endpoint_yealinkv70_t3x_phone extends endpoint_yealinkv70_base {
     public $family_line = 't3x';
     protected $use_system_dst = TRUE;
 
-    function parse_lines_hook($line_data, $line_total) {
+	function parse_lines_hook($line_data, $line_total) {
+		$this->settings['call_pickup'] = isset($this->settings['call_pickup']) ? $this->settings['call_pickup'] : '*8';
+
         $line_data['line_active'] = 1;
         $line_data['line_m1'] = $line_data['line'];
         $line_data['voicemail_number'] = '*97';
@@ -50,6 +52,7 @@ class endpoint_yealinkv70_t3x_phone extends endpoint_yealinkv70_base {
     }
 
     function prepare_for_generateconfig() {
+		$this->settings['call_pickup'] = isset($this->settings['call_pickup']) ? $this->settings['call_pickup'] : '*8';
         # This contains the last 2 digits of y0000000000xx.cfg, for each model.
         $model_suffixes = array('T38' => '38', 'T32' => '32');
         //Yealink likes lower case letters in its mac address

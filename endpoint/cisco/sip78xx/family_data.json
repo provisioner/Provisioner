@@ -1,0 +1,42 @@
+{
+    "data": {
+        "name": "Cisco SIP 7800 Series [7821,7841,7861]",
+        "id": "9",
+        "directory": "sip78xx",
+        "firmware_ver": "",
+        "firmware_pkg": "NULL",
+        "firmware_md5sum": "",
+        "description": "",
+        "configuration_files": "SEP$mac.cnf.xml,Ringlist-wb.xml,dialplan.xml",
+        "changelog": "",
+        "provisioning_types": [
+            "tftp"
+        ],
+        "model_list": [
+            {
+                "model": "7821",
+                "lines": "2",
+                "id": "1",
+                "template_data": [
+                    "template_data.json"
+                ]
+            },
+            {
+                "model": "7841",
+                "lines": "4",
+                "id": "2",
+                "template_data": [
+                    "template_data.json"
+                ]
+            },
+            {
+                "model": "7861",
+                "lines": "16",
+                "id": "3",
+                "template_data": [
+                    "template_data.json"
+                ]
+            }
+        ]
+    }
+}

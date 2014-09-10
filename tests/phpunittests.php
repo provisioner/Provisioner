@@ -3,7 +3,7 @@ define("ROOT_PATH", dirname(dirname(__FILE__)));
 define("MODULES_DIR", ROOT_PATH."/endpoint");
 define("PROVISIONER_BASE", ROOT_PATH.'/');
 require_once(PROVISIONER_BASE.'autoload.php');
-
+date_default_timezone_set('America/Los_Angeles');
 
 class StackTest extends PHPUnit_Framework_TestCase
 {	

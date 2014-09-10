@@ -1,17 +1,14 @@
 <?php
 /**
- * Cisco SIP 7900 Phone File
+ * Cisco SIP 78xx Phone File
  *
- * @author Andrew Nagy
- * @license MPL / GPLv2 / LGPL
- * @package Provisioner
  */
-class endpoint_cisco_sip79x1G_phone extends endpoint_cisco_base {
+class endpoint_cisco_sip78xx_phone extends endpoint_cisco_base {
 	
-	public $family_line = 'sip79x1G';
+	public $family_line = 'sip78xx';
 	public $mapfields=array( // this is applied in the main base.php
 		'dateformat'=>array(
-			'default'=>'M/D/YA',
+			'default'=>'D-M-Ya',
 			'middle-endian'=>'M/D/YA',
 			'big-endian'=>'YA.M.D',
 			'little-endian'=>'D-M-Ya',
@@ -31,8 +28,8 @@ class endpoint_cisco_sip79x1G_phone extends endpoint_cisco_base {
 			'default'=>'Central Standard/Daylight Time', // somewhere has to be default.
 			'America/Los_Angeles'=>'Central Standard/Daylight Time',
 			'Europe/Dublin'=>'GMT Standard/Daylight Time',
+			'Europe/Rome'=>'Central Europe Standard/Daylight Time',
 			'Pacific/Auckland'=>'New Zealand Standard/Daylight Time',
-			'Australia/Sydney'=>'E. Australia Standard Time',
 		),
 	);
 	function prepare_for_generateconfig() {
