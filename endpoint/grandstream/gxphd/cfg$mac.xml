@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<gs_provision version="1">
+<mac>{$mac}</mac>
+<config version="1">
+<P8025></P8025>
+<P8026></P8026>
+<P8030>n</P8030>
+</config>
+</gs_provision>

@@ -7,7 +7,7 @@
     "firmware_md5sum": "9da4ea0c6c6710e28b03c358bc68d2d7",
     "firmware_pkg": "gxphd_firmware.tgz",
     "description": "Use Grandstream Encrypted Compiler By Default",
-    "configuration_files": "cfg$mac",
+    "configuration_files": "cfg$mac,cfg$mac.xml",
     "changelog": "",
     "provisioning_types": [
       "tftp",
