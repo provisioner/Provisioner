@@ -1,0 +1,42 @@
+{
+  "data":{
+    "name":"Patton SN411X [ 4112, 4114, 4118 ]",
+    "id":"1",
+    "directory":"SN411X",
+    "firmware_ver":"",
+    "firmware_pkg":"NULL",
+    "firmware_md5sum":"",
+    "description":"Make more configuration settings available from UI",
+    "configuration_files":"$mac.cfg,$mac",
+    "changelog":"",
+    "provisioning_types": [
+		"tftp"
+	],
+    "model_list":[
+      {
+        "model":"4112",
+        "lines":"2",
+        "id":"1",
+        "template_data":[
+          "template_data.json"
+        ]
+      },
+      {
+        "model":"4114",
+        "lines":"4",
+        "id":"2",
+        "template_data":[
+          "template_data.json"
+        ]
+      },
+      {
+        "model":"4118",
+        "lines":"8",
+        "id":"3",
+        "template_data":[
+          "template_data.json"
+        ]
+      }
+    ]
+  }
+}
