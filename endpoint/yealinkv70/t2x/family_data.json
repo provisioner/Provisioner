@@ -19,6 +19,7 @@
         "lines": "2",
         "id": "1",
         "template_data": [
+	  "line_options.json",
           "template_data.json",
           "remote_phone_book.json",
           "dialnow_22.json",
@@ -30,6 +31,7 @@
         "lines": "3",
         "id": "2",
         "template_data": [
+	  "line_options.json",
           "template_data.json",
           "line_keys_22.json",
           "soft_keys_22.json",
@@ -44,6 +46,7 @@
         "lines": "3",
         "id": "3",
         "template_data": [
+	  "line_options.json",
           "template_data.json",
           "line_keys_22.json",
           "soft_keys_22.json",
@@ -59,6 +62,7 @@
         "lines": "6",
         "id": "4",
         "template_data": [
+	  "line_options.json",
           "template_data.json",
           "line_keys_28.json",
           "soft_keys_22.json",
