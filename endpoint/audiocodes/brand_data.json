@@ -1,0 +1,27 @@
+{
+  "data": {
+    "brands": {
+      "name": "AudioCodes",
+      "brand_id": "3",
+      "directory": "audiocodes",
+      "package": "audiocodes.tgz",
+      "md5sum": "",
+      "last_modified": 1415893574,
+      "family_list": [
+        {
+          "id": "1",
+          "name": "AudioCodes series [112,114,118,124]",
+          "directory": "mp",
+          "description": "Initial Files",
+          "changelog": "",
+          "last_modified": null
+        }
+      ],
+      "oui_list": [
+        "0005E7",
+        "001719"
+      ],
+      "changelog": "PACKAGER: "
+    }
+  }
+}

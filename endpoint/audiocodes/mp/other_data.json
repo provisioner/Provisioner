@@ -1,0 +1,22 @@
+{
+    "template_data":{
+        "category":[
+            {
+                "name":"Other settings",
+                "subcategory":[
+                    {
+                        "name":"other",
+                        "item":[
+                            {
+                                "variable":"$DNSSrv1",
+                                "default_value":"0.0.0.0",
+                                "description":"Primary DNS server",
+                                "type":"input"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
