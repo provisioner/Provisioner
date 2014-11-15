@@ -625,6 +625,7 @@
                         "text":"10 minutes",
                         "value":"600"
                     },
+
                     {
                         "text":"30 minutes",
                         "value":"1800"
@@ -637,7 +638,22 @@
                     "description":"Directory Setting URL",
                     "type":"input"
                 },
-
+                {
+                    "variable":"$remote_phonebook_enable",
+                    "description":"Search Remote Phonebook Name",
+                    "default_value":"0",
+                    "type":"list",
+                    "data":[
+                    {
+                        "text":"Disabled",
+                        "value":"0"
+                    },
+                    {
+                        "text":"Enabled",
+                        "value":"1"
+                    }
+                    ]
+                },
                 {
                     "description":"Remote Phone Books (1-5)",
                     "type":"loop",
@@ -680,34 +696,6 @@
 					"type":"break"
 				},
 				{
-					"variable":"$default_ringtone",
-					"default_value": "Ring4.wav",
-					"description":"Default Ringtone (prim for internal calls)",
-					"type":"list",
-					"data":[
-					{
-					   "text":"Ring1",
-					   "value":"Ring1.wav"
-					},
-					{
-					   "text":"Ring2",
-					   "value":"Ring2.wav"
-					},
-					{
-					   "text":"Ring3",
-					   "value":"Ring3.wav"
-					},
-					{
-					   "text":"Ring4",
-					   "value":"Ring4.wav"
-					},
-					{
-					   "text":"Ring5",
-					   "value":"Ring5.wav"
-					}
-				]
-				},
-				{
 					"type":"break"
 				},
 				{	"variable":"$dss_transfer",
@@ -731,22 +719,6 @@
 				},
 				{
 					"type":"break"
-				},
-				{
-					"variable":"$missed_call_log",
-					"description":"Missed Call Log",
-					"default_value":"0",
-					"type":"list",
-					"data":[
-					{
-						"text":"Disable",
-						"value":"0"
-					},
-					{
-						"text":"Enable",
-						"value":"1"
-					}
-					]
 				}
 				]
 			}

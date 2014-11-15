@@ -148,7 +148,7 @@
                   },
 		  {
                     "text":"VIC",
-                    "value":"dialplan-nsw.xml"
+                    "value":"dialplan-vic.xml"
                   },
                   {
                     "text":"PER/ADL",
