@@ -49,8 +49,8 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
                 $line_data['secret'] = 'n/a';
                 $line_data['blf_ext_type'] = "Disabled";
                 $line_data['share_call_appearance'] = "shared";
-                $line_data['extended_function'] = "fnc=sd;sub=";
-                $line_data['extended_function'] .= preg_match('/@/i', $this->settings['loops']['lineops'][$line]['blfext']) ? $this->settings['loops']['lineops'][$line]['blfext'] : $this->settings['loops']['lineops'][$line]['blfext'] . "@" . $this->settings['line'][0]['server_host'];
+                $line_data['extended_function'] = "fnc=sd;ext=";
+                $line_data['extended_function'] .= preg_match('/@/i', $this->settings['loops']['lineops'][$line]['blfext']) ? $this->settings['loops']['lineops'][$line]['blfext'] : $this->settings['loops']['lineops'][$line]['blfext'];
             } elseif ($this->settings['loops']['lineops'][$line]['keytype'] == "disabled") {
                 $line_data['blf_ext_type'] = "Disabled";
             } elseif ($this->settings['loops']['lineops'][$line]['keytype'] == "clone") {
@@ -140,8 +140,8 @@ class endpoint_cisco_spa5xx_phone extends endpoint_cisco_base {
                     }
                     if ($this->settings['loops']['unit1'][$key]['keytype'] == 'speed') {
                         $temp_ext = $this->settings['loops']['unit1'][$key]['data'];
-                        $this->settings['loops']['unit1'][$key]['data'] = "fnc=sd;sub=";
-                        $this->settings['loops']['unit1'][$key]['data'] .= preg_match('/;.*=.*@.*$/i', $temp_ext) ? $temp_ext : $temp_ext . "@" . $this->settings['line'][0]['server_host'];
+                        $this->settings['loops']['unit1'][$key]['data'] = "fnc=sd;ext=";
+                        $this->settings['loops']['unit1'][$key]['data'] .= preg_match('/;.*=.*@.*$/i', $temp_ext) ? $temp_ext : $temp_ext;
 			$this->settings['loops']['unit1'][$key]['data'] .=  ";nme=" . $this->settings['loops']['unit1'][$key]['description'];
                     }
                     if ($this->settings['loops']['unit1'][$key]['keytype'] == 'xml') {
