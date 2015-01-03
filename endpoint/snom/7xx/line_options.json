@@ -116,6 +116,12 @@
                       ]
                     },
                     {
+                      "variable":"$codec_list",
+                      "default_value":"g722,pcmu,pcma,g726-32,gsm,g729,telephone-event",
+                      "description":"Codec List",
+                      "type":"input"
+                    },
+                    {
                       "type":"break"
                     },
                     {

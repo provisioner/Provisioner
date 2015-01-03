@@ -5,7 +5,7 @@
       "directory": "snom",
       "brand_id": "6",
       "package": "snom.tgz",
-      "md5sum": "1d95a63ec2d633be7c960ecfb27b5d80",
+      "md5sum": "dce6737850378430f14a28494b037693",
       "last_modified": 1395183811,
       "family_list": [
         {
@@ -26,7 +26,7 @@
         },
         {
           "id": "3",
-          "name": "Snom 7xx Models [710, 720, 760]",
+          "name": "Snom 7xx Models [710, 715, 720, 760]",
           "directory": "7xx",
           "description": "Server + Password Settings, htm File Fixes",
           "changelog": "",
