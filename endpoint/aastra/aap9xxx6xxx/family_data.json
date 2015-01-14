@@ -165,6 +165,20 @@
           "expmod2.json",
           "expmod3.json"
         ]
+      },
+      {
+        "model": "6735i",
+        "lines": "9",
+        "id": "13",
+        "template_data": [
+          "template_data.json",
+          "prgkeys.json",
+          "softkeys.json",
+          "featurekeys.json",
+          "expmod1.json",
+          "expmod2.json",
+          "expmod3.json"
+        ]
       }
     ]
   }
