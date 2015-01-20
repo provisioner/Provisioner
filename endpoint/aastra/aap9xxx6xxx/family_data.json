@@ -193,6 +193,18 @@
           "expmod2.json",
           "expmod3.json"
         ]
+      },
+      {
+        "model": "6865i",
+        "lines": "9",
+        "id": "16",
+        "template_data": [
+          "template_data.json",
+          "prgkeys.json",
+          "softkeys.json",
+          "featurekeys.json",
+          "expmod1.json"
+        ]
       }
     ]
   }
