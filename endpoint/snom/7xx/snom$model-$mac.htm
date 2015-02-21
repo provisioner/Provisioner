@@ -5,7 +5,7 @@
 		<user_active idx="{$line}" perm="">on</user_active>
 		<user_host idx="{$line}" perm="">{$server_host}</user_host>
 		<user_outbound idx="{$line}" perm="">{$outbound_host}</user_outbound>	
-		<user_realname idx="{$line}" perm="">{$displayname}</user_realname>
+		<user_realname idx="{$line}" perm="">{$realname}</user_realname>
 		<user_name idx="{$line}" perm="">{$username}</user_name>
 		<user_pname idx="{$line}" perm="">{$username}</user_pname>
 		<user_mailbox idx="{$line}" perm="">{$username}</user_mailbox>
@@ -16,7 +16,14 @@
 		<user_xml_screen_url idx="{$line}" perm="">{$idle_screen_url}</user_xml_screen_url>
 		<user_idle_text idx="{$line}" perm="">{$display_text_url}</user_idle_text>
 		<user_srtp idx="{$line}" perm="">off</user_srtp>
+		<codec_priority_list idx="{$line}" perm="">{$codec_list}</codec_priority_list>
 		{/line_loop}
+
+		<vlan_id perm="">{$svlan_id}</vlan_id> 
+		<vlan_qos perm="">{$svlan_qos}</vlan_qos>
+		<vlan_port_tagging perm="">{$vlan_port_tagging}</vlan_port_tagging> 
+		<vlan_pc_id perm="">{$vlan_pc_id}</vlan_pc_id> 
+		<vlan_pc_priority perm="">{$vlan_pc_priority}</vlan_pc_priority> 
 
 		<intercom_connect_type perm="">intercom_connect_type_handsfree</intercom_connect_type>
 		<answer_after_policy>idle</answer_after_policy>
@@ -29,10 +36,8 @@
 		<admin_mode_password perm="R">{$admin_mode_password}</admin_mode_password>
 		<admin_mode_password_confirm perm="R">{$admin_mode_password}</admin_mode_password_confirm>
 		<admin_mode perm="">{$admin_mode}</admin_mode>
-		<firmware_status perm="R">{$provisioning_type}://{$server.ip.1}{$provisioning_path}/{$mac}_firmware.xml</firmware_status>
+		<firmware_status perm="R">{$provisioning_type}://{$server.ip.1}/{$mac}_firmware.xml</firmware_status>
 		<update_policy perm="">auto_update</update_policy>
-		<timezone perm="R"></timezone>
-		<utc_offset perm="R">{$timezone_gmtoffset}</utc_offset>
 		<dst perm="R">{$dstrule}</dst>
 		<tone_scheme perm="R">{$tone_scheme}</tone_scheme>
 

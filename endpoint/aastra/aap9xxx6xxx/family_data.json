@@ -1,6 +1,6 @@
 {
   "data": {
-    "name": "Aastra Models: 94xx, 67xx, 9143i [9480i, 9480i CT, 9143i,67xx]",
+    "name": "Aastra Models: 94xx, 67xx, 68xx, 9143i [9480i, 9480i CT, 9143i, 67xx, 68xx]",
     "id": "2",
     "directory": "aap9xxx6xxx",
     "firmware_ver": 1395185663,
@@ -164,6 +164,46 @@
           "expmod1.json",
           "expmod2.json",
           "expmod3.json"
+        ]
+      },
+      {
+        "model": "6735i",
+        "lines": "9",
+        "id": "14",
+        "template_data": [
+          "template_data.json",
+          "prgkeys.json",
+          "softkeys.json",
+          "featurekeys.json",
+          "expmod1.json",
+          "expmod2.json",
+          "expmod3.json"
+        ]
+      },
+      {
+        "model": "6867i",
+        "lines": "9",
+        "id": "15",
+        "template_data": [
+          "template_data.json",
+          "topkeys.json",
+          "softkeys.json",
+          "featurekeys.json",
+          "expmod1.json",
+          "expmod2.json",
+          "expmod3.json"
+        ]
+      },
+      {
+        "model": "6865i",
+        "lines": "9",
+        "id": "16",
+        "template_data": [
+          "template_data.json",
+          "prgkeys.json",
+          "softkeys.json",
+          "featurekeys.json",
+          "expmod1.json"
         ]
       }
     ]
