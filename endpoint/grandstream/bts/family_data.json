@@ -3,12 +3,16 @@
     "name": "BudgeTone series [200,201]",
     "id": "2",
     "directory": "bts",
-    "firmware_ver": 1323333835,
-    "firmware_md5sum": "f8ecdc8f4ee354867394bc7d9f1dd761",
+    "firmware_ver": 1395185515,
+    "firmware_md5sum": "fb436544953e2ed9c3e369c32f1b0ca1",
     "firmware_pkg": "bts_firmware.tgz",
     "description": "Fixed Timezone Issues + Use Grandstream Encrypted Compiler By Default",
     "configuration_files": "cfg$mac",
     "changelog": "",
+    "provisioning_types": [
+      "tftp",
+      "http"
+    ],
     "model_list": [
       {
         "model": "BT200",

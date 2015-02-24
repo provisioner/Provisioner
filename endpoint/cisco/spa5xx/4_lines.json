@@ -25,12 +25,20 @@
                           "value":"disabled"
                         },
                         {
+                          "text":"Duplicate",
+                          "value":"clone"
+                        },
+                        {
                           "text":"Line",
                           "value":"line"
                         },
                         {
                           "text":"BLF",
                           "value":"blf"
+                        },
+                        {
+                          "text":"XML",
+                          "value":"xml"
                         },
                         {
                           "text":"Speed Dial",
@@ -49,6 +57,30 @@
                       "default_value":"",
                       "description":"BLF {$count} Extension",
                       "type":"input"
+                    },
+                    {
+                      "variable":"$lineops_clonedline",
+                      "default_value":"1",
+                      "description":"Duplicate Extension for Line {$count}",
+                      "type":"list",
+                      "data":[
+                        {
+                          "text":"1",
+                          "value":"1"
+                        },
+                        {
+                          "text":"2",
+                          "value":"2"
+                        },
+                        {
+                          "text":"3",
+                          "value":"3"
+                        },
+                        {
+                          "text":"4",
+                          "value":"4"
+                        }
+                      ]
                     },
                     {
                       "type":"break"

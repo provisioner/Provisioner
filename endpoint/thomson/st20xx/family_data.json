@@ -1,0 +1,31 @@
+{
+  "data": {
+    "name": "Thomson Model [ST2030S]",
+    "id": "1",
+    "directory": "st20xx",
+    "firmware_ver": 1395185244,
+    "firmware_pkg": "st20xx_firmware.tgz",
+    "firmware_md5sum": "6fe733d93944ce98a48af5fc83b4fdb6",
+    "description": "",
+    "configuration_files": "$model_$mac.txt",
+    "changelog": "2012.03.08: Firmware 11.1 Included. Verified on ST2030S.",
+    "provisioning_types": [
+      "tftp",
+      "http"
+    ],
+    "model_list": [
+      {
+        "model": "ST2030S",
+        "lines": "4",
+        "id": "1",
+        "template_data": [
+          "ipp_data.json",
+          "keyonphone_data.json",
+          "keymodule_data.json",
+          "sip_data.json",
+          "other_data.json"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "data": {
+    "brands": {
+      "name": "Xorcom",
+      "brand_id": "17",
+      "directory": "xorcom",
+      "package": "xorcom.tgz",
+      "md5sum": "2b4b73124b0dda466fd207308d8f5912",
+      "last_modified": 1395183811,
+      "family_list": [
+        {
+          "id": "4",
+          "name": "Xorcom IP Phones Models: [XP0100, XP0120]",
+          "directory": "xpxxxx",
+          "description": "Make more configuration settings available from UI",
+          "changelog": "",
+          "last_modified": null
+        }
+      ],
+      "oui_list": [
+        "642400"
+      ],
+      "changelog": "PACKAGER: "
+    }
+  }
+}

@@ -414,8 +414,8 @@ AltGkTimeOut:0
 #               registration and no dial tone will be played when the handset
 #               is picked up.
 
-UID0:{$ext.line.1}
-UID1:{$ext.line.2}
+UID0:{$username.line.1}
+UID1:{$username.line.2}
 
 # -----------------------------------------------------------------------------
 #  Parameters:  PWD0
@@ -447,8 +447,8 @@ PWD1:{$secret.line.2}
 #               authentication ID for each line to use when challenged 
 #               by the proxy.
 
-LoginID0:{$ext.line.1}
-LoginID1:{$ext.line.2}
+LoginID0:{$username.line.1}
+LoginID1:{$username.line.2}
 
 # -----------------------------------------------------------------------------
 #   Parameter:  UseLoginID

@@ -14,7 +14,8 @@ class endpoint_polycom_firmware325_phone extends endpoint_polycom_base {
     public $copy_files = array("SoundPointIPLocalization", "SoundPointIPWelcome.wav", "LoudRing.wav");
 
     function parse_lines_hook($line_data, $line_total) {
-        $line_data['lineKeys'] = $line_total;
+		$line = $line_data['line'];
+        $line_data['lineKeys'] = isset($this->settings['loops']['lineops'][$line]) ? $this->settings['loops']['lineops'][$line]['linekeys'] : '1';
         $line_data['digitmap'] = (isset($this->settings['digitmap']) ? $this->settings['digitmap'] : NULL);
         $line_data['digitmaptimeout'] = (isset($this->settings['digitmaptimeout']) ? $this->settings['digitmaptimeout'] : NULL);
         return($line_data);
@@ -25,9 +26,9 @@ class endpoint_polycom_firmware325_phone extends endpoint_polycom_base {
         
         $this->configfiles = array(
             '$mac.cfg' => $this->mac . '_reg.cfg',
-            'server_325.cfg' => 'server_325.cfg',
-            'phone1_325.cfg' => 'phone1_325.cfg',
-            'sip_325.cfg' => 'sip_325.cfg'
+            'server_327.cfg' => 'server_327.cfg',
+            'phone1_327.cfg' => 'phone1_327.cfg',
+            'sip_327.cfg' => 'sip_327.cfg'
         );
         
         $macprefix = $this->server_type == 'dynamic' ? $this->mac . "_" : NULL;        

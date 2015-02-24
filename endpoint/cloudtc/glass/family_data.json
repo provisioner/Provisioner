@@ -9,6 +9,9 @@
     "description":"Make more configuration settings available from UI",
     "configuration_files":"voip-$mac.xml,system-$mac.xml",
     "changelog":"",
+    "provisioning_types": [
+		"http"
+	],
     "model_list":[
       {
         "model":"glass",

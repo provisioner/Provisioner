@@ -2,7 +2,7 @@
   "template_data":{
     "category":[
       {
-        "name":"general",
+        "name":"General",
         "subcategory":[
           {
             "name":"General Settings",
@@ -21,6 +21,40 @@
                 "default_value":"",
                 "description":"Paging Code",
                 "type":"input"
+              },
+              {
+                "type":"break"
+              },
+              {
+                "variable":"$profile_resync",
+                "default_value":"0",
+                "description":"Profile Resync",
+                "type":"input"
+              },
+              {
+                "type":"break"
+              },
+              {
+                "variable":"$ac_call_pickup",
+                "default_value":"**#",
+                "description":"Attendant Console Call Pickup",
+                "type":"input"
+              },
+              {
+                "variable":"$ac_server_type",
+                "default_value":"Asterisk",
+                "description":"Attendant Console Server Type",
+                "type":"radio",
+                "data":[
+                  {
+                    "text":"Asterisk",
+                    "value":"Asterisk"
+                  },
+                  {
+                    "text":"Broadsoft",
+                    "value":"Broadsoft"
+                  }
+                ]
               },
               {
                 "type":"break"
@@ -104,8 +138,23 @@
                 "type":"break"
               },
               {
+                "variable":"$xml_directory_service_name",
+                "default_value":"",
+                "description":"XML Directory Service Name",
+                "type":"input"
+              },
+              {
+                "variable":"$xml_directory_service_url",
+                "default_value":"",
+                "description":"XML Directory Service URL",
+                "type":"input"
+              },
+              {
+                "type":"break"
+              },
+              {
                 "variable":"$dial_plan",
-                "default_value":"(*xx.|7xxxS0|9[3469]11S0|9[2-9]xxxxxxS0|91xxx[2-9]xxxxxxS0|xxxxxxxxxxxx.)",
+                "default_value":"( [23456789]11 | *xxx. | <:1352>[2-9]xxxxxx | <:1>[2-9]xx[2-9]xxxxxxS0 | 1[2-9]xx[2-9]xxxxxxS0 | 011xxxxxxx. | [#*x][*x][*x]. )",
                 "description":"Dial Plan",
                 "type":"input"
               },
@@ -150,6 +199,34 @@
                   {
                     "text":"BMP Picture",
                     "value":"BMP Picture"
+                  }
+                ]
+              },
+              {
+                "variable":"$backlight_time",
+                "default_value":"30 s",
+                "description":"Backlight Timer",
+                "type":"radio",
+                "data":[
+                  {
+                    "text":"Off",
+                    "value":"Off"
+                  },
+                  {
+                    "text":"10 s",
+                    "value":"10 s"
+                  },
+                  {
+                    "text":"20 s",
+                    "value":"20 s"
+                  },
+                  {
+                    "text":"30 s",
+                    "value":"30 s"
+                  },
+                  {
+                    "text":"On",
+                    "value":"Always On"
                   }
                 ]
               }

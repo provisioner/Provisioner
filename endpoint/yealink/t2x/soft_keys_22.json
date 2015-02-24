@@ -15,6 +15,12 @@
                 "data":{
                   "item":[
                     {
+                      "variable":"$softkey_label",
+                      "default_value":"",
+                      "description":"Soft Key {$count} Label",
+                      "type":"input"
+                    },
+                    {
                       "variable":"$softkey_type",
                       "default_value":"",
                       "description":"Soft Key {$count} Type",

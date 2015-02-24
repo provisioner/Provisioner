@@ -1,67 +1,71 @@
 {
-  "data":{
-    "name":"Yealink\/Dreamwave T2X Models: [T20, T22, T26, T28]",
-    "id":"1",
-    "directory":"t2x",
-    "firmware_ver":"",
-    "firmware_pkg":"NULL",
-    "firmware_md5sum":"",
-    "description":"Make more configuration settings available from UI",
-    "configuration_files":"y0000000000$suffix.cfg,$mac.cfg",
-    "changelog":"",
-    "model_list":[
+  "data": {
+    "name": "Yealink\/Dreamwave T2X Models: [T20, T22, T26, T28]",
+    "id": "1",
+    "directory": "t2x",
+    "firmware_ver": 1395185757,
+    "firmware_pkg": "t2x_firmware.tgz",
+    "firmware_md5sum": "ad32f8f0ec85d3de2a4426b66bb3c484",
+    "description": "Make more configuration settings available from UI",
+    "configuration_files": "y0000000000$suffix.cfg,$mac.cfg",
+    "changelog": "",
+    "provisioning_types": [
+      "tftp",
+      "http"
+    ],
+    "model_list": [
       {
-        "model":"T20",
-        "lines":"2",
-        "id":"1",
-        "template_data":[
-          "line_options_22.json",
+        "model": "T20",
+        "lines": "2",
+        "id": "1",
+        "template_data": [
           "template_data.json",
           "memory_keys_22.json",
+          "remote_phone_book.json",
           "dialnow_22.json",
           "ext38.json"
         ]
       },
       {
-        "model":"T22",
-        "lines":"3",
-        "id":"2",
-        "template_data":[
-          "line_options_22.json",
+        "model": "T22",
+        "lines": "3",
+        "id": "2",
+        "template_data": [
           "template_data.json",
           "line_keys_22.json",
           "soft_keys_22.json",
-          "hard_keys_22.json",
+          "hard_keys.json",
+          "remote_phone_book.json",
           "dialnow_22.json",
           "ext38.json"
         ]
       },
       {
-        "model":"T26",
-        "lines":"3",
-        "id":"3",
-        "template_data":[
-          "line_options_22.json",
+        "model": "T26",
+        "lines": "3",
+        "id": "3",
+        "template_data": [
           "template_data.json",
           "line_keys_22.json",
           "soft_keys_22.json",
-          "hard_keys_22.json",
+          "hard_keys.json",
           "memory_keys_22.json",
+          "remote_phone_book.json",
           "dialnow_22.json",
           "ext38.json"
         ]
       },
       {
-        "model":"T28",
-        "lines":"6",
-        "id":"4",
-        "template_data":[
-          "line_options_22.json",
+        "model": "T28",
+        "lines": "6",
+        "id": "4",
+        "template_data": [
           "template_data.json",
           "line_keys_28.json",
           "soft_keys_22.json",
-          "hard_keys_22.json",
+          "hard_keys.json",
           "memory_keys_22.json",
+          "remote_phone_book.json",
           "dialnow_22.json",
           "ext38.json"
         ]

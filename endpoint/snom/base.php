@@ -1,9 +1,9 @@
 <?PHP
 
 /**
- * Grandstream Base File
+ * Snom Base File
  *
- * @author Andrew Nagy
+ * @author Jort
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
  */
@@ -11,11 +11,18 @@ class endpoint_snom_base extends endpoint_base {
 
     public $brand_name = 'snom';
     public $protected_files = 'general_custom.xml';
+    public $mapfields=array(
+	'dateformat'=>array('middle-endian'=>'on','big-endian'=>'off','default'=>'off'),
+    );
 
     function prepare_for_generateconfig() {
         parent::prepare_for_generateconfig();
         $this->mac = strtoupper($this->mac);
-        
+
+	if ((!isset($this->settings["vlan"])) or ($this->settings["vlan"]==="")) {
+		$this->settings["vlan"]="0";
+	}
+			
         if (isset($this->DateTimeZone)) {
             $transitions = $this->DateTimeZone->getTransitions();
             // Find the last 2 transitions before (1 year from now).

@@ -5,6 +5,7 @@
  * @author Andrew Nagy
  * @license MPL / GPLv2 / LGPL
  * @package Provisioner
+ *
  */
 class endpoint_grandstream_htx86_phone extends endpoint_grandstream_base {
 

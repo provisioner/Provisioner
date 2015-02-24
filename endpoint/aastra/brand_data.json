@@ -5,13 +5,13 @@
       "brand_id": "1",
       "directory": "aastra",
       "package": "aastra.tgz",
-      "md5sum": "d28a7af0d81261a98ffcbf6dab589c83",
-      "last_modified": 1324487650,
-      "changelog": "PACKAGER: I knew I did this. Dang it",
+      "md5sum": "ddc6f19c9288e5b35ba10cf45a5f417d",
+      "last_modified": 1395185663,
+      "changelog": "PACKAGER: ",
       "family_list": [
         {
           "id": "1",
-          "name": "Aastra Models: 91xxi [9112i, 9133i]",
+          "name": "Aastra Models: 480i, 91xxi [480i, 480i CT, 9112i, 9133i]",
           "directory": "aap91xxi",
           "description": "Initial Files",
           "changelog": "",

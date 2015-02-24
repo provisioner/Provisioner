@@ -36,13 +36,13 @@ $_REQUEST['prodmod'] = isset($_REQUEST['brand']) ? $_REQUEST['id'] : '';
 $_REQUEST['id'] = isset($_REQUEST['brand']) ? $_REQUEST['brand'] : $_REQUEST['id'];
 
 if(!isset($_REQUEST['brand'])) {
-	$product_list = file2json('http://www.provisioner.net/beta/endpoint/'.$_REQUEST['id'].'/brand_data.json');
+	$product_list = file2json('http://repo.provisioner.net/endpoint/'.$_REQUEST['id'].'/brand_data.json');
 	$product_list = $product_list['data']['brands']['family_list'];
 	$out[0]['optionValue'] = "";
 	$out[0]['optionDisplay'] = "";
 	$i = 1;
 	foreach($product_list as $list) {
-		$family_list = file2json('http://www.provisioner.net/beta/endpoint/'.$_REQUEST['id'].'/'.$list['directory'].'/family_data.json');
+		$family_list = file2json('http://repo.provisioner.net/endpoint/'.$_REQUEST['id'].'/'.$list['directory'].'/family_data.json');
 		$family_list = $family_list['data']['model_list'];
 		foreach($family_list as $model_l) {
 			$out[$i]['optionValue'] = $list['directory'].'+'.$model_l['model'];
@@ -57,7 +57,7 @@ if(!isset($_REQUEST['brand'])) {
 	$list = explode('+',$_REQUEST['prodmod']);
 	$model = $list[1];
 	$product = $list[0];
-	$family_list = file2json('http://www.provisioner.net/beta/endpoint/'.$_REQUEST['id'].'/'.$product.'/family_data.json');
+	$family_list = file2json('http://repo.provisioner.net/endpoint/'.$_REQUEST['id'].'/'.$product.'/family_data.json');
 	$key = arraysearchrecursive($model,$family_list['data']['model_list'],'model');
 	$count = isset($family_list['data']['model_list'][$key[0]]['lines']) ? $family_list['data']['model_list'][$key[0]]['lines'] : '1';
 	for($i=0;$i <= $count; $i++) {

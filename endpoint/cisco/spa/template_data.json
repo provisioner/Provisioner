@@ -105,7 +105,7 @@
               },
               {
                 "variable":"$dial_plan",
-                "default_value":"(*xx.|7xxxS0|9[3469]11S0|9[2-9]xxxxxxS0|91xxx[2-9]xxxxxxS0|xxxxxxxxxxxx.)",
+                "default_value":"( [23456789]11 | *xxx. | <:1352>[2-9]xxxxxx | <:1>[2-9]xx[2-9]xxxxxxS0 | 1[2-9]xx[2-9]xxxxxxS0 | 011xxxxxxx. | [#*x][*x][*x]. )",
                 "description":"Dial Plan",
                 "type":"input"
               },
@@ -148,8 +148,8 @@
                     "value":"Text Logo"
                   },
                   {
-                    "text":"BMP Picture",
-                    "value":"BMP Picture"
+                    "text":"Download BMP Picture",
+                    "value":"Download BMP Picture"
                   }
                 ]
               }

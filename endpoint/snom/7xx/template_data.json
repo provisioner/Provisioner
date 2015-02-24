@@ -1,0 +1,292 @@
+{
+  "template_data":{
+    "category":[
+      {
+        "name":"general",
+        "subcategory":[
+          {
+            "name":"general",
+            "item":[
+              {
+                "variable":"$http_user",
+                "default_value":"",
+                "description":"HTTP Username",
+                "type":"input"
+              },
+              {
+                "variable":"$http_pass",
+                "default_value":"",
+                "description":"HTTP Password",
+                "type":"input"
+              },
+              {
+                "type":"break"
+              },
+              {
+                "variable":"$svlan_id",
+                "default_value":"",
+                "description":"VLAN Id (0..4095)",
+                "type":"input"
+              },
+              {
+                "variable":"$svlan_qos",
+                "default_value":"",
+                "description":"VLAN Priority (0..7)",
+                "type":"input"
+              },
+              {
+                "variable":"$vlan_port_tagging",
+                "default_value":"off",
+                "description":"Un-Tag VLAN traffic",
+                "type":"radio",
+                "data":[
+                  {
+                    "text":"On",
+                    "value":"on"
+                  },
+                  {
+                    "text":"Off",
+                    "value":"off"
+                  }
+                ]
+              },
+              {
+                "variable":"$vlan_pc_id",
+                "default_value":"",
+                "description":"PC Port VLAN Id (0..4095)",
+                "type":"input"
+              },
+              {
+                "variable":"$vlan_pc_priority",
+                "default_value":"",
+                "description":"PC Port VLAN Priority (0..7)",
+                "type":"input"
+              },
+              {
+                "type":"break"
+              },
+              {
+                "variable":"$admin_mode",
+                "default_value":"on",
+                "description":"Admin Mode Enable",
+                "type":"radio",
+                "data":[
+                  {
+                    "text":"On",
+                    "value":"on"
+                  },
+                  {
+                    "text":"Off",
+                    "value":"off"
+                  }
+                ]
+              },
+              {
+                "variable":"$admin_mode_login",
+                "default_value":"",
+                "description":"Admin Mode Login",
+                "type":"input"
+              },
+              {
+                "variable":"$admin_mode_password",
+                "default_value":"",
+                "description":"Admin Mode Password",
+                "type":"input"
+              },
+              {
+                "type":"break"
+              },
+              {
+                "variable":"$firmwareurl",
+                "default_value":"",
+                "description":"Firmware URL",
+                "type":"input"
+              },
+              {
+                "type":"break"
+              },
+              {
+                "variable":"$advertisement_on",
+                "default_value":"on",
+                "description":"Advertisement Enabled",
+                "type":"radio",
+                "data":[
+                  {
+                    "text":"On",
+                    "value":"on"
+                  },
+                  {
+                    "text":"Off",
+                    "value":"off"
+                  }
+                ]
+              },
+              {
+                "variable":"$advertisement_url",
+                "default_value":"http:\/\/www.snom.com\/{web_lng_iso_code}\/AddOn",
+                "description":"Advertisement URL",
+                "type":"input"
+              },
+              {
+                "variable":"$time_zone",
+                "default_value":"ITA+1",
+                "description":"Time Zone",
+                "type":"list",
+                "data":[
+                  { "text":"USA-10", "value":"USA-10"},
+                  { "text":"USA-9", "value":"USA-9"},
+                  { "text":"USA-8", "value":"USA-8"},
+                  { "text":"USA-7", "value":"USA-7"},
+                  { "text":"USA-6", "value":"USA-6"},
+                  { "text":"USA-5", "value":"USA-5"},
+                  { "text":"CAN-4", "value":"CAN-4"},
+                  { "text":"ARG-3", "value":"ARG-3"},
+                  { "text":"BRA-2", "value":"BRA-2"},
+                  { "text":"PRT-1", "value":"BRA-2"},
+                  { "text":"GBR-0", "value":"GBR-0"},
+                  { "text":"ITA+1", "value":"ITA+1"},
+                  { "text":"GRC+2", "value":"GRC+2"},
+                  { "text":"RUS+3", "value":"RUS+3"},
+                  { "text":"RUS+4", "value":"RUS+4"},
+                  { "text":"RUS+5", "value":"RUS+5"},
+                  { "text":"RUS+6", "value":"RUS+6"},
+                  { "text":"CHN+7", "value":"CHN+7"},
+                  { "text":"KOR+8", "value":"KOR+8"},
+                  { "text":"JPN+9", "value":"JPN+9"},
+                  { "text":"AUS+10", "value":"AUS+10"},
+                  { "text":"NCL+11", "value":"NCL+11"},
+                  { "text":"NZL+12", "value":"NZL+12"},
+                  { "text":"TON+13", "value":"TON+13"}
+                ]
+              },
+              {
+                "variable":"$language",
+                "default_value":"English",
+                "description":"Phone user interface language",
+                "type":"list",
+                "data":[
+                  {
+                    "text":"English",
+                    "value":"English"
+                  },
+                  {
+                    "text":"Español",
+                    "value":"Español"
+                  },
+                  {
+                    "text":"Francais",
+                    "value":"Francais"
+                  },
+                  {
+                    "text":"Italiano",
+                    "value":"Italiano"
+                  },
+                  {
+                    "text":"Português",
+                    "value":"Português"
+                  }
+                ]
+              },
+              {
+                "variable":"$tone_scheme",
+                "default_value":"USA",
+                "description":"Dialtone",
+                "type":"list",
+                "data":[
+                  {
+                    "text":"Australia",
+                    "value":"AUS"
+                  },
+                  {
+                    "text":"Austria",
+                    "value":"AUT"
+                  },
+                  {
+                    "text":"China",
+                    "value":"CHN"
+                  },
+                  {
+                    "text":"Denmark",
+                    "value":"DNK"
+                  },
+                  {
+                    "text":"France",
+                    "value":"FRA"
+                  },
+                  {
+                    "text":"Germany",
+                    "value":"GER"
+                  },
+                  {
+                    "text":"Great Britain",
+                    "value":"GBR"
+                  },
+                  {
+                    "text":"India",
+                    "value":"IND"
+                  },
+                  {
+                    "text":"Italy",
+                    "value":"ITA"
+                  },
+                  {
+                    "text":"Japan",
+                    "value":"JPN"
+                  },
+                  {
+                    "text":"Mexico",
+                    "value":"MEX"
+                  },
+                  {
+                    "text":"Netherlands",
+                    "value":"NLD"
+                  },
+                  {
+                    "text":"Norway",
+                    "value":"NOR"
+                  },
+                  {
+                    "text":"New Zealand",
+                    "value":"NZL"
+                  },
+                  {
+                    "text":"Spain",
+                    "value":"ESP"
+                  },
+                  {
+                    "text":"Sweden",
+                    "value":"SWE"
+                  },
+                  {
+                    "text":"Switzerland",
+                    "value":"SWI"
+                  },
+                  {
+                    "text":"United States",
+                    "value":"USA"
+                  }
+                ]
+              },
+              {
+                "variable":"$dateformat",
+                "default_value":"on",
+                "description":"Date Format",
+                "type":"list",
+                "data":[
+                  {
+                    "text":"month/day",
+                    "value":"on"
+                  },
+                  {
+                    "text":"day.month",
+                    "value":"off"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

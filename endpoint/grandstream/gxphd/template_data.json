@@ -18,6 +18,12 @@
                 "type":"input"
               },
               {
+                "variable":"$dialplan",
+                "default_value":"{ x%2B | *x%2B | *xx*x%2B }",
+                "description":"Dial Plan",
+                "type":"input"
+              },
+              {
                 "type":"break"
               },
               {

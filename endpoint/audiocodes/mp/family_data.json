@@ -1,0 +1,55 @@
+{
+    "data": {
+        "name": "AudioCodes MP1xx Gateway Models [MP112,MP114,MP118,MP124]",
+        "id": "1",
+        "directory": "mp",
+        "firmware_ver": "6.20A.022.003",
+        "firmware_pkg": "MP118_SIP_F6.20A.022.003.cmp",
+        "firmware_md5sum": "a9fa211ab5d68e4954361afc2c931d03",
+        "description": "",
+        "configuration_files": "$mac.ini",
+        "changelog": "",
+        "provisioning_types": [
+            "tftp",
+            "http"
+        ],
+        "model_list": [
+            {
+                "model": "MP112",
+                "lines": "2",
+                "id": "1",
+                "firmware": "MP11*.cmp",
+                "template_data": [
+		    "other_data.json"
+                ]
+            },
+            {
+                "model": "MP114",
+                "lines": "4",
+                "id": "2",
+                "firmware": "MP11*.cmp",
+                "template_data": [
+		    "other_data.json"
+                ]
+            },
+            {
+                "model": "MP118",
+                "lines": "8",
+                "id": "3",
+                "firmware": "MP11*.cmp",
+                "template_data": [
+		    "other_data.json"
+                ]
+            },
+            {
+                "model": "MP124",
+                "lines": "24",
+                "id": "4",
+                "firmware": "MP124*.cmp",
+                "template_data": [
+		    "other_data.json"
+                ]
+            }
+        ]
+    }
+}

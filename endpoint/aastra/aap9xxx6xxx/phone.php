@@ -10,8 +10,8 @@
 class endpoint_aastra_aap9xxx6xxx_phone extends endpoint_aastra_base {
 
     public $family_line = 'aap9xxx6xxx';
-    public $en_htmlspecialchars = FALSE;
-    public $dynamic_mapping = array(
+    protected $en_htmlspecialchars = FALSE;
+    protected $dynamic_mapping = array(
         '$mac.cfg' => array('aastra.cfg','$mac.cfg'),
         'aastra.cfg' => '#This File is intentionally left blank'
     );
@@ -22,7 +22,7 @@ class endpoint_aastra_aap9xxx6xxx_phone extends endpoint_aastra_base {
         return($line_data);
     }
 
-    function generate_file($file, $extradata, $ignoredynamicmapping=FALSE) {
+    function generate_file($file, $extradata, $ignoredynamicmapping=FALSE, $prepare=FALSE) {
         $config = parent::generate_file($file, $extradata, $ignoredynamicmapping);
         if (($extradata == '$mac.cfg') && ($ignoredynamicmapping === FALSE) && ($this->enable_encryption)) {
             $this->enable_encryption();
@@ -36,68 +36,60 @@ class endpoint_aastra_aap9xxx6xxx_phone extends endpoint_aastra_base {
 
     function prepare_for_generateconfig() {
         parent::prepare_for_generateconfig();
-        if (isset($this->settings['softkey'])) {
-            foreach ($this->settings['softkey'] as $key => $data) {
-                if ($this->settings['softkey'][$key]['type'] == 'empty') {
-                    unset($this->settings['softkey'][$key]);
+        if (isset($this->settings['loops']['softkey'])) {
+            foreach ($this->settings['loops']['softkey'] as $key => $data) {
+                if ($this->settings['loops']['softkey'][$key]['type'] == 'empty') {
+                    unset($this->settings['loops']['softkey'][$key]);
                 }
             }
         }
 
-        if (isset($this->settings['topsoftkey'])) {
-            foreach ($this->settings['topsoftkey'] as $key => $data) {
-                if ($this->settings['topsoftkey'][$key]['type'] == 'empty') {
-                    unset($this->settings['topsoftkey'][$key]);
+        if (isset($this->settings['loops']['topsoftkey'])) {
+            foreach ($this->settings['loops']['topsoftkey'] as $key => $data) {
+                if ($this->settings['loops']['topsoftkey'][$key]['type'] == 'empty') {
+                    unset($this->settings['loops']['topsoftkey'][$key]);
                 }
             }
         }
 
-        if (isset($this->settings['prgkey'])) {
-            foreach ($this->settings['prgkey'] as $key => $data) {
-                if ($this->settings['prgkey'][$key]['type'] == 'empty') {
-                    unset($this->settings['prgkey'][$key]);
+        if (isset($this->settings['loops']['prgkey'])) {
+            foreach ($this->settings['loops']['prgkey'] as $key => $data) {
+                if ($this->settings['loops']['prgkey'][$key]['type'] == 'empty') {
+                    unset($this->settings['loops']['prgkey'][$key]);
                 }
             }
         }
 
-        if (isset($this->settings['expmod1'])) {
-            foreach ($this->settings['expmod1'] as $key => $data) {
-                if ($this->settings['expmod1'][$key]['type'] == 'empty') {
-                    unset($this->settings['expmod1'][$key]);
+        if (isset($this->settings['loops']['expmod1'])) {
+            foreach ($this->settings['loops']['expmod1'] as $key => $data) {
+                if ($this->settings['loops']['expmod1'][$key]['type'] == 'empty') {
+                    unset($this->settings['loops']['expmod1'][$key]);
                 }
             }
         }
 
-        if (isset($this->settings['expmod2'])) {
-            foreach ($this->settings['expmod2'] as $key => $data) {
-                if ($this->settings['expmod2'][$key]['type'] == 'empty') {
-                    unset($this->settings['expmod2'][$key]);
+        if (isset($this->settings['loops']['expmod2'])) {
+            foreach ($this->settings['loops']['expmod2'] as $key => $data) {
+                if ($this->settings['loops']['expmod2'][$key]['type'] == 'empty') {
+                    unset($this->settings['loops']['expmod2'][$key]);
                 }
             }
         }
 
-        if (isset($this->settings['expmod3'])) {
-            foreach ($this->settings['expmod3'] as $key => $data) {
-                if ($this->settings['expmod3'][$key]['type'] == 'empty') {
-                    unset($this->settings['expmod3'][$key]);
+        if (isset($this->settings['loops']['expmod3'])) {
+            foreach ($this->settings['loops']['expmod3'] as $key => $data) {
+                if ($this->settings['loops']['expmod3'][$key]['type'] == 'empty') {
+                    unset($this->settings['loops']['expmod3'][$key]);
                 }
             }
         }
 
-        if (isset($this->settings['featkeys'])) {
-            foreach ($this->settings['featkeys'] as $key => $data) {
-                if ($this->settings['featkeys'][$key]['enable'] == '0') {
-                    unset($this->settings['featkeys'][$key]);
+        if (isset($this->settings['loops']['featkeys'])) {
+            foreach ($this->settings['loops']['featkeys'] as $key => $data) {
+                if ($this->settings['loops']['featkeys'][$key]['enable'] == '0') {
+                    unset($this->settings['loops']['featkeys'][$key]);
                 }
             }
-        }
-
-        if (!isset($this->settings['provisioning_server'])) {
-            $this->settings['provisioning_server'] = $this->server[1]['ip'];
-        }
-
-        if (!isset($this->settings['provisioning_path'])) {
-            $this->settings['provisioning_path'] = '';
         }
 
         switch ($this->provisioning_type) {

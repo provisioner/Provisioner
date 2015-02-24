@@ -1,0 +1,148 @@
+#########################################################
+#
+# For SN-411X FXS
+# Supported firmware versions R6.x
+#
+# Author: Graeme Moss
+# Contact: graemem@dcdata.co.za
+#
+#########################################################
+timer CONFIG_UPDATE now + 2 minutes every 10 minutes "provisioning execute CONFIG"
+
+webserver port 80 language en
+
+sntp-client
+
+system
+
+  ic voice 0
+    low-bitrate-codec g729
+
+profile ppp default
+
+{$tone_set_data}
+
+profile tone-set default
+
+profile voip default
+  codec 1 g711alaw64k rx-length 20 tx-length 20
+  codec 2 g711ulaw64k rx-length 20 tx-length 20
+  codec 3 g729 rx-length 20 tx-length 20
+  fax transmission 1 relay t38-udp
+  modem transmission 1 bypass g711alaw64k rx-length 20 tx-length 20
+
+profile pstn default
+
+profile sip default
+
+profile aaa default
+  method 1 local
+  method 2 none
+  
+profile provisioning CONFIG
+  destination configuration
+  location 1 tftp://$(dhcp.66)/${system.mac}
+  activation reload graceful
+
+context ip router
+
+  interface IF_IP_LAN
+    ipaddress %%gateway_ip%% %%gateway_mask%%
+    tcp adjust-mss rx mtu
+    tcp adjust-mss tx mtu
+
+context cs switch
+  %%digitcollection%%
+
+  routing-table called-e164 RT_DIGITCOLLECTION
+    route .T dest-interface IF_SIP_PBX MT_EXT_TO_NAME
+
+  routing-table called-e164 RT_TO_FXS
+{line_loop}
+    route {$username} dest-interface IF_FXS_0{$fxsnum}
+{/line_loop}
+  mapping-table calling-e164 to calling-name MT_EXT_TO_NAME
+{line_loop}
+    map {$username} to "{$realname}"
+{/line_loop}
+
+
+  interface sip IF_SIP_PBX
+    bind context sip-gateway GW_SIP_ALL_EXTENSIONS
+    route call dest-table RT_TO_FXS
+    remote {$server_host} %%param::sipport%%
+    local {$server_host} %%param::sipport%%
+	trust remote
+
+{line_loop}
+  interface fxs IF_FXS_0{$fxsnum}
+    route call dest-table RT_DIGITCOLLECTION
+    subscriber-number {$username}
+{/line_loop}
+
+context cs switch
+  no shutdown
+
+authentication-service AS_ALL_EXTENSIONS
+  realm 1 PhoneSystem
+{line_loop}
+  username {$username} password {$secret}
+{/line_loop}
+ 
+
+location-service LS_ALL_LINES
+  domain 1 {$server_host}
+
+  identity-group default
+
+    authentication outbound
+      authenticate 1 authentication-service AS_ALL_EXTENSIONS
+
+    registration outbound
+      registrar {$server_host} %%param::sipport%%
+      lifetime 300
+      register auto
+
+{line_loop}
+  identity {$username} inherits default
+{/line_loop}
+ 
+
+context sip-gateway GW_SIP_ALL_EXTENSIONS
+
+  interface LAN
+    bind interface IF_IP_LAN context router port 5060
+
+context sip-gateway GW_SIP_ALL_EXTENSIONS
+  bind location-service LS_ALL_LINES
+  no shutdown
+
+port ethernet 0 0
+  medium auto
+  encapsulation ip
+  bind interface IF_IP_LAN router
+  no shutdown
+
+port fxs 0 0
+  {$tone_set_data_profile}
+  encapsulation cc-fxs
+  bind interface IF_FXS_00 switch
+  no shutdown
+
+port fxs 0 1
+  {$tone_set_data_profile}
+  encapsulation cc-fxs
+  bind interface IF_FXS_01 switch
+  no shutdown
+
+port fxs 0 2
+  {$tone_set_data_profile}
+  encapsulation cc-fxs
+  bind interface IF_FXS_02 switch
+  no shutdown
+
+port fxs 0 3
+  {$tone_set_data_profile}
+  encapsulation cc-fxs
+  bind interface IF_FXS_03 switch
+  no shutdown

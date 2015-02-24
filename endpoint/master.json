@@ -1,6 +1,6 @@
 {
   "data": {
-    "last_modified": 1325200226,
+    "last_modified": 1395183811,
     "package": "provisioner_net.tgz",
     "brands": [
       {
@@ -16,12 +16,24 @@
         "directory": "cloudtc"
       },
       {
+        "name": "Digium",
+        "directory": "digium"
+      },
+      {
         "name": "Grandstream",
         "directory": "grandstream"
       },
       {
+        "name": "Intelbras",
+        "directory": "intelbras"
+      },
+      {
         "name": "Mitel",
         "directory": "mitel"
+      },
+      {
+        "name": "Norphonic",
+        "directory": "norphonic"
       },
       {
         "name": "Polycom",
@@ -30,6 +42,18 @@
       {
         "name": "Snom",
         "directory": "snom"
+      },
+      {
+        "name": "Thomson",
+        "directory": "thomson"
+      },
+      {
+        "name": "Unidata",
+        "directory": "unidata"
+      },
+      {
+        "name": "Xorcom",
+        "directory": "xorcom"
       },
       {
         "name": "Yealink\/Dreamwave",

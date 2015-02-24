@@ -1,0 +1,176 @@
+{
+    "template_data":{
+        "category":[
+            {
+                "name":"Other settings",
+                "subcategory":[
+                    {
+                        "name":"other",
+                        "item":[
+                            {
+                                "variable":"$NTPFlag",
+                                "default_value":"1",
+                                "description":"NTP update service",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"Disabled"},
+                                    {"value":"1","text":"Enabled"}
+                                ]
+                            },
+                            {
+                                "variable":"$NtpIP",
+                                "default_value":"",
+                                "description":"NTP server address",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$NtpZoneNum",
+                                "default_value":"23",
+                                "description":"NTP Timezone",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"(GMT-12)Einwetok, Kwajalein"},
+                                    {"value":"1","text":"(GMT-11)Midland Island, Samoa"},
+                                    {"value":"2","text":"(GMT-10) Hawaii"},
+                                    {"value":"3","text":"(GMT-9) Alaska"},
+                                    {"value":"4","text":"(GMT-8) Pacific Time (US and Canada), Tijuana"},
+                                    {"value":"5","text":"(GMT-7) Arizona"},
+                                    {"value":"6","text":"(GMT-7) Mountain Time"},
+                                    {"value":"7","text":"(GMT-6) Central Time"},
+                                    {"value":"8","text":"(GMT-6) Mexico City, Tegucigalpa"},
+                                    {"value":"9","text":"(GMT-6) Central America, Mexico City, Saskatchewan"},
+                                    {"value":"10","text":"(GMT-5) Bogota, Lima, Quito"},
+                                    {"value":"11","text":"(GMT-5) Eastern Time"},
+                                    {"value":"12","text":"(GMT-5) Indiana (East)"},
+                                    {"value":"13","text":"(GMT-4) Atlantic"},
+                                    {"value":"14","text":"(GMT-4) Caracas, La Paz"},
+                                    {"value":"15","text":"(GMT-3:30) Newfoundland"},
+                                    {"value":"16","text":"(GMT-3) Brasilia"},
+                                    {"value":"17","text":"(GMT-3) Buenos Aires, Georgetown"},
+                                    {"value":"18","text":"(GMT-2)"},
+                                    {"value":"19","text":"(GMT-1)"},
+                                    {"value":"20","text":"(GMT)"},
+                                    {"value":"21","text":"(GMT) Greenwich Mean Time: Dublin, Edinburgh, Lisbon, London"},
+                                    {"value":"22","text":"(GMT+1) Amsterdam, Copenhagen, Madrid, Paris, Vilnius"},
+                                    {"value":"23","text":"(GMT+1) CET"},
+                                    {"value":"24","text":"(GMT+1) Bratislava, Budapest, Ljubljana, Prague, Warsaw"},
+                                    {"value":"25","text":"(GMT+1) Brussels, Berlin, Bern, Rome, Stockholm, Vienna"},
+                                    {"value":"26","text":"(GMT+2) Athens, Istanbul, Minsk"},
+                                    {"value":"27","text":"(GMT+2) Bucharest"},
+                                    {"value":"28","text":"(GMT+2) Cairo"},
+                                    {"value":"29","text":"(GMT+2) Harare, Pretoria"},
+                                    {"value":"30","text":"(GMT+2) Helsinki, Riga, Tallinn"},
+                                    {"value":"31","text":"(GMT+2) Israel"},
+                                    {"value":"32","text":"(GMT+3) Baghdad, Kueait, Riyadh"},
+                                    {"value":"33","text":"(GMT+3) Moscow, St. Petersburg, Volgograd"},
+                                    {"value":"34","text":"(GMT+3) Nairobi"},
+                                    {"value":"35","text":"(GMT+3:30) Teheran"},
+                                    {"value":"36","text":"(GMT+4) Abu Dhabi"},
+                                    {"value":"37","text":"(GMT+4) Baku, Tbilisi"},
+                                    {"value":"38","text":"(GMT+4:30) Kabul"},
+                                    {"value":"39","text":"(GMT+5) Ekaterinburg"},
+                                    {"value":"40","text":"(GMT+5) Islamabad, Karachi,Tashkent"},
+                                    {"value":"41","text":"(GMT+5:30) Bombay, Calcutta, Madras, New Dehli"},
+                                    {"value":"42","text":"(GMT+5:45) Kathmandu"},
+                                    {"value":"43","text":"(GMT+6) Almaty, Dhaka"},
+                                    {"value":"44","text":"(GMT+6) Colombo"},
+                                    {"value":"45","text":"(GMT+6:30) Rangoon"},
+                                    {"value":"46","text":"(GMT+7) Bangkok, Hanoi, Jakarta"},
+                                    {"value":"47","text":"(GMT+8) Beijing, Chongqing, Hong Kong, Urumqi"},
+                                    {"value":"48","text":"(GMT+8) Perth"},
+                                    {"value":"49","text":"(GMT+8) Urumqui, Taipei, Kuala Lumpur, Singapore"},
+                                    {"value":"50","text":"(GMT+9) Osaka, Sappora, Tokyo"},
+                                    {"value":"51","text":"(GMT+9) Seoul"},
+                                    {"value":"52","text":"(GMT+9) Yakutsk"},
+                                    {"value":"53","text":"(GMT+9:30) Adelaide"},
+                                    {"value":"54","text":"(GMT+9:30) Darwin"},
+                                    {"value":"55","text":"(GMT+10) Brisbane"},
+                                    {"value":"56","text":"(GMT+10)"},
+                                    {"value":"57","text":"(GMT+10)"},
+                                    {"value":"58","text":"(GMT+10)"},
+                                    {"value":"59","text":"(GMT+10) "},
+                                    {"value":"60","text":"(GMT+11) Magadan, Solomon Is., New Caledonia"},
+                                    {"value":"61","text":"(GMT+12) Auckland, Wellington"},
+                                    {"value":"62","text":"(GMT+12) Fiji, Kamchatka, Marshall Is."},
+                                    {"value":"63","text":"(GMT+13) Nukualofa"}
+                                ]
+                            },
+                            {
+                                "variable":"$NtpDaylight",
+                                "default_value":"1",
+                                "description":"Daylight saving time",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"Off"},
+                                    {"value":"1","text":"On"}
+                                ]
+                            },
+							{"type":"break"},
+                            {
+                                "variable":"$TOS",
+                                "default_value":"160",
+                                "description":"TOS (0-255)",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$DSCPflag",
+                                "default_value":"0",
+                                "description":"Diffserv function",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"Disabled"},
+                                    {"value":"1","text":"Enabled"}
+                                ]                        
+                            },
+                            {
+                                "variable":"$DSCP1",
+                                "default_value":"46",
+                                "description":"Diffserv setting for VOICE RTP (0-63)",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$DSCP2",
+                                "default_value":"40",
+                                "description":"Diffserv setting for VOICE signaling (0-63)",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$DSCP3",
+                                "default_value":"40",
+                                "description":"Diffserv setting for DHCP message(0-63)",
+                                "type":"input"
+                            },
+							{"type":"break"},
+                            {
+                                "variable":"$ESWITCH_LAN",
+                                "default_value":"1",
+                                "description":"Phone Ethernet Switch port LAN",
+                                "type":"list",
+                                "data":[
+                                    {"value":"1","text":"Auto speed and duplex"},
+                                    {"value":"2","text":"100/Half Duplex"},
+                                    {"value":"3","text":"100/Full Duplex"},
+                                    {"value":"4","text":"10/Half Duplex"},
+                                    {"value":"5","text":"10/Full Duplex"}
+                                ]                        
+                            },
+                            {
+                                "variable":"$ESWITCH_PC",
+                                "default_value":"1",
+                                "description":"Phone Ethernet Switch port PC",
+                                "type":"list",
+                                "data":[
+                                    {"value":"1","text":"Auto speed and duplex"},
+                                    {"value":"2","text":"100/Half Duplex"},
+                                    {"value":"3","text":"100/Full Duplex"},
+                                    {"value":"4","text":"10/Half Duplex"},
+                                    {"value":"5","text":"10/Full Duplex"}
+                                ]                        
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

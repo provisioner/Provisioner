@@ -3,26 +3,23 @@
     "name": "SoundPoint IP 430 [430]",
     "id": "4",
     "directory": "firmware325",
-    "firmware_ver": 1323333833,
-    "firmware_md5sum": "07bf14498aa9e1f627822151b0d3e8aa",
+    "firmware_ver": 1395185865,
+    "firmware_md5sum": "8fef53a9ecb7bc48345fb68aa905be38",
     "firmware_pkg": "firmware325_firmware.tgz",
-    "description": "Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality",
-    "configuration_files": "logs\/$mac-boot.log,logs\/$mac-app.log,$mac-phone.cfg,$mac.cfg,server_325.cfg,phone1_325.cfg,$mac_reg.cfg,sip_325.cfg",
+    "description": "",
+    "configuration_files": "logs\/$mac-boot.log,logs\/$mac-app.log,$mac-phone.cfg,$mac.cfg,server_327.cfg,phone1_327.cfg,$mac_reg.cfg,sip_327.cfg",
     "changelog": "",
+    "provisioning_types": [
+      "tftp",
+      "http"
+    ],
     "model_list": [
       {
         "model": "SoundPoint IP 430",
         "lines": "2",
         "id": "1",
         "template_data": [
-          "template_data.json"
-        ]
-      },
-      {
-        "model": "SoundPoint IP N\/A",
-        "lines": "2",
-        "id": "2",
-        "template_data": [
+          "linekeys.json",
           "template_data.json"
         ]
       }

@@ -1,0 +1,28 @@
+{
+  "data": {
+    "name": "Yealink\/Dreamwave T1X Models: [T18]",
+    "id": "3",
+    "directory": "t1x",
+    "firmware_ver": 1326828070,
+    "firmware_pkg": "t1x_firmware.tgz",
+    "firmware_md5sum": "8c15008a113e9e6954424f3ac485ad70",
+    "description": "Make more configuration settings available from UI",
+    "configuration_files": "y0000000000$suffix.cfg,$mac.cfg",
+    "changelog": "",
+            "provisioning_types": [
+            "tftp",
+            "http"
+        ],
+    "model_list": [
+      {
+        "model": "T18",
+        "lines": "1",
+        "id": "1",
+        "template_data": [
+          "template_data.json",
+		  "line_options_18.json"
+        ]
+      }
+    ]
+  }
+}

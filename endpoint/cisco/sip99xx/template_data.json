@@ -1,0 +1,206 @@
+{
+  "template_data":{
+    "category":[
+      {
+        "name":"General",
+        "subcategory":[
+          {
+            "name":"General Settings",
+            "item":[
+
+ 	     {
+                "variable":"$video",
+                "default_value":"0",
+                "description":"Enable Video",
+               "type": "list",
+                "data": [
+                    {
+                        "text": "Yes",
+                        "value": "1"
+                    },
+                    {
+                        "text": "No",
+                        "value": ""
+                    }
+		    ]		
+	     },
+
+
+              {
+                "variable":"$directory_url",
+                "default_value":"http://172.23.3.5/cisco/services/searchDirectory.php",
+                "description":"Directory URL",
+                "type":"input"
+              },
+              {
+                "variable":"$authentication_url",
+                "default_value":"http://172.23.3.5/auth.php",
+                "description":"Authentication URL",
+                "type":"input"
+              },
+              {
+                "variable":"$info_url",
+                "default_value":"",
+                "description":"Information URL",
+                "type":"input"
+              },
+              {
+                "variable":"$transport_layer",
+                "default_value":"2",
+                "description":"SIP Transport Protocol",
+               "type": "list",
+                "data": [
+                    {
+                        "text": "Automatic",
+                        "value": "5"
+                    },
+                    {
+                        "text": "UDP",
+                        "value": "2"
+                    },
+                  {
+                        "text": "TCP",
+                        "value": "4"
+                    },
+                  {
+                        "text": "TLS Encryption",
+                        "value": "3"
+                    }]
+		
+              },
+
+              {
+                "variable":"$logo_url",
+                "default_value":"",
+                "description":"Logo URL",
+                "type":"input"
+              },
+              {
+                "variable":"$dns_server",
+                "default_value":"",
+                "description":"DNS Name Server",
+                "type":"input"
+              },
+
+              {
+                "variable":"$image_name",
+                "default_value":"",
+                "description":"Firmware Image Name",
+                "type":"input"
+              },
+              {
+                "variable":"$preferredcodec",
+                "default_value":"g711alaw",
+                "description":"Preferred Audio Codec",
+                "type":"list",
+                "data":[
+                  {
+                    "text":"None",
+                    "value":"none"
+                  },
+                  {
+                    "text":"G.711 A-law (Everyone except US)",
+                    "value":"g711alaw"
+                  },
+                  {
+                    "text":"G.711 u-law (US)",
+                    "value":"g711ulaw"
+                  },
+                  {
+                    "text":"G.729",
+                    "value":"g729a"
+                  }
+                ]
+              },
+              {
+                "variable":"$date_template",
+                "default_value":"D/M/YA",
+                "description":"Date Format",
+                "type":"list",
+                "data":[
+                  {
+                    "text":"European",
+                    "value":"D/M/Ya"
+                  },
+                  {
+                    "text":"American",
+                    "value":"M/D/YA"
+                  }
+                ]
+              },
+              {
+                "variable":"$dialplan_template",
+                "default_value":"dialplan.xml",
+                "description":"Dialplan Template",
+                "type":"list",
+                "data":[
+                  {
+                    "text":"Default",
+                    "value":"dialplan.xml"
+                  },
+                  {
+                    "text":"QLD",
+                    "value":"dialplan-qld.xml"
+                  },
+                  {
+                    "text":"NSW",
+                    "value":"dialplan-nsw.xml"
+                  },
+		  {
+                    "text":"VIC",
+                    "value":"dialplan-vic.xml"
+                  },
+                  {
+                    "text":"PER/ADL",
+                    "value":"dialplan-per.xml"
+                  }
+                 ]
+              },
+		{
+                "variable":"$timezone_template",
+                "default_value":"E. Australia Standard Time",
+                "description":"Timezone selection",
+                "type":"list",
+                "data":[
+                        {
+                    	"text":"America/Los_Angeles",
+                	"value":"Central Standard/Daylight Time"
+                  	},
+                        {
+                    	"text":"Europe/Dublin",
+               	 	"value":"GMT Standard/Daylight Time"
+                  	},
+                        {
+                    	"text":"Pacific/Auckland",
+                	"value":"New Zealand Standard/Daylight Time"
+                  	},
+                        {
+                    	"text":"Australia/Brisbane",
+                	"value":"E. Australia Standard Time"
+                  	},
+                        {
+                    	"text":"Australia/Sydney",
+                	"value":"AUS Eastern Standard/Daylight Time"
+                 	},
+                        {
+                    	"text":"Australia/Adelaide",
+                	"value":"Central Pacific Standard Time"
+                  	},
+                        {
+                    	"text":"Australia/Tasmania",
+                  	"value":"Tasmania Standard/Daylight Time"
+                  	},
+                        {
+                    	"text":"Australia/Perth",
+                	"value":"W. Australia Standard Time"
+                  	}
+                ]
+              }
+
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

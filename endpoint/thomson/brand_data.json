@@ -1,0 +1,27 @@
+{
+  "data": {
+    "brands": {
+      "name": "Thomson",
+      "directory": "thomson",
+      "brand_id": "14",
+      "package": "thomson.tgz",
+      "md5sum": "4021965082b0ff42b048d90c2045381e",
+      "last_modified": 1395185244,
+      "family_list": [
+        {
+          "id": "1",
+          "name": "Thomson Model [ST2030S]",
+          "directory": "st20xx",
+          "description": "",
+          "changelog": "2012.03.08: Firmware 11.1 Included. Verified on ST2030S.",
+          "last_modified": null
+        }
+      ],
+      "oui_list": [
+        "001F9F",
+        "00147F"
+      ],
+      "changelog": "PACKAGER: "
+    }
+  }
+}

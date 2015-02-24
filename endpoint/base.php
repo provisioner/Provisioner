@@ -8,11 +8,23 @@
  * @package Provisioner
  *
  */
+foreach (explode(" ", "NONE DEPTH STATE_MISMATCH CTRL_CHAR SYNTAX UTF8") AS $key => $value) {
+    $value = "JSON_ERROR_$value";
+    if (!defined($value))
+        define($value, $key);
+}
+if (!function_exists('json_last_error')) {
+
+    function json_last_error() {
+        return JSON_ERROR_NONE;
+    }
+
+}
+
 abstract class endpoint_base {
 
-    public static $modules_path = "endpoint/";
-    public static $root_dir = "";  //need to define the root directory for the location of the library (/var/www/html/)
-    
+    public $modules_path = "endpoint/";
+    public $root_dir = "";  //need to define the root directory for the location of the library (/var/www/html/)
     public $brand_name = "undefined";   //Brand Name
     public $family_line = "undefined";  //Family Line
     public $model = "undefined";        // Model of phone, must match the model name inside of the famil_data.json file in each family folder.
@@ -20,6 +32,7 @@ abstract class endpoint_base {
     public $settings = array();
     public $debug = FALSE;  //Enable or disable debug
     public $debug_return = array(); //Debug fill. I question if this is needed, or perhaps remove above line, seems redudant to have both 
+    public $replacement_array = array(); //Used for phpunit testing, key is {$var} value is the replacement.
     public $mac;    // Device mac address, should this be in settings?
     public $timezone = array();       // Global timezone array
     public $DateTimeZone;   // timezone, as a DateTimezone object, much more flexible than just an offset and name.
@@ -29,12 +42,12 @@ abstract class endpoint_base {
     public $directory_structure = array(); //Directory structure to create as an array
     public $protected_files = array(); //array list of file to NOT over-write on every config file build. They are protected.
     public $copy_files = array();  //array of files or directories to copy. Directories will be recursive
-    
+    protected $use_system_dst = TRUE; //Use System DST correction if detected
     protected $en_htmlspecialchars = TRUE; //Enable or Disable PHP's htmlspecialchars() function for variables
     protected $server_type = 'file';  //Can be file or dynamic
     protected $provisioning_type = 'tftp';  //can be tftp,http,ftp ??
     protected $enable_encryption = FALSE;  //Enable file encryption
-    protected $provisioning_path;                  //Path to provisioner, used in http/https/ftp/tftp
+    protected $provisioning_path = "";                  //Path to provisioner, used in http/https/ftp/tftp
     protected $dynamic_mapping;  // e.g. ARRAY('thisfile.htm'=>'# Intentionally left blank','thatfile$mac.htm'=>array('thisfile.htm','thatfile$mac.htm'));
     // files not in this array are passed through untouched. Strings are returned as is. For arrays, generate_file is called for each entry, and they are combined.
     protected $config_file_replacements = array();
@@ -44,17 +57,25 @@ abstract class endpoint_base {
     protected $model_data;    //model data from family data in array form
     protected $template_data; //Merged template files for specified model in array form
     protected $max_lines = array();   //Max lines from said model.
-    
     private $server_type_list = array('file', 'dynamic');  // acceptable values for $server_type
     private $default_server_type = 'file';  // if server_type is invalid
     private $provisioning_type_list = array('tftp', 'http', 'ftp'); //acceptable values for $provisioning_type
     private $default_provisioning_type = 'tftp'; // if provisioning_type is invalid
-    
     private $initialized = FALSE;   //Initialized data or not.
 
+    /* $mapfields is an array of "setting"=>array(
+      "possibility1"=>"result1",
+      "posibility2"=>"result2",
+      "default"=>"defaultresult");
+      in prepare_for_generateconfig, all of the keys in this array are gone
+      through. If $this->setting (in the above example) is set,
+      $this->setting is set to $mapfields["setting"][$this->setting], or if
+      it doesn't exist, it is set to $mapfields["setting"]["default"]
+     */
+    public $mapfields = array(); // override in children.
+
     function __construct() {
-        self::$root_dir = dirname(dirname(__FILE__)) . "/";
-        $this->root_dir = dirname(dirname(__FILE__)) . "/";
+        $this->root_dir = empty($this->root_dir) ? dirname(dirname(__FILE__)) . "/" : $this->root_dir;
     }
 
     /*     * *PUBLIC FUNCTIONS** */
@@ -167,6 +188,14 @@ abstract class endpoint_base {
         if (!in_array('$model', $this->config_file_replacements)) {
             $this->config_file_replacements['$model'] = $this->model;
         }
+        foreach ($this->mapfields as $fieldname => $map) {
+            if (isset($this->settings[$fieldname]) AND (array_key_exists($this->settings[$fieldname], $map))) {
+                $this->settings[$fieldname] = $map[$this->settings[$fieldname]];
+            } else {
+                $this->settings[$fieldname] = $map['default'];
+            }
+        }
+        $this->mapfields = array(); // ensure it only happens once.
     }
 
     private function setup_languages() {
@@ -186,7 +215,7 @@ abstract class endpoint_base {
     private function open_config_file($filename) {
         //if there is no configuration file over ridding the default then load up $contents with the file's information, where $key is the name of the default configuration file
         if (!isset($this->config_files_override[$filename])) {
-            return file_get_contents(self::$root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $filename);
+            return file_get_contents($this->root_dir . $this->modules_path . $this->brand_name . "/" . $this->family_line . "/" . $filename);
         } else {
             return($this->config_files_override[$filename]);
         }
@@ -205,6 +234,7 @@ abstract class endpoint_base {
     private function parse_config_file($file_contents) {
         $file_contents = $this->generate_info($file_contents);
 
+        $file_contents = $this->parse_conditionals($file_contents);
         $file_contents = $this->parse_conditional_model($file_contents);
 
         $file_contents = $this->parse_lines($file_contents, FALSE);
@@ -214,6 +244,36 @@ abstract class endpoint_base {
         $file_contents = $this->parse_config_values($file_contents);
 
         return $file_contents;
+    }
+
+    /**
+     * Simple isset/==/!= statetment
+     * @param string $file_contents Full Contents of the configuration file
+     * @return string Full Contents of the configuration file (After Parsing)
+     * @example {if condition="$local_port == '5060'"}{/if}
+     * @author Andrew Nagy
+     */
+    private function parse_conditionals($file_contents) {
+        $pattern = "/{if condition=\"(.*?)\"}(.*?){\/if}/si";
+        while (preg_match($pattern, $file_contents, $matches)) {
+    		$function = $matches[1];
+			$contents = $matches[2];
+			if(preg_match('/isset\(\$(\w*)\)/i',$function,$fmatches)) {
+				if(isset($this->settings[$fmatches[1]])) {
+					$file_contents = preg_replace($pattern, $contents, $file_contents, 1);
+				}
+			} elseif(preg_match('/\$(.*) == \'(.*)\'/i',$function,$fmatches)) {
+				if(isset($this->settings[$fmatches[1]]) AND ($this->settings[$fmatches[1]] == $fmatches[2])){
+					$file_contents = preg_replace($pattern, $contents, $file_contents, 1);
+				}
+			} elseif(preg_match('/\$(.*) != \'(.*)\'/i',$function,$fmatches)) {
+				if(isset($this->settings[$fmatches[1]]) AND ($this->settings[$fmatches[1]] != $fmatches[2])){
+					$file_contents = preg_replace($pattern, $contents, $file_contents, 1);
+				}
+			}
+			$file_contents = preg_replace($pattern, "", $file_contents, 1);	
+        }
+        return($file_contents);
     }
 
     /**
@@ -298,7 +358,7 @@ abstract class endpoint_base {
         while (preg_match($pattern, $file_contents, $matches)) {
             $loop_contents = $matches[1];
             $parsed = "";
-            foreach ($this->settings['line'] as $key => $data) {
+            foreach ($this->settings['line'] as $data) {
                 $line = $data['line'];
                 $data['number'] = $line;
                 $data['count'] = $line;
@@ -317,7 +377,7 @@ abstract class endpoint_base {
         $template_data_multi = "";
 
         //Setup defaults from global file
-        $template_data_multi = $this->file2json(self::$root_dir . self::$modules_path . '/global_template_data.json');
+        $template_data_multi = $this->file2json($this->root_dir . $this->modules_path . '/global_template_data.json');
         $template_data_multi = $template_data_multi['template_data']['category'];
         foreach ($template_data_multi as $categories) {
             $subcats = $categories['subcategory'];
@@ -329,8 +389,8 @@ abstract class endpoint_base {
 
         //Setup defaults from each template file
         foreach ($template_data_list as $files) {
-            if (file_exists(self::$root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $files)) {
-                $template_data_multi = $this->file2json(self::$root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/" . $files);
+            if (file_exists($this->root_dir . $this->modules_path . $this->brand_name . "/" . $this->family_line . "/" . $files)) {
+                $template_data_multi = $this->file2json($this->root_dir . $this->modules_path . $this->brand_name . "/" . $this->family_line . "/" . $files);
                 $template_data_multi = $template_data_multi['template_data']['category'];
                 foreach ($template_data_multi as $categories) {
                     $subcats = $categories['subcategory'];
@@ -345,8 +405,8 @@ abstract class endpoint_base {
         }
 
 
-        if (file_exists(self::$root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_custom.json")) {
-            $template_data_multi = $this->file2json(self::$root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_custom.json");
+        if (file_exists($this->root_dir . $this->modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_custom.json")) {
+            $template_data_multi = $this->file2json($this->root_dir . $this->modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_custom.json");
             $template_data_multi = $template_data_multi['template_data']['category'];
             foreach ($template_data_multi as $categories) {
                 $subcats = $categories['subcategory'];
@@ -357,8 +417,8 @@ abstract class endpoint_base {
             }
         }
 
-        if (file_exists(self::$root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_" . $this->model . "_custom.json")) {
-            $template_data_multi = $this->file2json(self::$root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_" . $this->model . "_custom.json");
+        if (file_exists($this->root_dir . $this->modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_" . $this->model . "_custom.json")) {
+            $template_data_multi = $this->file2json($this->root_dir . $this->modules_path . $this->brand_name . "/" . $this->family_line . "/template_data_" . $this->model . "_custom.json");
             $template_data_multi = $template_data_multi['template_data']['category'];
             foreach ($template_data_multi as $categories) {
                 $subcats = $categories['subcategory'];
@@ -373,7 +433,7 @@ abstract class endpoint_base {
 
     private function parse_config_values($file_contents, $data=NULL, $keep_unknown=FALSE) {
         //Find all matched variables in the text file between "{$" and "}"
-        preg_match_all('/[{\$](.*?)[}]/i', $file_contents, $match);
+        preg_match_all('/{(\$[^{]+?)[}]/i', $file_contents, $match);
         //Result without brackets (but with the $ variable identifier)
         $no_brackets = array_values(array_unique($match[1]));
         //Result with brackets
@@ -381,20 +441,27 @@ abstract class endpoint_base {
 
         foreach ($no_brackets as $variables) {
             $original_variable = $variables;
-            $variables = str_replace("$", "", $variables);
-            $default_exp = preg_split("/\|/i", $variables);
+            $default_exp = preg_split("/\|/i", str_replace("$", "", $variables));
+            $variables = $default_exp[0];
             $default = isset($default_exp[1]) ? $default_exp[1] : null;
 
             if (is_array($data)) {
                 if (isset($data[$variables])) {
                     $data[$variables] = $this->replace_static_variables($data[$variables]);
                     $this->debug("Replacing '{" . $original_variable . "}' with " . $data[$variables]);
+                    if (isset($data['line'])) {
+                        $l = $data['line'];
+                        $this->replacement_array['lines'][$l][$original_variable] = $data[$variables];
+                    }
                     $file_contents = str_replace('{' . $original_variable . '}', $data[$variables], $file_contents);
+                    continue;
                 }
             } else {
                 if (isset($this->settings[$variables])) {
                     $this->settings[$variables] = $this->replace_static_variables($this->settings[$variables]);
+                    $this->replacement_array['other'][$original_variable] = $this->settings[$variables];
                     $file_contents = str_replace('{' . $original_variable . '}', $this->settings[$variables], $file_contents);
+                    continue;
                 }
             }
 
@@ -426,14 +493,17 @@ abstract class endpoint_base {
                 if (isset($default)) {
                     $default = $this->replace_static_variables($default);
                     $file_contents = str_replace('{' . $original_variable . '}', $default, $file_contents);
+                    $this->replacement_array['pipes'][$original_variable] = $default;
                     $this->debug('Replacing {' . $original_variable . '} with default piped value of:' . $default);
                 } elseif (isset($default_hard_value)) {
                     $default_hard_value = $this->replace_static_variables($default_hard_value);
                     $file_contents = str_replace('{' . $original_variable . '}', $default_hard_value, $file_contents);
+                    $this->replacement_array['json'][$original_variable] = $default_hard_value;
                     $this->debug("Replacing {" . $original_variable . "} with default json value of: " . $default_hard_value);
                 } else {
                     //do one last replace statice here.
                     $file_contents = str_replace('{' . $original_variable . '}', "", $file_contents);
+                    $this->replacement_array['blanks'][$original_variable] = "";
                     $this->debug("Blanking {" . $original_variable . "}");
                 }
             }
@@ -451,15 +521,15 @@ abstract class endpoint_base {
      * @return string
      */
     private function replace_static_variables($contents, $data=NULL) {
-        //bad
+        //bad		
         $this->settings['network']['local_port'] = isset($this->settings['network']['local_port']) ? $this->settings['network']['local_port'] : '5060';
         $replace = array(
             # These first ones have an identical field name in the object and the template.
             # This is a good thing, and should be done wherever possible.
             '{$mac}' => $this->mac,
             '{$model}' => $this->model,
-            '{$provisioning_type}' => $this->settings['provision']['protocol'],
-            '{$provisioning_path}' => $this->settings['provision']['path'],
+            '{$provisioning_type}' => $this->provisioning_type,
+            '{$provisioning_path}' => $this->provisioning_path,
             '{$vlan_id}' => $this->settings['network']['vlan']['id'],
             '{$vlan_qos}' => $this->settings['network']['vlan']['qos'],
             # These are not the same.
@@ -468,6 +538,7 @@ abstract class endpoint_base {
             '{$timezone}' => $this->timezone['timezone'], # Should this be depricated??
             '{$network_time_server}' => $this->settings['ntp'],
             '{$local_port}' => $this->settings['network']['local_port'],
+            '{$syslog_server}' => $this->settings['network']['syslog_server'],
             #old
             '{$srvip}' => $this->settings['line'][0]['server_host'],
             '{$server.ip.1}' => $this->settings['line'][0]['server_host'],
@@ -479,7 +550,7 @@ abstract class endpoint_base {
             //not needed I dont think
         } else {
             //Find all matched variables in the text file between "{$" and "}"
-            preg_match_all('/[{\$](.*?)[}]/i', $contents, $match);
+            preg_match_all('/{(\$[^{]+?)[}]/i', $contents, $match);
             //Result without brackets (but with the $ variable identifier)
             $no_brackets = array_values(array_unique($match[1]));
             //Result with brackets
@@ -507,13 +578,23 @@ abstract class endpoint_base {
                         //$this->settings['line'][$key1[0]]['ext'] = isset($this->settings['line'][$key1[0]]['username']) ? $this->settings['line'][$key1[0]]['username'] : NULL;
                     }
 
-                    $data['number'] = $line;
-                    $data['count'] = $line;
+                    //If value (that line) wasn't found then ignore the next
+                    if ($key1 !== FALSE) {
+                        $data['number'] = $line;
+                        $data['count'] = $line;
 
-                    $line_settings = $this->parse_lines_hook($this->settings['line'][$key1[0]], $this->max_lines);
+                        $line_settings = $this->parse_lines_hook($this->settings['line'][$key1[0]], $this->max_lines);
 
-                    $stored = isset($line_settings[$var]) ? $line_settings[$var] : '';
-                    $contents = str_replace('{' . $original_variable . '}', $stored, $contents);
+                        $stored = isset($line_settings[$var]) ? $line_settings[$var] : '';
+                        $this->debug('Replacing {' . $original_variable . '} with ' . $stored);
+                        $this->replacement_array['lines'][$line]['$' . $var] = $stored;
+                        $contents = str_replace('{' . $original_variable . '}', $stored, $contents);
+                    } else {
+                        //Blank it?
+                        $contents = str_replace('{' . $original_variable . '}', "", $contents);
+                        $this->replacement_array['blanks'][$original_variable] = "";
+                        $this->debug("Blanking {" . $original_variable . "}");
+                    }
                 }
             }
         }
@@ -562,23 +643,15 @@ abstract class endpoint_base {
      * @author Jort Bloem
      */
     protected function setup_timezone() {
-        if (isset($this->DateTimeZone)) {
+        if (isset($this->DateTimeZone) && is_object($this->DateTimeZone)) {
+            //We set this to allow phones to use Automatic DST
+            $gmt_dst_fix = !$this->use_system_dst && date('I') ? 3600 : 0;
             $this->timezone = array(
-                'gmtoffset' => $this->DateTimeZone->getOffset(new DateTime),
-                'timezone' => $this->get_timezone($this->DateTimeZone->getOffset(new DateTime))
-            );
-        } elseif (is_array($this->timezone)) {
-            #Do nothing
-        } elseif (is_numeric($this->timezone)) {
-            $this->timezone = array(
-                'gmtoffset' => $this->timezone,
-                'timezone' => $this->get_timezone($this->timezone),
+                'gmtoffset' => $this->DateTimeZone->getOffset(new DateTime) - $gmt_dst_fix,
+                'timezone' => $this->get_timezone($this->DateTimeZone->getOffset(new DateTime) - $gmt_dst_fix)
             );
         } else {
-            $this->timezone = array(
-                'gmtoffset' => $this->get_gmtoffset($this->timezone),
-                'timezone' => $this->timezone,
-            );
+            throw new Exception('You Must define a valid DateTimeZone object');
         }
     }
 
@@ -592,7 +665,25 @@ abstract class endpoint_base {
         if (file_exists($file)) {
             $json = file_get_contents($file);
             $data = json_decode($json, TRUE);
-            return($data);
+            $error = json_last_error();
+            if ($error === JSON_ERROR_NONE) {
+                return($data);
+            } else {
+                $errors = array(// Taken from http://www.php.net/manual/en/function.json-last-error.php
+                    JSON_ERROR_NONE => 'No error has occurred',
+                    JSON_ERROR_DEPTH => 'The maximum stack depth has been exceeded',
+                    JSON_ERROR_STATE_MISMATCH => 'Invalid or malformed JSON',
+                    JSON_ERROR_CTRL_CHAR => 'Control character error, possibly incorrectly encoded',
+                    JSON_ERROR_SYNTAX => 'Syntax error',
+                    JSON_ERROR_UTF8 => 'Malformed UTF-8 characters, possibly incorrectly encoded'
+                );
+                if (array_key_exists($error, $errors)) {
+                    $error = $errors[$error];
+                } else {
+                    $error = "Unknown error $error";
+                }
+                throw new Exception("Could not decode $file: $error");
+            }
         } else {
             throw new Exception("Could not load: " . $file);
         }
@@ -613,10 +704,28 @@ abstract class endpoint_base {
 
     private function initialize() {
         if (!$this->initialized) {
+            //Check Mac address
+            if (empty($this->mac)) {
+                throw new Exception("Mac Can Not Be Blank!");
+            }
 
+            //First check to see if line data is filled for at least the first line
+            if (!isset($this->settings['line'][0])) {
+                throw new Exception('No Line Data Defined!');
+            } else {
+                foreach ($this->settings['line'] as $linedata) {
+                    if (!isset($linedata['line'])) {
+                        throw new Exception('Line not defined!');
+                    }
+                }
+            }
+
+            if (!isset($this->processor_info)) {
+                throw new Exception('Undefined Processor, please set your processor_info');
+            }
             //Load files for quicker processing
-            $this->family_data = $this->file2json(self::$root_dir . self::$modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.json");
-            $this->brand_data = $this->file2json(self::$root_dir . self::$modules_path . $this->brand_name . "/brand_data.json");
+            $this->family_data = $this->file2json($this->root_dir . $this->modules_path . $this->brand_name . "/" . $this->family_line . "/family_data.json");
+            $this->brand_data = $this->file2json($this->root_dir . $this->modules_path . $this->brand_name . "/brand_data.json");
 
             $this->model_data = $this->find_model($this->family_data);
             $this->max_lines = isset($this->model_data['lines']) ? $this->model_data['lines'] : 1;
@@ -638,18 +747,19 @@ abstract class endpoint_base {
                 $this->settings['ntp'] = $this->settings['line'][0]['server_host'];
             }
 
-            //TODO: Shorten
-            if (!in_array($this->settings['provision']['type'], $this->server_type_list)) {
-                $this->server_type = $this->default_server_type;
-            } else {
-                $this->server_type = $this->settings['provision']['type'];
-            }
+            $this->server_type = (isset($this->settings['provision']['type']) && in_array($this->settings['provision']['type'], $this->server_type_list)) ? $this->settings['provision']['type'] : $this->default_server_type;
+            $this->provisioning_type = (isset($this->settings['provision']['protocol']) && in_array($this->settings['provision']['protocol'], $this->provisioning_type_list)) ? $this->settings['provision']['protocol'] : $this->default_provisioning_type;
+            $this->provisioning_path = isset($this->settings['provision']['path']) ? $this->settings['provision']['path'] : $this->provisioning_path;
 
-            if (!in_array($this->settings['provision']['protocol'], $this->provisioning_type_list)) {
-                $this->provisioning_type = $this->default_provisioning_type;
-            } else {
-                $this->provisioning_type = $this->settings['provision']['protocol'];
-            }
+            $this->settings['network']['connection_type'] = isset($this->settings['network']['connection_type']) ? $this->settings['network']['connection_type'] : 'DHCP';
+            $this->settings['network']['ipv4'] = isset($this->settings['network']['ipv4']) ? $this->settings['network']['ipv4'] : '';
+            $this->settings['network']['ipv6'] = isset($this->settings['network']['ipv6']) ? $this->settings['network']['ipv6'] : '';
+            $this->settings['network']['subnet'] = isset($this->settings['network']['subnet']) ? $this->settings['network']['subnet'] : '';
+            $this->settings['network']['gateway'] = isset($this->settings['network']['gateway']) ? $this->settings['network']['gateway'] : '';
+            $this->settings['network']['primary_dns'] = isset($this->settings['network']['primary_dns']) ? $this->settings['network']['primary_dns'] : '';
+            $this->settings['network']['ppoe_username'] = isset($this->settings['network']['ppoe_username']) ? $this->settings['network']['ppoe_username'] : '';
+            $this->settings['network']['ppoe_password'] = isset($this->settings['network']['ppoe_password']) ? $this->settings['network']['ppoe_password'] : '';
+            $this->settings['network']['syslog_server'] = isset($this->settings['network']['syslog_server']) ? $this->settings['network']['syslog_server'] : '';
 
             //TODO:fix
             if (!isset($this->settings['network']['vlan']['id'])) {
@@ -657,10 +767,6 @@ abstract class endpoint_base {
             }
             if (!isset($this->settings['network']['vlan']['qos'])) {
                 $this->settings['network']['vlan']['qos'] = 5;
-            }
-
-            if (empty($this->mac)) {
-                throw new Exception("mac can not be blank!");
             }
 
             $this->initialized = TRUE;
@@ -709,6 +815,23 @@ abstract class endpoint_base {
         }
         return false;
     }
+    
+    function sys_get_temp_dir() {
+        if (!empty($_ENV['TMP'])) {
+            return realpath($_ENV['TMP']);
+        }
+        if (!empty($_ENV['TMPDIR'])) {
+            return realpath($_ENV['TMPDIR']);
+        }
+        if (!empty($_ENV['TEMP'])) {
+            return realpath($_ENV['TEMP']);
+        }
+        $tempfile = tempnam(uniqid(rand(), TRUE), '');
+        if (file_exists($tempfile)) {
+            unlink($tempfile);
+            return realpath(dirname($tempfile));
+        }
+    }
 
 }
 
@@ -728,6 +851,9 @@ class Provisioner_Globals {
         if (preg_match("/y[0]{11}[1-7].cfg/i", $file)) {
             $file = 'y000000000000.cfg';
         }
+	if (preg_match("/dialplan\.xml/i",$file)) {
+		return('<DIALTEMPLATE><TEMPLATE MATCH="*" Timeout="5"/></DIALTEMPLATE>');
+	}
         if (preg_match("/spa.*.cfg/i", $file)) {
             $file = 'spa.cfg';
         }
@@ -740,15 +866,15 @@ class Provisioner_Globals {
                     <!-- Trick the Phone into loading a specific file for JUST that phone -->
                     <!-- Set the resync to 3 second2 so it reboots automatically, we set this to 86400 seconds in the other file -->
                     <Resync_Periodic>3</Resync_Periodic>
-                    <Profile_Rule>" . $web_path . "spa\$MA.json</Profile_Rule>
+                    <Profile_Rule>" . $web_path . "spa\$MA.xml</Profile_Rule>
                     <Text_Logo group=\"Phone/General\">~PLEASE WAIT~</Text_Logo>
                     <Select_Background_Picture ua=\"ro\">Text Logo</Select_Background_Picture>
                 </flat-profile>");
                 break;
             //yealink
-            case 'y000000000000.cfg':
-                return("#left blank");
-                break;
+            //case 'y000000000000.cfg':
+            //    return("#left blank");
+            //    break;
             //aastra
             case "aastra.cfg":
                 return("#left blank");
@@ -774,4 +900,16 @@ class Provisioner_Globals {
         }
     }
 
+}
+
+if (!class_exists('InvalidArgumentException')) {
+
+    class InvalidArgumentException extends Exception {
+        
+    }
+
+}
+
+class InvalidObjectException extends Exception {
+    
 }

@@ -1,0 +1,27 @@
+{
+  "data": {
+    "brands": {
+      "name": "Norphonic",
+      "brand_id": "15",
+      "directory": "norphonic",
+      "package": "norphonic.tgz",
+      "md5sum": "ef2a42162cdaddcd6294f68940a51e57",
+      "last_modified": 1395183811,
+      "family_list": [
+        {
+          "id": "1",
+          "name": "Traphone Model",
+          "directory": "traphone",
+          "description": "Norphonic Traphone",
+          "changelog": "",
+          "last_modified": null
+        }
+      ],
+      "oui_list": [
+        "1045BE",
+        "0050C2"
+      ],
+      "changelog": "PACKAGER: "
+    }
+  }
+}

@@ -5,8 +5,8 @@
       "directory": "grandstream",
       "brand_id": "2",
       "package": "grandstream.tgz",
-      "md5sum": "70ebf6480a2603c7ffb7b6a1f68f4500",
-      "last_modified": 1324610885,
+      "md5sum": "2b4fd590c8193fb7c24663176d678a37",
+      "last_modified": 1395185865,
       "family_list": [
         {
           "id": "2",
@@ -44,7 +44,7 @@
       "oui_list": [
         "000B82"
       ],
-      "changelog": "PACKAGER: I knew I did this. Dang it"
+      "changelog": "PACKAGER: "
     }
   }
 }

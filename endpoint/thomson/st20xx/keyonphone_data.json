@@ -1,0 +1,429 @@
+{
+    "template_data":{
+        "category":[
+            {
+                "name":"Phone Keys",
+                "subcategory":[
+                    {
+                        "name":"phonekeys",
+                        "item":[
+                            {
+                                "variable":"$FeatureKeyFunc01",
+                                "description":"Key &nbsp;&nbsp;1 Function",
+                                "type":"list","default_value":"L","data":[
+                                    {"value":"L","text":"Programmed (Speed Dial)"}
+                                ]
+                            },
+                            {
+                                "variable":"$FeatureKeyExt01",
+                                "description":"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extension",
+                                "default_value":"","type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyFunc02",
+                                "description":"Key &nbsp;&nbsp;2 Function",
+                                "type":"list","default_value":"L","data":[
+                                    {"value":"L","text":"Programmed (Speed Dial)"}
+                                ]
+                            },
+                            {
+                                "variable":"$FeatureKeyExt02",
+                                "description":"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extension",
+                                "default_value":"","type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyFunc03",
+                                "description":"Key &nbsp;&nbsp;3 Function",
+                                "type":"list","default_value":"L","data":[
+                                    {"value":"L","text":"Programmed (Speed Dial)"},{"value":"S","text":"Supervision"}
+                                ]
+                            },
+                            {
+                                "variable":"$FeatureKeyExt03",
+                                "description":"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extension",
+                                "default_value":"","type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyFunc04",
+                                "description":"Key &nbsp;&nbsp;4 Function",
+                                "type":"list","default_value":"L","data":[
+                                    {"value":"L","text":"Programmed (Speed Dial)"},{"value":"S","text":"Supervision"}
+                                ]
+                            },
+                            {
+                                "variable":"$FeatureKeyExt04",
+                                "description":"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extension",
+                                "default_value":"","type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyFunc05",
+                                "description":"Key &nbsp;&nbsp;5 Function",
+                                "type":"list","default_value":"L","data":[
+                                    {"value":"L","text":"Programmed (Speed Dial)"},{"value":"S","text":"Supervision"}
+                                ]
+                            },
+                            {
+                                "variable":"$FeatureKeyExt05",
+                                "description":"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extension",
+                                "default_value":"","type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyFunc06",
+                                "description":"Key &nbsp;&nbsp;6 Function",
+                                "type":"list","default_value":"L","data":[
+                                    {"value":"L","text":"Programmed (Speed Dial)"},{"value":"S","text":"Supervision"}
+                                ]
+                            },
+                            {
+                                "variable":"$FeatureKeyExt06",
+                                "description":"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extension",
+                                "default_value":"","type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyFunc07",
+                                "description":"Key &nbsp;&nbsp;7 Function",
+                                "type":"list","default_value":"L","data":[
+                                    {"value":"L","text":"Programmed (Speed Dial)"},{"value":"S","text":"Supervision"}
+                                ]
+                            },
+                            {
+                                "variable":"$FeatureKeyExt07",
+                                "description":"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extension",
+                                "default_value":"","type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyFunc08",
+                                "description":"Key &nbsp;&nbsp;8 Function",
+                                "type":"list","default_value":"L","data":[
+                                    {"value":"L","text":"Programmed (Speed Dial)"},{"value":"S","text":"Supervision"}
+                                ]
+                            },
+                            {
+                                "variable":"$FeatureKeyExt08",
+                                "description":"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extension",
+                                "default_value":"","type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyFunc09",
+                                "description":"Key &nbsp;&nbsp;9 Function",
+                                "type":"list","default_value":"L","data":[
+                                    {"value":"L","text":"Programmed (Speed Dial)"},{"value":"S","text":"Supervision"}
+                                ]
+                            },
+                            {
+                                "variable":"$FeatureKeyExt09",
+                                "description":"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extension",
+                                "default_value":"","type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyFunc10",
+                                "description":"Key 10 Function",
+                                "type":"list","default_value":"L","data":[
+                                    {"value":"L","text":"Programmed (Speed Dial)"},{"value":"S","text":"Supervision"}
+                                ]
+                            },
+                            {
+                                "variable":"$FeatureKeyExt10",
+                                "description":"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Extension",
+                                "default_value":"","type":"input"
+                            },
+                            {
+                                "variable":"$FeatureKeyLock",
+                                "default_value":"",
+                                "description":"FeatureKeyLock",
+                                "type":"input"
+                            },
+                            {"type":"break"},
+                            {
+                                "variable":"$Transfer_to_voice_mail",
+                                "default_value":"1",
+                                "description":"Transfer to voice mail",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"Disable softkey"},
+                                    {"value":"1","text":"Enable softkey"}
+                                ]                        
+                            },
+                            {
+                                "variable":"$ManualLog",
+                                "default_value":"0",
+                                "description":"Log in/out feature",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"Disabled"},
+                                    {"value":"1","text":"Enabled"}
+                                ]
+                            },
+                            {
+                                "variable":"$PhoneLock",
+                                "default_value":"0",
+                                "description":"Phone Dialing Lock",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"Unlocked"},
+                                    {"value":"1","text":"Locked"}
+                                ]
+                            },
+                            {
+                                "variable":"$PasswordFlag",
+                                "default_value":"0",
+                                "description":"PIN for Phone Lock",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"PIN not required"},
+                                    {"value":"1","text":"PIN required"}
+                                ]
+                            },
+                            {
+                                "variable":"$PasswordString",
+                                "default_value":"0000",
+                                "description":"Password String (PIN)",
+                                "tooltip":"Only digits!",
+                                "max_chars":"4",
+                                "type":"input"
+                            },
+                            {
+                                "variable":"$Pick_up_call",
+                                "default_value":"1",
+                                "description":"Pickup call",
+                                "type":"list",
+                                "data":[
+                                    {"value":"0","text":"Softkey disabled"},
+                                    {"value":"1","text":"Softkey enabled"}
+                                ]
+                            },
+                            {
+                                "variable":"$softkey01",
+                                "default_value":"TrVoiceMail",
+                                "description":"softkey01",
+                                "type":"list",
+                                "data":[
+                                    {"value":"ShortCut2","text":"Unused"},
+                                    {"value":"TrVoiceMail","text":"Transfer to VoiceMail"},
+                                    {"value":"CallLog","text":"Call Log"},
+                                    {"value":"PickUp","text":"Pickup"},
+                                    {"value":"LockPhone","text":"Phone Lock"},
+                                    {"value":"VoiceMail","text":"Call Voicemail"},
+                                    {"value":"RetrievePark","text":"Retrieve Parked Call"},
+                                    {"value":"DNDstate","text":"Do Not Disturb"},
+                                    {"value":"ACDCheckIn","text":"ACD Checkin"},
+                                    {"value":"ACDAvailable","text":"ACD Available"},
+                                    {"value":"Login","text":"Login"}
+                                ]
+                            },
+                            {
+                                "variable":"$softkey02",
+                                "default_value":"CallLog",
+                                "description":"softkey02",
+                                "type":"list",
+                                "data":[
+                                    {"value":"ShortCut2","text":"Unused"},
+                                    {"value":"TrVoiceMail","text":"Transfer to VoiceMail"},
+                                    {"value":"CallLog","text":"Call Log"},
+                                    {"value":"PickUp","text":"Pickup"},
+                                    {"value":"LockPhone","text":"Phone Lock"},
+                                    {"value":"VoiceMail","text":"Call Voicemail"},
+                                    {"value":"RetrievePark","text":"Retrieve Parked Call"},
+                                    {"value":"DNDstate","text":"Do Not Disturb"},
+                                    {"value":"ACDCheckIn","text":"ACD Checkin"},
+                                    {"value":"ACDAvailable","text":"ACD Available"},
+                                    {"value":"Login","text":"Login"}
+                                ]
+                            },
+                            {
+                                "variable":"$softkey03",
+                                "default_value":"PickUp",
+                                "description":"softkey03",
+                                "type":"list",
+                                "data":[
+                                    {"value":"ShortCut2","text":"Unused"},
+                                    {"value":"TrVoiceMail","text":"Transfer to VoiceMail"},
+                                    {"value":"CallLog","text":"Call Log"},
+                                    {"value":"PickUp","text":"Pickup"},
+                                    {"value":"LockPhone","text":"Phone Lock"},
+                                    {"value":"VoiceMail","text":"Call Voicemail"},
+                                    {"value":"RetrievePark","text":"Retrieve Parked Call"},
+                                    {"value":"DNDstate","text":"Do Not Disturb"},
+                                    {"value":"ACDCheckIn","text":"ACD Checkin"},
+                                    {"value":"ACDAvailable","text":"ACD Available"},
+                                    {"value":"Login","text":"Login"}
+                                ]
+                            },
+                            {
+                                "variable":"$softkey04",
+                                "default_value":"LockPhone",
+                                "description":"softkey04",
+                                "type":"list",
+                                "data":[
+                                    {"value":"ShortCut2","text":"Unused"},
+                                    {"value":"TrVoiceMail","text":"Transfer to VoiceMail"},
+                                    {"value":"CallLog","text":"Call Log"},
+                                    {"value":"PickUp","text":"Pickup"},
+                                    {"value":"LockPhone","text":"Phone Lock"},
+                                    {"value":"VoiceMail","text":"Call Voicemail"},
+                                    {"value":"RetrievePark","text":"Retrieve Parked Call"},
+                                    {"value":"DNDstate","text":"Do Not Disturb"},
+                                    {"value":"ACDCheckIn","text":"ACD Checkin"},
+                                    {"value":"ACDAvailable","text":"ACD Available"},
+                                    {"value":"Login","text":"Login"}
+                                ]
+                            },
+                            {
+                                "variable":"$softkey05",
+                                "default_value":"VoiceMail",
+                                "description":"softkey05",
+                                "type":"list",
+                                "data":[
+                                    {"value":"ShortCut2","text":"Unused"},
+                                    {"value":"TrVoiceMail","text":"Transfer to VoiceMail"},
+                                    {"value":"CallLog","text":"Call Log"},
+                                    {"value":"PickUp","text":"Pickup"},
+                                    {"value":"LockPhone","text":"Phone Lock"},
+                                    {"value":"VoiceMail","text":"Call Voicemail"},
+                                    {"value":"RetrievePark","text":"Retrieve Parked Call"},
+                                    {"value":"DNDstate","text":"Do Not Disturb"},
+                                    {"value":"ACDCheckIn","text":"ACD Checkin"},
+                                    {"value":"ACDAvailable","text":"ACD Available"},
+                                    {"value":"Login","text":"Login"}
+                                ]
+                            },
+                            {
+                                "variable":"$softkey06",
+                                "default_value":"RetrievePark",
+                                "description":"softkey06",
+                                "type":"list",
+                                "data":[
+                                    {"value":"ShortCut2","text":"Unused"},
+                                    {"value":"TrVoiceMail","text":"Transfer to VoiceMail"},
+                                    {"value":"CallLog","text":"Call Log"},
+                                    {"value":"PickUp","text":"Pickup"},
+                                    {"value":"LockPhone","text":"Phone Lock"},
+                                    {"value":"VoiceMail","text":"Call Voicemail"},
+                                    {"value":"RetrievePark","text":"Retrieve Parked Call"},
+                                    {"value":"DNDstate","text":"Do Not Disturb"},
+                                    {"value":"ACDCheckIn","text":"ACD Checkin"},
+                                    {"value":"ACDAvailable","text":"ACD Available"},
+                                    {"value":"Login","text":"Login"}
+                                ]
+                            },
+                            {
+                                "variable":"$softkey07",
+                                "default_value":"DNDstate",
+                                "description":"softkey07",
+                                "type":"list",
+                                "data":[
+                                    {"value":"ShortCut2","text":"Unused"},
+                                    {"value":"TrVoiceMail","text":"Transfer to VoiceMail"},
+                                    {"value":"CallLog","text":"Call Log"},
+                                    {"value":"PickUp","text":"Pickup"},
+                                    {"value":"LockPhone","text":"Phone Lock"},
+                                    {"value":"VoiceMail","text":"Call Voicemail"},
+                                    {"value":"RetrievePark","text":"Retrieve Parked Call"},
+                                    {"value":"DNDstate","text":"Do Not Disturb"},
+                                    {"value":"ACDCheckIn","text":"ACD Checkin"},
+                                    {"value":"ACDAvailable","text":"ACD Available"},
+                                    {"value":"Login","text":"Login"}
+                                ]
+                            },
+                            {
+                                "variable":"$softkey08",
+                                "default_value":"ShortCut2",
+                                "description":"softkey08",
+                                "type":"list",
+                                "data":[
+                                    {"value":"ShortCut2","text":"Unused"},
+                                    {"value":"TrVoiceMail","text":"Transfer to VoiceMail"},
+                                    {"value":"CallLog","text":"Call Log"},
+                                    {"value":"PickUp","text":"Pickup"},
+                                    {"value":"LockPhone","text":"Phone Lock"},
+                                    {"value":"VoiceMail","text":"Call Voicemail"},
+                                    {"value":"RetrievePark","text":"Retrieve Parked Call"},
+                                    {"value":"DNDstate","text":"Do Not Disturb"},
+                                    {"value":"ACDCheckIn","text":"ACD Checkin"},
+                                    {"value":"ACDAvailable","text":"ACD Available"},
+                                    {"value":"Login","text":"Login"}
+                                ]
+                            },
+                            {
+                                "variable":"$softkey09",
+                                "default_value":"ShortCut2",
+                                "description":"softkey09",
+                                "type":"list",
+                                "data":[
+                                    {"value":"ShortCut2","text":"Unused"},
+                                    {"value":"TrVoiceMail","text":"Transfer to VoiceMail"},
+                                    {"value":"CallLog","text":"Call Log"},
+                                    {"value":"PickUp","text":"Pickup"},
+                                    {"value":"LockPhone","text":"Phone Lock"},
+                                    {"value":"VoiceMail","text":"Call Voicemail"},
+                                    {"value":"RetrievePark","text":"Retrieve Parked Call"},
+                                    {"value":"DNDstate","text":"Do Not Disturb"},
+                                    {"value":"ACDCheckIn","text":"ACD Checkin"},
+                                    {"value":"ACDAvailable","text":"ACD Available"},
+                                    {"value":"Login","text":"Login"}
+                                ]
+                            },
+                            {
+                                "variable":"$softkey10",
+                                "default_value":"ACDCheckIn",
+                                "description":"softkey10",
+                                "type":"list",
+                                "data":[
+                                    {"value":"ShortCut2","text":"Unused"},
+                                    {"value":"TrVoiceMail","text":"Transfer to VoiceMail"},
+                                    {"value":"CallLog","text":"Call Log"},
+                                    {"value":"PickUp","text":"Pickup"},
+                                    {"value":"LockPhone","text":"Phone Lock"},
+                                    {"value":"VoiceMail","text":"Call Voicemail"},
+                                    {"value":"RetrievePark","text":"Retrieve Parked Call"},
+                                    {"value":"DNDstate","text":"Do Not Disturb"},
+                                    {"value":"ACDCheckIn","text":"ACD Checkin"},
+                                    {"value":"ACDAvailable","text":"ACD Available"},
+                                    {"value":"Login","text":"Login"}
+                                ]
+                            },
+                            {
+                                "variable":"$softkey11",
+                                "default_value":"ACDAvailable",
+                                "description":"softkey11",
+                                "type":"list",
+                                "data":[
+                                    {"value":"ShortCut2","text":"Unused"},
+                                    {"value":"TrVoiceMail","text":"Transfer to VoiceMail"},
+                                    {"value":"CallLog","text":"Call Log"},
+                                    {"value":"PickUp","text":"Pickup"},
+                                    {"value":"LockPhone","text":"Phone Lock"},
+                                    {"value":"VoiceMail","text":"Call Voicemail"},
+                                    {"value":"RetrievePark","text":"Retrieve Parked Call"},
+                                    {"value":"DNDstate","text":"Do Not Disturb"},
+                                    {"value":"ACDCheckIn","text":"ACD Checkin"},
+                                    {"value":"ACDAvailable","text":"ACD Available"},
+                                    {"value":"Login","text":"Login"}
+                                ]
+                            },
+                            {
+                                "variable":"$softkey12",
+                                "default_value":"Login",
+                                "description":"softkey12",
+                                "type":"list",
+                                "data":[
+                                    {"value":"ShortCut2","text":"Unused"},
+                                    {"value":"TrVoiceMail","text":"Transfer to VoiceMail"},
+                                    {"value":"CallLog","text":"Call Log"},
+                                    {"value":"PickUp","text":"Pickup"},
+                                    {"value":"LockPhone","text":"Phone Lock"},
+                                    {"value":"VoiceMail","text":"Call Voicemail"},
+                                    {"value":"RetrievePark","text":"Retrieve Parked Call"},
+                                    {"value":"DNDstate","text":"Do Not Disturb"},
+                                    {"value":"ACDCheckIn","text":"ACD Checkin"},
+                                    {"value":"ACDAvailable","text":"ACD Available"},
+                                    {"value":"Login","text":"Login"}
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

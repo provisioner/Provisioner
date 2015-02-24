@@ -5,14 +5,14 @@
       "directory": "polycom",
       "brand_id": "4",
       "package": "polycom.tgz",
-      "md5sum": "67ba0a863a832cba9bdbce1686ca32a4",
-      "last_modified": 1325203650,
+      "md5sum": "3c6551c219d3a369d27f66faf76eab4c",
+      "last_modified": 1395185865,
       "family_list": [
         {
           "id": "4",
           "name": "SoundPoint IP 430 [430]",
           "directory": "firmware325",
-          "description": "Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality",
+          "description": "",
           "changelog": "",
           "last_modified": null
         },
@@ -20,7 +20,7 @@
           "id": "6",
           "name": "SoundPoint IP 3xx [320,330]",
           "directory": "firmware3333",
-          "description": "Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality",
+          "description": "",
           "changelog": "",
           "last_modified": null
         },
@@ -34,7 +34,7 @@
         },
         {
           "id": "3",
-          "name": "SoundPoint\/Station\/VVX In-Production Models [320,330,321,331,335,450,550,560,650,670,5000,6000,7000,1500]",
+          "name": "SoundPoint\/Station\/VVX In-Production Models [321,331,335,450,550,560,650,670,5000,6000,7000,500,1500]",
           "directory": "spipm",
           "description": "Fixed Duplicate SIP file and 0x20, 0x00 errors. Also added delete functionality",
           "changelog": "",
@@ -61,7 +61,7 @@
         "0004F2",
         "00907A"
       ],
-      "changelog": "PACKAGER: PACKAGER: Update endpoint\/polycom\/spom\/.cfg"
+      "changelog": "PACKAGER: "
     }
   }
 }

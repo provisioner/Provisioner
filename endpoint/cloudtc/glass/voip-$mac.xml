@@ -10,7 +10,7 @@
 			<setting name="username" value="{$username}" />
 			<setting name="authUsername" value="{$authname}" />
 			<setting name="password" value="{$secret}" />
-			<setting name="server" value="{$outbound_host}" />
+			<setting name="server" value="{$server_xml_value}" />
 			<setting name="domain" value="{$server_host}" />
 			<setting name="voiceMail" value="*97" />
 			<setting name="regTimeout" value="{$server_expires}" />

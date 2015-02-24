@@ -5,8 +5,8 @@
       "brand_id": "7",
       "directory": "cisco",
       "package": "cisco.tgz",
-      "md5sum": "a06e28aebb047a812ab95699ddc2cba8",
-      "last_modified": 1324930377,
+      "md5sum": "af90417fa185ad714138e24ea60966fe",
+      "last_modified": 1407058336,
       "family_list": [
         {
           "id": "5",
@@ -25,6 +25,14 @@
           "last_modified": null
         },
         {
+          "id": "7",
+          "name": "Cisco SIP 797xG Models [7970G,7971G-GE]",
+          "directory": "sip797xG",
+          "description": "",
+          "changelog": "",
+          "last_modified": null
+        },
+        {
           "id": "4",
           "name": "Cisco SIP 79x1G Models [7940G,7941G,7961G]",
           "directory": "sip79x1G",
@@ -36,6 +44,22 @@
           "id": "1",
           "name": "Cisco SIP 79x0 Models [7940,7960]",
           "directory": "sip79xx",
+          "description": "",
+          "changelog": "",
+          "last_modified": null
+        },
+        {
+          "id": "8",
+          "name": "Cisco SIP 99xx\/69xx Models [9951,9971,6821,6841,6845] Ver 9.x Models",
+          "directory": "sip99xx",
+          "description": "",
+          "changelog": "",
+          "last_modified": null
+        },
+        {
+          "id": "9",
+          "name": "Cisco SIP 7800 Series [7821,7841,7861]",
+          "directory": "sip78xx",
           "description": "",
           "changelog": "",
           "last_modified": null
@@ -72,6 +96,8 @@
         "0013C4",
         "0016C8",
         "001818",
+        "00175A",
+        "001795",
         "001A2F",
         "001C58",
         "001DA2",
@@ -80,14 +106,22 @@
         "000E38",
         "00070E",
         "001BD4",
+        "001930",
         "0019AA",
         "001D45",
         "001EF7",
         "000E08",
         "1CDF0F",
+        "30E4DB",
+        "58BFEA",
+        "649EF3",
+        "5475D0",
+        "C46413",
+        "C89C1D",
+        "D0D0FD",
         "E05FB9"
       ],
-      "changelog": "PACKAGER: Updating"
+      "changelog": "PACKAGER: "
     }
   }
 }

@@ -3,12 +3,16 @@
     "name": "GXP Enterprise HD series [2100,2110,2120]",
     "id": "4",
     "directory": "gxphd",
-    "firmware_ver": 1323333835,
-    "firmware_md5sum": "2128b4939bc0697d11a7b2e27780cb03",
+    "firmware_ver": 1395185865,
+    "firmware_md5sum": "9da4ea0c6c6710e28b03c358bc68d2d7",
     "firmware_pkg": "gxphd_firmware.tgz",
     "description": "Use Grandstream Encrypted Compiler By Default",
     "configuration_files": "cfg$mac",
     "changelog": "",
+    "provisioning_types": [
+      "tftp",
+      "http"
+    ],
     "model_list": [
       {
         "model": "GXP2100",
@@ -25,13 +29,71 @@
         "id": "2",
         "template_data": [
           "template_data.json",
-          "keys_gxp2110.json"
+          "keys_gxp2110.json",
+          "ext_b_1.json",
+          "ext_b_2.json"
         ]
       },
       {
         "model": "GXP2120",
         "lines": "6",
         "id": "3",
+        "template_data": [
+          "template_data.json",
+          "keys.json",
+          "ext_b_1.json",
+          "ext_b_2.json"
+        ]
+      },
+      {
+        "model": "GXP1100",
+        "lines": "1",
+        "id": "4",
+        "template_data": [
+          "template_data.json",
+          "keys.json"
+        ]
+      },
+      {
+        "model": "GXP1105",
+        "lines": "1",
+        "id": "5",
+        "template_data": [
+          "template_data.json",
+          "keys.json"
+        ]
+      },
+      {
+        "model": "GXP1400",
+        "lines": "2",
+        "id": "6",
+        "template_data": [
+          "template_data.json",
+          "keys.json"
+        ]
+      },
+      {
+        "model": "GXP1405",
+        "lines": "2",
+        "id": "7",
+        "template_data": [
+          "template_data.json",
+          "keys.json"
+        ]
+      },
+      {
+        "model": "GXP1450",
+        "lines": "2",
+        "id": "8",
+        "template_data": [
+          "template_data.json",
+          "keys.json"
+        ]
+      },
+      {
+        "model": "GXP2124",
+        "lines": "4",
+        "id": "9",
         "template_data": [
           "template_data.json",
           "keys.json"

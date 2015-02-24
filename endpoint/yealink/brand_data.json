@@ -5,13 +5,29 @@
       "brand_id": "8",
       "directory": "yealink",
       "package": "yealink.tgz",
-      "md5sum": "dce7304a08b6a2554962a1fd992f9977",
-      "last_modified": 1324490946,
+      "md5sum": "6e5562198a62fb8bf26819bfc8e01215",
+      "last_modified": 1395185757,
       "family_list": [
+        {
+          "id": "3",
+          "name": "Yealink\/Dreamwave T1X Models: [T18]",
+          "directory": "t1x",
+          "description": "Make more configuration settings available from UI",
+          "changelog": "",
+          "last_modified": null
+        },
         {
           "id": "1",
           "name": "Yealink\/Dreamwave T2X Models: [T20, T22, T26, T28]",
           "directory": "t2x",
+          "description": "Make more configuration settings available from UI",
+          "changelog": "",
+          "last_modified": null
+        },
+        {
+          "id": "4",
+          "name": "Yealink\/Dreamwave T2X V71 Models: [T20, T21, T22, T26, T28]",
+          "directory": "t2xv71",
           "description": "Make more configuration settings available from UI",
           "changelog": "",
           "last_modified": null
@@ -28,7 +44,7 @@
       "oui_list": [
         "001565"
       ],
-      "changelog": "PACKAGER: I knew I did this. Dang it"
+      "changelog": "PACKAGER: "
     }
   }
 }

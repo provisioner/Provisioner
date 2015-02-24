@@ -7,13 +7,18 @@
         "firmware_pkg": "NULL",
         "firmware_md5sum": "",
         "description": "New Device",
-        "configuration_files": "$mac.cfg,global.cfg",
+        "configuration_files": "$model.cfg,spa$mac.xml",
         "changelog": "",
+        "provisioning_types": [
+            "tftp",
+            "http"
+        ],
         "model_list": [
             {
                 "model": "SPA2102",
                 "lines": "2",
                 "id": "1",
+                "firmware": "spa2100-*.bin",
                 "template_data": [
                     "template_data.json",
                     "keys.json"
@@ -99,7 +104,26 @@
                     "template_data.json",
                     "keys.json"
                 ]
+            },
+            {
+                "model": "SPA112",
+                "lines": "2",
+                "id": "11",
+                "template_data": [
+                    "template_data.json",
+                    "keys.json"
+                ]
+            },
+           {
+                "model": "spa232D",
+                "lines": "14",
+                "id": "12",
+                "template_data": [
+                    "template_data.json",
+                    "keys.json"
+                ]
             }
+
         ]
     }
 }
