@@ -58,6 +58,21 @@
         ]
       },
       {
+        "model": "T27”,
+        "lines": "6",
+        "id": “5”,
+        "template_data": [
+	  "line_options.json",
+          "template_data.json",
+          "line_keys_27.json",
+          "soft_keys_22.json",
+          "hard_keys.json",
+          "remote_phone_book.json",
+          "dialnow_22.json",
+          "ext38.json"
+        ]
+      },
+      {
         "model": "T28",
         "lines": "6",
         "id": "4",
