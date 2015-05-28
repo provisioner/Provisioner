@@ -3,8 +3,8 @@
 	<phone-settings>
 		{line_loop}
 		<user_active idx="{$line}" perm="">on</user_active>
-		<user_host idx="{$line}" perm="">{$server_host}</user_host>
-		<user_outbound idx="{$line}" perm="">{$outbound_host}</user_outbound>	
+		<user_host idx="{$line}" perm="">{$user_host}</user_host>
+		<user_outbound idx="{$line}" perm="">{$user_outbound}</user_outbound>	
 		<user_realname idx="{$line}" perm="">{$realname}</user_realname>
 		<user_name idx="{$line}" perm="">{$username}</user_name>
 		<user_pname idx="{$line}" perm="">{$username}</user_pname>
@@ -17,6 +17,9 @@
 		<user_idle_text idx="{$line}" perm="">{$display_text_url}</user_idle_text>
 		<user_srtp idx="{$line}" perm="">off</user_srtp>
 		<codec_priority_list idx="{$line}" perm="">{$codec_list}</codec_priority_list>
+		<user_failover_identity idx="{$line}" perm="">{$failover_id}</user_failover_identity>
+		<hide_identity idx="{$line}" perm="">{$hide_identity}</hide_identity>
+		<user_expiry idx="{$line}" perm="">{$user_expiry}</user_expiry>  
 		{/line_loop}
 
 		<vlan_id perm="">{$svlan_id}</vlan_id> 
