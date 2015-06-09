@@ -135,8 +135,61 @@
                       "default_value":"",
                       "description":"Display text for Idle Screen",
                       "type":"input"
+                    },
+                    {
+                      "type":"break"
+                    },
+                    {
+                      "variable":"$failover_id",
+                      "default_value":"none",
+                      "description":"Failover Identity",
+                      "type":"list",
+                      "data":[
+                        {
+                          "text":"None",
+                          "value":"none"
+                        },
+                        {
+                          "text":"Line 1",
+                          "value":"1"
+                        },
+                        {
+                          "text":"Line 2",
+                          "value":"2"
+                        },
+                        {
+                          "text":"Line 3",
+                          "value":"3"
+                        },
+                        {
+                          "text":"Line 4",
+                          "value":"4"
+                        }
+                      ]
+                    },
+                   {
+                      "variable":"$hide_identity",
+                      "default_value":"off",
+                      "description":"Identity is hidden",
+                      "type":"radio",
+                      "data":[
+                        {
+                          "text":"On",
+                          "value":"on"
+                        },
+                        {
+                          "text":"Off",
+                          "value":"off"
+                        }
+                      ]
+                    },
+                    {
+                      "variable":"$user_expiry",
+                      "default_value":"3600",
+                      "description":"Proposed Expiry (s):",
+                      "type":"input"
                     }
-                  ]
+                 ]
                 }
               }
             ]
