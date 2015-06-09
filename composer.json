@@ -1,0 +1,10 @@
+{
+    "name": "provisioner/provisioner",
+    "description": "Provisioner Module for VoIP/PBX Servers",
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "classmap": ["endpoint/", "autoload.php"]
+    }
+}
