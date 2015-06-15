@@ -1,7 +1,7 @@
 {
 	"data":
 	{
-		"name":"Snom 7xx Models [710, 715, 720, 760]",
+		"name":"Snom 7xx Models [710, 715, 720, 725, 760]",
 		"id":"3",
 		"directory":"7xx",
 		"firmware_ver":"",
@@ -63,9 +63,24 @@
 				]
 			},
 			{
-				"model":"760",
+				"model":"725",
 				"lines":"12",
 				"id":"4",
+				"template_data":
+				[
+					"line_options.json",
+					"template_data.json",
+					"action_urls.json",
+					"function_keys.json",
+					"speed_dials.json",
+					"keys.json",
+					"idle_touch_keys.json"
+				]
+			},
+			{
+				"model":"760",
+				"lines":"12",
+				"id":"5",
 				"template_data":
 				[
 					"line_options.json",
