@@ -47,7 +47,8 @@
         "id": "6",
         "template_data": [
           "linekeys.json",
-          "template_data.json"
+          "template_data.json",
+          "buddylist.json"
         ]
       },
       {
