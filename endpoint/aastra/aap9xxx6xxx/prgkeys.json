@@ -106,8 +106,8 @@
                           "value":"speeddialconf"
                         },
                         {
-                          "text":"BLF Transfer",
-                          "value":"blfxfer"
+                          "text":"Transfer",
+                          "value":"xfer"
                         },
                         {
                           "text":"Conference",
