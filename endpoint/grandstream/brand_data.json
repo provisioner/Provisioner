@@ -26,7 +26,7 @@
         },
         {
           "id": "4",
-          "name": "GXP Enterprise HD series [2100,2110,2120]",
+          "name": "GXP Enterprise HD series [2100,2110,2120,2130]",
           "directory": "gxphd",
           "description": "Use Grandstream Encrypted Compiler By Default",
           "changelog": "",
