@@ -10,7 +10,7 @@
 class endpoint_thomson_base extends endpoint_base {
 
     public $brand_name = 'thomson';
-    public $protected_files = 'general_custom.xml';
+    public $protected_files = array('general_custom.xml');
 
     function prepare_for_generateconfig() {
         parent::prepare_for_generateconfig();
