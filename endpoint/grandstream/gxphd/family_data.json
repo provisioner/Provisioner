@@ -1,10 +1,10 @@
 {
   "data": {
-    "name": "GXP Enterprise HD series [2100,2110,2120,2130]",
+    "name": "GXP Enterprise HD series [2100,2110,2120,2130,2160]",
     "id": "4",
     "directory": "gxphd",
     "firmware_ver": 1395185865,
-    "firmware_md5sum": "9da4ea0c6c6710e28b03c358bc68d2d7",
+    "firmware_md5sum": "33e89f6445bd08532b8d6c72ecb82c21",
     "firmware_pkg": "gxphd_firmware.tgz",
     "description": "Use Grandstream Encrypted Compiler By Default",
     "configuration_files": "cfg$mac,cfg$mac.xml",
@@ -49,6 +49,17 @@
         "model": "GXP2130",
         "lines": "3",
         "id": "10",
+        "template_data": [
+          "template_data.json",
+          "keys.json",
+          "ext_b_1.json",
+          "ext_b_2.json"
+        ]
+      },
+	  {
+        "model": "GXP2160",
+        "lines": "6",
+        "id": "11",
         "template_data": [
           "template_data.json",
           "keys.json",
