@@ -1,0 +1,61 @@
+{
+  "data": {
+    "name": "GXP Small Business HD series [1610,1620,1625,1628,1630]",
+    "id": "5",
+    "directory": "gxpsb",
+    "firmware_ver": 1334882029,
+    "firmware_md5sum": "8f655bde3163e5a24c743a8253a2ae47",
+    "firmware_pkg": "gxpsb_firmware.tgz",
+    "description": "Use Grandstream XML config files",
+    "configuration_files": "cfg$mac.xml",
+    "changelog": "",
+    "provisioning_types": [
+      "tftp",
+      "http"
+    ],
+    "model_list": [
+      {
+        "model": "GXP1610",
+        "lines": "1",
+        "id": "1",
+        "template_data": [
+          "template_data.json"
+        ]
+      },
+      {
+        "model": "GXP1620",
+        "lines": "2",
+        "id": "2",
+        "template_data": [
+          "template_data.json"
+        ]
+      },
+      {
+        "model": "GXP1625",
+        "lines": "2",
+        "id": "3",
+        "template_data": [
+          "template_data.json"
+        ]
+      },
+      {
+        "model": "GXP1628",
+        "lines": "2",
+        "id": "4",
+        "template_data": [
+          "template_data.json",
+          "keys.json"
+        ]
+      },
+      {
+        "model": "GXP1630",
+        "lines": "3",
+        "id": "5",
+        "template_data": [
+          "template_data.json",
+          "keys.json"
+        ]
+      }
+    ]
+  }
+}
