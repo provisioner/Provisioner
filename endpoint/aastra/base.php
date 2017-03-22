@@ -14,7 +14,11 @@ class endpoint_aastra_base extends endpoint_base {
 
     function reboot() {
         if (($this->engine == "asterisk") AND ($this->system == "unix")) {
-            exec($this->engine_location . " -rx 'sip notify aastra-check-cfg " . $this->settings['line'][0]['username'] . "'");
+            if ($this->settings['line'][0]['tech'] == "pjsip") {
+                exec($this->engine_location . " -rx 'pjsip send notify aastra-check-cfg endpoint " . $this->settings['line'][0]['username'] . "'");
+            } else {
+                exec($this->engine_location . " -rx 'sip notify aastra-check-cfg " . $this->settings['line'][0]['username'] . "'");
+            }
         }
     }
 
