@@ -154,7 +154,7 @@
               },
               {
                 "variable":"$dial_plan",
-                "default_value":"( [23456789]11 | *xxx. | <:1352>[2-9]xxxxxx | <:1>[2-9]xx[2-9]xxxxxxS0 | 1[2-9]xx[2-9]xxxxxxS0 | 011xxxxxxx. | [#*x][*x][*x]. )",
+                "default_value":"( [23456789]11 | *xxx. | &lt;:1352&gt;[2-9]xxxxxx | &lt;:1&gt;[2-9]xx[2-9]xxxxxxS0 | 1[2-9]xx[2-9]xxxxxxS0 | 011xxxxxxx. | [#*x][*x][*x]. )",
                 "description":"Dial Plan",
                 "type":"input"
               },
