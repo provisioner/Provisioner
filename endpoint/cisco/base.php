@@ -23,19 +23,43 @@ class endpoint_cisco_base extends endpoint_base {
     function reboot() {
         if (($this->engine == "asterisk") && ($this->system == "unix")) {
             if ($this->family_line == "sip99xx") {
-                exec($this->engine_location . " -rx 'sip notify cisco-restart " . $this->settings['line'][0]['username'] . "'");
+                if ($this->settings['line'][0]['tech'] == "pjsip") {
+                    exec($this->engine_location . " -rx 'pjsip send notify cisco-restart endpoint " . $this->settings['line'][0]['username'] . "'");
+                } else {
+                    exec($this->engine_location . " -rx 'sip notify cisco-restart " . $this->settings['line'][0]['username'] . "'");
+                }
 	   
 	    } elseif ($this->family_line == "sip79xx") {
-                exec($this->engine_location . " -rx 'sip notify cisco-check-cfg " . $this->settings['line'][0]['username'] . "'");
+                if ($this->settings['line'][0]['tech'] == "pjsip") {
+                    exec($this->engine_location . " -rx 'pjsip send notify cisco-check-cfg endpoint " . $this->settings['line'][0]['username'] . "'");
+                } else {
+                    exec($this->engine_location . " -rx 'sip notify cisco-check-cfg " . $this->settings['line'][0]['username'] . "'");
+                }
             } elseif ($this->family_line == "ata18x") {
                 exec("/tftpboot/cfgfmt.linux -t/tftpboot/ptag.dat /tftpboot/ata" . strtolower($this->mac) . ".txt /tftpboot/ata" . strtolower($this->mac));
-                exec($this->engine_location . " -rx 'sip notify cisco-check-cfg " . $this->settings['line'][0]['username'] . "'");
+                if ($this->settings['line'][0]['tech'] == "pjsip") {
+                    exec($this->engine_location . " -rx 'pjsip send notify cisco-check-cfg endpoint " . $this->settings['line'][0]['username'] . "'");
+                } else {
+                    exec($this->engine_location . " -rx 'sip notify cisco-check-cfg " . $this->settings['line'][0]['username'] . "'");
+                }
             } elseif ($this->family_line == "spa") {
-                exec($this->engine_location . " -rx 'sip notify spa-reboot " . $this->settings['line'][0]['username'] . "'");
+                if ($this->settings['line'][0]['tech'] == "pjsip") {
+                    exec($this->engine_location . " -rx 'pjsip send notify spa-reboot endpoint " . $this->settings['line'][0]['username'] . "'");
+                } else {
+                    exec($this->engine_location . " -rx 'sip notify spa-reboot " . $this->settings['line'][0]['username'] . "'");
+                }
             } elseif ($this->family_line == "spa5xx") {
-                exec($this->engine_location . " -rx 'sip notify spa-reboot " . $this->settings['line'][0]['username'] . "'");
+                if ($this->settings['line'][0]['tech'] == "pjsip") {
+                    exec($this->engine_location . " -rx 'pjsip send notify spa-reboot endpoint " . $this->settings['line'][0]['username'] . "'");
+                } else {
+                    exec($this->engine_location . " -rx 'sip notify spa-reboot " . $this->settings['line'][0]['username'] . "'");
+                }
             } elseif ($this->family_line == "linksysata") {
-                exec($this->engine_location . " -rx 'sip notify spa-reboot " . $this->settings['line'][0]['username'] . "'");
+                if ($this->settings['line'][0]['tech'] == "pjsip") {
+                    exec($this->engine_location . " -rx 'pjsip send notify spa-reboot endpoint " . $this->settings['line'][0]['username'] . "'");
+                } else {
+                    exec($this->engine_location . " -rx 'sip notify spa-reboot " . $this->settings['line'][0]['username'] . "'");
+                }
             }
         }
     }
