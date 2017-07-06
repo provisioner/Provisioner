@@ -54,7 +54,11 @@ class endpoint_snom_base extends endpoint_base {
 
     function reboot() {
         if (($this->engine == "asterisk") AND ($this->system == "unix")) {
-            exec($this->engine_location . " -rx 'sip notify reboot-snom " . $this->settings['line'][0]['username'] . "'");
+            if ($this->settings['line'][0]['tech'] == "pjsip") {
+                exec($this->engine_location . " -rx 'pjsip send notify reboot-snom endpoint " . $this->settings['line'][0]['username'] . "'");
+            } else {
+                exec($this->engine_location . " -rx 'sip notify reboot-snom " . $this->settings['line'][0]['username'] . "'");
+            }
         }
     }
 

@@ -20,7 +20,11 @@ class endpoint_thomson_base extends endpoint_base {
     function reboot() {
         if (($this->engine == "asterisk") AND ($this->system == "unix")) {
 			// notification type "cisco-check-cfg" has equal effect on the Thomson phones.
-            exec($this->engine_location . " -rx 'sip notify reboot-yealink " . $this->settings['line'][0]['username'] . "'");
+            if ($this->settings['line'][0]['tech'] == "pjsip") {
+                exec($this->engine_location . " -rx 'pjsip send notify reboot-yealink endpoint " . $this->settings['line'][0]['username'] . "'");
+            } else {
+                exec($this->engine_location . " -rx 'sip notify reboot-yealink " . $this->settings['line'][0]['username'] . "'");
+            }
         }
     }
 
