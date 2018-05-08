@@ -1,0 +1,27 @@
+{
+  "data": {
+    "name": "Yealink V80 DECT Models: [W52P]",
+    "id": "6",
+    "directory": "w52p",
+    "firmware_ver": "",
+    "firmware_pkg": "",
+    "firmware_md5sum": "",
+    "description": "Make more configuration settings available from UI",
+    "configuration_files": "y0000000000$suffix.cfg,$mac.cfg",
+    "changelog": "",
+            "provisioning_types": [
+            "tftp",
+            "http"
+        ],
+    "model_list": [
+      {
+        "model": "W52P",
+        "lines": "5",
+        "id": "1",
+        "template_data": [
+          "template_data.json"
+        ]
+      }
+    ]
+  }
+}
