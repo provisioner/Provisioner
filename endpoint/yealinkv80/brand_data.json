@@ -1,0 +1,46 @@
+{
+  "data": {
+    "brands": {
+      "name": "Yealink V80",
+      "brand_id": "22",
+      "directory": "yealinkv80",
+      "package": "yealinkv80.tgz",
+      "last_modified": 1525377662,
+      "family_list": [
+        {
+          "id": "1",
+          "name": "Yealink V80 T2X Models: [T19, T20, T21, T22, T26, T28]",
+          "directory": "t2x",
+          "description": "Make more configuration settings available from UI",
+          "changelog": "",
+          "last_modified": null
+        },
+        {
+          "id": "2",
+          "name": "Yealink V80 T3X Models: [T32, T38]",
+          "directory": "t3x",
+          "description": "Make more settings available in user interface",
+          "changelog": "",
+          "last_modified": null
+        },
+        {
+          "id": "3",
+          "name": "Yealink V80 T4X Models: [T41, T42, T46]",
+          "directory": "t4x",
+          "description": "Make more settings available in user interface",
+          "changelog": "",
+          "last_modified": null
+        },
+		{
+          "id": "5",
+          "name": "Yealink V80 DECT Models: [W52P]",
+          "directory": "w52p",
+          "description": "Make more settings available in user interface",
+          "changelog": "",
+          "last_modified": null
+        }
+      ],
+      "changelog": "PACKAGER: "
+    }
+  }
+}
