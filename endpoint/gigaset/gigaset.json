@@ -1,0 +1,23 @@
+{
+  "data": {
+    "brands": {
+      "name": "Gigaset",
+      "brand_id": "23",
+      "directory": "gigaset",
+      "package": "gigaset.tgz",
+      "md5sum": "3aae87535937423d88815286f74203f2",
+      "last_modified": 1525377662,
+      "family_list": [
+        {
+          "id": "1",
+          "name": "Gigaset N5X Models: [N510 IP PRO]",
+          "directory": "n5x",
+          "description": "Make more configuration settings available from UI",
+          "changelog": "",
+          "last_modified": null
+        }
+      ],
+      "changelog": "PACKAGER: "
+    }
+  }
+}
