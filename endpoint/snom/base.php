@@ -18,7 +18,25 @@ class endpoint_snom_base extends endpoint_base {
     function prepare_for_generateconfig() {
         parent::prepare_for_generateconfig();
         $this->mac = strtoupper($this->mac);
+	
+//FOR SNOM M700 IPEI FFF... when not assigned
 
+	$line=$this->settings[line];
+	foreach ($line as $lin){
+	if ($lin[ipei] == "") {
+	$lin[ipei] == "FFFFFFFFFF";
+	}
+	}
+$id=1;
+while ($id < 1001) {
+
+if ($this->settings[acc . $id. ipei] == 0) {
+$this->settings[acc . $id. ipei] = "FFFFFFFFFF";
+}
+$id++;
+}
+	
+	
 	if ((!isset($this->settings["vlan"])) or ($this->settings["vlan"]==="")) {
 		$this->settings["vlan"]="0";
 	}
@@ -54,11 +72,10 @@ class endpoint_snom_base extends endpoint_base {
 
     function reboot() {
         if (($this->engine == "asterisk") AND ($this->system == "unix")) {
-            if ($this->settings['line'][0]['tech'] == "pjsip") {
-                exec($this->engine_location . " -rx 'pjsip send notify reboot-snom endpoint " . $this->settings['line'][0]['username'] . "'");
-            } else {
-                exec($this->engine_location . " -rx 'sip notify reboot-snom " . $this->settings['line'][0]['username'] . "'");
-            }
+            exec($this->engine_location . " -rx 'sip notify reboot-snom " . $this->settings['line'][0]['username'] . "'");
+			exec($this->engine_location . " -rx 'pjsip send notify reboot-snom endpoint " . $this->settings['line'][0]['username'] . "'");
+		    exec($this->engine_location . " -rx 'sip notify snom-check-cfg " . $this->settings['line'][0]['username'] . "'");
+			exec($this->engine_location . " -rx 'pjsip send notify snom-check-cfg endpoint " . $this->settings['line'][0]['username'] . "'");
         }
     }
 

@@ -1,0 +1,29 @@
+{
+  "data":{
+    "name":"Gigaset N5X Models: [N510 IP PRO]",
+    "id":"1",
+    "directory":"n5x",
+    "firmware_ver":"",
+    "firmware_pkg":"NULL",
+    "firmware_md5sum":"",
+    "description":"Make more settings available in user interface",
+    "configuration_files":"$mac.xml",
+    "changelog":"",
+            "provisioning_types": [
+            "tftp",
+            "http"
+        ],
+    "model_list":[
+	  {
+        "model":"N510 IP PRO",
+        "lines":"6",
+        "id":"1",
+        "template_data":[
+		"n510.json",
+        "template_data.json"
+		  
+        ]
+      }	  	  
+    ]
+  }
+}

@@ -58,7 +58,15 @@
       {
         "name": "Yealink\/Dreamwave",
         "directory": "yealink"
-      }
+      },
+	  {
+        "name": "Yealink V80",
+        "directory": "yealinkv80"
+      },
+      {
+        "name": "Gigaset",
+        "directory": "gigaset"
+      }	  
     ],
     "version": "3"
   }

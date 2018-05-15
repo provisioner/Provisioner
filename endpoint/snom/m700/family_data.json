@@ -1,0 +1,32 @@
+{
+	"data":
+	{
+		"name":"Snom M700 Models [M700]",
+		"id":"5",
+		"directory":"m700",
+		"firmware_ver":"",
+		"firmware_pkg":"NULL",
+		"firmware_md5sum":"",
+		"description":"Multicell",
+		"configuration_files":"snom$model-$mac.htm,snom$model.htm",
+		"changelog":"",
+		"provisioning_types":
+		[
+			"tftp",
+			"http"
+		],
+		"model_list":
+		[
+			{
+				"model":"M700",
+				"lines":"150",
+				"id":"1",
+				"template_data":
+				[
+					"template_data.json",
+					"m700server.json"
+				]
+			}
+		]
+	}
+}

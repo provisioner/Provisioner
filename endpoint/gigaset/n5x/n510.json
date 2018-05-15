@@ -1,0 +1,47 @@
+{
+    "template_data":{
+        "category":[
+        {
+            "name":"N510 IP Pro specific Settings",
+            "subcategory":[
+            {
+                "name":"N510 IP Pro specific",
+                "item":[
+				{
+                    "type":"break"
+                },
+				{
+					"variable":"$firmware",
+					"default_value":"",
+					"description":"Firmware Version",
+					"type":"list",
+					"data":[
+					{
+					  "text":"No Firmware Update",
+					  "value":""
+					}			
+					]	
+					},
+				{
+                    "type":"break"
+                },
+				{
+                    "type":"break"
+                },
+				{
+                    "type":"break"
+                },
+				{
+                    "type":"break"
+                },
+				{
+                    "type":"break"
+                }			
+                ]
+            }
+            ]
+        }
+		
+        ]
+    }
+}

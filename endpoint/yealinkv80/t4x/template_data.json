@@ -1,0 +1,484 @@
+{
+    "template_data":{
+        "category":[
+        {
+            "name":"general",
+            "subcategory":[
+            {
+                "name":"general",
+                "item":[
+				{
+					"variable":"$timezone_name",
+					"default_value":"France(Paris)",
+					"description":"Timezone Name",
+					"type":"list",
+					"data":[
+					{
+					  "text":"France(Paris)",
+					  "value":"France(Paris)"
+					},
+					{
+					  "text":"United States-Alaska Time",
+					  "value":"United States-Alaska Time"
+					},
+					{
+					  "text":"United States-Pacific Time",
+					  "value":"United States-Pacific Time"
+					},
+					{
+					  "text":"United States-Mountain Time",
+					  "value":"United States-Mountain Time"
+					},
+					{
+					  "text":"United States-Central Time",
+					  "value":"United States-Central Time"
+					},
+					{
+					  "text":"United States-Eastern Time",
+					  "value":"United States-Eastern Time"
+					}
+					]	
+					},
+				{
+					"category":"system",
+					"variable":"$timezone_offset",
+					"default_value":"+1",
+					"description":"Timezone GMT Offset",
+					"type":"list",
+					"data":[
+					{
+					  "text":"-12",
+					  "value":"-12"
+					},
+					{
+					  "text":"-11",
+					  "value":"-11"
+					},
+					{
+					  "text":"-10",
+					  "value":"-10"
+					},
+					{
+					  "text":"-9",
+					  "value":"-9"
+					},
+					{
+					  "text":"-8",
+					  "value":"-8"
+					},
+					{
+					  "text":"-7",
+					  "value":"-7"
+					},
+					{
+					  "text":"-6",
+					  "value":"-6"
+					},
+					{
+					  "text":"-5",
+					  "value":"-5"
+					},
+					{
+					  "text":"-4",
+					  "value":"-4"
+					},
+					{
+					  "text":"-3",
+					  "value":"-3"
+					},
+					{
+					  "text":"-2",
+					  "value":"-2"
+					},
+					{
+					  "text":"-1",
+					  "value":"-1"
+					},
+					{
+					  "text":"0",
+					  "value":"0"
+					},
+					{
+					  "text":"+1",
+					  "value":"+1"
+					},
+					{
+					  "text":"+2",
+					  "value":"+2"
+					},
+					{
+					  "text":"+3",
+					  "value":"+3"
+					},
+					{
+					  "text":"+4",
+					  "value":"+4"
+					},
+					{
+					  "text":"+5",
+					  "value":"+5"
+					},
+					{
+					  "text":"+6",
+					  "value":"+6"
+					},
+					{
+					  "text":"+7",
+					  "value":"+7"
+					},
+					{
+					  "text":"+8",
+					  "value":"+8"
+					},
+					{
+					  "text":"+9",
+					  "value":"+9"
+					},
+					{
+					  "text":"+10",
+					  "value":"+10"
+					},
+					{
+					  "text":"+11",
+					  "value":"+11"
+					},
+					{
+					  "text":"+12",
+					  "value":"+12"
+					}
+					]
+					},
+                {
+                    "type":"break"
+                },
+                {
+                    "variable":"$ringtone_url",
+                    "default_value":"",
+                    "description":"Ringtone URL",
+                    "type":"input"
+                },
+                {
+                    "type":"break"
+                },
+                {
+                    "variable":"$logo_url",
+                    "default_value":"",
+                    "description":"Logo Uploaded at http://myphonesetup.com/",
+                    "type":"input"
+                },
+                {
+                    "variable":"$uselogo",
+                    "default_value":"Resource:Default.jpg",
+                    "description":"Custom Name of Logo to Use (Config:custom.jpg)",
+                    "type":"input"
+                },
+		{
+                    "type":"break"
+                },
+                {
+                    "variable":"$rfc2543_hold",
+                    "default_value":"0",
+                    "description":"Enable RFC2543 Hold",
+                    "type":"list",
+                    "data":[
+                    {
+                        "text":"Disabled",
+                        "value":"0"
+                    },
+                    {
+                        "text":"Enabled",
+                        "value":"1"
+                    }
+                    ]
+                },
+                {
+                    "type":"break"
+                },
+                {
+                    "variable":"$call_pickup",
+                    "default_value":"**",
+                    "description":"Call Pickup Value (For BLF)",
+                    "type":"input"
+                },
+                {
+                    "type":"break"
+                },
+                {
+                    "variable":"$adminpw",
+                    "default_value":"admin",
+                    "description":"Web administration password",
+                    "type":"input"
+                },
+                {
+                    "variable":"$tones_country",
+                    "default_value":"France",
+                    "description":"Tones Country",
+                    "type":"input"
+                },
+                {
+                    "variable":"$screensaverdelay",
+                    "description":"Screen Saver Delay",
+                    "default_value":"off",
+                    "type":"list",
+                    "data":[
+                    {
+                        "text":"No screensaver",
+                        "value":"off"
+                    },
+                    {
+                        "text":"1 minute",
+                        "value":"60"
+                    },
+                    {
+                        "text":"2 minutes",
+                        "value":"120"
+                    },
+                    {
+                        "text":"5 minutes",
+                        "value":"300"
+                    },
+                    {
+                        "text":"10 minutes",
+                        "value":"600"
+                    },
+                    {
+                        "text":"30 minutes",
+                        "value":"1800"
+                    }
+                    ]
+                }
+                ]
+            }
+            ]
+        },
+		{
+			"name":"preferences",
+			"subcategory":[
+			{
+				"name":"preferences",
+				"item":[		
+				{
+					"variable":"$contact_list_address",
+					"default_value":"",
+					"description":"Contact List URL",
+					"type":"input"
+				},
+				{
+					"type":"break"
+				},
+				{
+					"variable":"$ringtone_url",
+					"default_value":"",
+					"description":"Ringtone URL",
+					"type":"input"
+				},
+				{
+					"type":"break"
+				},
+				{
+					"variable":"$default_ringtone",
+					"default_value": "Ring4.wav",
+					"description":"Default Ringtone (prim for internal calls)",
+					"type":"list",
+					"data":[
+					{
+					   "text":"Ring1",
+					   "value":"Ring1.wav"
+					},
+					{
+					   "text":"Ring2",
+					   "value":"Ring2.wav"
+					},
+					{
+					   "text":"Ring3",
+					   "value":"Ring3.wav"
+					},
+					{
+					   "text":"Ring4",
+					   "value":"Ring4.wav"
+					},
+					{
+					   "text":"Ring5",
+					   "value":"Ring5.wav"
+					}
+				]
+				},
+				{
+					"type":"break"
+				},
+				{	"variable":"$dss_transfer",
+					"description":"DSS Transfer Type",
+					"default_value":"1",
+					"type":"list",
+					"data":[
+					{
+						"text":"New Call",
+						"value":"0"
+					},
+					{
+						"text":"Attended Transfer",
+						"value":"1"
+					},
+					{
+						"text":"Blind Transfer",
+						"value":"2"
+					}
+					]
+				},
+				{
+					"type":"break"
+				},
+				{
+					"variable":"$missed_call_log",
+					"description":"Missed Call Log",
+					"default_value":"1",
+					"type":"list",
+					"data":[
+					{
+						"text":"Disable",
+						"value":"0"
+					},
+					{
+						"text":"Enable",
+						"value":"1"
+					}
+					]
+				}
+				]
+			}
+			]
+		},
+		{
+			"name":"network",
+			"subcategory":[
+			{
+				"name":"network",
+				"item":[		
+				{
+					"variable": "$manual_use_outbound_proxy",
+					"default_value": "0",
+					"description": "Use Outbound Proxy",
+					"type": "list",
+					"data":[
+					{
+						"text":"Yes",
+						"value":"1"
+					},
+					{
+						"text":"No",
+						"value":"0"
+					}
+					]
+				},
+				{
+					"variable": "$manual_outbound_proxy_server",
+					"default_value": "{$server_host.line.1}",
+					"description": "Outbound Proxy Server",
+					"type": "input"
+				},
+				{
+					"variable": "$manual_outbound_port",
+					"default_value": "5060",
+					"description": "Outbound Proxy Port",
+					"type":"input"
+				},
+				{
+					"type":"break"
+				},
+				{
+					"variable": "$sip_server_override",
+					"default_value": "{$server_host.line.1}",
+					"description": "SIP Server Override",
+					"type": "input"
+				},
+				{
+					"type":"break"
+				},
+				{
+						"variable":"$voice_vlan_enable",
+						"default_value":"0",
+						"description":"Voice VLAN Enable",
+						"type":"list",
+						"data":[
+						{
+							"text":"True",
+							"value":"1"
+						},
+						{
+							"text":"False",
+							"value":"0"
+						}
+							   ]
+				},
+				{
+					"variable": "$voice_vlan_id",
+					"default_value": "2",
+					"description": "Voice VLAN ID",
+					"type": "input"
+				},
+				{
+					"variable": "$voice_vlan_qos",
+					"default_value": "6",
+					"description": "VLAN QOS",
+					"type": "input"
+				},
+				{
+						"variable":"$data_vlan_enable",
+						"default_value":"0",
+						"description":"Data VLAN Enable",
+						"type":"list",
+						"data":[
+						{
+							"text":"True",
+							"value":"1"
+						},
+						{
+							"text":"False",
+							"value":"0"
+						}
+								]
+				},
+				{
+					"variable": "$data_vlan_id",
+					"default_value": "0",
+					"description": "Data VLAN ID",
+					"type": "input"
+				},
+				{
+					"variable": "$data_vlan_qos",
+					"default_value": "0",
+					"description": "Data VLAN QOS",
+					"type": "input"
+				},
+				{
+					"type":"break"
+				},
+				{
+				   "variable":"$enable_vpn",
+				   "default_value":"0",
+				   "description":"Enable VPN",
+				   "type":"list",
+				   "data":[
+				   {
+					   "text":"Enabled",
+					   "value":"1"
+				   },
+				   {
+					   "text":"Disabled",
+					   "value":"0"
+				   }
+						   ]
+				},
+				{
+					"variable": "$vpn_server",
+					"default_value": "",
+					"description": "VPN Server/MAC.tar. FOLDER URL",
+					"type": "input"
+				}
+				]
+			}
+			]
+		}
+        ]
+    }
+}
