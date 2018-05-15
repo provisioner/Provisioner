@@ -5,8 +5,8 @@
       "directory": "snom",
       "brand_id": "6",
       "package": "snom.tgz",
-      "md5sum": "dce6737850378430f14a28494b037693",
-      "last_modified": 1395183811,
+      "md5sum": "55d11783de396d661769f815bcf13e72",
+      "last_modified": 1526394305,
       "family_list": [
         {
           "id": "1",
@@ -26,7 +26,7 @@
         },
         {
           "id": "3",
-          "name": "Snom 7xx Models [710, 715, 720, 760]",
+          "name": "Snom 7xx Models [710, 715, 720, 725, 760]",
           "directory": "7xx",
           "description": "Server + Password Settings, htm File Fixes",
           "changelog": "",
@@ -37,6 +37,14 @@
           "name": "Snom 8xx Models [820, 821, 870]",
           "directory": "8xx",
           "description": "Server + Password Settings, htm File Fixes",
+          "changelog": "",
+          "last_modified": null
+        },
+	    {
+          "id": "5",
+          "name": "Snom M700 Models [M700]",
+          "directory": "m700",
+          "description": "",
           "changelog": "",
           "last_modified": null
         }

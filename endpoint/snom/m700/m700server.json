@@ -1,0 +1,50 @@
+{
+    "template_data":{
+        "category":[
+        {
+            "name":"M700 Specific Settings",
+            "subcategory":[
+            {
+                "name":"M700 Specific Settings",
+                "item":[
+				{
+                    "type":"break"
+                },
+					{
+					"variable":"$firmware",
+					"default_value":"",
+					"description":"Firmware Version",
+					"type":"list",
+					"data":[
+					{
+					  "text":"No Firmware Update",
+					  "value":""
+					}			
+					]	
+					},
+                {
+                    "variable":"$serverport",
+                    "default_value":"5160",
+                    "description":"Server Port for all Phones",
+                    "type":"input"
+                },
+				{
+                    "type":"break"
+                },
+				{
+                    "type":"break"
+                },
+				{
+                    "type":"break"
+                },
+				{
+                    "type":"break"
+                }			
+                ]
+            }
+            ]
+        }
+		
+        ]
+    }
+}
