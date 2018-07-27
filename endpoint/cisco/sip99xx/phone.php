@@ -37,6 +37,7 @@ class endpoint_cisco_sip99xx_phone extends endpoint_cisco_base {
 			'Australia/Adelaide'=>'Central Pacific Standard Time',
 			'Australia/Tasmania'=>'Tasmania Standard/Daylight Time',
 			'Australia/Perth'=>'W. Australia Standard Time',
+			'America/Buenos_Aires'=>'SA Eastern Standard Time',
 		),
 	);
 	function prepare_for_generateconfig() {
