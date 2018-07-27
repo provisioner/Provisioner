@@ -193,6 +193,10 @@
                         {
                     	"text":"Australia/Perth",
                 	"value":"W. Australia Standard Time"
+                  	},
+                        {
+                    	"text":"America/Buenos Aires",
+                	"value":"SA Eastern Standard Time"
                   	}
                 ]
               }
