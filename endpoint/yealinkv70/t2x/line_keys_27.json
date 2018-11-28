@@ -8,10 +8,10 @@
             "name":"basic",
             "item":[
               {
-                "description":"Line Keys (1-21)”,
+                "description":"Line Keys (1-21)",
                 "type":"loop",
                 "loop_start":"1",
-                "loop_end”:”21”,
+                "loop_end":"21",
                 "data":{
                   "item":[
                     {
