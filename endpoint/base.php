@@ -630,7 +630,7 @@ abstract class endpoint_base {
             $result = "GMT+";
         }
         $result.=(int) ($offset / 3600);
-        if ($result % 3600 > 0) {
+        if ($offset % 3600 > 0) {
             $result.=":" . (($offset % 3600) / 60);
         } else {
             $result.=":00";
