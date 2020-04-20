@@ -47,10 +47,10 @@
                 "type":"break"
               },
               {
-                "description":"Function Keys (0-14)",
+                "description":"Function Keys (0-17)",
                 "type":"loop",
                 "loop_start":"0",
-                "loop_end":"14",
+                "loop_end":"17",
                 "data":{
                   "item":[
                     {
