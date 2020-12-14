@@ -64,6 +64,22 @@
 					"sidecar.json",
 					"speed_dials.json"
 				]
+			},
+			{
+				"model":"D375",
+				"lines":"12",
+				"id":"4",
+				"firmware":"snomD375?*.bin",
+				"template_data":
+				[
+					"line_options.json",
+					"template_data.json",
+					"action_urls.json",
+					"keys.json",
+					"functionkeys.json",
+					"sidecar.json",
+					"speed_dials.json"
+				]
 			}
 		]
 	}

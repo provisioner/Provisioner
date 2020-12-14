@@ -1,0 +1,70 @@
+{
+  "template_data":{
+    "category":[
+      {
+        "name":"General Settings",
+        "subcategory":[
+          {
+            "name":"General Settings",
+            "item":[
+              {
+                "variable":"$firmware",
+                "default_value":"",
+                "description":"Firmware",
+                "type":"input"
+              },
+              {
+                "variable":"$user_mode_password",
+                "default_value":"snom",
+                "description":"Phone Web Interface Password",
+                "type":"input"
+              },
+              {
+                "variable":"$admin_mode_password",
+                "default_value":"1234",
+                "description":"Admin Mode Password (Digits ONLY)",
+                "type":"input"
+              },
+              {
+                "variable":"$lang",
+                "default_value":"en",
+                "description":"Phone user interface language",
+                "type":"list",
+                "data":[
+                  {
+                    "text":"English",
+                    "value":"en"
+                  },
+                  {
+                    "text":"Español",
+                    "value":"es"
+                  },
+                  {
+                    "text":"Francais",
+                    "value":"fr"
+                  }
+                ]
+              },
+              {
+                "variable":"$time_24_format",
+                "default_value":"1",
+                "description":"Time Format",
+                "type":"list",
+                "data":[
+                  {
+                    "text":"AM\/PM",
+                    "value":"0"
+                  },
+                  {
+                    "text":"24 hour",
+                    "value":"1"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
