@@ -104,6 +104,34 @@
                 ]
               },
               {
+                "variable":"$keyboard_lock_emergency",
+                "default_value":"999 112",
+                "description":"Emergency numbers that can be dialled on locked keyboard",
+                "type":"input"
+              },
+              {
+                "variable":"$extra_phonebook",
+                "default_value":"",
+                "description":"URL to fetch systemwide phonebook from",
+                "type":"input"
+              },
+              {
+                "variable":"$dialnumber_us_format",
+                "default_value":"off",
+                "description":"Format phone numbers like in US when in US timezone",
+                "type":"radio",
+                "data":[
+                  {
+                    "text":"On",
+                    "value":"on"
+                  },
+                  {
+                    "text":"Off",
+                    "value":"off"
+                  }
+                ]
+              },
+              {
                 "variable":"$tone_scheme",
                 "default_value":"USA",
                 "description":"Dialtone",
@@ -180,6 +208,102 @@
                   {
                     "text":"United States",
                     "value":"USA"
+                  }
+                ]
+              },
+              {
+                "variable":"$web_language",
+                "default_value":"English",
+                "description":"Dialtone",
+                "type":"list",
+                "data":[
+                  {
+                    "text":"Arabic",
+                    "value":"Arabic"
+                  },
+                  {
+                    "text":"Bosnian",
+                    "value":"Bosanski"
+                  },
+                  {
+                    "text":"Catalan",
+                    "value":"Catalan"
+                  },
+                  {
+                    "text":"Croatian",
+                    "value":"Hrvatski"
+                  },
+                  {
+                    "text":"Dansk",
+                    "value":"Dansk"
+                  },
+                  {
+                    "text":"Nederlands",
+                    "value":"Nederlands"
+                  },
+                  {
+                    "text":"English",
+                    "value":"English"
+                  },
+                  {
+                    "text":"English(UK)",
+                    "value":"English(UK)"
+                  },
+                  {
+                    "text":"Estonian",
+                    "value":"Estonian"
+                  },
+                  {
+                    "text":"Finnish",
+                    "value":"Suomi"
+                  },
+                  {
+                    "text":"French",
+                    "value":"Francais"
+                  },
+                  {
+                    "text":"German",
+                    "value":"Deutsch"
+                  },
+                  {
+                    "text":"Hebrew",
+                    "value":"Hebrew"
+                  },
+                  {
+                    "text":"Hungarian",
+                    "value":"Hungarian"
+                  },
+                  {
+                    "text":"Italian",
+                    "value":"Italiano"
+                  },
+                  {
+                    "text":"Norwegian",
+                    "value":"Norsk"
+                  },
+                  {
+                    "text":"Polish",
+                    "value":"Polski"
+                  },
+                  {
+                    "text":"Russian",
+                    "value":"Russian"
+                  },
+                  {
+                    "text":"Slovak",
+                    "value":"Slovencina"
+                  },
+                  {
+                    "text":"Slovenian",
+                    "value":"Slovenian"
+                  },
+                  {
+                    "text":"Swedish",
+                    "value":"Svenska"
+                  },
+                  {
+                    "text":"Turkish",
+                    "value":"Turkce"
                   }
                 ]
               }

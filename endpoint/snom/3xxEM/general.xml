@@ -27,7 +27,7 @@
 		<http_scheme perm="R">on</http_scheme>
 		<intercom_connect_type perm="R">intercom_connect_type_handsfree</intercom_connect_type>
 		<intercom_enabled perm="R">on</intercom_enabled>
-		<keyboard_lock_emergency perm="R">999 112</keyboard_lock_emergency>
+		<keyboard_lock_emergency perm="R">{$keyboard_lock_emergency}</keyboard_lock_emergency>
 		<keytones perm="R">on</keytones>
 		<language perm="R">English</language>
 		<led_message_usage perm="R">PhoneHasMailboxMessage</led_message_usage>

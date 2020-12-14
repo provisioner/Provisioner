@@ -1,0 +1,34 @@
+{
+	"data":
+	{
+		"name":"Snom Cxxx Model",
+		"id":"5",
+		"directory":"Cxxx",
+		"firmware_ver":"",
+		"firmware_pkg":"NULL",
+		"firmware_md5sum":"",
+		"description":"Server + Password Settings",
+		"configuration_files":"$model_$mac.cfg,$model.cfg",
+		"changelog":"",
+		"provisioning_types":
+		[
+			"tftp",
+			"http"
+		],
+		"model_list":
+		[
+			{
+				"model":"C520-WiMi",
+				"lines":"4",
+				"id":"1",
+				"firmware":"C520-WiMi-*.img",
+				"template_data":
+				[
+					"line_options.json",
+					"template_data.json",
+					"speed_dials.json"
+				]
+			}
+		]
+	}
+}
