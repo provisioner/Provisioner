@@ -847,7 +847,7 @@ class Provisioner_Globals {
      * @param String $filename Name of the file: eg aastra.cfg
      * @return String, data of that file: eg # This file intentionally left blank!
      */
-    function dynamic_global_files($file, $provisioner_path='/tmp/', $web_path='/') {
+    public static function dynamic_global_files($file, $provisioner_path='/tmp/', $web_path='/') {
         if (preg_match("/y[0]{11}[1-7].cfg/i", $file)) {
             $file = 'y000000000000.cfg';
         }
